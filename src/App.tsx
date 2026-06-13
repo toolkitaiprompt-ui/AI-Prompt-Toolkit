@@ -13,7 +13,7 @@ import {
   WandSparkles,
   type LucideIcon,
 } from "lucide-react";
-import { BrowserRouter, Link, NavLink, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, NavLink, Route, Routes, useParams } from "react-router-dom";
 import {
   cleanPrompt,
   estimateTokens,
@@ -22,6 +22,7 @@ import {
   generateJsonSchema,
   validateJsonWithSchema,
 } from "./lib/toolkit";
+import { BLOG_POSTS, getBlogPostBySlug } from "./data/blogPosts";
 
 type ThemeMode = "light" | "dark";
 
@@ -78,32 +79,11 @@ const TOOL_PAGES: ToolMeta[] = [
   },
 ];
 
-const BLOG_POSTS = [
-  {
-    title: "How Global Teams Standardize Prompt Templates Across Regions",
-    excerpt:
-      "A production framework for variable naming, locale-aware instructions, and reusable prompt skeletons across multilingual AI teams.",
-    category: "Prompt Operations",
-    date: "May 14, 2026",
-    readTime: "7 min read",
-  },
-  {
-    title: "Schema-First AI Output: Reducing Hallucinations with JSON Guardrails",
-    excerpt:
-      "Learn how schema generation and strict validation improve reliability, prevent malformed output, and simplify downstream automation.",
-    category: "AI Reliability",
-    date: "May 9, 2026",
-    readTime: "6 min read",
-  },
-  {
-    title: "Token Budgeting for Enterprise AI: Practical Cost Control Patterns",
-    excerpt:
-      "Use token estimation and prompt compression techniques to cut inference spend while preserving output quality at scale.",
-    category: "Cost Engineering",
-    date: "May 2, 2026",
-    readTime: "5 min read",
-  },
-];
+const TOOL_BY_SLUG = new Map(TOOL_PAGES.map((tool) => [tool.path.split("/").pop()!, tool]));
+
+function getBlogPostsForTool(toolSlug: string) {
+  return BLOG_POSTS.filter((post) => post.relatedToolSlugs.includes(toolSlug));
+}
 
 function ToolNavCard({ tool }: { tool: ToolMeta }) {
   const Icon = tool.icon;
@@ -264,6 +244,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/tools/prompt-cleaner" element={<PromptCleanerPage />} />
           <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/privacy-policy" element={<PrivacyPage />} />
           <Route path="/terms-of-service" element={<TermsPage />} />
@@ -388,6 +369,96 @@ function HomePage() {
           ))}
         </div>
       </section>
+
+      <section className="mx-auto max-w-6xl px-4 py-14 lg:px-6">
+        <div className="grid gap-10 xl:grid-cols-[2fr_1fr]">
+          <div className="space-y-6">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-indigo-500">Featured articles</p>
+              <h2 className="mt-3 text-3xl font-bold">AI prompt strategy and production guidance</h2>
+              <p className="mt-3 max-w-3xl text-slate-600 dark:text-slate-300">
+                Explore the most practical guides for prompt engineering, schema validation, and prompt automation.
+              </p>
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-2">
+              {BLOG_POSTS.slice(0, 6).map((post) => (
+                <article key={post.slug} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-500">{post.category}</p>
+                  <h3 className="mt-3 text-xl font-semibold leading-snug text-slate-900 dark:text-white">
+                    <Link to={`/blog/${post.slug}`} className="hover:text-indigo-500">
+                      {post.title}
+                    </Link>
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{post.excerpt}</p>
+                  <div className="mt-4 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                    <span>{post.date}</span>
+                    <span>{post.readTime}</span>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <aside className="space-y-6 rounded-3xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-950/50">
+            <div>
+              <h2 className="text-xl font-semibold">Popular resources</h2>
+              <ul className="mt-5 space-y-4 text-sm text-slate-600 dark:text-slate-300">
+                <li>
+                  <Link to="/tools/prompt-variable-extractor" className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-300">
+                    Extract prompt variables for dynamic templates
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/tools/json-schema-generator" className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-300">
+                    Generate JSON schema for reliable AI output
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/tools/json-validator" className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-300">
+                    Validate AI responses before production
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/blog" className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-300">
+                    Browse the full blog library for prompt engineering
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="rounded-3xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/70">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500">Workflow highlight</p>
+              <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                Use prompt templates, schema validation, and token estimations together to build production-ready AI workflows that scale.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 py-14 lg:px-6">
+        <h2 className="text-2xl font-semibold">Latest AI Prompt Toolkit insights</h2>
+        <p className="mt-2 max-w-3xl text-slate-600 dark:text-slate-300">
+          New blog posts and tool guides to help teams design better prompts, stronger validation pipelines, and faster AI delivery.
+        </p>
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {BLOG_POSTS.map((post) => (
+            <Link
+              key={post.slug}
+              to={`/blog/${post.slug}`}
+              className="rounded-3xl border border-slate-200 bg-white p-5 text-sm text-slate-700 transition hover:border-indigo-300 hover:bg-indigo-50 dark:border-slate-800 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:bg-slate-950"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-500">{post.category}</p>
+              <h3 className="mt-3 text-lg font-semibold leading-snug text-slate-900 dark:text-white">{post.title}</h3>
+              <p className="mt-3 leading-relaxed text-slate-600 dark:text-slate-400">{post.excerpt}</p>
+              <div className="mt-4 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                <span>{post.date}</span>
+                <span>{post.readTime}</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
@@ -445,14 +516,32 @@ function ToolsDirectoryPage() {
   );
 }
 
-function ToolContainer({ title, description, children }: { title: string; description: string; children: ReactNode }) {
+function ToolContainer({ title, description, toolSlug, children }: { title: string; description: string; toolSlug?: string; children: ReactNode }) {
   const keywords = `${title}, Free AI Prompt Tools, Prompt Engineering, Token Estimator, JSON Validator`;
+  const relatedBlogs = toolSlug ? getBlogPostsForTool(toolSlug) : [];
 
   return (
     <SectionShell title={title} description={description} keywords={keywords}>
       <h1 className="text-3xl font-bold">{title}</h1>
       <p className="mt-2 max-w-3xl text-slate-600 dark:text-slate-400">{description}</p>
       <div className="mt-8 space-y-4">{children}</div>
+      {relatedBlogs.length > 0 ? (
+        <section className="rounded-3xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-950/50">
+          <h2 className="text-xl font-semibold">Recommended reading</h2>
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
+            Learn more about this tool in related AI prompt engineering guides.
+          </p>
+          <ul className="mt-4 space-y-3 text-sm text-slate-700 dark:text-slate-300">
+            {relatedBlogs.slice(0, 4).map((post) => (
+              <li key={post.slug}>
+                <Link to={`/blog/${post.slug}`} className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-300">
+                  {post.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
     </SectionShell>
   );
 }
@@ -464,6 +553,7 @@ function PromptVariableExtractorPage() {
   return (
     <ToolContainer
       title="Prompt Variable Extractor"
+      toolSlug="prompt-variable-extractor"
       description="Extract prompt placeholders to standardize Prompt Engineering templates for fast and reliable AI automation."
     >
       <textarea
@@ -500,6 +590,7 @@ function JsonSchemaGeneratorPage() {
   return (
     <ToolContainer
       title="JSON Schema Generator"
+      toolSlug="json-schema-generator"
       description="Generate JSON Schema from sample data to enforce reliable Prompt Engineering output structure."
     >
       <textarea
@@ -543,6 +634,7 @@ function JsonValidatorPage() {
   return (
     <ToolContainer
       title="JSON Validator"
+      toolSlug="json-validator"
       description="Validate JSON against schema rules to keep Prompt Engineering pipelines accurate and production-ready."
     >
       <div className="grid gap-4 lg:grid-cols-2">
@@ -581,6 +673,7 @@ function PromptFormatterPage() {
   return (
     <ToolContainer
       title="Prompt Formatter"
+      toolSlug="prompt-formatter"
       description="Format messy prompt notes into a clear structure for stronger Prompt Engineering consistency."
     >
       <textarea
@@ -601,6 +694,7 @@ function PromptCleanerPage() {
   return (
     <ToolContainer
       title="Prompt Cleaner"
+      toolSlug="prompt-cleaner"
       description="Clean noisy text and hidden characters to improve Prompt Engineering quality and response stability."
     >
       <textarea
@@ -621,6 +715,7 @@ function TokenEstimatorPage() {
   return (
     <ToolContainer
       title="Token Estimator"
+      toolSlug="token-estimator"
       description="Token Estimator for Prompt Engineering teams to project token usage, budget impact, and context size."
     >
       <textarea
@@ -661,7 +756,7 @@ function BlogPage() {
       <div className="mt-10 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
         {BLOG_POSTS.map((post) => (
           <article
-            key={post.title}
+            key={post.slug}
             className="group overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_12px_40px_-22px_rgba(15,23,42,0.35)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_-20px_rgba(59,130,246,0.4)] dark:border-slate-800 dark:bg-slate-900/80"
           >
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-500">{post.category}</p>
@@ -674,15 +769,91 @@ function BlogPage() {
               </span>
               <span>{post.readTime}</span>
             </div>
-            <button
-              type="button"
+            <Link
+              to={`/blog/${post.slug}`}
               className="mt-6 inline-flex items-center gap-2 rounded-full border border-blue-500/40 px-4 py-2 text-sm font-medium text-blue-500 transition duration-300 hover:border-blue-400 hover:bg-blue-500 hover:text-white hover:shadow-[0_0_24px_rgba(59,130,246,0.45)]"
             >
               Read More
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </button>
+            </Link>
           </article>
         ))}
+      </div>
+    </SectionShell>
+  );
+}
+
+function BlogPostPage() {
+  const { slug } = useParams<{ slug: string }>();
+  const post = slug ? getBlogPostBySlug(slug) : undefined;
+
+  if (!post) {
+    return <NotFoundPage />;
+  }
+
+  const relatedTools = post.relatedToolSlugs
+    .map((toolSlug) => TOOL_BY_SLUG.get(toolSlug))
+    .filter(Boolean) as ToolMeta[];
+
+  return (
+    <SectionShell title={post.seoTitle} description={post.metaDescription} keywords={`${post.category}, Prompt Engineering, AI Prompt Toolkit`}>
+      <div className="space-y-6">
+        <div className="space-y-3">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-500">{post.category}</p>
+          <h1 className="text-4xl font-bold tracking-tight">{post.title}</h1>
+          <div className="flex flex-wrap gap-4 text-sm text-slate-500 dark:text-slate-400">
+            <span>{post.date}</span>
+            <span>{post.readTime}</span>
+          </div>
+        </div>
+
+        <div className="grid gap-10 lg:grid-cols-[2fr_360px]">
+          <article className="space-y-8">
+            {post.contentSections.map((section) => (
+              <section key={section.heading} className="space-y-4">
+                <h2 className="text-2xl font-semibold">{section.heading}</h2>
+                {section.paragraphs.map((paragraph) => (
+                  <p key={paragraph} className="text-base leading-8 text-slate-600 dark:text-slate-300">
+                    {paragraph}
+                  </p>
+                ))}
+              </section>
+            ))}
+
+            <section className="rounded-3xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-950/50">
+              <h2 className="text-2xl font-semibold">Frequently asked questions</h2>
+              <div className="mt-4 space-y-4">
+                {post.faq.map((item) => (
+                  <div key={item.question} className="space-y-2">
+                    <p className="font-semibold text-slate-900 dark:text-white">{item.question}</p>
+                    <p className="text-sm leading-7 text-slate-600 dark:text-slate-300">{item.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </article>
+
+          <aside className="space-y-6 rounded-3xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900/70">
+            <div>
+              <h2 className="text-xl font-semibold">Related tools</h2>
+              <ul className="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+                {relatedTools.map((tool) => (
+                  <li key={tool.path}>
+                    <Link to={tool.path} className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-300">
+                      {tool.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2 className="text-xl font-semibold">Back to blog</h2>
+              <Link to="/blog" className="mt-3 inline-flex text-sm font-semibold text-blue-500 hover:text-blue-400">
+                Browse all AI Prompt Toolkit guides
+              </Link>
+            </div>
+          </aside>
+        </div>
       </div>
     </SectionShell>
   );

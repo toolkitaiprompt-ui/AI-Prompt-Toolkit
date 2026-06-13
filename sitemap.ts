@@ -1,3 +1,5 @@
+import { BLOG_POSTS } from "./src/data/blogPosts";
+
 const SITE_URL = "https://ai-prompt-toolkit-31l.pages.dev";
 
 const ROUTES = [
@@ -24,11 +26,12 @@ type SitemapEntry = {
 
 export function getSitemapEntries(): SitemapEntry[] {
   const today = new Date().toISOString().split("T")[0];
+  const blogRoutes = BLOG_POSTS.map((post) => `/blog/${post.slug}`);
 
-  return ROUTES.map((route) => ({
+  return [...ROUTES, ...blogRoutes].map((route) => ({
     url: `${SITE_URL}${route}`,
     changefreq: route === "/" || route === "/tools" ? "weekly" : "monthly",
-    priority: route === "/" ? 1 : route.startsWith("/tools/") ? 0.9 : 0.7,
+    priority: route === "/" ? 1 : route.startsWith("/tools/") ? 0.9 : route.startsWith("/blog/") ? 0.8 : 0.7,
     lastmod: today,
   }));
 }
