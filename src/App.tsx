@@ -138,7 +138,7 @@ function useSeo(title: string, description: string, keywords?: string) {
   const fallbackKeywords = "Free AI Prompt Tools, Prompt Engineering, Token Estimator, JSON Validator, AI Prompt Toolkit";
 
   useEffect(() => {
-    document.title = `${title} | PromptForge Toolkit`;
+    document.title = `${title} | AI Prompt Toolkit`;
 
     const ensureMeta = (name: string) => {
       let tag = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
@@ -180,6 +180,24 @@ function useSeo(title: string, description: string, keywords?: string) {
     ensurePropertyMeta("og:description").setAttribute("content", description);
     ensurePropertyMeta("og:type").setAttribute("content", "website");
     ensureLink("canonical").setAttribute("href", window.location.href);
+
+    // Site-wide default social preview images: @2x primary, 1x fallback, SVG fallback
+    const primary2x = "https://ai-prompt-toolkit-31l.pages.dev/images/social-share@2x.png";
+    const default1x = "https://ai-prompt-toolkit-31l.pages.dev/images/social-share.png";
+    const fallbackSvg = "https://ai-prompt-toolkit-31l.pages.dev/images/social-share.svg";
+    ensurePropertyMeta("og:image").setAttribute("content", primary2x);
+    ensurePropertyMeta("og:image:width").setAttribute("content", "2400");
+    ensurePropertyMeta("og:image:height").setAttribute("content", "1260");
+    ensurePropertyMeta("og:image:alt").setAttribute("content", "AI Prompt Toolkit — Build reliable AI prompts, schemas, and validation workflows.");
+    // Also provide a 1x PNG fallback
+    const imgFallbackTag = document.createElement("meta");
+    imgFallbackTag.setAttribute("property", "og:image");
+    imgFallbackTag.setAttribute("content", default1x);
+    document.head.appendChild(imgFallbackTag);
+    // SVG secure URL fallback
+    ensurePropertyMeta("og:image:secure_url").setAttribute("content", fallbackSvg);
+    ensureMeta("twitter:image").setAttribute("content", primary2x);
+    ensureMeta("twitter:image:alt").setAttribute("content", "AI Prompt Toolkit — Build reliable AI prompts, schemas, and validation workflows.");
   }, [title, description, keywords, fallbackKeywords]);
 }
 
@@ -213,7 +231,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
       <header className="sticky top-0 z-50 border-b border-white/15 bg-white/75 backdrop-blur-xl dark:bg-slate-950/70">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 lg:px-6">
           <Link to="/" className="text-lg font-bold tracking-tight">
-            PromptForge Toolkit
+            AI Prompt Toolkit
           </Link>
           <nav className="flex items-center gap-3 text-sm">
             <NavLink to="/" end className={navLinkClass}>
@@ -255,7 +273,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
 
       <footer className="border-t border-slate-200 py-10 dark:border-slate-800">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 text-sm text-slate-600 dark:text-slate-400 lg:px-6">
-          <p>2026 PromptForge Toolkit. Built for global AI teams.</p>
+          <p>2026 AI Prompt Toolkit. Built for global AI teams.</p>
           <div className="flex gap-4">
             <Link to="/privacy-policy" className="hover:text-indigo-500">
               Privacy Policy
@@ -296,7 +314,7 @@ function SectionShell({
 function HomePage() {
   useSeo(
     "Free AI Prompt Tools for Prompt Engineering",
-    "PromptForge Toolkit offers Free AI Prompt Tools including Token Estimator, JSON Validator, and prompt engineering workflows for global teams.",
+    "AI Prompt Toolkit offers Free AI Prompt Tools including Token Estimator, JSON Validator, and prompt engineering workflows for global teams.",
     "Free AI Prompt Tools, Prompt Engineering, Token Estimator, JSON Schema Generator, JSON Validator",
   );
 
@@ -318,7 +336,7 @@ function HomePage() {
               transition={{ duration: 0.55 }}
               className="text-xl font-semibold tracking-tight text-indigo-300"
             >
-              PromptForge Toolkit
+              AI Prompt Toolkit
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 26 }}
@@ -690,12 +708,12 @@ function ContactPage() {
   return (
     <SectionShell
       title="Contact - Prompt Engineering Toolkit"
-      description="Contact PromptForge for Prompt Engineering partnerships, support, and Free AI Prompt Tools collaboration."
-      keywords="Contact PromptForge, Free AI Prompt Tools, Prompt Engineering, Token Estimator"
+      description="Contact AI Prompt Toolkit for Prompt Engineering partnerships, support, and Free AI Prompt Tools collaboration."
+      keywords="Contact AI Prompt Toolkit, Free AI Prompt Tools, Prompt Engineering, Token Estimator"
     >
       <h1 className="text-3xl font-bold tracking-tight">Contact</h1>
       <p className="mt-3 max-w-2xl text-slate-600 dark:text-slate-400">
-        Connect with the PromptForge team for enterprise onboarding, partnerships, and technical collaboration.
+        Connect with the AI Prompt Toolkit team for enterprise onboarding, partnerships, and technical collaboration.
       </p>
 
       <div className="mt-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
@@ -764,7 +782,7 @@ function PrivacyPage() {
   return (
     <SectionShell
       title="Privacy Policy"
-      description="Privacy policy outlining data handling, cookie usage, and user rights for PromptForge Toolkit."
+      description="Privacy policy outlining data handling, cookie usage, and user rights for AI Prompt Toolkit."
       keywords="Privacy Policy, Free AI Prompt Tools, Prompt Engineering"
     >
       <h1 className="text-3xl font-bold">Privacy Policy</h1>
@@ -779,7 +797,7 @@ function TermsPage() {
   return (
     <SectionShell
       title="Terms of Service"
-      description="Terms and usage conditions for the PromptForge AI Prompt Toolkit."
+      description="Terms and usage conditions for the AI Prompt Toolkit."
       keywords="Terms of Service, Free AI Prompt Tools, Prompt Engineering"
     >
       <h1 className="text-3xl font-bold">Terms of Service</h1>

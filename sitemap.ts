@@ -1,4 +1,4 @@
-const SITE_URL = "https://promptforge-toolkit.vercel.app";
+const SITE_URL = "https://ai-prompt-toolkit-31l.pages.dev";
 
 const ROUTES = [
   "/",
