@@ -631,15 +631,15 @@ function TokenEstimatorPage() {
       />
       <div className="grid gap-3 sm:grid-cols-3">
         <div className="border border-slate-200 p-4 dark:border-slate-800">
-          <h2 className="text-sm font-medium text-slate-500 dark:text-slate-400">Characters</h2>
+          <h3 className="text-sm font-medium text-slate-500 dark:text-slate-400">Characters</h3>
           <p className="mt-1 text-2xl font-semibold">{stats.characters}</p>
         </div>
         <div className="border border-slate-200 p-4 dark:border-slate-800">
-          <h2 className="text-sm font-medium text-slate-500 dark:text-slate-400">Words</h2>
+          <h3 className="text-sm font-medium text-slate-500 dark:text-slate-400">Words</h3>
           <p className="mt-1 text-2xl font-semibold">{stats.words}</p>
         </div>
         <div className="border border-slate-200 p-4 dark:border-slate-800">
-          <h2 className="text-sm font-medium text-slate-500 dark:text-slate-400">Estimated Tokens</h2>
+          <h3 className="text-sm font-medium text-slate-500 dark:text-slate-400">Estimated Tokens</h3>
           <p className="mt-1 text-2xl font-semibold">{stats.estimatedTokens}</p>
         </div>
       </div>
