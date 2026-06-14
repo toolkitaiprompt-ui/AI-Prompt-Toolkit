@@ -29,6 +29,7 @@ import PromptOptimizer from "./components/PromptOptimizer";
 import ToolCard from "./components/ToolCard";
 import BlogCard from "./components/BlogCard";
 import AdsterraAd from "./components/AdsterraAd";
+import AdsterraSlot from "./components/AdsterraSlot";
 
 type ThemeMode = "light" | "dark";
 
@@ -725,16 +726,36 @@ function BlogPostPage() {
 
         <div className="grid gap-10 lg:grid-cols-[2fr_360px]">
           <article className="space-y-8">
-            {post.contentSections.map((section) => (
-              <section key={section.heading} className="space-y-4">
-                <h2 className="text-2xl font-semibold">{section.heading}</h2>
-                {section.paragraphs.map((paragraph) => (
-                  <p key={paragraph} className="text-base leading-8 text-slate-600 dark:text-slate-300">
-                    {paragraph}
-                  </p>
-                ))}
-              </section>
-            ))}
+            <div className="hidden lg:block">
+              <AdsterraSlot variant="A" layout="desktop" />
+            </div>
+            {(() => {
+              const sections: JSX.Element[] = [];
+              const insertAfterIndex = Math.floor(post.contentSections.length / 2);
+              const postIndex = BLOG_POSTS.findIndex((p) => p.slug === post.slug);
+              const variant: "A" | "B" = postIndex % 2 === 0 ? "A" : "B";
+
+              post.contentSections.forEach((section, idx) => {
+                sections.push(
+                  <section key={section.heading} className="space-y-4">
+                    <h2 className="text-2xl font-semibold">{section.heading}</h2>
+                    {section.paragraphs.map((paragraph) => (
+                      <p key={paragraph} className="text-base leading-8 text-slate-600 dark:text-slate-300">{paragraph}</p>
+                    ))}
+                  </section>,
+                );
+
+                if (idx === insertAfterIndex - 1) {
+                  sections.push(
+                    <div key={`ad-wrapper-${idx}`} className="block lg:hidden">
+                      <AdsterraSlot variant={variant} layout="mobile" />
+                    </div>,
+                  );
+                }
+              });
+
+              return sections;
+            })()}
 
             <section className="rounded-3xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-950/50">
               <h2 className="text-2xl font-semibold">Frequently asked questions</h2>
@@ -747,6 +768,9 @@ function BlogPostPage() {
                 ))}
               </div>
             </section>
+            <div className="block lg:hidden">
+              <AdsterraSlot variant={variant === "A" ? "B" : "A"} layout="mobile" />
+            </div>
           </article>
 
           <aside className="space-y-6 rounded-3xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900/70">
