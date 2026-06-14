@@ -6,6 +6,7 @@ import {
   CalendarDays,
   FileJson2,
   Mail,
+  RefreshCcw,
   SendHorizontal,
   ShieldCheck,
   Sigma,
@@ -23,6 +24,9 @@ import {
   validateJsonWithSchema,
 } from "./lib/toolkit";
 import { BLOG_POSTS, getBlogPostBySlug } from "./data/blogPosts";
+import HeroSection from "./components/HeroSection";
+import PromptOptimizer from "./components/PromptOptimizer";
+import ToolCard from "./components/ToolCard";
 
 type ThemeMode = "light" | "dark";
 
@@ -32,6 +36,7 @@ type ToolMeta = {
   description: string;
   icon: LucideIcon;
   accent: string;
+  premium?: boolean;
 };
 
 const TOOL_PAGES: ToolMeta[] = [
@@ -77,41 +82,20 @@ const TOOL_PAGES: ToolMeta[] = [
     icon: Sigma,
     accent: "from-blue-600/35 to-violet-500/10",
   },
+  {
+    title: "Advanced Prompt Optimizer",
+    path: "/tools/advanced-prompt-optimizer",
+    description: "Polish and amplify prompts with premium optimization controls, copyflow, and high-fidelity results.",
+    icon: Sparkles,
+    accent: "from-indigo-500/35 to-cyan-400/10",
+    premium: true,
+  },
 ];
 
 const TOOL_BY_SLUG = new Map(TOOL_PAGES.map((tool) => [tool.path.split("/").pop()!, tool]));
 
 function getBlogPostsForTool(toolSlug: string) {
   return BLOG_POSTS.filter((post) => post.relatedToolSlugs.includes(toolSlug));
-}
-
-function ToolNavCard({ tool }: { tool: ToolMeta }) {
-  const Icon = tool.icon;
-
-  return (
-    <motion.div whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 270, damping: 20 }}>
-      <Link to={tool.path} className="group relative block overflow-hidden rounded-2xl p-[1px]">
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/70 via-indigo-500/35 to-purple-500/70 opacity-0 blur-md transition duration-300 group-hover:opacity-100" />
-        <div className="relative flex min-h-64 flex-col justify-between rounded-2xl border border-white/15 bg-gradient-to-br from-slate-950/95 via-slate-900/95 to-slate-950/95 p-7 backdrop-blur-xl">
-          <div className={`pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br ${tool.accent} opacity-70`} />
-          <div className="space-y-4">
-            <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-blue-200">
-              <Icon className="h-5 w-5" aria-hidden="true" />
-            </div>
-            <h3 className="text-2xl font-bold tracking-tight text-white">{tool.title}</h3>
-            <p className="text-base leading-relaxed text-slate-300">{tool.description}</p>
-          </div>
-
-          <div className="mt-6 flex justify-end">
-            <span className="inline-flex items-center gap-2 rounded-full border border-blue-300/35 bg-blue-500/10 px-3 py-1.5 text-sm font-semibold text-blue-100 transition group-hover:border-blue-200/60 group-hover:bg-blue-500/20">
-              Try Tool
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </span>
-          </div>
-        </div>
-      </Link>
-    </motion.div>
-  );
 }
 
 function useSeo(title: string, description: string, keywords?: string) {
@@ -241,6 +225,18 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/tools/json-schema-generator" element={<JsonSchemaGeneratorPage />} />
           <Route path="/tools/json-validator" element={<JsonValidatorPage />} />
           <Route path="/tools/prompt-formatter" element={<PromptFormatterPage />} />
+          <Route
+            path="/tools/advanced-prompt-optimizer"
+            element={
+              <ToolContainer
+                title="Advanced Prompt Optimizer"
+                description="Polish prompts with premium AI optimization, copy-ready results, and a high-end command center experience."
+                toolSlug="advanced-prompt-optimizer"
+              >
+                <PromptOptimizer />
+              </ToolContainer>
+            }
+          />
           <Route path="/tools/prompt-cleaner" element={<PromptCleanerPage />} />
           <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />
           <Route path="/blog" element={<BlogPage />} />
@@ -300,72 +296,19 @@ function HomePage() {
   );
 
   return (
-    <div>
-      <section className="relative isolate overflow-hidden">
-        <img
-          src="/images/prompt-toolkit-hero.jpg"
-          alt="Global team collaborating on AI prompt and JSON workflows"
-          className="absolute inset-0 h-full w-full object-cover"
-          loading="eager"
-        />
-        <div className="absolute inset-0 bg-slate-950/70" />
-        <div className="relative mx-auto flex min-h-[72vh] max-w-6xl items-center px-4 py-16 lg:px-6">
-          <div className="max-w-3xl space-y-6 text-white">
-            <motion.p
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55 }}
-              className="text-xl font-semibold tracking-tight text-indigo-300"
-            >
-              AI Prompt Toolkit
-            </motion.p>
-            <motion.h1
-              initial={{ opacity: 0, y: 26 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, delay: 0.1 }}
-              className="text-4xl font-bold leading-tight sm:text-5xl"
-            >
-              Build reliable AI prompts, schemas, and validation workflows in one place.
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, delay: 0.2 }}
-              className="max-w-2xl text-base text-slate-200 sm:text-lg"
-            >
-              International-standard toolkit for teams shipping AI products across multilingual, multi-region, and regulated environments.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 34 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, delay: 0.3 }}
-              className="flex flex-wrap gap-3"
-            >
-              <Link
-                to="/tools"
-                className="rounded-md bg-indigo-500 px-5 py-3 text-sm font-medium text-white transition hover:bg-indigo-400"
-              >
-                Explore Tools
-              </Link>
-              <Link
-                to="/blog"
-                className="rounded-md border border-white/50 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/10"
-              >
-                Read Blog
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+    <div className="bg-[#09090f] text-slate-200">
+      <HeroSection />
 
       <section className="mx-auto max-w-6xl px-4 py-14 lg:px-6">
-        <h2 className="text-2xl font-semibold">One toolkit. Six production tools.</h2>
-        <p className="mt-2 max-w-3xl text-slate-600 dark:text-slate-300">
-          Generate schemas, validate outputs, format prompts, and estimate token budget before deployment.
-        </p>
-        <div className="mt-10 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
+        <div className="space-y-6">
+          <p className="text-sm uppercase tracking-[0.28em] text-cyan-300/80">AI operations made luminous</p>
+          <h2 className="max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">A futuristic toolkit built for premium AI prompt workflows.</h2>
+          <p className="max-w-2xl text-lg leading-8 text-slate-400">Explore a bento-grid directory that feels tactile, polished, and engineered for elite prompt engineering teams.</p>
+        </div>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {TOOL_PAGES.map((tool) => (
-            <ToolNavCard key={tool.path} tool={tool} />
+            <ToolCard key={tool.path} tool={tool} />
           ))}
         </div>
       </section>
@@ -477,9 +420,9 @@ function ToolsDirectoryPage() {
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_280px]">
         <div className="space-y-8">
-          <div className="grid gap-7 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {TOOL_PAGES.map((tool) => (
-              <ToolNavCard key={tool.path} tool={tool} />
+              <ToolCard key={tool.path} tool={tool} />
             ))}
           </div>
 
