@@ -29,15 +29,5 @@ export default function AdsterraAd() {
     };
   }, []);
 
-  return (
-    <section className="my-12 rounded-3xl border border-amber-500/30 bg-amber-950/10 p-5 text-slate-100 shadow-[0_24px_48px_-30px_rgba(245,158,11,0.8)]">
-      <div className="mb-4 rounded-2xl bg-amber-500/10 px-4 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-amber-300">
-        Sponsored placement
-      </div>
-      <div ref={adRef} className="flex justify-center" />
-      <p className="mt-4 text-xs leading-5 text-amber-200/80">
-        This is an Adsterra ad placement, styled separately from Google AdSense content.
-      </p>
-    </section>
-  );
+  return <div ref={adRef} className="my-8 flex justify-center" />;
 }
