@@ -28,6 +28,7 @@ import HeroSection from "./components/HeroSection";
 import PromptOptimizer from "./components/PromptOptimizer";
 import ToolCard from "./components/ToolCard";
 import BlogCard from "./components/BlogCard";
+import AdsterraAd from "./components/AdsterraAd";
 
 type ThemeMode = "light" | "dark";
 
@@ -301,6 +302,8 @@ function HomePage() {
   return (
     <div className="bg-[#09090f] text-slate-200">
       <HeroSection />
+
+      <AdsterraAd />
 
       <section className="mx-auto max-w-6xl px-4 py-14 lg:px-6">
         <div className="space-y-6">
