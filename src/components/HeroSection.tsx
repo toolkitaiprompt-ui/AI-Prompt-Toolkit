@@ -51,14 +51,32 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative overflow-hidden px-4 py-16 sm:px-6 lg:px-8">
-      {/* Background Effects */}
-      <div className="mesh-background absolute inset-0 opacity-80" />
-      <div className="absolute inset-x-0 top-0 h-80 bg-gradient-to-b from-cyan-500/15 to-transparent" />
-      <div className="absolute inset-y-0 right-0 w-96 rounded-full bg-violet-500/10 blur-3xl" />
-      <div className="absolute inset-y-0 left-20 w-96 rounded-full bg-indigo-500/5 blur-3xl" />
+    <section className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8 min-h-screen flex items-center">
+      {/* Background Image with Lazy Loading */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/images/prompt-toolkit-hero.jpg')",
+          backgroundAttachment: "fixed",
+        }}
+        role="img"
+        aria-label="Modern tech team workspace with city skyline"
+      />
 
-      <div className="relative mx-auto max-w-7xl">
+      {/* Dark Overlay for Readability - Layered Gradient */}
+      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/60" />
+
+      {/* Subtle mesh overlay for premium feel */}
+      <div className="absolute inset-0 opacity-20" style={{
+        backgroundImage: "radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)",
+      }} />
+      <div className="absolute inset-0 opacity-15" style={{
+        backgroundImage: "radial-gradient(circle at 80% 50%, rgba(34, 211, 238, 0.1) 0%, transparent 50%)",
+      }} />
+
+      <div className="relative z-10 mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -71,17 +89,17 @@ export default function HeroSection() {
             <div className="space-y-6">
               {/* Eyebrow Badge */}
               <motion.div variants={itemVariants} className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-300">
+                <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/50 bg-emerald-500/20 backdrop-blur px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-200">
                   <Zap className="h-3 w-3" aria-hidden="true" />
                   Trusted by AI Teams Worldwide
                 </span>
               </motion.div>
 
-              {/* Main Headline - Clear Value Prop */}
+              {/* Main Headline - Premium Glassmorphic Style */}
               <motion.div variants={itemVariants} className="space-y-3">
-                <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-6xl">
+                <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl drop-shadow-lg">
                   Build Reliable AI Prompts,
-                  <span className="block bg-gradient-to-r from-cyan-400 via-indigo-400 to-violet-400 bg-clip-text text-transparent">
+                  <span className="block bg-gradient-to-r from-cyan-300 via-indigo-300 to-violet-300 bg-clip-text text-transparent drop-shadow-2xl">
                     Faster & Smarter
                   </span>
                 </h1>
@@ -90,7 +108,7 @@ export default function HeroSection() {
               {/* Subheadline: What + Who + Why (3-Second Brief) */}
               <motion.p
                 variants={itemVariants}
-                className="max-w-xl text-lg leading-8 text-slate-300"
+                className="max-w-xl text-lg leading-8 text-slate-100 drop-shadow"
               >
                 Professional AI prompt engineering tools built for teams. Format prompts, validate JSON output, estimate costs, extract variables — all
                 in one premium platform.
@@ -113,8 +131,8 @@ export default function HeroSection() {
                     variants={itemVariants}
                     className="flex items-start gap-3"
                   >
-                    <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-emerald-400 mt-0.5" aria-hidden="true" />
-                    <span className="text-sm text-slate-300">{benefit}</span>
+                    <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-emerald-300 mt-0.5 drop-shadow" aria-hidden="true" />
+                    <span className="text-sm text-slate-100 drop-shadow">{benefit}</span>
                   </motion.div>
                 ))}
               </motion.div>
