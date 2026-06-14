@@ -11,6 +11,11 @@ import {
   Code2,
   CheckCircle2,
   Zap,
+  Workflow,
+  Zap as ZapIcon,
+  GitBranch,
+  BarChart3,
+  Layers,
 } from "lucide-react";
 
 export default function HeroSection() {
@@ -58,7 +63,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-8"
+          className="space-y-12"
         >
           {/* Main Hero Content */}
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
@@ -258,49 +263,227 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Bottom: Feature Highlights with Icons */}
+          {/* PREMIUM FEATURE SHOWCASE - 5 Blocks */}
           <motion.div
             variants={itemVariants}
-            className="rounded-[20px] border border-slate-800/60 bg-gradient-to-r from-slate-900/40 via-slate-950/50 to-slate-900/40 p-6 backdrop-blur-sm sm:p-8"
+            className="space-y-4"
           >
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                {
-                  icon: WandSparkles,
-                  label: "Prompt Formatter",
-                  desc: "Clean messy prompts instantly",
-                },
-                {
-                  icon: FileJson2,
-                  label: "JSON Schema Gen",
-                  desc: "Enforce output structure",
-                },
-                {
-                  icon: ShieldCheck,
-                  label: "JSON Validator",
-                  desc: "Validate AI responses",
-                },
-                {
-                  icon: Sigma,
-                  label: "Token Estimator",
-                  desc: "Predict API costs",
-                },
-              ].map((feature) => {
-                const Icon = feature.icon;
-                return (
-                  <motion.div
-                    key={feature.label}
-                    variants={itemVariants}
-                    className="flex gap-3 rounded-[12px] border border-slate-700/30 bg-slate-900/50 p-4 transition hover:border-slate-600/50 hover:bg-slate-800/50"
-                  >
-                    <Icon className="h-5 w-5 flex-shrink-0 text-cyan-400 mt-1" aria-hidden="true" />
-                    <div>
-                      <p className="text-sm font-semibold text-white">{feature.label}</p>
-                      <p className="text-xs text-slate-400 mt-0.5">{feature.desc}</p>
+            <div className="text-center">
+              <h2 className="text-3xl font-bold text-white">Powerful Features for AI Teams</h2>
+              <p className="mt-2 text-slate-400">Everything you need to build, validate, and deploy AI prompts at scale</p>
+            </div>
+
+            {/* 5 Feature Blocks Grid */}
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5 pt-4">
+              {/* Feature 1: Prompt Engineering */}
+              <motion.div
+                variants={itemVariants}
+                whileHover={{ y: -4 }}
+                className="group relative rounded-[16px] border border-slate-800/60 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-5 transition duration-300 hover:border-cyan-500/40 hover:bg-slate-900/90 overflow-hidden"
+              >
+                {/* Gradient Overlay on Hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-indigo-500/0 group-hover:from-cyan-500/5 group-hover:to-indigo-500/5 transition duration-300" />
+
+                <div className="relative space-y-3">
+                  {/* Icon Container */}
+                  <div className="flex h-12 w-12 items-center justify-center rounded-[10px] bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 border border-cyan-400/30 group-hover:from-cyan-500/30 group-hover:to-cyan-600/20 transition">
+                    <WandSparkles className="h-6 w-6 text-cyan-300" aria-hidden="true" />
+                  </div>
+
+                  {/* Content */}
+                  <div>
+                    <h3 className="text-sm font-semibold text-white group-hover:text-cyan-300 transition">
+                      Prompt Engineering
+                    </h3>
+                    <p className="mt-1.5 text-xs text-slate-400 leading-relaxed">
+                      Format, clean, and optimize prompts for better AI results.
+                    </p>
+                  </div>
+
+                  {/* Visual Element: Mini Prompt Preview */}
+                  <div className="mt-3 rounded-[8px] border border-cyan-500/20 bg-cyan-500/5 p-2">
+                    <p className="text-[10px] font-mono text-cyan-200 leading-relaxed">
+                      Role: {'{expert}'}
+                      <br/>
+                      Task: {'{task}'}
+                    </p>
+                  </div>
+
+                  {/* Hover Indicator */}
+                  <div className="flex items-center gap-1 text-xs text-cyan-400 opacity-0 group-hover:opacity-100 transition">
+                    <span>Explore</span>
+                    <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Feature 2: AI Automation */}
+              <motion.div
+                variants={itemVariants}
+                whileHover={{ y: -4 }}
+                className="group relative rounded-[16px] border border-slate-800/60 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-5 transition duration-300 hover:border-indigo-500/40 hover:bg-slate-900/90 overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 to-violet-500/0 group-hover:from-indigo-500/5 group-hover:to-violet-500/5 transition duration-300" />
+
+                <div className="relative space-y-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-[10px] bg-gradient-to-br from-indigo-500/20 to-indigo-600/10 border border-indigo-400/30 group-hover:from-indigo-500/30 group-hover:to-indigo-600/20 transition">
+                    <Workflow className="h-6 w-6 text-indigo-300" aria-hidden="true" />
+                  </div>
+
+                  <div>
+                    <h3 className="text-sm font-semibold text-white group-hover:text-indigo-300 transition">
+                      AI Automation
+                    </h3>
+                    <p className="mt-1.5 text-xs text-slate-400 leading-relaxed">
+                      Automate prompt workflows and validate outputs at scale.
+                    </p>
+                  </div>
+
+                  {/* Visual Element: Workflow Flow */}
+                  <div className="mt-3 space-y-1.5">
+                    <div className="flex items-center gap-1.5 text-[10px]">
+                      <div className="h-1.5 w-1.5 rounded-full bg-indigo-400" />
+                      <span className="text-slate-500">Input</span>
+                      <div className="flex-1 h-px bg-indigo-500/30" />
+                      <span className="text-slate-500">Process</span>
+                      <div className="flex-1 h-px bg-indigo-500/30" />
+                      <span className="text-slate-500">Output</span>
                     </div>
-                  </motion.div>
-                );
-              })}
+                  </div>
+
+                  <div className="flex items-center gap-1 text-xs text-indigo-400 opacity-0 group-hover:opacity-100 transition">
+                    <span>Explore</span>
+                    <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Feature 3: JSON Schema Tools */}
+              <motion.div
+                variants={itemVariants}
+                whileHover={{ y: -4 }}
+                className="group relative rounded-[16px] border border-slate-800/60 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-5 transition duration-300 hover:border-violet-500/40 hover:bg-slate-900/90 overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/0 to-purple-500/0 group-hover:from-violet-500/5 group-hover:to-purple-500/5 transition duration-300" />
+
+                <div className="relative space-y-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-[10px] bg-gradient-to-br from-violet-500/20 to-violet-600/10 border border-violet-400/30 group-hover:from-violet-500/30 group-hover:to-violet-600/20 transition">
+                    <FileJson2 className="h-6 w-6 text-violet-300" aria-hidden="true" />
+                  </div>
+
+                  <div>
+                    <h3 className="text-sm font-semibold text-white group-hover:text-violet-300 transition">
+                      JSON Schema Tools
+                    </h3>
+                    <p className="mt-1.5 text-xs text-slate-400 leading-relaxed">
+                      Generate and validate structured AI output instantly.
+                    </p>
+                  </div>
+
+                  {/* Visual Element: JSON Structure */}
+                  <div className="mt-3 rounded-[8px] border border-violet-500/20 bg-violet-500/5 p-2">
+                    <p className="text-[10px] font-mono text-violet-200">
+                      {'{'}
+                      <br/>
+                      &nbsp;&nbsp;"data": [...],
+                      <br/>
+                      &nbsp;&nbsp;"valid": true
+                      <br/>
+                      {'}'}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-1 text-xs text-violet-400 opacity-0 group-hover:opacity-100 transition">
+                    <span>Explore</span>
+                    <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Feature 4: Prompt Optimization */}
+              <motion.div
+                variants={itemVariants}
+                whileHover={{ y: -4 }}
+                className="group relative rounded-[16px] border border-slate-800/60 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-5 transition duration-300 hover:border-fuchsia-500/40 hover:bg-slate-900/90 overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-500/0 to-pink-500/0 group-hover:from-fuchsia-500/5 group-hover:to-pink-500/5 transition duration-300" />
+
+                <div className="relative space-y-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-[10px] bg-gradient-to-br from-fuchsia-500/20 to-fuchsia-600/10 border border-fuchsia-400/30 group-hover:from-fuchsia-500/30 group-hover:to-fuchsia-600/20 transition">
+                    <Sparkles className="h-6 w-6 text-fuchsia-300" aria-hidden="true" />
+                  </div>
+
+                  <div>
+                    <h3 className="text-sm font-semibold text-white group-hover:text-fuchsia-300 transition">
+                      Prompt Optimization
+                    </h3>
+                    <p className="mt-1.5 text-xs text-slate-400 leading-relaxed">
+                      Reduce tokens, improve clarity, and polish for production.
+                    </p>
+                  </div>
+
+                  {/* Visual Element: Token Savings */}
+                  <div className="mt-3 space-y-1.5">
+                    <div className="flex items-center justify-between text-[10px]">
+                      <span className="text-slate-500">Original</span>
+                      <span className="font-mono text-fuchsia-400">245 tokens</span>
+                    </div>
+                    <div className="h-1 bg-slate-800 rounded-full overflow-hidden">
+                      <div className="h-full w-3/5 bg-gradient-to-r from-fuchsia-500 to-fuchsia-600" />
+                    </div>
+                    <div className="flex items-center justify-between text-[10px]">
+                      <span className="text-slate-500">Optimized</span>
+                      <span className="font-mono text-emerald-400">142 tokens</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-1 text-xs text-fuchsia-400 opacity-0 group-hover:opacity-100 transition">
+                    <span>Explore</span>
+                    <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Feature 5: LLM Workflows */}
+              <motion.div
+                variants={itemVariants}
+                whileHover={{ y: -4 }}
+                className="group relative rounded-[16px] border border-slate-800/60 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-5 transition duration-300 hover:border-emerald-500/40 hover:bg-slate-900/90 overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 to-teal-500/0 group-hover:from-emerald-500/5 group-hover:to-teal-500/5 transition duration-300" />
+
+                <div className="relative space-y-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-[10px] bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 border border-emerald-400/30 group-hover:from-emerald-500/30 group-hover:to-emerald-600/20 transition">
+                    <Layers className="h-6 w-6 text-emerald-300" aria-hidden="true" />
+                  </div>
+
+                  <div>
+                    <h3 className="text-sm font-semibold text-white group-hover:text-emerald-300 transition">
+                      LLM Workflows
+                    </h3>
+                    <p className="mt-1.5 text-xs text-slate-400 leading-relaxed">
+                      Build production-ready AI workflows with validation gates.
+                    </p>
+                  </div>
+
+                  {/* Visual Element: Validation Steps */}
+                  <div className="mt-3 space-y-1">
+                    {['Design', 'Validate', 'Deploy'].map((step, idx) => (
+                      <div key={step} className="flex items-center gap-2 text-[10px]">
+                        <div className="flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[8px] font-bold">
+                          ✓
+                        </div>
+                        <span className="text-slate-400">{step}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center gap-1 text-xs text-emerald-400 opacity-0 group-hover:opacity-100 transition">
+                    <span>Explore</span>
+                    <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         </motion.div>
