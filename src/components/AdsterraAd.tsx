@@ -6,6 +6,8 @@ export default function AdsterraAd() {
   useEffect(() => {
     if (!adRef.current) return;
 
+    adRef.current.innerHTML = "";
+
     const optionsScript = document.createElement("script");
     optionsScript.type = "text/javascript";
     optionsScript.text = `window.atOptions = {
@@ -19,7 +21,7 @@ export default function AdsterraAd() {
     const invokeScript = document.createElement("script");
     invokeScript.type = "text/javascript";
     invokeScript.src = "https://www.highperformanceformat.com/1c2e2f123be7deb59e6e66ffcbe411b6/invoke.js";
-    invokeScript.async = true;
+    invokeScript.async = false;
 
     adRef.current.appendChild(optionsScript);
     adRef.current.appendChild(invokeScript);

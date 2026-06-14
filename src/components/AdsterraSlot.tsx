@@ -5,58 +5,82 @@ type AdsterraSlotProps = {
   layout: "desktop" | "mobile";
 };
 
+type AdsterraPlacement = {
+  key: string;
+  format: string;
+  width: number;
+  height: number;
+  src: string;
+  useOptions: boolean;
+};
+
+const ADSTERRA_PLACEMENTS: Record<"desktop" | "mobile", Record<"A" | "B", AdsterraPlacement>> = {
+  desktop: {
+    A: {
+      key: "767d367a31da85b9350b9995137e8013",
+      format: "iframe",
+      width: 728,
+      height: 90,
+      src: "https://www.highperformanceformat.com/767d367a31da85b9350b9995137e8013/invoke.js",
+      useOptions: true,
+    },
+    B: {
+      key: "73f728d3a093655bcc741155a24e5500",
+      format: "iframe",
+      width: 728,
+      height: 90,
+      src: "https://pl29743330.effectivecpmnetwork.com/73/f7/28/73f728d3a093655bcc741155a24e5500.js",
+      useOptions: false,
+    },
+  },
+  mobile: {
+    A: {
+      key: "1c2e2f123be7deb59e6e66ffcbe411b6",
+      format: "iframe",
+      width: 320,
+      height: 50,
+      src: "https://www.highperformanceformat.com/1c2e2f123be7deb59e6e66ffcbe411b6/invoke.js",
+      useOptions: true,
+    },
+    B: {
+      key: "73f728d3a093655bcc741155a24e5500",
+      format: "iframe",
+      width: 320,
+      height: 100,
+      src: "https://pl29743330.effectivecpmnetwork.com/73/f7/28/73f728d3a093655bcc741155a24e5500.js",
+      useOptions: false,
+    },
+  },
+};
+
 export default function AdsterraSlot({ variant, layout }: AdsterraSlotProps) {
   const adRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!adRef.current) return;
 
-    adRef.current.querySelectorAll("script").forEach((s) => s.remove());
+    adRef.current.innerHTML = "";
 
-    const wrapperClass = layout === "desktop" ? "w-full max-w-[728px]" : "w-full max-w-[320px]";
-    if (layout === "desktop" && variant === "A") {
+    const placement = ADSTERRA_PLACEMENTS[layout][variant];
+
+    if (placement.useOptions) {
       const optionsScript = document.createElement("script");
       optionsScript.type = "text/javascript";
       optionsScript.text = `window.atOptions = {
-        key : '767d367a31da85b9350b9995137e8013',
-        format : 'iframe',
-        height : 90,
-        width : 728,
-        params : {}
+        key: '${placement.key}',
+        format: '${placement.format}',
+        height: ${placement.height},
+        width: ${placement.width},
+        params: {}
       };`;
-
-      const invokeScript = document.createElement("script");
-      invokeScript.type = "text/javascript";
-      invokeScript.src = "https://www.highperformanceformat.com/767d367a31da85b9350b9995137e8013/invoke.js";
-      invokeScript.async = true;
-
       adRef.current.appendChild(optionsScript);
-      adRef.current.appendChild(invokeScript);
-    } else if (variant === "A") {
-      const optionsScript = document.createElement("script");
-      optionsScript.type = "text/javascript";
-      optionsScript.text = `window.atOptions = {
-        key : '767d367a31da85b9350b9995137e8013',
-        format : 'iframe',
-        height : 50,
-        width : 320,
-        params : {}
-      };`;
-
-      const invokeScript = document.createElement("script");
-      invokeScript.type = "text/javascript";
-      invokeScript.src = "https://www.highperformanceformat.com/767d367a31da85b9350b9995137e8013/invoke.js";
-      invokeScript.async = true;
-
-      adRef.current.appendChild(optionsScript);
-      adRef.current.appendChild(invokeScript);
-    } else {
-      const invokeScript = document.createElement("script");
-      invokeScript.type = "text/javascript";
-      invokeScript.src = "https://pl29743330.effectivecpmnetwork.com/73/f7/28/73f728d3a093655bcc741155a24e5500.js";
-      invokeScript.async = true;
-      adRef.current.appendChild(invokeScript);
     }
+
+    const invokeScript = document.createElement("script");
+    invokeScript.type = "text/javascript";
+    invokeScript.src = placement.src;
+    invokeScript.async = false;
+    adRef.current.appendChild(invokeScript);
 
     return () => {
       adRef.current?.querySelectorAll("script").forEach((script) => script.remove());

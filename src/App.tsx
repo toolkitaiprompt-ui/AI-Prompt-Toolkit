@@ -102,7 +102,23 @@ function getBlogPostsForTool(toolSlug: string) {
 }
 
 // `BlogCard` and its visual mapping were extracted to `src/components/BlogCard.tsx`
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(() =>
+    typeof window !== "undefined" ? window.matchMedia(query).matches : false,
+  );
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(query);
+    const handleChange = (event: MediaQueryListEvent) => setMatches(event.matches);
+
+    setMatches(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, [query]);
+
+  return matches;
+}
 function useSeo(title: string, description: string, keywords?: string) {
   const fallbackKeywords = "Free AI Prompt Tools, Prompt Engineering, Token Estimator, JSON Validator, AI Prompt Toolkit";
 
@@ -712,6 +728,8 @@ function BlogPostPage() {
     .map((toolSlug) => TOOL_BY_SLUG.get(toolSlug))
     .filter(Boolean) as ToolMeta[];
 
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+
   return (
     <SectionShell title={post.seoTitle} description={post.metaDescription} keywords={`${post.category}, Prompt Engineering, AI Prompt Toolkit`}>
       <div className="space-y-6">
@@ -726,9 +744,7 @@ function BlogPostPage() {
 
         <div className="grid gap-10 lg:grid-cols-[2fr_360px]">
           <article className="space-y-8">
-            <div className="hidden lg:block">
-              <AdsterraSlot variant="A" layout="desktop" />
-            </div>
+            {isDesktop ? <AdsterraSlot variant="A" layout="desktop" /> : null}
             {(() => {
               const sections: JSX.Element[] = [];
               const insertAfterIndex = Math.floor(post.contentSections.length / 2);
@@ -745,7 +761,7 @@ function BlogPostPage() {
                   </section>,
                 );
 
-                if (idx === insertAfterIndex - 1) {
+                if (idx === insertAfterIndex - 1 && !isDesktop) {
                   sections.push(
                     <div key={`ad-wrapper-${idx}`} className="block lg:hidden">
                       <AdsterraSlot variant={variant} layout="mobile" />
@@ -768,9 +784,11 @@ function BlogPostPage() {
                 ))}
               </div>
             </section>
-            <div className="block lg:hidden">
-              <AdsterraSlot variant={variant === "A" ? "B" : "A"} layout="mobile" />
-            </div>
+            {!isDesktop ? (
+              <div className="block lg:hidden">
+                <AdsterraSlot variant={variant === "A" ? "B" : "A"} layout="mobile" />
+              </div>
+            ) : null}
           </article>
 
           <aside className="space-y-6 rounded-3xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900/70">
