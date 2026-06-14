@@ -13,10 +13,10 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative overflow-hidden rounded-[48px] border border-white/10 bg-slate-950/90 p-10 shadow-[0_48px_140px_-60px_rgba(15,23,42,0.8)] backdrop-blur-3xl sm:p-14"
+          className="relative overflow-hidden rounded-[48px] border border-white/10 bg-slate-950/90 p-8 shadow-[0_48px_140px_-60px_rgba(15,23,42,0.8)] backdrop-blur-3xl sm:p-12"
         >
           <div className="absolute inset-0 rounded-[48px] bg-gradient-to-br from-slate-950/70 via-slate-900/50 to-slate-950/90 opacity-95" />
-          <div className="relative grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+          <div className="relative grid gap-10 lg:grid-cols-[1.2fr_0.95fr] lg:items-center">
             <div className="space-y-6">
               <span className="inline-flex items-center gap-3 rounded-full border border-cyan-400/20 bg-cyan-500/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.28em] text-cyan-200">
                 <Sparkles className="h-4 w-4 text-cyan-300" aria-hidden="true" />
@@ -45,27 +45,22 @@ export default function HeroSection() {
               </div>
             </div>
 
-            <div className="rounded-[32px] border border-white/10 bg-slate-900/50 p-6 shadow-[0_24px_60px_-28px_rgba(99,102,241,0.45)] backdrop-blur-xl">
-              <div className="space-y-5">
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <p className="text-sm uppercase tracking-[0.24em] text-slate-400">Premium workflow</p>
-                    <p className="mt-2 text-2xl font-semibold text-white">6 tools • Instant prompt refresh</p>
-                  </div>
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-3xl bg-white/10 text-cyan-300 ring-1 ring-cyan-300/20">
-                    <Sparkles className="h-6 w-6" aria-hidden="true" />
-                  </div>
-                </div>
-                <div className="rounded-3xl border border-cyan-400/10 bg-slate-950/60 p-4 text-sm text-slate-300">
-                  <p className="font-semibold text-slate-100">Why teams choose this toolkit</p>
-                  <ul className="mt-4 space-y-3 text-slate-400">
-                    <li>• Glassmorphism dashboard for UI-forward prompt workflows</li>
-                    <li>• Built-in token and prompt optimization controls</li>
-                    <li>• Premium, production-ready AI command center</li>
-                  </ul>
-                </div>
+            <motion.div
+              animate={{ y: [0, -14, 0] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              className="relative rounded-[36px] border border-white/10 bg-slate-900/60 p-4 shadow-[0_30px_90px_-50px_rgba(99,102,241,0.65)] backdrop-blur-xl"
+            >
+              <div className="absolute inset-0 rounded-[36px] bg-gradient-to-br from-cyan-400/10 via-indigo-500/10 to-violet-500/10 blur-3xl opacity-80" />
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] border border-white/10 bg-slate-950/95">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(56,189,248,0.18),_transparent_28%),radial-gradient(circle_at_bottom_right,_rgba(139,92,246,0.16),_transparent_24%)]" />
+                <img
+                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80"
+                  alt="Abstract AI command center visualization"
+                  loading="lazy"
+                  className="h-full w-full object-cover object-center"
+                />
               </div>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>

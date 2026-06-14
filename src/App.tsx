@@ -23,7 +23,7 @@ import {
   generateJsonSchema,
   validateJsonWithSchema,
 } from "./lib/toolkit";
-import { BLOG_POSTS, getBlogPostBySlug } from "./data/blogPosts";
+import { BLOG_POSTS, BlogPost, getBlogPostBySlug } from "./data/blogPosts";
 import HeroSection from "./components/HeroSection";
 import PromptOptimizer from "./components/PromptOptimizer";
 import ToolCard from "./components/ToolCard";
@@ -96,6 +96,63 @@ const TOOL_BY_SLUG = new Map(TOOL_PAGES.map((tool) => [tool.path.split("/").pop(
 
 function getBlogPostsForTool(toolSlug: string) {
   return BLOG_POSTS.filter((post) => post.relatedToolSlugs.includes(toolSlug));
+}
+
+function getBlogPostVisual(postSlug: string) {
+  const visuals: Record<string, { url: string; alt: string }> = {
+    "master-prompt-engineering-workflow": {
+      url: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+      alt: "Abstract AI command console with glowing data streams",
+    },
+    "craft-high-impact-chatgpt-prompts": {
+      url: "https://images.unsplash.com/photo-1556012018-9c6de6e1d5e6?auto=format&fit=crop&w=1200&q=80",
+      alt: "Futuristic interface glowing with chat and prompt analytics",
+    },
+    "build-ai-prompt-templates-that-scale": {
+      url: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+      alt: "Modern blueprint style illustration of scalable AI templates",
+    },
+  };
+
+  return visuals[postSlug] ?? {
+    url: "https://images.unsplash.com/photo-1517430816045-df4b7de01b88?auto=format&fit=crop&w=1200&q=80",
+    alt: "Abstract AI gradient illustration with layered glass and glow",
+  };
+}
+
+function BlogCard({ post }: { post: BlogPost }) {
+  const [loaded, setLoaded] = useState(false);
+  const visual = getBlogPostVisual(post.slug);
+
+  return (
+    <article className="group overflow-hidden rounded-3xl border border-slate-800 bg-slate-950 shadow-[0_18px_60px_-28px_rgba(15,23,42,0.65)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_80px_-28px_rgba(56,189,248,0.25)]">
+      <div className="relative overflow-hidden bg-slate-900">
+        <div className={`absolute inset-0 animate-pulse bg-gradient-to-r from-slate-800 via-slate-700 to-slate-900 transition-opacity ${loaded ? "opacity-0" : "opacity-100"}`} />
+        <img
+          src={visual.url}
+          alt={visual.alt}
+          loading="lazy"
+          onLoad={() => setLoaded(true)}
+          className="aspect-[16/9] w-full object-cover object-center transition duration-700 ease-out"
+        />
+      </div>
+      <div className="space-y-4 p-6">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300/80">{post.category}</p>
+        <h3 className="text-2xl font-semibold tracking-tight text-white">{post.title}</h3>
+        <p className="text-sm leading-7 text-slate-300">{post.excerpt}</p>
+        <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">
+          <span>{post.date}</span>
+          <span>{post.readTime}</span>
+        </div>
+      </div>
+      <Link
+        to={`/blog/${post.slug}`}
+        className="block border-t border-slate-800/90 bg-slate-900/70 px-6 py-4 text-sm font-semibold text-cyan-200 transition hover:bg-slate-900"
+      >
+        Read the full guide
+      </Link>
+    </article>
+  );
 }
 
 function useSeo(title: string, description: string, keywords?: string) {
@@ -326,19 +383,7 @@ function HomePage() {
 
             <div className="grid gap-6 sm:grid-cols-2">
               {BLOG_POSTS.slice(0, 6).map((post) => (
-                <article key={post.slug} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-500">{post.category}</p>
-                  <h3 className="mt-3 text-xl font-semibold leading-snug text-slate-900 dark:text-white">
-                    <Link to={`/blog/${post.slug}`} className="hover:text-indigo-500">
-                      {post.title}
-                    </Link>
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{post.excerpt}</p>
-                  <div className="mt-4 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-                    <span>{post.date}</span>
-                    <span>{post.readTime}</span>
-                  </div>
-                </article>
+                <BlogCard key={post.slug} post={post} />
               ))}
             </div>
           </div>
@@ -698,28 +743,7 @@ function BlogPage() {
       </p>
       <div className="mt-10 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
         {BLOG_POSTS.map((post) => (
-          <article
-            key={post.slug}
-            className="group overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_12px_40px_-22px_rgba(15,23,42,0.35)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_-20px_rgba(59,130,246,0.4)] dark:border-slate-800 dark:bg-slate-900/80"
-          >
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-500">{post.category}</p>
-            <h2 className="mt-3 text-xl font-semibold leading-snug">{post.title}</h2>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{post.excerpt}</p>
-            <div className="mt-5 flex items-center gap-4 text-xs text-slate-500 dark:text-slate-500">
-              <span className="inline-flex items-center gap-1.5">
-                <CalendarDays className="h-4 w-4" aria-hidden="true" />
-                {post.date}
-              </span>
-              <span>{post.readTime}</span>
-            </div>
-            <Link
-              to={`/blog/${post.slug}`}
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-blue-500/40 px-4 py-2 text-sm font-medium text-blue-500 transition duration-300 hover:border-blue-400 hover:bg-blue-500 hover:text-white hover:shadow-[0_0_24px_rgba(59,130,246,0.45)]"
-            >
-              Read More
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </article>
+          <BlogCard key={post.slug} post={post} />
         ))}
       </div>
     </SectionShell>
