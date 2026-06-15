@@ -52,13 +52,12 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative overflow-x-hidden px-4 py-20 sm:px-6 lg:px-8 min-h-screen flex items-center">
+    <section className="relative overflow-x-hidden px-4 py-12 sm:py-20 sm:px-6 lg:px-8 min-h-[90vh] sm:min-h-screen flex items-center">
       {/* Background Image with Lazy Loading */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('/images/prompt-toolkit-hero.jpg')",
-          backgroundAttachment: "fixed",
         }}
         role="img"
         aria-label="Modern tech team workspace with city skyline"
@@ -82,12 +81,12 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-12"
+          className="space-y-8 sm:space-y-12"
         >
           {/* Main Hero Content */}
-          <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+          <div className="grid gap-6 lg:gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
             {/* Left: Value Proposition & CTAs */}
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {/* Eyebrow Badge */}
               <motion.div variants={itemVariants} className="flex items-center gap-2">
                 <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/50 bg-emerald-500/20 backdrop-blur px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-200">
@@ -98,7 +97,7 @@ export default function HeroSection() {
 
               {/* Main Headline - Premium Glassmorphic Style */}
               <motion.div variants={itemVariants} className="space-y-3">
-                <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl drop-shadow-lg">
+                <h1 className="text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-7xl drop-shadow-lg">
                   Build Reliable AI Prompts,
                   <span className="block bg-gradient-to-r from-cyan-300 via-indigo-300 to-violet-300 bg-clip-text text-transparent drop-shadow-2xl">
                     Faster & Smarter
@@ -187,7 +186,8 @@ export default function HeroSection() {
               </motion.div>
             </div>
 
-            {/* Right: Interactive Hero Showcase */}
+            {/* Right: Interactive Hero Showcase — hidden on mobile to avoid overflow & long scroll */}
+            <div className="hidden lg:block">
             <motion.div
               variants={containerVariants}
               initial="hidden"
@@ -285,6 +285,7 @@ export default function HeroSection() {
                 </p>
               </motion.div>
             </motion.div>
+            </div>
           </div>
 
           {/* PREMIUM FEATURE SHOWCASE - 5 Blocks */}
@@ -293,12 +294,12 @@ export default function HeroSection() {
             className="space-y-4"
           >
             <div className="text-center">
-              <h2 className="text-3xl font-bold text-white">Powerful Features for AI Teams</h2>
-              <p className="mt-2 text-slate-400">Everything you need to build, validate, and deploy AI prompts at scale</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white">Powerful Features for AI Teams</h2>
+              <p className="mt-2 text-sm sm:text-base text-slate-400">Everything you need to build, validate, and deploy AI prompts at scale</p>
             </div>
 
             {/* 5 Feature Blocks Grid */}
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5 pt-4">
+            <div className="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 pt-4">
               {/* Feature 1: Prompt Engineering */}
               <motion.div
                 variants={itemVariants}

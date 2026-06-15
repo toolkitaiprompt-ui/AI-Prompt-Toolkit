@@ -42,10 +42,10 @@ export default function BlogCard({ post }: { post: BlogPost }) {
           className="aspect-[16/9] w-full object-cover object-center transition duration-700 ease-out"
         />
       </div>
-      <div className="space-y-4 p-6">
+      <div className="space-y-3 p-4 sm:p-6">
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300/80">{post.category}</p>
-        <h3 className="text-2xl font-semibold tracking-tight text-white">{post.title}</h3>
-        <p className="text-sm leading-7 text-slate-300">{post.excerpt}</p>
+        <h3 className="text-lg sm:text-2xl font-semibold tracking-tight text-white">{post.title}</h3>
+        <p className="text-sm leading-6 sm:leading-7 text-slate-300">{post.excerpt}</p>
         <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">
           <span>{post.date}</span>
           <span>{post.readTime}</span>

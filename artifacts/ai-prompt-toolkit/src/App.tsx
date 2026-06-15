@@ -164,15 +164,15 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
   return (
     <div className="min-h-screen bg-[#09090f] text-slate-100">
       <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 lg:px-6">
-          <Link to="/" className="text-lg font-bold tracking-tight text-white">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 lg:px-6">
+          <Link to="/" className="text-sm font-bold tracking-tight text-white sm:text-lg shrink-0">
             AI Prompt Toolkit
           </Link>
-          <nav className="flex items-center gap-4 text-sm">
-            <NavLink to="/" end className={navLinkClass}>Home</NavLink>
+          <nav className="flex items-center gap-2 sm:gap-4 text-sm">
+            <NavLink to="/" end className={({ isActive }) => `hidden sm:inline-flex items-center text-sm transition duration-300 hover:-translate-y-0.5 hover:text-blue-400 ${isActive ? "text-blue-400" : "text-slate-200"}`}>Home</NavLink>
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
             <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
-            <NavLink to="/contact" className={navLinkClass}>Contact</NavLink>
+            <NavLink to="/contact" className={({ isActive }) => `hidden sm:inline-flex items-center text-sm transition duration-300 hover:-translate-y-0.5 hover:text-blue-400 ${isActive ? "text-blue-400" : "text-slate-200"}`}>Contact</NavLink>
             <ThemeToggle mode={mode} onToggle={onToggle} />
           </nav>
         </div>
@@ -254,33 +254,33 @@ function HomePage() {
       <AdsterraAd />
 
       {/* Single focused CTA section funnelling to /tools */}
-      <section className="mx-auto max-w-6xl px-4 py-20 lg:px-6">
-        <div className="rounded-[28px] border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-12 text-center shadow-2xl shadow-indigo-500/10">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300/80">All tools in one place</p>
-          <h2 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:py-20 lg:px-6">
+        <div className="rounded-[24px] sm:rounded-[28px] border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-5 sm:p-8 lg:p-12 text-center shadow-2xl shadow-indigo-500/10">
+          <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300/80">All tools in one place</p>
+          <h2 className="mt-3 sm:mt-4 text-2xl sm:text-4xl font-bold tracking-tight text-white lg:text-5xl">
             Ready to engineer better AI prompts?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-slate-400">
+          <p className="mx-auto mt-3 sm:mt-4 max-w-2xl text-base sm:text-lg leading-7 sm:leading-8 text-slate-400">
             7 free tools — variable extraction, JSON schema generation, validation, formatting, cleaning, token estimation, and advanced optimization. No sign-up required.
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <Link
               to="/tools"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-600 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-cyan-500/30 transition hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/50"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-600 px-6 py-3 sm:px-8 sm:py-4 text-sm font-semibold text-white shadow-lg shadow-cyan-500/30 transition hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/50"
             >
               Browse All Tools
               <ArrowUpRight className="h-4 w-4" />
             </Link>
             <Link
               to="/blog"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-8 py-4 text-sm font-semibold text-slate-100 transition hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 sm:px-8 sm:py-4 text-sm font-semibold text-slate-100 transition hover:bg-white/10"
             >
               Read Guides
             </Link>
           </div>
 
           {/* Trust points */}
-          <div className="mt-10 flex flex-wrap justify-center gap-8 text-sm text-slate-400">
+          <div className="mt-6 sm:mt-10 flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-8 text-sm text-slate-400">
             {[
               "In-browser processing — your data stays private",
               "Instant results — no server round-trips",
@@ -313,8 +313,8 @@ function ToolsDirectoryPage() {
         <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300/80">
           Professional Toolkit
         </p>
-        <h1 className="text-4xl font-bold tracking-tight text-white">AI Prompt Toolkit</h1>
-        <p className="max-w-3xl text-lg text-slate-400">
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">AI Prompt Toolkit</h1>
+        <p className="max-w-3xl text-base sm:text-lg text-slate-400">
           Seven precision tools for prompt engineering teams. Format, validate, extract, and optimize — all in the browser.
         </p>
       </div>
@@ -355,8 +355,8 @@ function ToolContainer({
     <section className="mx-auto max-w-6xl px-4 py-12 lg:px-6 space-y-10">
 
       {/* ── STEP 4: Tool Intro Card ── */}
-      <div className="rounded-[28px] border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-8 shadow-2xl shadow-indigo-500/10">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+      <div className="rounded-[20px] sm:rounded-[28px] border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-5 sm:p-8 shadow-2xl shadow-indigo-500/10">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
           {tool && (
             <div className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-[14px] bg-gradient-to-br ${tool.accent} border border-white/10`}>
               <tool.icon className="h-8 w-8 text-white" aria-hidden="true" />
@@ -665,7 +665,7 @@ function BlogPage() {
     >
       <div className="space-y-2">
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300/80">Editorial</p>
-        <h1 className="text-4xl font-bold tracking-tight text-white">Blog</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">Blog</h1>
         <p className="max-w-3xl text-base text-slate-400">
           Premium editorial insights on prompt systems, AI reliability engineering, and cost-efficient model deployment.
         </p>
@@ -701,11 +701,11 @@ function BlogPostPage() {
   useSeo(post.seoTitle, post.metaDescription, `${post.category}, Prompt Engineering, AI Prompt Toolkit`);
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-12 lg:px-6">
-      <div className="space-y-6">
-        <div className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">{post.category}</p>
-          <h1 className="text-4xl font-bold tracking-tight text-white">{post.title}</h1>
+    <section className="mx-auto max-w-6xl px-4 py-6 sm:py-12 lg:px-6">
+      <div className="space-y-5 sm:space-y-6">
+        <div className="space-y-2 sm:space-y-3">
+          <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">{post.category}</p>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">{post.title}</h1>
           <div className="flex flex-wrap gap-4 text-sm text-slate-500">
             <span>{post.date}</span>
             <span>{post.readTime}</span>
