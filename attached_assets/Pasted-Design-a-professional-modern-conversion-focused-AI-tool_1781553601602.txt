@@ -1,0 +1,78 @@
+Design a professional, modern, conversion-focused AI tools website layout with the following structure and business logic:
+
+GOAL:
+Increase page views, improve ad visibility, create natural internal navigation, and allow users to access tools without feeling blocked or forced.
+
+HOME PAGE:
+
+* Clean hero section with headline and short description.
+* Display only featured tools and top categories.
+* Do NOT provide direct access to every tool from the home page.
+* Include a prominent "Explore More Tools" button.
+* Home page should act as a gateway, not a complete tools directory.
+
+TOOLS PAGE:
+Each tool should be displayed inside a structured content block.
+
+Layout Order:
+
+1. Tool Information Card
+
+   * What this tool does
+   * How to use it
+   * Short usage instructions
+   * 3–5 key points only
+   * "Read Full Guide" button linking to the dedicated blog page
+
+2. Advertisement Section
+
+   * Medium banner ad
+   * Visually integrated with the layout
+   * Mobile and desktop responsive
+
+3. Tool Interface
+
+   * Main tool functionality
+   * User can immediately use the tool
+   * Clear CTA and professional design
+
+4. AdSense Section
+
+   * Additional ad placement below the tool
+   * Proper spacing and visibility
+
+5. Related Content Section
+
+   * Related tools
+   * Related blog posts
+   * FAQ section
+
+BLOG SYSTEM:
+
+* Tool pages should NOT contain full articles.
+* Only show a short preview card.
+* Full content should exist on dedicated blog pages.
+* Clicking "Read Full Guide" opens the complete blog article.
+
+DESIGN STYLE:
+
+* Modern SaaS design
+* Professional spacing
+* Card-based UI
+* High-end startup appearance
+* Fully responsive
+* Fast loading
+* Clean typography
+* Premium user experience
+
+USER FLOW:
+Home Page
+→ Tools Page
+→ Tool Information Card
+→ Ad Banner
+→ Tool Interface
+→ AdSense Section
+→ Optional Full Blog Article
+
+IMPORTANT:
+The user should always know the tool is available on the page and should never feel that access is hidden. The content card exists to provide context, guidance, and internal navigation while improving overall page engagement and ad visibility.

@@ -17,6 +17,7 @@ import {
   BarChart3,
   Layers,
 } from "lucide-react";
+import AdsterraSlot from "./AdsterraSlot";
 
 export default function HeroSection() {
   const containerVariants = {
@@ -51,7 +52,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8 min-h-screen flex items-center">
+    <section className="relative overflow-x-hidden px-4 py-20 sm:px-6 lg:px-8 min-h-screen flex items-center">
       {/* Background Image with Lazy Loading */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -178,6 +179,11 @@ export default function HeroSection() {
                   <p className="text-xl font-bold text-white">100%</p>
                   <p className="text-xs text-slate-400 font-medium">Secure</p>
                 </div>
+              </motion.div>
+
+              {/* Ad slot — below stats, responsive for mobile & desktop */}
+              <motion.div variants={itemVariants} style={{ width: "100%" }}>
+                <AdsterraSlot variant="A" layout="auto" />
               </motion.div>
             </div>
 

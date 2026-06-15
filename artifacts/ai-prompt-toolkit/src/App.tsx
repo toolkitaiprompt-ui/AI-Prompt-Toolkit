@@ -111,19 +111,6 @@ function getBlogPostsForTool(toolSlug: string) {
   return BLOG_POSTS.filter((post) => post.relatedToolSlugs.includes(toolSlug));
 }
 
-function useMediaQuery(query: string) {
-  const [matches, setMatches] = useState(() =>
-    typeof window !== "undefined" ? window.matchMedia(query).matches : false,
-  );
-  useEffect(() => {
-    const mq = window.matchMedia(query);
-    const handler = (e: MediaQueryListEvent) => setMatches(e.matches);
-    setMatches(mq.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, [query]);
-  return matches;
-}
 
 function useSeo(title: string, description: string, keywords?: string) {
   const fallbackKeywords = "Free AI Prompt Tools, Prompt Engineering, Token Estimator, JSON Validator, AI Prompt Toolkit";
@@ -361,7 +348,6 @@ function ToolContainer({
 }) {
   const keywords = `${title}, Free AI Prompt Tools, Prompt Engineering, Token Estimator, JSON Validator`;
   const relatedBlogs = toolSlug ? getBlogPostsForTool(toolSlug) : [];
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   useSeo(title, description, keywords);
 
@@ -402,9 +388,7 @@ function ToolContainer({
       </div>
 
       {/* ── STEP 5: Ad Banner between intro and tool interface ── */}
-      {isDesktop
-        ? <AdsterraSlot variant="A" layout="desktop" />
-        : <AdsterraSlot variant="A" layout="mobile" />}
+      <AdsterraSlot variant="A" layout="auto" />
 
       {/* ── Tool Interface ── */}
       <div className="rounded-[24px] border border-white/10 bg-slate-950/80 p-6 shadow-xl">
@@ -412,9 +396,7 @@ function ToolContainer({
       </div>
 
       {/* ── STEP 5: Ad Section below tool interface ── */}
-      {isDesktop
-        ? <AdsterraSlot variant="B" layout="desktop" />
-        : <AdsterraSlot variant="B" layout="mobile" />}
+      <AdsterraSlot variant="B" layout="auto" />
 
       {/* ── STEP 6: Related blog posts as BlogCard grid ── */}
       {relatedBlogs.length > 0 && (
@@ -712,7 +694,6 @@ function BlogPostPage() {
     .map((s) => TOOL_BY_SLUG.get(s))
     .filter(Boolean) as ToolMeta[];
 
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
   const postIndex = BLOG_POSTS.findIndex((p) => p.slug === post.slug);
   const variant: "A" | "B" = postIndex % 2 === 0 ? "A" : "B";
   const insertAfterIndex = Math.floor(post.contentSections.length / 2);
@@ -733,10 +714,10 @@ function BlogPostPage() {
 
         <div className="grid gap-10 lg:grid-cols-[2fr_360px]">
           <article className="space-y-8">
-            {/* Desktop: ad at top of article */}
-            {isDesktop && <AdsterraSlot variant="A" layout="desktop" />}
+            {/* Ad at top of article — auto-picks desktop/mobile size */}
+            <AdsterraSlot variant="A" layout="auto" />
 
-            {/* Article sections with mobile mid-article ad */}
+            {/* Article sections with mid-article ad on mobile */}
             {(() => {
               const sections: JSX.Element[] = [];
               post.contentSections.forEach((section, idx) => {
@@ -748,11 +729,9 @@ function BlogPostPage() {
                     ))}
                   </section>,
                 );
-                if (idx === insertAfterIndex - 1 && !isDesktop) {
+                if (idx === insertAfterIndex - 1) {
                   sections.push(
-                    <div key={`ad-mid-${idx}`} className="block lg:hidden">
-                      <AdsterraSlot variant={variant} layout="mobile" />
-                    </div>,
+                    <AdsterraSlot key={`ad-mid-${idx}`} variant={variant} layout="auto" />,
                   );
                 }
               });
@@ -772,14 +751,8 @@ function BlogPostPage() {
               </div>
             </section>
 
-            {/* STEP 7: Second ad slot after FAQ */}
-            {isDesktop
-              ? <AdsterraSlot variant={variant} layout="desktop" />
-              : (
-                <div className="block lg:hidden">
-                  <AdsterraSlot variant={variant === "A" ? "B" : "A"} layout="mobile" />
-                </div>
-              )}
+            {/* Second ad after FAQ — auto-picks size for mobile/desktop */}
+            <AdsterraSlot variant={variant === "A" ? "B" : "A"} layout="auto" />
           </article>
 
           {/* Sidebar: related tools + back to blog */}
