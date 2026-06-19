@@ -1,4 +1,4 @@
-import { type FormEvent, type ReactNode, useEffect, useMemo, useState } from "react";
+import { type FormEvent, type ReactElement, type ReactNode, useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowUpRight,
@@ -719,7 +719,7 @@ function BlogPostPage() {
 
             {/* Article sections with mid-article ad on mobile */}
             {(() => {
-              const sections: JSX.Element[] = [];
+              const sections: ReactElement[] = [];
               post.contentSections.forEach((section, idx) => {
                 sections.push(
                   <section key={section.heading} className="space-y-4">

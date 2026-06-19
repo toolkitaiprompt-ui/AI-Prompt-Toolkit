@@ -1,4 +1,13 @@
 {
+  "compilerOptions": {
+    "jsx": "react-jsx"
+  }
+}
+{
+  "compilerOptions": {
+    "jsx": "react-jsx"
+  }
+{
   "extends": "./tsconfig.base.json",
   "compileOnSave": false,
   "files": [],
