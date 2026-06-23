@@ -168,7 +168,7 @@ export default function HeroSection() {
                   <p className="text-xs text-slate-400 font-medium">Secure</p>
                 </div>
               </motion.div>
-          
+             <p className="text-2xl font-bold text-red-500 mt-4">SURAJ — TEST PRODUCTION-REPLIT BRANCH</p>
             {/* Right: Interactive Hero Showcase — hidden on mobile to avoid overflow & long scroll */}
             <div className="hidden lg:block">
             <motion.div
