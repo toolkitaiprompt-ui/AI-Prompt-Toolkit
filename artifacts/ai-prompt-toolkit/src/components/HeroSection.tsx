@@ -17,7 +17,6 @@ import {
   BarChart3,
   Layers,
 } from "lucide-react";
-import AdsterraSlot from "./AdsterraSlot";
 
 export default function HeroSection() {
   const containerVariants = {
@@ -169,13 +168,7 @@ export default function HeroSection() {
                   <p className="text-xs text-slate-400 font-medium">Secure</p>
                 </div>
               </motion.div>
-
-              {/* Ad slot — below stats, responsive for mobile & desktop */}
-              <motion.div variants={itemVariants} style={{ width: "100%" }}>
-                <AdsterraSlot variant="A" layout="auto" />
-              </motion.div>
-            </div>
-
+          
             {/* Right: Interactive Hero Showcase — hidden on mobile to avoid overflow & long scroll */}
             <div className="hidden lg:block">
             <motion.div
