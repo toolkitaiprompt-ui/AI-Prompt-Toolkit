@@ -168,8 +168,7 @@ export default function HeroSection() {
                   <p className="text-xs text-slate-400 font-medium">Secure</p>
                 </div>
               </motion.div>
-            
-            {/* Right: Interactive Hero Showcase — hidden on mobile to avoid overflow & long scroll */}
+           {/* Right: Interactive Hero Showcase — hidden on mobile to avoid overflow & long scroll */}
             <div className="hidden lg:block">
             <motion.div
               variants={containerVariants}
