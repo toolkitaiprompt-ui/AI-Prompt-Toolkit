@@ -25,7 +25,7 @@ export default function PromptOptimizer() {
 
   const handleOptimize = () => {
     if (!canOptimize) {
-      setStatus("Optimization limit reached. Try again later.);
+      setStatus("Optimization limit reached. Try again later.");
       return;
     }
 
