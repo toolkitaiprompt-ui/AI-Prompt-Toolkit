@@ -848,18 +848,30 @@ function ContactPage() {
 
 function PrivacyPage() {
   return (
-    <SectionShell title="Privacy Policy" description="Privacy policy for AI Prompt Toolkit.">
-      <h1 className="text-3xl font-bold text-white">Privacy Policy</h1>
-      <p className="mt-3 max-w-4xl text-slate-400">This demo policy states that input text is processed in-browser and should not include sensitive personal or regulated data.</p>
+    <SectionShell
+      title="Privacy Policy"
+      description="Privacy policy outlining data handling, cookie usage, and user rights for AI Prompt Toolkit."
+      keywords="Privacy Policy, Free AI Prompt Tools, Prompt Engineering"
+    >
+      <h1 className="text-3xl font-bold">Privacy Policy</h1>
+      <p className="mt-3 max-w-4xl text-slate-600 dark:text-slate-400">
+        Your privacy is important to us. This site processes all data locally in your browser. We do not collect, store, or share any personal data or prompt inputs with third-party servers.
+      </p>
     </SectionShell>
   );
 }
 
 function TermsPage() {
   return (
-    <SectionShell title="Terms of Service" description="Terms and usage conditions for the AI Prompt Toolkit.">
-      <h1 className="text-3xl font-bold text-white">Terms of Service</h1>
-      <p className="mt-3 max-w-4xl text-slate-400">This toolkit is provided as-is for educational and operational prototyping. Teams should review generated output before production use.</p>
+    <SectionShell
+      title="Terms of Service"
+      description="Terms and usage conditions for the AI Prompt Toolkit."
+      keywords="Terms of Service, Free AI Prompt Tools, Prompt Engineering"
+    >
+      <h1 className="text-3xl font-bold">Terms of Service</h1>
+      <p className="mt-3 max-w-4xl text-slate-600 dark:text-slate-400">
+        By using AI Prompt Toolkit, you agree that the tools provided are for informational and productivity purposes. While we strive for accuracy, users should verify AI-generated outputs. We reserve the right to update these terms at any time.
+      </p>
     </SectionShell>
   );
 }
