@@ -25,7 +25,7 @@ export default function PromptOptimizer() {
 
   const handleOptimize = () => {
     if (!canOptimize) {
-      setStatus("Credits exhausted. Purchase more to continue refining prompts.");
+      setStatus("Optimization limit reached. Try again later.);
       return;
     }
 
