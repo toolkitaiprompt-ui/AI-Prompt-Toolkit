@@ -875,10 +875,37 @@ function AboutPage() {
 ───────────────────────────────────────────── */
 function ContactPage() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
   const onChangeField = (field: "name" | "email" | "message", value: string) =>
     setFormData((c) => ({ ...c, [field]: value }));
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => { e.preventDefault(); setSubmitted(true); };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("sending");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: "0a57b145-da61-4b05-b7c4-31c90d681d36",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `New contact form submission from ${formData.name}`,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
 
   return (
     <SectionShell
@@ -892,7 +919,7 @@ function ContactPage() {
       <div className="mt-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <aside className="rounded-2xl border border-slate-800 bg-slate-900/70 p-7">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-400">Direct Contact</p>
-           <a href="mailto:toolkitaiprompt@gmail.com" className="mt-4 inline-flex items-center gap-2 text-lg font-semibold text-white transition hover:text-blue-400">
+          <a href="mailto:toolkitaiprompt@gmail.com" className="mt-4 inline-flex items-center gap-2 text-lg font-semibold text-white transition hover:text-blue-400">
             <Mail className="h-5 w-5" />
             toolkitaiprompt@gmail.com
           </a>
@@ -915,10 +942,16 @@ function ContactPage() {
               <textarea value={formData.message} onChange={(e) => onChangeField("message", e.target.value)} required rows={5}
                 className="w-full rounded-lg border border-slate-700 bg-transparent px-4 py-2.5 text-sm outline-none transition focus:border-blue-500" />
             </label>
-            <button type="submit" className="inline-flex w-fit items-center gap-2 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500">
-              Send Message <SendHorizontal className="h-4 w-4" />
+            <button type="submit" disabled={status === "sending"}
+              className="inline-flex w-fit items-center gap-2 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500 disabled:opacity-60">
+              {status === "sending" ? "Sending..." : "Send Message"} <SendHorizontal className="h-4 w-4" />
             </button>
-            {submitted && <p className="text-sm text-emerald-400">Thanks. Your message has been captured.</p>}
+            {status === "success" && (
+              <p className="text-sm text-emerald-400">✓ Thank you! Your message has been sent successfully. We'll get back to you soon.</p>
+            )}
+            {status === "error" && (
+              <p className="text-sm text-red-400">✗ Something went wrong. Please try again or email us directly.</p>
+            )}
           </div>
         </form>
       </div>
