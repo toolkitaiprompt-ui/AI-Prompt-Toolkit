@@ -53,16 +53,16 @@ export default function HeroSection() {
   return (
     <section className="relative overflow-x-hidden px-4 py-12 sm:py-20 sm:px-6 lg:px-8 min-h-[90vh] sm:min-h-screen flex items-center">
       {/* Background Image with Lazy Loading */}
+            {/* Premium Gradient Background (replaces broken hero image for instant LCP) */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0"
         style={{
-          backgroundImage: "url('/images/prompt-toolkit-hero.jpg')",
+          backgroundImage: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 40%, #0c4a6e 100%)",
         }}
-        role="img"
-        aria-label="Modern tech team workspace with city skyline"
+        aria-hidden="true"
       />
 
-      {/* Dark Overlay for Readability - Layered Gradient */}
+        {/* Dark Overlay for Readability - Layered Gradient */}
       <div className="absolute inset-0 bg-black/50" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/50" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/60" />
