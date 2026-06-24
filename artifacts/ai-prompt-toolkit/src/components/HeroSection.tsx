@@ -72,7 +72,7 @@ export default function HeroSection() {
         backgroundImage: "radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%)",
       }} />
       <div className="absolute inset-0 opacity-15" style={{
-        backgroundImage: "radial-gradient(circle at 80% 50%, rgba(34, 211, 238, 0.1) 0%, transparent 50%)",
+        backgroundImage: "radial-gradient(circle at 80% 50%, rgba(244, 212, 124, 0.08) 0%, transparent 50%)",
       }} />
 
       <div className="relative z-10 mx-auto max-w-7xl">
