@@ -204,8 +204,8 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/privacy-policy" element={<PrivacyPage />} />
-          <Route path="/terms-of-service" element={<TermsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
@@ -790,6 +790,82 @@ function BlogPostPage() {
   );
 }
 
+function AboutPage() {
+  return (
+    <SectionShell
+      title="About AI Prompt Toolkit"
+      description="Learn about AI Prompt Toolkit — free in-browser tools for prompt engineering teams worldwide."
+      keywords="About AI Prompt Toolkit, Free AI Prompt Tools, Prompt Engineering"
+    >
+      <div className="max-w-4xl space-y-8">
+        <div className="space-y-3">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-400">About Us</p>
+          <h1 className="text-3xl sm:text-4xl font-bold text-white">Build Reliable AI Prompts, Faster & Smarter</h1>
+          <p className="text-lg text-slate-400">
+            AI Prompt Toolkit is a free, browser-based platform offering professional prompt engineering tools for teams and individuals worldwide.
+          </p>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-3">
+          <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
+            <p className="text-3xl font-bold text-white">7</p>
+            <p className="mt-1 text-sm text-slate-400">Free Tools</p>
+          </div>
+          <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
+            <p className="text-3xl font-bold text-white">25+</p>
+            <p className="mt-1 text-sm text-slate-400">Blog Guides</p>
+          </div>
+          <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
+            <p className="text-3xl font-bold text-white">100%</p>
+            <p className="mt-1 text-sm text-slate-400">In-Browser</p>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-white">Our Mission</h2>
+          <p className="text-slate-300">
+            We believe that great AI output starts with great prompts. Our mission is to make professional prompt engineering accessible to everyone — developers, marketers, support teams, and AI enthusiasts. No sign-ups, no server round-trips, no data collection. Every tool runs entirely in your browser.
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-white">What We Offer</h2>
+          <ul className="ml-6 list-disc space-y-2 text-slate-300">
+            <li><strong className="text-white">Prompt Variable Extractor</strong> — Extract placeholders from any prompt template.</li>
+            <li><strong className="text-white">JSON Schema Generator</strong> — Create structured schemas for reliable AI output.</li>
+            <li><strong className="text-white">JSON Validator</strong> — Validate model responses against your schema.</li>
+            <li><strong className="text-white">Prompt Formatter</strong> — Turn messy notes into clean, numbered instructions.</li>
+            <li><strong className="text-white">Prompt Cleaner</strong> — Remove noise characters and fix formatting.</li>
+            <li><strong className="text-white">Token Estimator</strong> — Project token usage and costs before API calls.</li>
+            <li><strong className="text-white">Advanced Prompt Optimizer</strong> — Polish prompts for clarity and effectiveness.</li>
+          </ul>
+        </div>
+
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-white">Privacy First</h2>
+          <p className="text-slate-300">
+            Unlike many online tools, AI Prompt Toolkit processes everything locally in your browser. Your prompts, data, and text never leave your device. We do not store, collect, or share your inputs with any server.
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-white">Who We Serve</h2>
+          <p className="text-slate-300">
+            Our tools are used by prompt engineering teams, AI developers, content creators, marketers, and enterprises across the globe. Whether you are building production AI workflows or experimenting with your first prompt, AI Prompt Toolkit is designed to help you work faster and smarter.
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
+          <h2 className="text-xl font-semibold text-white">Contact Us</h2>
+          <p className="mt-3 text-slate-400">
+            Questions, feedback, or partnership inquiries? Email us at{" "}
+            <a href="mailto:toolkitaiprompt@gmail.com" className="text-cyan-400 hover:underline">toolkitaiprompt@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </SectionShell>
+  );
+}
 /* ─────────────────────────────────────────────
    CONTACT / LEGAL / 404
 ───────────────────────────────────────────── */
