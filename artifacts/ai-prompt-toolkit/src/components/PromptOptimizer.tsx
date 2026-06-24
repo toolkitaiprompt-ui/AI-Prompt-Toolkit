@@ -102,7 +102,7 @@ export default function PromptOptimizer() {
           <div className="relative min-h-[320px] rounded-3xl border border-slate-800/90 bg-slate-900/90 p-5 text-sm leading-7 text-slate-200 shadow-inner shadow-slate-950/60">
             <pre className={`whitespace-pre-wrap ${compareMode ? "bg-slate-900/90" : ""}`}>{optimizedPrompt}</pre>
           </div>
-           <div className="mt-5 flex flex-wrap gap-3">
+          <div className="mt-5 flex flex-wrap gap-3">
             <button
               type="button"
               onClick={handleOptimize}
@@ -115,7 +115,8 @@ export default function PromptOptimizer() {
             <button
               type="button"
               onClick={handleCopy}
-            
+              className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-5 py-3 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/60 hover:bg-cyan-500/20"
+            >
               <Copy className="h-4 w-4" aria-hidden="true" />
               Copy optimized prompt
             </button>
