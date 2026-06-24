@@ -69,7 +69,7 @@ export default function HeroSection() {
 
       {/* Subtle mesh overlay for premium feel */}
       <div className="absolute inset-0 opacity-20" style={{
-        backgroundImage: "radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)",
+        backgroundImage: "radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%)",
       }} />
       <div className="absolute inset-0 opacity-15" style={{
         backgroundImage: "radial-gradient(circle at 80% 50%, rgba(34, 211, 238, 0.1) 0%, transparent 50%)",
