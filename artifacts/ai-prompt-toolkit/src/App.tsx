@@ -689,17 +689,20 @@ function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getBlogPostBySlug(slug) : undefined;
 
-  if (!post) return <NotFoundPage />;
+  useSeo(
+    post?.seoTitle ?? "Page Not Found",
+    post?.metaDescription ?? "The requested page could not be found.",
+    `${post?.category ?? "404"}, Prompt Engineering, AI Prompt Toolkit`,
+  );
 
-  const relatedTools = post.relatedToolSlugs
-    .map((s) => TOOL_BY_SLUG.get(s))
-    .filter(Boolean) as ToolMeta[];
+  if (!post) return <NotFoundPage />;
 
   const postIndex = BLOG_POSTS.findIndex((p) => p.slug === post.slug);
   const variant: "A" | "B" = postIndex % 2 === 0 ? "A" : "B";
   const insertAfterIndex = Math.floor(post.contentSections.length / 2);
-
-  useSeo(post.seoTitle, post.metaDescription, `${post.category}, Prompt Engineering, AI Prompt Toolkit`);
+  const relatedTools = post.relatedToolSlugs
+    .map((s) => TOOL_BY_SLUG.get(s))
+    .filter(Boolean) as ToolMeta[];
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-6 sm:py-12 lg:px-6">
