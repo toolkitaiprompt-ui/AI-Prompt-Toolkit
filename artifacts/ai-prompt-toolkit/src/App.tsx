@@ -214,6 +214,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 text-sm text-slate-500 lg:px-6">
           <p>2026 AI Prompt Toolkit. Built for global AI teams.</p>
           <div className="flex gap-4">
+            <Link to="/about" className="hover:text-indigo-400">About</Link>
             <Link to="/privacy-policy" className="hover:text-indigo-400">Privacy Policy</Link>
             <Link to="/terms-of-service" className="hover:text-indigo-400">Terms</Link>
           </div>
