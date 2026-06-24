@@ -168,11 +168,12 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Link to="/" className="text-sm font-bold tracking-tight text-white sm:text-lg shrink-0">
             AI Prompt Toolkit
           </Link>
-          <nav className="flex items-center gap-2 sm:gap-4 text-sm">
-            <NavLink to="/" end className={({ isActive }) => `hidden sm:inline-flex items-center text-sm transition duration-300 hover:-translate-y-0.5 hover:text-blue-400 ${isActive ? "text-blue-400" : "text-slate-200"}`}>Home</NavLink>
+            <nav className="flex items-center gap-1.5 sm:gap-4 text-xs sm:text-sm">
+            <NavLink to="/" end className={({ isActive }) => `inline-flex items-center transition duration-300 hover:-translate-y-0.5 hover:text-blue-400 ${isActive ? "text-blue-400" : "text-slate-200"}`}>Home</NavLink>
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
             <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
-            <NavLink to="/contact" className={({ isActive }) => `hidden sm:inline-flex items-center text-sm transition duration-300 hover:-translate-y-0.5 hover:text-blue-400 ${isActive ? "text-blue-400" : "text-slate-200"}`}>Contact</NavLink>
+            <NavLink to="/about" className={navLinkClass}>About</NavLink>
+            <NavLink to="/contact" className={({ isActive }) => `inline-flex items-center transition duration-300 hover:-translate-y-0.5 hover:text-blue-400 ${isActive ? "text-blue-400" : "text-slate-200"}`}>Contact</NavLink>
             <ThemeToggle mode={mode} onToggle={onToggle} />
           </nav>
         </div>
