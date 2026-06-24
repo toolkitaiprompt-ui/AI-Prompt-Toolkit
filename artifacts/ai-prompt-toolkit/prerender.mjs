@@ -21,6 +21,8 @@ const routes = [
     desc: "Browse Free AI Prompt Tools for prompt engineering, including Token Estimator, Variable Extractor, JSON Schema Generator, and JSON Validator." },
   { path: "/blog", title: "Prompt Engineering Blog - Free AI Prompt Tools | AI Prompt Toolkit",
     desc: "Prompt Engineering blog with practical guides on Token Estimator usage, schema validation, and Free AI Prompt Tools workflows." },
+  { path: "/about", title: "About AI Prompt Toolkit | AI Prompt Toolkit",
+    desc: "Learn about AI Prompt Toolkit — free in-browser tools for prompt engineering teams worldwide." },
   { path: "/contact", title: "Contact - Prompt Engineering Toolkit | AI Prompt Toolkit",
     desc: "Contact AI Prompt Toolkit for Prompt Engineering partnerships, support, and Free AI Prompt Tools collaboration." },
   { path: "/privacy-policy", title: "Privacy Policy | AI Prompt Toolkit",
