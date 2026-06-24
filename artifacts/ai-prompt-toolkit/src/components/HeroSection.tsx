@@ -136,14 +136,21 @@ export default function HeroSection() {
                 ))}
               </motion.div>
 
-              {/* CTA Section - Secondary only */}
+              {/* CTA Section - Primary gold + Secondary */}
               <motion.div
                 variants={itemVariants}
                 className="flex flex-wrap gap-4 pt-2"
               >
                 <Link
+                  to="/tools"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 px-8 py-4 text-sm font-bold text-black shadow-lg shadow-amber-500/30 transition duration-300 hover:scale-105 hover:shadow-xl hover:shadow-amber-500/50"
+                >
+                  Explore All Tools
+                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+                <Link
                   to="/blog"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-8 py-4 text-sm font-semibold text-slate-100 transition duration-300 hover:bg-white/10 hover:border-white/25 backdrop-blur"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/5 px-8 py-4 text-sm font-semibold text-amber-100 transition duration-300 hover:bg-amber-500/10 hover:border-amber-400/50 backdrop-blur"
                 >
                   Read Guides
                   <Code2 className="h-4 w-4" aria-hidden="true" />
