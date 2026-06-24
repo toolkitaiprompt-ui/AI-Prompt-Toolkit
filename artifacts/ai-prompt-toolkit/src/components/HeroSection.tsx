@@ -88,7 +88,7 @@ export default function HeroSection() {
             <div className="space-y-4 sm:space-y-6">
               {/* Eyebrow Badge */}
               <motion.div variants={itemVariants} className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/50 bg-emerald-500/20 backdrop-blur px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-200">
+                <span className="inline-flex items-center gap-2 rounded-full border border-amber-400/50 bg-amber-500/20 backdrop-blur px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-amber-200">
                   <Zap className="h-3 w-3" aria-hidden="true" />
                   Trusted by AI Teams Worldwide
                 </span>
@@ -98,7 +98,7 @@ export default function HeroSection() {
               <motion.div variants={itemVariants} className="space-y-3">
                 <h1 className="text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-7xl drop-shadow-lg">
                   Build Reliable AI Prompts,
-                  <span className="block bg-gradient-to-r from-cyan-300 via-indigo-300 to-violet-300 bg-clip-text text-transparent drop-shadow-2xl">
+                  <span className="block bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent drop-shadow-2xl">
                     Faster & Smarter
                   </span>
                 </h1>
