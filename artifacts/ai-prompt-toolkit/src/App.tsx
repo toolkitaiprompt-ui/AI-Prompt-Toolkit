@@ -850,13 +850,85 @@ function PrivacyPage() {
   return (
     <SectionShell
       title="Privacy Policy"
-      description="Privacy policy outlining data handling, cookie usage, and user rights for AI Prompt Toolkit."
+      description="Privacy policy outlining data handling, cookie usage, advertising partners, and user rights for AI Prompt Toolkit."
       keywords="Privacy Policy, Free AI Prompt Tools, Prompt Engineering"
     >
-      <h1 className="text-3xl font-bold">Privacy Policy</h1>
-      <p className="mt-3 max-w-4xl text-slate-600 dark:text-slate-400">
-        Your privacy is important to us. This site processes all data locally in your browser. We do not collect, store, or share any personal data or prompt inputs with third-party servers.
-      </p>
+      <h1 className="text-3xl font-bold text-white">Privacy Policy</h1>
+      <p className="mt-2 text-sm text-slate-500">Last updated: June 24, 2026</p>
+      <div className="mt-6 max-w-4xl space-y-6 text-slate-300">
+        <p>At AI Prompt Toolkit, accessible from https://ai-prompt-toolkit-31l.pages.dev, the privacy of our visitors is one of our main priorities. This Privacy Policy document explains the types of information we collect and how we use, store, and protect it.</p>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">Information We Collect</h2>
+          <p>All tools on AI Prompt Toolkit process data <strong>entirely within your browser</strong>. Text, prompts, and JSON data you enter into the tools are never sent to our servers, never stored, and never shared with third parties.</p>
+          <p>We do collect anonymous usage data through third-party analytics services (described below) to understand how the website is used and to improve our tools.</p>
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">Log Files</h2>
+          <p>Like most websites, our hosting provider (Cloudflare) and analytics services automatically log standard information such as IP address, browser type, referring pages, timestamps, and pages visited. This data is used solely for analytics and security purposes and is not linked to personally identifiable information.</p>
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">Cookies and Tracking Technologies</h2>
+          <p>We use cookies and similar tracking technologies to track activity on our website and store certain information. Cookies are small files that may include an anonymous unique identifier.</p>
+          <p>Types of cookies we use:</p>
+          <ul className="ml-6 list-disc space-y-1">
+            <li><strong>Essential cookies:</strong> Required for the website to function correctly.</li>
+            <li><strong>Analytics cookies:</strong> Used by Google Analytics to understand visitor behavior.</li>
+            <li><strong>Advertising cookies:</strong> Used by Google AdSense to display relevant ads.</li>
+          </ul>
+          <p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent through your browser settings.</p>
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">Google AdSense and Advertising</h2>
+          <p>We use Google AdSense to display advertisements. Google, as a third-party vendor, uses cookies to serve ads based on your prior visits to this and other websites.</p>
+          <ul className="ml-6 list-disc space-y-1">
+            <li>Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our site and/or other sites on the Internet.</li>
+            <li>You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" className="text-cyan-400 hover:underline">Google Ads Settings</a>.</li>
+            <li>For more information about how Google uses data, visit <a href="https://policies.google.com/technologies/partner-sites" className="text-cyan-400 hover:underline">Google's Privacy & Terms</a>.</li>
+          </ul>
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">Google Analytics</h2>
+          <p>We use Google Analytics to collect and analyze visitor data. This service collects information such as how often users visit, what pages they view, and what other sites they used prior to coming to our website. This data is aggregated and anonymous.</p>
+          <p>You can review Google's privacy policy at <a href="https://policies.google.com/privacy" className="text-cyan-400 hover:underline">https://policies.google.com/privacy</a>.</p>
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">Cloudflare Analytics</h2>
+          <p>We use Cloudflare Web Analytics, which is a privacy-friendly analytics solution that does not use cross-site tracking or fingerprinting. Cloudflare does not track individual visitors.</p>
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">Third-Party Privacy Policies</h2>
+          <p>Our Privacy Policy does not apply to other advertisers or websites. We advise you to consult the respective Privacy Policies of these third-party ad servers for more detailed information on their practices as well as for instructions about how to opt-out of certain options.</p>
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">Children's Information</h2>
+          <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity. AI Prompt Toolkit does not knowingly collect any Personal Identifiable Information from children under the age of 13.</p>
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">Your Data Protection Rights</h2>
+          <p>You have the right to:</p>
+          <ul className="ml-6 list-disc space-y-1">
+            <li>Request access to your personal data</li>
+            <li>Request correction of inaccurate data</li>
+            <li>Request deletion of your data</li>
+            <li>Withdraw consent to data processing</li>
+            <li>Lodge a complaint with a supervisory authority</li>
+          </ul>
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">Contact Us</h2>
+          <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <a href="mailto:toolkitaiprompt@gmail.com" className="text-cyan-400 hover:underline">toolkitaiprompt@gmail.com</a>.</p>
+        </div>
+      </div>
     </SectionShell>
   );
 }
@@ -865,13 +937,59 @@ function TermsPage() {
   return (
     <SectionShell
       title="Terms of Service"
-      description="Terms and usage conditions for the AI Prompt Toolkit."
+      description="Terms and conditions for using AI Prompt Toolkit tools and services."
       keywords="Terms of Service, Free AI Prompt Tools, Prompt Engineering"
     >
-      <h1 className="text-3xl font-bold">Terms of Service</h1>
-      <p className="mt-3 max-w-4xl text-slate-600 dark:text-slate-400">
-        By using AI Prompt Toolkit, you agree that the tools provided are for informational and productivity purposes. While we strive for accuracy, users should verify AI-generated outputs. We reserve the right to update these terms at any time.
-      </p>
+      <h1 className="text-3xl font-bold text-white">Terms of Service</h1>
+      <p className="mt-2 text-sm text-slate-500">Last updated: June 24, 2026</p>
+      <div className="mt-6 max-w-4xl space-y-6 text-slate-300">
+        <p>Welcome to AI Prompt Toolkit. By accessing or using our website at https://ai-prompt-toolkit-31l.pages.dev, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use our website.</p>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">1. Use of Our Services</h2>
+          <p>AI Prompt Toolkit provides free, browser-based tools for prompt engineering, including variable extraction, JSON schema generation, validation, formatting, cleaning, token estimation, and optimization. All tools are provided for personal and professional productivity purposes.</p>
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">2. Intellectual Property</h2>
+          <p>All content, tools, design, and code on this website are the property of AI Prompt Toolkit unless otherwise stated. You may not reproduce, distribute, or create derivative works without explicit written permission.</p>
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">3. No Warranty</h2>
+          <p>The tools and content provided on this website are offered "as is" and "as available," without warranties of any kind, either express or implied. We do not guarantee that the tools will be error-free, accurate, or uninterrupted.</p>
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">4. Limitation of Liability</h2>
+          <p>Under no circumstances shall AI Prompt Toolkit be liable for any direct, indirect, incidental, consequential, or punitive damages arising from your use of, or inability to use, our tools and services.</p>
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">5. User Responsibility</h2>
+          <p>Users are solely responsible for the content they process through our tools and for verifying the accuracy of any output before using it in production or business environments.</p>
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">6. Third-Party Services</h2>
+          <p>Our website uses third-party services such as Google AdSense and Google Analytics. We are not responsible for the practices or content of these third-party services. Please review their respective terms and policies.</p>
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">7. Changes to Terms</h2>
+          <p>We reserve the right to update or modify these Terms of Service at any time without prior notice. Continued use of the website after changes constitutes acceptance of the new terms.</p>
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">8. Governing Law</h2>
+          <p>These terms shall be governed by and construed in accordance with applicable laws, without regard to conflict of law principles.</p>
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-white">9. Contact</h2>
+          <p>If you have any questions about these Terms of Service, please contact us at <a href="mailto:toolkitaiprompt@gmail.com" className="text-cyan-400 hover:underline">toolkitaiprompt@gmail.com</a>.</p>
+        </div>
+      </div>
     </SectionShell>
   );
 }
