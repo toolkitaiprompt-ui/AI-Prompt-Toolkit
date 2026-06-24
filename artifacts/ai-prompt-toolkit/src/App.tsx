@@ -812,9 +812,9 @@ function ContactPage() {
       <div className="mt-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <aside className="rounded-2xl border border-slate-800 bg-slate-900/70 p-7">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-400">Direct Contact</p>
-          <a href="mailto:nightfury2464@gmail.com" className="mt-4 inline-flex items-center gap-2 text-lg font-semibold text-white transition hover:text-blue-400">
+           <a href="mailto:toolkitaiprompt@gmail.com" className="mt-4 inline-flex items-center gap-2 text-lg font-semibold text-white transition hover:text-blue-400">
             <Mail className="h-5 w-5" />
-            nightfury2464@gmail.com
+            toolkitaiprompt@gmail.com
           </a>
           <p className="mt-4 text-sm text-slate-400">Support Window: Monday–Friday, UTC business hours.</p>
         </aside>
