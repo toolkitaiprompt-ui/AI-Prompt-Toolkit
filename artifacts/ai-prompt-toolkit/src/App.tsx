@@ -159,7 +159,7 @@ function ThemeToggle({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void
 
 function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `inline-flex items-center text-sm transition duration-300 hover:-translate-y-0.5 hover:text-blue-400 ${isActive ? "text-blue-400" : "text-slate-200"}`;
+  `inline-flex items-center text-sm transition duration-300 hover:-translate-y-0.5 hover:text-amber-400 ${isActive ? "text-amber-400" : "text-slate-200"}`;
 
   return (
     <div className="min-h-screen bg-[#09090f] text-slate-100">
@@ -185,11 +185,11 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             </span>
           </Link>
             <nav className="flex items-center gap-1.5 sm:gap-4 text-xs sm:text-sm">
-            <NavLink to="/" end className={({ isActive }) => `inline-flex items-center transition duration-300 hover:-translate-y-0.5 hover:text-blue-400 ${isActive ? "text-blue-400" : "text-slate-200"}`}>Home</NavLink>
+            <NavLink to="/" end className={({ isActive }) => `inline-flex items-center transition duration-300 hover:-translate-y-0.5 hover:text-amber-400 ${isActive ? "text-amber-400" : "text-slate-200"}`}>Home</NavLink>
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
             <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
             <NavLink to="/about" className={navLinkClass}>About</NavLink>
-            <NavLink to="/contact" className={({ isActive }) => `inline-flex items-center transition duration-300 hover:-translate-y-0.5 hover:text-blue-400 ${isActive ? "text-blue-400" : "text-slate-200"}`}>Contact</NavLink>
+            <NavLink to="/contact" className={({ isActive }) => `inline-flex items-center transition duration-300 hover:-translate-y-0.5 hover:text-amber-400 ${isActive ? "text-amber-400" : "text-slate-200"}`}>Contact</NavLink>
             <ThemeToggle mode={mode} onToggle={onToggle} />
           </nav>
         </div>
@@ -332,7 +332,7 @@ function HomePage() {
           <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <Link
               to="/tools"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-600 px-6 py-3 sm:px-8 sm:py-4 text-sm font-semibold text-white shadow-lg shadow-cyan-500/30 transition hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/50"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 px-6 py-3 sm:px-8 sm:py-4 text-sm font-bold text-black shadow-lg shadow-amber-500/30 transition hover:scale-105 hover:shadow-xl hover:shadow-amber-500/50"
             >
               Browse All Tools
               <ArrowUpRight className="h-4 w-4" />
@@ -555,7 +555,7 @@ function JsonSchemaGeneratorPage() {
       <button
         type="button"
         onClick={handleGenerate}
-        className="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-500"
+        className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-amber-400"
       >
         Generate Schema
       </button>
@@ -612,7 +612,7 @@ function JsonValidatorPage() {
       <button
         type="button"
         onClick={runValidation}
-        className="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-500"
+        className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-amber-400"
       >
         Validate JSON
       </button>
