@@ -26,6 +26,7 @@ import {
 import { BLOG_POSTS, type BlogPost, getBlogPostBySlug } from "./data/blogPosts";
 import HeroSection from "./components/HeroSection";
 import PromptOptimizer from "./components/PromptOptimizer";
+import PromptConverter from "./components/PromptConverter";
 import ToolCard from "./components/ToolCard";
 import BlogCard from "./components/BlogCard";
 import AdsterraAd from "./components/AdsterraAd";
@@ -215,6 +216,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             }
           />
           <Route path="/tools/prompt-cleaner" element={<PromptCleanerPage />} />
+          <Route path="/tools/prompt-converter" element={<ToolContainer title="Prompt Converter" toolSlug="prompt-converter" description="Convert ChatGPT prompts to Claude, Gemini, or Cursor format." tool={TOOL_BY_SLUG.get("prompt-converter")!}><PromptConverter /></ToolContainer>} />
           <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
