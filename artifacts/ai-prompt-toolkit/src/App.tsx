@@ -101,7 +101,8 @@ const TOOL_PAGES: ToolMeta[] = [
     accent: "from-amber-500/30 to-yellow-400/10",
     keyBenefits: ["ChatGPT to Claude", "ChatGPT to Gemini", "ChatGPT to Cursor"],
   }, 
-    title: "Advanced Prompt Optimizer",
+  { 
+  title: "Advanced Prompt Optimizer",
     path: "/tools/advanced-prompt-optimizer",
     description: "Polish and amplify prompts with premium optimization controls, copyflow, and high-fidelity results.",
     icon: Sparkles,
