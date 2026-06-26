@@ -14,7 +14,7 @@ import {
   CheckCircle2,
   Zap,
   ArrowLeftRight,
- F UserCircle,
+  UserCircle,
 } from "lucide-react";
 import { BrowserRouter, Link, NavLink, Route, Routes, useParams } from "react-router-dom";
 import {
@@ -108,14 +108,6 @@ const TOOL_PAGES: ToolMeta[] = [
     title: "AI Persona Builder",
     path: "/tools/persona-builder",
     description: "Generate expert system prompts for different roles like Marketer, Developer, or Analyst instantly.",
-    icon: UserCircle,
-    accent: "from-rose-500/30 to-amber-400/10",
-    keyBenefits: ["Expert role prompting", "Task-specific context", "Behavioral rules"],
-  },
-  {
-    title: "AI Persona Builder",
-    path: "/tools/persona-builder",
-    description: "Generate expert system prompts for different roles like Marketer, Developer, or Analyst.",
     icon: UserCircle,
     accent: "from-rose-500/30 to-amber-400/10",
     keyBenefits: ["Expert role prompting", "Task-specific context", "Behavioral rules"],
