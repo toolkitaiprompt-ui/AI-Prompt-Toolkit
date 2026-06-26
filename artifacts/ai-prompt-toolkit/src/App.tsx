@@ -1,7 +1,6 @@
 import { type FormEvent, type ReactElement, type ReactNode, useEffect, useMemo, useState } from "react";
 import {
   ArrowUpRight,
-  UserCircle,
   Braces,
   FileJson2,
   Mail,
@@ -237,7 +236,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/tools/prompt-cleaner" element={<PromptCleanerPage />} />
           <Route path="/tools/prompt-converter" element={<ToolContainer title="Prompt Converter" toolSlug="prompt-converter" description="Convert ChatGPT prompts to Claude, Gemini, or Cursor format." tool={TOOL_BY_SLUG.get("prompt-converter")!}><PromptConverter /></ToolContainer>} />
           <Route path="/tools/persona-builder" element={<ToolContainer title="AI Persona Builder" toolSlug="persona-builder" description="Generate expert system prompts for different roles like Marketer, Developer, or Analyst." tool={TOOL_BY_SLUG.get("persona-builder")!}><PersonaBuilder /></ToolContainer>} /> 
-          <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} 
+          <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/contact" element={<ContactPage />} />
