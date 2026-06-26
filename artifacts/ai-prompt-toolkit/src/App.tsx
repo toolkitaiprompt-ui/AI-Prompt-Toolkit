@@ -94,6 +94,14 @@ const TOOL_PAGES: ToolMeta[] = [
     keyBenefits: ["~4 chars per token model", "Real-time counting", "Cost planning"],
   },
   {
+     {
+    title: "Prompt Converter",
+    path: "/tools/prompt-converter",
+    description: "Convert ChatGPT prompts to Claude, Gemini, or Cursor format instantly. Adapt tone, structure, and directives.",
+    icon: ArrowLeftRight,
+    accent: "from-amber-500/30 to-yellow-400/10",
+    keyBenefits: ["ChatGPT to Claude", "ChatGPT to Gemini", "ChatGPT to Cursor"],
+  }, 
     title: "Advanced Prompt Optimizer",
     path: "/tools/advanced-prompt-optimizer",
     description: "Polish and amplify prompts with premium optimization controls, copyflow, and high-fidelity results.",
