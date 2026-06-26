@@ -27,6 +27,7 @@ import { BLOG_POSTS, type BlogPost, getBlogPostBySlug } from "./data/blogPosts";
 import HeroSection from "./components/HeroSection";
 import PromptOptimizer from "./components/PromptOptimizer";
 import PromptConverter from "./components/PromptConverter";
+import PersonaBuilder from "./components/PersonaBuilder";
 import ToolCard from "./components/ToolCard";
 import BlogCard from "./components/BlogCard";
 import AdsterraAd from "./components/AdsterraAd";
