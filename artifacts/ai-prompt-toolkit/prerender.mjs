@@ -5,8 +5,8 @@
  *
  * No external dependencies. Pure Node.js.
  */
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
-import { join, dirname } from "path";
+import { readFileSync, writeFileSync, mkdirSync } from "fs";
+import { join } from "path";
 
 const OUT_DIR = join(process.cwd(), "dist", "public");
 const TEMPLATE = readFileSync(join(OUT_DIR, "index.html"), "utf-8");
@@ -21,10 +21,10 @@ const routes = [
     desc: "Browse Free AI Prompt Tools for prompt engineering, including Token Estimator, Variable Extractor, JSON Schema Generator, and JSON Validator." },
   { path: "/blog", title: "Prompt Engineering Blog - Free AI Prompt Tools | AI Prompt Toolkit",
     desc: "Prompt Engineering blog with practical guides on Token Estimator usage, schema validation, and Free AI Prompt Tools workflows." },
-  { path: "/about", title: "About AI Prompt Toolkit | AI Prompt Toolkit",
-    desc: "Learn about AI Prompt Toolkit — free in-browser tools for prompt engineering teams worldwide." },
   { path: "/contact", title: "Contact - Prompt Engineering Toolkit | AI Prompt Toolkit",
     desc: "Contact AI Prompt Toolkit for Prompt Engineering partnerships, support, and Free AI Prompt Tools collaboration." },
+  { path: "/about", title: "About AI Prompt Toolkit | AI Prompt Toolkit",
+    desc: "Learn about AI Prompt Toolkit — free in-browser tools for prompt engineering teams worldwide." },
   { path: "/privacy-policy", title: "Privacy Policy | AI Prompt Toolkit",
     desc: "Privacy policy outlining data handling, cookie usage, and user rights for AI Prompt Toolkit." },
   { path: "/terms-of-service", title: "Terms of Service | AI Prompt Toolkit",
@@ -43,6 +43,8 @@ const routes = [
     desc: "Clean noisy text and hidden characters to improve Prompt Engineering quality and response stability." },
   { path: "/tools/token-estimator", title: "Token Estimator | AI Prompt Toolkit",
     desc: "Token Estimator for Prompt Engineering teams to project token usage, budget impact, and context size." },
+  { path: "/tools/prompt-converter", title: "Prompt Converter | AI Prompt Toolkit",
+    desc: "Convert ChatGPT prompts to Claude, Gemini, or Cursor format instantly. Adapt tone, structure, and directives for each AI model." },
   { path: "/tools/advanced-prompt-optimizer", title: "Advanced Prompt Optimizer | AI Prompt Toolkit",
     desc: "Polish prompts with premium AI optimization, copy-ready results, and a high-end command center experience." },
 
