@@ -1,6 +1,7 @@
 import { type FormEvent, type ReactElement, type ReactNode, useEffect, useMemo, useState } from "react";
 import {
   ArrowUpRight,
+  UserCircle,
   Braces,
   FileJson2,
   Mail,
@@ -102,6 +103,14 @@ const TOOL_PAGES: ToolMeta[] = [
     accent: "from-amber-500/30 to-yellow-400/10",
     keyBenefits: ["ChatGPT to Claude", "ChatGPT to Gemini", "ChatGPT to Cursor"],
   }, 
+  {
+    title: "AI Persona Builder",
+    path: "/tools/persona-builder",
+    description: "Generate expert system prompts for different roles like Marketer, Developer, or Analyst instantly.",
+    icon: UserCircle,
+    accent: "from-rose-500/30 to-amber-400/10",
+    keyBenefits: ["Expert role prompting", "Task-specific context", "Behavioral rules"],
+  },
   { 
   title: "Advanced Prompt Optimizer",
     path: "/tools/advanced-prompt-optimizer",
