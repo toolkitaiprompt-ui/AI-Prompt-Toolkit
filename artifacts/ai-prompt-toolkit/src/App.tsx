@@ -1,12 +1,9 @@
 import { type FormEvent, type ReactElement, type ReactNode, useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
 import {
   ArrowUpRight,
   Braces,
-  CalendarDays,
   FileJson2,
   Mail,
-  RefreshCcw,
   SendHorizontal,
   ShieldCheck,
   Sigma,
