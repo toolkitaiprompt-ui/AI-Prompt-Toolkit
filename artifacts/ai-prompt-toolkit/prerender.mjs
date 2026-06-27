@@ -45,6 +45,8 @@ const routes = [
     desc: "Token Estimator for Prompt Engineering teams to project token usage, budget impact, and context size." },
   { path: "/tools/prompt-converter", title: "Prompt Converter | AI Prompt Toolkit",
     desc: "Convert ChatGPT prompts to Claude, Gemini, or Cursor format instantly. Adapt tone, structure, and directives for each AI model." },
+  { path: "/tools/persona-builder", title: "AI Persona Builder | AI Prompt Toolkit",
+    desc: "Generate expert system prompts for different roles like Marketer, Developer, Analyst, and more instantly." },
   { path: "/tools/advanced-prompt-optimizer", title: "Advanced Prompt Optimizer | AI Prompt Toolkit",
     desc: "Polish prompts with premium AI optimization, copy-ready results, and a high-end command center experience." },
 
