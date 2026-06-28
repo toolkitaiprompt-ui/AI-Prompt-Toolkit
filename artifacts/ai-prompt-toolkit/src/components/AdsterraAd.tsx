@@ -1,57 +1,60 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function AdsterraAd() {
-  const adRef = useRef<HTMLDivElement | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
+    if (!containerRef.current) return;
+    containerRef.current.innerHTML = "";
 
-  useEffect(() => {
-    if (!adRef.current) return;
-    adRef.current.innerHTML = "";
+    const isMobile = window.innerWidth < 768;
+    const height = isMobile ? 50 : 90;
+    const width = isMobile ? 320 : 728;
 
-    const optionsScript = document.createElement("script");
-    optionsScript.type = "text/javascript";
+    const iframe = document.createElement("iframe");
+    iframe.width = String(width);
+    iframe.height = String(height);
+    iframe.style.border = "none";
+    iframe.style.display = "block";
+    iframe.style.margin = "0 auto";
+    iframe.title = "advertisement";
 
-    if (isMobile) {
-      optionsScript.text = `window.atOptions_1 = {
-        key: '1c2e2f123be7deb59e6e66ffcbe411b6',
-        format: 'iframe',
-        height: 50,
-        width: 320,
-        params: {}
-      };`;
-    } else {
-      optionsScript.text = `window.atOptions_1 = {
-        key: '1c2e2f123be7deb59e6e66ffcbe411b6',
-        format: 'iframe',
-        height: 90,
-        width: 728,
-        params: {}
-      };`;
-    }
+    containerRef.current.appendChild(iframe);
 
-    const invokeScript = document.createElement("script");
-    invokeScript.type = "text/javascript";
-    invokeScript.src = "https://www.highperformanceformat.com/1c2e2f123be7deb59e6e66ffcbe411b6/invoke.js";
-    invokeScript.async = false;
+    const doc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (!doc) return;
 
-    adRef.current.appendChild(optionsScript);
-    adRef.current.appendChild(invokeScript);
+    doc.open();
+    doc.write(`
+      <html>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>body{margin:0;padding:0;display:flex;justify-content:center;align-items:center;}</style>
+      </head>
+      <body>
+        <script type="text/javascript">
+          atOptions = {
+            key: '1c2e2f123be7deb59e6e66ffcbe411b6',
+            format: 'iframe',
+            height: ${height},
+            width: ${width},
+            params: {}
+          };
+        </script>
+        <script type="text/javascript" src="https://www.highperformanceformat.com/1c2e2f123be7deb59e6e66ffcbe411b6/invoke.js"></script>
+      </body>
+      </html>
+    `);
+    doc.close();
 
     return () => {
-      adRef.current?.querySelectorAll("script").forEach((script) => script.remove());
+      if (containerRef.current) containerRef.current.innerHTML = "";
     };
-  }, [isMobile]);
+  }, []);
 
   return (
     <div className="my-4 flex justify-center">
-      <div ref={adRef} className="flex justify-center min-h-[50px]" />
+      <div ref={containerRef} className="flex justify-center min-h-[50px]" />
     </div>
   );
 }
