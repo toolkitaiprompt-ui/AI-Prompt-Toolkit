@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type AdsterraSlotProps = {
   variant: "A" | "B";
@@ -54,18 +54,26 @@ const MOBILE_PLACEMENTS: Record<"A" | "B", AdsterraPlacement> = {
 
 export default function AdsterraSlot({ variant, layout = "auto" }: AdsterraSlotProps) {
   const adRef = useRef<HTMLDivElement | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   useEffect(() => {
     if (!adRef.current) return;
     adRef.current.innerHTML = "";
 
-    const isMobile = layout === "mobile" || (layout === "auto" && window.innerWidth < 768);
-    const placement = isMobile ? MOBILE_PLACEMENTS[variant] : DESKTOP_PLACEMENTS[variant];
+    const useMobile = layout === "mobile" || (layout === "auto" && isMobile);
+    const placement = useMobile ? MOBILE_PLACEMENTS[variant] : DESKTOP_PLACEMENTS[variant];
 
     if (placement.useOptions) {
       const optionsScript = document.createElement("script");
       optionsScript.type = "text/javascript";
-      optionsScript.text = `window.atOptions = {
+      optionsScript.text = `window.atOptions_2 = {
         key: '${placement.key}',
         format: '${placement.format}',
         height: ${placement.height},
@@ -84,13 +92,13 @@ export default function AdsterraSlot({ variant, layout = "auto" }: AdsterraSlotP
     return () => {
       adRef.current?.querySelectorAll("script").forEach((script) => script.remove());
     };
-  }, [variant, layout]);
+  }, [variant, layout, isMobile]);
 
   const maxWidth = layout === "mobile" ? "max-w-[320px]" : "max-w-[728px]";
 
   return (
-    <div className="my-6 flex justify-center">
-      <div ref={adRef} className={`w-full ${maxWidth} flex justify-center min-h-[90px]`} />
+    <div className="my-4 flex justify-center">
+      <div ref={adRef} className={`w-full ${maxWidth} flex justify-center min-h-[50px]`} />
     </div>
   );
 }
