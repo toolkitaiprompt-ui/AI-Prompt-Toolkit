@@ -32,6 +32,7 @@ import PersonaBuilder from "./components/PersonaBuilder";
 import ToolCard from "./components/ToolCard";
 import BlogCard from "./components/BlogCard";
 import AdsterraPopup from "./components/AdsterraPopup";
+import AdsterraSlot from "./components/AdsterraSlot";
 
 type ThemeMode = "light" | "dark";
 
