@@ -31,8 +31,6 @@ import PromptConverter from "./components/PromptConverter";
 import PersonaBuilder from "./components/PersonaBuilder";
 import ToolCard from "./components/ToolCard";
 import BlogCard from "./components/BlogCard";
-import AdsterraAd from "./components/AdsterraAd";
-import AdsterraSlot from "./components/AdsterraSlot";
 import AdsterraPopup from "./components/AdsterraPopup";
 
 type ThemeMode = "light" | "dark";
@@ -305,7 +303,6 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             <p className="text-xs text-slate-600">Built for global AI teams.</p>
           </div>
         </div>
-       <AdsterraPopup />
       </footer>
     </div>
   );
