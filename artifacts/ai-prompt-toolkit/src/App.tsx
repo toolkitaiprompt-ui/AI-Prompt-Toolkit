@@ -336,9 +336,9 @@ function HomePage() {
     <div className="bg-[#09090f] text-slate-200">
       <HeroSection />
 
-      {/* Ad 1: Right after Stats (7 Pro Tools, 25+ Guides) */}
+      {/* Ad 1: Right after Stats */}
       <div className="mx-auto max-w-6xl px-4 py-8">
-                  <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />           <Route path="/blog"
+        <AdsterraSlot variant="A" layout="auto" />
       </div>
 
       {/* Featured Tools Section */}
@@ -359,7 +359,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Ad 2: At the very bottom of the homepage */}
+      {/* Ad 2: At the very bottom */}
       <div className="mx-auto max-w-6xl px-4 py-8">
         <AdsterraSlot variant="B" layout="auto" />
       </div>
