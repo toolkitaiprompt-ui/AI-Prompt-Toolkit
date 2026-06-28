@@ -369,24 +369,6 @@ function HomePage() {
     </div>
   );
 }
-        {/* Trust points */}
-          <div className="mt-6 sm:mt-10 flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-8 text-sm text-slate-400">
-            {[
-              "In-browser processing — your data stays private",
-              "Instant results — no server round-trips",
-              "25+ deep-dive blog guides",
-            ].map((point) => (
-              <div key={point} className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" />
-                <span>{point}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-}
 
 /* ─────────────────────────────────────────────
    STEP 3 — TOOLS DIRECTORY PAGE
