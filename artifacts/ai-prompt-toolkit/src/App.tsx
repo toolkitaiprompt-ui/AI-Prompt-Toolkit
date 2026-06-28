@@ -334,6 +334,7 @@ function HomePage() {
 
   return (
     <div className="bg-[#09090f] text-slate-200">
+      <AdsterraPopup />
       <HeroSection />
 
 
