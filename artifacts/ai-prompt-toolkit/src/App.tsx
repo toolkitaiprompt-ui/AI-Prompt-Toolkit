@@ -335,9 +335,9 @@ function HomePage() {
     <div className="bg-[#09090f] text-slate-200">
       <HeroSection />
 
-      {/* Ad Banner 1 (After Hero) */}
+      {/* Ad 1: Right after Stats (7 Pro Tools, 25+ Guides) */}
       <div className="mx-auto max-w-6xl px-4 py-8">
-      <AdsterraSlot variant="A" layout="auto" />
+        <AdsterraSlot variant="A" layout="auto" />
       </div>
 
       {/* Featured Tools Section */}
@@ -358,15 +358,14 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Ad Banner 2 (After Tools CTA) */}
+      {/* Ad 2: At the very bottom of the homepage */}
       <div className="mx-auto max-w-6xl px-4 py-8">
-        <AdsterraSlot variant="A" layout="auto" />
+        <AdsterraSlot variant="B" layout="auto" />
       </div>
 
     </div>
   );
 }
-
 /* ─────────────────────────────────────────────
    STEP 3 — TOOLS DIRECTORY PAGE
    Tool grid + AdsterraSlot sidebar (no affiliate/sponsored blocks)
