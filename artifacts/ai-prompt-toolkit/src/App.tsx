@@ -342,6 +342,7 @@ function HomePage() {
 
       {/* Single focused CTA section funnelling to /tools */}
       <section className="mx-auto max-w-6xl px-4 py-10 sm:py-20 lg:px-6">
+      <AdsterraAd />
         <div className="rounded-[24px] sm:rounded-[28px] border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-5 sm:p-8 lg:p-12 text-center shadow-2xl shadow-indigo-500/10">
           <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300/80">All tools in one place</p>
           <h2 className="mt-3 sm:mt-4 text-2xl sm:text-4xl font-bold tracking-tight text-white lg:text-5xl">
