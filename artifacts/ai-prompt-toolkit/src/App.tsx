@@ -33,6 +33,7 @@ import ToolCard from "./components/ToolCard";
 import BlogCard from "./components/BlogCard";
 import AdsterraAd from "./components/AdsterraAd";
 import AdsterraSlot from "./components/AdsterraSlot";
+import AdsterraPopup from "./components/AdsterraPopup";
 
 type ThemeMode = "light" | "dark";
 
