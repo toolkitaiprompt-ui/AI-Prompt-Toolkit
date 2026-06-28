@@ -305,6 +305,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             <p className="text-xs text-slate-600">Built for global AI teams.</p>
           </div>
         </div>
+       <AdsterraPopup />
       </footer>
     </div>
   );
