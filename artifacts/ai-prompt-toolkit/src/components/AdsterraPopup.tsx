@@ -1,38 +1,32 @@
 import { useEffect, useRef } from "react";
 
 export default function AdsterraPopup() {
-  const popupRef = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!popupRef.current) return;
-    popupRef.current.innerHTML = "";
+    if (!ref.current) return;
+    ref.current.innerHTML = "";
 
-    const optionsScript = document.createElement("script");
-    optionsScript.type = "text/javascript";
-    optionsScript.text = `window.atOptions = {
-      key: '767d367a31da85b9350b9995137e8013',
-      format: 'iframe',
-      height: 300,
-      width: 480,
-      params: {}
-    };`;
+    const iframe = document.createElement("iframe");
+    iframe.width = "480";
+    iframe.height = "300";
+    iframe.style.border = "none";
+    iframe.style.borderRadius = "8px";
+    iframe.style.boxShadow = "0 4px 12px rgba(0,0,0,0.5)";
+    iframe.title = "ad";
 
-    const invokeScript = document.createElement("script");
-    invokeScript.type = "text/javascript";
-    invokeScript.src = "https://www.highperformanceformat.com/767d367a31da85b9350b9995137e8013/invoke.js";
-    invokeScript.async = false;
+    ref.current.appendChild(iframe);
 
-    popupRef.current.appendChild(optionsScript);
-    popupRef.current.appendChild(invokeScript);
+    const doc = iframe.contentWindow?.document;
+    if (!doc) return;
 
-    return () => {
-      popupRef.current?.querySelectorAll("script").forEach((script) => script.remove());
-    };
+    doc.open();
+    doc.write(`<html><head><style>*{margin:0;padding:0;overflow:hidden;}</style></head><body>
+<script type="text/javascript">atOptions={key:'767d367a31da85b9350b9995137e8013',format:'iframe',height:300,width:480,params:{}};<\/script>
+<script type="text/javascript" src="https://www.highperformanceformat.com/767d367a31da85b9350b9995137e8013/invoke.js"><\/script>
+</body></html>`);
+    doc.close();
   }, []);
 
-  return (
-    <div className="fixed bottom-4 right-4 z-50 hidden lg:block">
-      <div ref={popupRef} className="w-full max-w-[480px] min-h-[300px] rounded-xl overflow-hidden shadow-2xl" />
-    </div>
-  );
+  return <div ref={ref} style={{ position: "fixed", bottom: "16px", right: "16px", zIndex: 9999 }} />;
 }
