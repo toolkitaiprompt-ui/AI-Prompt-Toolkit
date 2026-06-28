@@ -338,7 +338,37 @@ function HomePage() {
     <div className="bg-[#09090f] text-slate-200">
       <HeroSection />
 
-      <AdsterraAd />
+      {/* Ad Banner 1 (After Hero) */}
+      <div className="mx-auto max-w-6xl px-4 py-8">
+        <AdsterraAd />
+      </div>
+
+      {/* Featured Tools Section */}
+      <section className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
+        <div className="rounded-[28px] border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-8 text-center shadow-2xl">
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white lg:text-5xl">Ready to engineer better AI prompts?</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base sm:text-lg leading-7 sm:leading-8 text-slate-400">
+            9 free tools — variable extraction, JSON schema generation, validation, formatting, cleaning, token estimation, Prompt Converter, Persona Builder, and advanced optimization. No sign-up required.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <Link to="/tools" className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 px-8 py-4 text-sm font-bold text-black shadow-lg shadow-amber-500/30 transition hover:scale-105">
+              Browse All Tools <ArrowUpRight className="h-4 w-4" />
+            </Link>
+            <Link to="/blog" className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/5 px-8 py-4 text-sm font-semibold text-amber-100 backdrop-blur transition hover:bg-amber-500/10">
+              Read Guides
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Ad Banner 2 (After Tools CTA) */}
+      <div className="mx-auto max-w-6xl px-4 py-8">
+        <AdsterraSlot variant="A" layout="auto" />
+      </div>
+
+    </div>
+  );
+}
 
       {/* Single focused CTA section funnelling to /tools */}
       <section className="mx-auto max-w-6xl px-4 py-10 sm:py-20 lg:px-6">
