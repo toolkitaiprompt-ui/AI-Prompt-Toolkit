@@ -1,104 +1,69 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 type AdsterraSlotProps = {
   variant: "A" | "B";
   layout?: "desktop" | "mobile" | "auto";
 };
 
-type AdsterraPlacement = {
+type Placement = {
   key: string;
-  format: string;
   width: number;
   height: number;
   src: string;
   useOptions: boolean;
 };
 
-const DESKTOP_PLACEMENTS: Record<"A" | "B", AdsterraPlacement> = {
-  A: {
-    key: "767d367a31da85b9350b9995137e8013",
-    format: "iframe",
-    width: 728,
-    height: 90,
-    src: "https://www.highperformanceformat.com/767d367a31da85b9350b9995137e8013/invoke.js",
-    useOptions: true,
-  },
-  B: {
-    key: "73f728d3a093655bcc741155a24e5500",
-    format: "iframe",
-    width: 728,
-    height: 90,
-    src: "https://pl29743330.effectivecpmnetwork.com/73/f7/28/73f728d3a093655bcc741155a24e5500.js",
-    useOptions: false,
-  },
+const DESKTOP: Record<"A" | "B", Placement> = {
+  A: { key: "767d367a31da85b9350b9995137e8013", width: 728, height: 90, src: "https://www.highperformanceformat.com/767d367a31da85b9350b9995137e8013/invoke.js", useOptions: true },
+  B: { key: "73f728d3a093655bcc741155a24e5500", width: 728, height: 90, src: "https://pl29743330.effectivecpmnetwork.com/73/f7/28/73f728d3a093655bcc741155a24e5500.js", useOptions: false },
 };
 
-const MOBILE_PLACEMENTS: Record<"A" | "B", AdsterraPlacement> = {
-  A: {
-    key: "1c2e2f123be7deb59e6e66ffcbe411b6",
-    format: "iframe",
-    width: 320,
-    height: 50,
-    src: "https://www.highperformanceformat.com/1c2e2f123be7deb59e6e66ffcbe411b6/invoke.js",
-    useOptions: true,
-  },
-  B: {
-    key: "73f728d3a093655bcc741155a24e5500",
-    format: "iframe",
-    width: 320,
-    height: 100,
-    src: "https://pl29743330.effectivecpmnetwork.com/73/f7/28/73f728d3a093655bcc741155a24e5500.js",
-    useOptions: false,
-  },
+const MOBILE: Record<"A" | "B", Placement> = {
+  A: { key: "1c2e2f123be7deb59e6e66ffcbe411b6", width: 320, height: 50, src: "https://www.highperformanceformat.com/1c2e2f123be7deb59e6e66ffcbe411b6/invoke.js", useOptions: true },
+  B: { key: "73f728d3a093655bcc741155a24e5500", width: 320, height: 100, src: "https://pl29743330.effectivecpmnetwork.com/73/f7/28/73f728d3a093655bcc741155a24e5500.js", useOptions: false },
 };
 
 export default function AdsterraSlot({ variant, layout = "auto" }: AdsterraSlotProps) {
-  const adRef = useRef<HTMLDivElement | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
+    if (!containerRef.current) return;
+    containerRef.current.innerHTML = "";
 
-  useEffect(() => {
-    if (!adRef.current) return;
-    adRef.current.innerHTML = "";
+    const useMobile = layout === "mobile" || (layout === "auto" && window.innerWidth < 768);
+    const p = useMobile ? MOBILE[variant] : DESKTOP[variant];
 
-    const useMobile = layout === "mobile" || (layout === "auto" && isMobile);
-    const placement = useMobile ? MOBILE_PLACEMENTS[variant] : DESKTOP_PLACEMENTS[variant];
+    const iframe = document.createElement("iframe");
+    iframe.width = String(p.width);
+    iframe.height = String(p.height);
+    iframe.style.border = "none";
+    iframe.style.display = "block";
+    iframe.style.margin = "0 auto";
+    iframe.title = "advertisement";
 
-    if (placement.useOptions) {
-      const optionsScript = document.createElement("script");
-      optionsScript.type = "text/javascript";
-      optionsScript.text = `window.atOptions_2 = {
-        key: '${placement.key}',
-        format: '${placement.format}',
-        height: ${placement.height},
-        width: ${placement.width},
-        params: {}
-      };`;
-      adRef.current.appendChild(optionsScript);
+    containerRef.current.appendChild(iframe);
+
+    const doc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (!doc) return;
+
+    doc.open();
+    let html = `<html><head><meta name="viewport" content="width=device-width, initial-scale=1.0" /><style>body{margin:0;padding:0;}</style></head><body>`;
+    if (p.useOptions) {
+      html += `<script type="text/javascript">atOptions={key:'${p.key}',format:'iframe',height:${p.height},width:${p.width},params:{}};</script>`;
     }
-
-    const invokeScript = document.createElement("script");
-    invokeScript.type = "text/javascript";
-    invokeScript.src = placement.src;
-    invokeScript.async = false;
-    adRef.current.appendChild(invokeScript);
+    html += `<script type="text/javascript" src="${p.src}"></script>`;
+    html += `</body></html>`;
+    doc.write(html);
+    doc.close();
 
     return () => {
-      adRef.current?.querySelectorAll("script").forEach((script) => script.remove());
+      if (containerRef.current) containerRef.current.innerHTML = "";
     };
-  }, [variant, layout, isMobile]);
-
-  const maxWidth = layout === "mobile" ? "max-w-[320px]" : "max-w-[728px]";
+  }, [variant, layout]);
 
   return (
     <div className="my-4 flex justify-center">
-      <div ref={adRef} className={`w-full ${maxWidth} flex justify-center min-h-[50px]`} />
+      <div ref={containerRef} className="flex justify-center min-h-[50px]" />
     </div>
   );
 }
