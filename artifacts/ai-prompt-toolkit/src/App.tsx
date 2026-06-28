@@ -337,7 +337,7 @@ function HomePage() {
 
       {/* Ad 1: Right after Stats (7 Pro Tools, 25+ Guides) */}
       <div className="mx-auto max-w-6xl px-4 py-8">
-        <AdsterraSlot variant="A" layout="auto" />
+                  <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />           <Route path="/blog"
       </div>
 
       {/* Featured Tools Section */}
@@ -456,7 +456,7 @@ function ToolContainer({
       </div>
 
       {/* ── STEP 5: Ad Banner between intro and tool interface ── */}
-      <AdsterraSlot variant="A" layout="auto" />
+                <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />           <Route path="/blog"
 
       {/* ── Tool Interface ── */}
       <div className="rounded-[24px] border border-white/10 bg-slate-950/80 p-6 shadow-xl">
@@ -786,7 +786,7 @@ function BlogPostPage() {
         <div className="grid gap-10 lg:grid-cols-[2fr_360px]">
           <article className="space-y-8">
             {/* Ad at top of article — auto-picks desktop/mobile size */}
-            <AdsterraSlot variant="A" layout="auto" />
+                      <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />           <Route path="/blog"
 
             {/* Article sections with mid-article ad on mobile */}
             {(() => {
