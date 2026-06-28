@@ -7,16 +7,24 @@ export default function AdsterraSlot({ variant }: { variant: "A" | "B" }) {
     if (!ref.current) return;
     ref.current.innerHTML = "";
 
+    const isMobile = window.innerWidth < 768;
+
     const key = variant === "A"
-      ? "767d367a31da85b9350b9995137e8013"
+      ? (isMobile ? "1c2e2f123be7deb59e6e66ffcbe411b6" : "767d367a31da85b9350b9995137e8013")
       : "73f728d3a093655bcc741155a24e5500";
+
     const src = variant === "A"
-      ? "https://www.highperformanceformat.com/767d367a31da85b9350b9995137e8013/invoke.js"
+      ? (isMobile
+        ? "https://www.highperformanceformat.com/1c2e2f123be7deb59e6e66ffcbe411b6/invoke.js"
+        : "https://www.highperformanceformat.com/767d367a31da85b9350b9995137e8013/invoke.js")
       : "https://pl29743330.effectivecpmnetwork.com/73/f7/28/73f728d3a093655bcc741155a24e5500.js";
 
+    const width = isMobile ? 320 : 728;
+    const height = isMobile ? (variant === "A" ? 50 : 100) : 90;
+
     const iframe = document.createElement("iframe");
-    iframe.width = "728";
-    iframe.height = "90";
+    iframe.width = String(width);
+    iframe.height = String(height);
     iframe.style.cssText = "border:none;display:block;margin:0 auto;max-width:100%;";
     iframe.title = "advertisement";
 
@@ -30,7 +38,7 @@ export default function AdsterraSlot({ variant }: { variant: "A" | "B" }) {
       doc.write('<style>*{margin:0;padding:0;overflow:hidden;}</style></head><body>');
       if (variant === "A") {
         doc.write('<scr' + 'ipt type="text/javascript">');
-        doc.write('atOptions={key:"' + key + '",format:"iframe",height:90,width:728,params:{}};');
+        doc.write('atOptions={key:"' + key + '",format:"iframe",height:' + height + ',width:' + width + ',params:{}};');
         doc.write('</scr' + 'ipt>');
       }
       doc.write('<scr' + 'ipt type="text/javascript" src="' + src + '">');
