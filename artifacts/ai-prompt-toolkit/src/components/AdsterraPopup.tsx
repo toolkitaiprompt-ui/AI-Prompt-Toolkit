@@ -9,7 +9,7 @@ export default function AdsterraPopup() {
 
     const optionsScript = document.createElement("script");
     optionsScript.type = "text/javascript";
-    optionsScript.text = `window.atOptions = {
+    optionsScript.text = `window.atOptions_popup = {
       key: '767d367a31da85b9350b9995137e8013',
       format: 'iframe',
       height: 300,
@@ -31,8 +31,8 @@ export default function AdsterraPopup() {
   }, []);
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 hidden lg:block">
-      <div ref={popupRef} className="w-full max-w-[480px] min-h-[300px] rounded-xl overflow-hidden shadow-2xl" />
+    <div className="fixed bottom-4 right-4 z-50">
+      <div ref={popupRef} className="w-full max-w-[320px] sm:max-w-[480px] min-h-[200px] sm:min-h-[300px] rounded-xl overflow-hidden shadow-2xl" />
     </div>
   );
 }
