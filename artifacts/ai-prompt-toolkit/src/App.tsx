@@ -369,35 +369,7 @@ function HomePage() {
     </div>
   );
 }
-
-      {/* Single focused CTA section funnelling to /tools */}
-      <section className="mx-auto max-w-6xl px-4 py-10 sm:py-20 lg:px-6">
-      <AdsterraAd />
-        <div className="rounded-[24px] sm:rounded-[28px] border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-5 sm:p-8 lg:p-12 text-center shadow-2xl shadow-indigo-500/10">
-          <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300/80">All tools in one place</p>
-          <h2 className="mt-3 sm:mt-4 text-2xl sm:text-4xl font-bold tracking-tight text-white lg:text-5xl">
-            Ready to engineer better AI prompts?
-          </h2>
-          <p className="mx-auto mt-3 sm:mt-4 max-w-2xl text-base sm:text-lg leading-7 sm:leading-8 text-slate-400">
-            7 free tools — variable extraction, JSON schema generation, validation, formatting, cleaning, token estimation, and advanced optimization. No sign-up required.
-          </p>
-          <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-            <Link
-              to="/tools"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 px-6 py-3 sm:px-8 sm:py-4 text-sm font-bold text-black shadow-lg shadow-amber-500/30 transition hover:scale-105 hover:shadow-xl hover:shadow-amber-500/50"
-            >
-              Browse All Tools
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
-            <Link
-              to="/blog"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 sm:px-8 sm:py-4 text-sm font-semibold text-slate-100 transition hover:bg-white/10"
-            >
-              Read Guides
-            </Link>
-          </div>
-
-          {/* Trust points */}
+        {/* Trust points */}
           <div className="mt-6 sm:mt-10 flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-8 text-sm text-slate-400">
             {[
               "In-browser processing — your data stays private",
