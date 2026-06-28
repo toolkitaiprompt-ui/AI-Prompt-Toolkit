@@ -1,7 +1,15 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function AdsterraAd() {
   const adRef = useRef<HTMLDivElement | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   useEffect(() => {
     if (!adRef.current) return;
@@ -9,13 +17,24 @@ export default function AdsterraAd() {
 
     const optionsScript = document.createElement("script");
     optionsScript.type = "text/javascript";
-    optionsScript.text = `window.atOptions = {
-      key: '1c2e2f123be7deb59e6e66ffcbe411b6',
-      format: 'iframe',
-      height: 90,
-      width: 728,
-      params: {}
-    };`;
+
+    if (isMobile) {
+      optionsScript.text = `window.atOptions_1 = {
+        key: '1c2e2f123be7deb59e6e66ffcbe411b6',
+        format: 'iframe',
+        height: 50,
+        width: 320,
+        params: {}
+      };`;
+    } else {
+      optionsScript.text = `window.atOptions_1 = {
+        key: '1c2e2f123be7deb59e6e66ffcbe411b6',
+        format: 'iframe',
+        height: 90,
+        width: 728,
+        params: {}
+      };`;
+    }
 
     const invokeScript = document.createElement("script");
     invokeScript.type = "text/javascript";
@@ -28,11 +47,11 @@ export default function AdsterraAd() {
     return () => {
       adRef.current?.querySelectorAll("script").forEach((script) => script.remove());
     };
-  }, []);
+  }, [isMobile]);
 
   return (
-    <div className="my-6 flex justify-center">
-      <div ref={adRef} className="w-full max-w-[728px] flex justify-center min-h-[90px]" />
+    <div className="my-4 flex justify-center">
+      <div ref={adRef} className="flex justify-center min-h-[50px]" />
     </div>
   );
 }
