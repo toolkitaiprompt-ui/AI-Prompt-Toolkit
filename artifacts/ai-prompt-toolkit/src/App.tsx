@@ -341,7 +341,6 @@ function HomePage() {
       {/* Ad Banner 1 (After Hero) */}
       <div className="mx-auto max-w-6xl px-4 py-8">
       <AdsterraSlot variant="A" layout="auto" />
-        <AdsterraAd />
       </div>
 
       {/* Featured Tools Section */}
