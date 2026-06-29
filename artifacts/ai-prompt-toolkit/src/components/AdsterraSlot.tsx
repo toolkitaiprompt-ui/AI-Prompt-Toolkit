@@ -9,18 +9,19 @@ export default function AdsterraSlot({ variant }: { variant: "A" | "B" }) {
 
     const isMobile = window.innerWidth < 768;
 
-    // Banner A: Use 1c2e2f... (This is the official 728x90 / 320x50 banner key)
-    // Banner B: Use 73f728... (This is the official 728x90 / 320x100 banner key)
-    const key = variant === "A"
-      ? "1c2e2f123be7deb59e6e66ffcbe411b6"
-      : "73f728d3a093655bcc741155a24e5500";
+    // Both A and B are Banners, NOT Popups.
+    // Variant A uses 767d36... (Desktop) / 1c2e2f... (Mobile)
+    // Variant B reuses 767d36... so it shows a proper banner instead of a popup.
+    const key = isMobile 
+      ? "1c2e2f123be7deb59e6e66ffcbe411b6" 
+      : "767d367a31da85b9350b9995137e8013";
 
-    const src = variant === "A"
+    const src = isMobile
       ? "https://www.highperformanceformat.com/1c2e2f123be7deb59e6e66ffcbe411b6/invoke.js"
-      : "https://pl29743330.effectivecpmnetwork.com/73/f7/28/73f728d3a093655bcc741155a24e5500.js";
+      : "https://www.highperformanceformat.com/767d367a31da85b9350b9995137e8013/invoke.js";
 
     const width = isMobile ? 320 : 728;
-    const height = isMobile ? (variant === "A" ? 50 : 100) : 90;
+    const height = isMobile ? 50 : 90;
 
     const iframe = document.createElement("iframe");
     iframe.width = String(width);
@@ -36,11 +37,9 @@ export default function AdsterraSlot({ variant }: { variant: "A" | "B" }) {
       doc.open();
       doc.write('<html><head><meta name="viewport" content="width=device-width,initial-scale=1.0">');
       doc.write('<style>*{margin:0;padding:0;overflow:hidden;}</style></head><body>');
-      if (variant === "A") {
-        doc.write('<scr' + 'ipt type="text/javascript">');
-        doc.write('atOptions={key:"' + key + '",format:"iframe",height:' + height + ',width:' + width + ',params:{}};');
-        doc.write('</scr' + 'ipt>');
-      }
+      doc.write('<scr' + 'ipt type="text/javascript">');
+      doc.write('atOptions={key:"' + key + '",format:"iframe",height:' + height + ',width:' + width + ',params:{}};');
+      doc.write('</scr' + 'ipt>');
       doc.write('<scr' + 'ipt type="text/javascript" src="' + src + '">');
       doc.write('</scr' + 'ipt>');
       doc.write('</body></html>');
