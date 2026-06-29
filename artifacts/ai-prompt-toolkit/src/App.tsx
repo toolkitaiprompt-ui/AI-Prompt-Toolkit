@@ -32,6 +32,7 @@ import PersonaBuilder from "./components/PersonaBuilder";
 import ToolCard from "./components/ToolCard";
 import BlogCard from "./components/BlogCard";
 import AdsterraPopup from "./components/AdsterraPopup";
+import AdsterraNative from "./components/AdsterraNative";
 import AdsterraSlot from "./components/AdsterraSlot";
 
 type ThemeMode = "light" | "dark";
@@ -735,7 +736,9 @@ function BlogPage() {
           <BlogCard key={post.slug} post={post} />
         ))}
       </div>
-    </SectionShell>
+      {/* Native Banner - Blog Top */}
+      <AdsterraNative />
+    </SectionShell>    
   );
 }
 
