@@ -8,6 +8,10 @@ export default function AdsterraPopup() {
     if (closed || !ref.current) return;
     ref.current.innerHTML = "";
 
+    // Popup Ad Key
+    const key = "73f728d3a093655bcc741155a24e5500";
+    const src = "https://pl29743330.effectivecpmnetwork.com/73/f7/28/73f728d3a093655bcc741155a24e5500.js";
+
     const iframe = document.createElement("iframe");
     iframe.width = "480";
     iframe.height = "300";
@@ -23,9 +27,9 @@ export default function AdsterraPopup() {
       doc.write('<html><head><meta name="viewport" content="width=device-width,initial-scale=1.0">');
       doc.write('<style>*{margin:0;padding:0;overflow:hidden;}</style></head><body>');
       doc.write('<scr' + 'ipt type="text/javascript">');
-      doc.write('atOptions={key:"767d367a31da85b9350b9995137e8013",format:"iframe",height:300,width:480,params:{}};');
+      doc.write('atOptions={key:"' + key + '",format:"iframe",height:300,width:480,params:{}};');
       doc.write('</scr' + 'ipt>');
-      doc.write('<scr' + 'ipt type="text/javascript" src="https://www.highperformanceformat.com/767d367a31da85b9350b9995137e8013/invoke.js">');
+      doc.write('<scr' + 'ipt type="text/javascript" src="' + src + '">');
       doc.write('</scr' + 'ipt>');
       doc.write('</body></html>');
       doc.close();
