@@ -9,14 +9,14 @@ export default function AdsterraSlot({ variant }: { variant: "A" | "B" }) {
 
     const isMobile = window.innerWidth < 768;
 
+    // Banner A: Use 1c2e2f... (This is the official 728x90 / 320x50 banner key)
+    // Banner B: Use 73f728... (This is the official 728x90 / 320x100 banner key)
     const key = variant === "A"
-      ? (isMobile ? "1c2e2f123be7deb59e6e66ffcbe411b6" : "767d367a31da85b9350b9995137e8013")
+      ? "1c2e2f123be7deb59e6e66ffcbe411b6"
       : "73f728d3a093655bcc741155a24e5500";
 
     const src = variant === "A"
-      ? (isMobile
-        ? "https://www.highperformanceformat.com/1c2e2f123be7deb59e6e66ffcbe411b6/invoke.js"
-        : "https://www.highperformanceformat.com/767d367a31da85b9350b9995137e8013/invoke.js")
+      ? "https://www.highperformanceformat.com/1c2e2f123be7deb59e6e66ffcbe411b6/invoke.js"
       : "https://pl29743330.effectivecpmnetwork.com/73/f7/28/73f728d3a093655bcc741155a24e5500.js";
 
     const width = isMobile ? 320 : 728;
