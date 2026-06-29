@@ -730,14 +730,14 @@ function BlogPage() {
         <p className="max-w-3xl text-base text-slate-400">
           Premium editorial insights on prompt systems, AI reliability engineering, and cost-efficient model deployment.
         </p>
+      {/* Native Banner - Blog Top */}
+      <AdsterraNative />
       </div>
       <div className="mt-10 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
         {BLOG_POSTS.map((post) => (
           <BlogCard key={post.slug} post={post} />
         ))}
       </div>
-      {/* Native Banner - Blog Top */}
-      <AdsterraNative />
     </SectionShell>    
   );
 }
