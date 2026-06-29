@@ -738,6 +738,7 @@ function BlogPage() {
           <BlogCard key={post.slug} post={post} />
         ))}
       </div>
+      <AdsterraNative />
     </SectionShell>    
   );
 }
