@@ -8,13 +8,15 @@ export default function AdsterraPopup() {
     if (closed || !ref.current) return;
     ref.current.innerHTML = "";
 
-    // Popup Ad Key
-    const key = "73f728d3a093655bcc741155a24e5500";
-    const src = "https://pl29743330.effectivecpmnetwork.com/73/f7/28/73f728d3a093655bcc741155a24e5500.js";
+    const isMobile = window.innerWidth < 768;
+    // Desktop: 728x90, Mobile: 320x50
+    const key = isMobile ? "767d367a31da85b9350b9995137e8013" : "1c2e2f123be7deb59e6e66ffcbe411b6";
+    const width = isMobile ? 320 : 728;
+    const height = isMobile ? 50 : 90;
 
     const iframe = document.createElement("iframe");
-    iframe.width = "480";
-    iframe.height = "300";
+    iframe.width = String(width);
+    iframe.height = String(height);
     iframe.style.cssText = "border:none;display:block;";
     iframe.title = "advertisement";
 
@@ -27,9 +29,9 @@ export default function AdsterraPopup() {
       doc.write('<html><head><meta name="viewport" content="width=device-width,initial-scale=1.0">');
       doc.write('<style>*{margin:0;padding:0;overflow:hidden;}</style></head><body>');
       doc.write('<scr' + 'ipt type="text/javascript">');
-      doc.write('atOptions={key:"' + key + '",format:"iframe",height:300,width:480,params:{}};');
+      doc.write('atOptions={key:"' + key + '",format:"iframe",height:' + height + ',width:' + width + ',params:{}};');
       doc.write('</scr' + 'ipt>');
-      doc.write('<scr' + 'ipt type="text/javascript" src="' + src + '">');
+      doc.write('<scr' + 'ipt type="text/javascript" src="https://www.highperformanceformat.com/' + key + '/invoke.js">');
       doc.write('</scr' + 'ipt>');
       doc.write('</body></html>');
       doc.close();
@@ -42,7 +44,7 @@ export default function AdsterraPopup() {
 
   return (
     <>
-      <style>{`@keyframes popupSlide { from { top: -350px; opacity: 0; } to { top: 0; opacity: 1; } }`}</style>
+      <style>{`@keyframes popupSlide { from { top: -100px; opacity: 0; } to { top: 0; opacity: 1; } }`}</style>
       <div style={{
         position: "fixed",
         top: 0,
@@ -53,24 +55,24 @@ export default function AdsterraPopup() {
         zIndex: 99999,
         animation: "popupSlide 0.4s ease-out",
         boxShadow: "0 4px 20px rgba(0,0,0,0.6)",
-        borderRadius: "0 0 12px 12px",
+        borderRadius: "0 0 8px 8px",
         overflow: "hidden",
       }}>
         <button
           onClick={() => setClosed(true)}
           style={{
             position: "absolute",
-            top: 6,
-            right: 6,
+            top: 4,
+            right: 4,
             zIndex: 100000,
             background: "rgba(0,0,0,0.7)",
             color: "#fff",
             border: "none",
             borderRadius: "50%",
-            width: 26,
-            height: 26,
+            width: 22,
+            height: 22,
             cursor: "pointer",
-            fontSize: 13,
+            fontSize: 12,
             lineHeight: 1,
             display: "flex",
             alignItems: "center",
