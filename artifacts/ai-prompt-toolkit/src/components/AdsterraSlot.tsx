@@ -8,18 +8,8 @@ export default function AdsterraSlot({ variant }: { variant: "A" | "B" }) {
     ref.current.innerHTML = "";
 
     const isMobile = window.innerWidth < 768;
-
-    // Both A and B are Banners, NOT Popups.
-    // Variant A uses 767d36... (Desktop) / 1c2e2f... (Mobile)
-    // Variant B reuses 767d36... so it shows a proper banner instead of a popup.
-    const key = isMobile 
-      ? "1c2e2f123be7deb59e6e66ffcbe411b6" 
-      : "767d367a31da85b9350b9995137e8013";
-
-    const src = isMobile
-      ? "https://www.highperformanceformat.com/1c2e2f123be7deb59e6e66ffcbe411b6/invoke.js"
-      : "https://www.highperformanceformat.com/767d367a31da85b9350b9995137e8013/invoke.js";
-
+    // दोनों Variants सही Banner कोड इस्तेमाल करेंगे, कोई Popup नहीं आएगा।
+    const key = isMobile ? "767d367a31da85b9350b9995137e8013" : "1c2e2f123be7deb59e6e66ffcbe411b6";
     const width = isMobile ? 320 : 728;
     const height = isMobile ? 50 : 90;
 
@@ -40,7 +30,7 @@ export default function AdsterraSlot({ variant }: { variant: "A" | "B" }) {
       doc.write('<scr' + 'ipt type="text/javascript">');
       doc.write('atOptions={key:"' + key + '",format:"iframe",height:' + height + ',width:' + width + ',params:{}};');
       doc.write('</scr' + 'ipt>');
-      doc.write('<scr' + 'ipt type="text/javascript" src="' + src + '">');
+      doc.write('<scr' + 'ipt type="text/javascript" src="https://www.highperformanceformat.com/' + key + '/invoke.js">');
       doc.write('</scr' + 'ipt>');
       doc.write('</body></html>');
       doc.close();
@@ -49,5 +39,5 @@ export default function AdsterraSlot({ variant }: { variant: "A" | "B" }) {
     setTimeout(writeAd, 50);
   }, [variant]);
 
-  return <div ref={ref} style={{ width: "100%", display: "flex", justifyContent: "center", padding: "12px 0" }} />;
+  return <div ref={ref} style={{ width: "100%", display: "flex", justifyContent: "center", padding: "16px 0" }} />;
 }
