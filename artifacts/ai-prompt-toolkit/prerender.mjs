@@ -10,7 +10,7 @@ import { join } from "path";
 
 const OUT_DIR = join(process.cwd(), "dist", "public");
 const TEMPLATE = readFileSync(join(OUT_DIR, "index.html"), "utf-8");
-const SITE = "https://ai-prompt-toolkit-31l.pages.dev";
+const SITE = "https://aiworldhub.site";
 
 // ─── All routes with SEO data ───────────────────────────
 const routes = [
