@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ai-prompt-toolkit-31l.pages.dev/sitemap.xml
+Sitemap: https://aiworldhub.site/sitemap.xml
