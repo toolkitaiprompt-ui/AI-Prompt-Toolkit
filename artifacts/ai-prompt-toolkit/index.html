@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+   <head>
+    <meta name="google-site-verification" content="CuFSreK8Oi6CUbOHg49HUv-4HoyArB2JQo2H5KY9wQA" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- REDIRECT: pages.dev → aiworldhub.site (fixes duplicate content for AdSense & SEO) -->
+    <script>
+      (function () {
+        var h = window.location.hostname;
+        if (h.endsWith('.pages.dev')) {
+          window.location.replace('https://aiworldhub.site' + window.location.pathname + window.location.search);
+        }
+      })();
+    </script>
+
     <meta name="theme-color" content="#0A0A0A" />
 
     <!-- PRIMARY SEO -->
     <title>AI Prompt Toolkit — Free AI Prompt Engineering Tools</title>
-    <meta name="description" content="Free AI prompt engineering tools for teams. Format prompts, extract variables, generate JSON schema, validate output, estimate tokens — all in-browser, no sign-up." />
+    <meta name="description" content="Free AI prompt engineering tools for teams. Format prompts, extract variables, generate JSON schema, validate output, estimate tokens — all in-browser, no sign-up. 9 free tools." />
     <meta name="keywords" content="Free AI Prompt Tools, Prompt Engineering, Token Estimator, JSON Validator, JSON Schema Generator, Prompt Formatter, Prompt Optimizer" />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="AI Prompt Toolkit" />
@@ -19,7 +31,6 @@
     <!-- OPEN GRAPH -->
     <meta property="og:title" content="AI Prompt Toolkit — Free AI Prompt Engineering Tools" />
     <meta property="og:description" content="9 free tools — prompt formatting, variable extraction, JSON schema generation & validation, token estimation, prompt conversion, persona building, and advanced optimization. All in-browser, no sign-up." />
-    <meta property="og:type" content="website" />
     <meta property="og:url" content="https://aiworldhub.site/" />
     <meta property="og:site_name" content="AI Prompt Toolkit" />
     <meta property="og:image" content="https://aiworldhub.site/opengraph.jpg" />
@@ -38,9 +49,15 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
 
-    <!-- FONTS -->
+    <!-- PERFORMANCE -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+    <link rel="preconnect" href="https://static.cloudflareinsights.com">
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+
+    <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- GOOGLE ADSENSE -->
@@ -67,7 +84,7 @@
       "name": "AI Prompt Toolkit",
       "url": "https://aiworldhub.site",
       "logo": "https://aiworldhub.site/opengraph.jpg",
-      "description": "Free AI prompt engineering tools including Prompt Variable Extractor, JSON Schema Generator, JSON Validator, Prompt Formatter, Prompt Cleaner, Token Estimator and Advanced Prompt Optimizer.",
+      "description": "Free AI prompt engineering tools including Prompt Variable Extractor, JSON Schema Generator, JSON Validator, Prompt Formatter, Prompt Cleaner, Token Estimator, Prompt Converter, Persona Builder and Advanced Prompt Optimizer.",
       "email": "toolkitaiprompt@gmail.com"
     }
     </script>
@@ -99,9 +116,9 @@
       "description": "9 free in-browser tools for AI prompt engineering: variable extraction, JSON schema generation, JSON validation, prompt formatting, prompt cleaning, token estimation, prompt conversion, persona building, and advanced prompt optimization."
     }
     </script>
-  </head>
-  <body>
+   </head>
+   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+   </body>
+  </html>
