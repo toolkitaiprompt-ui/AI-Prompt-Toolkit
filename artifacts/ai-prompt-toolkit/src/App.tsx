@@ -1,4 +1,4 @@
-import { type FormEvent, type ReactElement, type ReactNode, useEffect, useMemo, useState } from "react";
+import React, { type FormEvent, type ReactElement, type ReactNode, useEffect, useMemo, useState } from "react";
 import {
   ArrowUpRight,
   Braces,
@@ -13,6 +13,7 @@ import {
   CheckCircle2,
   Zap,
   ArrowLeftRight,
+  UserCircle,
 } from "lucide-react";
 import { BrowserRouter, Link, NavLink, Route, Routes, useParams } from "react-router-dom";
 import {
@@ -30,11 +31,9 @@ import PromptConverter from "./components/PromptConverter";
 import PersonaBuilder from "./components/PersonaBuilder";
 import ToolCard from "./components/ToolCard";
 import BlogCard from "./components/BlogCard";
-import AdsterraAd from "./components/AdsterraAd";
-import AdsterraSlot from "./components/AdsterraSlot";
-import AdsterraBanner from "./components/AdsterraBanner";
+import AdsterraPopup from "./components/AdsterraPopup";
 import AdsterraNative from "./components/AdsterraNative";
-import AdsterraSmartlink from "./components/AdsterraSmartlink";
+import AdsterraSlot from "./components/AdsterraSlot";
 
 type ThemeMode = "light" | "dark";
 
@@ -104,14 +103,14 @@ const TOOL_PAGES: ToolMeta[] = [
     icon: ArrowLeftRight,
     accent: "from-amber-500/30 to-yellow-400/10",
     keyBenefits: ["ChatGPT to Claude", "ChatGPT to Gemini", "ChatGPT to Cursor"],
-  },
+  }, 
   {
     title: "AI Persona Builder",
     path: "/tools/persona-builder",
-    description: "Generate expert system prompts for different roles like Marketer, Developer, Analyst, and more instantly.",
-    icon: Sparkles,
-    accent: "from-emerald-500/30 to-teal-400/10",
-    keyBenefits: ["6 expert personas", "Role-based prompts", "Copy-ready output"],
+    description: "Generate expert system prompts for different roles like Marketer, Developer, or Analyst instantly.",
+    icon: UserCircle,
+    accent: "from-rose-500/30 to-amber-400/10",
+    keyBenefits: ["Expert role prompting", "Task-specific context", "Behavioral rules"],
   },
   { 
   title: "Advanced Prompt Optimizer",
@@ -214,11 +213,6 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
         </div>
       </header>
 
-      {/* AD: Header Banner */}
-      <div className="border-b border-white/10 bg-black/40 px-4 py-2">
-        <div className="mx-auto max-w-6xl"><AdsterraBanner size="728x90" /></div>
-      </div>
-
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -242,22 +236,16 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           />
           <Route path="/tools/prompt-cleaner" element={<PromptCleanerPage />} />
           <Route path="/tools/prompt-converter" element={<ToolContainer title="Prompt Converter" toolSlug="prompt-converter" description="Convert ChatGPT prompts to Claude, Gemini, or Cursor format." tool={TOOL_BY_SLUG.get("prompt-converter")!}><PromptConverter /></ToolContainer>} />
-          <Route path="/tools/persona-builder" element={<ToolContainer title="AI Persona Builder" toolSlug="persona-builder" description="Generate expert system prompts for different roles like Marketer, Developer, Analyst, and more." tool={TOOL_BY_SLUG.get("persona-builder")!}><PersonaBuilder /></ToolContainer>} />
+          <Route path="/tools/persona-builder" element={<ToolContainer title="AI Persona Builder" toolSlug="persona-builder" description="Generate expert system prompts for different roles like Marketer, Developer, or Analyst." tool={TOOL_BY_SLUG.get("persona-builder")!}><PersonaBuilder /></ToolContainer>} /> 
           <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/privacy-policy" element={<PrivacyPage />} />
-          <Route path="/terms-of-service" element={<TermsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
-
-      {/* AD: Footer Banner */}
-      <div className="border-t border-white/10 bg-black/40 px-4 py-3">
-        <div className="mx-auto max-w-6xl"><AdsterraBanner size="728x90" /></div>
-      </div>
 
       <footer className="border-t border-white/10 bg-[#070707]">
         <div className="mx-auto max-w-6xl px-4 py-12 lg:px-6">
@@ -347,66 +335,32 @@ function HomePage() {
 
   return (
     <div className="bg-[#09090f] text-slate-200">
+      <AdsterraPopup />
       <HeroSection />
 
-      <AdsterraAd />
 
-      {/* AD: Native Banner after hero */}
-      <div className="mx-auto max-w-6xl px-4 py-6 lg:px-6">
-        <AdsterraNative />
-      </div>
-
-      {/* Single focused CTA section funnelling to /tools */}
-      <section className="mx-auto max-w-6xl px-4 py-10 sm:py-20 lg:px-6">
-        <div className="rounded-[24px] sm:rounded-[28px] border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-5 sm:p-8 lg:p-12 text-center shadow-2xl shadow-indigo-500/10">
-          <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300/80">All tools in one place</p>
-          <h2 className="mt-3 sm:mt-4 text-2xl sm:text-4xl font-bold tracking-tight text-white lg:text-5xl">
-            Ready to engineer better AI prompts?
-          </h2>
-          <p className="mx-auto mt-3 sm:mt-4 max-w-2xl text-base sm:text-lg leading-7 sm:leading-8 text-slate-400">
-            9 free tools — variable extraction, JSON schema generation, validation, formatting, cleaning, token estimation, prompt conversion, persona building, and advanced optimization. No sign-up required.
+      {/* Featured Tools Section */}
+      <section className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
+        <div className="rounded-[28px] border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-8 text-center shadow-2xl">
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white lg:text-5xl">Ready to engineer better AI prompts?</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base sm:text-lg leading-7 sm:leading-8 text-slate-400">
+            9 free tools — variable extraction, JSON schema generation, validation, formatting, cleaning, token estimation, Prompt Converter, Persona Builder, and advanced optimization. No sign-up required.
           </p>
-          <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-            <Link
-              to="/tools"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 px-6 py-3 sm:px-8 sm:py-4 text-sm font-bold text-black shadow-lg shadow-amber-500/30 transition hover:scale-105 hover:shadow-xl hover:shadow-amber-500/50"
-            >
-              Browse All Tools
-              <ArrowUpRight className="h-4 w-4" />
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <Link to="/tools" className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 px-8 py-4 text-sm font-bold text-black shadow-lg shadow-amber-500/30 transition hover:scale-105">
+              Browse All Tools <ArrowUpRight className="h-4 w-4" />
             </Link>
-            <Link
-              to="/blog"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 sm:px-8 sm:py-4 text-sm font-semibold text-slate-100 transition hover:bg-white/10"
-            >
+            <Link to="/blog" className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/5 px-8 py-4 text-sm font-semibold text-amber-100 backdrop-blur transition hover:bg-amber-500/10">
               Read Guides
             </Link>
-          </div>
-
-          {/* Trust points */}
-          <div className="mt-6 sm:mt-10 flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-8 text-sm text-slate-400">
-            {[
-              "In-browser processing — your data stays private",
-              "Instant results — no server round-trips",
-              "25+ deep-dive blog guides",
-            ].map((point) => (
-              <div key={point} className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" />
-                <span>{point}</span>
-              </div>
-            ))}
           </div>
         </div>
       </section>
 
-      {/* AD: 300x250 + Smartlink before footer */}
-      <section className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
-        <AdsterraBanner size="300x250" className="mb-8" />
-        <AdsterraSmartlink text="🚀 Explore Premium AI Tools Free" />
-      </section>
+
     </div>
   );
 }
-
 /* ─────────────────────────────────────────────
    STEP 3 — TOOLS DIRECTORY PAGE
    Tool grid + AdsterraSlot sidebar (no affiliate/sponsored blocks)
@@ -424,25 +378,21 @@ function ToolsDirectoryPage() {
         </p>
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">AI Prompt Toolkit</h1>
         <p className="max-w-3xl text-base sm:text-lg text-slate-400">
-          Nine precision tools for prompt engineering teams. Format, validate, extract, optimize, and convert prompts — all in the browser.
+          Nine precision tools for prompt engineering teams. Format, validate, extract, and optimize — all in the browser.
         </p>
       </div>
 
-      <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_300px]">
-        {/* Main: tool cards grid */}
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {TOOL_PAGES.map((tool) => (
-            <ToolCard key={tool.path} tool={tool} />
-          ))}
-        </div>
-
-        {/* Sidebar: real ad slots */}
-        <aside className="flex flex-col gap-6">
-          <AdsterraBanner size="160x300" />
-          <AdsterraBanner size="300x250" />
-          <AdsterraSlot variant="A" layout="desktop" />
-          <AdsterraSlot variant="B" layout="desktop" />
-        </aside>
+      <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {TOOL_PAGES.map((tool, index) => (
+          <React.Fragment key={tool.path}>
+            <ToolCard tool={tool} />
+            {(index + 1) % 3 === 0 && index < TOOL_PAGES.length - 1 && (
+              <div className="md:col-span-2 xl:col-span-3 flex justify-center py-4">
+                <AdsterraSlot variant={index === 2 ? "A" : "B"} />
+              </div>
+            )}
+          </React.Fragment>
+        ))}
       </div>
     </SectionShell>
   );
@@ -499,7 +449,7 @@ function ToolContainer({
       </div>
 
       {/* ── STEP 5: Ad Banner between intro and tool interface ── */}
-      <AdsterraSlot variant="A" layout="auto" />
+      <AdsterraSlot variant="A" />
 
       {/* ── Tool Interface ── */}
       <div className="rounded-[24px] border border-white/10 bg-slate-950/80 p-6 shadow-xl">
@@ -507,7 +457,7 @@ function ToolContainer({
       </div>
 
       {/* ── STEP 5: Ad Section below tool interface ── */}
-      <AdsterraSlot variant="B" layout="auto" />
+      <AdsterraSlot variant="B" />
 
       {/* ── STEP 6: Related blog posts as BlogCard grid ── */}
       {relatedBlogs.length > 0 && (
@@ -780,25 +730,15 @@ function BlogPage() {
         <p className="max-w-3xl text-base text-slate-400">
           Premium editorial insights on prompt systems, AI reliability engineering, and cost-efficient model deployment.
         </p>
+      {/* Native Banner - Blog Top */}
+      <AdsterraNative />
       </div>
-
-      {/* AD: Top banner */}
-      <div className="mt-8">
-        <AdsterraBanner size="320x50" className="mb-4" />
-        <AdsterraBanner size="728x90" />
-      </div>
-
-      {/* AD: Native Banner */}
-      <div className="mt-8">
-        <AdsterraNative />
-      </div>
-
       <div className="mt-10 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
         {BLOG_POSTS.map((post) => (
           <BlogCard key={post.slug} post={post} />
         ))}
       </div>
-    </SectionShell>
+    </SectionShell>    
   );
 }
 
@@ -841,7 +781,7 @@ function BlogPostPage() {
         <div className="grid gap-10 lg:grid-cols-[2fr_360px]">
           <article className="space-y-8">
             {/* Ad at top of article — auto-picks desktop/mobile size */}
-            <AdsterraSlot variant="A" layout="auto" />
+            <AdsterraSlot variant="A" />
 
             {/* Article sections with mid-article ad on mobile */}
             {(() => {
@@ -879,17 +819,10 @@ function BlogPostPage() {
 
             {/* Second ad after FAQ — auto-picks size for mobile/desktop */}
             <AdsterraSlot variant={variant === "A" ? "B" : "A"} layout="auto" />
-            {/* AD: 468x60 after article */}
-            <div className="my-6"><AdsterraBanner size="468x60" /></div>
-            {/* AD: Native Banner after article */}
-            <div className="my-6"><AdsterraNative /></div>
           </article>
 
           {/* Sidebar: related tools + back to blog */}
           <aside className="space-y-6 rounded-[20px] border border-slate-800 bg-slate-900/60 p-6 self-start sticky top-20">
-            {/* AD: sidebar banners */}
-            <AdsterraBanner size="160x600" />
-            <AdsterraBanner size="300x250" />
             <div>
               <h2 className="text-lg font-semibold text-white">Related tools</h2>
               <ul className="mt-4 space-y-3 text-sm">
@@ -941,7 +874,7 @@ function AboutPage() {
 
         <div className="grid gap-6 sm:grid-cols-3">
           <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
-            <p className="text-3xl font-bold text-white">9</p>
+            <p className="text-3xl font-bold text-white">7</p>
             <p className="mt-1 text-sm text-slate-400">Free Tools</p>
           </div>
           <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
@@ -1098,7 +1031,7 @@ function PrivacyPage() {
       <h1 className="text-3xl font-bold text-white">Privacy Policy</h1>
       <p className="mt-2 text-sm text-slate-500">Last updated: June 24, 2026</p>
       <div className="mt-6 max-w-4xl space-y-6 text-slate-300">
-        <p>At AI Prompt Toolkit, accessible from https://aiworldhub.site, the privacy of our visitors is one of our main priorities. This Privacy Policy document explains the types of information we collect and how we use, store, and protect it.</p>
+        <p>At AI Prompt Toolkit, accessible from https://ai-prompt-toolkit-31l.pages.dev, the privacy of our visitors is one of our main priorities. This Privacy Policy document explains the types of information we collect and how we use, store, and protect it.</p>
 
         <div className="space-y-2">
           <h2 className="text-xl font-semibold text-white">Information We Collect</h2>
@@ -1185,7 +1118,7 @@ function TermsPage() {
       <h1 className="text-3xl font-bold text-white">Terms of Service</h1>
       <p className="mt-2 text-sm text-slate-500">Last updated: June 24, 2026</p>
       <div className="mt-6 max-w-4xl space-y-6 text-slate-300">
-        <p>Welcome to AI Prompt Toolkit. By accessing or using our website at https://aiworldhub.site, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use our website.</p>
+        <p>Welcome to AI Prompt Toolkit. By accessing or using our website at https://ai-prompt-toolkit-31l.pages.dev, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use our website.</p>
 
         <div className="space-y-2">
           <h2 className="text-xl font-semibold text-white">1. Use of Our Services</h2>
@@ -1265,4 +1198,3 @@ export default function App() {
       <Layout mode={themeMode} onToggle={() => setThemeMode((c) => (c === "dark" ? "light" : "dark"))} />
     </BrowserRouter>
   );
-}
