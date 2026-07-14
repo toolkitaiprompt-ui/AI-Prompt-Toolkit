@@ -100,24 +100,6 @@ function getBlogPostsForTool(toolSlug: string) {
   return BLOG_POSTS.filter((post) => post.relatedToolSlugs.includes(toolSlug));
 }
 
-// `BlogCard` and its visual mapping were extracted to `src/components/BlogCard.tsx`
-function useMediaQuery(query: string) {
-  const [matches, setMatches] = useState(() =>
-    typeof window !== "undefined" ? window.matchMedia(query).matches : false,
-  );
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(query);
-    const handleChange = (event: MediaQueryListEvent) => setMatches(event.matches);
-
-    setMatches(mediaQuery.matches);
-    mediaQuery.addEventListener("change", handleChange);
-
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, [query]);
-
-  return matches;
-}
 function useSeo(title: string, description: string, keywords?: string) {
   const fallbackKeywords = "Free AI Prompt Tools, Prompt Engineering, Token Estimator, JSON Validator, AI Prompt Toolkit";
 
@@ -198,14 +180,6 @@ function ThemeToggle({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void
   );
 }
 
-function AdSlot({ label }: { label: string }) {
-  return (
-    <div className="w-full border border-dashed border-slate-400 px-4 py-3 text-center text-xs tracking-wide text-slate-500 dark:border-slate-600 dark:text-slate-400">
-      {label} - Display Ad Slot
-    </div>
-  );
-}
-
 function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `inline-flex items-center text-sm transition duration-300 hover:-translate-y-0.5 hover:text-blue-400 ${isActive ? "text-blue-500" : "text-slate-700 dark:text-slate-200"}`;
@@ -235,7 +209,9 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
         </div>
       </header>
 
-      <AdSlot label="Header Banner" />
+      <div className="border-b border-amber-500/20 bg-black/40 px-4 py-2">
+        <AdsterraBanner size="728x90" />
+      </div>
 
       <main>
         <Routes>
@@ -281,9 +257,9 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           </div>
         </div>
         <div className="mx-auto mt-4 max-w-6xl px-4 lg:px-6">
-          <AdSlot label="Footer Banner" />
+          <AdsterraBanner size="728x90" />
         </div>
-        <p className="mt-6 text-center text-xs uppercase tracking-[0.24em] text-slate-500 dark:text-slate-500">Built by Suraj</p>
+        <p className="mt-6 text-center text-xs uppercase tracking-[0.24em] text-slate-500 dark:text-slate-500">© 2026 AI Prompt Toolkit</p>
       </footer>
     </div>
   );
@@ -394,30 +370,6 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-14 lg:px-6">
-        <h2 className="text-2xl font-semibold">Latest AI Prompt Toolkit insights</h2>
-        <p className="mt-2 max-w-3xl text-slate-600 dark:text-slate-300">
-          New blog posts and tool guides to help teams design better prompts, stronger validation pipelines, and faster AI delivery.
-        </p>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {BLOG_POSTS.map((post) => (
-            <Link
-              key={post.slug}
-              to={`/blog/${post.slug}`}
-              className="rounded-3xl border border-slate-200 bg-white p-5 text-sm text-slate-700 transition hover:border-indigo-300 hover:bg-indigo-50 dark:border-slate-800 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:bg-slate-950"
-            >
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-500">{post.category}</p>
-              <h3 className="mt-3 text-lg font-semibold leading-snug text-slate-900 dark:text-white">{post.title}</h3>
-              <p className="mt-3 leading-relaxed text-slate-600 dark:text-slate-400">{post.excerpt}</p>
-              <div className="mt-4 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-                <span>{post.date}</span>
-                <span>{post.readTime}</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
       {/* AD: 300x250 + Smartlink before footer */}
       <section className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
         <AdsterraBanner size="300x250" className="mb-8" />
@@ -439,7 +391,7 @@ function ToolsDirectoryPage() {
 
       <h1 className="text-3xl font-bold">AI Prompt Toolkit Directory</h1>
       <p className="mt-3 max-w-3xl text-slate-600 dark:text-slate-300">
-        Centralized hub for all six MVP tools with ad inventory, affiliate blocks, and sponsored placements.
+        Browse all 9 free AI prompt engineering tools — format, validate, extract, optimize, and convert prompts in-browser.
       </p>
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_280px]">
@@ -449,29 +401,6 @@ function ToolsDirectoryPage() {
               <ToolCard key={tool.path} tool={tool} />
             ))}
           </div>
-
-          <section className="border border-slate-200 p-6 dark:border-slate-800">
-            <h2 className="text-xl font-semibold">Affiliate Recommendations</h2>
-            <p className="mt-2 text-slate-600 dark:text-slate-400">
-              Promote API credits, prompt libraries, and AI observability services here.
-            </p>
-            <ul className="mt-4 space-y-2 text-sm">
-              <li>Affiliate Slot 1: Enterprise LLM Hosting Partner</li>
-              <li>Affiliate Slot 2: Prompt Management Platform</li>
-              <li>Affiliate Slot 3: AI Safety and Guardrail Toolkit</li>
-            </ul>
-          </section>
-
-          <section className="border border-slate-200 p-6 dark:border-slate-800">
-            <h2 className="text-xl font-semibold">Sponsored Listings</h2>
-            <p className="mt-2 text-slate-600 dark:text-slate-400">
-              Sponsored tools and integrations can be featured in this premium section.
-            </p>
-            <ul className="mt-4 space-y-2 text-sm">
-              <li>Sponsored Listing A: AI Dataset Platform</li>
-              <li>Sponsored Listing B: Workflow Automation Suite</li>
-            </ul>
-          </section>
         </div>
 
         <aside className="space-y-4">
@@ -761,8 +690,6 @@ function BlogPostPage() {
     .map((toolSlug) => TOOL_BY_SLUG.get(toolSlug))
     .filter(Boolean) as ToolMeta[];
 
-  const postIndex = BLOG_POSTS.findIndex((p) => p.slug === post.slug);
-
   return (
     <SectionShell title={post.seoTitle} description={post.metaDescription} keywords={`${post.category}, Prompt Engineering, AI Prompt Toolkit`}>
       <div className="space-y-6">
@@ -905,11 +832,11 @@ function ContactPage() {
         <aside className="rounded-2xl border border-slate-200 bg-white p-7 shadow-[0_12px_40px_-25px_rgba(15,23,42,0.4)] dark:border-slate-800 dark:bg-slate-900/70">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-500">Direct Contact</p>
           <a
-            href="mailto:nightfury2464@gmail.com"
+            href="mailto:toolkitaiprompt@gmail.com"
             className="mt-4 inline-flex items-center gap-2 text-lg font-semibold text-slate-900 transition hover:text-blue-500 dark:text-white"
           >
             <Mail className="h-5 w-5" aria-hidden="true" />
-            nightfury2464@gmail.com
+            toolkitaiprompt@gmail.com
           </a>
           <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">Support Window: Monday-Friday, UTC business hours.</p>
         </aside>
