@@ -103,7 +103,7 @@ const TOOL_PAGES: ToolMeta[] = [
     icon: ArrowLeftRight,
     accent: "from-amber-500/30 to-yellow-400/10",
     keyBenefits: ["ChatGPT to Claude", "ChatGPT to Gemini", "ChatGPT to Cursor"],
-  }, 
+  },
   {
     title: "AI Persona Builder",
     path: "/tools/persona-builder",
@@ -112,8 +112,8 @@ const TOOL_PAGES: ToolMeta[] = [
     accent: "from-rose-500/30 to-amber-400/10",
     keyBenefits: ["Expert role prompting", "Task-specific context", "Behavioral rules"],
   },
-  { 
-  title: "Advanced Prompt Optimizer",
+  {
+    title: "Advanced Prompt Optimizer",
     path: "/tools/advanced-prompt-optimizer",
     description: "Polish and amplify prompts with premium optimization controls, copyflow, and high-fidelity results.",
     icon: Sparkles,
@@ -129,26 +129,30 @@ function getBlogPostsForTool(toolSlug: string) {
   return BLOG_POSTS.filter((post) => post.relatedToolSlugs.includes(toolSlug));
 }
 
-
 function useSeo(title: string, description: string, keywords?: string) {
   const fallbackKeywords = "Free AI Prompt Tools, Prompt Engineering, Token Estimator, JSON Validator, AI Prompt Toolkit";
+
   useEffect(() => {
     document.title = `${title} | AI Prompt Toolkit`;
+
     const ensureMeta = (name: string) => {
       let tag = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
       if (!tag) { tag = document.createElement("meta"); tag.setAttribute("name", name); document.head.appendChild(tag); }
       return tag;
     };
+
     const ensurePropertyMeta = (property: string) => {
       let tag = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement | null;
       if (!tag) { tag = document.createElement("meta"); tag.setAttribute("property", property); document.head.appendChild(tag); }
       return tag;
     };
+
     const ensureLink = (rel: string) => {
       let tag = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement | null;
       if (!tag) { tag = document.createElement("link"); tag.setAttribute("rel", rel); document.head.appendChild(tag); }
       return tag;
     };
+
     ensureMeta("description").setAttribute("content", description);
     ensureMeta("keywords").setAttribute("content", keywords ?? fallbackKeywords);
     ensureMeta("robots").setAttribute("content", "index, follow");
@@ -177,32 +181,32 @@ function ThemeToggle({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void
 
 function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-  `inline-flex items-center text-sm transition duration-300 hover:-translate-y-0.5 hover:text-amber-400 ${isActive ? "text-amber-400" : "text-slate-200"}`;
+    `inline-flex items-center text-sm transition duration-300 hover:-translate-y-0.5 hover:text-amber-400 ${isActive ? "text-amber-400" : "text-slate-200"}`;
 
   return (
     <div className="min-h-screen bg-[#09090f] text-slate-100">
       <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 lg:px-6">
-        <Link to="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+          <Link to="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0">
             <svg className="h-7 w-7 sm:h-8 sm:w-8" viewBox="0 0 64 64" fill="none">
               <defs>
                 <linearGradient id="hdrGold" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#F4D47C"/>
-                  <stop offset="50%" stopColor="#D4AF37"/>
-                  <stop offset="100%" stopColor="#B8860B"/>
+                  <stop offset="0%" stopColor="#F4D47C" />
+                  <stop offset="50%" stopColor="#D4AF37" />
+                  <stop offset="100%" stopColor="#B8860B" />
                 </linearGradient>
               </defs>
-              <rect width="64" height="64" rx="14" fill="#0A0A0A"/>
-              <rect x="4" y="4" width="56" height="56" rx="12" stroke="url(#hdrGold)" strokeWidth="1" opacity="0.3"/>
-              <path d="M18 20 L28 32 L18 44" stroke="url(#hdrGold)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <line x1="32" y1="44" x2="46" y2="44" stroke="url(#hdrGold)" strokeWidth="3.5" strokeLinecap="round"/>
-              <path d="M46 24 L48 28 L52 30 L48 32 L46 36 L44 32 L40 30 L44 28 Z" fill="#FFD700"/>
+              <rect width="64" height="64" rx="14" fill="#0A0A0A" />
+              <rect x="4" y="4" width="56" height="56" rx="12" stroke="url(#hdrGold)" strokeWidth="1" opacity="0.3" />
+              <path d="M18 20 L28 32 L18 44" stroke="url(#hdrGold)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+              <line x1="32" y1="44" x2="46" y2="44" stroke="url(#hdrGold)" strokeWidth="3.5" strokeLinecap="round" />
+              <path d="M46 24 L48 28 L52 30 L48 32 L46 36 L44 32 L40 30 L44 28 Z" fill="#FFD700" />
             </svg>
             <span className="text-sm font-bold tracking-tight text-white sm:text-lg">
               AI Prompt Toolkit
             </span>
           </Link>
-            <nav className="flex items-center gap-1.5 sm:gap-4 text-xs sm:text-sm">
+          <nav className="flex items-center gap-1.5 sm:gap-4 text-xs sm:text-sm">
             <NavLink to="/" end className={({ isActive }) => `inline-flex items-center transition duration-300 hover:-translate-y-0.5 hover:text-amber-400 ${isActive ? "text-amber-400" : "text-slate-200"}`}>Home</NavLink>
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
             <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
@@ -236,13 +240,14 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           />
           <Route path="/tools/prompt-cleaner" element={<PromptCleanerPage />} />
           <Route path="/tools/prompt-converter" element={<ToolContainer title="Prompt Converter" toolSlug="prompt-converter" description="Convert ChatGPT prompts to Claude, Gemini, or Cursor format." tool={TOOL_BY_SLUG.get("prompt-converter")!}><PromptConverter /></ToolContainer>} />
-          <Route path="/tools/persona-builder" element={<ToolContainer title="AI Persona Builder" toolSlug="persona-builder" description="Generate expert system prompts for different roles like Marketer, Developer, or Analyst." tool={TOOL_BY_SLUG.get("persona-builder")!}><PersonaBuilder /></ToolContainer>} /> 
+          <Route path="/tools/persona-builder" element={<ToolContainer title="AI Persona Builder" toolSlug="persona-builder" description="Generate expert system prompts for different roles like Marketer, Developer, or Analyst." tool={TOOL_BY_SLUG.get("persona-builder")!}><PersonaBuilder /></ToolContainer>} />
           <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/privacy-policy" element={<PrivacyPage />} />
+          <Route path="/terms-of-service" element={<TermsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
@@ -255,16 +260,16 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
                 <svg className="h-8 w-8" viewBox="0 0 64 64" fill="none">
                   <defs>
                     <linearGradient id="ftrGold" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#F4D47C"/>
-                      <stop offset="50%" stopColor="#D4AF37"/>
-                      <stop offset="100%" stopColor="#B8860B"/>
+                      <stop offset="0%" stopColor="#F4D47C" />
+                      <stop offset="50%" stopColor="#D4AF37" />
+                      <stop offset="100%" stopColor="#B8860B" />
                     </linearGradient>
                   </defs>
-                  <rect width="64" height="64" rx="14" fill="#0A0A0A"/>
-                  <rect x="4" y="4" width="56" height="56" rx="12" stroke="url(#ftrGold)" strokeWidth="1" opacity="0.3"/>
-                  <path d="M18 20 L28 32 L18 44" stroke="url(#ftrGold)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  <line x1="32" y1="44" x2="46" y2="44" stroke="url(#ftrGold)" strokeWidth="3.5" strokeLinecap="round"/>
-                  <path d="M46 24 L48 28 L52 30 L48 32 L46 36 L44 32 L40 30 L44 28 Z" fill="#FFD700"/>
+                  <rect width="64" height="64" rx="14" fill="#0A0A0A" />
+                  <rect x="4" y="4" width="56" height="56" rx="12" stroke="url(#ftrGold)" strokeWidth="1" opacity="0.3" />
+                  <path d="M18 20 L28 32 L18 44" stroke="url(#ftrGold)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <line x1="32" y1="44" x2="46" y2="44" stroke="url(#ftrGold)" strokeWidth="3.5" strokeLinecap="round" />
+                  <path d="M46 24 L48 28 L52 30 L48 32 L46 36 L44 32 L40 30 L44 28 Z" fill="#FFD700" />
                 </svg>
                 <span className="text-base font-bold tracking-tight text-white">AI Prompt Toolkit</span>
               </div>
@@ -323,9 +328,6 @@ function SectionShell({
   );
 }
 
-/* ─────────────────────────────────────────────
-   STEP 2 — HOMEPAGE: Hero + Ad + single CTA
-───────────────────────────────────────────── */
 function HomePage() {
   useSeo(
     "Free AI Prompt Tools for Prompt Engineering",
@@ -338,8 +340,6 @@ function HomePage() {
       <AdsterraPopup />
       <HeroSection />
 
-
-      {/* Featured Tools Section */}
       <section className="mx-auto max-w-6xl px-4 py-10 lg:px-6">
         <div className="rounded-[28px] border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-8 text-center shadow-2xl">
           <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white lg:text-5xl">Ready to engineer better AI prompts?</h2>
@@ -356,15 +356,10 @@ function HomePage() {
           </div>
         </div>
       </section>
-
-
     </div>
   );
 }
-/* ─────────────────────────────────────────────
-   STEP 3 — TOOLS DIRECTORY PAGE
-   Tool grid + AdsterraSlot sidebar (no affiliate/sponsored blocks)
-───────────────────────────────────────────── */
+
 function ToolsDirectoryPage() {
   return (
     <SectionShell
@@ -398,10 +393,6 @@ function ToolsDirectoryPage() {
   );
 }
 
-/* ─────────────────────────────────────────────
-   STEPS 4, 5, 6 — TOOL CONTAINER
-   Intro Card → Ad Banner → Tool Interface → Ad Section → Blog Grid
-───────────────────────────────────────────── */
 function ToolContainer({
   title, description, toolSlug, tool, children,
 }: {
@@ -414,8 +405,6 @@ function ToolContainer({
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-12 lg:px-6 space-y-10">
-
-      {/* ── STEP 4: Tool Intro Card ── */}
       <div className="rounded-[20px] sm:rounded-[28px] border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-5 sm:p-8 shadow-2xl shadow-indigo-500/10">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
           {tool && (
@@ -448,18 +437,14 @@ function ToolContainer({
         </div>
       </div>
 
-      {/* ── STEP 5: Ad Banner between intro and tool interface ── */}
       <AdsterraSlot variant="A" />
 
-      {/* ── Tool Interface ── */}
       <div className="rounded-[24px] border border-white/10 bg-slate-950/80 p-6 shadow-xl">
         <div className="space-y-4">{children}</div>
       </div>
 
-      {/* ── STEP 5: Ad Section below tool interface ── */}
       <AdsterraSlot variant="B" />
 
-      {/* ── STEP 6: Related blog posts as BlogCard grid ── */}
       {relatedBlogs.length > 0 && (
         <section>
           <div className="mb-6 flex items-center justify-between">
@@ -486,9 +471,6 @@ function ToolContainer({
   );
 }
 
-/* ─────────────────────────────────────────────
-   INDIVIDUAL TOOL PAGES
-───────────────────────────────────────────── */
 function PromptVariableExtractorPage() {
   const [input, setInput] = useState("Create a {{tone}} summary for {audience} in :language and include [region].");
   const variables = useMemo(() => extractPromptVariables(input), [input]);
@@ -714,9 +696,6 @@ function TokenEstimatorPage() {
   );
 }
 
-/* ─────────────────────────────────────────────
-   BLOG PAGES
-───────────────────────────────────────────── */
 function BlogPage() {
   return (
     <SectionShell
@@ -730,23 +709,17 @@ function BlogPage() {
         <p className="max-w-3xl text-base text-slate-400">
           Premium editorial insights on prompt systems, AI reliability engineering, and cost-efficient model deployment.
         </p>
-      {/* Native Banner - Blog Top */}
-      <AdsterraNative />
+        <AdsterraNative />
       </div>
       <div className="mt-10 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
         {BLOG_POSTS.map((post) => (
           <BlogCard key={post.slug} post={post} />
         ))}
       </div>
-    </SectionShell>    
+    </SectionShell>
   );
 }
 
-/* ─────────────────────────────────────────────
-   STEP 7 — BLOG POST PAGE
-   Desktop ad top, mobile ad mid-article,
-   second ad after FAQ, related tools sidebar
-───────────────────────────────────────────── */
 function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getBlogPostBySlug(slug) : undefined;
@@ -780,10 +753,8 @@ function BlogPostPage() {
 
         <div className="grid gap-10 lg:grid-cols-[2fr_360px]">
           <article className="space-y-8">
-            {/* Ad at top of article — auto-picks desktop/mobile size */}
             <AdsterraSlot variant="A" />
 
-            {/* Article sections with mid-article ad on mobile */}
             {(() => {
               const sections: ReactElement[] = [];
               post.contentSections.forEach((section, idx) => {
@@ -804,7 +775,6 @@ function BlogPostPage() {
               return sections;
             })()}
 
-            {/* FAQ section */}
             <section className="rounded-[20px] border border-slate-800 bg-slate-950/50 p-6">
               <h2 className="text-2xl font-semibold text-white">Frequently asked questions</h2>
               <div className="mt-4 space-y-4">
@@ -817,11 +787,9 @@ function BlogPostPage() {
               </div>
             </section>
 
-            {/* Second ad after FAQ — auto-picks size for mobile/desktop */}
             <AdsterraSlot variant={variant === "A" ? "B" : "A"} layout="auto" />
           </article>
 
-          {/* Sidebar: related tools + back to blog */}
           <aside className="space-y-6 rounded-[20px] border border-slate-800 bg-slate-900/60 p-6 self-start sticky top-20">
             <div>
               <h2 className="text-lg font-semibold text-white">Related tools</h2>
@@ -866,7 +834,7 @@ function AboutPage() {
       <div className="max-w-4xl space-y-8">
         <div className="space-y-3">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-400">About Us</p>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white">Build Reliable AI Prompts, Faster & Smarter</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-white">Build Reliable AI Prompts, Faster &amp; Smarter</h1>
           <p className="text-lg text-slate-400">
             AI Prompt Toolkit is a free, browser-based platform offering professional prompt engineering tools for teams and individuals worldwide.
           </p>
@@ -874,7 +842,7 @@ function AboutPage() {
 
         <div className="grid gap-6 sm:grid-cols-3">
           <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
-            <p className="text-3xl font-bold text-white">7</p>
+            <p className="text-3xl font-bold text-white">9</p>
             <p className="mt-1 text-sm text-slate-400">Free Tools</p>
           </div>
           <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
@@ -903,6 +871,8 @@ function AboutPage() {
             <li><strong className="text-white">Prompt Formatter</strong> — Turn messy notes into clean, numbered instructions.</li>
             <li><strong className="text-white">Prompt Cleaner</strong> — Remove noise characters and fix formatting.</li>
             <li><strong className="text-white">Token Estimator</strong> — Project token usage and costs before API calls.</li>
+            <li><strong className="text-white">Prompt Converter</strong> — Convert ChatGPT prompts to Claude, Gemini, or Cursor format.</li>
+            <li><strong className="text-white">AI Persona Builder</strong> — Generate expert system prompts for any role.</li>
             <li><strong className="text-white">Advanced Prompt Optimizer</strong> — Polish prompts for clarity and effectiveness.</li>
           </ul>
         </div>
@@ -932,9 +902,7 @@ function AboutPage() {
     </SectionShell>
   );
 }
-/* ─────────────────────────────────────────────
-   CONTACT / LEGAL / 404
-───────────────────────────────────────────── */
+
 function ContactPage() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
@@ -1031,7 +999,7 @@ function PrivacyPage() {
       <h1 className="text-3xl font-bold text-white">Privacy Policy</h1>
       <p className="mt-2 text-sm text-slate-500">Last updated: June 24, 2026</p>
       <div className="mt-6 max-w-4xl space-y-6 text-slate-300">
-        <p>At AI Prompt Toolkit, accessible from https://ai-prompt-toolkit-31l.pages.dev, the privacy of our visitors is one of our main priorities. This Privacy Policy document explains the types of information we collect and how we use, store, and protect it.</p>
+        <p>At AI Prompt Toolkit, accessible from https://aiworldhub.site, the privacy of our visitors is one of our main priorities. This Privacy Policy document explains the types of information we collect and how we use, store, and protect it.</p>
 
         <div className="space-y-2">
           <h2 className="text-xl font-semibold text-white">Information We Collect</h2>
@@ -1062,7 +1030,7 @@ function PrivacyPage() {
           <ul className="ml-6 list-disc space-y-1">
             <li>Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our site and/or other sites on the Internet.</li>
             <li>You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" className="text-cyan-400 hover:underline">Google Ads Settings</a>.</li>
-            <li>For more information about how Google uses data, visit <a href="https://policies.google.com/technologies/partner-sites" className="text-cyan-400 hover:underline">Google's Privacy & Terms</a>.</li>
+            <li>For more information about how Google uses data, visit <a href="https://policies.google.com/technologies/partner-sites" className="text-cyan-400 hover:underline">Google's Privacy &amp; Terms</a>.</li>
           </ul>
         </div>
 
@@ -1118,7 +1086,7 @@ function TermsPage() {
       <h1 className="text-3xl font-bold text-white">Terms of Service</h1>
       <p className="mt-2 text-sm text-slate-500">Last updated: June 24, 2026</p>
       <div className="mt-6 max-w-4xl space-y-6 text-slate-300">
-        <p>Welcome to AI Prompt Toolkit. By accessing or using our website at https://ai-prompt-toolkit-31l.pages.dev, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use our website.</p>
+        <p>Welcome to AI Prompt Toolkit. By accessing or using our website at https://aiworldhub.site, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use our website.</p>
 
         <div className="space-y-2">
           <h2 className="text-xl font-semibold text-white">1. Use of Our Services</h2>
@@ -1178,9 +1146,6 @@ function NotFoundPage() {
   );
 }
 
-/* ─────────────────────────────────────────────
-   ROOT
-───────────────────────────────────────────── */
 export default function App() {
   const [themeMode, setThemeMode] = useState<ThemeMode>(() => {
     const stored = localStorage.getItem("theme-mode");
@@ -1198,3 +1163,4 @@ export default function App() {
       <Layout mode={themeMode} onToggle={() => setThemeMode((c) => (c === "dark" ? "light" : "dark"))} />
     </BrowserRouter>
   );
+}
