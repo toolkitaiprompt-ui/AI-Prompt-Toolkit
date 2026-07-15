@@ -1693,7 +1693,8 @@ export const BLOG_POSTS: BlogPost[] = [
           "It should include templates, examples, allowed variables, and usage instructions.",
       },
     ],
-    relatedToolSlugs: ["prompt-formatter", "prompt-variable-extractor", "token-estimator"]
+     relatedToolSlugs: ["prompt-formatter", "prompt-variable-extractor", "token-estimator"],
+  },
 ];
 
 import { NEW_SEO_POSTS } from "./newBlogPosts";
