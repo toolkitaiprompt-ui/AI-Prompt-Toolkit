@@ -1703,3 +1703,6 @@ BLOG_POSTS.push(...NEW_SEO_POSTS);
 export const BLOG_POST_SLUGS = BLOG_POSTS.map((post) => post.slug);
 
 export const getBlogPostBySlug = (slug: string) => BLOG_POSTS.find((post) => post.slug === slug);
+
+
+
