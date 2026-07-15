@@ -25,6 +25,7 @@ import {
   validateJsonWithSchema,
 } from "./lib/toolkit";
 import { BLOG_POSTS, type BlogPost, getBlogPostBySlug } from "./data/blogPosts";
+import { getSeoForPath } from "./seoConfig";
 import HeroSection from "./components/HeroSection";
 import PromptOptimizer from "./components/PromptOptimizer";
 import PromptConverter from "./components/PromptConverter";
@@ -129,11 +130,16 @@ function getBlogPostsForTool(toolSlug: string) {
   return BLOG_POSTS.filter((post) => post.relatedToolSlugs.includes(toolSlug));
 }
 
-function useSeo(title: string, description: string, keywords?: string) {
-  const fallbackKeywords = "Free AI Prompt Tools, Prompt Engineering, Token Estimator, JSON Validator, AI Prompt Toolkit";
+function useSeo(title?: string, description?: string, keywords?: string) {
+  // seoConfig.ts se data uthao — ye ALWAYS priority me hai
+  const configSeo = getSeoForPath(window.location.pathname);
+
+  const finalTitle = configSeo.title || title || "AI Prompt Toolkit";
+  const finalDesc = configSeo.description || description || "";
+  const finalKeywords = configSeo.keywords || keywords || "";
 
   useEffect(() => {
-    document.title = `${title} | AI Prompt Toolkit`;
+    document.title = finalTitle;
 
     const ensureMeta = (name: string) => {
       let tag = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
@@ -153,17 +159,17 @@ function useSeo(title: string, description: string, keywords?: string) {
       return tag;
     };
 
-    ensureMeta("description").setAttribute("content", description);
-    ensureMeta("keywords").setAttribute("content", keywords ?? fallbackKeywords);
+    ensureMeta("description").setAttribute("content", finalDesc);
+    ensureMeta("keywords").setAttribute("content", finalKeywords);
     ensureMeta("robots").setAttribute("content", "index, follow");
     ensureMeta("twitter:card").setAttribute("content", "summary_large_image");
-    ensureMeta("twitter:title").setAttribute("content", title);
-    ensureMeta("twitter:description").setAttribute("content", description);
-    ensurePropertyMeta("og:title").setAttribute("content", title);
-    ensurePropertyMeta("og:description").setAttribute("content", description);
+    ensureMeta("twitter:title").setAttribute("content", finalTitle);
+    ensureMeta("twitter:description").setAttribute("content", finalDesc);
+    ensurePropertyMeta("og:title").setAttribute("content", finalTitle);
+    ensurePropertyMeta("og:description").setAttribute("content", finalDesc);
     ensurePropertyMeta("og:type").setAttribute("content", "website");
     ensureLink("canonical").setAttribute("href", window.location.href);
-  }, [title, description, keywords, fallbackKeywords]);
+  }, [finalTitle, finalDesc, finalKeywords]);
 }
 
 function ThemeToggle({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
@@ -330,9 +336,9 @@ function SectionShell({
 
 function HomePage() {
   useSeo(
-    "Free AI Prompt Tools for Prompt Engineering",
-    "AI Prompt Toolkit offers Free AI Prompt Tools including Token Estimator, JSON Validator, and prompt engineering workflows for global teams.",
-    "Free AI Prompt Tools, Prompt Engineering, Token Estimator, JSON Schema Generator, JSON Validator",
+   "Best Free AI Tools for Everyone | AI Prompt Engineering",
+    "Best free AI tools for everyone — 9 prompt engineering tools for formatting, validating, extracting, and optimizing prompts. JSON schema, token estimator, persona builder & more.",
+    "Best AI Tools, Free AI Tools, ChatGPT Prompts, Prompt Engineering, AI Tools Directory, How to Use ChatGPT",
   );
 
   return (
@@ -363,9 +369,9 @@ function HomePage() {
 function ToolsDirectoryPage() {
   return (
     <SectionShell
-      title="AI Tools Directory - Free AI Prompt Tools"
-      description="Browse Free AI Prompt Tools for prompt engineering, including Token Estimator, Variable Extractor, JSON Schema Generator, and JSON Validator."
-      keywords="Free AI Prompt Tools, Prompt Engineering, Token Estimator, Prompt Variable Extractor, JSON Validator"
+      title="Free AI Tools Directory — 9 Best Tools"
+      description="Browse the best free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder & optimizer."
+      keywords="Best AI Tools, Free AI Tools, AI Tools Directory, Prompt Engineering Tools"
     >
       <div className="space-y-3">
         <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300/80">
@@ -398,7 +404,7 @@ function ToolContainer({
 }: {
   title: string; description: string; toolSlug?: string; tool?: ToolMeta; children: ReactNode;
 }) {
-  const keywords = `${title}, Free AI Prompt Tools, Prompt Engineering, Token Estimator, JSON Validator`;
+  const keywords = `${title}, Best AI Tools, Free AI Tools, Prompt Engineering, ChatGPT Prompts`;
   const relatedBlogs = toolSlug ? getBlogPostsForTool(toolSlug) : [];
 
   useSeo(title, description, keywords);
@@ -699,9 +705,9 @@ function TokenEstimatorPage() {
 function BlogPage() {
   return (
     <SectionShell
-      title="Prompt Engineering Blog - Free AI Prompt Tools"
-      description="Prompt Engineering blog with practical guides on Token Estimator usage, schema validation, and Free AI Prompt Tools workflows."
-      keywords="Prompt Engineering Blog, Free AI Prompt Tools, Token Estimator, AI Reliability, JSON Validator"
+      title="ChatGPT Prompts & Prompt Engineering Blog"
+      description="Free ChatGPT prompts, prompt engineering guides, and AI tool reviews. Learn how to write better prompts, use AI tools effectively, and boost productivity with practical tutorials."
+      keywords="ChatGPT Prompts, Prompt Engineering, Best AI Tools, Free AI Tools, AI Tools Directory"
     >
       <div className="space-y-2">
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300/80">Editorial</p>
@@ -829,7 +835,7 @@ function AboutPage() {
     <SectionShell
       title="About AI Prompt Toolkit"
       description="Learn about AI Prompt Toolkit — free in-browser tools for prompt engineering teams worldwide."
-      keywords="About AI Prompt Toolkit, Free AI Prompt Tools, Prompt Engineering"
+      keywords="About AI Prompt Toolkit, Best AI Tools, Free AI Tools, Prompt Engineering"
     >
       <div className="max-w-4xl space-y-8">
         <div className="space-y-3">
@@ -940,7 +946,7 @@ function ContactPage() {
   return (
     <SectionShell
       title="Contact - Prompt Engineering Toolkit"
-      description="Contact AI Prompt Toolkit for Prompt Engineering partnerships, support, and Free AI Prompt Tools collaboration."
+      description="Contact AI Prompt Toolkit for prompt engineering support, partnerships, and feedback. Email toolkitaiprompt@gmail.com."
     >
       <h1 className="text-3xl font-bold tracking-tight text-white">Contact</h1>
       <p className="mt-3 max-w-2xl text-slate-400">
