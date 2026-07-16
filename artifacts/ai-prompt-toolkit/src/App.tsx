@@ -30,6 +30,7 @@ import HeroSection from "./components/HeroSection";
 import PromptOptimizer from "./components/PromptOptimizer";
 import PromptConverter from "./components/PromptConverter";
 import PersonaBuilder from "./components/PersonaBuilder";
+import PromptComparison from "./components/PromptComparison";
 import ToolCard from "./components/ToolCard";
 import BlogCard from "./components/BlogCard";
 import AdsterraPopup from "./components/AdsterraPopup";
@@ -123,6 +124,14 @@ const TOOL_PAGES: ToolMeta[] = [
     keyBenefits: ["Side-by-side compare", "12 optimization credits", "Premium AI signal"],
   },
 ];
+  {
+    title: "Prompt Comparison Tool",
+    path: "/tools/prompt-comparison",
+    description: "Compare two prompts side by side. See token count, word count, readability, structure score, clarity score, and visual diff highlighting.",
+    icon: ArrowLeftRight,
+    accent: "from-cyan-500/30 to-blue-400/10",
+    keyBenefits: ["Token & word count", "Readability & structure scores", "Visual diff highlighting"],
+  },
 
 const TOOL_BY_SLUG = new Map(TOOL_PAGES.map((tool) => [tool.path.split("/").pop()!, tool]));
 
@@ -247,6 +256,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/tools/prompt-cleaner" element={<PromptCleanerPage />} />
           <Route path="/tools/prompt-converter" element={<ToolContainer title="Prompt Converter" toolSlug="prompt-converter" description="Convert ChatGPT prompts to Claude, Gemini, or Cursor format." tool={TOOL_BY_SLUG.get("prompt-converter")!}><PromptConverter /></ToolContainer>} />
           <Route path="/tools/persona-builder" element={<ToolContainer title="AI Persona Builder" toolSlug="persona-builder" description="Generate expert system prompts for different roles like Marketer, Developer, or Analyst." tool={TOOL_BY_SLUG.get("persona-builder")!}><PersonaBuilder /></ToolContainer>} />
+          <Route path="/tools/prompt-comparison" element={<ToolContainer title="Prompt Comparison Tool" toolSlug="prompt-comparison" description="Compare two prompts side by side. See token count, word count, readability, structure score, clarity score, and visual diff highlighting." tool={TOOL_BY_SLUG.get("prompt-comparison")!}><PromptComparison /></ToolContainer>} />
           <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
