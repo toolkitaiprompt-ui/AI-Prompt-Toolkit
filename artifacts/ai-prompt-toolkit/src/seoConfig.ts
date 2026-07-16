@@ -137,6 +137,12 @@ const SEO_MAP: Record<string, SeoData> = {
       "Polish and optimize AI prompts with advanced controls — reduce tokens, add structure, compare before-and-after. Best free prompt optimizer.",
     keywords: "Prompt Optimizer, Best AI Tools, Free AI Tools, Prompt Engineering",
   },
+  "/tools/prompt-comparison": {
+    title: "Free Prompt Comparison Tool — Compare 2 Prompts | AI Prompt Tools",
+    description:
+      "Compare two AI prompts side by side. See token count, word count, readability, structure score, clarity score, and visual diff highlighting. Free in-browser tool.",
+    keywords: "Prompt Comparison, Compare Prompts, Free AI Tools, Prompt Engineering, Diff Tool",
+  },
 
   // ═══ HIGH-TRAFFIC BLOG POSTS ═══
   "/blog/best-ai-tools-2026-complete-directory": {
