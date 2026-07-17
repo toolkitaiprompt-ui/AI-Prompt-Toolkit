@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import AdsterraAd from "./AdsterraAd";
 import { motion } from "framer-motion";
 import {
   ArrowUpRight,
