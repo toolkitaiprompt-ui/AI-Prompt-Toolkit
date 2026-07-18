@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://aiworldhub.site/sitemap.xml
