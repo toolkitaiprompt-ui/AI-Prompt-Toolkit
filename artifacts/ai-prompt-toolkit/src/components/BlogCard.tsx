@@ -106,6 +106,31 @@ function getBlogPostVisual(postSlug: string): { url: string; alt: string } {
       url: `${IMG}/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80`,
       alt: "Business strategy planning for AI prompt template governance and growth",
     },
+    // ── NEW SEO POSTS ──
+    "best-ai-tools-2026-complete-directory": {
+      url: `/images/blog-best-ai-tools.jpg`,
+      alt: "Premium 3D collection of the best AI tools for 2026 with floating golden icons",
+    },
+    "100-chatgpt-prompts-for-every-task": {
+      url: `/images/blog-100-chatgpt-prompts.jpg`,
+      alt: "Premium 3D golden terminal window with ChatGPT prompt templates floating in space",
+    },
+    "how-to-use-chatgpt-complete-guide": {
+      url: `/images/blog-how-to-use-chatgpt.jpg`,
+      alt: "Premium 3D ChatGPT chat interface with glowing golden UI elements",
+    },
+    "free-ai-tools-50-best-tested": {
+      url: `/images/blog-free-ai-tools.jpg`,
+      alt: "Premium 3D floating grid of free AI tool icons with golden borders",
+    },
+    "prompt-engineering-complete-guide": {
+      url: `/images/blog-prompt-engineering.jpg`,
+      alt: "Premium 3D golden prompt engineering diagram with connected nodes and code blocks",
+    },
+    "ai-tools-directory-categorized-list": {
+      url: `/images/blog-ai-tools-directory.jpg`,
+      alt: "Premium 3D luxury directory grid of AI tools with golden glass panels",
+    },
   };
 
   return (
