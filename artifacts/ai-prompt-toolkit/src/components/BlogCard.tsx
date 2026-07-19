@@ -6,46 +6,75 @@ const IMG = "https://images.unsplash.com";
 
 function getBlogPostVisual(postSlug: string): { url: string; alt: string } {
   const visuals: Record<string, { url: string; alt: string }> = {
+    // ═══ BATCH 1: PREMIUM 3D IMAGES (6 SEO POSTS) ═══
+    "best-ai-tools-2026-complete-directory": {
+      url: `/images/blog-best-ai-tools.jpg`,
+      alt: "Premium 3D collection of the best AI tools for 2026 with floating golden icons",
+    },
+    "100-chatgpt-prompts-for-every-task": {
+      url: `/images/blog-100-chatgpt-prompts.jpg`,
+      alt: "Premium 3D golden terminal window with ChatGPT prompt templates floating in space",
+    },
+    "how-to-use-chatgpt-complete-guide": {
+      url: `/images/blog-how-to-use-chatgpt.jpg`,
+      alt: "Premium 3D ChatGPT chat interface with glowing golden UI elements",
+    },
+    "free-ai-tools-50-best-tested": {
+      url: `/images/blog-free-ai-tools.jpg`,
+      alt: "Premium 3D floating grid of free AI tool icons with golden borders",
+    },
+    "prompt-engineering-complete-guide": {
+      url: `/images/blog-prompt-engineering.jpg`,
+      alt: "Premium 3D golden prompt engineering diagram with connected nodes and code blocks",
+    },
+    "ai-tools-directory-categorized-list": {
+      url: `/images/blog-ai-tools-directory.jpg`,
+      alt: "Premium 3D luxury directory grid of AI tools with golden glass panels",
+    },
+
+    // ═══ BATCH 2: PREMIUM 3D IMAGES (10 EXISTING POSTS) ═══
     "master-prompt-engineering-workflow": {
-      url: `${IMG}/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80`,
-      alt: "Circuit board representing AI prompt engineering workflows and data processing",
+      url: `/images/blog-prompt-workflow.jpg`,
+      alt: "Premium 3D golden workflow diagram with connected nodes for AI prompt engineering",
     },
     "craft-high-impact-chatgpt-prompts": {
-      url: `${IMG}/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80`,
-      alt: "ChatGPT AI chatbot interface on a screen for crafting effective prompts",
+      url: `/images/blog-chatgpt-prompts-craft.jpg`,
+      alt: "Premium 3D golden chat bubble with structured prompt text floating in space",
     },
     "build-ai-prompt-templates-that-scale": {
-      url: `${IMG}/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80`,
-      alt: "Developer building scalable AI prompt template code on a laptop",
+      url: `/images/blog-prompt-templates-scale.jpg`,
+      alt: "Premium 3D golden template system showing multiple AI prompt cards stacked",
     },
     "claude-prompt-best-practices": {
-      url: `${IMG}/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=1200&q=80`,
-      alt: "Person working with an AI assistant interface for Claude prompt best practices",
+      url: `/images/blog-claude-best-practices.jpg`,
+      alt: "Premium 3D golden AI brain neural network with Claude interface elements",
     },
     "midjourney-prompt-techniques": {
-      url: `${IMG}/photo-1547036967-23d11aacaee0?auto=format&fit=crop&w=1200&q=80`,
-      alt: "Creative digital artwork generated with Midjourney prompt techniques",
+      url: `/images/blog-midjourney-techniques.jpg`,
+      alt: "Premium 3D golden creative palette with floating AI art elements",
     },
     "design-json-schema-for-ai-output": {
-      url: `${IMG}/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=1200&q=80`,
-      alt: "Code editor showing JSON schema design for structured AI output",
+      url: `/images/blog-json-schema-design.jpg`,
+      alt: "Premium 3D golden JSON code editor with structured schema blocks",
     },
     "boost-ai-productivity-with-prompt-systems": {
-      url: `${IMG}/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=1200&q=80`,
-      alt: "Productive workspace with AI prompt systems boosting team efficiency",
+      url: `/images/blog-ai-productivity.jpg`,
+      alt: "Premium 3D golden productivity dashboard with floating metrics and charts",
     },
     "optimize-prompts-for-better-ai-performance": {
-      url: `${IMG}/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80`,
-      alt: "Analytics dashboard for optimizing AI prompt performance and metrics",
+      url: `/images/blog-optimize-prompts.jpg`,
+      alt: "Premium 3D golden optimization graph with upward trending arrows",
     },
     "automate-ai-tasks-with-prompt-workflows": {
-      url: `${IMG}/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&w=1200&q=80`,
-      alt: "Automation system for AI task workflows and prompt processing",
+      url: `/images/blog-automate-tasks.jpg`,
+      alt: "Premium 3D golden automation pipeline with connected gears and data streams",
     },
     "orchestrate-llm-workflows-for-productive-teams": {
-      url: `${IMG}/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80`,
-      alt: "Team collaborating to orchestrate LLM workflows for productivity",
+      url: `/images/blog-llm-workflows.jpg`,
+      alt: "Premium 3D golden LLM architecture diagram with interconnected nodes",
     },
+
+    // ═══ BATCH 3: UNSPLASH (baki posts - achhi quality) ═══
     "prompt-audit-and-iteration-strategies": {
       url: `${IMG}/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80`,
       alt: "Desk with notes and planning for prompt audit and iteration strategies",
@@ -105,31 +134,6 @@ function getBlogPostVisual(postSlug: string): { url: string; alt: string } {
     "ai-prompt-template-governance-for-growth": {
       url: `${IMG}/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80`,
       alt: "Business strategy planning for AI prompt template governance and growth",
-    },
-    // ── NEW SEO POSTS ──
-    "best-ai-tools-2026-complete-directory": {
-      url: `/images/blog-best-ai-tools.jpg`,
-      alt: "Premium 3D collection of the best AI tools for 2026 with floating golden icons",
-    },
-    "100-chatgpt-prompts-for-every-task": {
-      url: `/images/blog-100-chatgpt-prompts.jpg`,
-      alt: "Premium 3D golden terminal window with ChatGPT prompt templates floating in space",
-    },
-    "how-to-use-chatgpt-complete-guide": {
-      url: `/images/blog-how-to-use-chatgpt.jpg`,
-      alt: "Premium 3D ChatGPT chat interface with glowing golden UI elements",
-    },
-    "free-ai-tools-50-best-tested": {
-      url: `/images/blog-free-ai-tools.jpg`,
-      alt: "Premium 3D floating grid of free AI tool icons with golden borders",
-    },
-    "prompt-engineering-complete-guide": {
-      url: `/images/blog-prompt-engineering.jpg`,
-      alt: "Premium 3D golden prompt engineering diagram with connected nodes and code blocks",
-    },
-    "ai-tools-directory-categorized-list": {
-      url: `/images/blog-ai-tools-directory.jpg`,
-      alt: "Premium 3D luxury directory grid of AI tools with golden glass panels",
     },
   };
 
