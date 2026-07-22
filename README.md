@@ -3,7 +3,7 @@
 
 A **world-class, production-ready** website for AI Prompt Toolkit, built with React 18, TypeScript, Tailwind CSS, and Framer Motion.
 
-![Modern Design](https://img.shields.io/badge/Design-Modern%202026-purple)
+![Modern Design](https://img.shields.io/badge/Design-202026-purple)
 ![React](https://img.shields.io/badge/React-18-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
 ![Tailwind](https://img.shields.io/badge/Tailwind-4-cyan)
