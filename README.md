@@ -1,4 +1,4 @@
-# 🚀 AI Prompt Toolkit - Modern Homepage Demo
+# 🚀 AI Prompt Toolkit - Homepage 
 
 A **world-class, production-ready** homepage design for AI Prompt Toolkit, built with React, TypeScript, Tailwind CSS, and Framer Motion.
 
