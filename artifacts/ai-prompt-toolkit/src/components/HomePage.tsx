@@ -145,7 +145,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
         {/* Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="relative z-10 site-container py-24 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left: Content */}
             <motion.div
@@ -354,8 +354,8 @@ export default function HomePage({ toolPages }: HomePageProps) {
       </section>
 
       {/* Stats Section */}
-      <section className="py-28 bg-slate-900/50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 bg-slate-900/50">
+        <div className="site-container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
             {stats.map((stat, idx) => (
               <motion.div
@@ -379,7 +379,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
       {/* Tools Showcase */}
       <section className="py-28">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="site-container">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-20">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
               10 Professional Tools
@@ -429,7 +429,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
       {/* Testimonials */}
       <section className="py-28 bg-slate-900/50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="site-container">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-20">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
               Loved by AI Professionals
@@ -489,7 +489,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
       {/* Blog Section */}
       {BLOG_POSTS.length > 0 && (
         <section className="py-28">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="site-container">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-20">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
                 Latest from Our Blog
@@ -537,7 +537,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
       {/* FAQ Section */}
       <section className="py-28 bg-slate-900/50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -564,7 +564,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
       {/* Final CTA */}
       <section className="py-28">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="site-container text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}

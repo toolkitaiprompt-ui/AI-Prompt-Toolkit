@@ -193,12 +193,12 @@ function ThemeToggle({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void
 function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `px-2 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${isActive ? "bg-white/10 text-amber-300" : "text-slate-400 hover:text-white hover:bg-white/5"}`;
+    `px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${isActive ? "bg-white/10 text-amber-300" : "text-slate-400 hover:text-white hover:bg-white/5"}`;
   return (
     <div className="min-h-screen bg-[#09090f] text-slate-100 w-full">
       <header className="sticky top-0 z-50 border-b border-white/5 bg-slate-950/90 backdrop-blur-xl w-full">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
-          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 shrink-0 mr-6 sm:mr-10">
+        <div className="site-container flex items-center justify-between h-16">
+          <Link to="/" className="flex items-center gap-3 shrink-0 mr-12 lg:mr-24">
             <svg className="h-7 w-7 sm:h-8 sm:w-8" viewBox="0 0 64 64" fill="none">
               <defs>
                 <linearGradient id="hdrGold" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -218,13 +218,13 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             </span>
           </Link>
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-8 lg:gap-10">
             <NavLink to="/" end className={navLinkClass}>Home</NavLink>
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
             <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
             <NavLink to="/about" className={navLinkClass}>About</NavLink>
             <NavLink to="/contact" className={navLinkClass}>Contact</NavLink>
-            <div className="ml-6 pl-6 border-l border-white/10">
+            <div className="ml-8 lg:ml-10 pl-8 lg:pl-10 border-l border-white/10">
               <button type="button" onClick={onToggle} className="px-3 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-200">
                 {mode === "dark" ? "☀️" : "🌙"}
               </button>
@@ -303,8 +303,8 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
       </main>
 
       <footer className="border-t border-white/10 bg-[#070707] w-full">
-        <div className="mx-auto max-w-6xl px-4 py-12 lg:px-6">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="site-container py-16">
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             <div className="space-y-4">
               <div className="flex items-center gap-2">
                 <svg className="h-8 w-8" viewBox="0 0 64 64" fill="none">
@@ -355,7 +355,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col-reverse items-center justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row">
+          <div className="mt-12 flex flex-col-reverse items-center justify-between gap-6 border-t border-white/10 pt-8 sm:flex-row">
             <p className="text-xs text-slate-500">© 2026 AI Prompt Toolkit. All rights reserved.</p>
             <p className="text-xs text-slate-600">Built for global AI teams.</p>
           </div>
@@ -372,7 +372,7 @@ function SectionShell({
 }) {
   useSeo(title, description, keywords);
   return (
-    <section className="mx-auto max-w-6xl px-4 py-12 lg:px-6">
+    <section className="site-container py-16 lg:py-20">
       {children}
     </section>
   );
@@ -422,7 +422,7 @@ function ToolContainer({
   useSeo(title, description, keywords);
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-12 lg:px-6 space-y-10">
+    <section className="site-container py-16 lg:py-20 space-y-12">
       <div className="rounded-[20px] sm:rounded-[28px] border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-5 sm:p-8 shadow-2xl shadow-indigo-500/10">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
           {tool && (
@@ -758,7 +758,7 @@ function BlogPostPage() {
     .filter(Boolean) as ToolMeta[];
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-6 sm:py-12 lg:px-6">
+    <section className="site-container py-12 lg:py-16">
       <div className="space-y-5 sm:space-y-6">
         <div className="space-y-2 sm:space-y-3">
           <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">{post.category}</p>
