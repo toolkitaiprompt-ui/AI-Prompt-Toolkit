@@ -21,8 +21,6 @@ import {
 import { BLOG_POSTS } from '../data/blogPosts';
 import BlogCard from './BlogCard';
 import ToolCard from './ToolCard';
-import AdsterraPopup from './AdsterraPopup';
-import AdsterraSlot from './AdsterraSlot';
 
 interface ToolMeta {
   title: string;
@@ -120,7 +118,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
   return (
     <div className="bg-slate-950">
-      <AdsterraPopup />
+
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -427,7 +425,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
         </div>
       </section>
 
-      <AdsterraSlot variant="A" />
+
 
       {/* Testimonials */}
       <section className="py-20 bg-slate-900/50">
@@ -535,7 +533,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
         </section>
       )}
 
-      <AdsterraSlot variant="B" />
+
 
       {/* FAQ Section */}
       <section className="py-20 bg-slate-900/50">

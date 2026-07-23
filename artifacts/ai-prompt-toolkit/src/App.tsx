@@ -33,9 +33,6 @@ import PersonaBuilder from "./components/PersonaBuilder";
 import PromptComparison from "./components/PromptComparison";
 import ToolCard from "./components/ToolCard";
 import BlogCard from "./components/BlogCard";
-import AdsterraPopup from "./components/AdsterraPopup";
-import AdsterraNative from "./components/AdsterraNative";
-import AdsterraSlot from "./components/AdsterraSlot";
 
 type ThemeMode = "light" | "dark";
 
@@ -401,7 +398,7 @@ function ToolsDirectoryPage() {
             <ToolCard tool={tool} />
             {(index === 2 || index === 5) && (
               <div className="md:col-span-2 xl:col-span-3 flex justify-center py-4">
-                <AdsterraSlot variant={index === 2 ? "A" : "B"} />
+
               </div>
             )}
           </React.Fragment>
@@ -455,13 +452,13 @@ function ToolContainer({
         </div>
       </div>
 
-      <AdsterraSlot variant="A" />
+
 
       <div className="rounded-[24px] border border-white/10 bg-slate-950/80 p-6 shadow-xl">
         <div className="space-y-4">{children}</div>
       </div>
 
-      <AdsterraSlot variant="B" />
+
 
       {relatedBlogs.length > 0 && (
         <section>
@@ -727,7 +724,7 @@ function BlogPage() {
         <p className="max-w-3xl text-base text-slate-400">
           Premium editorial insights on prompt systems, AI reliability engineering, and cost-efficient model deployment.
         </p>
-        <AdsterraNative />
+
       </div>
       <div className="mt-10 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
         {BLOG_POSTS.map((post) => (
@@ -771,7 +768,7 @@ function BlogPostPage() {
 
         <div className="grid gap-10 lg:grid-cols-[2fr_360px]">
           <article className="space-y-8">
-            <AdsterraSlot variant="A" />
+
 
             {(() => {
               const sections: ReactElement[] = [];
@@ -786,7 +783,7 @@ function BlogPostPage() {
                 );
                 if (idx === insertAfterIndex - 1) {
                   sections.push(
-                    <AdsterraSlot key={`ad-mid-${idx}`} variant={variant} layout="auto" />,
+
                   );
                 }
               });
@@ -805,7 +802,7 @@ function BlogPostPage() {
               </div>
             </section>
 
-            <AdsterraSlot variant={variant === "A" ? "B" : "A"} layout="auto" />
+
           </article>
 
           <aside className="space-y-6 rounded-[20px] border border-slate-800 bg-slate-900/60 p-6 self-start sticky top-20">
