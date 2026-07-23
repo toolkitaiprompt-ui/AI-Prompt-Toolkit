@@ -57,7 +57,26 @@ body {
   font-family: "Inter", "Segoe UI", sans-serif;
   background-color: #09090f;
   color: #f1f5f9;
-  line-height: 1.7;
+  line-height: 1.8;
+}
+
+/* ===== SPACING FIX - Har line ke baad proper spacing ===== */
+p {
+  margin-bottom: 1.25rem;
+  line-height: 1.8;
+}
+p:last-child {
+  margin-bottom: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+}
+li {
+  margin-bottom: 0.4rem;
+}
+.card, .card-premium, .card-featured-premium {
+  margin-bottom: 1rem;
 }
 
 /* Simple Button Styles */
