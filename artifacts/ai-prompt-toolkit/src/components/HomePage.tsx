@@ -145,7 +145,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
         {/* Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left: Content */}
             <motion.div
@@ -158,14 +158,14 @@ export default function HomePage({ toolPages }: HomePageProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-6"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-8"
               >
                 <Sparkles className="w-4 h-4 text-purple-400" />
                 <span className="text-sm text-purple-300">Trusted by 10,000+ AI teams worldwide</span>
               </motion.div>
 
               {/* Heading */}
-              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-[1.2]">
+              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-10 leading-[1.2]">
                 Build{' '}
                 <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
                   Perfect
@@ -177,13 +177,13 @@ export default function HomePage({ toolPages }: HomePageProps) {
               </h1>
 
               {/* Description */}
-              <p className="text-lg sm:text-xl text-slate-300 mb-8 leading-[1.8]">
+              <p className="text-lg sm:text-xl text-slate-300 mb-12 leading-[1.8]">
                 10 professional tools to format, validate, optimize, and deploy AI prompts at scale.
                 No signup required. 100% in-browser. Enterprise-ready.
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-wrap gap-4 mb-12">
+              <div className="flex flex-wrap gap-4 mb-16">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     to="/tools"
@@ -203,7 +203,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               </div>
 
               {/* Social Proof */}
-              <div className="flex items-center gap-6">
+              <div className="flex items-center gap-6 mb-4">
                 <div className="flex -space-x-3">
                   {[1, 2, 3, 4, 5].map((i) => (
                     <div
@@ -256,7 +256,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl mt-8"
+                className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl mt-12"
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${demoTools[currentTool].color} opacity-10 blur-2xl rounded-2xl`} />
 
@@ -354,9 +354,9 @@ export default function HomePage({ toolPages }: HomePageProps) {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-slate-900/50">
+      <section className="py-28 bg-slate-900/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
             {stats.map((stat, idx) => (
               <motion.div
                 key={idx}
@@ -378,22 +378,22 @@ export default function HomePage({ toolPages }: HomePageProps) {
       </section>
 
       {/* Tools Showcase */}
-      <section className="py-20">
+      <section className="py-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-20">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
               10 Professional Tools
               <br />
               <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                 For Perfect Prompts
               </span>
             </h2>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto mt-2">
               Everything you need to create, validate, optimize, and deploy AI prompts at scale.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {toolPages.map((tool, idx) => (
               <motion.div
                 key={tool.path}
@@ -428,10 +428,10 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
 
       {/* Testimonials */}
-      <section className="py-20 bg-slate-900/50">
+      <section className="py-28 bg-slate-900/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-20">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
               Loved by AI Professionals
               <br />
               <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -450,8 +450,8 @@ export default function HomePage({ toolPages }: HomePageProps) {
                 transition={{ duration: 0.5 }}
                 className="bg-slate-900/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
               >
-                <Quote className="w-12 h-12 text-purple-400 mb-6" />
-                <p className="text-xl text-slate-300 mb-6 leading-relaxed">
+                <Quote className="w-12 h-12 text-purple-400 mb-8" />
+                <p className="text-xl text-slate-300 mb-8 leading-relaxed">
                   "{testimonials[activeTestimonial].content}"
                 </p>
                 <div className="flex items-center gap-4">
@@ -488,10 +488,10 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
       {/* Blog Section */}
       {BLOG_POSTS.length > 0 && (
-        <section className="py-20">
+        <section className="py-28">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-20">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
                 Latest from Our Blog
                 <br />
                 <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -500,7 +500,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               </h2>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {BLOG_POSTS.slice(0, 3).map((post, idx) => (
                 <motion.div
                   key={post.slug}
@@ -536,7 +536,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
 
       {/* FAQ Section */}
-      <section className="py-20 bg-slate-900/50">
+      <section className="py-28 bg-slate-900/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -545,7 +545,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
               Frequently Asked
               <br />
               <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -554,7 +554,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
             </h2>
           </motion.div>
 
-          <div className="space-y-4">
+          <div className="space-y-6">
             {faqs.map((faq, idx) => (
               <FAQItem key={idx} question={faq.question} answer={faq.answer} />
             ))}
@@ -563,7 +563,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20">
+      <section className="py-28">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -571,7 +571,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-8">
               Ready to Build
               <br />
               <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
