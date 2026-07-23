@@ -198,7 +198,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
     <div className="min-h-screen bg-[#09090f] text-slate-100 w-full">
       <header className="sticky top-0 z-50 border-b border-white/5 bg-slate-950/90 backdrop-blur-xl w-full">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
-          <Link to="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 shrink-0 mr-6 sm:mr-10">
             <svg className="h-7 w-7 sm:h-8 sm:w-8" viewBox="0 0 64 64" fill="none">
               <defs>
                 <linearGradient id="hdrGold" x1="0%" y1="0%" x2="100%" y2="100%">

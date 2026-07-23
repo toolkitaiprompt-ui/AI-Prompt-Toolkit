@@ -145,7 +145,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
         {/* Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left: Content */}
             <motion.div
@@ -165,7 +165,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               </motion.div>
 
               {/* Heading */}
-              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-10 leading-[1.2]">
+              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-16 leading-[1.35]">
                 Build{' '}
                 <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
                   Perfect
@@ -177,13 +177,13 @@ export default function HomePage({ toolPages }: HomePageProps) {
               </h1>
 
               {/* Description */}
-              <p className="text-lg sm:text-xl text-slate-300 mb-12 leading-[1.8]">
+              <p className="text-lg sm:text-xl text-slate-300 mb-20 leading-[1.8]">
                 10 professional tools to format, validate, optimize, and deploy AI prompts at scale.
                 No signup required. 100% in-browser. Enterprise-ready.
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-wrap gap-4 mb-16">
+              <div className="flex flex-wrap gap-4 mb-24">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     to="/tools"
