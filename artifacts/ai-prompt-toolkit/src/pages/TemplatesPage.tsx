@@ -25,8 +25,8 @@ export default function TemplatesPage() {
   };
 
   return (
-    <section className="site-container py-16 lg:py-24">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
+    <section className="site-container section-lg">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
         <p className="text-sm font-semibold uppercase tracking-widest text-cyan-400 mb-2">✦ Templates</p>
         <h1 className="font-headline font-bold text-4xl sm:text-5xl text-white mb-4">
           Prompt Templates Library
@@ -66,7 +66,7 @@ export default function TemplatesPage() {
       </div>
 
       {/* Grid */}
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
         {filtered.map((template, idx) => (
           <motion.div
             key={template.id}

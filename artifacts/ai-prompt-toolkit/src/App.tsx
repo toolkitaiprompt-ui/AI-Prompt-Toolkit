@@ -318,7 +318,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
       </main>
 
       <footer className="border-t border-white/10 bg-[#070707] w-full">
-        <div className="site-container py-16">
+        <div className="site-container section-lg">
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             <div className="space-y-4">
               <div className="flex items-center gap-2">
@@ -387,7 +387,7 @@ function SectionShell({
 }) {
   useSeo(title, description, keywords);
   return (
-    <section className="site-container py-16 lg:py-20">
+    <section className="site-container section-lg">
       {children}
     </section>
   );
@@ -410,7 +410,7 @@ function ToolsDirectoryPage() {
         </p>
       </div>
 
-      <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
         {TOOL_PAGES.map((tool, index) => (
           <React.Fragment key={tool.path}>
             <ToolCard tool={tool} />
@@ -437,7 +437,7 @@ function ToolContainer({
   useSeo(title, description, keywords);
 
   return (
-    <section className="site-container py-16 lg:py-20 space-y-12">
+    <section className="site-container section-lg space-y-16">
       <div className="rounded-[20px] sm:rounded-[28px] border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-5 sm:p-8 shadow-2xl shadow-indigo-500/10">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
           {tool && (
@@ -773,7 +773,7 @@ function BlogPostPage() {
     .filter(Boolean) as ToolMeta[];
 
   return (
-    <section className="site-container py-12 lg:py-16">
+    <section className="site-container section-md">
       <div className="space-y-5 sm:space-y-6">
         <div className="space-y-2 sm:space-y-3">
           <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">{post.category}</p>

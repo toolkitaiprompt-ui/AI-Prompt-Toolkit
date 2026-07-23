@@ -5,8 +5,8 @@ import { PROMPT_CATEGORIES } from "@/data/categories";
 
 export default function CategoriesPage() {
   return (
-    <section className="site-container py-16 lg:py-24">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
+    <section className="site-container section-lg">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
         <p className="text-sm font-semibold uppercase tracking-widest text-cyan-400 mb-2">✦ Browse</p>
         <h1 className="font-headline font-bold text-4xl sm:text-5xl text-white mb-4">
           Prompt Categories

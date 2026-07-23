@@ -147,7 +147,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
         <div className="relative z-10 site-container py-24 lg:py-32">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -340,13 +340,14 @@ export default function HomePage({ toolPages }: HomePageProps) {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-20 text-center"
+            className="mt-24 text-center"
           >
             <p className="text-sm text-slate-400 mb-8">Trusted by teams at</p>
             <div className="flex flex-wrap items-center justify-center gap-12 opacity-50">
               {['Google', 'Microsoft', 'OpenAI', 'Anthropic', 'Meta'].map((company) => (
-                <div key={company} className="text-2xl font-bold text-slate-500">
-                  {company}
+                <div key={company} className="flex items-center gap-2">
+                  <img src={`/icons/${company.toLowerCase()}.svg`} alt={company} className="h-6 w-6 opacity-50" />
+                  <span className="text-lg font-semibold text-slate-500">{company}</span>
                 </div>
               ))}
             </div>
@@ -379,7 +380,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
       </section>
 
       {/* Tools Showcase */}
-      <section className="py-28">
+      <section className="section-lg">
         <div className="site-container">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-20">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
@@ -429,7 +430,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
 
       {/* Testimonials */}
-      <section className="py-28 bg-slate-900/50">
+      <section className="section-lg bg-slate-900/50">
         <div className="site-container">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-20">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
@@ -565,7 +566,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
       </section>
 
       {/* Final CTA */}
-      <section className="py-28">
+      <section className="section-lg">
         <div className="site-container text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
