@@ -1,8 +1,19 @@
 /* Simple Index CSS - Guaranteed to Work */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-deep-blue: #1E3A8A;
+  --color-vibrant-pink: #DB2777;
+  --color-warm-orange: #F97316;
+  --color-vibrant-yellow: #FFD700;
+  --color-electric-pink: #FF1493;
+  --color-bright-cyan: #00D9FF;
+  --color-lime-green: #00FF41;
+  --font-family-headline: "Poppins", "Inter", sans-serif;
+  --font-family-body: "Inter", "Segoe UI", sans-serif;
+  --font-family-code: "Fira Code", "Courier New", monospace;
+}
 
 /* Basic Styles */
 * {
