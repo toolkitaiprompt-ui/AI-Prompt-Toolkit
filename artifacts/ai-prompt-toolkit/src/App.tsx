@@ -194,6 +194,7 @@ function ThemeToggle({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void
 }
 
 function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `inline-flex items-center text-sm transition duration-300 hover:-translate-y-0.5 hover:text-amber-400 ${isActive ? "text-amber-400" : "text-slate-200"}`;
 
@@ -220,7 +221,8 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
               AI Prompt Toolkit
             </span>
           </Link>
-          <nav className="flex items-center gap-1.5 sm:gap-4 text-xs sm:text-sm">
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-1.5 sm:gap-4 text-xs sm:text-sm">
             <NavLink to="/" end className={({ isActive }) => `inline-flex items-center transition duration-300 hover:-translate-y-0.5 hover:text-amber-400 ${isActive ? "text-amber-400" : "text-slate-200"}`}>Home</NavLink>
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
             <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
@@ -228,7 +230,40 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             <NavLink to="/contact" className={({ isActive }) => `inline-flex items-center transition duration-300 hover:-translate-y-0.5 hover:text-amber-400 ${isActive ? "text-amber-400" : "text-slate-200"}`}>Contact</NavLink>
             <ThemeToggle mode={mode} onToggle={onToggle} />
           </nav>
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden flex items-center justify-center p-2 rounded-lg hover:bg-white/5 transition-colors"
+            aria-label="Menu"
+          >
+            <svg className="w-6 h-6 text-slate-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {mobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
         </div>
+        {/* Mobile menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-white/10 bg-slate-950/95 px-4 py-4 space-y-1">
+            <NavLink to="/" end onClick={() => setMobileMenuOpen(false)}
+              className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">Home</NavLink>
+            <NavLink to="/tools" onClick={() => setMobileMenuOpen(false)}
+              className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">Tools</NavLink>
+            <NavLink to="/blog" onClick={() => setMobileMenuOpen(false)}
+              className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">Blog</NavLink>
+            <NavLink to="/about" onClick={() => setMobileMenuOpen(false)}
+              className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">About</NavLink>
+            <NavLink to="/contact" onClick={() => setMobileMenuOpen(false)}
+              className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">Contact</NavLink>
+            <button onClick={() => { onToggle(); setMobileMenuOpen(false); }}
+              className="w-full mt-2 rounded-lg border border-slate-700 px-4 py-2.5 text-sm text-slate-200 text-center hover:bg-slate-800">
+              {mode === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode"}
+            </button>
+          </div>
+        )}
       </header>
 
       <main className="w-full">
