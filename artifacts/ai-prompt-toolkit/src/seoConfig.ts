@@ -144,6 +144,27 @@ const SEO_MAP: Record<string, SeoData> = {
     keywords: "Prompt Comparison, Compare Prompts, Free AI Tools, Prompt Engineering, Diff Tool",
   },
 
+
+  // ═══ NEW FEATURES ═══
+  "/templates": {
+    title: "Free Prompt Templates Library — 100+ Ready-to-Use Prompts | AI Prompt Toolkit",
+    description:
+      "Browse 100+ ready-to-use AI prompt templates for writing, marketing, coding, business, education, and more. Copy, paste, get results instantly. Free prompt templates library.",
+    keywords: "Prompt Templates, AI Prompts, ChatGPT Prompts, Free AI Tools, Prompt Engineering Library",
+  },
+  "/categories": {
+    title: "AI Prompt Categories — Browse by Use Case | AI Prompt Toolkit",
+    description:
+      "Browse AI prompts by category — Writing & Content, Marketing & Sales, Development & Code, Business & Strategy, Education & Learning, and more. Find the perfect prompt.",
+    keywords: "AI Prompts, Prompt Categories, Prompt Engineering, Free AI Tools, ChatGPT Categories",
+  },
+  "/image-generator": {
+    title: "Free AI Image Prompt Generator — Optimized for Midjourney & DALL-E | AI Prompt Toolkit",
+    description:
+      "Generate optimized AI image prompts for Midjourney, DALL-E 3, and Stable Diffusion. Choose from 10 art styles and get copy-ready prompts instantly. Free in-browser tool.",
+    keywords: "AI Image Prompt Generator, Midjourney Prompts, DALL-E Prompts, Stable Diffusion, Free AI Tools",
+  },
+
   // ═══ HIGH-TRAFFIC BLOG POSTS ═══
   "/blog/best-ai-tools-2026-complete-directory": {
     title: "Best AI Tools 2026 — Complete Directory of 50+ Tools | AI Prompt Toolkit",
