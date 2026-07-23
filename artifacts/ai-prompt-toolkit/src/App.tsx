@@ -193,12 +193,11 @@ function ThemeToggle({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void
 function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `inline-flex items-center text-sm transition duration-300 hover:-translate-y-0.5 hover:text-amber-400 ${isActive ? "text-amber-400" : "text-slate-200"}`;
-
+    `px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${isActive ? "bg-white/10 text-amber-300" : "text-slate-300 hover:text-white hover:bg-white/5"}`;
   return (
     <div className="min-h-screen bg-[#09090f] text-slate-100 w-full">
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl w-full">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 lg:px-6">
+      <header className="sticky top-0 z-50 border-b border-white/5 bg-slate-950/90 backdrop-blur-xl w-full">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
           <Link to="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0">
             <svg className="h-7 w-7 sm:h-8 sm:w-8" viewBox="0 0 64 64" fill="none">
               <defs>
@@ -214,18 +213,22 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
               <line x1="32" y1="44" x2="46" y2="44" stroke="url(#hdrGold)" strokeWidth="3.5" strokeLinecap="round" />
               <path d="M46 24 L48 28 L52 30 L48 32 L46 36 L44 32 L40 30 L44 28 Z" fill="#FFD700" />
             </svg>
-            <span className="text-sm font-bold tracking-tight text-white sm:text-lg">
+            <span className="text-base font-bold tracking-tight text-white">
               AI Prompt Toolkit
             </span>
           </Link>
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1.5 sm:gap-4 text-xs sm:text-sm">
-            <NavLink to="/" end className={({ isActive }) => `inline-flex items-center transition duration-300 hover:-translate-y-0.5 hover:text-amber-400 ${isActive ? "text-amber-400" : "text-slate-200"}`}>Home</NavLink>
+          <nav className="hidden md:flex items-center gap-1">
+            <NavLink to="/" end className={navLinkClass}>Home</NavLink>
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
             <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
             <NavLink to="/about" className={navLinkClass}>About</NavLink>
-            <NavLink to="/contact" className={({ isActive }) => `inline-flex items-center transition duration-300 hover:-translate-y-0.5 hover:text-amber-400 ${isActive ? "text-amber-400" : "text-slate-200"}`}>Contact</NavLink>
-            <ThemeToggle mode={mode} onToggle={onToggle} />
+            <NavLink to="/contact" className={navLinkClass}>Contact</NavLink>
+            <div className="ml-2 pl-2 border-l border-white/10">
+              <button type="button" onClick={onToggle} className="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-200">
+                {mode === "dark" ? "☀️" : "🌙"}
+              </button>
+            </div>
           </nav>
           {/* Mobile hamburger */}
           <button
