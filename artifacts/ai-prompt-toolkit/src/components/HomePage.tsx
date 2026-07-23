@@ -123,8 +123,10 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Animated Background */}
+        {/* Background with real image */}
         <div className="absolute inset-0">
+          <img src="/images/hero-ai.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#09090f] via-transparent to-[#09090f]" />
           <motion.div
             animate={{
               scale: [1, 1.2, 1],
