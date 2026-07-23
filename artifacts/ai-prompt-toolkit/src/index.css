@@ -178,6 +178,123 @@ body {
   display: inline-block;
 }
 
+/* ===== PREMIUM CARD STYLES ===== */
+.card-premium {
+  position: relative;
+  background: linear-gradient(160deg, #12121e, #1a1a2e);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.card-premium:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255,215,0,0.2);
+  box-shadow: 0 20px 60px rgba(219,39,119,0.15), 0 0 40px rgba(255,215,0,0.05);
+}
+.card-premium::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(255,215,0,0.03), transparent, rgba(219,39,119,0.03), transparent);
+  animation: cardRotate 8s linear infinite;
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+.card-premium:hover::before { opacity: 1; }
+.card-premium .card-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1E3A8A, #DB2777, #F97316, #FFD700);
+  opacity: 0.6;
+}
+.card-premium .card-shine {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.card-premium:hover .card-shine { opacity: 1; }
+
+/* Featured premium card (for premium tools) */
+.card-featured-premium {
+  position: relative;
+  background: linear-gradient(160deg, #1a0f2e, #0f0f1a);
+  border-radius: 20px;
+  border: 1px solid rgba(255,215,0,0.15);
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.card-featured-premium:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255,215,0,0.3);
+  box-shadow: 0 20px 60px rgba(255,215,0,0.1), 0 0 60px rgba(219,39,119,0.08);
+}
+.card-featured-premium .card-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #FFD700, #FF1493, #FFD700);
+  background-size: 200% 100%;
+  animation: cardShimmer 3s linear infinite;
+  opacity: 0.8;
+}
+@keyframes cardRotate { to { transform: rotate(360deg); } }
+@keyframes cardShimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* Premium badge with pulse */
+.badge-premium-pulse {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,20,147,0.15));
+  color: #fbbf24;
+  border: 1px solid rgba(255,215,0,0.2);
+}
+.badge-premium-pulse .dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #fbbf24;
+  animation: pulse 1.5s infinite;
+}
+.badge-free-premium {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+.badge-free-premium .dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #34d399;
+}
+
+/* Premium card divider */
+.card-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  margin: 16px 0;
+}
+
 /* Simple Animation */
 @keyframes fadeInUp {
   from {
