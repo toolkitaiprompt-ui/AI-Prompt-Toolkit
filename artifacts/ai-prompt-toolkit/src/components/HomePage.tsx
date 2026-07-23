@@ -184,6 +184,18 @@ export default function HomePage({ toolPages }: HomePageProps) {
                 No signup required. 100% in-browser. Enterprise-ready.
               </p>
 
+              {/* SURAJ - Big Red Text */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="mb-8"
+              >
+                <span className="text-7xl sm:text-8xl md:text-9xl font-black text-red-600 block text-center tracking-widest">
+                  SURAJ
+                </span>
+              </motion.div>
+
               {/* CTAs */}
               <div className="flex flex-wrap gap-4 mb-12">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
