@@ -198,8 +198,8 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
     `inline-flex items-center text-sm transition duration-300 hover:-translate-y-0.5 hover:text-amber-400 ${isActive ? "text-amber-400" : "text-slate-200"}`;
 
   return (
-    <div className="min-h-screen bg-[#09090f] text-slate-100">
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
+    <div className="min-h-screen bg-[#09090f] text-slate-100 w-full">
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl w-full">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 lg:px-6">
           <Link to="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0">
             <svg className="h-7 w-7 sm:h-8 sm:w-8" viewBox="0 0 64 64" fill="none">
@@ -231,7 +231,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
         </div>
       </header>
 
-      <main>
+      <main className="w-full">
         <Routes>
           <Route path="/" element={<HomePage toolPages={TOOL_PAGES} />} />
           <Route path="/tools" element={<ToolsDirectoryPage />} />
@@ -267,7 +267,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
         </Routes>
       </main>
 
-      <footer className="border-t border-white/10 bg-[#070707]">
+      <footer className="border-t border-white/10 bg-[#070707] w-full">
         <div className="mx-auto max-w-6xl px-4 py-12 lg:px-6">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <div className="space-y-4">

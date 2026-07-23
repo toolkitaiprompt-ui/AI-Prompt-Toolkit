@@ -2,6 +2,13 @@
 
 @import "tailwindcss";
 
+/* Force proper centering */
+html, body, #root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 @theme {
   --color-deep-blue: #1E3A8A;
   --color-vibrant-pink: #DB2777;
