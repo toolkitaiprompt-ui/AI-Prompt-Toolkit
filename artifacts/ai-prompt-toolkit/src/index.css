@@ -60,23 +60,20 @@ body {
   line-height: 1.8;
 }
 
-/* ===== SPACING FIX - Har line ke baad proper spacing ===== */
-p {
-  margin-bottom: 1.25rem;
-  line-height: 1.8;
-}
-p:last-child {
-  margin-bottom: 0;
+/* ===== SPACING FIX - Force proper breathing room ===== */
+p, .text-lg, .text-xl, .text-base {
+  margin-bottom: 1.5rem !important;
+  line-height: 1.9 !important;
 }
 h1, h2, h3, h4, h5, h6 {
-  margin-bottom: 0.75rem;
-  line-height: 1.35;
+  margin-bottom: 1rem !important;
 }
 li {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.6rem !important;
 }
-.card, .card-premium, .card-featured-premium {
-  margin-bottom: 1rem;
+section {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
 }
 
 /* Simple Button Styles */
