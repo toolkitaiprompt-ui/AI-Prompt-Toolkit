@@ -364,7 +364,7 @@ function ToolsDirectoryPage() {
         {TOOL_PAGES.map((tool, index) => (
           <React.Fragment key={tool.path}>
             <ToolCard tool={tool} />
-            {(index + 1) % 3 === 0 && index < TOOL_PAGES.length - 1 && (
+            {(index === 2 || index === 5) && (
               <div className="md:col-span-2 xl:col-span-3 flex justify-center py-4">
                 <AdsterraSlot variant={index === 2 ? "A" : "B"} />
               </div>
