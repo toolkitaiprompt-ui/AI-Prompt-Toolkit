@@ -21,6 +21,7 @@ import {
 import { BLOG_POSTS } from '../data/blogPosts';
 import BlogCard from './BlogCard';
 import ToolCard from './ToolCard';
+import CategoryShowcase from './CategoryShowcase';
 
 interface ToolMeta {
   title: string;
@@ -534,6 +535,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
       )}
 
 
+      <CategoryShowcase />
 
       {/* FAQ Section */}
       <section className="py-28 bg-slate-900/50">

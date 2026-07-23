@@ -33,6 +33,9 @@ import PersonaBuilder from "./components/PersonaBuilder";
 import PromptComparison from "./components/PromptComparison";
 import ToolCard from "./components/ToolCard";
 import BlogCard from "./components/BlogCard";
+import TemplatesPage from "./pages/TemplatesPage";
+import CategoriesPage from "./pages/CategoriesPage";
+import ImageGeneratorPage from "./pages/ImageGeneratorPage";
 
 type ThemeMode = "light" | "dark";
 
@@ -224,6 +227,9 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
             <NavLink to="/about" className={navLinkClass}>About</NavLink>
             <NavLink to="/contact" className={navLinkClass}>Contact</NavLink>
+            <NavLink to="/templates" className={navLinkClass}>Templates</NavLink>
+            <NavLink to="/categories" className={navLinkClass}>Categories</NavLink>
+            <NavLink to="/image-generator" className={navLinkClass}>AI Image</NavLink>
             <div className="ml-8 lg:ml-10 pl-8 lg:pl-10 border-l border-white/10">
               <button type="button" onClick={onToggle} className="px-3 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-200">
                 {mode === "dark" ? "☀️" : "🌙"}
@@ -258,6 +264,12 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
               className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">About</NavLink>
             <NavLink to="/contact" onClick={() => setMobileMenuOpen(false)}
               className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">Contact</NavLink>
+            <NavLink to="/templates" onClick={() => setMobileMenuOpen(false)}
+              className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">Templates</NavLink>
+            <NavLink to="/categories" onClick={() => setMobileMenuOpen(false)}
+              className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">Categories</NavLink>
+            <NavLink to="/image-generator" onClick={() => setMobileMenuOpen(false)}
+              className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">AI Image</NavLink>
             <button onClick={() => { onToggle(); setMobileMenuOpen(false); }}
               className="w-full mt-2 rounded-lg border border-slate-700 px-4 py-2.5 text-sm text-slate-200 text-center hover:bg-slate-800">
               {mode === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode"}
@@ -296,6 +308,9 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/templates" element={<TemplatesPage />} />
+          <Route path="/categories" element={<CategoriesPage />} />
+          <Route path="/image-generator" element={<ImageGeneratorPage />} />
           <Route path="/privacy-policy" element={<PrivacyPage />} />
           <Route path="/terms-of-service" element={<TermsPage />} />
           <Route path="*" element={<NotFoundPage />} />
