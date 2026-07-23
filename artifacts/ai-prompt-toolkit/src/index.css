@@ -2,11 +2,27 @@
 
 @import "tailwindcss";
 
-/* Force proper centering */
+/* ===== FORCE CENTERING - FIX EVERYTHING ===== */
 html, body, #root {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Force ALL sections to center */
+section, main, header, footer, nav, article, aside {
   width: 100%;
-  margin: 0;
-  padding: 0;
+}
+
+/* Force ALL containers with mx-auto to actually center */
+[class*="mx-auto"] {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Force ALL max-w-6xl elements */
+[class*="max-w-6xl"] {
+  max-width: 72rem;
 }
 
 @theme {
@@ -22,12 +38,12 @@ html, body, #root {
   --font-mono: "Fira Code", "Courier New", monospace;
 }
 
-/* Manually define custom font classes that @theme should generate */
+/* Manually define font classes */
 .font-headline {
-  font-family: "Poppins", "Inter", sans-serif;
+  font-family: "Poppins", "Inter", sans-serif !important;
 }
 .font-body {
-  font-family: "Inter", "Segoe UI", sans-serif;
+  font-family: "Inter", "Segoe UI", sans-serif !important;
 }
 
 /* Basic Styles */
