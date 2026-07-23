@@ -193,7 +193,7 @@ function ThemeToggle({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void
 function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${isActive ? "bg-white/10 text-amber-300" : "text-slate-300 hover:text-white hover:bg-white/5"}`;
+    `px-2 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${isActive ? "bg-white/10 text-amber-300" : "text-slate-400 hover:text-white hover:bg-white/5"}`;
   return (
     <div className="min-h-screen bg-[#09090f] text-slate-100 w-full">
       <header className="sticky top-0 z-50 border-b border-white/5 bg-slate-950/90 backdrop-blur-xl w-full">
@@ -218,13 +218,13 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             </span>
           </Link>
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-2">
+          <nav className="hidden md:flex items-center gap-6">
             <NavLink to="/" end className={navLinkClass}>Home</NavLink>
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
             <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
             <NavLink to="/about" className={navLinkClass}>About</NavLink>
             <NavLink to="/contact" className={navLinkClass}>Contact</NavLink>
-            <div className="ml-4 pl-4 border-l border-white/10">
+            <div className="ml-6 pl-6 border-l border-white/10">
               <button type="button" onClick={onToggle} className="px-3 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-200">
                 {mode === "dark" ? "☀️" : "🌙"}
               </button>
