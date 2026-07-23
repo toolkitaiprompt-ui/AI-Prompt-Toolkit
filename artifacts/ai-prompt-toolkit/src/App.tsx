@@ -201,10 +201,23 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
     <div className="min-h-screen bg-[#09090f] text-slate-100 w-full">
       <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl w-full">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 lg:px-6">
-          <Link to="/" className="flex items-center gap-3 shrink-0 group">
-            <img src="/images/logo.png" alt="AI World Hub" className="h-9 w-9 sm:h-10 sm:w-10 rounded-xl object-cover shadow-lg shadow-vibrant-pink/20 group-hover:shadow-vibrant-pink/40 transition-shadow duration-300" />
-            <span className="text-base sm:text-lg font-bold tracking-tight text-white font-headline">
-              AI World Hub
+          <Link to="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+            <svg className="h-7 w-7 sm:h-8 sm:w-8" viewBox="0 0 64 64" fill="none">
+              <defs>
+                <linearGradient id="hdrGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#F4D47C" />
+                  <stop offset="50%" stopColor="#D4AF37" />
+                  <stop offset="100%" stopColor="#B8860B" />
+                </linearGradient>
+              </defs>
+              <rect width="64" height="64" rx="14" fill="#0A0A0A" />
+              <rect x="4" y="4" width="56" height="56" rx="12" stroke="url(#hdrGold)" strokeWidth="1" opacity="0.3" />
+              <path d="M18 20 L28 32 L18 44" stroke="url(#hdrGold)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+              <line x1="32" y1="44" x2="46" y2="44" stroke="url(#hdrGold)" strokeWidth="3.5" strokeLinecap="round" />
+              <path d="M46 24 L48 28 L52 30 L48 32 L46 36 L44 32 L40 30 L44 28 Z" fill="#FFD700" />
+            </svg>
+            <span className="text-sm font-bold tracking-tight text-white sm:text-lg">
+              AI Prompt Toolkit
             </span>
           </Link>
           <nav className="flex items-center gap-1.5 sm:gap-4 text-xs sm:text-sm">
@@ -258,9 +271,22 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
         <div className="mx-auto max-w-6xl px-4 py-12 lg:px-6">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <img src="/images/logo.png" alt="AI World Hub" className="h-9 w-9 rounded-xl object-cover shadow-md shadow-vibrant-pink/20" />
-                <span className="text-base font-bold tracking-tight text-white font-headline">AI World Hub</span>
+              <div className="flex items-center gap-2">
+                <svg className="h-8 w-8" viewBox="0 0 64 64" fill="none">
+                  <defs>
+                    <linearGradient id="ftrGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#F4D47C" />
+                      <stop offset="50%" stopColor="#D4AF37" />
+                      <stop offset="100%" stopColor="#B8860B" />
+                    </linearGradient>
+                  </defs>
+                  <rect width="64" height="64" rx="14" fill="#0A0A0A" />
+                  <rect x="4" y="4" width="56" height="56" rx="12" stroke="url(#ftrGold)" strokeWidth="1" opacity="0.3" />
+                  <path d="M18 20 L28 32 L18 44" stroke="url(#ftrGold)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <line x1="32" y1="44" x2="46" y2="44" stroke="url(#ftrGold)" strokeWidth="3.5" strokeLinecap="round" />
+                  <path d="M46 24 L48 28 L52 30 L48 32 L46 36 L44 32 L40 30 L44 28 Z" fill="#FFD700" />
+                </svg>
+                <span className="text-base font-bold tracking-tight text-white">AI Prompt Toolkit</span>
               </div>
               <p className="text-sm leading-6 text-slate-400">Professional in-browser tools for prompt engineering teams. No sign-up, no servers, no data collection.</p>
             </div>
