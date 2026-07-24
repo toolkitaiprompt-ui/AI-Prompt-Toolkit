@@ -600,7 +600,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
       {/* FAQ Section */}
       <section className="section-lg bg-slate-900/50">
-        <div className="max-w-4xl mx-auto">
+        <div className="site-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -617,7 +617,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
             </h2>
           </motion.div>
 
-          <div className="space-y-6">
+          <div className="max-w-3xl mx-auto space-y-6">
             {faqs.map((faq, idx) => (
               <FAQItem key={idx} question={faq.question} answer={faq.answer} />
             ))}
