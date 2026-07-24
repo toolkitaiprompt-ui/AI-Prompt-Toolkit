@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
 import type { BlogPost } from "../data/blogPosts";
 
 const IMG = "https://images.unsplash.com";
@@ -151,7 +152,8 @@ export default function BlogCard({ post }: { post: BlogPost }) {
   const visual = getBlogPostVisual(post.slug);
 
   return (
-    <article className="group overflow-hidden rounded-3xl border border-slate-800 bg-slate-950 shadow-[0_18px_60px_-28px_rgba(15,23,42,0.65)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_80px_-28px_rgba(56,189,248,0.25)]">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-white/[0.06] bg-white/[0.02] shadow-lg transition-all duration-500 hover:border-white/[0.15] hover:bg-white/[0.04] hover:shadow-xl hover:shadow-amber-500/5">
+      {/* Image */}
       <div className="relative overflow-hidden bg-slate-900">
         <div className={`absolute inset-0 animate-pulse bg-gradient-to-r from-slate-800 via-slate-700 to-slate-900 transition-opacity ${loaded ? "opacity-0" : "opacity-100"}`} />
         {imgError ? (
@@ -165,25 +167,44 @@ export default function BlogCard({ post }: { post: BlogPost }) {
             loading="lazy"
             onLoad={() => setLoaded(true)}
             onError={() => setImgError(true)}
-            className="aspect-[16/9] w-full object-cover object-center transition duration-700 ease-out"
+            className="aspect-[16/9] w-full object-cover object-center transition duration-700 ease-out group-hover:scale-105"
           />
         )}
       </div>
-      <div className="space-y-3 p-4 sm:p-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300/80">{post.category}</p>
-        <h3 className="text-lg sm:text-2xl font-semibold tracking-tight text-white">{post.title}</h3>
-        <p className="text-sm leading-6 sm:leading-7 text-slate-300">{post.excerpt}</p>
-        <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">
-          <span>{post.date}</span>
-          <span>{post.readTime}</span>
+
+      {/* Content */}
+      <div className="flex flex-1 flex-col p-5">
+        {/* Category */}
+        <p className="mb-2 inline-flex self-start rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-300/90">
+          {post.category}
+        </p>
+
+        {/* Title */}
+        <h3 className="mb-2 text-lg font-semibold leading-snug tracking-tight text-white">
+          {post.title}
+        </h3>
+
+        {/* Excerpt */}
+        <p className="mb-4 text-sm leading-6 text-slate-400 flex-1">
+          {post.excerpt}
+        </p>
+
+        {/* Meta + CTA */}
+        <div className="flex items-center justify-between border-t border-white/[0.06] pt-4">
+          <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-slate-500">
+            <span>{post.date}</span>
+            <span className="hidden sm:inline">·</span>
+            <span>{post.readTime}</span>
+          </div>
+          <Link
+            to={`/blog/${post.slug}`}
+            className="inline-flex items-center gap-1 text-sm font-semibold text-amber-400 transition-colors hover:text-amber-300"
+          >
+            <span>Read</span>
+            <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
         </div>
       </div>
-      <Link
-        to={`/blog/${post.slug}`}
-        className="block border-t border-slate-800/90 bg-slate-900/70 px-6 py-4 text-sm font-semibold text-cyan-200 transition hover:bg-slate-900"
-      >
-        Read the full guide
-      </Link>
     </article>
   );
 }
