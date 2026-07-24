@@ -358,7 +358,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
       </section>
 
       {/* Stats Section */}
-      <section className="section-lg bg-slate-900/50 mt-16">
+      <section className="section-lg bg-slate-900/50">
         <div className="site-container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
             {stats.map((stat, idx) => (
@@ -434,9 +434,63 @@ export default function HomePage({ toolPages }: HomePageProps) {
       </section>
 
 
+      {/* Trending AI Tools */}
+      <section className="section-lg bg-slate-900/30">
+        <div className="site-container">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-500/10 border border-rose-500/20 mb-4">
+                <Zap className="w-4 h-4 text-rose-400" />
+                <span className="text-sm text-rose-300 font-medium">Trending Now</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
+                Most Used Tools
+              </h2>
+              <p className="text-base text-slate-400 max-w-xl">
+                Our community's favorite tools — trusted by thousands of AI engineers daily.
+              </p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-4 lg:mt-0 shrink-0"
+            >
+              <Link
+                to="/tools"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/5 border border-white/10 rounded-full text-sm font-medium text-slate-300 hover:bg-white/10 hover:text-white transition-all"
+              >
+                Browse All Tools
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </motion.div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[5, 2, 3, 6].map((idx) => (
+              <motion.div
+                key={toolPages[idx].path}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+              >
+                <ToolCard tool={toolPages[idx]} />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* Testimonials */}
-      <section className="section-lg bg-slate-900/50 mt-16">
+      <section className="section-lg bg-slate-900/50">
         <div className="site-container">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
@@ -545,7 +599,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
       <CategoryShowcase />
 
       {/* FAQ Section */}
-      <section className="section-lg bg-slate-900/50 mt-16">
+      <section className="section-lg bg-slate-900/50">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
