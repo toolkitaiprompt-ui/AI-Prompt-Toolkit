@@ -133,7 +133,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               rotate: [0, 90, 0],
             }}
             transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-            className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 blur-3xl"
+            className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-amber-500/20 to-rose-500/20 blur-3xl"
           />
           <motion.div
             animate={{
@@ -481,7 +481,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
                   key={idx}
                   onClick={() => setActiveTestimonial(idx)}
                   className={`w-3 h-3 rounded-full transition-all ${
-                    idx === activeTestimonial ? 'bg-purple-500 w-8' : 'bg-slate-700'
+                    idx === activeTestimonial ? 'bg-amber-500 w-8' : 'bg-slate-700'
                   }`}
                 />
               ))}

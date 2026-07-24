@@ -351,7 +351,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
                   <line x1="32" y1="44" x2="46" y2="44" stroke="url(#ftrGold)" strokeWidth="3.5" strokeLinecap="round" />
                   <path d="M46 24 L48 28 L52 30 L48 32 L46 36 L44 32 L40 30 L44 28 Z" fill="#FFD700" />
                 </svg>
-                <span className="text-base font-bold tracking-tight text-white">AI Prompt Toolkit</span>
+                <span className="text-base font-bold tracking-tight text-white">AI World Hub</span>
               </div>
               <p className="text-sm leading-6 text-slate-400">Professional in-browser tools for prompt engineering teams. No sign-up, no servers, no data collection.</p>
             </div>
