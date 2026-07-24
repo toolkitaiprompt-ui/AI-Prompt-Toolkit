@@ -45,7 +45,7 @@ export default function CategoryShowcase() {
               </div>
 
               {/* Category name */}
-              <h3 className="font-headline font-bold text-white text-base mb-1.5">
+              <h3 className="font-headline font-bold text-white text-sm mb-1.5">
                 {cat.name}
               </h3>
 

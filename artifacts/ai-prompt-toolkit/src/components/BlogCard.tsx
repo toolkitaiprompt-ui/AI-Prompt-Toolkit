@@ -180,12 +180,12 @@ export default function BlogCard({ post }: { post: BlogPost }) {
         </p>
 
         {/* Title */}
-        <h3 className="mb-2 text-lg font-semibold leading-snug tracking-tight text-white">
+        <h3 className="mb-2 text-base font-semibold leading-snug tracking-tight text-white">
           {post.title}
         </h3>
 
         {/* Excerpt */}
-        <p className="mb-4 text-sm leading-6 text-slate-400 flex-1">
+        <p className="mb-3 text-xs leading-5 text-slate-400 flex-1">
           {post.excerpt}
         </p>
 
