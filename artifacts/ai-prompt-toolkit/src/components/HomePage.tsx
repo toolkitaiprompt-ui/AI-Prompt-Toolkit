@@ -388,7 +388,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
       </section>
 
       {/* Tools Showcase — Featured AI Tools */}
-      <section className="section-lg">
+      <section className="section-lg mt-16">
         <div className="site-container">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 mb-5">
@@ -556,7 +556,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
       {/* Blog Section */}
       {BLOG_POSTS.length > 0 && (
-        <section className="section-lg">
+        <section className="section-lg mt-16">
           <div className="site-container">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
@@ -632,7 +632,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
       </section>
 
       {/* Final CTA */}
-      <section className="section-lg">
+      <section className="section-lg mt-16">
         <div className="site-container text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
