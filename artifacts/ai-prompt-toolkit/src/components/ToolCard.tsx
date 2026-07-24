@@ -107,17 +107,17 @@ export default function ToolCard({ tool }: ToolCardProps) {
 
   return (
     <motion.div
-      whileHover={{ y: -6 }}
-      transition={{ type: "spring", stiffness: 240, damping: 20 }}
-      className="group relative"
+      whileHover={{ y: -5 }}
+      transition={{ type: "spring", stiffness: 220, damping: 22 }}
+      className="group relative h-full"
     >
       <Link
         to={tool.path}
-        className={`relative block overflow-hidden rounded-[20px] p-6 shadow-lg transition-all duration-500 ${
+        className={`relative block h-full overflow-hidden rounded-[20px] p-6 shadow-lg transition-all duration-500 ${
           isPremium
             ? "card-featured-premium before:opacity-100"
             : "card-premium"
-        }`}
+        } group-hover:border-white/20 hover:shadow-xl hover:shadow-amber-500/5`}
       >
         {/* Top gradient bar - runs full width */}
         <div className="card-bar" />
