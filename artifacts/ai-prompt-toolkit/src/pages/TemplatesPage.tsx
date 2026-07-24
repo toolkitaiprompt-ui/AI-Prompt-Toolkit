@@ -27,7 +27,7 @@ export default function TemplatesPage() {
   return (
     <section className="site-container section-lg">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
-        <p className="text-sm font-semibold uppercase tracking-widest text-cyan-400 mb-2">✦ Templates</p>
+        <p className="text-sm font-semibold uppercase tracking-widest text-amber-400 mb-2">✦ Templates</p>
         <h1 className="font-headline font-bold text-4xl sm:text-5xl text-white mb-4">
           Prompt Templates Library
         </h1>
@@ -44,7 +44,7 @@ export default function TemplatesPage() {
           value={search}
           onChange={e => setSearch(e.target.value)}
           placeholder="Search templates..."
-          className="w-full pl-12 pr-4 py-3.5 bg-slate-900/80 border border-slate-700/50 rounded-2xl text-white placeholder-slate-500 outline-none focus:border-cyan-400/50 transition"
+          className="w-full pl-12 pr-4 py-3.5 bg-slate-900/80 border border-slate-700/50 rounded-2xl text-white placeholder-slate-500 outline-none focus:border-amber-400/50 transition"
         />
       </div>
 
@@ -56,7 +56,7 @@ export default function TemplatesPage() {
             onClick={() => setActiveCat(c.name)}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
               activeCat === c.name
-                ? "bg-cyan-500/20 text-cyan-300 border border-cyan-400/30"
+                ? "bg-amber-500/15 text-amber-300 border border-amber-400/30"
                 : "bg-slate-900/50 text-slate-400 border border-slate-700/50 hover:border-slate-600"
             }`}
           >
@@ -73,10 +73,12 @@ export default function TemplatesPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.03 }}
-            className="card group relative overflow-hidden"
+            className="group relative rounded-[20px] border border-white/[0.06] bg-white/[0.02] p-6 shadow-lg transition-all duration-500 hover:border-white/[0.15] hover:bg-white/[0.04] hover:shadow-xl hover:shadow-amber-500/5"
           >
             <div className="flex items-start justify-between mb-4">
-              <span className="badge-free text-xs">{template.category}</span>
+              <span className="inline-flex rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-emerald-300">
+                {template.category}
+              </span>
               <div className="flex items-center gap-1 text-xs text-amber-400">
                 <Star className="w-3 h-3 fill-amber-400" />
                 {template.rating}
@@ -94,7 +96,7 @@ export default function TemplatesPage() {
               <span className="px-2 py-0.5 bg-slate-800 rounded text-slate-400">{template.model}</span>
             </div>
 
-            <div className="rounded-xl bg-slate-900/80 p-4 mb-4">
+            <div className="rounded-[14px] border border-white/5 bg-white/5 p-4 mb-4 backdrop-blur-sm">
               <pre className="text-xs text-slate-300 leading-relaxed line-clamp-4 font-mono">
                 {template.prompt}
               </pre>
@@ -102,7 +104,7 @@ export default function TemplatesPage() {
 
             <button
               onClick={() => copyPrompt(template.id, template.prompt)}
-              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-cyan-500/10 border border-cyan-400/20 text-cyan-300 text-sm font-medium hover:bg-cyan-500/20 transition"
+              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-full bg-amber-500/10 border border-amber-400/20 text-amber-300 text-sm font-medium hover:bg-amber-500/20 transition"
             >
               {copiedId === template.id ? (
                 <><Check className="w-4 h-4" /> Copied!</>
