@@ -97,7 +97,7 @@ export default function TemplatesPage() {
             </div>
 
             <div className="rounded-[14px] border border-white/5 bg-white/5 p-4 mb-4 backdrop-blur-sm">
-              <pre className="text-xs text-slate-300 leading-relaxed line-clamp-4 font-mono">
+              <pre className="text-xs text-slate-300 leading-relaxed line-clamp-4 font-mono whitespace-pre-wrap overflow-auto">
                 {template.prompt}
               </pre>
             </div>

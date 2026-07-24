@@ -22,6 +22,11 @@ body {
 }
 #root { width: 100%; }
 
+/* ===== GLOBAL OVERFLOW SAFEGUARDS ===== */
+img, video, svg { max-width: 100%; height: auto; }
+pre { white-space: pre-wrap; overflow-x: auto; max-width: 100%; }
+code { word-break: break-word; }
+
 /* ===== FORCE CENTERING ===== */
 [class*="mx-auto"] { margin-left: auto !important; margin-right: auto !important; }
 section, main, header, footer, nav { width: 100%; }
