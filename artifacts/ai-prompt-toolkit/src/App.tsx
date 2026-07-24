@@ -201,7 +201,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
     `glass-nav-link ${isActive ? "active" : ""}`;
   return (
     <div className="min-h-screen bg-[#0a0a0f] text-[#e2e8f0] w-full">
-      <header className="sticky top-0 z-50 w-full py-4">
+      <header className="sticky top-0 z-50 w-full py-3 md:py-4">
         <div className="site-container">
           <div className="glass-nav">
             <Link to="/" className="flex items-center gap-3 shrink-0">
@@ -224,7 +224,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             </span>
           </Link>
           {/* Desktop nav inside glass */}
-          <nav className="hidden md:flex items-center gap-1.5">
+          <nav className="hidden md:flex items-center gap-2">
             <NavLink to="/" end className={navLinkClass}>Home</NavLink>
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
             <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
@@ -234,18 +234,18 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             <NavLink to="/categories" className={navLinkClass}>Categories</NavLink>
             <NavLink to="/image-generator" className={navLinkClass}>AI Image</NavLink>
           </nav>
-          <div className="flex items-center gap-2">
-            <button type="button" onClick={() => setSearchOpen(true)} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/5 transition text-slate-400 hover:text-white">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <div className="flex items-center gap-2.5 md:gap-3">
+            <button type="button" onClick={() => setSearchOpen(true)} className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center hover:bg-white/5 transition text-slate-400 hover:text-white">
+              <svg className="w-4 h-4 md:w-[18px] md:h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             </button>
-            <button type="button" onClick={onToggle} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/5 transition text-sm text-slate-400 hover:text-white">
+            <button type="button" onClick={onToggle} className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center hover:bg-white/5 transition text-sm text-slate-400 hover:text-white">
               {mode === "dark" ? "☀️" : "🌙"}
             </button>
           </div>
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden flex items-center justify-center p-2 rounded-lg hover:bg-white/5 transition-colors"
+            className="md:hidden flex items-center justify-center w-9 h-9 rounded-full hover:bg-white/5 transition-colors"
             aria-label="Menu"
           >
             <svg className="w-6 h-6 text-slate-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -336,7 +336,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
         <div className="site-container section-lg">
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             <div className="space-y-4">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2.5 md:gap-3">
                 <svg className="h-8 w-8" viewBox="0 0 64 64" fill="none">
                   <defs>
                     <linearGradient id="ftrGold" x1="0%" y1="0%" x2="100%" y2="100%">
