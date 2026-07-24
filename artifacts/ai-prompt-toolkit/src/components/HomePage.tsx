@@ -122,7 +122,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background with real image */}
         <div className="absolute inset-0">
           <img src="/images/hero-ai.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
@@ -161,14 +161,14 @@ export default function HomePage({ toolPages }: HomePageProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 mb-8"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 mb-6"
               >
                 <Sparkles className="w-4 h-4 text-amber-400" />
                 <span className="text-sm text-amber-300">Trusted by 10,000+ AI teams worldwide</span>
               </motion.div>
 
               {/* Heading */}
-              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-10 leading-[1.35]">
+              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-[1.15]">
                 Build{' '}
                 <span className="bg-gradient-to-r from-amber-400 via-rose-400 to-pink-400 bg-clip-text text-transparent">
                   Perfect
@@ -180,7 +180,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               </h1>
 
               {/* Description */}
-              <p className="text-lg sm:text-xl text-slate-300 mb-10 leading-[1.8]">
+              <p className="text-lg sm:text-xl text-slate-300 mb-8 leading-relaxed">
                 10 professional tools to format, validate, optimize, and deploy AI prompts at scale.
                 No signup required. 100% in-browser. Enterprise-ready.
               </p>
@@ -198,7 +198,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
                 </motion.div>
 
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <button className="px-8 py-4 bg-white/5 border border-white/10 rounded-xl font-semibold text-white flex items-center gap-2 hover:bg-white/10 transition-colors">
+                  <button className="px-8 py-4 bg-white/5 border border-white/10 rounded-full font-semibold text-white flex items-center gap-2 hover:bg-white/10 transition-colors">
                     <Play className="w-5 h-5" />
                     Watch Demo
                   </button>
@@ -206,7 +206,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               </div>
 
               {/* Social Proof */}
-              <div className="flex items-center gap-6 mb-4">
+              <div className="flex items-center gap-6">
                 <div className="flex -space-x-3">
                   {[1, 2, 3, 4, 5].map((i) => (
                     <div
@@ -236,7 +236,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               className="relative"
             >
               {/* Tool Switcher */}
-              <div className="absolute -top-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+              <div className="absolute -top-5 left-1/2 -translate-x-1/2 flex gap-1.5 md:gap-2 z-20">
                 {demoTools.map((tool, idx) => (
                   <button
                     key={idx}
@@ -259,7 +259,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl mt-12"
+                className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl mt-10"
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${demoTools[currentTool].color} opacity-10 blur-2xl rounded-2xl`} />
 
@@ -273,7 +273,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
                         })()}
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-white">{demoTools[currentTool].name}</h3>
+                        <h3 className="text-base md:text-lg font-semibold text-white">{demoTools[currentTool].name}</h3>
                         <p className="text-sm text-slate-400">Live Demo</p>
                       </div>
                     </div>
@@ -288,7 +288,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
                     <textarea
                       value={prompt}
                       onChange={(e) => setPrompt(e.target.value)}
-                      className="w-full px-4 py-3 bg-slate-800/50 border border-white/10 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 resize-none"
+                      className="w-full px-4 py-3 bg-slate-800/50 border border-white/10 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50 resize-none"
                       rows={3}
                       placeholder="Enter your prompt..."
                     />
@@ -327,12 +327,12 @@ export default function HomePage({ toolPages }: HomePageProps) {
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -top-4 -right-12 w-24 h-24 bg-gradient-to-br from-amber-500 to-rose-500 rounded-2xl blur-2xl opacity-50"
+                className="absolute -top-4 -right-8 lg:-right-12 w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-amber-500 to-rose-500 rounded-2xl blur-2xl opacity-40"
               />
               <motion.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                className="absolute -bottom-4 -left-12 w-32 h-32 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl blur-2xl opacity-50"
+                className="absolute -bottom-4 -left-8 lg:-left-12 w-24 h-24 lg:w-32 lg:h-32 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl blur-2xl opacity-40"
               />
             </motion.div>
           </div>
@@ -345,11 +345,11 @@ export default function HomePage({ toolPages }: HomePageProps) {
             className="mt-16 text-center"
           >
             <p className="text-sm text-slate-400 mb-8">Trusted by teams at</p>
-            <div className="flex flex-wrap items-center justify-center gap-12 opacity-50">
+            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-50">
               {['Google', 'Microsoft', 'OpenAI', 'Anthropic', 'Meta'].map((company) => (
                 <div key={company} className="flex items-center gap-2">
                   <img src={`/icons/${company.toLowerCase()}.svg`} alt={company} className="h-6 w-6 opacity-50" />
-                  <span className="text-lg font-semibold text-slate-500">{company}</span>
+                  <span className="text-base md:text-lg font-semibold text-slate-500">{company}</span>
                 </div>
               ))}
             </div>
