@@ -407,7 +407,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {toolPages.map((tool, idx) => (
               <motion.div
                 key={tool.path}
@@ -568,7 +568,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               </h2>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
               {BLOG_POSTS.slice(0, 3).map((post, idx) => (
                 <motion.div
                   key={post.slug}
