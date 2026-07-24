@@ -24,8 +24,12 @@ body {
 
 /* ===== GLOBAL OVERFLOW SAFEGUARDS ===== */
 img, video, svg { max-width: 100%; height: auto; }
-pre { white-space: pre-wrap; overflow-x: auto; max-width: 100%; }
+pre { white-space: pre-wrap; max-width: 100%; overflow-x: auto; }
 code { word-break: break-word; }
+/* Force word wrapping on text containers to prevent layout breakage */
+h1, h2, h3, h4, h5, h6, p, li, td, th, blockquote, figcaption { overflow-wrap: break-word; word-wrap: break-word; }
+/* Prevent horizontal scroll on both html and body */
+html, body { overflow-x: hidden; width: 100%; }
 
 /* ===== FORCE CENTERING ===== */
 [class*="mx-auto"] { margin-left: auto !important; margin-right: auto !important; }
