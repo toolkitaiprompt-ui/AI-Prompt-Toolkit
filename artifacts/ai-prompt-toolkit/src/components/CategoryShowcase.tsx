@@ -14,7 +14,7 @@ export default function CategoryShowcase() {
           className="text-center mb-12"
         >
           <p className="text-sm font-semibold uppercase tracking-widest text-amber-400 mb-2">✦ Browse by Category</p>
-          <h2 className="font-headline font-bold text-4xl text-white mb-4">
+          <h2 className="font-headline font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-4">
             Find What You Need
           </h2>
           <p className="text-slate-400 max-w-xl mx-auto">
