@@ -364,7 +364,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
       </section>
 
       {/* Stats Section */}
-      <section className="section-lg bg-slate-900/50">
+      <section className="section-lg bg-slate-900/50 mt-16">
         <div className="site-container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
             {stats.map((stat, idx) => (
@@ -441,7 +441,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
 
       {/* Trending AI Tools */}
-      <section className="section-lg bg-slate-900/30">
+      <section className="section-lg bg-slate-900/30 mt-16">
         <div className="site-container">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
             <motion.div
@@ -496,7 +496,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
 
       {/* Testimonials */}
-      <section className="section-lg bg-slate-900/50">
+      <section className="section-lg bg-slate-900/50 mt-16">
         <div className="site-container">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
@@ -605,7 +605,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
       <CategoryShowcase />
 
       {/* FAQ Section */}
-      <section className="section-lg bg-slate-900/50">
+      <section className="section-lg bg-slate-900/50 mt-16">
         <div className="site-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
