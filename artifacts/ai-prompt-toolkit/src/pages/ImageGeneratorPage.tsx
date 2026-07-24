@@ -29,7 +29,7 @@ export default function ImageGeneratorPage() {
   return (
     <section className="site-container section-lg">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
-        <p className="text-sm font-semibold uppercase tracking-widest text-cyan-400 mb-2">✦ Create</p>
+        <p className="text-sm font-semibold uppercase tracking-widest text-amber-400 mb-2">✦ Create</p>
         <h1 className="font-headline font-bold text-4xl sm:text-5xl text-white mb-4">
           AI Image Prompt Generator
         </h1>
@@ -48,7 +48,7 @@ export default function ImageGeneratorPage() {
               onChange={e => setPrompt(e.target.value)}
               placeholder="A serene mountain landscape at sunset with glowing aurora borealis..."
               rows={5}
-              className="w-full rounded-2xl border border-slate-700/50 bg-slate-900/80 p-4 text-sm text-white placeholder-slate-500 outline-none focus:border-cyan-400/50 transition"
+              className="w-full rounded-2xl border border-slate-700/50 bg-slate-900/80 p-4 text-sm text-white placeholder-slate-500 outline-none focus:border-amber-400/50 transition"
             />
           </div>
 
@@ -84,14 +84,14 @@ export default function ImageGeneratorPage() {
           </button>
 
           {generated && (
-            <div className="rounded-2xl border border-cyan-400/20 bg-cyan-500/5 p-5">
-              <p className="text-xs font-semibold uppercase tracking-wider text-cyan-400 mb-2">Optimized Prompt</p>
+            <div className="rounded-2xl border border-amber-400/20 bg-amber-500/5 p-5">
+              <p className="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-2">Optimized Prompt</p>
               <pre className="text-sm text-slate-200 font-mono leading-relaxed whitespace-pre-wrap">
                 {`/${style === "Photorealistic" ? "imagine" : "create"} ${prompt} --style ${style.toLowerCase().replace(" ", "-")} --ar 16:9 --v 6.1 --s 750`}
               </pre>
               <button
                 onClick={() => navigator.clipboard.writeText(`${style === "Photorealistic" ? "/imagine" : "/create"} ${prompt} --style ${style.toLowerCase().replace(" ", "-")} --ar 16:9 --v 6.1 --s 750`)}
-                className="mt-3 text-xs text-cyan-400 hover:text-cyan-300 transition"
+                className="mt-3 text-xs text-amber-400 hover:text-amber-300 transition"
               >
                 📋 Copy to clipboard
               </button>

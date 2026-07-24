@@ -422,7 +422,7 @@ function ToolsDirectoryPage() {
       keywords="Best AI Tools, Free AI Tools, AI Tools Directory, Prompt Engineering Tools"
     >
       <div className="space-y-3">
-        <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300/80">
+        <p className="text-sm font-semibold uppercase tracking-[0.28em] text-amber-400/80">
           Professional Toolkit
         </p>
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">AI Prompt Toolkit</h1>
@@ -468,7 +468,7 @@ function ToolContainer({
           )}
           <div className="flex-1 space-y-3">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300/80">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">
                 {tool?.premium ? "Premium Tool" : "Free Tool"}
               </p>
               <h1 className="mt-1 text-3xl font-bold tracking-tight text-white">{title}</h1>
@@ -508,7 +508,7 @@ function ToolContainer({
             </div>
             <Link
               to="/blog"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400 hover:text-amber-300 transition"
             >
               View all guides
               <ArrowUpRight className="h-4 w-4" />
@@ -758,7 +758,7 @@ function BlogPage() {
       keywords="ChatGPT Prompts, Prompt Engineering, Best AI Tools, Free AI Tools, AI Tools Directory"
     >
       <div className="space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300/80">Editorial</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">Editorial</p>
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">Blog</h1>
         <p className="max-w-3xl text-base text-slate-400">
           Premium editorial insights on prompt systems, AI reliability engineering, and cost-efficient model deployment.
@@ -865,7 +865,7 @@ function BlogPostPage() {
               <h2 className="text-base font-semibold text-white">Back to blog</h2>
               <Link
                 to="/blog"
-                className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition"
+                className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-amber-400 hover:text-amber-300 transition"
               >
                 Browse all guides
                 <ArrowUpRight className="h-3.5 w-3.5" />
@@ -887,7 +887,7 @@ function AboutPage() {
     >
       <div className="max-w-4xl space-y-8">
         <div className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-400">About Us</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-400">About Us</p>
           <h1 className="text-3xl sm:text-4xl font-bold text-white">Build Reliable AI Prompts, Faster & Smarter</h1>
           <p className="text-lg text-slate-400">
             AI Prompt Toolkit is a free, browser-based platform offering professional prompt engineering tools for teams and individuals worldwide.
