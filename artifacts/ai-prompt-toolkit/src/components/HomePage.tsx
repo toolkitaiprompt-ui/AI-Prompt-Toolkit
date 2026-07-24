@@ -259,7 +259,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl mt-10"
+                className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl p-5 md:p-8 shadow-2xl mt-6 md:mt-10"
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${demoTools[currentTool].color} opacity-10 blur-2xl rounded-2xl`} />
 
@@ -327,12 +327,12 @@ export default function HomePage({ toolPages }: HomePageProps) {
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -top-4 -right-8 lg:-right-12 w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-amber-500 to-rose-500 rounded-2xl blur-2xl opacity-40"
+                className="absolute -top-3 -right-6 lg:-right-12 w-16 h-16 lg:w-24 lg:h-24 bg-gradient-to-br from-amber-500 to-rose-500 rounded-2xl blur-2xl opacity-20 md:opacity-40"
               />
               <motion.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                className="absolute -bottom-4 -left-8 lg:-left-12 w-24 h-24 lg:w-32 lg:h-32 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl blur-2xl opacity-40"
+                className="absolute -bottom-3 -left-6 lg:-left-12 w-20 h-20 lg:w-32 lg:h-32 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl blur-2xl opacity-20 md:opacity-40"
               />
             </motion.div>
           </div>
