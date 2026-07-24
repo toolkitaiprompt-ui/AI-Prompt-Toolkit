@@ -125,7 +125,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
       <section className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background with real image */}
         <div className="absolute inset-0">
-          <img src="/images/hero-ai.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
+          <img src="/images/hero-ai.jpg" alt="" className="hidden md:block absolute inset-0 w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#09090f] via-transparent to-[#09090f]" />
           <motion.div
             animate={{
@@ -146,7 +146,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
         </div>
 
         {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
+        <div className="hidden md:block absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
         <div className="relative z-10 site-container section-lg">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
