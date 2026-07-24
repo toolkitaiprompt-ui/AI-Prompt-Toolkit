@@ -425,7 +425,7 @@ export const NEW_SEO_POSTS = [
   {
     slug: "ai-tools-directory-categorized-list",
     title: "AI Tools Directory: 50+ Tools Organized by Category and Use Case",
-    seoTitle: "AI Tools Directory — 50+ Tools by Category | AI Prompt Toolkit",
+    seoTitle: "AI Tools Directory — 50+ Tools by Category | AI World Hub",
     metaDescription:
       "Browse 50+ AI tools organized by category — text generation, image creation, video editing, coding, audio, and productivity. Find the perfect AI tool for any task.",
     excerpt:

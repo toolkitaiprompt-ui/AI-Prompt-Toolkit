@@ -17,7 +17,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "master-prompt-engineering-workflow",
     title: "Master Prompt Engineering Workflows for Better AI Results",
-    seoTitle: "Master Prompt Engineering Workflows | AI Prompt Toolkit",
+    seoTitle: "Master Prompt Engineering Workflows | AI World Hub",
     metaDescription:
       "Discover a step-by-step prompt engineering workflow that helps teams reduce iteration time and ship reliable AI prompts faster.",
     excerpt:
@@ -91,7 +91,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "craft-high-impact-chatgpt-prompts",
     title: "Craft High-Impact ChatGPT Prompts for Better Answers",
-    seoTitle: "Craft High-Impact ChatGPT Prompts | AI Prompt Toolkit",
+    seoTitle: "Craft High-Impact ChatGPT Prompts | AI World Hub",
     metaDescription:
       "Learn how to design ChatGPT prompts that produce clearer, more actionable answers while reducing ambiguity and unwanted responses.",
     excerpt:
@@ -158,7 +158,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "build-ai-prompt-templates-that-scale",
     title: "Build AI Prompt Templates That Scale Across Teams",
-    seoTitle: "Build AI Prompt Templates That Scale | AI Prompt Toolkit",
+    seoTitle: "Build AI Prompt Templates That Scale | AI World Hub",
     metaDescription:
       "Explore how to create scalable AI prompt templates that support collaboration, versioning, and repeated use in enterprise workflows.",
     excerpt:
@@ -225,7 +225,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "claude-prompt-best-practices",
     title: "Claude Prompt Best Practices for Consistent AI Responses",
-    seoTitle: "Claude Prompt Best Practices | AI Prompt Toolkit",
+    seoTitle: "Claude Prompt Best Practices | AI World Hub",
     metaDescription:
       "Learn how to write Claude prompts that deliver consistent, safe, and task-oriented responses for enterprise applications.",
     excerpt:
@@ -292,7 +292,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "midjourney-prompt-techniques",
     title: "Midjourney Prompt Techniques for Creative Visuals",
-    seoTitle: "Midjourney Prompt Techniques | AI Prompt Toolkit",
+    seoTitle: "Midjourney Prompt Techniques | AI World Hub",
     metaDescription:
       "Discover Midjourney prompt strategies that generate more compelling visuals, improve style control, and help you iterate on creative concepts.",
     excerpt:
@@ -359,7 +359,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "design-json-schema-for-ai-output",
     title: "Design JSON Schema for Reliable AI Output",
-    seoTitle: "Design JSON Schema for Reliable AI Output | AI Prompt Toolkit",
+    seoTitle: "Design JSON Schema for Reliable AI Output | AI World Hub",
     metaDescription:
       "Learn how to create JSON schema for AI output and ensure your model responses are structured, validated, and ready for production use.",
     excerpt:
@@ -426,7 +426,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "boost-ai-productivity-with-prompt-systems",
     title: "Boost AI Productivity with Prompt Systems and Templates",
-    seoTitle: "Boost AI Productivity with Prompt Systems | AI Prompt Toolkit",
+    seoTitle: "Boost AI Productivity with Prompt Systems | AI World Hub",
     metaDescription:
       "Explore how prompt systems, reusable templates, and automation workflows help teams do more with AI while keeping quality high.",
     excerpt:
@@ -493,7 +493,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "optimize-prompts-for-better-ai-performance",
     title: "Optimize Prompts for Better AI Performance and Efficiency",
-    seoTitle: "Optimize Prompts for Better AI Performance | AI Prompt Toolkit",
+    seoTitle: "Optimize Prompts for Better AI Performance | AI World Hub",
     metaDescription:
       "Learn practical prompt optimization techniques to improve model performance, reduce tokens, and get more reliable AI output.",
     excerpt:
@@ -560,7 +560,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "automate-ai-tasks-with-prompt-workflows",
     title: "Automate AI Tasks with Prompt Workflows and Templates",
-    seoTitle: "Automate AI Tasks with Prompt Workflows | AI Prompt Toolkit",
+    seoTitle: "Automate AI Tasks with Prompt Workflows | AI World Hub",
     metaDescription:
       "Discover how to automate common AI tasks using prompt workflows, templates, and validation tools to deliver consistent results.",
     excerpt:
@@ -627,7 +627,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "orchestrate-llm-workflows-for-productive-teams",
     title: "Orchestrate LLM Workflows for Productive Teams",
-    seoTitle: "Orchestrate LLM Workflows for Productive Teams | AI Prompt Toolkit",
+    seoTitle: "Orchestrate LLM Workflows for Productive Teams | AI World Hub",
     metaDescription:
       "Learn how to orchestrate LLM workflows that connect prompt design, validation, and operations for productive AI teams.",
     excerpt:
@@ -694,7 +694,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "prompt-audit-and-iteration-strategies",
     title: "Prompt Audit and Iteration Strategies for AI Teams",
-    seoTitle: "Prompt Audit and Iteration Strategies | AI Prompt Toolkit",
+    seoTitle: "Prompt Audit and Iteration Strategies | AI World Hub",
     metaDescription:
       "Explore prompt audit practices and iteration strategies that help teams improve AI results, reduce errors, and learn from model feedback.",
     excerpt:
@@ -761,7 +761,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "customer-support-prompt-templates",
     title: "Design Prompt Templates for Customer Support Workflows",
-    seoTitle: "Design Prompt Templates for Customer Support | AI Prompt Toolkit",
+    seoTitle: "Design Prompt Templates for Customer Support | AI World Hub",
     metaDescription:
       "Learn how to create prompt templates for customer support that help AI agents respond consistently, empathetically, and accurately.",
     excerpt:
@@ -828,7 +828,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "marketing-chatgpt-prompt-patterns",
     title: "ChatGPT Prompt Patterns for Marketing Content",
-    seoTitle: "ChatGPT Prompt Patterns for Marketing | AI Prompt Toolkit",
+    seoTitle: "ChatGPT Prompt Patterns for Marketing | AI World Hub",
     metaDescription:
       "Discover reliable ChatGPT prompt patterns for marketing teams that generate compelling copy, campaign ideas, and audience messaging.",
     excerpt:
@@ -895,7 +895,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "enterprise-claude-prompt-engineering",
     title: "Enterprise Claude Prompt Engineering for High-Stakes Use Cases",
-    seoTitle: "Enterprise Claude Prompt Engineering | AI Prompt Toolkit",
+    seoTitle: "Enterprise Claude Prompt Engineering | AI World Hub",
     metaDescription:
       "Explore Claude prompt engineering practices for enterprise use cases that demand safety, accuracy, and predictable behavior.",
     excerpt:
@@ -962,7 +962,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "midjourney-prompts-for-creative-visuals",
     title: "Midjourney Prompts for Creative Visuals and Faster Iteration",
-    seoTitle: "Midjourney Prompts for Creative Visuals | AI Prompt Toolkit",
+    seoTitle: "Midjourney Prompts for Creative Visuals | AI World Hub",
     metaDescription:
       "Learn how to write Midjourney prompts that accelerate creative iteration and produce richer visual concepts.",
     excerpt:
@@ -1029,7 +1029,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "validate-ai-outputs-with-json-schema",
     title: "Validate AI Outputs with JSON Schema and Reduce Failures",
-    seoTitle: "Validate AI Outputs with JSON Schema | AI Prompt Toolkit",
+    seoTitle: "Validate AI Outputs with JSON Schema | AI World Hub",
     metaDescription:
       "A hands-on guide to validating AI outputs with JSON schema, so your LLM responses are reliable and easier to integrate.",
     excerpt:
@@ -1096,7 +1096,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "scale-ai-productivity-with-reusable-prompts",
     title: "Scale AI Productivity with Reusable Prompt Patterns",
-    seoTitle: "Scale AI Productivity with Reusable Prompts | AI Prompt Toolkit",
+    seoTitle: "Scale AI Productivity with Reusable Prompts | AI World Hub",
     metaDescription:
       "Explore reusable prompt patterns that help teams scale AI productivity while maintaining consistency and quality.",
     excerpt:
@@ -1163,7 +1163,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "prompt-optimization-for-cost-and-quality",
     title: "Prompt Optimization for Cost and Quality in AI Projects",
-    seoTitle: "Prompt Optimization for Cost and Quality | AI Prompt Toolkit",
+    seoTitle: "Prompt Optimization for Cost and Quality | AI World Hub",
     metaDescription:
       "Learn how prompt optimization improves both AI output quality and cost efficiency with practical techniques and validation steps.",
     excerpt:
@@ -1230,7 +1230,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "business-automation-with-ai-prompts",
     title: "Business Automation with AI Prompts and Workflow Templates",
-    seoTitle: "Business Automation with AI Prompts | AI Prompt Toolkit",
+    seoTitle: "Business Automation with AI Prompts | AI World Hub",
     metaDescription:
       "Explore how AI prompts and workflow templates can automate business tasks like reporting, customer outreach, and data insights.",
     excerpt:
@@ -1297,7 +1297,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "deploy-llm-workflows-for-team-collaboration",
     title: "Deploy LLM Workflows for Team Collaboration and Scale",
-    seoTitle: "Deploy LLM Workflows for Team Collaboration | AI Prompt Toolkit",
+    seoTitle: "Deploy LLM Workflows for Team Collaboration | AI World Hub",
     metaDescription:
       "Learn how to deploy LLM workflows that help teams collaborate on prompts, validation, and AI delivery at scale.",
     excerpt:
@@ -1364,7 +1364,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "prompts-for-ai-reliability-and-governance",
     title: "Prompts for AI Reliability and Governance",
-    seoTitle: "Prompts for AI Reliability and Governance | AI Prompt Toolkit",
+    seoTitle: "Prompts for AI Reliability and Governance | AI World Hub",
     metaDescription:
       "Discover how reliable prompts and governance practices help teams mitigate risk, improve consistency, and maintain AI quality.",
     excerpt:
@@ -1431,7 +1431,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "trusted-prompt-templates-for-team-use",
     title: "Trusted Prompt Templates for Team Use and Collaboration",
-    seoTitle: "Trusted Prompt Templates for Teams | AI Prompt Toolkit",
+    seoTitle: "Trusted Prompt Templates for Teams | AI World Hub",
     metaDescription:
       "Learn how to build trusted prompt templates for collaborative AI use, including template review, testing, and version control.",
     excerpt:
@@ -1498,7 +1498,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "ai-workflow-automation-for-operations",
     title: "AI Workflow Automation for Operations and Support",
-    seoTitle: "AI Workflow Automation for Operations | AI Prompt Toolkit",
+    seoTitle: "AI Workflow Automation for Operations | AI World Hub",
     metaDescription:
       "Discover how to automate operations and support workflows with AI prompts, templates, and validation best practices.",
     excerpt:
@@ -1565,7 +1565,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "llm-workflow-best-practices-for-innovation",
     title: "LLM Workflow Best Practices for Innovation and Reliability",
-    seoTitle: "LLM Workflow Best Practices | AI Prompt Toolkit",
+    seoTitle: "LLM Workflow Best Practices | AI World Hub",
     metaDescription:
       "Explore best practices for LLM workflows that balance innovation with reliability, including prompt design, validation, and collaboration.",
     excerpt:
@@ -1632,7 +1632,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "ai-prompt-template-governance-for-growth",
     title: "AI Prompt Template Governance for Sustainable Growth",
-    seoTitle: "AI Prompt Template Governance for Growth | AI Prompt Toolkit",
+    seoTitle: "AI Prompt Template Governance for Growth | AI World Hub",
     metaDescription:
       "Learn how prompt template governance helps teams scale AI safely, maintain consistency, and manage prompt quality over time.",
     excerpt:

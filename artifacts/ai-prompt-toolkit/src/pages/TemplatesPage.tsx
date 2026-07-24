@@ -32,7 +32,7 @@ export default function TemplatesPage() {
           Prompt Templates Library
         </h1>
         <p className="text-slate-400 max-w-2xl mx-auto">
-          100+ ready-to-use prompts. Copy, paste, get results instantly.
+          Ready-to-use prompt templates for writing, marketing, coding, and more. Copy, paste, get results instantly.
         </p>
       </motion.div>
 

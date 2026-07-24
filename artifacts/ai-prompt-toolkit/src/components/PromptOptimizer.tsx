@@ -1,42 +1,67 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Copy, RefreshCcw, Sparkles, Wand2 } from "lucide-react";
 
-function generateOptimizedPrompt(prompt: string) {
+interface Analysis {
+  improvements: string[];
+  optimized: string;
+}
+
+function analyzeAndOptimize(prompt: string): Analysis {
   const trimmed = prompt.trim();
   if (!trimmed) {
-    return "Start with your prompt on the left and click Optimize to see the upgraded prompt here.";
+    return {
+      improvements: [],
+      optimized: "Start with your prompt on the left and click Optimize to see the upgraded prompt here.",
+    };
   }
 
-  return `Refine this instruction for maximum clarity, tone control, and AI alignment:\n\n${trimmed}\n\nUse concise sections, explicit role prompts, output expectations, and optional placeholders for tone and audience.`;
+  const improvements: string[] = [];
+  const lower = trimmed.toLowerCase();
+
+  const hasRole = /\b(act as|you are|as a|role:)\b/i.test(trimmed);
+  const hasFormat = /\b(format|bullet|list|table|markdown|json|sections?|structure)\b/i.test(lower);
+  const hasAudience = /\b(audience|for (beginners|experts|developers|students|customers|managers))\b/i.test(lower);
+  const hasConstraints = /\b(\d+\s*(words?|sentences?|paragraphs?|bullets?|items?)|max|limit|under|at most|concise)\b/i.test(lower);
+  const hasTone = /\b(tone|formal|casual|friendly|professional|confident|playful)\b/i.test(lower);
+  const hasExamples = /\b(example|e\.g\.|for instance|such as)\b/i.test(lower);
+
+  if (!hasRole) improvements.push("Added an expert role so the model answers from the right perspective");
+  if (!hasFormat) improvements.push("Specified an output format for a predictable, structured response");
+  if (!hasConstraints) improvements.push("Added a length constraint to keep the answer focused");
+  if (!hasTone) improvements.push("Defined the tone so the writing style matches your intent");
+  if (!hasAudience) improvements.push("Added a target-audience placeholder for better tailoring");
+  if (!hasExamples) improvements.push("Suggested including an example to anchor the model");
+
+  const lines: string[] = [];
+  if (!hasRole) lines.push("Role: You are an expert assistant in the relevant domain.");
+  lines.push("Task: " + trimmed.replace(/\s+/g, " "));
+  if (!hasAudience) lines.push("Audience: [describe who this is for, e.g. beginners, executives]");
+  if (!hasTone) lines.push("Tone: professional and clear");
+  if (!hasFormat) lines.push("Format: well-structured Markdown with short sections and bullet points where helpful");
+  if (!hasConstraints) lines.push("Constraints: be concise; avoid filler and repetition");
+  if (!hasExamples) lines.push("If helpful, include one brief example to illustrate the main point.");
+  lines.push("If anything is ambiguous, state your assumptions before answering.");
+
+  return { improvements, optimized: lines.join("\\n") };
 }
 
 export default function PromptOptimizer() {
   const [originalPrompt, setOriginalPrompt] = useState(
     "Write a polished executive summary for the product roadmap, emphasize user impact, and keep the tone confident yet clear."
   );
-  const [optimizedPrompt, setOptimizedPrompt] = useState(() => generateOptimizedPrompt(originalPrompt));
-  const [creditsRemaining, setCreditsRemaining] = useState(12);
+  const [analysis, setAnalysis] = useState<Analysis>(() => analyzeAndOptimize(originalPrompt));
   const [compareMode, setCompareMode] = useState(false);
-  const [status, setStatus] = useState("Ready for a premium prompt upgrade.");
-
-  const canOptimize = creditsRemaining > 0;
-  const promotedCredits = useMemo(() => `${creditsRemaining} credits remaining`, [creditsRemaining]);
+  const [status, setStatus] = useState("Ready to structure and strengthen your prompt.");
 
   const handleOptimize = () => {
-    if (!canOptimize) {
-      setStatus("Optimization limit reached. Try again later.");
-      return;
-    }
-
-    setCreditsRemaining((current) => Math.max(current - 1, 0));
-    setOptimizedPrompt(generateOptimizedPrompt(originalPrompt));
+    setAnalysis(analyzeAndOptimize(originalPrompt));
     setStatus("Optimized prompt ready — copy it into your next AI request.");
   };
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(optimizedPrompt);
+      await navigator.clipboard.writeText(analysis.optimized.replace(/\\n/g, "\n"));
       setStatus("Optimized prompt copied to clipboard.");
     } catch {
       setStatus("Copy failed. Please try again in a secure browser.");
@@ -48,12 +73,15 @@ export default function PromptOptimizer() {
       <div className="rounded-[32px] border border-cyan-400/10 bg-slate-950/75 p-6 shadow-[0_32px_80px_-48px_rgba(6,182,212,0.35)] backdrop-blur-xl">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-cyan-200">Credits remaining</p>
-            <p className="mt-2 text-3xl font-semibold tracking-tight text-white">{promotedCredits}</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-cyan-200">How it works</p>
+            <p className="mt-2 text-sm leading-6 text-slate-300">
+              This tool analyzes your prompt in your browser and restructures it with proven prompt-engineering
+              patterns — role, format, constraints, and tone. No AI API calls, no data leaves your device, unlimited use.
+            </p>
           </div>
-          <div className="inline-flex items-center gap-2 rounded-3xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
+          <div className="inline-flex shrink-0 items-center gap-2 rounded-3xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
             <Sparkles className="h-4 w-4 text-cyan-300" aria-hidden="true" />
-            Advanced prompt optimization
+            Free &amp; unlimited
           </div>
         </div>
       </div>
@@ -91,23 +119,22 @@ export default function PromptOptimizer() {
         >
           <div className="flex items-center justify-between gap-3 pb-4">
             <div>
-              <p className="text-sm uppercase tracking-[0.24em] text-slate-400">AI Optimized Version</p>
+              <p className="text-sm uppercase tracking-[0.24em] text-slate-400">Optimized Version</p>
               <p className="text-xs text-slate-500">Copy or compare with your prompt.</p>
             </div>
             <div className="inline-flex items-center gap-2 rounded-full border border-slate-700/70 bg-slate-900/70 px-3 py-1 text-xs text-slate-300">
               <RefreshCcw className="h-4 w-4 text-violet-300" aria-hidden="true" />
-              premium result
+              structured result
             </div>
           </div>
           <div className="relative min-h-[320px] rounded-3xl border border-slate-800/90 bg-slate-900/90 p-5 text-sm leading-7 text-slate-200 shadow-inner shadow-slate-950/60">
-            <pre className={`whitespace-pre-wrap ${compareMode ? "bg-slate-900/90" : ""}`}>{optimizedPrompt}</pre>
+            <pre className={`whitespace-pre-wrap ${compareMode ? "bg-slate-900/90" : ""}`}>{analysis.optimized.replace(/\\n/g, "\n")}</pre>
           </div>
           <div className="mt-5 flex flex-wrap gap-3">
             <button
               type="button"
               onClick={handleOptimize}
-              disabled={!canOptimize}
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-500/30 transition hover:shadow-xl hover:shadow-cyan-500/50 disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-500/30 transition hover:shadow-xl hover:shadow-cyan-500/50"
             >
               <Wand2 className="h-4 w-4" aria-hidden="true" />
               Optimize Prompt
@@ -132,6 +159,17 @@ export default function PromptOptimizer() {
         </motion.div>
       </div>
 
+      {analysis.improvements.length > 0 && (
+        <div className="rounded-[32px] border border-emerald-500/20 bg-emerald-500/5 p-6 text-sm text-slate-300">
+          <p className="font-semibold text-white">What was improved</p>
+          <ul className="mt-3 list-disc space-y-1.5 pl-5 text-slate-400">
+            {analysis.improvements.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <div className="rounded-[32px] border border-slate-800/80 bg-slate-950/80 p-6 text-sm text-slate-300 shadow-[0_20px_60px_-40px_rgba(0,0,0,0.55)]">
         <p className="text-white">Status</p>
         <p className="mt-2 text-sm leading-7 text-slate-400">{status}</p>
@@ -139,16 +177,16 @@ export default function PromptOptimizer() {
 
       <div className="grid gap-4 sm:grid-cols-3">
         <div className="rounded-[28px] border border-slate-800/90 bg-slate-900/85 p-5 text-sm text-slate-300 shadow-[0_20px_60px_-40px_rgba(0,0,0,0.45)]">
-          <p className="font-semibold text-white">AI signal</p>
-          <p className="mt-3 text-slate-400">Every optimization pass applies tone, clarity, and instruction architecture to the prompt.</p>
+          <p className="font-semibold text-white">Prompt structure</p>
+          <p className="mt-3 text-slate-400">Every pass applies role, task, audience, tone, format, and constraint patterns to your prompt.</p>
         </div>
         <div className="rounded-[28px] border border-slate-800/90 bg-slate-900/85 p-5 text-sm text-slate-300 shadow-[0_20px_60px_-40px_rgba(0,0,0,0.45)]">
           <p className="font-semibold text-white">Workflow control</p>
-          <p className="mt-3 text-slate-400">Compare original and refined prompts side by side, then push the version that best matches your goals.</p>
+          <p className="mt-3 text-slate-400">Compare original and refined prompts side by side, then use the version that best matches your goals.</p>
         </div>
         <div className="rounded-[28px] border border-slate-800/90 bg-slate-900/85 p-5 text-sm text-slate-300 shadow-[0_20px_60px_-40px_rgba(0,0,0,0.45)]">
-          <p className="font-semibold text-white">Premium design</p>
-          <p className="mt-3 text-slate-400">A polished, glassmorphism interface built for a commander-style AI toolkit experience.</p>
+          <p className="font-semibold text-white">100% private</p>
+          <p className="mt-3 text-slate-400">All analysis runs locally in your browser — your prompts are never sent to any server.</p>
         </div>
       </div>
     </div>

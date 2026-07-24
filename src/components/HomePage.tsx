@@ -7,14 +7,12 @@ import {
   Zap,
   CheckCircle2,
   Play,
-  Star,
   Shield,
   Clock,
   Users,
   TrendingUp,
   Award,
   ChevronDown,
-  Quote,
 } from 'lucide-react';
 
 // Import your actual data
@@ -41,7 +39,6 @@ export default function HomePage({ toolPages }: HomePageProps) {
   const [currentTool, setCurrentTool] = useState(0);
   const [prompt, setPrompt] = useState('write a summary about AI risks in business');
   const [optimized, setOptimized] = useState('');
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
   const demoRef = useRef<HTMLDivElement>(null);
 
   const scrollToDemo = () => {
@@ -54,40 +51,17 @@ export default function HomePage({ toolPages }: HomePageProps) {
     { name: 'JSON Validator', icon: CheckCircle2, color: 'from-green-500 to-emerald-500' },
   ];
 
-  const testimonials = [
-    {
-      name: 'Sarah Chen',
-      role: 'AI Engineer at Google',
-      avatar: 'SC',
-      content: 'AI Prompt Toolkit has transformed our workflow. The Token Estimator alone saved us $50K+ in API costs. Absolutely essential for any serious AI team.',
-      rating: 5,
-    },
-    {
-      name: 'Marcus Rodriguez',
-      role: 'CTO at TechStartup',
-      avatar: 'MR',
-      content: "We've tried every prompt tool out there. This is the only one that actually understands what developers need. Game changer for our entire team.",
-      rating: 5,
-    },
-    {
-      name: 'Emily Watson',
-      role: 'Product Manager at Meta',
-      avatar: 'EW',
-      content: "The Prompt Optimizer improved our output quality by 40%. It's like having a senior prompt engineer reviewing every prompt before deployment.",
-      rating: 5,
-    },
-  ];
 
   const stats = [
-    { icon: Users, value: '10,000+', label: 'Active Users', color: 'from-blue-500 to-cyan-500' },
-    { icon: Star, value: '4.9/5', label: 'User Rating', color: 'from-yellow-500 to-orange-500' },
-    { icon: TrendingUp, value: '1M+', label: 'Prompts Optimized', color: 'from-amber-500 to-rose-500' },
-    { icon: Award, value: '$500K+', label: 'API Costs Saved', color: 'from-green-500 to-emerald-500' },
+    { icon: Zap, value: '10', label: 'Free Tools', color: 'from-blue-500 to-cyan-500' },
+    { icon: Shield, value: '100%', label: 'In-Browser & Private', color: 'from-yellow-500 to-orange-500' },
+    { icon: Clock, value: '0', label: 'Sign-ups Required', color: 'from-amber-500 to-rose-500' },
+    { icon: Award, value: 'Free', label: 'Forever', color: 'from-green-500 to-emerald-500' },
   ];
 
   const faqs = [
     {
-      question: 'Is AI Prompt Toolkit really free?',
+      question: 'Is AI World Hub really free?',
       answer: 'Yes! All 10 tools are completely free with no signup required. We offer optional Pro features for power users, but the core toolkit is 100% free forever.',
     },
     {
@@ -96,7 +70,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
     },
     {
       question: 'Can I use this for commercial projects?',
-      answer: 'Absolutely! You can use AI Prompt Toolkit for any purpose - personal, commercial, or client work. No restrictions on usage.',
+      answer: 'Absolutely! You can use AI World Hub for any purpose - personal, commercial, or client work. No restrictions on usage.',
     },
     {
       question: 'Which AI models are supported?',
@@ -111,12 +85,6 @@ export default function HomePage({ toolPages }: HomePageProps) {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const testimonialInterval = setInterval(() => {
-      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(testimonialInterval);
-  }, []);
 
   const handleOptimize = () => {
     setOptimized(`Role: Expert AI Analyst\nTask: ${prompt}\nFormat: Structured report with executive summary\nConstraints: Max 500 words, professional tone\nOutput: Markdown with clear sections`);
@@ -168,7 +136,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 mb-6"
               >
                 <Sparkles className="w-4 h-4 text-amber-400" />
-                <span className="text-sm text-amber-300">Trusted by 10,000+ AI teams worldwide</span>
+                <span className="text-sm text-amber-300">100% Free · No Sign-up · Runs in Your Browser</span>
               </motion.div>
 
               {/* Heading */}
@@ -209,25 +177,19 @@ export default function HomePage({ toolPages }: HomePageProps) {
                 </motion.div>
               </div>
 
-              {/* Social Proof */}
-              <div className="flex items-center gap-6">
-                <div className="flex -space-x-3">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <div
-                      key={i}
-                      className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-rose-500 border-2 border-slate-950 flex items-center justify-center text-white font-bold text-sm"
-                    >
-                      {String.fromCharCode(64 + i)}
-                    </div>
-                  ))}
+              {/* Key Benefits */}
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+                  <span className="text-sm text-slate-300">10 free tools</span>
                 </div>
-                <div>
-                  <div className="flex items-center gap-1 mb-1">
-                    {[1, 2, 3, 4, 5].map((i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-sm text-slate-400">4.9/5 from 2,500+ reviews</p>
+                <div className="flex items-center gap-2">
+                  <Shield className="w-5 h-5 text-cyan-400" />
+                  <span className="text-sm text-slate-300">Prompts never leave your device</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Zap className="w-5 h-5 text-amber-400" />
+                  <span className="text-sm text-slate-300">Instant results, no account</span>
                 </div>
               </div>
             </motion.div>
@@ -349,12 +311,18 @@ export default function HomePage({ toolPages }: HomePageProps) {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="mt-16 text-center"
           >
-            <p className="text-sm text-slate-400 mb-8">Trusted by teams at</p>
+            <p className="text-sm text-slate-400 mb-8">Works with prompts for</p>
             <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-              {['Google', 'Microsoft', 'OpenAI', 'Anthropic', 'Meta'].map((company) => (
-                <div key={company} className="flex items-center gap-2.5">
-                  <img src={`/icons/${company.toLowerCase()}.svg`} alt={company} className="h-7 w-7 opacity-60" />
-                  <span className="text-sm md:text-base font-semibold text-slate-500">{company}</span>
+              {[
+                { name: 'ChatGPT', icon: 'openai' },
+                { name: 'Claude', icon: 'anthropic' },
+                { name: 'Gemini', icon: 'google' },
+                { name: 'Copilot', icon: 'microsoft' },
+                { name: 'Llama', icon: 'meta' },
+              ].map((model) => (
+                <div key={model.name} className="flex items-center gap-2.5">
+                  <img src={`/icons/${model.icon}.svg`} alt={model.name} className="h-7 w-7 opacity-60" />
+                  <span className="text-sm md:text-base font-semibold text-slate-500">{model.name}</span>
                 </div>
               ))}
             </div>
@@ -494,61 +462,43 @@ export default function HomePage({ toolPages }: HomePageProps) {
       </section>
 
 
-      {/* Testimonials */}
+      {/* Why Choose Us */}
       <section className="section-lg bg-slate-900/50 mt-16">
         <div className="site-container">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-              Loved by AI Professionals
+              Why Use
               <br />
               <span className="bg-gradient-to-r from-amber-400 to-rose-400 bg-clip-text text-transparent">
-                Worldwide
+                AI World Hub?
               </span>
             </h2>
           </motion.div>
 
-          <div className="max-w-4xl mx-auto">
-            <AnimatePresence mode="wait">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {[
+              { icon: Shield, title: 'Private by Design', text: 'Every tool runs 100% in your browser. Your prompts are never uploaded, stored, or shared — ever.' },
+              { icon: Zap, title: 'Instant & Free', text: 'No sign-up walls, no credit cards, no limits. Open a tool and get results in seconds.' },
+              { icon: CheckCircle2, title: 'Model-Agnostic', text: 'Works with prompts for ChatGPT, Claude, Gemini, Llama, Midjourney, and any other AI model.' },
+              { icon: Clock, title: 'Save Time', text: 'Stop rewriting prompts from scratch. Format, clean, convert, and optimize in one place.' },
+              { icon: TrendingUp, title: 'Cut API Costs', text: 'Estimate tokens before sending prompts to paid APIs and trim unnecessary bloat.' },
+              { icon: Users, title: 'Built for Everyone', text: 'From students to developers to marketers — simple enough for beginners, powerful for pros.' },
+            ].map((item, idx) => (
               <motion.div
-                key={activeTestimonial}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.5 }}
-                className="bg-slate-900/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                className="bg-slate-900/50 backdrop-blur-sm border border-white/10 rounded-2xl p-6"
               >
-                <Quote className="w-10 h-10 text-amber-400 mb-6" />
-                <p className="text-lg text-slate-300 mb-6 leading-relaxed">
-                  "{testimonials[activeTestimonial].content}"
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-500 to-rose-500 flex items-center justify-center text-white font-bold">
-                    {testimonials[activeTestimonial].avatar}
-                  </div>
-                  <div>
-                    <div className="font-semibold text-white">{testimonials[activeTestimonial].name}</div>
-                    <div className="text-sm text-slate-400">{testimonials[activeTestimonial].role}</div>
-                  </div>
-                  <div className="ml-auto flex gap-1">
-                    {[...Array(testimonials[activeTestimonial].rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-rose-500 flex items-center justify-center mb-4">
+                  <item.icon className="w-6 h-6 text-white" />
                 </div>
+                <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                <p className="text-sm text-slate-400 leading-relaxed">{item.text}</p>
               </motion.div>
-            </AnimatePresence>
-
-            <div className="flex justify-center gap-2 mt-6">
-              {testimonials.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveTestimonial(idx)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    idx === activeTestimonial ? 'bg-amber-500 w-8' : 'bg-slate-700'
-                  }`}
-                />
-              ))}
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -647,7 +597,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               </span>
             </h2>
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Join 10,000+ AI professionals who trust AI Prompt Toolkit to create, optimize, and deploy prompts that deliver results.
+              Use 10 free, private, in-browser tools to create, optimize, and deploy prompts that deliver results.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

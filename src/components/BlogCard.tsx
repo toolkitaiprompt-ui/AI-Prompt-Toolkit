@@ -158,7 +158,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
         <div className={`absolute inset-0 animate-pulse bg-gradient-to-r from-slate-800 via-slate-700 to-slate-900 transition-opacity ${loaded ? "opacity-0" : "opacity-100"}`} />
         {imgError ? (
           <div className="flex aspect-[16/9] w-full items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950">
-            <span className="text-3xl font-bold tracking-tight text-cyan-400/40">AI Prompt Toolkit</span>
+            <span className="text-3xl font-bold tracking-tight text-cyan-400/40">AI World Hub</span>
           </div>
         ) : (
           <img

@@ -123,11 +123,10 @@ const TOOL_PAGES: ToolMeta[] = [
   {
     title: "Advanced Prompt Optimizer",
     path: "/tools/advanced-prompt-optimizer",
-    description: "Polish and amplify prompts with premium optimization controls, copyflow, and high-fidelity results.",
+    description: "Polish and amplify prompts with advanced structuring — role, format, tone, and constraint patterns applied automatically.",
     icon: Sparkles,
     accent: "from-indigo-500/35 to-cyan-400/10",
-    premium: true,
-    keyBenefits: ["Side-by-side compare", "12 optimization credits", "Premium AI signal"],
+    keyBenefits: ["Side-by-side compare", "Unlimited free use", "Prompt structure analysis"],
   },
   {
     title: "Prompt Comparison Tool",
@@ -148,7 +147,7 @@ function getBlogPostsForTool(toolSlug: string) {
 function useSeo(title?: string, description?: string, keywords?: string) {
   const configSeo = getSeoForPath(window.location.pathname);
 
-  const finalTitle = configSeo.title || title || "AI Prompt Toolkit";
+  const finalTitle = configSeo.title || title || "AI World Hub";
   const finalDesc = configSeo.description || description || "";
   const finalKeywords = configSeo.keywords || keywords || "";
 
@@ -312,7 +311,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             element={
               <ToolContainer
                 title="Advanced Prompt Optimizer"
-                description="Polish prompts with premium AI optimization, copy-ready results, and a high-end command center experience."
+                description="Polish prompts with advanced structuring — role, format, tone, and constraint patterns applied in your browser."
                 toolSlug="advanced-prompt-optimizer"
                 tool={TOOL_BY_SLUG.get("advanced-prompt-optimizer")!}
               >
@@ -392,7 +391,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           </div>
 
           <div className="mt-16 flex flex-col-reverse items-center justify-between gap-6 border-t border-white/10 pt-10 sm:flex-row">
-            <p className="text-xs text-slate-500">© 2026 AI Prompt Toolkit. All rights reserved.</p>
+            <p className="text-xs text-slate-500">© 2026 AI World Hub. All rights reserved.</p>
             <p className="text-xs text-slate-600">Built for global AI teams.</p>
           </div>
         </div>
@@ -781,7 +780,7 @@ function BlogPostPage() {
   useSeo(
     post?.seoTitle ?? "Page Not Found",
     post?.metaDescription ?? "The requested page could not be found.",
-    `${post?.category ?? "404"}, Prompt Engineering, AI Prompt Toolkit`,
+    `${post?.category ?? "404"}, Prompt Engineering, AI World Hub`,
   );
 
   if (!post) return <NotFoundPage />;
@@ -799,8 +798,9 @@ function BlogPostPage() {
         <div className="space-y-2 sm:space-y-3">
           <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">{post.category}</p>
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">{post.title}</h1>
-          <div className="flex flex-wrap gap-4 text-sm text-slate-500">
+          <div className="flex flex-wrap items-center gap-2 text-sm text-slate-500">
             <span>{post.date}</span>
+            <span aria-hidden="true">·</span>
             <span>{post.readTime}</span>
           </div>
         </div>
@@ -881,16 +881,16 @@ function BlogPostPage() {
 function AboutPage() {
   return (
     <SectionShell
-      title="About AI Prompt Toolkit"
-      description="Learn about AI Prompt Toolkit — free in-browser tools for prompt engineering teams worldwide."
-      keywords="About AI Prompt Toolkit, Best AI Tools, Free AI Tools, Prompt Engineering"
+      title="About AI World Hub"
+      description="Learn about AI World Hub — free in-browser tools for prompt engineering teams worldwide."
+      keywords="About AI World Hub, Best AI Tools, Free AI Tools, Prompt Engineering"
     >
       <div className="max-w-4xl space-y-8">
         <div className="space-y-3">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-400">About Us</p>
           <h1 className="text-3xl sm:text-4xl font-bold text-white">Build Reliable AI Prompts, Faster & Smarter</h1>
           <p className="text-lg text-slate-400">
-            AI Prompt Toolkit is a free, browser-based platform offering professional prompt engineering tools for teams and individuals worldwide.
+            AI World Hub is a free, browser-based platform offering professional prompt engineering tools for teams and individuals worldwide.
           </p>
         </div>
 
@@ -935,14 +935,14 @@ function AboutPage() {
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-white">Privacy First</h2>
           <p className="text-slate-300">
-            Unlike many online tools, AI Prompt Toolkit processes everything locally in your browser. Your prompts, data, and text never leave your device. We do not store, collect, or share your inputs with any server.
+            Unlike many online tools, AI World Hub processes everything locally in your browser. Your prompts, data, and text never leave your device. We do not store, collect, or share your inputs with any server.
           </p>
         </div>
 
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-white">Who We Serve</h2>
           <p className="text-slate-300">
-            Our tools are used by prompt engineering teams, AI developers, content creators, marketers, and enterprises across the globe. Whether you are building production AI workflows or experimenting with your first prompt, AI Prompt Toolkit is designed to help you work faster and smarter.
+            Our tools are used by prompt engineering teams, AI developers, content creators, marketers, and enterprises across the globe. Whether you are building production AI workflows or experimenting with your first prompt, AI World Hub is designed to help you work faster and smarter.
           </p>
         </div>
 
@@ -995,11 +995,11 @@ function ContactPage() {
   return (
     <SectionShell
       title="Contact - Prompt Engineering Toolkit"
-      description="Contact AI Prompt Toolkit for prompt engineering support, partnerships, and feedback. Email toolkitaiprompt@gmail.com."
+      description="Contact AI World Hub for prompt engineering support, partnerships, and feedback. Email toolkitaiprompt@gmail.com."
     >
       <h1 className="text-3xl font-bold tracking-tight text-white">Contact</h1>
       <p className="mt-3 max-w-2xl text-slate-400">
-        Connect with the AI Prompt Toolkit team for enterprise onboarding, partnerships, and technical collaboration.
+        Connect with the AI World Hub team for enterprise onboarding, partnerships, and technical collaboration.
       </p>
       <div className="mt-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <aside className="rounded-2xl border border-slate-800 bg-slate-900/70 p-7">
@@ -1048,17 +1048,17 @@ function PrivacyPage() {
   return (
     <SectionShell
       title="Privacy Policy"
-      description="Privacy policy outlining data handling, cookie usage, advertising partners, and user rights for AI Prompt Toolkit."
+      description="Privacy policy outlining data handling, cookie usage, advertising partners, and user rights for AI World Hub."
       keywords="Privacy Policy, Free AI Prompt Tools, Prompt Engineering"
     >
       <h1 className="text-3xl font-bold text-white">Privacy Policy</h1>
       <p className="mt-2 text-sm text-slate-500">Last updated: June 24, 2026</p>
       <div className="mt-6 max-w-4xl space-y-6 text-slate-300">
-        <p>At AI Prompt Toolkit, accessible from https://aiworldhub.site, the privacy of our visitors is one of our main priorities. This Privacy Policy document explains the types of information we collect and how we use, store, and protect it.</p>
+        <p>At AI World Hub, accessible from https://aiworldhub.site, the privacy of our visitors is one of our main priorities. This Privacy Policy document explains the types of information we collect and how we use, store, and protect it.</p>
 
         <div className="space-y-2">
           <h2 className="text-xl font-semibold text-white">Information We Collect</h2>
-          <p>All tools on AI Prompt Toolkit process data <strong>entirely within your browser</strong>. Text, prompts, and JSON data you enter into the tools are never sent to our servers, never stored, and never shared with third parties.</p>
+          <p>All tools on AI World Hub process data <strong>entirely within your browser</strong>. Text, prompts, and JSON data you enter into the tools are never sent to our servers, never stored, and never shared with third parties.</p>
           <p>We do collect anonymous usage data through third-party analytics services (described below) to understand how the website is used and to improve our tools.</p>
         </div>
 
@@ -1107,7 +1107,7 @@ function PrivacyPage() {
 
         <div className="space-y-2">
           <h2 className="text-xl font-semibold text-white">Children's Information</h2>
-          <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity. AI Prompt Toolkit does not knowingly collect any Personal Identifiable Information from children under the age of 13.</p>
+          <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity. AI World Hub does not knowingly collect any Personal Identifiable Information from children under the age of 13.</p>
         </div>
 
         <div className="space-y-2">
@@ -1135,22 +1135,22 @@ function TermsPage() {
   return (
     <SectionShell
       title="Terms of Service"
-      description="Terms and conditions for using AI Prompt Toolkit tools and services."
+      description="Terms and conditions for using AI World Hub tools and services."
       keywords="Terms of Service, Free AI Prompt Tools, Prompt Engineering"
     >
       <h1 className="text-3xl font-bold text-white">Terms of Service</h1>
       <p className="mt-2 text-sm text-slate-500">Last updated: June 24, 2026</p>
       <div className="mt-6 max-w-4xl space-y-6 text-slate-300">
-        <p>Welcome to AI Prompt Toolkit. By accessing or using our website at https://aiworldhub.site, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use our website.</p>
+        <p>Welcome to AI World Hub. By accessing or using our website at https://aiworldhub.site, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use our website.</p>
 
         <div className="space-y-2">
           <h2 className="text-xl font-semibold text-white">1. Use of Our Services</h2>
-          <p>AI Prompt Toolkit provides free, browser-based tools for prompt engineering, including variable extraction, JSON schema generation, validation, formatting, cleaning, token estimation, and optimization. All tools are provided for personal and professional productivity purposes.</p>
+          <p>AI World Hub provides free, browser-based tools for prompt engineering, including variable extraction, JSON schema generation, validation, formatting, cleaning, token estimation, and optimization. All tools are provided for personal and professional productivity purposes.</p>
         </div>
 
         <div className="space-y-2">
           <h2 className="text-xl font-semibold text-white">2. Intellectual Property</h2>
-          <p>All content, tools, design, and code on this website are the property of AI Prompt Toolkit unless otherwise stated. You may not reproduce, distribute, or create derivative works without explicit written permission.</p>
+          <p>All content, tools, design, and code on this website are the property of AI World Hub unless otherwise stated. You may not reproduce, distribute, or create derivative works without explicit written permission.</p>
         </div>
 
         <div className="space-y-2">
@@ -1160,7 +1160,7 @@ function TermsPage() {
 
         <div className="space-y-2">
           <h2 className="text-xl font-semibold text-white">4. Limitation of Liability</h2>
-          <p>Under no circumstances shall AI Prompt Toolkit be liable for any direct, indirect, incidental, consequential, or punitive damages arising from your use of, or inability to use, our tools and services.</p>
+          <p>Under no circumstances shall AI World Hub be liable for any direct, indirect, incidental, consequential, or punitive damages arising from your use of, or inability to use, our tools and services.</p>
         </div>
 
         <div className="space-y-2">
@@ -1196,7 +1196,7 @@ function NotFoundPage() {
   return (
     <SectionShell title="Page Not Found" description="The requested page could not be found.">
       <h1 className="text-3xl font-bold text-white">404 — Page Not Found</h1>
-      <p className="mt-3 text-slate-400">Use the navigation to return to the AI Prompt Toolkit pages.</p>
+      <p className="mt-3 text-slate-400">Use the navigation to return to the AI World Hub pages.</p>
     </SectionShell>
   );
 }

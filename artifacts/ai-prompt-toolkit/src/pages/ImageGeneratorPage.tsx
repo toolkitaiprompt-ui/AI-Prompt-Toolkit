@@ -7,9 +7,28 @@ const STYLES = [
   "Cyberpunk", "Fantasy Art", "Minimalist", "Vintage", "Cartoon",
 ];
 
-const MOCK_IMAGES = [
-  { url: "", label: "Your generated image will appear here" },
-];
+const STYLE_MODIFIERS: Record<string, string> = {
+  "Photorealistic": "photorealistic, ultra-detailed, natural lighting, shot on 85mm lens, f/1.8, high dynamic range",
+  "3D Render": "3D render, octane render, volumetric lighting, subsurface scattering, 8k, trending on artstation",
+  "Anime": "anime style, cel shading, vibrant colors, detailed line art, studio-quality animation still",
+  "Oil Painting": "oil painting, visible brushstrokes, rich impasto texture, classical composition, gallery lighting",
+  "Watercolor": "watercolor painting, soft washes, bleeding edges, textured paper, delicate gradients",
+  "Cyberpunk": "cyberpunk aesthetic, neon lights, rain-slicked streets, holographic signage, high contrast, cinematic",
+  "Fantasy Art": "epic fantasy art, dramatic lighting, intricate details, matte painting, concept art quality",
+  "Minimalist": "minimalist composition, clean lines, negative space, limited color palette, flat design",
+  "Vintage": "vintage photograph, film grain, faded colors, 1970s Kodachrome, nostalgic atmosphere",
+  "Cartoon": "cartoon illustration, bold outlines, flat vibrant colors, playful exaggerated proportions",
+};
+
+function buildPrompt(userIdea: string, style: string) {
+  const idea = userIdea.trim().replace(/[.\s]+$/, "");
+  const modifiers = STYLE_MODIFIERS[style] ?? "";
+  return {
+    midjourney: `/imagine prompt: ${idea}, ${modifiers} --ar 16:9 --v 6.1 --s 750`,
+    dalle: `${idea}. Style: ${modifiers}. Wide 16:9 composition, highly detailed.`,
+    sd: `${idea}, ${modifiers}, masterpiece, best quality\nNegative prompt: blurry, low quality, distorted, watermark, text`,
+  };
+}
 
 export default function ImageGeneratorPage() {
   const [prompt, setPrompt] = useState("");
@@ -23,7 +42,7 @@ export default function ImageGeneratorPage() {
     setTimeout(() => {
       setGenerating(false);
       setGenerated(true);
-    }, 2000);
+    }, 400);
   };
 
   return (
@@ -84,17 +103,23 @@ export default function ImageGeneratorPage() {
           </button>
 
           {generated && (
-            <div className="rounded-2xl border border-amber-400/20 bg-amber-500/5 p-5">
-              <p className="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-2">Optimized Prompt</p>
-              <pre className="text-sm text-slate-200 font-mono leading-relaxed whitespace-pre-wrap">
-                {`/${style === "Photorealistic" ? "imagine" : "create"} ${prompt} --style ${style.toLowerCase().replace(" ", "-")} --ar 16:9 --v 6.1 --s 750`}
-              </pre>
-              <button
-                onClick={() => navigator.clipboard.writeText(`${style === "Photorealistic" ? "/imagine" : "/create"} ${prompt} --style ${style.toLowerCase().replace(" ", "-")} --ar 16:9 --v 6.1 --s 750`)}
-                className="mt-3 text-xs text-amber-400 hover:text-amber-300 transition"
-              >
-                📋 Copy to clipboard
-              </button>
+            <div className="space-y-4">
+              {([
+                ["Midjourney", buildPrompt(prompt, style).midjourney],
+                ["DALL-E 3", buildPrompt(prompt, style).dalle],
+                ["Stable Diffusion", buildPrompt(prompt, style).sd],
+              ] as const).map(([model, text]) => (
+                <div key={model} className="rounded-2xl border border-amber-400/20 bg-amber-500/5 p-5">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-2">{model}</p>
+                  <pre className="text-sm text-slate-200 font-mono leading-relaxed whitespace-pre-wrap">{text}</pre>
+                  <button
+                    onClick={() => navigator.clipboard.writeText(text)}
+                    className="mt-3 text-xs text-amber-400 hover:text-amber-300 transition"
+                  >
+                    📋 Copy to clipboard
+                  </button>
+                </div>
+              ))}
             </div>
           )}
         </div>
