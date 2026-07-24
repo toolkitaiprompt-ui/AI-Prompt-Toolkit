@@ -5,7 +5,7 @@ import { PROMPT_CATEGORIES } from "@/data/categories";
 
 export default function CategoryShowcase() {
   return (
-    <section className="py-24">
+    <section className="section-lg">
       <div className="site-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
