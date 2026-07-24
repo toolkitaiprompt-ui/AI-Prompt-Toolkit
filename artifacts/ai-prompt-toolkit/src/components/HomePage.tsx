@@ -345,11 +345,11 @@ export default function HomePage({ toolPages }: HomePageProps) {
             className="mt-16 text-center"
           >
             <p className="text-sm text-slate-400 mb-8">Trusted by teams at</p>
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-50">
+            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
               {['Google', 'Microsoft', 'OpenAI', 'Anthropic', 'Meta'].map((company) => (
-                <div key={company} className="flex items-center gap-2">
-                  <img src={`/icons/${company.toLowerCase()}.svg`} alt={company} className="h-6 w-6 opacity-50" />
-                  <span className="text-base md:text-lg font-semibold text-slate-500">{company}</span>
+                <div key={company} className="flex items-center gap-2.5">
+                  <img src={`/icons/${company.toLowerCase()}.svg`} alt={company} className="h-7 w-7 opacity-60" />
+                  <span className="text-sm md:text-base font-semibold text-slate-500">{company}</span>
                 </div>
               ))}
             </div>
