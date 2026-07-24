@@ -431,7 +431,7 @@ function ToolsDirectoryPage() {
         </p>
       </div>
 
-      <div className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-2">
         {TOOL_PAGES.map((tool, index) => (
           <React.Fragment key={tool.path}>
             <ToolCard tool={tool} />
