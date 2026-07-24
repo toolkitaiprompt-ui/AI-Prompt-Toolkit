@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import { PROMPT_CATEGORIES } from "@/data/categories";
 
 export default function CategoryShowcase() {
@@ -29,11 +30,35 @@ export default function CategoryShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.05 }}
-              className="card group cursor-pointer hover:border-slate-600"
+              whileHover={{ y: -4 }}
+              className="group relative rounded-[16px] border border-white/[0.06] bg-white/[0.02] p-5 transition-all duration-400 hover:border-white/[0.15] hover:bg-white/[0.04] hover:shadow-lg hover:shadow-amber-500/5"
             >
-              <div className="text-2xl mb-3">{cat.icon}</div>
-              <h3 className="font-headline font-bold text-white text-base mb-1">{cat.name}</h3>
-              <p className="text-xs text-slate-500">{cat.count} templates</p>
+              {/* Icon with color circle */}
+              <div
+                className="mb-4 flex h-12 w-12 items-center justify-center rounded-[12px] text-xl transition-transform duration-300 group-hover:scale-110 group-hover:shadow-lg"
+                style={{
+                  background: `linear-gradient(135deg, ${cat.color}22, ${cat.color}11)`,
+                  border: `1px solid ${cat.color}33`,
+                }}
+              >
+                <span>{cat.icon}</span>
+              </div>
+
+              {/* Category name */}
+              <h3 className="font-headline font-bold text-white text-base mb-1.5">
+                {cat.name}
+              </h3>
+
+              {/* Description */}
+              <p className="text-xs leading-relaxed text-slate-500 mb-4 line-clamp-2">
+                {cat.description}
+              </p>
+
+              {/* Template count */}
+              <div className="flex items-center gap-1.5 text-xs font-medium text-amber-400/80 group-hover:text-amber-300 transition-colors">
+                <span>{cat.count} templates</span>
+                <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+              </div>
             </motion.div>
           ))}
         </div>

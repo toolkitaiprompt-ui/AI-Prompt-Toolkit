@@ -29,9 +29,9 @@ const PromptVariableExtractorPreview = () => (
 const JsonSchemaGeneratorPreview = () => (
   <div className="space-y-1.5 text-[11px] font-mono">
     <div className="text-amber-300">Input:</div>
-    <div className="text-slate-400">{`{ "name": "Alex", "age": 28 }`}</div>
+    <div className="text-slate-400">{`{ \"name\": \"Alex\", \"age\": 28 }`}</div>
     <div className="text-emerald-400 mt-2">Schema:</div>
-    <div className="text-slate-300">{`"properties": {`}<br/>{`  "name": "string"`}<br/>{`}`}</div>
+    <div className="text-slate-300">{`\"properties\": {`}<br/>{`  \"name\": \"string\"`}<br/>{`}`}</div>
   </div>
 );
 const JsonValidatorPreview = () => (
@@ -107,17 +107,17 @@ export default function ToolCard({ tool }: ToolCardProps) {
 
   return (
     <motion.div
-      whileHover={{ y: -6 }}
-      transition={{ type: "spring", stiffness: 240, damping: 20 }}
-      className="group relative"
+      whileHover={{ y: -5 }}
+      transition={{ type: "spring", stiffness: 220, damping: 22 }}
+      className="group relative h-full"
     >
       <Link
         to={tool.path}
-        className={`relative block overflow-hidden rounded-[20px] p-6 shadow-lg transition-all duration-500 ${
+        className={`relative block h-full overflow-hidden rounded-[20px] p-6 shadow-lg transition-all duration-500 ${
           isPremium
             ? "card-featured-premium before:opacity-100"
             : "card-premium"
-        }`}
+        } group-hover:border-white/20 hover:shadow-xl hover:shadow-amber-500/5`}
       >
         {/* Top gradient bar - runs full width */}
         <div className="card-bar" />
@@ -126,36 +126,37 @@ export default function ToolCard({ tool }: ToolCardProps) {
         <div className="card-shine" />
 
         {/* Accent glow */}
-        <div className={`absolute -right-12 top-6 h-32 w-32 rounded-full bg-gradient-to-br ${tool.accent} blur-3xl opacity-40 transition-all duration-500 group-hover:opacity-70 group-hover:scale-110`} />
+        <div className={`absolute -right-12 top-6 h-32 w-32 rounded-full bg-gradient-to-br ${tool.accent} blur-3xl opacity-40 transition-all duration-500 group-hover:opacity-60 group-hover:scale-110`} />
 
-        <div className="relative z-10 space-y-5">
+        <div className="relative z-10 flex flex-col h-full">
           {/* Top Row: Icon + Badge */}
-          <div className="flex items-start justify-between">
-            <div className="flex h-14 w-14 items-center justify-center rounded-[14px] mb-1 bg-gradient-to-br from-slate-900 to-slate-950 border border-white/10 group-hover:border-amber-400/30 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-amber-500/20">
+          <div className="flex items-start justify-between mb-5">
+            <div className="flex h-14 w-14 items-center justify-center rounded-[14px] bg-gradient-to-br from-slate-900 to-slate-950 border border-white/10 group-hover:border-amber-400/30 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-amber-500/20 shrink-0">
               <Icon className="h-7 w-7 text-white group-hover:text-amber-300 transition-colors" aria-hidden="true" />
             </div>
             {getBadgeType() && <ToolBadge type={getBadgeType()!} />}
           </div>
 
           {/* Title */}
-          <h3 className="text-lg font-semibold tracking-tight text-white font-headline">
+          <h3 className="text-lg font-semibold tracking-tight text-white font-headline mb-2">
             {tool.title}
           </h3>
 
           {/* Description */}
-          <p className="text-sm leading-6 text-slate-400">
+          <p className="text-sm leading-6 text-slate-400 mb-4">
             {tool.description}
           </p>
 
-          {/* Tool Preview */}
-          <div className="rounded-[14px] border border-white/5 bg-white/5 p-4 backdrop-blur-sm">
+          {/* Tool Preview - flex-1 makes it take remaining space */}
+          <div className="rounded-[14px] border border-white/5 bg-white/5 p-3.5 backdrop-blur-sm flex-1">
             {getPreviewComponent()}
           </div>
 
-          {/* Bottom */}
-          <div className="card-divider !my-0" />
+          {/* Divider */}
+          <div className="card-divider my-4" />
 
-          <div className="flex items-center justify-between pt-2">
+          {/* Bottom: Status + CTA */}
+          <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="inline-flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-xs font-medium text-slate-500">
