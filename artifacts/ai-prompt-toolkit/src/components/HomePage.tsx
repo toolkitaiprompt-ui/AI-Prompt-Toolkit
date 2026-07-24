@@ -44,7 +44,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   const demoTools = [
-    { name: 'Prompt Optimizer', icon: Sparkles, color: 'from-purple-500 to-pink-500' },
+    { name: 'Prompt Optimizer', icon: Sparkles, color: 'from-amber-500 to-rose-500' },
     { name: 'Token Estimator', icon: Zap, color: 'from-cyan-500 to-blue-500' },
     { name: 'JSON Validator', icon: CheckCircle2, color: 'from-green-500 to-emerald-500' },
   ];
@@ -76,7 +76,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
   const stats = [
     { icon: Users, value: '10,000+', label: 'Active Users', color: 'from-blue-500 to-cyan-500' },
     { icon: Star, value: '4.9/5', label: 'User Rating', color: 'from-yellow-500 to-orange-500' },
-    { icon: TrendingUp, value: '1M+', label: 'Prompts Optimized', color: 'from-purple-500 to-pink-500' },
+    { icon: TrendingUp, value: '1M+', label: 'Prompts Optimized', color: 'from-amber-500 to-rose-500' },
     { icon: Award, value: '$500K+', label: 'API Costs Saved', color: 'from-green-500 to-emerald-500' },
   ];
 
@@ -161,16 +161,16 @@ export default function HomePage({ toolPages }: HomePageProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-8"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 mb-8"
               >
-                <Sparkles className="w-4 h-4 text-purple-400" />
-                <span className="text-sm text-purple-300">Trusted by 10,000+ AI teams worldwide</span>
+                <Sparkles className="w-4 h-4 text-amber-400" />
+                <span className="text-sm text-amber-300">Trusted by 10,000+ AI teams worldwide</span>
               </motion.div>
 
               {/* Heading */}
               <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-16 leading-[1.35]">
                 Build{' '}
-                <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-amber-400 via-rose-400 to-pink-400 bg-clip-text text-transparent">
                   Perfect
                 </span>
                 <br />
@@ -190,7 +190,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     to="/tools"
-                    className="group px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl font-semibold text-white shadow-lg shadow-purple-500/50 flex items-center gap-2"
+                    className="group px-8 py-4 bg-gradient-to-r from-amber-500 to-rose-500 rounded-full font-semibold text-white shadow-lg shadow-amber-500/50 flex items-center gap-2"
                   >
                     Start Building Free
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -211,7 +211,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
                   {[1, 2, 3, 4, 5].map((i) => (
                     <div
                       key={i}
-                      className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 border-2 border-slate-950 flex items-center justify-center text-white font-bold text-sm"
+                      className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-rose-500 border-2 border-slate-950 flex items-center justify-center text-white font-bold text-sm"
                     >
                       {String.fromCharCode(64 + i)}
                     </div>
@@ -327,7 +327,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -top-4 -right-12 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl blur-2xl opacity-50"
+                className="absolute -top-4 -right-12 w-24 h-24 bg-gradient-to-br from-amber-500 to-rose-500 rounded-2xl blur-2xl opacity-50"
               />
               <motion.div
                 animate={{ y: [0, 10, 0] }}
@@ -388,7 +388,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
               10 Professional Tools
               <br />
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-amber-400 to-rose-400 bg-clip-text text-transparent">
                 For Perfect Prompts
               </span>
             </h2>
@@ -420,7 +420,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
           >
             <Link
               to="/tools"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl font-semibold text-white shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/60 transition-shadow"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-rose-500 rounded-full font-semibold text-white shadow-lg shadow-amber-500/50 hover:shadow-xl hover:shadow-amber-500/60 transition-shadow"
             >
               View All Tools
               <ArrowRight className="w-5 h-5" />
@@ -438,7 +438,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
               Loved by AI Professionals
               <br />
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-amber-400 to-rose-400 bg-clip-text text-transparent">
                 Worldwide
               </span>
             </h2>
@@ -454,12 +454,12 @@ export default function HomePage({ toolPages }: HomePageProps) {
                 transition={{ duration: 0.5 }}
                 className="bg-slate-900/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
               >
-                <Quote className="w-12 h-12 text-purple-400 mb-8" />
+                <Quote className="w-12 h-12 text-amber-400 mb-8" />
                 <p className="text-xl text-slate-300 mb-8 leading-relaxed">
                   "{testimonials[activeTestimonial].content}"
                 </p>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-500 to-rose-500 flex items-center justify-center text-white font-bold">
                     {testimonials[activeTestimonial].avatar}
                   </div>
                   <div>
@@ -498,7 +498,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
                 Latest from Our Blog
                 <br />
-                <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-amber-400 to-rose-400 bg-clip-text text-transparent">
                   Expert Insights
                 </span>
               </h2>
@@ -553,7 +553,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
               Frequently Asked
               <br />
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-amber-400 to-rose-400 bg-clip-text text-transparent">
                 Questions
               </span>
             </h2>
@@ -579,7 +579,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-8">
               Ready to Build
               <br />
-              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-amber-400 via-rose-400 to-pink-400 bg-clip-text text-transparent">
                 Perfect AI Prompts?
               </span>
             </h2>
@@ -589,7 +589,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 to="/tools"
-                className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl font-semibold text-white shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/60 transition-shadow"
+                className="px-8 py-4 bg-gradient-to-r from-amber-500 to-rose-500 rounded-full font-semibold text-white shadow-lg shadow-amber-500/50 hover:shadow-xl hover:shadow-amber-500/60 transition-shadow"
               >
                 Start Building Free
               </Link>

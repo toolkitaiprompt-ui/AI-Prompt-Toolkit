@@ -198,12 +198,13 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${isActive ? "bg-white/10 text-amber-300" : "text-slate-400 hover:text-white hover:bg-white/5"}`;
+    `glass-nav-link ${isActive ? "active" : ""}`;
   return (
-    <div className="min-h-screen bg-[#09090f] text-slate-100 w-full">
-      <header className="sticky top-0 z-50 border-b border-white/5 bg-slate-950/90 backdrop-blur-xl w-full">
-        <div className="site-container flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center gap-3 shrink-0 mr-12 lg:mr-24">
+    <div className="min-h-screen bg-[#0a0a0f] text-[#e2e8f0] w-full">
+      <header className="sticky top-0 z-50 w-full py-4">
+        <div className="site-container">
+          <div className="glass-nav">
+            <Link to="/" className="flex items-center gap-3 shrink-0">
             <svg className="h-7 w-7 sm:h-8 sm:w-8" viewBox="0 0 64 64" fill="none">
               <defs>
                 <linearGradient id="hdrGold" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -222,8 +223,8 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
               AI Prompt Toolkit
             </span>
           </Link>
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8 lg:gap-10">
+          {/* Desktop nav inside glass */}
+          <nav className="hidden md:flex items-center gap-1">
             <NavLink to="/" end className={navLinkClass}>Home</NavLink>
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
             <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
@@ -232,15 +233,15 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             <NavLink to="/templates" className={navLinkClass}>Templates</NavLink>
             <NavLink to="/categories" className={navLinkClass}>Categories</NavLink>
             <NavLink to="/image-generator" className={navLinkClass}>AI Image</NavLink>
-            <button type="button" onClick={() => setSearchOpen(true)} className="px-2 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-200">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            </button>
-            <div className="ml-3 lg:ml-4 pl-3 lg:pl-4 border-l border-white/10">
-              <button type="button" onClick={onToggle} className="px-3 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-200">
-                {mode === "dark" ? "☀️" : "🌙"}
-              </button>
-            </div>
           </nav>
+          <div className="flex items-center gap-2">
+            <button type="button" onClick={() => setSearchOpen(true)} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/5 transition text-slate-400 hover:text-white">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </button>
+            <button type="button" onClick={onToggle} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/5 transition text-sm text-slate-400 hover:text-white">
+              {mode === "dark" ? "☀️" : "🌙"}
+            </button>
+          </div>
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -255,6 +256,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
               )}
             </svg>
           </button>
+          </div>
         </div>
         {/* Mobile menu */}
         {mobileMenuOpen && (
