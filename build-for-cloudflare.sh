@@ -15,4 +15,7 @@ npm install --legacy-peer-deps
 echo "==> npm run build"
 npm run build
 
+echo "==> prerender (SEO static HTML for every route)"
+node prerender.mjs
+
 echo "==> Build complete. Output: $ARTIFACT_DIR/dist/public"

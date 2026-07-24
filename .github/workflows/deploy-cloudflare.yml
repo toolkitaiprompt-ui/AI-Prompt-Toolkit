@@ -1,0 +1,57 @@
+# Deploy AI Prompt Toolkit to Cloudflare Pages
+#
+# Triggers on every push to the production branch and manually (workflow_dispatch).
+# Required GitHub Actions secrets (Settings -> Secrets and variables -> Actions):
+#   CLOUDFLARE_API_TOKEN  -> a Cloudflare API token with "Cloudflare Pages: Edit"
+#                            (and Account:Cloudflare Pages permission)
+#   CLOUDFLARE_ACCOUNT_ID -> your Cloudflare account ID
+#
+# The Pages project name is "ai-prompt-toolkit" (set via --project-name below).
+# If the project does not exist yet, the first deploy creates it automatically.
+
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - production-replit
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: cloudflare-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Build and Deploy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        working-directory: artifacts/ai-prompt-toolkit
+        run: npm install --legacy-peer-deps
+
+      - name: Build
+        working-directory: artifacts/ai-prompt-toolkit
+        run: |
+          npm run build
+          node prerender.mjs
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy artifacts/ai-prompt-toolkit/dist/public --project-name=ai-prompt-toolkit
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
