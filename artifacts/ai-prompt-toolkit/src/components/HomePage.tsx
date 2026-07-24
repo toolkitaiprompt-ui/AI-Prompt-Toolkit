@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -42,6 +42,11 @@ export default function HomePage({ toolPages }: HomePageProps) {
   const [prompt, setPrompt] = useState('write a summary about AI risks in business');
   const [optimized, setOptimized] = useState('');
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const demoRef = useRef<HTMLDivElement>(null);
+
+  const scrollToDemo = () => {
+    demoRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
 
   const demoTools = [
     { name: 'Prompt Optimizer', icon: Sparkles, color: 'from-amber-500 to-rose-500' },
@@ -198,7 +203,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
                 </motion.div>
 
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <button className="px-8 py-4 bg-white/5 border border-white/10 rounded-full font-semibold text-white flex items-center gap-2 hover:bg-white/10 transition-colors">
+                  <button onClick={scrollToDemo} className="px-8 py-4 bg-white/5 border border-white/10 rounded-full font-semibold text-white flex items-center gap-2 hover:bg-white/10 transition-colors cursor-pointer">
                     <Play className="w-5 h-5" />
                     Watch Demo
                   </button>
@@ -230,6 +235,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
             {/* Right: Interactive Demo */}
             <motion.div
+              ref={demoRef}
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
