@@ -22,7 +22,7 @@ export default function CategoryShowcase() {
           </p>
         </motion.div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {PROMPT_CATEGORIES.slice(0, 8).map((cat, idx) => (
             <motion.div
               key={cat.id}
