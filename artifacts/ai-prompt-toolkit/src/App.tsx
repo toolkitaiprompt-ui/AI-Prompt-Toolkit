@@ -425,7 +425,7 @@ function ToolsDirectoryPage() {
         <p className="text-sm font-semibold uppercase tracking-[0.28em] text-amber-400/80">
           Professional Toolkit
         </p>
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">AI Prompt Toolkit</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">AI World Hub</h1>
         <p className="max-w-3xl text-base sm:text-lg text-slate-400">
           Ten precision tools for prompt engineering teams. Format, validate, extract, and optimize — all in the browser.
         </p>
