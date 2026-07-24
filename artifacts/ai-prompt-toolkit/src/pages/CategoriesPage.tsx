@@ -7,7 +7,7 @@ export default function CategoriesPage() {
   return (
     <section className="site-container section-lg">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
-        <p className="text-sm font-semibold uppercase tracking-widest text-cyan-400 mb-2">✦ Browse</p>
+        <p className="text-sm font-semibold uppercase tracking-widest text-amber-400 mb-2">✦ Browse</p>
         <h1 className="font-headline font-bold text-4xl sm:text-5xl text-white mb-4">
           Prompt Categories
         </h1>
@@ -23,13 +23,34 @@ export default function CategoriesPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.05 }}
-            className="card group cursor-pointer hover:border-slate-600"
+            whileHover={{ y: -4 }}
+            className="group relative rounded-[16px] border border-white/[0.06] bg-white/[0.02] p-5 transition-all duration-400 hover:border-white/[0.15] hover:bg-white/[0.04] hover:shadow-lg hover:shadow-amber-500/5"
           >
-            <div className="text-3xl mb-4">{cat.icon}</div>
-            <h3 className="font-headline font-bold text-lg text-white mb-2">{cat.name}</h3>
-            <p className="text-sm text-slate-400 mb-4">{cat.description}</p>
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-500">{cat.count} templates</span>
+            {/* Icon with color circle */}
+            <div
+              className="mb-4 flex h-12 w-12 items-center justify-center rounded-[12px] text-xl transition-transform duration-300 group-hover:scale-110 group-hover:shadow-lg"
+              style={{
+                background: `linear-gradient(135deg, ${cat.color}22, ${cat.color}11)`,
+                border: `1px solid ${cat.color}33`,
+              }}
+            >
+              <span>{cat.icon}</span>
+            </div>
+
+            {/* Category name */}
+            <h3 className="font-headline font-bold text-white text-lg mb-2">
+              {cat.name}
+            </h3>
+
+            {/* Description */}
+            <p className="text-sm text-slate-400 mb-4">
+              {cat.description}
+            </p>
+
+            {/* Template count */}
+            <div className="flex items-center gap-1.5 text-xs font-medium text-amber-400/80 group-hover:text-amber-300 transition-colors">
+              <span>{cat.count} templates</span>
+              <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
             </div>
           </motion.div>
         ))}
