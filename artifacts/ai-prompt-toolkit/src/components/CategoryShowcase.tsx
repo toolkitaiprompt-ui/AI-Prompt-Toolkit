@@ -13,7 +13,7 @@ export default function CategoryShowcase() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <p className="text-sm font-semibold uppercase tracking-widest text-cyan-400 mb-2">✦ Browse by Category</p>
+          <p className="text-sm font-semibold uppercase tracking-widest text-amber-400 mb-2">✦ Browse by Category</p>
           <h2 className="font-headline font-bold text-4xl text-white mb-4">
             Find What You Need
           </h2>
