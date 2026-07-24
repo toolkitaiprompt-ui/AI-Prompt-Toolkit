@@ -224,7 +224,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             </span>
           </Link>
           {/* Desktop nav inside glass */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-1.5">
             <NavLink to="/" end className={navLinkClass}>Home</NavLink>
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
             <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
@@ -260,7 +260,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
         </div>
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-white/10 bg-slate-950/95 px-4 py-4 space-y-1">
+          <div className="md:hidden border-t border-white/10 bg-slate-950/95 px-4 py-3 space-y-1.5">
             <NavLink to="/" end onClick={() => setMobileMenuOpen(false)}
               className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">Home</NavLink>
             <NavLink to="/tools" onClick={() => setMobileMenuOpen(false)}
@@ -385,7 +385,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             </div>
           </div>
 
-          <div className="mt-12 flex flex-col-reverse items-center justify-between gap-6 border-t border-white/10 pt-8 sm:flex-row">
+          <div className="mt-16 flex flex-col-reverse items-center justify-between gap-6 border-t border-white/10 pt-10 sm:flex-row">
             <p className="text-xs text-slate-500">© 2026 AI Prompt Toolkit. All rights reserved.</p>
             <p className="text-xs text-slate-600">Built for global AI teams.</p>
           </div>

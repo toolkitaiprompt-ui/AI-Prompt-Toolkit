@@ -128,10 +128,10 @@ export default function ToolCard({ tool }: ToolCardProps) {
         {/* Accent glow */}
         <div className={`absolute -right-12 top-6 h-32 w-32 rounded-full bg-gradient-to-br ${tool.accent} blur-3xl opacity-40 transition-all duration-500 group-hover:opacity-70 group-hover:scale-110`} />
 
-        <div className="relative z-10 space-y-4">
+        <div className="relative z-10 space-y-5">
           {/* Top Row: Icon + Badge */}
           <div className="flex items-start justify-between">
-            <div className="flex h-14 w-14 items-center justify-center rounded-[14px] bg-gradient-to-br from-slate-900 to-slate-950 border border-white/10 group-hover:border-amber-400/30 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-amber-500/20">
+            <div className="flex h-14 w-14 items-center justify-center rounded-[14px] mb-1 bg-gradient-to-br from-slate-900 to-slate-950 border border-white/10 group-hover:border-amber-400/30 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-amber-500/20">
               <Icon className="h-7 w-7 text-white group-hover:text-amber-300 transition-colors" aria-hidden="true" />
             </div>
             {getBadgeType() && <ToolBadge type={getBadgeType()!} />}
@@ -148,14 +148,14 @@ export default function ToolCard({ tool }: ToolCardProps) {
           </p>
 
           {/* Tool Preview */}
-          <div className="rounded-[14px] border border-white/5 bg-white/5 p-3.5 backdrop-blur-sm">
+          <div className="rounded-[14px] border border-white/5 bg-white/5 p-4 backdrop-blur-sm">
             {getPreviewComponent()}
           </div>
 
           {/* Bottom */}
           <div className="card-divider !my-0" />
 
-          <div className="flex items-center justify-between pt-1">
+          <div className="flex items-center justify-between pt-2">
             <div className="flex items-center gap-2">
               <span className="inline-flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-xs font-medium text-slate-500">

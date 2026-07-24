@@ -148,7 +148,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
         {/* Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
-        <div className="relative z-10 site-container py-24 lg:py-32">
+        <div className="relative z-10 site-container section-lg">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: Content */}
             <motion.div
@@ -168,7 +168,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               </motion.div>
 
               {/* Heading */}
-              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-16 leading-[1.35]">
+              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-10 leading-[1.35]">
                 Build{' '}
                 <span className="bg-gradient-to-r from-amber-400 via-rose-400 to-pink-400 bg-clip-text text-transparent">
                   Perfect
@@ -180,13 +180,13 @@ export default function HomePage({ toolPages }: HomePageProps) {
               </h1>
 
               {/* Description */}
-              <p className="text-lg sm:text-xl text-slate-300 mb-20 leading-[1.8]">
+              <p className="text-lg sm:text-xl text-slate-300 mb-10 leading-[1.8]">
                 10 professional tools to format, validate, optimize, and deploy AI prompts at scale.
                 No signup required. 100% in-browser. Enterprise-ready.
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-wrap gap-4 mb-24">
+              <div className="flex flex-wrap gap-4 mb-12">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     to="/tools"
@@ -342,7 +342,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-24 text-center"
+            className="mt-16 text-center"
           >
             <p className="text-sm text-slate-400 mb-8">Trusted by teams at</p>
             <div className="flex flex-wrap items-center justify-center gap-12 opacity-50">
@@ -358,7 +358,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
       </section>
 
       {/* Stats Section */}
-      <section className="py-24 bg-slate-900/50">
+      <section className="section-lg bg-slate-900/50 mt-16">
         <div className="site-container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
             {stats.map((stat, idx) => (
@@ -384,7 +384,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
       {/* Tools Showcase */}
       <section className="section-lg">
         <div className="site-container">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-20">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
               10 Professional Tools
               <br />
@@ -432,9 +432,9 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
 
       {/* Testimonials */}
-      <section className="section-lg bg-slate-900/50">
+      <section className="section-lg bg-slate-900/50 mt-16">
         <div className="site-container">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-20">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
               Loved by AI Professionals
               <br />
@@ -454,8 +454,8 @@ export default function HomePage({ toolPages }: HomePageProps) {
                 transition={{ duration: 0.5 }}
                 className="bg-slate-900/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
               >
-                <Quote className="w-12 h-12 text-amber-400 mb-8" />
-                <p className="text-xl text-slate-300 mb-8 leading-relaxed">
+                <Quote className="w-10 h-10 text-amber-400 mb-6" />
+                <p className="text-lg text-slate-300 mb-6 leading-relaxed">
                   "{testimonials[activeTestimonial].content}"
                 </p>
                 <div className="flex items-center gap-4">
@@ -492,9 +492,9 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
       {/* Blog Section */}
       {BLOG_POSTS.length > 0 && (
-        <section className="py-28">
+        <section className="section-lg">
           <div className="site-container">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-20">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
                 Latest from Our Blog
                 <br />
@@ -541,7 +541,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
       <CategoryShowcase />
 
       {/* FAQ Section */}
-      <section className="py-28 bg-slate-900/50">
+      <section className="section-lg bg-slate-900/50 mt-16">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
