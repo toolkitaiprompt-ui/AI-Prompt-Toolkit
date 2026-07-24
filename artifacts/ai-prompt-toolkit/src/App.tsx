@@ -14,6 +14,11 @@ import {
   Zap,
   ArrowLeftRight,
   UserCircle,
+  Sun,
+  Moon,
+  Search,
+  Menu,
+  X,
 } from "lucide-react";
 import { BrowserRouter, Link, NavLink, Route, Routes, useParams } from "react-router-dom";
 import {
@@ -199,12 +204,18 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `glass-nav-link ${isActive ? "active" : ""}`;
+  const mobileNavLinkClass = ({ isActive }: { isActive: boolean }) =>
+    `block px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
+      isActive
+        ? "bg-amber-500/10 text-amber-300 border border-amber-500/20"
+        : "text-slate-300 hover:bg-white/5 hover:text-white border border-transparent"
+    }`;
   return (
     <div className="min-h-screen bg-[#0a0a0f] text-[#e2e8f0] w-full">
-      <header className="sticky top-0 z-50 w-full py-3 md:py-4">
+      <header className="sticky top-0 z-50 w-full py-2 md:py-3">
         <div className="site-container">
           <div className="glass-nav">
-            <Link to="/" className="flex items-center gap-3 shrink-0">
+            <Link to="/" className="flex items-center gap-2.5 shrink-0">
             <svg className="h-7 w-7 sm:h-8 sm:w-8" viewBox="0 0 64 64" fill="none">
               <defs>
                 <linearGradient id="hdrGold" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -219,27 +230,27 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
               <line x1="32" y1="44" x2="46" y2="44" stroke="url(#hdrGold)" strokeWidth="3.5" strokeLinecap="round" />
               <path d="M46 24 L48 28 L52 30 L48 32 L46 36 L44 32 L40 30 L44 28 Z" fill="#FFD700" />
             </svg>
-            <span className="text-base font-bold tracking-tight text-white">
-              AI Prompt Toolkit
+            <span className="text-sm sm:text-base font-bold tracking-tight text-white">
+              AI World Hub
             </span>
           </Link>
           {/* Desktop nav inside glass */}
-          <nav className="hidden md:flex items-center gap-2">
+          <nav className="hidden md:flex items-center gap-1">
             <NavLink to="/" end className={navLinkClass}>Home</NavLink>
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
             <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
-            <NavLink to="/about" className={navLinkClass}>About</NavLink>
-            <NavLink to="/contact" className={navLinkClass}>Contact</NavLink>
             <NavLink to="/templates" className={navLinkClass}>Templates</NavLink>
             <NavLink to="/categories" className={navLinkClass}>Categories</NavLink>
             <NavLink to="/image-generator" className={navLinkClass}>AI Image</NavLink>
+            <NavLink to="/about" className={navLinkClass}>About</NavLink>
+            <NavLink to="/contact" className={navLinkClass}>Contact</NavLink>
           </nav>
-          <div className="flex items-center gap-2.5 md:gap-3">
-            <button type="button" onClick={() => setSearchOpen(true)} className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center hover:bg-white/5 transition text-slate-400 hover:text-white">
-              <svg className="w-4 h-4 md:w-[18px] md:h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <div className="flex items-center gap-1.5">
+            <button type="button" onClick={() => setSearchOpen(true)} className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center hover:bg-white/5 transition text-slate-400 hover:text-white" aria-label="Search">
+              <Search className="w-4 h-4" />
             </button>
-            <button type="button" onClick={onToggle} className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center hover:bg-white/5 transition text-sm text-slate-400 hover:text-white">
-              {mode === "dark" ? "☀️" : "🌙"}
+            <button type="button" onClick={onToggle} className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center hover:bg-white/5 transition text-slate-400 hover:text-amber-300" aria-label="Toggle theme">
+              {mode === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
           </div>
           {/* Mobile hamburger */}
@@ -248,39 +259,34 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             className="md:hidden flex items-center justify-center w-9 h-9 rounded-full hover:bg-white/5 transition-colors"
             aria-label="Menu"
           >
-            <svg className="w-6 h-6 text-slate-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {mobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+            {mobileMenuOpen ? (
+              <X className="w-5 h-5 text-slate-200" />
+            ) : (
+              <Menu className="w-5 h-5 text-slate-200" />
+            )}
           </button>
           </div>
         </div>
-        {/* Mobile menu */}
+        {/* Mobile menu - glass dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-white/10 bg-slate-950/95 px-4 py-3 space-y-1.5">
-            <NavLink to="/" end onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">Home</NavLink>
-            <NavLink to="/tools" onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">Tools</NavLink>
-            <NavLink to="/blog" onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">Blog</NavLink>
-            <NavLink to="/about" onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">About</NavLink>
-            <NavLink to="/contact" onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">Contact</NavLink>
-            <NavLink to="/templates" onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">Templates</NavLink>
-            <NavLink to="/categories" onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">Categories</NavLink>
-            <NavLink to="/image-generator" onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-3 rounded-lg text-sm text-slate-200 hover:bg-white/5">AI Image</NavLink>
-            <button onClick={() => { onToggle(); setMobileMenuOpen(false); }}
-              className="w-full mt-2 rounded-lg border border-slate-700 px-4 py-2.5 text-sm text-slate-200 text-center hover:bg-slate-800">
-              {mode === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode"}
-            </button>
+          <div className="md:hidden mx-4 mt-2 rounded-2xl border border-white/[0.08] bg-slate-900/90 backdrop-blur-xl px-3 py-3 shadow-xl">
+            <nav className="space-y-1">
+              <NavLink to="/" end onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Home</NavLink>
+              <NavLink to="/tools" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Tools</NavLink>
+              <NavLink to="/blog" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Blog</NavLink>
+              <NavLink to="/templates" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Templates</NavLink>
+              <NavLink to="/categories" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Categories</NavLink>
+              <NavLink to="/image-generator" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>AI Image</NavLink>
+              <NavLink to="/about" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>About</NavLink>
+              <NavLink to="/contact" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Contact</NavLink>
+            </nav>
+            <div className="border-t border-white/[0.06] mt-2 pt-2">
+              <button onClick={() => { onToggle(); setMobileMenuOpen(false); }}
+                className="w-full flex items-center justify-center gap-2 rounded-lg border border-white/[0.06] px-4 py-2.5 text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all">
+                {mode === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                {mode === "dark" ? "Light Mode" : "Dark Mode"}
+              </button>
+            </div>
           </div>
         )}
       </header>
