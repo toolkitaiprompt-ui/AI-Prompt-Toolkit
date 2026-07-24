@@ -34,6 +34,7 @@ import PromptComparison from "./components/PromptComparison";
 import ToolCard from "./components/ToolCard";
 import BlogCard from "./components/BlogCard";
 import TemplatesPage from "./pages/TemplatesPage";
+import SearchModal from "./components/SearchModal";
 import CategoriesPage from "./pages/CategoriesPage";
 import ImageGeneratorPage from "./pages/ImageGeneratorPage";
 
@@ -195,6 +196,7 @@ function ThemeToggle({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void
 
 function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${isActive ? "bg-white/10 text-amber-300" : "text-slate-400 hover:text-white hover:bg-white/5"}`;
   return (
@@ -230,7 +232,10 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             <NavLink to="/templates" className={navLinkClass}>Templates</NavLink>
             <NavLink to="/categories" className={navLinkClass}>Categories</NavLink>
             <NavLink to="/image-generator" className={navLinkClass}>AI Image</NavLink>
-            <div className="ml-8 lg:ml-10 pl-8 lg:pl-10 border-l border-white/10">
+            <button type="button" onClick={() => setSearchOpen(true)} className="px-2 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-200">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </button>
+            <div className="ml-3 lg:ml-4 pl-3 lg:pl-4 border-l border-white/10">
               <button type="button" onClick={onToggle} className="px-3 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-200">
                 {mode === "dark" ? "☀️" : "🌙"}
               </button>
@@ -277,6 +282,14 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           </div>
         )}
       </header>
+      
+      <SearchModal
+        isOpen={searchOpen}
+        onClose={() => setSearchOpen(false)}
+        tools={TOOL_PAGES}
+        blogPosts={BLOG_POSTS}
+        templates={[]}
+      />
 
       <main className="w-full">
         <Routes>
