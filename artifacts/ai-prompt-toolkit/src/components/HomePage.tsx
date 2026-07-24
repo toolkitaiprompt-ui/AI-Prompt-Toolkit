@@ -381,10 +381,14 @@ export default function HomePage({ toolPages }: HomePageProps) {
         </div>
       </section>
 
-      {/* Tools Showcase */}
+      {/* Tools Showcase — Featured AI Tools */}
       <section className="section-lg">
         <div className="site-container">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 mb-5">
+              <Sparkles className="w-4 h-4 text-amber-400" />
+              <span className="text-sm text-amber-300 font-medium">Featured Tools</span>
+            </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
               10 Professional Tools
               <br />
@@ -392,7 +396,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
                 For Perfect Prompts
               </span>
             </h2>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto mt-2">
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
               Everything you need to create, validate, optimize, and deploy AI prompts at scale.
             </p>
           </motion.div>
