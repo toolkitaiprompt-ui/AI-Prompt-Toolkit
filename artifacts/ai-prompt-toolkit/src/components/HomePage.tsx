@@ -125,20 +125,6 @@ export default function HomePage({ toolPages }: HomePageProps) {
   return (
     <div className="bg-slate-950">
 
-      {/* 🔴 DEPLOY TEST MARKER — big red sun. Remove after confirming deploy works. */}
-      <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[100] flex flex-col items-center pointer-events-none select-none">
-        <div
-          className="w-20 h-20 rounded-full"
-          style={{
-            background: 'radial-gradient(circle at 35% 35%, #ff7b7b, #e11d48 60%, #9f1239)',
-            boxShadow: '0 0 40px 10px rgba(225,29,72,0.7)',
-          }}
-        />
-        <span className="mt-1 text-[11px] font-bold text-rose-200 bg-slate-950/80 px-2 py-0.5 rounded">
-          DEPLOY TEST ✅
-        </span>
-      </div>
-
       {/* Hero Section */}
       <section className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background with real image */}
