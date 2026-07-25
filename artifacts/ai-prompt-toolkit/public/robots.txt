@@ -1,7 +1,10 @@
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
 User-agent: *
 Allow: /
 
 Sitemap: https://aiworldhub.site/sitemap.xml
-
-# Crawl-delay: 10
-# Disallow: /cdn-cgi/
