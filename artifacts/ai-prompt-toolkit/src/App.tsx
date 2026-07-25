@@ -1918,18 +1918,12 @@ function TermsPage() {
 }
 
 export default function App() {
-  const [themeMode, setThemeMode] = useState<ThemeMode>(() => {
-    const stored = localStorage.getItem("theme-mode");
-    if (stored === "dark" || stored === "light") return stored;
-    // Default to dark mode always
-    return "dark";
-  });
+  const [themeMode, setThemeMode] = useState<ThemeMode>("dark");
 
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.toggle("dark", themeMode === "dark");
-    localStorage.setItem("theme-mode", themeMode);
-  }, [themeMode]);
+    root.classList.add("dark");
+  }, []);
 
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL?.replace(/\/$/, "") || ""}>
