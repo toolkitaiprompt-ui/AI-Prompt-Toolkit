@@ -42,6 +42,7 @@ import TemplatesPage from "./pages/TemplatesPage";
 import SearchModal from "./components/SearchModal";
 import CategoriesPage from "./pages/CategoriesPage";
 import ImageGeneratorPage from "./pages/ImageGeneratorPage";
+import AdBanner from "./components/AdBanner";
 
 type ThemeMode = "light" | "dark";
 
@@ -182,6 +183,18 @@ function useSeo(title?: string, description?: string, keywords?: string) {
     ensurePropertyMeta("og:description").setAttribute("content", finalDesc);
     ensurePropertyMeta("og:type").setAttribute("content", "website");
     ensureLink("canonical").setAttribute("href", window.location.href);
+
+    // Hreflang injection for international SEO (#10)
+    const hreflangs = ["en", "en-US", "en-GB", "en-IN", "x-default"];
+    // Remove existing hreflang to avoid duplicates
+    document.querySelectorAll('link[rel="alternate"][hreflang]').forEach((el) => el.remove());
+    hreflangs.forEach((lang) => {
+      const link = document.createElement("link");
+      link.setAttribute("rel", "alternate");
+      link.setAttribute("hreflang", lang);
+      link.setAttribute("href", window.location.href.split('?')[0]);
+      document.head.appendChild(link);
+    });
   }, [finalTitle, finalDesc, finalKeywords]);
 }
 
@@ -434,9 +447,14 @@ function ToolsDirectoryPage() {
         {TOOL_PAGES.map((tool, index) => (
           <React.Fragment key={tool.path}>
             <ToolCard tool={tool} />
-            {(index === 2 || index === 5) && (
-              <div className="md:col-span-2 xl:col-span-3 flex justify-center py-4">
-
+            {index === 2 && (
+              <div className="md:col-span-2 xl:col-span-3">
+                <AdBanner format="horizontal" className="my-2" />
+              </div>
+            )}
+            {index === 5 && (
+              <div className="md:col-span-2 xl:col-span-3">
+                <AdBanner format="horizontal" className="my-2" />
               </div>
             )}
           </React.Fragment>
@@ -496,7 +514,8 @@ function ToolContainer({
         <div className="space-y-4">{children}</div>
       </div>
 
-
+      {/* AdSense slot — #9 fix, shows after tool, only if client ID present or preview */}
+      <AdBanner format="horizontal" />
 
       {relatedBlogs.length > 0 && (
         <section>
@@ -525,7 +544,7 @@ function ToolContainer({
 }
 
 function PromptVariableExtractorPage() {
-  const [input, setInput] = useState("Create a {{tone}} summary for {audience} in :language and include [region].");
+  const [input, setInput] = useState("You are a {{role}} expert in {{domain}}. Write a {{tone}} {{content_type}} for {{product_name}} targeting {audience} in :language. Focus on [key_benefit] and CTA for [region]. Max {{word_count}} words.");
   const variables = useMemo(() => extractPromptVariables(input), [input]);
   const tool = TOOL_BY_SLUG.get("prompt-variable-extractor")!;
 
@@ -655,7 +674,7 @@ function JsonValidatorPage() {
 }
 
 function PromptFormatterPage() {
-  const [input, setInput] = useState("role: expert analyst\nobjective: summarize quarterly risks\noutput: bullet summary");
+  const [input, setInput] = useState("you are expert analyst\n\nsummarize quarterly business risks for exec team\n-- need bullet points\n-- include impact High/Med/Low\n-- add mitigation steps\ntone professional\n\naudience = C-suite\nformat should be markdown table maybe?");
   const output = useMemo(() => formatPrompt(input), [input]);
   const tool = TOOL_BY_SLUG.get("prompt-formatter")!;
 
@@ -684,7 +703,7 @@ function PromptFormatterPage() {
 }
 
 function PromptCleanerPage() {
-  const [input, setInput] = useState("  Remove   extra   spaces\n\n\n and odd\tcharacters before sending.  ");
+  const [input, setInput] = useState("  Act  as   expert   \u200Bcopywriter\u200B!   \n\n\nWrite  a  product \t\t launch \n email for  {{product}} —  include  3 benefits…  \n\n  Keep  tone  exciting!!!  \u00A0\u00A0 ");
   const output = useMemo(() => cleanPrompt(input), [input]);
   const tool = TOOL_BY_SLUG.get("prompt-cleaner")!;
 
@@ -713,7 +732,7 @@ function PromptCleanerPage() {
 }
 
 function TokenEstimatorPage() {
-  const [input, setInput] = useState("Estimate prompt costs before production deployment.");
+  const [input, setInput] = useState("You are a senior product marketing manager.\nTask: Write a 500-word launch announcement for AI World Hub targeting developers and indie hackers.\nInclude 3 key benefits, 1 customer quote placeholder, and a CTA to https://aiworldhub.site/tools.\nTone: confident, friendly, no jargon.\nFormat: headline, subheadline, 3 bullet benefits, quote block, CTA.\nConstraint: keep under 500 words.");
   const stats = useMemo(() => estimateTokens(input), [input]);
   const tool = TOOL_BY_SLUG.get("token-estimator")!;
 
@@ -750,25 +769,105 @@ function TokenEstimatorPage() {
 }
 
 function BlogPage() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const categories = useMemo(() => {
+    const cats = new Set(BLOG_POSTS.map((p) => p.category));
+    return ["All", ...Array.from(cats).sort()];
+  }, []);
+
+  const filteredPosts = useMemo(() => {
+    return BLOG_POSTS.filter((post) => {
+      const matchesCategory = activeCategory === "All" || post.category === activeCategory;
+      const q = searchQuery.toLowerCase().trim();
+      if (!q) return matchesCategory;
+      const matchesSearch =
+        post.title.toLowerCase().includes(q) ||
+        post.excerpt.toLowerCase().includes(q) ||
+        post.category.toLowerCase().includes(q) ||
+        post.slug.toLowerCase().includes(q);
+      return matchesCategory && matchesSearch;
+    });
+  }, [searchQuery, activeCategory]);
+
   return (
     <SectionShell
       title="ChatGPT Prompts & Prompt Engineering Blog"
       description="Free ChatGPT prompts, prompt engineering guides, and AI tool reviews. Learn how to write better prompts, use AI tools effectively, and boost productivity with practical tutorials."
       keywords="ChatGPT Prompts, Prompt Engineering, Best AI Tools, Free AI Tools, AI Tools Directory"
     >
-      <div className="space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">Editorial</p>
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">Blog</h1>
-        <p className="max-w-3xl text-base text-slate-400">
-          Premium editorial insights on prompt systems, AI reliability engineering, and cost-efficient model deployment.
-        </p>
+      <div className="space-y-4">
+        <div className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">Editorial</p>
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">Blog</h1>
+          <p className="max-w-3xl text-base text-slate-400">
+            Premium editorial insights on prompt systems, AI reliability engineering, and cost-efficient model deployment. {BLOG_POSTS.length} guides and growing.
+          </p>
+        </div>
 
+        {/* Search + Filter — #13 fix */}
+        <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="relative max-w-md flex-1">
+            <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search guides — e.g. ChatGPT, JSON, token..."
+              className="w-full rounded-full border border-slate-700/70 bg-slate-900/70 py-2.5 pl-10 pr-4 text-sm text-slate-200 placeholder:text-slate-500 outline-none transition focus:border-amber-400/40 focus:ring-2 focus:ring-amber-400/10"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-slate-800 px-2 py-0.5 text-[11px] text-slate-400 hover:text-white"
+              >
+                Clear
+              </button>
+            )}
+          </div>
+          <p className="text-xs text-slate-500">
+            Showing <span className="font-semibold text-slate-300">{filteredPosts.length}</span> of {BLOG_POSTS.length} posts
+          </p>
+        </div>
+
+        <div className="flex flex-wrap gap-2">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition ${
+                activeCategory === cat
+                  ? "border-amber-400/40 bg-amber-500/10 text-amber-300"
+                  : "border-slate-700/60 bg-slate-900/40 text-slate-400 hover:border-slate-600 hover:text-slate-200"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
       </div>
-      <div className="mt-10 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
-        {BLOG_POSTS.map((post) => (
-          <BlogCard key={post.slug} post={post} />
-        ))}
-      </div>
+
+      {filteredPosts.length > 0 ? (
+        <div className="mt-10 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
+          {filteredPosts.map((post) => (
+            <BlogCard key={post.slug} post={post} />
+          ))}
+        </div>
+      ) : (
+        <div className="mt-16 rounded-[20px] border border-dashed border-slate-700/60 bg-slate-900/30 p-12 text-center">
+          <p className="text-lg font-semibold text-white">No guides found</p>
+          <p className="mt-2 text-sm text-slate-400">
+            No results for "<span className="text-slate-200">{searchQuery}</span>"{activeCategory !== "All" ? ` in ${activeCategory}` : ""}. Try a different keyword or category.
+          </p>
+          <button
+            onClick={() => { setSearchQuery(""); setActiveCategory("All"); }}
+            className="mt-5 rounded-full bg-amber-500 px-5 py-2 text-sm font-semibold text-black hover:bg-amber-400"
+          >
+            Reset filters
+          </button>
+        </div>
+      )}
     </SectionShell>
   );
 }
@@ -959,15 +1058,37 @@ function AboutPage() {
 }
 
 function ContactPage() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [formData, setFormData] = useState(() => {
+    try {
+      const saved = localStorage.getItem("contact_draft");
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return { name: "", email: "", message: "" };
+  });
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error" | "fallback">("idle");
+  const [fallbackMailto, setFallbackMailto] = useState("");
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("contact_draft", JSON.stringify(formData));
+    } catch {}
+  }, [formData]);
 
   const onChangeField = (field: "name" | "email" | "message", value: string) =>
-    setFormData((c) => ({ ...c, [field]: value }));
+    setFormData((c: any) => ({ ...c, [field]: value }));
+
+  const buildMailto = () => {
+    const subject = `Contact from ${formData.name || "AI World Hub Visitor"}`;
+    const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\n---\nSent from aiworldhub.site contact form (fallback)`;
+    return `mailto:toolkitaiprompt@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("sending");
+    setFallbackMailto("");
+
+    // Try web3forms primary
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -984,11 +1105,18 @@ function ContactPage() {
       if (data.success) {
         setStatus("success");
         setFormData({ name: "", email: "", message: "" });
-      } else {
-        setStatus("error");
+        try { localStorage.removeItem("contact_draft"); } catch {}
+        return;
       }
+      throw new Error("web3forms returned failure");
     } catch {
-      setStatus("error");
+      // Fallback: build mailto + copy to clipboard (#12 fix)
+      const mailto = buildMailto();
+      setFallbackMailto(mailto);
+      try {
+        await navigator.clipboard.writeText(`To: toolkitaiprompt@gmail.com\nFrom: ${formData.name} <${formData.email}>\n\n${formData.message}`);
+      } catch {}
+      setStatus("fallback");
     }
   };
 
@@ -1032,10 +1160,40 @@ function ContactPage() {
               {status === "sending" ? "Sending..." : "Send Message"} <SendHorizontal className="h-4 w-4" />
             </button>
             {status === "success" && (
-              <p className="text-sm text-emerald-400">✓ Thank you! Your message has been sent successfully. We'll get back to you soon.</p>
+              <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3">
+                <p className="text-sm text-emerald-400">✓ Thank you! Your message has been sent successfully. We'll get back to you soon.</p>
+              </div>
             )}
             {status === "error" && (
               <p className="text-sm text-red-400">✗ Something went wrong. Please try again or email us directly.</p>
+            )}
+            {status === "fallback" && (
+              <div className="space-y-3 rounded-xl border border-amber-500/20 bg-amber-500/10 p-4">
+                <p className="text-sm font-medium text-amber-300">⚠️ Web3Forms unreachable — fallback ready</p>
+                <p className="text-xs leading-5 text-slate-400">
+                  Your message is saved locally and copied to clipboard. Click below to send via your email app — no data lost even if third-party service is down (fixes #12).
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {fallbackMailto && (
+                    <a
+                      href={fallbackMailto}
+                      className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-4 py-2 text-xs font-semibold text-black hover:bg-amber-400"
+                    >
+                      📧 Open Mail App
+                    </a>
+                  )}
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      try { await navigator.clipboard.writeText(formData.message); alert("Message copied!"); } catch {}
+                    }}
+                    className="rounded-full border border-slate-600 px-4 py-2 text-xs text-slate-300 hover:bg-slate-800"
+                  >
+                    Copy Message
+                  </button>
+                </div>
+                <p className="text-[11px] text-slate-500">Direct email: <a href="mailto:toolkitaiprompt@gmail.com" className="text-amber-400 underline">toolkitaiprompt@gmail.com</a> • Draft auto-saved in browser</p>
+              </div>
             )}
           </div>
         </form>

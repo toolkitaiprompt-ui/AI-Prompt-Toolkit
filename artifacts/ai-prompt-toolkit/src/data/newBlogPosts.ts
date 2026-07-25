@@ -186,7 +186,7 @@ export const NEW_SEO_POSTS = [
           "Yes, all 100+ prompts in this guide are free to copy and use. They work with the free tier of ChatGPT, Claude, and Gemini. No subscription required.",
       },
     ],
-    relatedToolSlugs: ["prompt-formatter", "prompt-cleaner", "prompt-converter", "advanced-prompt-optimizer"],
+    relatedToolSlugs: ["prompt-formatter", "prompt-variable-extractor", "advanced-prompt-optimizer"],
   },
 
   {
@@ -259,7 +259,7 @@ export const NEW_SEO_POSTS = [
           "Yes. ChatGPT can write, debug, explain, and optimize code in most programming languages. It can also help you learn to code by explaining concepts step by step. For production code, always review and test the output before deploying.",
       },
     ],
-    relatedToolSlugs: ["prompt-formatter", "prompt-converter", "persona-builder", "advanced-prompt-optimizer"],
+    relatedToolSlugs: ["prompt-formatter", "prompt-converter", "persona-builder"],
   },
 
   {
@@ -339,7 +339,7 @@ export const NEW_SEO_POSTS = [
           "Some do, some do not. ChatGPT text output has no watermark. Leonardo AI images are watermark-free. Canva free tier adds a small watermark only on certain premium elements. PixNova AI and Remove.bg provide watermark-free output for basic use.",
       },
     ],
-    relatedToolSlugs: ["prompt-formatter", "token-estimator", "advanced-prompt-optimizer"],
+    relatedToolSlugs: ["prompt-formatter", "token-estimator", "persona-builder"],
   },
 
   {
@@ -419,7 +419,7 @@ export const NEW_SEO_POSTS = [
           "Prompt engineering roles in the US offer a median salary of $126,000 per year, with senior roles reaching $270,000. The market is growing at 33% annually as demand for AI skills increases across all industries.",
       },
     ],
-    relatedToolSlugs: ["prompt-formatter", "prompt-cleaner", "token-estimator", "json-schema-generator", "json-validator", "advanced-prompt-optimizer", "persona-builder"],
+    relatedToolSlugs: ["prompt-formatter", "advanced-prompt-optimizer", "persona-builder"],
   },
 
   {
@@ -499,6 +499,6 @@ export const NEW_SEO_POSTS = [
           "There are over 25,000 AI tools available in 2026, with new ones launching daily. This directory covers the 50 most useful and popular tools across all major categories, chosen based on user base, feature quality, and free tier availability.",
       },
     ],
-    relatedToolSlugs: ["prompt-formatter", "token-estimator", "advanced-prompt-optimizer", "persona-builder"],
+    relatedToolSlugs: ["prompt-formatter", "token-estimator", "persona-builder"],
   },
 ];

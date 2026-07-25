@@ -356,20 +356,44 @@ const routes = [
     desc: "Complete guide to Cursor AI — the AI-native code editor. Learn features, shortcuts, prompt techniques, and how Cursor compares to GitHub Copilot and VS Code." },
 ];
 
-// ─── HTML generation ────────────────────────────────────
+// ─── HTML generation with hreflang & SEO ────────────────────────────────────
 let count = 0;
 
 for (const route of routes) {
   const url = `${SITE}${route.path === "/" ? "" : route.path}`;
-  const html = TEMPLATE
+  const canonicalUrl = `${url}/`.replace(/\/\/$/, "/"); // ensure single trailing slash, avoid double
+
+  // Hreflang tags for international SEO (#10 fix)
+  const hreflangTags = [
+    `<link rel="alternate" hreflang="en" href="${canonicalUrl}" />`,
+    `<link rel="alternate" hreflang="en-US" href="${canonicalUrl}" />`,
+    `<link rel="alternate" hreflang="en-GB" href="${canonicalUrl}" />`,
+    `<link rel="alternate" hreflang="en-IN" href="${canonicalUrl}" />`,
+    `<link rel="alternate" hreflang="x-default" href="${canonicalUrl}" />`,
+  ].join("\n    ");
+
+  let html = TEMPLATE
     .replace(/<title>[^<]*<\/title>/, `<title>${route.title}</title>`)
     .replace(/<meta name="description" content="[^"]*"/, `<meta name="description" content="${route.desc}"`)
-    .replace(/<link rel="canonical" href="[^"]*"/, `<link rel="canonical" href="${url}/"`)
+    .replace(/<link rel="canonical" href="[^"]*"/, `<link rel="canonical" href="${canonicalUrl}"`)
     .replace(/<meta property="og:title" content="[^"]*"/, `<meta property="og:title" content="${route.title}"`)
     .replace(/<meta property="og:description" content="[^"]*"/, `<meta property="og:description" content="${route.desc}"`)
-    .replace(/<meta property="og:url" content="[^"]*"/, `<meta property="og:url" content="${url}/"`)
+    .replace(/<meta property="og:url" content="[^"]*"/, `<meta property="og:url" content="${canonicalUrl}"`)
     .replace(/<meta name="twitter:title" content="[^"]*"/, `<meta name="twitter:title" content="${route.title}"`)
     .replace(/<meta name="twitter:description" content="[^"]*"/, `<meta name="twitter:description" content="${route.desc}"`);
+
+  // Inject hreflang if not already present, otherwise replace existing block
+  if (html.includes('hreflang=')) {
+    // Remove old hreflang tags to avoid duplicates (clean injection)
+    html = html.replace(/<link rel="alternate" hreflang="[^"]*" href="[^"]*" \/>/g, "");
+  }
+  // Inject before </head> OR after canonical for safety — insert before sitemap link or before </head>
+  if (html.includes("</head>")) {
+    html = html.replace("</head>", `    ${hreflangTags}\n  </head>`);
+  } else {
+    // fallback
+    html = html.replace('<link rel="sitemap"', `${hreflangTags}\n    <link rel="sitemap"`);
+  }
 
   // Write to dist/public/{path}/index.html
   const outPath = route.path === "/" ? OUT_DIR : join(OUT_DIR, route.path);
@@ -378,6 +402,7 @@ for (const route of routes) {
   count++;
 }
 
-console.log(`✅ Prerendered ${count} pages with unique SEO tags.`);
+console.log(`✅ Prerendered ${count} pages with unique SEO tags + hreflang.`);
 console.log(`📋 Total routes: ${routes.length}`);
 console.log(`🎯 Target keywords: Best AI Tools, Free AI Tools, ChatGPT Prompts, AI Tools Directory, Prompt Engineering, How to Use ChatGPT`);
+console.log(`🌐 Hreflang: en, en-US, en-GB, en-IN, x-default added to all pages`);

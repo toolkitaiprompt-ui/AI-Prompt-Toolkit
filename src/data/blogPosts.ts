@@ -86,7 +86,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Use tools like Prompt Variable Extractor, Prompt Formatter, JSON Schema Generator, and Token Estimator to build and maintain prompt workflows.",
       },
     ],
-    relatedToolSlugs: ["prompt-variable-extractor", "prompt-formatter", "json-schema-generator"],
+    relatedToolSlugs: ["advanced-prompt-optimizer", "prompt-formatter", "persona-builder"],
   },
   {
     slug: "craft-high-impact-chatgpt-prompts",
@@ -153,7 +153,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Shorten the prompt where possible, remove unnecessary context, and estimate tokens before sending the prompt with a tool like Token Estimator.",
       },
     ],
-    relatedToolSlugs: ["prompt-formatter", "token-estimator", "prompt-variable-extractor"],
+    relatedToolSlugs: ["prompt-formatter", "advanced-prompt-optimizer", "prompt-cleaner"],
   },
   {
     slug: "build-ai-prompt-templates-that-scale",
@@ -220,7 +220,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Yes. Examples clarify the expected output format and help others understand how to use the template correctly.",
       },
     ],
-    relatedToolSlugs: ["prompt-variable-extractor", "prompt-formatter", "json-schema-generator"],
+    relatedToolSlugs: ["prompt-variable-extractor", "prompt-formatter", "persona-builder"],
   },
   {
     slug: "claude-prompt-best-practices",
@@ -287,7 +287,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Yes. Break the task into clear steps and include a role instruction and objective to guide Claude through the process.",
       },
     ],
-    relatedToolSlugs: ["json-schema-generator", "json-validator", "prompt-cleaner"],
+    relatedToolSlugs: ["prompt-converter", "persona-builder", "prompt-formatter"],
   },
   {
     slug: "midjourney-prompt-techniques",
@@ -354,7 +354,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Yes. Prompt tools can help clean, format, and organize your Midjourney prompt text before you submit it.",
       },
     ],
-    relatedToolSlugs: ["prompt-cleaner", "prompt-formatter", "prompt-variable-extractor"],
+    relatedToolSlugs: ["prompt-formatter", "advanced-prompt-optimizer", "persona-builder"],
   },
   {
     slug: "design-json-schema-for-ai-output",
@@ -421,7 +421,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "The JSON Schema Generator tool creates a schema from sample JSON output, making it easy to define the expected response structure.",
       },
     ],
-    relatedToolSlugs: ["json-schema-generator", "json-validator", "prompt-variable-extractor"],
+    relatedToolSlugs: ["json-schema-generator", "json-validator"],
   },
   {
     slug: "boost-ai-productivity-with-prompt-systems",
@@ -488,7 +488,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Yes. Estimating tokens helps manage cost and keeps automation workflows more predictable.",
       },
     ],
-    relatedToolSlugs: ["prompt-variable-extractor", "token-estimator", "prompt-formatter"],
+    relatedToolSlugs: ["prompt-variable-extractor", "token-estimator", "persona-builder"],
   },
   {
     slug: "optimize-prompts-for-better-ai-performance",
@@ -555,7 +555,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Not always. Shorter prompts should still provide enough context for the model to do the task correctly.",
       },
     ],
-    relatedToolSlugs: ["prompt-cleaner", "token-estimator", "prompt-formatter"],
+    relatedToolSlugs: ["advanced-prompt-optimizer", "token-estimator", "prompt-comparison"],
   },
   {
     slug: "automate-ai-tasks-with-prompt-workflows",
@@ -622,7 +622,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Prompt Variable Extractor, JSON Validator, JSON Schema Generator, and Token Estimator all help make automated prompt workflows more reliable.",
       },
     ],
-    relatedToolSlugs: ["prompt-variable-extractor", "json-validator", "json-schema-generator"],
+    relatedToolSlugs: ["prompt-variable-extractor", "token-estimator", "prompt-formatter"],
   },
   {
     slug: "orchestrate-llm-workflows-for-productive-teams",
@@ -689,7 +689,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Monitor output quality, validation failures, token usage, and whether prompts continue to meet business goals.",
       },
     ],
-    relatedToolSlugs: ["prompt-formatter", "json-schema-generator", "token-estimator"],
+    relatedToolSlugs: ["prompt-variable-extractor", "json-validator", "token-estimator"],
   },
   {
     slug: "prompt-audit-and-iteration-strategies",
@@ -756,7 +756,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Tools that validate output, estimate tokens, and clean prompts can help identify and fix prompt issues efficiently.",
       },
     ],
-    relatedToolSlugs: ["json-validator", "token-estimator", "prompt-cleaner"],
+    relatedToolSlugs: ["prompt-comparison", "advanced-prompt-optimizer", "token-estimator"],
   },
   {
     slug: "customer-support-prompt-templates",
@@ -823,7 +823,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Personalization is helpful, but keep it safe. Use variables for customer details and avoid exposing sensitive data.",
       },
     ],
-    relatedToolSlugs: ["prompt-variable-extractor", "prompt-cleaner", "json-validator"],
+    relatedToolSlugs: ["persona-builder", "prompt-variable-extractor", "prompt-formatter"],
   },
   {
     slug: "marketing-chatgpt-prompt-patterns",
@@ -890,7 +890,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Examples help the model understand the desired voice and structure, which improves output quality.",
       },
     ],
-    relatedToolSlugs: ["prompt-formatter", "prompt-cleaner", "token-estimator"],
+    relatedToolSlugs: ["prompt-formatter", "persona-builder", "prompt-converter"],
   },
   {
     slug: "enterprise-claude-prompt-engineering",
@@ -957,7 +957,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Yes. JSON schema helps ensure structured outputs and is especially useful in enterprise workflows that depend on reliable data.",
       },
     ],
-    relatedToolSlugs: ["json-schema-generator", "json-validator", "prompt-cleaner"],
+    relatedToolSlugs: ["prompt-converter", "persona-builder", "json-validator"],
   },
   {
     slug: "midjourney-prompts-for-creative-visuals",
@@ -1024,7 +1024,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Wording affects how the model interprets the scene, style, and mood. Precise, descriptive prompts tend to produce better images.",
       },
     ],
-    relatedToolSlugs: ["prompt-formatter", "prompt-cleaner", "prompt-variable-extractor"],
+    relatedToolSlugs: ["prompt-converter", "prompt-formatter", "advanced-prompt-optimizer"],
   },
   {
     slug: "validate-ai-outputs-with-json-schema",
@@ -1091,7 +1091,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "JSON schema is ideal for JSON output, but the same validation principles apply to any structured output format.",
       },
     ],
-    relatedToolSlugs: ["json-schema-generator", "json-validator", "prompt-formatter"],
+    relatedToolSlugs: ["json-validator", "json-schema-generator"],
   },
   {
     slug: "scale-ai-productivity-with-reusable-prompts",
@@ -1225,7 +1225,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Yes. Token estimation helps you compare prompt versions and choose the most efficient option.",
       },
     ],
-    relatedToolSlugs: ["token-estimator", "prompt-cleaner", "json-validator"],
+    relatedToolSlugs: ["token-estimator", "advanced-prompt-optimizer", "prompt-comparison"],
   },
   {
     slug: "business-automation-with-ai-prompts",
@@ -1292,7 +1292,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Yes. With the right templates and validation, business teams can safely automate many AI tasks.",
       },
     ],
-    relatedToolSlugs: ["prompt-formatter", "json-validator", "json-schema-generator"],
+    relatedToolSlugs: ["prompt-variable-extractor", "token-estimator", "persona-builder"],
   },
   {
     slug: "deploy-llm-workflows-for-team-collaboration",
@@ -1359,7 +1359,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Design modular prompt and validation blocks that can be combined for different tasks.",
       },
     ],
-    relatedToolSlugs: ["prompt-variable-extractor", "json-schema-generator", "prompt-formatter"],
+    relatedToolSlugs: ["prompt-variable-extractor", "json-validator", "token-estimator"],
   },
   {
     slug: "prompts-for-ai-reliability-and-governance",
@@ -1426,7 +1426,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Yes. Clear prompts and governance practices make AI behavior more predictable and trustworthy.",
       },
     ],
-    relatedToolSlugs: ["prompt-cleaner", "json-validator", "json-schema-generator"],
+    relatedToolSlugs: ["json-validator", "json-schema-generator", "prompt-comparison"],
   },
   {
     slug: "trusted-prompt-templates-for-team-use",
@@ -1493,7 +1493,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "A review should check clarity, accuracy, validation, and whether the template works for the intended use case.",
       },
     ],
-    relatedToolSlugs: ["prompt-formatter", "prompt-variable-extractor", "token-estimator"],
+    relatedToolSlugs: ["prompt-variable-extractor", "prompt-formatter", "persona-builder"],
   },
   {
     slug: "ai-workflow-automation-for-operations",
@@ -1560,7 +1560,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Yes. Monitor performance and user feedback to keep the automation reliable.",
       },
     ],
-    relatedToolSlugs: ["prompt-formatter", "json-validator", "token-estimator"],
+    relatedToolSlugs: ["prompt-variable-extractor", "token-estimator", "json-validator"],
   },
   {
     slug: "llm-workflow-best-practices-for-innovation",
@@ -1627,7 +1627,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Documentation preserves learnings and allows other teams to reuse successful prompt patterns.",
       },
     ],
-    relatedToolSlugs: ["prompt-variable-extractor", "prompt-formatter", "json-validator"],
+    relatedToolSlugs: ["advanced-prompt-optimizer", "prompt-formatter", "token-estimator"],
   },
   {
     slug: "ai-prompt-template-governance-for-growth",
@@ -1694,7 +1694,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "It should include templates, examples, allowed variables, and usage instructions.",
       },
     ],
-    relatedToolSlugs: ["prompt-formatter", "prompt-variable-extractor", "token-estimator"],
+    relatedToolSlugs: ["prompt-variable-extractor", "prompt-formatter", "json-schema-generator"],
   },
 ];
 
