@@ -270,6 +270,10 @@ function useSeo(title?: string, description?: string, keywords?: string) {
     ensurePropertyMeta("og:title").setAttribute("content", finalTitle);
     ensurePropertyMeta("og:description").setAttribute("content", finalDesc);
     ensurePropertyMeta("og:type").setAttribute("content", "website");
+    ensurePropertyMeta("og:image").setAttribute("content", "https://aiworldhub.site/images/hero-ai.jpg");
+    ensurePropertyMeta("og:image:width").setAttribute("content", "1200");
+    ensurePropertyMeta("og:image:height").setAttribute("content", "630");
+    ensureMeta("twitter:image").setAttribute("content", "https://aiworldhub.site/images/hero-ai.jpg");
     ensureLink("canonical").setAttribute("href", window.location.href);
 
     // Hreflang injection for international SEO (#10)

@@ -1,9 +1,30 @@
+# Allow good crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Block bad crawlers (scrapers + AI training without permission)
 User-agent: CCBot
 Disallow: /
 
 User-agent: Bytespider
 Disallow: /
 
+# Default: allow everything else
 User-agent: *
 Allow: /
 
