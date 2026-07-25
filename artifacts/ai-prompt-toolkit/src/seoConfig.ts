@@ -17,7 +17,7 @@ export type SeoData = {
 const DEFAULT_SEO: SeoData = {
   title: "AI World Hub — Best Free AI Tools for Everyone",
   description:
-    "Best free AI tools for everyone — 9 prompt engineering tools for formatting, validating, extracting, and optimizing prompts. No sign-up, 100% in-browser.",
+    "Best free AI tools for everyone — 10 prompt engineering tools for formatting, validating, extracting, and optimizing prompts. No sign-up, 100% in-browser.",
   keywords:
     "Best AI Tools, Free AI Tools, ChatGPT Prompts, Prompt Engineering, AI Tools Directory, How to Use ChatGPT",
 };
@@ -27,14 +27,14 @@ const SEO_MAP: Record<string, SeoData> = {
   "/": {
     title: "AI World Hub — Best Free AI Tools for Everyone",
     description:
-      "Best free AI tools for everyone — 9 prompt engineering tools for formatting, validating, extracting, and optimizing prompts. JSON schema, token estimator, persona builder & more.",
+      "Best free AI tools for everyone — 10 prompt engineering tools for formatting, validating, extracting, and optimizing prompts. JSON schema, token estimator, persona builder & more.",
     keywords:
       "Best AI Tools, Free AI Tools, ChatGPT Prompts, Prompt Engineering, AI Tools Directory, How to Use ChatGPT",
   },
 
   // ── Tools Directory ──
   "/tools": {
-    title: "Free AI Tools Directory — 9 Best Tools | AI World Hub",
+    title: "Free AI Tools Directory — 10 Best Tools | AI World Hub",
     description:
       "Browse the best free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder & optimizer.",
     keywords:
@@ -54,7 +54,7 @@ const SEO_MAP: Record<string, SeoData> = {
   "/about": {
     title: "About — Best Free AI Prompt Engineering Tools | AI World Hub",
     description:
-      "AI World Hub offers the best free AI prompt engineering tools for everyone — students, developers, marketers, and teams. 9 in-browser tools, no sign-up, no data collection.",
+      "AI World Hub offers the best free AI prompt engineering tools for everyone — students, developers, marketers, and teams. 10 in-browser tools, no sign-up, no data collection.",
     keywords: "About AI World Hub, Best AI Tools, Free AI Tools, Prompt Engineering",
   },
 

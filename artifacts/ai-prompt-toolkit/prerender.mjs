@@ -33,10 +33,10 @@ const routes = [
 
   // ── HOMEPAGE — Targets: "Best AI Tools", "Free AI Tools", "Prompt Engineering" ──
   { path: "/", title: "AI World Hub — Best Free AI Tools for Everyone",
-    desc: "Best free AI tools for everyone — 9 prompt engineering tools for formatting, validating, extracting, and optimizing prompts. JSON schema, token estimator, persona builder & more. No sign-up, 100% in-browser." },
+    desc: "Best free AI tools for everyone — 10 prompt engineering tools for formatting, validating, extracting, and optimizing prompts. JSON schema, token estimator, persona builder & more. No sign-up, 100% in-browser." },
 
   // ── TOOLS DIRECTORY — Targets: "AI Tools Directory", "Free AI Tools" ──
-  { path: "/tools", title: "Free AI Tools Directory — 9 Best Tools | AI World Hub",
+  { path: "/tools", title: "Free AI Tools Directory — 10 Best Tools | AI World Hub",
     desc: "Browse the best free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder & optimizer." },
 
   // ── BLOG — Targets: "ChatGPT Prompts", "Prompt Engineering", "AI Tools" ──
@@ -45,7 +45,7 @@ const routes = [
 
   // ── ABOUT — Targets: "Free AI Tools", "AI Prompt Engineering" ──
   { path: "/about", title: "About — Best Free AI Prompt Engineering Tools | AI World Hub",
-    desc: "AI World Hub offers the best free AI prompt engineering tools for everyone — students, developers, marketers, and teams. 9 in-browser tools, no sign-up, no data collection." },
+    desc: "AI World Hub offers the best free AI prompt engineering tools for everyone — students, developers, marketers, and teams. 10 in-browser tools, no sign-up, no data collection." },
 
   // ── CONTACT ──
   { path: "/contact", title: "Contact — Free AI Prompt Tools Support | AI World Hub",
