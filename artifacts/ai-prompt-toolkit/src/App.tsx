@@ -41,6 +41,7 @@ import HomePage from "./components/HomePage";
 import PromptOptimizer from "./components/PromptOptimizer";
 import MegaPromptBuilder from "./components/MegaPromptBuilder";
 import PromptDebugger from "./components/PromptDebugger";
+import SecurityScanner from "./components/tools/SecurityScanner";
 import PromptConverter from "./components/PromptConverter";
 import PersonaBuilder from "./components/PersonaBuilder";
 import PromptComparison from "./components/PromptComparison";
@@ -153,6 +154,14 @@ const TOOL_PAGES: ToolMeta[] = [
     icon: Zap,
     accent: "from-rose-500/30 to-amber-400/10",
     keyBenefits: ["Prompt Health Score (0-100)", "8+ issue detectors", "Auto-fix suggestions"],
+  },
+  {
+    title: "Security Scanner",
+    path: "/tools/security-scanner",
+    description: "Scan your prompts for injection attacks, jailbreak attempts, data leak risks, PII exposure, and unsafe content — all in your browser.",
+    icon: Shield,
+    accent: "from-rose-500/30 to-amber-400/10",
+    keyBenefits: ["Prompt injection detection", "Jailbreak pattern scanner", "PII & data leak protection"],
   },
   {
     title: "Prompt Comparison Tool",
@@ -362,6 +371,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/tools/prompt-comparison" element={<ToolContainer title="Prompt Comparison Tool" toolSlug="prompt-comparison" description="Compare two prompts side by side. See token count, word count, readability, structure score, clarity score, and visual diff highlighting." tool={TOOL_BY_SLUG.get("prompt-comparison")!}><PromptComparison /></ToolContainer>} />
           <Route path="/tools/mega-prompt-builder" element={<ToolContainer title="Mega Prompt Builder" toolSlug="mega-prompt-builder" description="Build perfect prompts step-by-step with a guided wizard — choose role, task, context, audience, format, tone, constraints, and examples." tool={TOOL_BY_SLUG.get("mega-prompt-builder")!}><MegaPromptBuilder /></ToolContainer>} />
           <Route path="/tools/prompt-debugger" element={<ToolContainer title="Prompt Debugger" toolSlug="prompt-debugger" description="Analyze any prompt for issues — vague words, missing role/format, token warnings, conflicting instructions, and more. Get a health score and auto-fix suggestions." tool={TOOL_BY_SLUG.get("prompt-debugger")!}><PromptDebugger /></ToolContainer>} />
+          <Route path="/tools/security-scanner" element={<ToolContainer title="Security Scanner" toolSlug="security-scanner" description="Scan your prompts for injection attacks, jailbreak attempts, data leak risks, PII exposure, and unsafe content — all in your browser." tool={TOOL_BY_SLUG.get("security-scanner")!}><SecurityScanner /></ToolContainer>} />
           <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
