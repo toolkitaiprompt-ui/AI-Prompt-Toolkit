@@ -46,6 +46,7 @@ import PromptDebugger from "./components/PromptDebugger";
 import SecurityScanner from "./components/tools/SecurityScanner";
 import PromptChainBuilder from "./components/tools/PromptChainBuilder";
 import PromptTranslator from "./components/tools/PromptTranslator";
+import ApiRequestBuilder from "./components/tools/ApiRequestBuilder";
 import PromptConverter from "./components/PromptConverter";
 import PersonaBuilder from "./components/PersonaBuilder";
 import PromptComparison from "./components/PromptComparison";
@@ -190,6 +191,14 @@ const TOOL_PAGES: ToolMeta[] = [
     icon: Globe,
     accent: "from-blue-500/30 to-cyan-400/10",
     keyBenefits: ["8 languages", "Preserves [variables]", "Free & private"],
+  },
+  {
+    title: "API Request Builder",
+    path: "/tools/api-request-builder",
+    description: "Build ready-to-use API request bodies for OpenAI, Anthropic & Gemini. Includes cURL commands, temperature & token control.",
+    icon: Terminal,
+    accent: "from-violet-500/30 to-indigo-400/10",
+    keyBenefits: ["OpenAI / Anthropic / Gemini formats", "cURL command", "Temperature & token control"],
   },
 ];
 
@@ -394,6 +403,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/tools/security-scanner" element={<ToolContainer title="Security Scanner" toolSlug="security-scanner" description="Scan your prompts for injection attacks, jailbreak attempts, data leak risks, PII exposure, and unsafe content — all in your browser." tool={TOOL_BY_SLUG.get("security-scanner")!}><SecurityScanner /></ToolContainer>} />
           <Route path="/tools/prompt-chain-builder" element={<ToolContainer title="Prompt Chain Builder" toolSlug="prompt-chain-builder" description="Build multi-step AI prompt chains — add up to 5 sequential steps, each with its own prompt and output format. Export as Markdown." tool={TOOL_BY_SLUG.get("prompt-chain-builder")!}><PromptChainBuilder /></ToolContainer>} />
           <Route path="/tools/prompt-translator" element={<ToolContainer title="Prompt Translator" toolSlug="prompt-translator" description="Translate English prompts to 8 languages — Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, Arabic. Preserves variables and prompt structure." tool={TOOL_BY_SLUG.get("prompt-translator")!}><PromptTranslator /></ToolContainer>} />
+          <Route path="/tools/api-request-builder" element={<ToolContainer title="API Request Builder" toolSlug="api-request-builder" description="Build ready-to-use API request bodies for OpenAI, Anthropic & Gemini. Includes cURL commands, temperature & token control." tool={TOOL_BY_SLUG.get("api-request-builder")!}><ApiRequestBuilder /></ToolContainer>} />
           <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
