@@ -36,6 +36,7 @@ import { getSeoForPath } from "./seoConfig";
 import HomePage from "./components/HomePage";
 import PromptOptimizer from "./components/PromptOptimizer";
 import MegaPromptBuilder from "./components/MegaPromptBuilder";
+import PromptDebugger from "./components/PromptDebugger";
 import PromptConverter from "./components/PromptConverter";
 import PersonaBuilder from "./components/PersonaBuilder";
 import PromptComparison from "./components/PromptComparison";
@@ -140,6 +141,14 @@ const TOOL_PAGES: ToolMeta[] = [
     icon: Wand2,
     accent: "from-amber-500/30 to-rose-400/10",
     keyBenefits: ["8-step guided wizard", "Copy-ready prompts", "Multiple formats & tones"],
+  },
+  {
+    title: "Prompt Debugger",
+    path: "/tools/prompt-debugger",
+    description: "Paste any prompt to get a health score, detect vague words, missing role/format/constraints, ambiguous pronouns, conflicting instructions, and token length warnings.",
+    icon: Zap,
+    accent: "from-rose-500/30 to-amber-400/10",
+    keyBenefits: ["Prompt Health Score (0-100)", "8+ issue detectors", "Auto-fix suggestions"],
   },
   {
     title: "Prompt Comparison Tool",
@@ -348,6 +357,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/tools/persona-builder" element={<ToolContainer title="AI Persona Builder" toolSlug="persona-builder" description="Generate expert system prompts for different roles like Marketer, Developer, or Analyst." tool={TOOL_BY_SLUG.get("persona-builder")!}><PersonaBuilder /></ToolContainer>} />
           <Route path="/tools/prompt-comparison" element={<ToolContainer title="Prompt Comparison Tool" toolSlug="prompt-comparison" description="Compare two prompts side by side. See token count, word count, readability, structure score, clarity score, and visual diff highlighting." tool={TOOL_BY_SLUG.get("prompt-comparison")!}><PromptComparison /></ToolContainer>} />
           <Route path="/tools/mega-prompt-builder" element={<ToolContainer title="Mega Prompt Builder" toolSlug="mega-prompt-builder" description="Build perfect prompts step-by-step with a guided wizard — choose role, task, context, audience, format, tone, constraints, and examples." tool={TOOL_BY_SLUG.get("mega-prompt-builder")!}><MegaPromptBuilder /></ToolContainer>} />
+          <Route path="/tools/prompt-debugger" element={<ToolContainer title="Prompt Debugger" toolSlug="prompt-debugger" description="Analyze any prompt for issues — vague words, missing role/format, token warnings, conflicting instructions, and more. Get a health score and auto-fix suggestions." tool={TOOL_BY_SLUG.get("prompt-debugger")!}><PromptDebugger /></ToolContainer>} />
           <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
