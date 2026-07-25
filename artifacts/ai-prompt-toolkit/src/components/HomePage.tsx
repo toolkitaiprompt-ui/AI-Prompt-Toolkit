@@ -153,8 +153,8 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
               {/* Description */}
               <p className="text-lg sm:text-xl text-slate-300 mb-8 leading-relaxed">
-                10 professional tools to format, validate, optimize, and deploy AI prompts at scale.
-                No signup required. 100% in-browser. Enterprise-ready.
+                10 free AI tools to format, validate, and optimize your prompts.
+                No signup required. 100% in-browser. Free forever.
               </p>
 
               {/* CTAs */}
@@ -363,7 +363,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               <span className="text-sm text-amber-300 font-medium">Featured Tools</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-              10 Professional Tools
+              10 Free AI Tools
               <br />
               <span className="bg-gradient-to-r from-amber-400 to-rose-400 bg-clip-text text-transparent">
                 For Perfect Prompts
