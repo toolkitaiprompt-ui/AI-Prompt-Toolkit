@@ -62,19 +62,27 @@ export default function HomePage({ toolPages }: HomePageProps) {
   const faqs = [
     {
       question: 'Is AI World Hub really free?',
-      answer: 'Yes! All 10 tools are completely free with no signup required. We offer optional Pro features for power users, but the core toolkit is 100% free forever.',
+      answer: 'Yes. All 10 tools are completely free — no sign-up, no credit card, no usage limits. There are no hidden charges or paid tiers. Every feature across every tool is accessible without paying anything.',
+    },
+    {
+      question: 'Do you collect my prompts or data?',
+      answer: 'No. Every tool runs 100% inside your browser using JavaScript. Your prompts, text, and JSON data never leave your device — they are never sent to our servers, never stored, never logged, and never shared with third parties. You can verify this yourself by disconnecting your Wi-Fi: all tools will continue working.',
     },
     {
       question: 'How does in-browser processing work?',
-      answer: 'All processing happens directly in your browser using JavaScript. Your prompts never leave your device, ensuring complete privacy and security.',
+      answer: 'All tool logic runs locally in your browser — no server calls are made. When you paste text or JSON, it is processed by JavaScript code loaded once when you first visit the page. This means zero latency, zero data transfer, and complete privacy. You can even save the page and use it offline.',
     },
     {
-      question: 'Can I use this for commercial projects?',
-      answer: 'Absolutely! You can use AI World Hub for any purpose - personal, commercial, or client work. No restrictions on usage.',
+      question: 'Can I use AI World Hub for commercial projects?',
+      answer: 'Yes, absolutely. You can use AI World Hub for any purpose — personal projects, client work, commercial products, enterprise deployments, or internal team workflows. There are no restrictions on usage or output.',
     },
     {
       question: 'Which AI models are supported?',
-      answer: 'Our tools work with all major AI models including ChatGPT (GPT-4), Claude, Gemini, Llama, and more. The tools are model-agnostic.',
+      answer: 'Our tools work with any AI model — ChatGPT, Claude, Gemini, Llama, Midjourney, Stable Diffusion, Grok, Copilot, Mistral, and all others. The tools are model-agnostic: they format, validate, and optimize the prompt text itself, not the model output.',
+    },
+    {
+      question: 'What kind of analytics or cookies do you use?',
+      answer: 'We use Google Analytics (anonymized) to understand which pages are visited most, and Cloudflare Web Analytics (privacy-friendly, no cookies) for basic traffic data. No personal data is collected. No cookies are used for tracking. You can use an ad-blocker or browser privacy settings to block analytics entirely — the tools will still work perfectly.',
     },
   ];
 
@@ -542,7 +550,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               </span>
             </h2>
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Use 10 free, private, in-browser tools to create, optimize, and deploy prompts that deliver results.
+              No sign-up. No data collection. No limits. Just 10 free tools that make your AI prompts better — right in your browser.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
