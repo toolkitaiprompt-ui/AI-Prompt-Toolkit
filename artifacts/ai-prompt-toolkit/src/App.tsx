@@ -9,6 +9,7 @@ import {
   Sigma,
   Sparkles,
   WandSparkles,
+  Globe,
   type LucideIcon,
   CheckCircle2,
   Zap,
@@ -44,6 +45,7 @@ import MegaPromptBuilder from "./components/MegaPromptBuilder";
 import PromptDebugger from "./components/PromptDebugger";
 import SecurityScanner from "./components/tools/SecurityScanner";
 import PromptChainBuilder from "./components/tools/PromptChainBuilder";
+import PromptTranslator from "./components/tools/PromptTranslator";
 import PromptConverter from "./components/PromptConverter";
 import PersonaBuilder from "./components/PersonaBuilder";
 import PromptComparison from "./components/PromptComparison";
@@ -180,6 +182,14 @@ const TOOL_PAGES: ToolMeta[] = [
     icon: List,
     accent: "from-emerald-500/30 to-cyan-400/10",
     keyBenefits: ["Up to 5 steps", "Markdown export", "Sequential workflow"],
+  },
+  {
+    title: "Prompt Translator",
+    path: "/tools/prompt-translator",
+    description: "Translate English prompts to 8 languages — Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, Arabic. Preserves [variables] and prompt structure.",
+    icon: Globe,
+    accent: "from-blue-500/30 to-cyan-400/10",
+    keyBenefits: ["8 languages", "Preserves [variables]", "Free & private"],
   },
 ];
 
@@ -383,6 +393,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/tools/prompt-debugger" element={<ToolContainer title="Prompt Debugger" toolSlug="prompt-debugger" description="Analyze any prompt for issues — vague words, missing role/format, token warnings, conflicting instructions, and more. Get a health score and auto-fix suggestions." tool={TOOL_BY_SLUG.get("prompt-debugger")!}><PromptDebugger /></ToolContainer>} />
           <Route path="/tools/security-scanner" element={<ToolContainer title="Security Scanner" toolSlug="security-scanner" description="Scan your prompts for injection attacks, jailbreak attempts, data leak risks, PII exposure, and unsafe content — all in your browser." tool={TOOL_BY_SLUG.get("security-scanner")!}><SecurityScanner /></ToolContainer>} />
           <Route path="/tools/prompt-chain-builder" element={<ToolContainer title="Prompt Chain Builder" toolSlug="prompt-chain-builder" description="Build multi-step AI prompt chains — add up to 5 sequential steps, each with its own prompt and output format. Export as Markdown." tool={TOOL_BY_SLUG.get("prompt-chain-builder")!}><PromptChainBuilder /></ToolContainer>} />
+          <Route path="/tools/prompt-translator" element={<ToolContainer title="Prompt Translator" toolSlug="prompt-translator" description="Translate English prompts to 8 languages — Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, Arabic. Preserves variables and prompt structure." tool={TOOL_BY_SLUG.get("prompt-translator")!}><PromptTranslator /></ToolContainer>} />
           <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
