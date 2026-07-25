@@ -20,6 +20,7 @@ import { BLOG_POSTS } from '../data/blogPosts';
 import BlogCard from './BlogCard';
 import ToolCard from './ToolCard';
 import CategoryShowcase from './CategoryShowcase';
+import SocialProof from './homepage/SocialProof';
 import { FAQPageSchema, BreadcrumbSchema } from './SEO/SchemaMarkup';
 
 interface ToolMeta {
@@ -362,6 +363,9 @@ export default function HomePage({ toolPages }: HomePageProps) {
           </div>
         </div>
       </section>
+
+      {/* Social Proof Section */}
+      <SocialProof />
 
       {/* Tools Showcase — Featured AI Tools */}
       <section className="section-lg mt-16">
