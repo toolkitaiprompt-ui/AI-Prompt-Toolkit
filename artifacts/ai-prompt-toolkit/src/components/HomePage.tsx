@@ -141,20 +141,20 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
               {/* Heading */}
               <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-[1.15]">
-                Build{' '}
+                Get Better{' '}
                 <span className="bg-gradient-to-r from-amber-400 via-rose-400 to-pink-400 bg-clip-text text-transparent">
-                  Perfect
+                  AI Results
                 </span>
                 <br />
-                AI Prompts
+                with Better Prompts
                 <br />
                 <span className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl text-slate-400">in Seconds</span>
               </h1>
 
               {/* Description */}
               <p className="text-lg sm:text-xl text-slate-300 mb-8 leading-relaxed">
-                10 free AI tools to format, validate, and optimize your prompts.
-                No signup required. 100% in-browser. Free forever.
+                10 free tools to fix, format, and optimize your AI prompts.
+                No signup. 100% in-browser. Free forever.
               </p>
 
               {/* CTAs */}
@@ -185,11 +185,11 @@ export default function HomePage({ toolPages }: HomePageProps) {
                 </div>
                 <div className="flex items-center gap-2">
                   <Shield className="w-5 h-5 text-cyan-400" />
-                  <span className="text-sm text-slate-300">Prompts never leave your device</span>
+                  <span className="text-sm text-slate-300">100% private, in-browser</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Zap className="w-5 h-5 text-amber-400" />
-                  <span className="text-sm text-slate-300">Instant results, no account</span>
+                  <span className="text-sm text-slate-300">No account needed</span>
                 </div>
               </div>
             </motion.div>

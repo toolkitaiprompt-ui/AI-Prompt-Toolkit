@@ -439,7 +439,7 @@ function ToolsDirectoryPage() {
         </p>
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">AI World Hub</h1>
         <p className="max-w-3xl text-base sm:text-lg text-slate-400">
-          Ten free AI tools to format, validate, and optimize your prompts — all in your browser, no sign-up needed.
+          Ten free tools to fix, format, and optimize your AI prompts. No signup. 100% in-browser. Free forever.
         </p>
       </div>
 
