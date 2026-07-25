@@ -15,7 +15,7 @@ export type SeoData = {
 };
 
 const DEFAULT_SEO: SeoData = {
-  title: "Best Free AI Tools for Everyone | AI Prompt Engineering",
+  title: "AI World Hub — Best Free AI Tools for Everyone",
   description:
     "Best free AI tools for everyone — 9 prompt engineering tools for formatting, validating, extracting, and optimizing prompts. No sign-up, 100% in-browser.",
   keywords:
@@ -25,7 +25,7 @@ const DEFAULT_SEO: SeoData = {
 const SEO_MAP: Record<string, SeoData> = {
   // ── Homepage ──
   "/": {
-    title: "Best Free AI Tools for Everyone | AI Prompt Engineering",
+    title: "AI World Hub — Best Free AI Tools for Everyone",
     description:
       "Best free AI tools for everyone — 9 prompt engineering tools for formatting, validating, extracting, and optimizing prompts. JSON schema, token estimator, persona builder & more.",
     keywords:
