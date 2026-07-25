@@ -19,6 +19,8 @@ import {
   Search,
   Menu,
   X,
+  TrendingUp,
+  DollarSign,
 } from "lucide-react";
 import { BrowserRouter, Link, NavLink, Route, Routes, useParams } from "react-router-dom";
 import {
@@ -734,36 +736,156 @@ function PromptCleanerPage() {
 
 function TokenEstimatorPage() {
   const [input, setInput] = useState("You are a senior product marketing manager.\nTask: Write a 500-word launch announcement for AI World Hub targeting developers and indie hackers.\nInclude 3 key benefits, 1 customer quote placeholder, and a CTA to https://aiworldhub.site/tools.\nTone: confident, friendly, no jargon.\nFormat: headline, subheadline, 3 bullet benefits, quote block, CTA.\nConstraint: keep under 500 words.");
+  const [callsPerDay, setCallsPerDay] = useState(100);
   const stats = useMemo(() => estimateTokens(input), [input]);
   const tool = TOOL_BY_SLUG.get("token-estimator")!;
 
+  const modelColors: Record<string, string> = {
+    "GPT-4o": "text-emerald-300",
+    "Claude 3.5 Sonnet": "text-violet-300",
+    "Gemini 1.5 Pro": "text-blue-300",
+    "DeepSeek V3": "text-rose-300",
+    "Llama 3 (Together)": "text-cyan-300",
+  };
+  const modelBgColors: Record<string, string> = {
+    "GPT-4o": "bg-emerald-500/10 border-emerald-400/20",
+    "Claude 3.5 Sonnet": "bg-violet-500/10 border-violet-400/20",
+    "Gemini 1.5 Pro": "bg-blue-500/10 border-blue-400/20",
+    "DeepSeek V3": "bg-rose-500/10 border-rose-400/20",
+    "Llama 3 (Together)": "bg-cyan-500/10 border-cyan-400/20",
+  };
+
   return (
     <ToolContainer
-      title="Token Estimator"
+      title="Token Estimator & Cost Calculator"
       toolSlug="token-estimator"
-      description="Token Estimator for Prompt Engineering teams to project token usage, budget impact, and context size."
+      description="Estimate tokens across multiple models, compare costs, and project monthly spending. Supports GPT-4o, Claude 3.5, Gemini 1.5 Pro, DeepSeek V3 & Llama 3."
       tool={tool}
     >
+      {/* Input */}
       <label className="block space-y-2">
         <span className="text-sm font-medium text-slate-300">Prompt Text</span>
         <textarea
-          className="h-44 w-full rounded-xl border border-slate-700 bg-slate-900 p-3 text-sm text-slate-100 outline-none transition focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20"
+          className="h-36 w-full rounded-xl border border-slate-700 bg-slate-900 p-3 text-sm text-slate-100 outline-none transition focus:border-amber-400/60 focus:ring-2 focus:ring-amber-400/20"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           aria-label="Text for token estimation"
         />
       </label>
-      <div className="grid gap-3 sm:grid-cols-3">
-        {[
-          { label: "Characters", value: stats.characters, color: "text-cyan-300" },
-          { label: "Words", value: stats.words, color: "text-indigo-300" },
-          { label: "Estimated Tokens", value: stats.estimatedTokens, color: "text-violet-300" },
-        ].map(({ label, value, color }) => (
-          <div key={label} className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
-            <h3 className="text-sm font-medium text-slate-400">{label}</h3>
-            <p className={`mt-1 text-2xl font-bold ${color}`}>{value.toLocaleString()}</p>
+
+      {/* Overview stats */}
+      <div className="grid grid-cols-3 gap-3">
+        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+          <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Characters</p>
+          <p className="mt-1 text-2xl font-bold text-white">{stats.characters.toLocaleString()}</p>
+        </div>
+        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+          <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Words</p>
+          <p className="mt-1 text-2xl font-bold text-white">{stats.words.toLocaleString()}</p>
+        </div>
+        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+          <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Avg Tokens</p>
+          <p className="mt-1 text-2xl font-bold text-amber-300">
+            {Math.round(stats.modelEstimates.reduce((a, m) => a + m.tokens, 0) / stats.modelEstimates.length).toLocaleString()}
+          </p>
+        </div>
+      </div>
+
+      {/* Model breakdown */}
+      <div>
+        <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
+          <Sigma className="w-4 h-4 text-amber-400" />
+          Token Count by Model
+        </h3>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {stats.modelEstimates.map((m: ModelTokenEstimate) => (
+            <div
+              key={m.model}
+              className={`relative rounded-xl border p-4 ${modelBgColors[m.model] || "bg-slate-900/60 border-slate-800"} ${m.isCheapest ? "ring-1 ring-emerald-400/40" : ""}`}
+            >
+              {m.isCheapest && (
+                <span className="absolute -top-2 -right-2 flex items-center gap-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 px-2 py-0.5 text-[10px] font-semibold text-emerald-300">
+                  <TrendingUp className="w-3 h-3" /> Cheapest
+                </span>
+              )}
+              <p className="text-xs font-medium text-slate-500">{m.model}</p>
+              <p className={`mt-1 text-xl font-bold ${modelColors[m.model] || "text-white"}`}>
+                {m.tokens.toLocaleString()}
+                <span className="text-xs font-normal text-slate-500 ml-1">tokens</span>
+              </p>
+              <div className="mt-2 flex justify-between text-[11px] text-slate-500">
+                <span>Input: <span className="text-slate-300 font-medium">${m.inputCost.toFixed(6)}</span></span>
+                <span>Output: <span className="text-slate-300 font-medium">${m.outputCost.toFixed(6)}</span></span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Cost calculator */}
+      <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5">
+        <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
+          <DollarSign className="w-4 h-4 text-amber-400" />
+          Cost Projection
+        </h3>
+
+        <div className="mb-5">
+          <label className="flex items-center justify-between text-sm text-slate-400 mb-2">
+            <span>Calls per day</span>
+            <span className="text-white font-semibold text-lg">{callsPerDay.toLocaleString()}</span>
+          </label>
+          <input
+            type="range"
+            min={1}
+            max={100000}
+            step={1}
+            value={callsPerDay}
+            onChange={(e) => setCallsPerDay(Number(e.target.value))}
+            className="w-full h-2 rounded-full appearance-none bg-slate-700 accent-amber-500 cursor-pointer"
+          />
+          <div className="flex justify-between text-[11px] text-slate-600 mt-1">
+            <span>1</span>
+            <span>100</span>
+            <span>1K</span>
+            <span>10K</span>
+            <span>100K</span>
           </div>
-        ))}
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-slate-700/50 text-xs text-slate-500 uppercase tracking-wider">
+                <th className="text-left py-2 pr-3">Model</th>
+                <th className="text-right py-2 px-3">$/1M Input</th>
+                <th className="text-right py-2 px-3">Daily Cost</th>
+                <th className="text-right py-2 pl-3">Monthly Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              {stats.modelEstimates.map((m: ModelTokenEstimate) => {
+                const dailyCost = m.inputCost * callsPerDay;
+                const monthlyCost = dailyCost * 30;
+                return (
+                  <tr key={m.model} className={`border-b border-slate-800/50 ${m.isCheapest ? "bg-emerald-500/5" : ""}`}>
+                    <td className="py-2.5 pr-3">
+                      <span className="text-slate-300 font-medium">{m.model}</span>
+                      {m.isCheapest && <span className="ml-2 text-[10px] text-emerald-400">★ Best value</span>}
+                    </td>
+                    <td className="text-right py-2.5 px-3 text-slate-400">${m.costPer1MInput}</td>
+                    <td className="text-right py-2.5 px-3 text-slate-300">${dailyCost < 0.01 ? "<$0.01" : dailyCost.toFixed(2)}</td>
+                    <td className="text-right py-2.5 pl-3 font-semibold" style={{ color: m.isCheapest ? "#34d399" : "#e2e8f0" }}>
+                      ${monthlyCost < 0.01 ? "<$0.01" : monthlyCost.toFixed(2)}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-[11px] text-slate-600 mt-3">
+          Based on input tokens only. Output tokens billed separately. Prices as of July 2026.
+        </p>
       </div>
     </ToolContainer>
   );

@@ -157,12 +157,57 @@ export function validateJsonWithSchema(jsonInput: string, schemaInput: string): 
   return issues.map((issue) => `${issue.path}: ${issue.message}`);
 }
 
-export function estimateTokens(input: string): { characters: number; words: number; estimatedTokens: number } {
+export type TokenEstimate = {
+  characters: number;
+  words: number;
+  modelEstimates: ModelTokenEstimate[];
+};
+
+export type ModelTokenEstimate = {
+  model: string;
+  tokens: number;
+  costPer1MInput: number;
+  costPer1MOutput: number;
+  inputCost: number;
+  outputCost: number;
+  isCheapest: boolean;
+};
+
+const MODELS = [
+  { name: "GPT-4o", charsPerToken: 4, costPer1MInput: 3, costPer1MOutput: 12 },
+  { name: "Claude 3.5 Sonnet", charsPerToken: 3.7, costPer1MInput: 3, costPer1MOutput: 15 },
+  { name: "Gemini 1.5 Pro", charsPerToken: 4.2, costPer1MInput: 1.25, costPer1MOutput: 5 },
+  { name: "DeepSeek V3", charsPerToken: 4, costPer1MInput: 0.5, costPer1MOutput: 2 },
+  { name: "Llama 3 (Together)", charsPerToken: 3.8, costPer1MInput: 0.9, costPer1MOutput: 0.9 },
+];
+
+export function estimateTokens(input: string): TokenEstimate {
   const characters = input.length;
   const words = input.trim() ? input.trim().split(/\s+/).length : 0;
 
-  // Approximation used by many GPT-style models: ~4 chars per token.
-  const estimatedTokens = Math.ceil(characters / 4);
+  const modelEstimates: ModelTokenEstimate[] = MODELS.map((m) => {
+    const charTokens = Math.ceil(characters / m.charsPerToken);
+    const wordTokens = Math.ceil(words * 1.3);
+    const tokens = Math.max(charTokens, wordTokens);
 
-  return { characters, words, estimatedTokens };
+    const inputCost = (tokens / 1_000_000) * m.costPer1MInput;
+    const outputCost = (tokens / 1_000_000) * m.costPer1MOutput;
+
+    return {
+      model: m.name,
+      tokens,
+      costPer1MInput: m.costPer1MInput,
+      costPer1MOutput: m.costPer1MOutput,
+      inputCost,
+      outputCost,
+      isCheapest: false,
+    };
+  });
+
+  const minInputCost = Math.min(...modelEstimates.map((m) => m.inputCost));
+  for (const m of modelEstimates) {
+    if (m.inputCost === minInputCost) m.isCheapest = true;
+  }
+
+  return { characters, words, modelEstimates };
 }
