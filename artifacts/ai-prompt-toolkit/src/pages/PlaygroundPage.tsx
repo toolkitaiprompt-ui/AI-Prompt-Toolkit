@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Copy, Check, Download, Trash2, Wand2, FlaskConical, Gauge, MessageSquare } from "lucide-react";
+import { Sparkles, Copy, Check, Download, Trash2, Wand2, FlaskConical, Gauge, MessageSquare, Lightbulb } from "lucide-react";
 import { cleanPrompt } from "../lib/toolkit";
 import { analyzeAll, generateOptimizedPrompt, getTokenColor } from "../lib/playgroundAnalysis";
 
@@ -315,6 +315,16 @@ export default function PlaygroundPage() {
           Analyzing your prompt…
         </div>
       )}
+
+      {/* Pro tip */}
+      <div className="rounded-[16px] border border-amber-400/15 bg-amber-500/5 p-4">
+        <p className="text-xs font-medium text-amber-300 mb-1">💡 Pro tip:</p>
+        <p className="text-xs text-slate-400 leading-relaxed">
+          Try writing a prompt with <span className="text-white">all 5 structure elements</span> (role, task, format, constraints, examples) 
+          and watch your health score jump from 50 to 90+! The <span className="text-amber-400">🏗️ Structure</span> tab shows exactly what's missing. 
+          For best results, keep your prompt under 800 tokens — shorter prompts get faster, more focused responses 🚀
+        </p>
+      </div>
     </div>
   );
 }

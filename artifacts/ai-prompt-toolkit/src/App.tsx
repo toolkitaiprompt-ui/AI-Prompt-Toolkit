@@ -503,7 +503,13 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
 
           <div className="mt-16 flex flex-col-reverse items-center justify-between gap-6 border-t border-white/10 pt-10 sm:flex-row">
             <p className="text-xs text-slate-500">© 2026 AI World Hub. All rights reserved.</p>
-            <p className="text-xs text-slate-600">Built for global AI teams.</p>
+            <div className="flex items-center gap-4">
+              <p className="text-xs text-slate-600">Made with ❤️ for the AI community</p>
+              <a href="https://buymeacoffee.com/aiworldhub" target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/20 text-[11px] text-amber-300 hover:bg-amber-500/20 transition">
+                ☕ Buy me a coffee
+              </a>
+            </div>
           </div>
         </div>
       </footer>
@@ -1588,10 +1594,29 @@ function TermsPage() {
 }
 
 function NotFoundPage() {
+  const [showTip, setShowTip] = useState(false);
   return (
     <SectionShell title="Page Not Found" description="The requested page could not be found.">
-      <h1 className="text-3xl font-bold text-white">404 — Page Not Found</h1>
-      <p className="mt-3 text-slate-400">Use the navigation to return to the AI World Hub pages.</p>
+      <div className="text-center py-10">
+        <p className="text-6xl mb-4">🌌</p>
+        <h1 className="text-4xl font-bold text-white mb-3">Lost in the AI Void?</h1>
+        <p className="text-slate-400 max-w-md mx-auto mb-2">This page doesn't exist — but don't worry, even the best AI hallucinates sometimes! 🤖</p>
+        <p className="text-slate-500 text-sm mb-8">Let's get you back on track!</p>
+        <div className="flex flex-wrap justify-center gap-3 mb-8">
+          <Link to="/" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-500 to-rose-500 rounded-full font-semibold text-white shadow-lg shadow-amber-500/30 hover:shadow-xl transition">🏠 Go Home</Link>
+          <Link to="/tools" className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-slate-300 hover:bg-white/10 transition">🛠️ Try Our Tools</Link>
+          <Link to="/playground" className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-slate-300 hover:bg-white/10 transition">✨ Visit Playground</Link>
+        </div>
+        <button onClick={() => setShowTip(!showTip)} className="text-xs text-slate-500 hover:text-slate-300 transition underline decoration-dotted">
+          {showTip ? "🙈 Hide debugging tip" : "💡 Show me a debugging tip"}
+        </button>
+        {showTip && (
+          <div className="mt-4 max-w-md mx-auto p-4 rounded-xl bg-amber-500/10 border border-amber-400/20 text-xs text-slate-300">
+            <p className="font-semibold text-amber-300 mb-1">🔍 Pro debugging tip:</p>
+            <p>If you clicked a link from another site, the URL might be mistyped. Try searching for what you need on our <Link to="/blog" className="text-amber-400 underline">blog</Link> or use the <Link to="/tools/prompt-debugger" className="text-amber-400 underline">Prompt Debugger</Link> to check your own prompts!</p>
+          </div>
+        )}
+      </div>
     </SectionShell>
   );
 }
