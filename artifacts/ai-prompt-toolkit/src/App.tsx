@@ -70,6 +70,7 @@ import CompareIndexPage from "./pages/CompareIndexPage";
 import ComparisonPage from "./pages/ComparisonPage";
 import HowToIndexPage from "./pages/HowToIndexPage";
 import HowToPage from "./pages/HowToPage";
+import PlaygroundPage from "./pages/PlaygroundPage";
 import AdBanner from "./components/AdBanner";
 
 type ThemeMode = "light" | "dark";
@@ -329,6 +330,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           {/* Desktop nav inside glass */}
           <nav className="hidden md:flex items-center gap-1">
             <NavLink to="/" end className={navLinkClass}>Home</NavLink>
+            <NavLink to="/playground" className={`${navLinkClass} text-amber-300 hover:text-amber-200`}>✨ Playground</NavLink>
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
             <NavLink to="/prompts" className={navLinkClass}>Prompts</NavLink>
             <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
@@ -361,6 +363,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <div className="md:hidden mx-4 mt-2 rounded-2xl border border-white/[0.08] bg-slate-900/90 backdrop-blur-xl px-3 py-3 shadow-xl">
             <nav className="space-y-1">
               <NavLink to="/" end onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Home</NavLink>
+              <NavLink to="/playground" onClick={() => setMobileMenuOpen(false)} className={`${mobileNavLinkClass} text-amber-300`}>✨ Playground</NavLink>
               <NavLink to="/tools" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Tools</NavLink>
               <NavLink to="/prompts" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Prompts</NavLink>
               <NavLink to="/blog" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Blog</NavLink>
@@ -438,6 +441,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/compare/:slug" element={<ComparisonPage />} />
           <Route path="/how-to" element={<HowToIndexPage />} />
           <Route path="/how-to/:slug" element={<HowToPage />} />
+          <Route path="/playground" element={<PlaygroundPage />} />
           <Route path="/privacy-policy" element={<PrivacyPage />} />
           <Route path="/terms-of-service" element={<TermsPage />} />
           <Route path="*" element={<NotFoundPage />} />

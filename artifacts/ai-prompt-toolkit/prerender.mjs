@@ -48,6 +48,9 @@ const routes = [
   { path: "/how-to/handle-long-context", title: "How to Handle Long Context in AI Prompts — Complete Guide | AI World Hub", desc: "Learn strategies for handling long context in AI prompts. Techniques for document analysis, multi-turn conversations, and staying within token limits while maintaining quality." },
   { path: "/how-to/prevent-hallucination", title: "How to Prevent AI Hallucination — 7 Proven Techniques | AI World Hub", desc: "Learn how to reduce AI hallucinations and improve factual accuracy. 7 proven techniques including grounding, confidence thresholds, citation requirements, and verification prompts." },
 
+  // ── PLAYGROUND ──
+  { path: "/playground", title: "Prompt Playground — Real-Time AI Prompt Analysis & Optimization | AI World Hub", desc: "Write, analyze, and optimize your AI prompts in real-time. Token counts for GPT-4o, Claude, Gemini, structure checklist, debug scoring, and instant optimization — all free." },
+
   // ── COMPARE INDEX ──
   { path: "/compare", title: "AI Model Comparisons — Compare ChatGPT, Claude, Gemini & More | AI World Hub", desc: "Compare leading AI models side by side. ChatGPT vs Claude, ChatGPT vs Gemini, Claude vs Gemini, GPT-4o vs GPT-4o-mini, Midjourney vs DALL-E. Features, pricing, and example prompts." },
   { path: "/compare/chatgpt-vs-claude", title: "ChatGPT vs Claude — Prompting Comparison (2026) | AI World Hub", desc: "Compare ChatGPT vs Claude for prompt engineering. Features, pricing, strengths, and example responses. Find which AI model is best for your prompting needs." },
