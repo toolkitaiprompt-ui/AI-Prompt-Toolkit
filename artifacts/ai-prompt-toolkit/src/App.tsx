@@ -77,6 +77,7 @@ import PlaygroundPage from "./pages/PlaygroundPage";
 import ChangelogPage from "./pages/ChangelogPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import NewsletterSignup from "./components/NewsletterSignup";
+import SupportButton from "./components/SupportButton";
 import AdBanner from "./components/AdBanner";
 import PromptHistory from "./components/PromptHistory";
 import { savePrompt } from "./lib/promptHistory";
@@ -510,6 +511,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
                 <li><Link to="/changelog" className="text-slate-400 transition hover:text-amber-400">Changelog</Link></li>
                 <li><Link to="/about" className="text-slate-400 transition hover:text-amber-400">About Us</Link></li>
                 <li><Link to="/contact" className="text-slate-400 transition hover:text-amber-400">Contact</Link></li>
+                <li><a href="https://buymeacoffee.com/aiworldhub" target="_blank" rel="noopener noreferrer" className="text-slate-400 transition hover:text-amber-400">☕ Support</a></li>
               </ul>
             </div>
 
@@ -542,6 +544,9 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <p className="text-sm font-semibold text-emerald-300">{toast}</p>
         </div>
       )}
+
+      {/* Floating support button */}
+      <SupportButton />
     </div>
   );
 }
