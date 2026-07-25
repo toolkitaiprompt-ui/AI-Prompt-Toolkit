@@ -1,4 +1,4 @@
-import React, { type FormEvent, type ReactElement, type ReactNode, useEffect, useMemo, useState } from "react";
+import React, { type FormEvent, type ReactElement, type ReactNode, useEffect, useMemo, useState, useCallback } from "react";
 import {
   ArrowUpRight,
   Braces,
@@ -27,6 +27,7 @@ import {
   Wand2,
   AlertTriangle,
   List,
+  Clock,
 } from "lucide-react";
 import { BrowserRouter, Link, NavLink, Route, Routes, useParams } from "react-router-dom";
 import {
@@ -74,6 +75,8 @@ import HowToIndexPage from "./pages/HowToIndexPage";
 import HowToPage from "./pages/HowToPage";
 import PlaygroundPage from "./pages/PlaygroundPage";
 import AdBanner from "./components/AdBanner";
+import PromptHistory from "./components/PromptHistory";
+import { savePrompt } from "./lib/promptHistory";
 
 type ThemeMode = "light" | "dark";
 
@@ -293,6 +296,17 @@ function ThemeToggle({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void
 function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [toast, setToast] = useState<string | null>(null);
+
+  // First-save toast
+  useEffect(() => {
+    const handler = () => {
+      setToast("Saved! 📝");
+      setTimeout(() => setToast(null), 3000);
+    };
+    window.addEventListener('aiwh-first-save', handler);
+    return () => window.removeEventListener('aiwh-first-save', handler);
+  }, []);
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `glass-nav-link ${isActive ? "active" : ""}`;
   const mobileNavLinkClass = ({ isActive }: { isActive: boolean }) =>
@@ -339,6 +353,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             <NavLink to="/about" className={navLinkClass}>About</NavLink>
           </nav>
           <div className="flex items-center gap-1.5 shrink-0">
+            <PromptHistory />
             <button type="button" onClick={() => setSearchOpen(true)} className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center hover:bg-white/5 transition text-slate-400 hover:text-white" aria-label="Search">
               <Search className="w-4 h-4" />
             </button>
@@ -515,6 +530,13 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           </div>
         </div>
       </footer>
+
+      {/* Toast notification */}
+      {toast && (
+        <div className="fixed bottom-6 right-6 z-[100] animate-bounce rounded-2xl border border-emerald-400/30 bg-slate-900/95 backdrop-blur-xl px-5 py-3 shadow-2xl shadow-emerald-500/20">
+          <p className="text-sm font-semibold text-emerald-300">{toast}</p>
+        </div>
+      )}
     </div>
   );
 }
@@ -661,6 +683,14 @@ function PromptVariableExtractorPage() {
   const variables = useMemo(() => extractPromptVariables(input), [input]);
   const tool = TOOL_BY_SLUG.get("prompt-variable-extractor")!;
 
+  // Save prompt to history on change
+  const handleVarChange = useCallback((value: string) => {
+    setInput(value);
+    if (value.trim().length > 10) {
+      savePrompt(value, "Prompt Variable Extractor", "/tools/prompt-variable-extractor");
+    }
+  }, []);
+
   return (
     <ToolContainer
       title="Prompt Variable Extractor"
@@ -673,7 +703,7 @@ function PromptVariableExtractorPage() {
         <textarea
           className="h-44 w-full rounded-xl border border-slate-700 bg-slate-900 p-3 text-sm text-slate-100 outline-none transition focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => handleVarChange(e.target.value)}
           aria-label="Prompt text"
         />
       </label>
@@ -694,7 +724,7 @@ function JsonSchemaGeneratorPage() {
   const tool = TOOL_BY_SLUG.get("json-schema-generator")!;
 
   const handleGenerate = () => {
-    try { setResult(generateJsonSchema(input)); setError(""); }
+    try { setResult(generateJsonSchema(input)); setError(""); savePrompt(input, "JSON Schema Generator", "/tools/json-schema-generator"); }
     catch { setResult(""); setError("Invalid JSON input. Please provide a valid JSON object or array."); }
   };
 
@@ -741,6 +771,7 @@ function JsonValidatorPage() {
       const issues = validateJsonWithSchema(jsonInput, schemaInput);
       setMessages(issues.length ? issues : ["Valid JSON for the provided schema subset."]);
       setError("");
+      savePrompt(jsonInput, "JSON Validator", "/tools/json-validator");
     } catch { setMessages([]); setError("Invalid JSON or schema syntax. Please check both inputs."); }
   };
 
@@ -790,6 +821,11 @@ function PromptFormatterPage() {
   const [input, setInput] = useState("you are expert analyst\n\nsummarize quarterly business risks for exec team\n-- need bullet points\n-- include impact High/Med/Low\n-- add mitigation steps\ntone professional\n\naudience = C-suite\nformat should be markdown table maybe?");
   const output = useMemo(() => formatPrompt(input), [input]);
   const tool = TOOL_BY_SLUG.get("prompt-formatter")!;
+  // Save prompt to history on user input
+  const handleFormatterChange = useCallback((val: string) => {
+    setInput(val);
+    if (val.trim().length > 10) savePrompt(val, "Prompt Formatter", "/tools/prompt-formatter");
+  }, []);
 
   return (
     <ToolContainer
@@ -803,7 +839,7 @@ function PromptFormatterPage() {
         <textarea
           className="h-48 w-full rounded-xl border border-slate-700 bg-slate-900 p-3 text-sm text-slate-100 outline-none transition focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => handleFormatterChange(e.target.value)}
           aria-label="Prompt formatter input"
         />
       </label>
@@ -819,6 +855,11 @@ function PromptCleanerPage() {
   const [input, setInput] = useState("  Act  as   expert   \u200Bcopywriter\u200B!   \n\n\nWrite  a  product \t\t launch \n email for  {{product}} —  include  3 benefits…  \n\n  Keep  tone  exciting!!!  \u00A0\u00A0 ");
   const output = useMemo(() => cleanPrompt(input), [input]);
   const tool = TOOL_BY_SLUG.get("prompt-cleaner")!;
+  // Save prompt to history
+  const handleCleanerChange = useCallback((val: string) => {
+    setInput(val);
+    if (val.trim().length > 10) savePrompt(val, "Prompt Cleaner", "/tools/prompt-cleaner");
+  }, []);
 
   return (
     <ToolContainer
@@ -832,7 +873,7 @@ function PromptCleanerPage() {
         <textarea
           className="h-48 w-full rounded-xl border border-slate-700 bg-slate-900 p-3 text-sm text-slate-100 outline-none transition focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => handleCleanerChange(e.target.value)}
           aria-label="Prompt cleaner input"
         />
       </label>
@@ -878,7 +919,7 @@ function TokenEstimatorPage() {
         <textarea
           className="h-36 w-full rounded-xl border border-slate-700 bg-slate-900 p-3 text-sm text-slate-100 outline-none transition focus:border-amber-400/60 focus:ring-2 focus:ring-amber-400/20"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => { setInput(e.target.value); if (e.target.value.trim().length > 10) savePrompt(e.target.value, "Token Estimator", "/tools/token-estimator"); }}
           aria-label="Text for token estimation"
         />
       </label>

@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Copy, Check, Terminal, Braces, FileCode, Globe } from "lucide-react";
 import { getOpenAIFormat, getAnthropicFormat, getGoogleFormat, getCurlCommand } from "../../lib/apiFormats";
+import { savePrompt } from "../../lib/promptHistory";
 
 const MODELS = ["GPT-4o", "GPT-4o-mini", "Claude 3.5 Sonnet", "Claude Haiku", "Gemini Pro", "Gemini Flash"];
 const TABS = [
@@ -65,7 +66,10 @@ export default function ApiRequestBuilder() {
         <label className="text-sm font-medium text-slate-300">Your Prompt</label>
         <textarea
           value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
+          onChange={(e) => {
+            setPrompt(e.target.value);
+            if (e.target.value.trim().length > 10) savePrompt(e.target.value, "API Request Builder", "/tools/api-request-builder");
+          }}
           placeholder="Enter your prompt here..."
           rows={3}
           className="w-full rounded-xl border border-slate-700 bg-slate-900 p-3.5 text-sm text-white placeholder-slate-500 outline-none transition focus:border-amber-400/60 focus:ring-2 focus:ring-amber-400/20 resize-none"

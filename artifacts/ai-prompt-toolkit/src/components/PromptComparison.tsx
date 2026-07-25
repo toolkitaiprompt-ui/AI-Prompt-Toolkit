@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { ArrowLeftRight, Check, X, TrendingUp } from "lucide-react";
+import { savePrompt } from "../lib/promptHistory";
 
 // ── Token estimation (~4 chars/token) ──
 function estimateTokens(text: string): number {
@@ -187,7 +188,7 @@ export default function PromptComparison() {
       </div>
 
       <div className="flex justify-center">
-        <button type="button" onClick={() => setCompared(true)} className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 px-8 py-3 text-sm font-bold text-black shadow-lg shadow-amber-500/30 transition hover:scale-105">
+        <button type="button" onClick={() => { setCompared(true); savePrompt(promptA, "Prompt Comparison (A)", "/tools/prompt-comparison"); savePrompt(promptB, "Prompt Comparison (B)", "/tools/prompt-comparison"); }} className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 px-8 py-3 text-sm font-bold text-black shadow-lg shadow-amber-500/30 transition hover:scale-105">
           <ArrowLeftRight className="h-4 w-4" /> Compare Prompts
         </button>
       </div>

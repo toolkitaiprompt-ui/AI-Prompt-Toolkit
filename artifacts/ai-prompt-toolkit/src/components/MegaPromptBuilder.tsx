@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Copy, ArrowRight, ArrowLeft, Sparkles, Wand2 } from "lucide-react";
+import { savePrompt } from "../lib/promptHistory";
 
 const STEPS = [
   { id: 1, label: "Role", emoji: "🎭" },
@@ -52,6 +53,7 @@ export default function MegaPromptBuilder() {
     await navigator.clipboard.writeText(generatedPrompt);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+    if (generatedPrompt.trim().length > 10) savePrompt(generatedPrompt, "Mega Prompt Builder", "/tools/mega-prompt-builder");
   };
 
   const totalSteps = STEPS.length;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Trash2, Copy, Download, ChevronDown, ChevronUp } from "lucide-react";
+import { savePrompt } from "../../lib/promptHistory";
 
 interface ChainStep {
   id: number;
@@ -34,6 +35,9 @@ export default function PromptChainBuilder() {
 
   const updateStep = (id: number, field: keyof ChainStep, value: string) => {
     setSteps(steps.map((s) => (s.id === id ? { ...s, [field]: value } : s)));
+    if (field === 'prompt' && value.trim().length > 10) {
+      savePrompt(value, "Prompt Chain Builder", "/tools/prompt-chain-builder");
+    }
   };
 
   const toggleCollapse = (id: number) => {

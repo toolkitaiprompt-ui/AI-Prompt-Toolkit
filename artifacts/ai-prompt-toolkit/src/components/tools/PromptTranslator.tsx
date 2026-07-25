@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Globe, Copy, Check, ArrowRight, Languages } from "lucide-react";
 import { LANGUAGES, translatePrompt } from "../../data/translations";
+import { savePrompt } from "../../lib/promptHistory";
 
 export default function PromptTranslator() {
   const [input, setInput] = useState("");
@@ -20,6 +21,7 @@ export default function PromptTranslator() {
   const handleTranslate = () => {
     if (!input.trim()) return;
     setTranslated(true);
+    savePrompt(input, "Prompt Translator", "/tools/prompt-translator");
   };
 
   const copyOutput = async () => {

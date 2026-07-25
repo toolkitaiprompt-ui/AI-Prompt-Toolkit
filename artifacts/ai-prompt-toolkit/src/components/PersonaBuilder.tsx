@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Copy, Check, ChevronDown, ChevronUp, User, Bot, MessageSquare, Code, Sparkles, Pencil } from "lucide-react";
 import { PREBUILT_PERSONAS} from "../data/personas";
+import { savePrompt } from "../lib/promptHistory";
 
 const PERSONA_TEMPLATES: Record<string, { role: string; expertise: string; voice: string; rules: string[] }> = {
   Marketer: {
@@ -157,6 +158,7 @@ export default function PersonaBuilder() {
   const handleCopy = async () => {
     try { await navigator.clipboard.writeText(output); setCopied(true); setTimeout(() => setCopied(false), 2000); }
     catch {}
+    if (output.trim().length > 10) savePrompt(output, "AI Persona Builder", "/tools/persona-builder");
   };
 
   const handleCopyChatGPT = async () => {

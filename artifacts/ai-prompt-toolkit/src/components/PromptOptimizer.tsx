@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Copy, RefreshCcw, Sparkles, Wand2 } from "lucide-react";
+import { savePrompt } from "../lib/promptHistory";
 
 interface Analysis {
   improvements: string[];
@@ -57,6 +58,7 @@ export default function PromptOptimizer() {
   const handleOptimize = () => {
     setAnalysis(analyzeAndOptimize(originalPrompt));
     setStatus("Optimized prompt ready — copy it into your next AI request.");
+    savePrompt(originalPrompt, "Advanced Prompt Optimizer", "/tools/advanced-prompt-optimizer");
   };
 
   const handleCopy = async () => {

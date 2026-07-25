@@ -1,11 +1,13 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import { motion } from "framer-motion";
 import { Shield, ShieldAlert, ShieldCheck, Copy, Check, AlertTriangle } from "lucide-react";
 import { scanPrompt } from "../../lib/securityScanner";
+import { savePrompt } from "../../lib/promptHistory";
 
 export default function SecurityScanner() {
   const [input, setInput] = useState("");
   const [copied, setCopied] = useState(false);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const result = useMemo(() => {
     if (!input.trim()) return null;
@@ -32,7 +34,13 @@ export default function SecurityScanner() {
         <label className="text-sm font-medium text-slate-300">Paste your prompt to scan</label>
         <textarea
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => {
+            setInput(e.target.value);
+            if (debounceRef.current) clearTimeout(debounceRef.current);
+            debounceRef.current = setTimeout(() => {
+              if (e.target.value.trim().length > 10) savePrompt(e.target.value, "Security Scanner", "/tools/security-scanner");
+            }, 1500);
+          }}
           placeholder="Paste a prompt to check for injection, jailbreak, data leak, PII, and unsafe content risks..."
           rows={5}
           className="w-full rounded-xl border border-slate-700 bg-slate-900 p-3.5 text-sm text-white placeholder-slate-500 outline-none transition focus:border-amber-400/60 focus:ring-2 focus:ring-amber-400/20 resize-none"

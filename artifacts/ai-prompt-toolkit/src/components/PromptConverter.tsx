@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useCallback } from "react";
+import { savePrompt } from "../lib/promptHistory";
 
 function convertPromptToClaude(prompt: string): string {
   const trimmed = prompt.trim();
@@ -43,6 +44,10 @@ function convertPromptToCursor(prompt: string): string {
 export default function PromptConverter() {
   const [input, setInput] = useState("Act as a senior copywriter. Write a product launch email for our new AI productivity app. Keep the tone exciting but professional. Include a compelling subject line, 3 key benefits, and a clear CTA.");
   const [target, setTarget] = useState<"claude" | "gemini" | "cursor">("claude");
+  const handleInputChange = useCallback((val: string) => {
+    setInput(val);
+    if (val.trim().length > 10) savePrompt(val, "Prompt Converter", "/tools/prompt-converter");
+  }, []);
   const [copied, setCopied] = useState(false);
   const output = useMemo(() => {
     if (target === "claude") return convertPromptToClaude(input);
@@ -61,7 +66,7 @@ export default function PromptConverter() {
         <textarea
           className="h-44 w-full rounded-xl border border-slate-700 bg-slate-900 p-3 text-sm text-slate-100 outline-none transition focus:border-amber-400/60 focus:ring-2 focus:ring-amber-400/20"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => handleInputChange(e.target.value)}
           aria-label="ChatGPT prompt input"
         />
       </label>
