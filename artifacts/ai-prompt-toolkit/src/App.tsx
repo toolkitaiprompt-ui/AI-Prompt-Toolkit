@@ -1921,11 +1921,8 @@ export default function App() {
   const [themeMode, setThemeMode] = useState<ThemeMode>(() => {
     const stored = localStorage.getItem("theme-mode");
     if (stored === "dark" || stored === "light") return stored;
-    // First visit: detect system preference
-    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    }
-    return "light";
+    // Default to dark mode always
+    return "dark";
   });
 
   useEffect(() => {
