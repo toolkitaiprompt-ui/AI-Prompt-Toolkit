@@ -1,11 +1,8 @@
 <div align="center">
-  <img src="https://aiworldhub.site/images/hero-ai.jpg" alt="AI Prompt Toolkit Banner" width="100%" style="border-radius:12px;margin-bottom:20px"/>
+  <br/>
+  <h1 align="center" style="font-size:2.8rem;font-weight:700;background:linear-gradient(135deg,#FFD700,#FF1493);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">AI World Hub</h1>
   
-  <h1 align="center" style="font-size:2.5rem;font-weight:700;">🚀 AI Prompt Toolkit</h1>
-  
-  <p align="center">
-    <strong>10+ Professional AI Prompt Engineering Tools — 100% Free, 100% In-Browser</strong>
-  </p>
+  <p align="center"><strong>10 Free In-Browser Tools to Fix, Format &amp; Optimize Your AI Prompts</strong></p>
 
   <p align="center">
     <a href="https://aiworldhub.site" target="_blank">🌐 Live Website</a> •
@@ -15,14 +12,24 @@
   </p>
 
   <p align="center">
-    <img src="https://img.shields.io/github/license/toolkitaiprompt-ui/AI-Prompt-Toolkit?color=blue" alt="License"/>
+    <img src="https://img.shields.io/github/license/toolkitaiprompt-ui/AI-Prompt-Toolkit?color=gold" alt="License"/>
     <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19"/>
     <img src="https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss" alt="Tailwind 4"/>
     <img src="https://img.shields.io/badge/Vite-7-646CFF?logo=vite" alt="Vite 7"/>
     <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript" alt="TypeScript"/>
     <img src="https://img.shields.io/badge/Cloudflare-Pages-F38020?logo=cloudflare" alt="Cloudflare Pages"/>
+    <img src="https://img.shields.io/badge/status-active-success" alt="Active"/>
   </p>
 </div>
+
+---
+
+## 📖 Purpose
+
+AI World Hub is a **free, privacy-first, in-browser toolkit** for anyone who works with AI prompts. Every tool runs 100% in your browser — zero data leaves your device, zero sign-up required, zero cost forever.
+
+**Who is this for?**  
+Anyone using AI tools — students, developers, marketers, writers, and teams. If you write prompts for ChatGPT, Claude, Gemini, or any other model, these tools help you get better results faster.
 
 ---
 
@@ -30,14 +37,31 @@
 
 | Feature | Description |
 |---------|-------------|
-| 🔧 **10+ AI Tools** | Variable Extractor, JSON Schema Generator, JSON Validator, Token Estimator, Prompt Formatter, Cleaner, Converter, Persona Builder, Optimizer, Comparison Tool |
-| 📝 **Prompt Templates** | 12+ ready-to-use templates for Writing, Marketing, Coding, Business & more |
-| 🎨 **AI Image Generator** | Optimized prompt generator for Midjourney, DALL-E 3 & Stable Diffusion |
-| 📂 **Categories** | Browse by use case — 8+ categories |
-| 📚 **Blog** | 25+ SEO-optimized articles about prompt engineering |
-| 🔒 **100% Privacy** | All processing happens in-browser. Zero data collection |
-| ⚡ **Fast** | Built with Vite 7, React 19, TypeScript. Deployed on Cloudflare Pages |
-| 📱 **Responsive** | Works perfectly on desktop, tablet, and mobile |
+| 🔧 **10 Free AI Tools** | Variable Extractor, JSON Schema Generator, JSON Validator, Token Estimator, Prompt Formatter, Cleaner, Converter, Persona Builder, Optimizer, Comparison Tool |
+| 📝 **Prompt Templates** | 12 ready-to-use templates across categories |
+| 🎨 **AI Image Generator** | Generate optimized image prompts for Midjourney, DALL-E 3 & Stable Diffusion |
+| 📂 **Categories** | Browse 8 curated prompt categories |
+| 📚 **Blog** | 25+ SEO-optimized prompt engineering guides |
+| 🔒 **100% Private** | All processing in-browser. Prompts never leave your device |
+| ⚡ **Fast** | Built with Vite 7 + React 19. Deployed globally on Cloudflare Pages |
+| 📱 **Responsive** | Works on desktop, tablet, and mobile |
+
+### 🔧 Tools Included
+
+| Tool | What It Does |
+|------|-------------|
+| **Prompt Variable Extractor** | Extract variables (`{name}`, `{{city}}`, `[tone]`) from any prompt |
+| **JSON Schema Generator** | Generate JSON Schema from sample data |
+| **JSON Validator** | Validate JSON against a schema |
+| **Prompt Formatter** | Format messy prompts into clean numbered instructions |
+| **Prompt Cleaner** | Remove noise characters and fix spacing |
+| **Token Estimator** | Estimate tokens, words, and characters before API calls |
+| **Prompt Converter** | Convert prompts between ChatGPT, Claude, Gemini, and Cursor formats |
+| **AI Persona Builder** | Generate system prompts for specific roles |
+| **Advanced Prompt Optimizer** | Polish prompts with role, format, tone & constraint patterns |
+| **Prompt Comparison Tool** | Compare two prompts side-by-side with scores |
+
+---
 
 ## 🛠️ Tech Stack
 
@@ -45,72 +69,179 @@
 |-----------|---------|
 | **React 19** | UI Framework |
 | **TypeScript** | Type Safety |
-| **Tailwind CSS 4** | Styling |
-| **Vite 7** | Build Tool |
+| **Tailwind CSS 4** | Styling & Design System |
+| **Vite 7** | Build Tool & Dev Server |
 | **Framer Motion** | Animations |
 | **Lucide React** | Icons |
-| **React Router 7** | Routing |
-| **Cloudflare Pages** | Hosting & CDN |
+| **React Router 7** | Client-Side Routing |
+| **Cloudflare Pages** | Hosting, CDN & Global Deploy |
 
-## 🚀 Quick Start
+---
 
+## 🚀 Setup & Development
+
+### Prerequisites
+- Node.js 20+
+- npm 10+
+
+### Local Setup
 ```bash
-# Clone
+# Clone the repository
 git clone https://github.com/toolkitaiprompt-ui/AI-Prompt-Toolkit.git
 cd AI-Prompt-Toolkit/artifacts/ai-prompt-toolkit
 
-# Install
+# Install dependencies
 npm install
 
-# Dev
+# Start development server
 npm run dev
 
-# Build
+# Build for production
 npm run build
 
-# Preview
+# Preview production build locally
 npm run preview
 ```
+
+The dev server starts at `http://localhost:5173`.
+
+### Production Build
+```bash
+npm run build
+# Output: dist/public/
+# Prerenders 77 HTML pages with unique SEO tags + hreflang
+```
+
+---
+
+## 🚢 Deployment
+
+This project is deployed on **Cloudflare Pages** (free tier).
+
+### Deploy via Cloudflare Dashboard
+1. Connect your GitHub repository to Cloudflare Pages
+2. Set build command: `npm run build`
+3. Set build output directory: `dist/public`
+4. Set environment variable: `NODE_VERSION=20`
+
+### Deploy via Wrangler CLI
+```bash
+npm install -g wrangler
+wrangler pages deploy dist/public --branch=production
+```
+
+### Manual Deploy (from this repo)
+```bash
+npm run build
+# Push to GitHub → Cloudflare auto-deploys from main/production branch
+```
+
+---
 
 ## 📁 Project Structure
 
 ```
 artifacts/ai-prompt-toolkit/
 ├── src/
-│   ├── components/       # React components
-│   │   ├── HomePage.tsx
-│   │   ├── ToolCard.tsx
-│   │   ├── BlogCard.tsx
-│   │   └── ...
-│   ├── pages/            # Page components
+│   ├── components/        # React components
+│   │   ├── HomePage.tsx   # Homepage with sections
+│   │   ├── ToolCard.tsx   # Tool card with glass styling
+│   │   ├── BlogCard.tsx   # Blog article card
+│   │   ├── CategoryShowcase.tsx
+│   │   ├── SearchModal.tsx
+│   │   └── ... (PromptOptimizer, PersonaBuilder, etc.)
+│   ├── pages/             # Route-level pages
 │   │   ├── TemplatesPage.tsx
 │   │   ├── CategoriesPage.tsx
-│   │   ├── ImageGeneratorPage.tsx
-│   │   └── ...
-│   ├── data/             # Data files
-│   │   ├── blogPosts.ts  # 27 blog posts
-│   │   ├── templates.ts  # 12 templates
-│   │   └── categories.ts
-│   ├── lib/              # Utility functions
-│   │   └── toolkit.ts    # Tool logic
-│   ├── App.tsx           # Main app with routing
-│   ├── index.css         # Design system
-│   └── seoConfig.ts      # SEO metadata
+│   │   └── ImageGeneratorPage.tsx
+│   ├── data/              # Static content data
+│   │   ├── blogPosts.ts   # 25+ blog articles
+│   │   ├── templates.ts   # 12 prompt templates
+│   │   └── categories.ts  # 8 categories
+│   ├── lib/
+│   │   └── toolkit.ts     # Core tool logic (pure JS)
+│   ├── App.tsx            # Routes, Layout, Navbar, Footer
+│   ├── index.css          # Design system & global CSS
+│   └── seoConfig.ts       # Per-route SEO metadata
 ├── public/
-│   ├── images/           # Images
-│   ├── icons/            # SVG icons
+│   ├── images/            # Blog & hero images
+│   ├── icons/             # Brand SVGs (Google, OpenAI, etc.)
 │   ├── robots.txt
-│   └── sitemap.xml
-└── index.html
+│   ├── sitemap.xml        # 60+ URLs
+│   └── favicon.svg
+├── prerender.mjs          # Static prerender script (77 pages)
+├── index.html             # Entry point
+├── package.json
+├── vite.config.ts
+└── tailwind.config.js
 ```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how to help:
+
+### Bug Reports & Feature Requests
+- Open a [GitHub Issue](https://github.com/toolkitaiprompt-ui/AI-Prompt-Toolkit/issues)
+- Describe the problem/feature clearly
+- Include screenshots if applicable
+
+### Pull Requests
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feat/your-feature`
+3. Make your changes
+4. Ensure the build passes: `npm run build`
+5. Submit a PR against the `production-replit` branch
+
+### Code Style
+- TypeScript strict mode
+- Tailwind CSS for styling
+- Framer Motion for animations where appropriate
+- Ensure 0 build errors before submitting
+
+---
+
+## 📋 Changelog
+
+### 2026-07-25 — `production-replit`
+- **Branding**: Unified "AI World Hub" across all pages, SEO, structured data
+- **Navigation**: Simplified to 4 core links; secondary pages under "More"
+- **Tool count**: Fixed all references to 10 tools (was inconsistent 9/10)
+- **Value proposition**: Sharper heading, benefits visible in 3 seconds
+- **FAQ**: Expanded to 6 questions with clear privacy/data handling answers
+- **Mobile**: Better spacing, smaller fonts, responsive cards
+- **Categories page**: Glass cards matching homepage design
+- **Templates page**: Amber design system, glass cards
+- **Image Generator**: Cyan→Amber color system migration
+- **Global layout**: Added overflow safeguards, text wrapping, min-width fixes
+- **Hero**: Smooth-scroll "Watch Demo" button, cleaner mobile background
+- **Colors**: Removed all remaining cyan accents from public UI
+- **Typography**: Responsive heading sizes, consistent scales
+- **Tool cards**: Equal height, glass styling, subtle hover effects
+
+### 2026-07-20 — Initial redesign
+- Dark Glass Premium design system (amber/gold/pink accents)
+- Glass pill navbar, premium cards, consistent spacing
+- Hero image, featured/trending sections, blog cards
+- Global search modal, SEO optimization, structured data
+
+### 2026-07-15 — Launch
+- 10 tools, templates, categories, blog
+- Vite 7 + React 19 + Tailwind 4 setup
+- Cloudflare Pages deployment
+
+---
 
 ## 🌐 Live Website
 
 **👉 [https://aiworldhub.site](https://aiworldhub.site)**
 
+---
+
 ## 📄 License
 
-MIT — Free for personal and commercial use.
+MIT — Free for personal and commercial use. See [LICENSE](./LICENSE).
 
 ---
 
