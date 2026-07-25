@@ -95,6 +95,10 @@ const routes = [
   { path: "/contact", title: "Contact — Free AI Prompt Tools Support | AI World Hub",
     desc: "Contact AI World Hub for prompt engineering support, partnerships, and feedback. Email toolkitaiprompt@gmail.com — we respond within 24 hours." },
 
+  // ── CHANGELOG ──
+  { path: "/changelog", title: "Changelog — What's New at AI World Hub | AI World Hub",
+    desc: "See the latest updates, new tools, improvements, and fixes at AI World Hub. We ship fast and keep you informed every step of the way." },
+
   // ── PRIVACY POLICY ──
   { path: "/privacy-policy", title: "Privacy Policy | Free AI Prompt Tools — AI World Hub",
     desc: "Privacy policy for AI World Hub — free AI prompt engineering tools. All tool processing happens in-browser. No personal data collected, stored, or shared." },

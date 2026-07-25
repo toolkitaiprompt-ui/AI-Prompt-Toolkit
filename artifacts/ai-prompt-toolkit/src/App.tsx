@@ -74,6 +74,7 @@ import ComparisonPage from "./pages/ComparisonPage";
 import HowToIndexPage from "./pages/HowToIndexPage";
 import HowToPage from "./pages/HowToPage";
 import PlaygroundPage from "./pages/PlaygroundPage";
+import ChangelogPage from "./pages/ChangelogPage";
 import AdBanner from "./components/AdBanner";
 import PromptHistory from "./components/PromptHistory";
 import { savePrompt } from "./lib/promptHistory";
@@ -459,6 +460,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/how-to" element={<HowToIndexPage />} />
           <Route path="/how-to/:slug" element={<HowToPage />} />
           <Route path="/playground" element={<PlaygroundPage />} />
+          <Route path="/changelog" element={<ChangelogPage />} />
           <Route path="/privacy-policy" element={<PrivacyPage />} />
           <Route path="/terms-of-service" element={<TermsPage />} />
           <Route path="*" element={<NotFoundPage />} />
@@ -503,6 +505,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
               <h3 className="text-sm font-semibold text-white">Resources</h3>
               <ul className="mt-4 space-y-2.5 text-sm">
                 <li><Link to="/blog" className="text-slate-400 transition hover:text-amber-400">Blog</Link></li>
+                <li><Link to="/changelog" className="text-slate-400 transition hover:text-amber-400">Changelog</Link></li>
                 <li><Link to="/about" className="text-slate-400 transition hover:text-amber-400">About Us</Link></li>
                 <li><Link to="/contact" className="text-slate-400 transition hover:text-amber-400">Contact</Link></li>
               </ul>
