@@ -24,8 +24,12 @@ export default function CategoryShowcase() {
 
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
           {PROMPT_CATEGORIES.slice(0, 8).map((cat, idx) => (
-            <motion.div
+            <Link
+              to={`/categories/${cat.id}`}
               key={cat.id}
+              className="block"
+            >
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -60,6 +64,7 @@ export default function CategoryShowcase() {
                 <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
               </div>
             </motion.div>
+            </Link>
           ))}
         </div>
 

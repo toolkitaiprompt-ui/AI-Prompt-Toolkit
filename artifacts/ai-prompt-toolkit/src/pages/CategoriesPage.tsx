@@ -18,8 +18,12 @@ export default function CategoriesPage() {
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {PROMPT_CATEGORIES.map((cat, idx) => (
-          <motion.div
+          <Link
+            to={`/categories/${cat.id}`}
             key={cat.id}
+            className="block"
+          >
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.05 }}
@@ -53,6 +57,7 @@ export default function CategoriesPage() {
               <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
             </div>
           </motion.div>
+          </Link>
         ))}
       </div>
     </section>

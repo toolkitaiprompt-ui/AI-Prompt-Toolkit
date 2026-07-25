@@ -41,6 +41,7 @@ import BlogCard from "./components/BlogCard";
 import TemplatesPage from "./pages/TemplatesPage";
 import SearchModal from "./components/SearchModal";
 import CategoriesPage from "./pages/CategoriesPage";
+import CategoryDetailPage from "./pages/CategoryDetailPage";
 import ImageGeneratorPage from "./pages/ImageGeneratorPage";
 import AdBanner from "./components/AdBanner";
 
@@ -342,6 +343,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/templates" element={<TemplatesPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
+          <Route path="/categories/:id" element={<CategoryDetailPage />} />
           <Route path="/image-generator" element={<ImageGeneratorPage />} />
           <Route path="/privacy-policy" element={<PrivacyPage />} />
           <Route path="/terms-of-service" element={<TermsPage />} />
