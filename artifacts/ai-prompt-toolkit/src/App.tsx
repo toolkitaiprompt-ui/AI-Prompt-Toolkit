@@ -1918,12 +1918,23 @@ function TermsPage() {
 }
 
 export default function App() {
-  const [themeMode, setThemeMode] = useState<ThemeMode>("dark");
+  const [themeMode, setThemeMode] = useState<ThemeMode>(() => {
+    const stored = localStorage.getItem("theme-mode");
+    if (stored === "dark" || stored === "light") return stored;
+    const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches;
+    return prefersDark ? "dark" : "light";
+  });
 
   useEffect(() => {
     const root = document.documentElement;
     root.classList.add("dark");
-  }, []);
+    if (themeMode === "light") {
+      root.classList.add("light-mode");
+    } else {
+      root.classList.remove("light-mode");
+    }
+    localStorage.setItem("theme-mode", themeMode);
+  }, [themeMode]);
 
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL?.replace(/\/$/, "") || ""}>

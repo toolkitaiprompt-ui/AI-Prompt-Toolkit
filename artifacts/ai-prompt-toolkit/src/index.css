@@ -131,6 +131,108 @@ p { font-size: 1rem; line-height: 1.8; margin-bottom: 1rem; color: #94a3b8; }
 }
 
 
+/* ===== LIGHT MODE ===== */
+/* dark class ALWAYS present. light-mode class toggles for light look. */
+:root.dark.light-mode {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --border-color: rgba(0,0,0,0.08);
+}
+
+:root.dark.light-mode body {
+  background: #ffffff !important;
+  color: #1e293b !important;
+}
+
+:root.dark.light-mode .glass-nav {
+  background: rgba(0,0,0,0.03) !important;
+  border-color: rgba(0,0,0,0.08) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06) !important;
+}
+
+:root.dark.light-mode .glass-nav-link { color: #64748b !important; }
+:root.dark.light-mode .glass-nav-link:hover { color: #0f172a !important; background: rgba(0,0,0,0.04) !important; }
+:root.dark.light-mode .glass-nav-link.active { color: #D4AF37 !important; background: rgba(212,175,55,0.08) !important; }
+
+/* Background overrides */
+:root.dark.light-mode .bg-\[\#0a0a0f\] { background: #ffffff !important; }
+:root.dark.light-mode .bg-\[\#070707\] { background: #f8fafc !important; }
+:root.dark.light-mode .bg-slate-950 { background: #f8fafc !important; }
+:root.dark.light-mode .bg-slate-900, 
+:root.dark.light-mode .bg-slate-900\/50,
+:root.dark.light-mode .bg-slate-900\/60,
+:root.dark.light-mode .bg-slate-900\/70,
+:root.dark.light-mode .bg-slate-900\/80,
+:root.dark.light-mode .bg-slate-900\/90,
+:root.dark.light-mode .bg-slate-900\/30,
+:root.dark.light-mode .bg-slate-950\/50,
+:root.dark.light-mode .bg-slate-950\/80 { background: #f1f5f9 !important; }
+
+:root.dark.light-mode .bg-white\/\[0\.02\],
+:root.dark.light-mode .bg-white\/5,
+:root.dark.light-mode .bg-white\/\[0\.03\] { background: rgba(0,0,0,0.02) !important; }
+
+/* Text overrides */
+:root.dark.light-mode .text-white { color: #0f172a !important; }
+:root.dark.light-mode .text-slate-200 { color: #334155 !important; }
+:root.dark.light-mode .text-slate-300 { color: #475569 !important; }
+:root.dark.light-mode .text-slate-400 { color: #64748b !important; }
+:root.dark.light-mode .text-slate-500 { color: #94a3b8 !important; }
+:root.dark.light-mode .text-slate-600 { color: #94a3b8 !important; }
+:root.dark.light-mode .text-slate-100 { color: #1e293b !important; }
+:root.dark.light-mode p { color: #475569 !important; }
+
+/* Border overrides */
+:root.dark.light-mode .border-white\/10,
+:root.dark.light-mode .border-white\/\[0\.06\],
+:root.dark.light-mode .border-white\/\[0\.08\],
+:root.dark.light-mode .border-white\/\[0\.04\],
+:root.dark.light-mode .border-slate-700,
+:root.dark.light-mode .border-slate-700\/50,
+:root.dark.light-mode .border-slate-700\/70,
+:root.dark.light-mode .border-slate-800,
+:root.dark.light-mode .border-slate-800\/80 { border-color: rgba(0,0,0,0.08) !important; }
+
+/* Input/textarea overrides */
+:root.dark.light-mode textarea,
+:root.dark.light-mode input,
+:root.dark.light-mode select { 
+  background: #f1f5f9 !important; 
+  border-color: #e2e8f0 !important; 
+  color: #1e293b !important; 
+}
+:root.dark.light-mode textarea::placeholder,
+:root.dark.light-mode input::placeholder { color: #94a3b8 !important; }
+
+/* Hover overrides */
+:root.dark.light-mode .hover\:bg-white\/5:hover { background: rgba(0,0,0,0.04) !important; }
+:root.dark.light-mode .hover\:bg-white\/10:hover { background: rgba(0,0,0,0.06) !important; }
+
+/* Footer */
+:root.dark.light-mode footer { background: #f1f5f9 !important; border-color: rgba(0,0,0,0.08) !important; }
+
+/* Divider lines */
+:root.dark.light-mode .border-t,
+:root.dark.light-mode .border-b { border-color: rgba(0,0,0,0.08) !important; }
+
+/* Card styles for light */
+:root.dark.light-mode .card-premium,
+:root.dark.light-mode .card-featured-premium { background: rgba(0,0,0,0.02) !important; }
+
+/* Smooth transition when toggling */
+:root.dark.light-mode * {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+:root.dark.light-mode *.animate-pulse,
+:root.dark.light-mode *.animate-spin,
+:root.dark.light-mode *.animate-bounce {
+  transition: none !important;
+}
+
 .section-lg { padding: 5rem 0; }
 
 /* ===== BUTTONS ===== */
