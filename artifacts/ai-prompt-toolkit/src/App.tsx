@@ -75,6 +75,7 @@ import HowToIndexPage from "./pages/HowToIndexPage";
 import HowToPage from "./pages/HowToPage";
 import PlaygroundPage from "./pages/PlaygroundPage";
 import ChangelogPage from "./pages/ChangelogPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import NewsletterSignup from "./components/NewsletterSignup";
 import AdBanner from "./components/AdBanner";
 import PromptHistory from "./components/PromptHistory";
@@ -1840,34 +1841,6 @@ function TermsPage() {
           <h2 className="text-xl font-semibold text-white">9. Contact</h2>
           <p>If you have any questions about these Terms of Service, please contact us at <a href="mailto:toolkitaiprompt@gmail.com" className="text-cyan-400 hover:underline">toolkitaiprompt@gmail.com</a>.</p>
         </div>
-      </div>
-    </SectionShell>
-  );
-}
-
-function NotFoundPage() {
-  const [showTip, setShowTip] = useState(false);
-  return (
-    <SectionShell title="Page Not Found" description="The requested page could not be found.">
-      <div className="text-center py-10">
-        <p className="text-6xl mb-4">🌌</p>
-        <h1 className="text-4xl font-bold text-white mb-3">Lost in the AI Void?</h1>
-        <p className="text-slate-400 max-w-md mx-auto mb-2">This page doesn't exist — but don't worry, even the best AI hallucinates sometimes! 🤖</p>
-        <p className="text-slate-500 text-sm mb-8">Let's get you back on track!</p>
-        <div className="flex flex-wrap justify-center gap-3 mb-8">
-          <Link to="/" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-500 to-rose-500 rounded-full font-semibold text-white shadow-lg shadow-amber-500/30 hover:shadow-xl transition">🏠 Go Home</Link>
-          <Link to="/tools" className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-slate-300 hover:bg-white/10 transition">🛠️ Try Our Tools</Link>
-          <Link to="/playground" className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-slate-300 hover:bg-white/10 transition">✨ Visit Playground</Link>
-        </div>
-        <button onClick={() => setShowTip(!showTip)} className="text-xs text-slate-500 hover:text-slate-300 transition underline decoration-dotted">
-          {showTip ? "🙈 Hide debugging tip" : "💡 Show me a debugging tip"}
-        </button>
-        {showTip && (
-          <div className="mt-4 max-w-md mx-auto p-4 rounded-xl bg-amber-500/10 border border-amber-400/20 text-xs text-slate-300">
-            <p className="font-semibold text-amber-300 mb-1">🔍 Pro debugging tip:</p>
-            <p>If you clicked a link from another site, the URL might be mistyped. Try searching for what you need on our <Link to="/blog" className="text-amber-400 underline">blog</Link> or use the <Link to="/tools/prompt-debugger" className="text-amber-400 underline">Prompt Debugger</Link> to check your own prompts!</p>
-          </div>
-        )}
       </div>
     </SectionShell>
   );
