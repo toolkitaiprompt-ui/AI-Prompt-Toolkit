@@ -23,6 +23,7 @@ import {
   DollarSign,
   Wand2,
   AlertTriangle,
+  List,
 } from "lucide-react";
 import { BrowserRouter, Link, NavLink, Route, Routes, useParams } from "react-router-dom";
 import {
@@ -42,6 +43,7 @@ import PromptOptimizer from "./components/PromptOptimizer";
 import MegaPromptBuilder from "./components/MegaPromptBuilder";
 import PromptDebugger from "./components/PromptDebugger";
 import SecurityScanner from "./components/tools/SecurityScanner";
+import PromptChainBuilder from "./components/tools/PromptChainBuilder";
 import PromptConverter from "./components/PromptConverter";
 import PersonaBuilder from "./components/PersonaBuilder";
 import PromptComparison from "./components/PromptComparison";
@@ -170,6 +172,14 @@ const TOOL_PAGES: ToolMeta[] = [
     icon: ArrowLeftRight,
     accent: "from-cyan-500/30 to-blue-400/10",
     keyBenefits: ["Token & word count", "Readability & structure scores", "Visual diff highlighting"],
+  },
+  {
+    title: "Prompt Chain Builder",
+    path: "/tools/prompt-chain-builder",
+    description: "Build multi-step AI prompt chains — add up to 5 sequential steps, each with its own prompt and output format. Export as Markdown.",
+    icon: List,
+    accent: "from-emerald-500/30 to-cyan-400/10",
+    keyBenefits: ["Up to 5 steps", "Markdown export", "Sequential workflow"],
   },
 ];
 
@@ -372,6 +382,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/tools/mega-prompt-builder" element={<ToolContainer title="Mega Prompt Builder" toolSlug="mega-prompt-builder" description="Build perfect prompts step-by-step with a guided wizard — choose role, task, context, audience, format, tone, constraints, and examples." tool={TOOL_BY_SLUG.get("mega-prompt-builder")!}><MegaPromptBuilder /></ToolContainer>} />
           <Route path="/tools/prompt-debugger" element={<ToolContainer title="Prompt Debugger" toolSlug="prompt-debugger" description="Analyze any prompt for issues — vague words, missing role/format, token warnings, conflicting instructions, and more. Get a health score and auto-fix suggestions." tool={TOOL_BY_SLUG.get("prompt-debugger")!}><PromptDebugger /></ToolContainer>} />
           <Route path="/tools/security-scanner" element={<ToolContainer title="Security Scanner" toolSlug="security-scanner" description="Scan your prompts for injection attacks, jailbreak attempts, data leak risks, PII exposure, and unsafe content — all in your browser." tool={TOOL_BY_SLUG.get("security-scanner")!}><SecurityScanner /></ToolContainer>} />
+          <Route path="/tools/prompt-chain-builder" element={<ToolContainer title="Prompt Chain Builder" toolSlug="prompt-chain-builder" description="Build multi-step AI prompt chains — add up to 5 sequential steps, each with its own prompt and output format. Export as Markdown." tool={TOOL_BY_SLUG.get("prompt-chain-builder")!}><PromptChainBuilder /></ToolContainer>} />
           <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
