@@ -20,6 +20,7 @@ import { BLOG_POSTS } from '../data/blogPosts';
 import BlogCard from './BlogCard';
 import ToolCard from './ToolCard';
 import CategoryShowcase from './CategoryShowcase';
+import { FAQPageSchema, BreadcrumbSchema } from './SEO/SchemaMarkup';
 
 interface ToolMeta {
   title: string;
@@ -508,6 +509,11 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
       {/* FAQ Section */}
       <section className="section-lg bg-slate-900/50 mt-16">
+        <FAQPageSchema questions={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
+        <BreadcrumbSchema items={[
+          { name: "Home", url: "/" },
+          { name: "FAQ", url: "/#faq" },
+        ]} />
         <div className="site-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

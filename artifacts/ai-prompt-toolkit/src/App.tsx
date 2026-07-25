@@ -40,6 +40,13 @@ import {
 import { BLOG_POSTS, type BlogPost, getBlogPostBySlug } from "./data/blogPosts";
 import { getSeoForPath } from "./seoConfig";
 import HomePage from "./components/HomePage";
+import {
+  OrganizationSchema,
+  BreadcrumbSchema,
+  SoftwareApplicationSchema,
+  ArticleSchema,
+  FAQPageSchema,
+} from "./components/SEO/SchemaMarkup";
 import PromptOptimizer from "./components/PromptOptimizer";
 import MegaPromptBuilder from "./components/MegaPromptBuilder";
 import PromptDebugger from "./components/PromptDebugger";
@@ -287,6 +294,10 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
     }`;
   return (
     <div className="min-h-screen bg-[#0a0a0f] text-[#e2e8f0] w-full">
+      <OrganizationSchema />
+      <BreadcrumbSchema items={[
+        { name: "Home", url: "/" },
+      ]} />
       <header className="sticky top-0 z-50 w-full py-2 md:py-3">
         <div className="site-container">
           <div className="glass-nav">
@@ -542,9 +553,16 @@ function ToolContainer({
   const relatedBlogs = toolSlug ? getBlogPostsForTool(toolSlug) : [];
 
   useSeo(title, description, keywords);
+  const toolPath = tool?.path || `/tools/${toolSlug}`;
 
   return (
     <section className="site-container section-lg space-y-16">
+      {tool && <SoftwareApplicationSchema name={title} description={description} url={toolPath} />}
+      <BreadcrumbSchema items={[
+        { name: "Home", url: "/" },
+        { name: "Tools", url: "/tools" },
+        { name: title, url: toolPath },
+      ]} />
       <div className="rounded-[20px] sm:rounded-[28px] border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-5 sm:p-8 shadow-2xl shadow-indigo-500/10">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
           {tool && (
@@ -1082,6 +1100,18 @@ function BlogPostPage() {
 
   return (
     <section className="site-container section-md">
+      <ArticleSchema
+        headline={post.title}
+        description={post.excerpt || post.metaDescription}
+        datePublished={post.date}
+        authorName="AI World Hub Editorial Team"
+        imageUrl={post.thumbnailUrl || undefined}
+      />
+      <BreadcrumbSchema items={[
+        { name: "Home", url: "/" },
+        { name: "Blog", url: "/blog" },
+        { name: post.title, url: `/blog/${post.slug}` },
+      ]} />
       <div className="space-y-5 sm:space-y-6">
         <div className="space-y-2 sm:space-y-3">
           <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">{post.category}</p>
