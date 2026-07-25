@@ -78,6 +78,8 @@ import ChangelogPage from "./pages/ChangelogPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import NewsletterSignup from "./components/NewsletterSignup";
 import SupportButton from "./components/SupportButton";
+import ProBadge from "./components/ProBadge";
+import ProWaitlistModal from "./components/ProWaitlistModal";
 import AdBanner from "./components/AdBanner";
 import PromptHistory from "./components/PromptHistory";
 import { savePrompt } from "./lib/promptHistory";
@@ -564,7 +566,28 @@ function SectionShell({
   );
 }
 
+const FUTURE_TOOLS = [
+  {
+    title: "AI Prompt Generator 🤖",
+    description: "Generate complete prompts from a simple description. Tell us what you need, and AI crafts the perfect prompt structure with role, task, format, and constraints.",
+    accent: "from-amber-500/20 to-rose-400/10",
+  },
+  {
+    title: "Prompt A/B Tester 📊",
+    description: "Run A/B tests on your prompts — send two variations to an AI model and compare responses side by side. Find what works best for your use case.",
+    accent: "from-violet-500/20 to-indigo-400/10",
+  },
+];
+
 function ToolsDirectoryPage() {
+  const [showProModal, setShowProModal] = useState(false);
+  const [proFeatureName, setProFeatureName] = useState("");
+
+  const openProModal = (name: string) => {
+    setProFeatureName(name);
+    setShowProModal(true);
+  };
+
   return (
     <SectionShell
       title="Free AI Tools Directory — 10 Best Tools"
@@ -598,6 +621,48 @@ function ToolsDirectoryPage() {
           </React.Fragment>
         ))}
       </div>
+
+      {/* Future Pro Tools */}
+      <div className="mt-16">
+        <div className="text-center mb-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/60">Coming Soon</p>
+          <h2 className="mt-2 text-2xl font-bold text-white/60">Pro Tools ⭐</h2>
+          <p className="text-sm text-slate-500 mt-1">Advanced AI tools for power users — join the waitlist for early access.</p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {FUTURE_TOOLS.map((tool) => (
+            <div
+              key={tool.title}
+              className="relative rounded-[20px] border border-dashed border-white/[0.06] bg-white/[0.01] p-6 opacity-60 hover:opacity-80 transition-all duration-300 cursor-pointer group"
+              onClick={() => openProModal(tool.title)}
+            >
+              <div className={`absolute inset-0 rounded-[20px] bg-gradient-to-br ${tool.accent} opacity-5`} />
+              <div className="relative">
+                <div className="flex items-start justify-between mb-4">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-800/80 px-3 py-1 text-[11px] font-semibold text-slate-500 uppercase tracking-wider border border-slate-700/50">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-amber-400/50" />
+                    Coming Soon
+                  </span>
+                  <ProBadge onClick={() => openProModal(tool.title)} />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">{tool.title}</h3>
+                <p className="text-sm text-slate-400 leading-relaxed">{tool.description}</p>
+                <div className="mt-5 flex items-center gap-2 text-xs text-amber-400/60 group-hover:text-amber-300 transition-colors">
+                  <span>Join waitlist</span>
+                  <span>→</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Pro Waitlist Modal */}
+      <ProWaitlistModal
+        isOpen={showProModal}
+        onClose={() => setShowProModal(false)}
+        featureName={proFeatureName}
+      />
     </SectionShell>
   );
 }

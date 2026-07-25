@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Copy, Check, Download, Trash2, Wand2, FlaskConical, Gauge, MessageSquare, Lightbulb } from "lucide-react";
+import { Sparkles, Copy, Check, Download, Trash2, Wand2, FlaskConical, Gauge, MessageSquare, Lightbulb, Lock, Star } from "lucide-react";
+import ProBadge from "../components/ProBadge";
+import ProWaitlistModal from "../components/ProWaitlistModal";
 import { cleanPrompt } from "../lib/toolkit";
 import { analyzeAll, generateOptimizedPrompt, getTokenColor } from "../lib/playgroundAnalysis";
 
@@ -18,6 +20,7 @@ export default function PlaygroundPage() {
   const [showOptimized, setShowOptimized] = useState(false);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [showProModal, setShowProModal] = useState(false);
 
   const analysis = useMemo(() => {
     if (!input.trim()) return null;
@@ -172,6 +175,15 @@ export default function PlaygroundPage() {
                 {tab === "optimize" && "✨ Optimize"}
               </button>
             ))}
+            {/* Pro locked tab */}
+            <button
+              onClick={() => setShowProModal(true)}
+              className="flex-none px-3 py-3 text-xs font-medium text-slate-500 hover:text-slate-300 transition whitespace-nowrap flex items-center gap-1.5 opacity-60 hover:opacity-100"
+            >
+              <Lock className="w-3 h-3" />
+              AI-Powered Optimization
+              <ProBadge onClick={() => setShowProModal(true)} />
+            </button>
           </div>
 
           <div className="p-4 min-h-[300px]">
@@ -315,6 +327,13 @@ export default function PlaygroundPage() {
           Analyzing your prompt…
         </div>
       )}
+
+      {/* Pro Waitlist Modal */}
+      <ProWaitlistModal
+        isOpen={showProModal}
+        onClose={() => setShowProModal(false)}
+        featureName="AI-Powered Optimization"
+      />
 
       {/* Pro tip */}
       <div className="rounded-[16px] border border-amber-400/15 bg-amber-500/5 p-4">

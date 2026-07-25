@@ -1,12 +1,15 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Search, Copy, Check, Star, TrendingUp } from "lucide-react";
+import { Search, Copy, Check, Star, TrendingUp, Lock, Sparkles } from "lucide-react";
 import { TEMPLATES, CATEGORIES } from "@/data/templates";
+import ProBadge from "../components/ProBadge";
+import ProWaitlistModal from "../components/ProWaitlistModal";
 
 export default function TemplatesPage() {
   const [search, setSearch] = useState("");
   const [activeCat, setActiveCat] = useState("All");
   const [copiedId, setCopiedId] = useState("");
+  const [showProModal, setShowProModal] = useState(false);
 
   const filtered = useMemo(() => {
     return TEMPLATES.filter(t => {
@@ -121,6 +124,41 @@ export default function TemplatesPage() {
           No templates found. Try a different search.
         </div>
       )}
+
+      {/* Pro teaser — Premium Templates */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mt-16 relative rounded-[20px] border border-dashed border-amber-400/20 bg-amber-500/[0.02] p-8 text-center overflow-hidden group"
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 via-transparent to-rose-500/5 opacity-50" />
+        <div className="relative space-y-4">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Lock className="w-4 h-4 text-amber-400/60" />
+            <ProBadge onClick={() => setShowProModal(true)} />
+          </div>
+          <h3 className="text-2xl font-bold text-white/60">500+ Premium Templates</h3>
+          <p className="text-sm text-slate-500 max-w-md mx-auto">
+            Advanced templates for complex workflows — multi-step chains, schema-guided outputs, role-based systems, and more.
+          </p>
+          <button
+            type="button"
+            onClick={() => setShowProModal(true)}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-amber-500/10 border border-amber-400/20 text-sm font-semibold text-amber-300 hover:bg-amber-500/20 hover:scale-105 transition-all duration-300"
+          >
+            <Sparkles className="w-4 h-4" />
+            Get Early Access
+          </button>
+        </div>
+      </motion.div>
+
+      {/* Pro Waitlist Modal */}
+      <ProWaitlistModal
+        isOpen={showProModal}
+        onClose={() => setShowProModal(false)}
+        featureName="500+ Premium Templates"
+      />
     </section>
   );
 }
