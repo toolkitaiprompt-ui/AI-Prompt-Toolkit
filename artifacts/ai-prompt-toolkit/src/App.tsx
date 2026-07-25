@@ -1,4 +1,4 @@
-import React, { type FormEvent, type ReactElement, type ReactNode, useEffect, useMemo, useState, useCallback } from "react";
+import React, { type FormEvent, type ReactElement, type ReactNode, useEffect, useMemo, useState, useCallback, useRef } from "react";
 import {
   ArrowUpRight,
   Braces,
@@ -1264,80 +1264,280 @@ function BlogPostPage() {
 }
 
 function AboutPage() {
+  const [counters, setCounters] = useState({ tools: 0, templates: 0, guides: 0, data: 0 });
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCounters({ tools: 16, templates: 100, guides: 31, data: 0 });
+    }, 400);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const CounterBox = ({ label, value, suffix = "", emoji }: { label: string; value: number; suffix?: string; emoji: string }) => {
+    const [display, setDisplay] = useState(0);
+    useEffect(() => {
+      if (value === 0) { setDisplay(0); return; }
+      const duration = 1500;
+      const steps = 30;
+      const increment = value / steps;
+      let current = 0;
+      const interval = setInterval(() => {
+        current += increment;
+        if (current >= value) { setDisplay(value); clearInterval(interval); }
+        else setDisplay(Math.floor(current));
+      }, duration / steps);
+      return () => clearInterval(interval);
+    }, [value]);
+    return (
+      <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/80 to-slate-950/80 p-6 text-center backdrop-blur-xl">
+        <p className="text-3xl mb-2">{emoji}</p>
+        <p className="text-3xl sm:text-4xl font-black text-amber-300">{display}{suffix}</p>
+        <p className="mt-1 text-sm text-slate-400">{label}</p>
+      </div>
+    );
+  };
+
+  const FadeInSection = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => {
+    const [isVisible, setIsVisible] = useState(false);
+    const ref = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) { setIsVisible(true); observer.disconnect(); } },
+        { threshold: 0.1 }
+      );
+      if (ref.current) observer.observe(ref.current);
+      return () => observer.disconnect();
+    }, []);
+    return (
+      <div ref={ref} className={`transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: `${delay}ms` }}>
+        {children}
+      </div>
+    );
+  };
+
   return (
     <SectionShell
-      title="About AI World Hub"
-      description="Learn about AI World Hub — free in-browser tools for prompt engineering teams worldwide."
-      keywords="About AI World Hub, Best AI Tools, Free AI Tools, Prompt Engineering"
+      title="About AI World Hub — Free AI Tools for Everyone"
+      description="We built AI World Hub because we believe professional prompt engineering tools should be free for everyone. No signup, no data collection, just great tools."
+      keywords="About AI World Hub, Free AI Tools, Best AI Tools, Prompt Engineering, AI Tools for Free"
     >
-      <div className="max-w-4xl space-y-8">
-        <div className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-400">About Us</p>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white">Build Reliable AI Prompts, Faster & Smarter</h1>
-          <p className="text-lg text-slate-400">
-            AI World Hub is a free, browser-based platform offering professional prompt engineering tools for teams and individuals worldwide.
-          </p>
-        </div>
-
-        <div className="grid gap-6 sm:grid-cols-3">
-          <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
-            <p className="text-3xl font-bold text-white">10</p>
-            <p className="mt-1 text-sm text-slate-400">Free Tools</p>
+      <div className="max-w-5xl mx-auto space-y-24">
+        {/* Section 1: Hero */}
+        <FadeInSection>
+          <div className="text-center space-y-6 max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-400/20 px-4 py-1.5 text-xs font-semibold text-amber-300">
+              ✦ About Us
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.1]">
+              We Believe AI Should Be{" "}
+              <span className="bg-gradient-to-r from-amber-200 via-amber-400 to-rose-400 bg-clip-text text-transparent">
+                Accessible to Everyone
+              </span>
+            </h1>
+            <p className="text-lg sm:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto">
+              Not just for big companies with big budgets. For students, freelancers, startups, and dreamers.
+            </p>
+            <div className="flex items-center justify-center gap-2 text-sm text-slate-500">
+              <span>❤️ Passion-driven</span>
+              <span className="text-slate-700">·</span>
+              <span>🔒 Privacy-first</span>
+              <span className="text-slate-700">·</span>
+              <span>💎 Forever free</span>
+            </div>
           </div>
-          <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
-            <p className="text-3xl font-bold text-white">25+</p>
-            <p className="mt-1 text-sm text-slate-400">Blog Guides</p>
+        </FadeInSection>
+
+        {/* Section 2: Story */}
+        <FadeInSection delay={100}>
+          <div className="relative rounded-[32px] border border-white/10 bg-gradient-to-br from-slate-900/90 via-slate-950/80 to-slate-950/90 p-8 sm:p-12 shadow-2xl overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/5 rounded-full blur-3xl -mr-20 -mt-20" />
+            <div className="relative space-y-6 max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-400/80">The Story</p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white flex items-center gap-3">
+                Why We Built This <span className="text-3xl">💡</span>
+              </h2>
+              <div className="space-y-5 text-base sm:text-lg leading-8 text-slate-300">
+                <p>
+                  We saw people paying <strong className="text-rose-300">$50–150 every single month</strong> for tools that do what any developer could build in a weekend.
+                </p>
+                <p>
+                  <strong className="text-amber-300">Students couldn't afford them.</strong> Small businesses couldn't justify the cost. Freelancers were stuck with free trials and capped usage.
+                </p>
+                <p>
+                  So we asked: <em className="text-white font-semibold">"Why should prompt engineering tools cost money?"</em>
+                </p>
+                <div className="border-l-2 border-amber-400/40 pl-6 py-2">
+                  <p className="text-lg font-semibold text-white">
+                    So we built AI World Hub — professional-grade prompt engineering tools, <span className="text-amber-300">actually free, forever</span>.
+                  </p>
+                </div>
+                <p>
+                  Your prompts <strong className="text-emerald-300">never leave your browser</strong>. We don't track you. We don't sell data. We don't even have a database.
+                </p>
+                <p className="text-amber-200 font-medium">
+                  We just want to help. 🤝
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
-            <p className="text-3xl font-bold text-white">100%</p>
-            <p className="mt-1 text-sm text-slate-400">In-Browser</p>
+        </FadeInSection>
+
+        {/* Section 3: Values */}
+        <FadeInSection delay={200}>
+          <div className="space-y-8">
+            <div className="text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-400/80">Our Values</p>
+              <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-white">What We Stand For</h2>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+              {[
+                { emoji: "🔒", title: "Privacy First", desc: "Every tool runs in your browser. Zero server calls. Zero data collection. Your prompts are yours." },
+                { emoji: "💎", title: "Free Forever", desc: "No premium tiers. No credit card needed. No 'upgrade to unlock.' Just free, always." },
+                { emoji: "🌐", title: "Open Source", desc: "Our code is on GitHub. Fork it, audit it, contribute. Transparency is our foundation." },
+                { emoji: "✨", title: "No Signup", desc: "No accounts. No passwords. No 'verify your email.' Open a tool and start working. Simple." },
+                { emoji: "🤝", title: "Community Driven", desc: "Built by developers, for everyone. We listen to feedback and ship what matters." },
+              ].map((v) => (
+                <div key={v.title} className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 text-center hover:border-white/[0.15] hover:bg-white/[0.04] transition-all duration-400 group">
+                  <p className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">{v.emoji}</p>
+                  <h3 className="text-base font-bold text-white mb-2">{v.title}</h3>
+                  <p className="text-xs text-slate-500 leading-relaxed">{v.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        </FadeInSection>
 
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white">Our Mission</h2>
-          <p className="text-slate-300">
-            We believe that great AI output starts with great prompts. Our mission is to make professional prompt engineering accessible to everyone — developers, marketers, support teams, and AI enthusiasts. No sign-ups, no server round-trips, no data collection. Every tool runs entirely in your browser.
-          </p>
-        </div>
+        {/* Section 4: Counters */}
+        <FadeInSection delay={300}>
+          <div className="space-y-8">
+            <div className="text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-400/80">By the Numbers</p>
+              <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-white">We're Just Getting Started 🚀</h2>
+            </div>
+            <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
+              <CounterBox emoji="🛠️" label="Free Tools" value={16} suffix="+" />
+              <CounterBox emoji="📋" label="Templates" value={100} suffix="+" />
+              <CounterBox emoji="📝" label="Blog Guides" value={31} suffix="+" />
+              <CounterBox emoji="🔐" label="Data Stored" value={0} />
+            </div>
+          </div>
+        </FadeInSection>
 
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white">What We Offer</h2>
-          <ul className="ml-6 list-disc space-y-2 text-slate-300">
-            <li><strong className="text-white">Prompt Variable Extractor</strong> — Extract placeholders from any prompt template.</li>
-            <li><strong className="text-white">JSON Schema Generator</strong> — Create structured schemas for reliable AI output.</li>
-            <li><strong className="text-white">JSON Validator</strong> — Validate model responses against your schema.</li>
-            <li><strong className="text-white">Prompt Formatter</strong> — Turn messy notes into clean, numbered instructions.</li>
-            <li><strong className="text-white">Prompt Cleaner</strong> — Remove noise characters and fix formatting.</li>
-            <li><strong className="text-white">Token Estimator</strong> — Project token usage and costs before API calls.</li>
-            <li><strong className="text-white">Prompt Converter</strong> — Convert ChatGPT prompts to Claude, Gemini, or Cursor format.</li>
-            <li><strong className="text-white">AI Persona Builder</strong> — Generate expert system prompts for any role.</li>
-            <li><strong className="text-white">Advanced Prompt Optimizer</strong> — Polish prompts for clarity and effectiveness.</li>
-            <li><strong className="text-white">Prompt Comparison Tool</strong> — Compare prompts side-by-side with detailed metrics.</li>
-          </ul>
-        </div>
+        {/* Section 5: Comparison Table */}
+        <FadeInSection delay={400}>
+          <div className="space-y-8">
+            <div className="text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-400/80">Honest Comparison</p>
+              <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-white">Paid Tools vs. The Real Deal</h2>
+            </div>
+            <div className="overflow-x-auto rounded-[24px] border border-white/10 bg-slate-950/80 shadow-xl">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-white/10">
+                    <th className="text-left px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500"></th>
+                    <th className="text-center px-6 py-4 text-xs font-semibold uppercase tracking-wider text-rose-400">Paid Tools</th>
+                    <th className="text-center px-6 py-4 text-xs font-semibold uppercase tracking-wider text-emerald-400">AI World Hub</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/[0.06]">
+                  {[
+                    { feature: "Monthly Cost", paid: "$50 – $150/mo", us: "ZERO. Free forever." },
+                    { feature: "Sign-up Required", paid: "Yes — email + password", us: "None. Open & use." },
+                    { feature: "Data Privacy", paid: "Processed on their servers", us: "100% in your browser" },
+                    { feature: "Data Collection", paid: "They train models on your data", us: "We never see your prompts" },
+                    { feature: "Usage Limits", paid: "Yes — caps on requests", us: "Unlimited. No caps." },
+                    { feature: "Offline Use", paid: "Internet required", us: "Works offline too" },
+                    { feature: "Open Source", paid: "Proprietary & closed", us: "Fully open on GitHub" },
+                  ].map((row) => (
+                    <tr key={row.feature} className="hover:bg-white/[0.02] transition">
+                      <td className="px-6 py-4 font-medium text-white">{row.feature}</td>
+                      <td className="px-6 py-4 text-center text-rose-400/80">
+                        <span className="inline-flex items-center gap-1.5">
+                          <span className="text-rose-500">✕</span> {row.paid}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-center text-emerald-400">
+                        <span className="inline-flex items-center gap-1.5">
+                          <span className="text-emerald-500">✓</span> {row.us}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-center text-xs text-slate-600">
+              We're not here to shame anyone — just to show you there's a better way. 🙌
+            </p>
+          </div>
+        </FadeInSection>
 
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white">Privacy First</h2>
-          <p className="text-slate-300">
-            Unlike many online tools, AI World Hub processes everything locally in your browser. Your prompts, data, and text never leave your device. We do not store, collect, or share your inputs with any server.
-          </p>
-        </div>
+        {/* Section 6: Support */}
+        <FadeInSection delay={500}>
+          <div className="space-y-8">
+            <div className="text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-400/80">Support the Mission</p>
+              <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-white">Help Us Keep It Free 🌟</h2>
+              <p className="mt-3 text-slate-400 max-w-xl mx-auto">
+                AI World Hub runs on passion and community support. Here's how you can help:
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a
+                href="https://github.com/toolkitaiprompt-ui/AI-Prompt-Toolkit"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 rounded-full bg-white/5 border border-white/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 hover:border-white/20 transition-all group"
+              >
+                <span className="text-lg group-hover:scale-110 transition-transform">⭐</span>
+                Star on GitHub
+              </a>
+              <a
+                href="https://buymeacoffee.com/aiworldhub"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 rounded-full bg-amber-500/10 border border-amber-400/20 px-6 py-3 text-sm font-semibold text-amber-300 hover:bg-amber-500/20 hover:border-amber-400/40 transition-all group"
+              >
+                <span className="text-lg group-hover:scale-110 transition-transform">☕</span>
+                Buy us a coffee
+              </a>
+              <button
+                type="button"
+                onClick={() => { if (navigator.share) { navigator.share({ title: "AI World Hub", url: "https://aiworldhub.site" }); } else { navigator.clipboard.writeText("https://aiworldhub.site"); } }}
+                className="inline-flex items-center gap-2.5 rounded-full bg-white/5 border border-white/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 hover:border-white/20 transition-all group"
+              >
+                <span className="text-lg group-hover:scale-110 transition-transform">📢</span>
+                Share with Friends
+              </button>
+            </div>
+          </div>
+        </FadeInSection>
 
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white">Who We Serve</h2>
-          <p className="text-slate-300">
-            Our tools are used by prompt engineering teams, AI developers, content creators, marketers, and enterprises across the globe. Whether you are building production AI workflows or experimenting with your first prompt, AI World Hub is designed to help you work faster and smarter.
-          </p>
-        </div>
-
-        <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
-          <h2 className="text-xl font-semibold text-white">Contact Us</h2>
-          <p className="mt-3 text-slate-400">
-            Questions, feedback, or partnership inquiries? Email us at{" "}
-            <a href="mailto:toolkitaiprompt@gmail.com" className="text-cyan-400 hover:underline">toolkitaiprompt@gmail.com</a>
-          </p>
-        </div>
+        {/* Section 7: CTA */}
+        <FadeInSection delay={600}>
+          <div className="relative rounded-[32px] border border-white/10 bg-gradient-to-br from-amber-500/10 via-rose-500/5 to-slate-950/80 p-8 sm:p-12 text-center overflow-hidden shadow-2xl">
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 via-transparent to-rose-500/5" />
+            <div className="relative space-y-6">
+              <p className="text-4xl">🚀</p>
+              <h2 className="text-3xl sm:text-4xl font-black text-white">
+                Ready to Build Better Prompts?
+              </h2>
+              <p className="text-lg text-slate-400 max-w-lg mx-auto">
+                No signup. No cost. Just open your browser and start creating.
+              </p>
+              <Link
+                to="/playground"
+                className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-amber-400 to-rose-500 px-8 py-4 text-base font-bold text-white shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-500/50 hover:scale-105 transition-all duration-300"
+              >
+                ✨ Try the Playground
+                <ArrowUpRight className="w-5 h-5" />
+              </Link>
+              <p className="text-xs text-slate-600">
+                Already using AI World Hub? <Link to="/tools" className="text-amber-400 hover:underline">Explore all 16 tools →</Link>
+              </p>
+            </div>
+          </div>
+        </FadeInSection>
       </div>
     </SectionShell>
   );
