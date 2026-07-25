@@ -66,6 +66,8 @@ import CategoryDetailPage from "./pages/CategoryDetailPage";
 import ImageGeneratorPage from "./pages/ImageGeneratorPage";
 import PromptsIndexPage from "./pages/PromptsIndexPage";
 import RolePromptsPage from "./pages/RolePromptsPage";
+import CompareIndexPage from "./pages/CompareIndexPage";
+import ComparisonPage from "./pages/ComparisonPage";
 import AdBanner from "./components/AdBanner";
 
 type ThemeMode = "light" | "dark";
@@ -430,6 +432,8 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/image-generator" element={<ImageGeneratorPage />} />
           <Route path="/prompts" element={<PromptsIndexPage />} />
           <Route path="/prompts/:roleSlug" element={<RolePromptsPage />} />
+          <Route path="/compare" element={<CompareIndexPage />} />
+          <Route path="/compare/:slug" element={<ComparisonPage />} />
           <Route path="/privacy-policy" element={<PrivacyPage />} />
           <Route path="/terms-of-service" element={<TermsPage />} />
           <Route path="*" element={<NotFoundPage />} />

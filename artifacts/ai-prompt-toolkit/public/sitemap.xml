@@ -337,6 +337,48 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://aiworldhub.site/compare</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aiworldhub.site/compare/chatgpt-vs-claude</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiworldhub.site/compare/chatgpt-vs-gemini</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiworldhub.site/compare/claude-vs-gemini</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiworldhub.site/compare/gpt4o-vs-gpt4o-mini</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiworldhub.site/compare/midjourney-vs-dalle</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiworldhub.site/compare/claude-sonnet-vs-haiku</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://aiworldhub.site/prompts</loc>
     <lastmod>2026-07-25</lastmod>
     <changefreq>weekly</changefreq>

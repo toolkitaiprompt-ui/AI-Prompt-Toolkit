@@ -35,6 +35,15 @@ const routes = [
   { path: "/", title: "AI World Hub — Best Free AI Tools for Everyone",
     desc: "Best free AI tools for everyone — 10 prompt engineering tools for formatting, validating, extracting, and optimizing prompts. JSON schema, token estimator, persona builder & more. No sign-up, 100% in-browser." },
 
+  // ── COMPARE INDEX ──
+  { path: "/compare", title: "AI Model Comparisons — Compare ChatGPT, Claude, Gemini & More | AI World Hub", desc: "Compare leading AI models side by side. ChatGPT vs Claude, ChatGPT vs Gemini, Claude vs Gemini, GPT-4o vs GPT-4o-mini, Midjourney vs DALL-E. Features, pricing, and example prompts." },
+  { path: "/compare/chatgpt-vs-claude", title: "ChatGPT vs Claude — Prompting Comparison (2026) | AI World Hub", desc: "Compare ChatGPT vs Claude for prompt engineering. Features, pricing, strengths, and example responses. Find which AI model is best for your prompting needs." },
+  { path: "/compare/chatgpt-vs-gemini", title: "ChatGPT vs Gemini — Prompting Comparison (2026) | AI World Hub", desc: "Compare ChatGPT vs Google Gemini for prompt engineering. Features, pricing, strengths, and example responses. Find which AI model works best for your prompting style." },
+  { path: "/compare/claude-vs-gemini", title: "Claude vs Gemini — Prompting Comparison (2026) | AI World Hub", desc: "Compare Claude vs Google Gemini for prompt engineering. Features, pricing, strengths, and example responses. Find which AI model fits your prompting workflow." },
+  { path: "/compare/gpt4o-vs-gpt4o-mini", title: "GPT-4o vs GPT-4o-mini — Prompting Comparison | AI World Hub", desc: "Compare GPT-4o vs GPT-4o-mini for prompt engineering. Features, speed, pricing, strengths, and when to use each model. Optimize your prompting costs." },
+  { path: "/compare/midjourney-vs-dalle", title: "Midjourney vs DALL-E 3 — Prompting Comparison | AI World Hub", desc: "Compare Midjourney vs DALL-E 3 for image prompt engineering. Features, quality, pricing, and example prompts. Find which AI image generator fits your creative workflow." },
+  { path: "/compare/claude-sonnet-vs-haiku", title: "Claude Sonnet vs Haiku — Prompting Comparison | AI World Hub", desc: "Compare Claude Sonnet vs Claude Haiku for prompt engineering. Features, speed, pricing, strengths, and when to use each model for optimal results." },
+
   // ── PROMPTS INDEX ──
   { path: "/prompts", title: "Ready-to-Use AI Prompts by Role — 225+ Templates | AI World Hub",
     desc: "Browse 225+ copy-paste AI prompts organized by professional role — marketing, engineering, writing, data, product, design, sales, HR, and more. Free prompts for ChatGPT, Claude & Gemini." },
