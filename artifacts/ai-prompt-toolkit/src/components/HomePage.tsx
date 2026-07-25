@@ -56,7 +56,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
 
   const stats = [
-    { icon: Zap, value: '10', label: 'Free Tools', color: 'from-blue-500 to-cyan-500' },
+    { icon: Zap, value: "16", label: "Free Tools", color: 'from-blue-500 to-cyan-500' },
     { icon: Shield, value: '100%', label: 'In-Browser & Private', color: 'from-yellow-500 to-orange-500' },
     { icon: Clock, value: '0', label: 'Sign-ups Required', color: 'from-amber-500 to-rose-500' },
     { icon: Award, value: 'Free', label: 'Forever', color: 'from-green-500 to-emerald-500' },
@@ -164,7 +164,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
               {/* Description */}
               <p className="text-lg sm:text-xl text-slate-300 mb-8 leading-relaxed">
-                10 free tools to fix, format, and optimize your AI prompts.
+                16 free tools to fix, format, and optimize your AI prompts.
                 No signup. 100% in-browser. Free forever.
               </p>
 
@@ -192,7 +192,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                  <span className="text-sm text-slate-300">10 free tools</span>
+                  <span className="text-sm text-slate-300">16 free tools</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Shield className="w-5 h-5 text-cyan-400" />
@@ -377,7 +377,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               <span className="text-sm text-amber-300 font-medium">Featured Tools</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-              10 Free AI Tools
+              16 Free AI Tools
               <br />
               <span className="bg-gradient-to-r from-amber-400 to-rose-400 bg-clip-text text-transparent">
                 For Perfect Prompts
@@ -568,7 +568,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               </span>
             </h2>
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              No sign-up. No data collection. No limits. Just 10 free tools that make your AI prompts better — right in your browser.
+              No sign-up. No data collection. No limits. Just 16 free tools that make your AI prompts better — right in your browser.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

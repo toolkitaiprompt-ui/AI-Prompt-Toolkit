@@ -533,9 +533,9 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             <p className="text-xs text-slate-500">© 2026 AI World Hub. All rights reserved.</p>
             <div className="flex items-center gap-4">
               <p className="text-xs text-slate-600">Made with ❤️ for the AI community</p>
-              <a href="https://buymeacoffee.com/aiworldhub" target="_blank" rel="noopener noreferrer"
+              <a href="https://github.com/toolkitaiprompt-ui/AI-Prompt-Toolkit" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/20 text-[11px] text-amber-300 hover:bg-amber-500/20 transition">
-                ☕ Buy me a coffee
+                ⭐ Star on GitHub
               </a>
             </div>
           </div>
@@ -605,7 +605,7 @@ function ToolsDirectoryPage() {
         </p>
       </div>
 
-      <div className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mt-12 grid gap-5 md:gap-6 sm:grid-cols-2 xl:grid-cols-3">
         {TOOL_PAGES.map((tool, index) => (
           <React.Fragment key={tool.path}>
             <ToolCard tool={tool} />

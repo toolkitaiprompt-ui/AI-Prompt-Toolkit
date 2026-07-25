@@ -337,6 +337,7 @@ p { font-size: 1rem; line-height: 1.8; margin-bottom: 1rem; color: #94a3b8; }
   h2 { font-size: 1.5rem; }
   .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
   .hero-badge { font-size: 11px; }
+  .card-premium, .card-featured-premium { padding: 20px !important; }
 }
 @media (min-width: 768px) {
   .glass-nav-link { padding: 7px 14px; }

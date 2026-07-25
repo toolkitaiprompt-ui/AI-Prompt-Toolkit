@@ -109,11 +109,11 @@ export default function ToolCard({ tool }: ToolCardProps) {
     <motion.div
       whileHover={{ y: -5 }}
       transition={{ type: "spring", stiffness: 220, damping: 22 }}
-      className="group relative h-full"
+      className="group relative"
     >
       <Link
         to={tool.path}
-        className={`relative block h-full overflow-hidden rounded-[20px] p-8 shadow-lg transition-all duration-500 ${
+        className={`relative block rounded-[20px] p-5 md:p-8 shadow-lg transition-all duration-500 ${
           isPremium
             ? "card-featured-premium before:opacity-100"
             : "card-premium"
@@ -128,27 +128,27 @@ export default function ToolCard({ tool }: ToolCardProps) {
         {/* Accent glow */}
         <div className={`absolute -right-12 top-6 h-32 w-32 rounded-full bg-gradient-to-br ${tool.accent} blur-3xl opacity-40 transition-all duration-500 group-hover:opacity-70 group-hover:scale-110`} />
 
-        <div className="relative z-10 space-y-5">
-          {/* Top Row: Icon + Badge */}
-          <div className="flex items-start justify-between">
-            <div className="flex h-14 w-14 items-center justify-center rounded-[14px] mb-1 bg-gradient-to-br from-slate-900 to-slate-950 border border-white/10 group-hover:border-amber-400/30 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-amber-500/20">
-              <Icon className="h-7 w-7 text-white group-hover:text-amber-300 transition-colors" aria-hidden="true" />
+        <div className="relative z-10 space-y-3 md:space-y-5">
+          {/* Top Row: Icon + Badge flex row, no absolute */}
+          <div className="flex items-center gap-3 flex-wrap">
+            <div className="flex h-12 w-12 md:h-14 md:w-14 shrink-0 items-center justify-center rounded-[14px] bg-gradient-to-br from-slate-900 to-slate-950 border border-white/10 group-hover:border-amber-400/30 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-amber-500/20">
+              <Icon className="h-6 w-6 md:h-7 md:w-7 text-white group-hover:text-amber-300 transition-colors" aria-hidden="true" />
             </div>
             {getBadgeType() && <ToolBadge type={getBadgeType()!} />}
           </div>
 
           {/* Title */}
-          <h3 className="text-base font-semibold tracking-tight text-white font-headline mb-2">
+          <h3 className="text-sm md:text-base font-semibold tracking-tight text-white font-headline">
             {tool.title}
           </h3>
 
           {/* Description */}
-          <p className="text-xs leading-5 text-slate-400 mb-3">
+          <p className="text-xs leading-5 text-slate-400">
             {tool.description}
           </p>
 
-          {/* Tool Preview */}
-          <div className="rounded-[14px] border border-white/5 bg-white/5 p-4 backdrop-blur-sm">
+          {/* Tool Preview - hidden on mobile, visible md+ */}
+          <div className="hidden md:block rounded-[14px] border border-white/5 bg-white/5 p-4 backdrop-blur-sm">
             {getPreviewComponent()}
           </div>
 
