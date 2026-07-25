@@ -68,6 +68,8 @@ import PromptsIndexPage from "./pages/PromptsIndexPage";
 import RolePromptsPage from "./pages/RolePromptsPage";
 import CompareIndexPage from "./pages/CompareIndexPage";
 import ComparisonPage from "./pages/ComparisonPage";
+import HowToIndexPage from "./pages/HowToIndexPage";
+import HowToPage from "./pages/HowToPage";
 import AdBanner from "./components/AdBanner";
 
 type ThemeMode = "light" | "dark";
@@ -434,6 +436,8 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/prompts/:roleSlug" element={<RolePromptsPage />} />
           <Route path="/compare" element={<CompareIndexPage />} />
           <Route path="/compare/:slug" element={<ComparisonPage />} />
+          <Route path="/how-to" element={<HowToIndexPage />} />
+          <Route path="/how-to/:slug" element={<HowToPage />} />
           <Route path="/privacy-policy" element={<PrivacyPage />} />
           <Route path="/terms-of-service" element={<TermsPage />} />
           <Route path="*" element={<NotFoundPage />} />
