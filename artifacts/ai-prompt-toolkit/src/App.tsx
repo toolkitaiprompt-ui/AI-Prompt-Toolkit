@@ -437,9 +437,9 @@ function ToolsDirectoryPage() {
         <p className="text-sm font-semibold uppercase tracking-[0.28em] text-amber-400/80">
           ✦ Free Tools
         </p>
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">AI World Hub</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">All Tools</h1>
         <p className="max-w-3xl text-base sm:text-lg text-slate-400">
-          Ten free tools to fix, format, and optimize your AI prompts. No signup. 100% in-browser. Free forever.
+          Choose from 10 tools to fix, format, and optimize your AI prompts — all free, no sign-up needed.
         </p>
       </div>
 
