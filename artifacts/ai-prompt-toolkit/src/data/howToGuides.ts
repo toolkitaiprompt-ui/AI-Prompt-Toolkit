@@ -241,7 +241,7 @@ export const HOW_TO_GUIDES: HowToGuide[] = [
       { title: "Use Chain-of-Thought for Retrieval", text: "When you need the AI to find specific information in a long context, instruct it to think step-by-step: 'First, identify which section of the document contains the relevant information. Then, extract the specific details. Finally, synthesize the answer.' This structured approach improves accuracy." },
     ],
     examplePrompts: [
-      { label: "Long Context Prompt", text: "I have attached a long document about our Q3 product roadmap. Here is a summary of what it covers:\n- Section 1: Market analysis and competitive landscape\n- Section 2: Feature prioritization with RICE scores\n- Section 3: Engineering capacity estimates\n- Section 4: Launch timeline and milestones\n\nQuestion: Based on the full document, what are the top 3 features we should prioritize for October launch? Consider engineering capacity and market impact." },
+      { label: "Long Context Prompt", prompt: "I have attached a long document about our Q3 product roadmap. Here is a summary of what it covers:\n- Section 1: Market analysis and competitive landscape\n- Section 2: Feature prioritization with RICE scores\n- Section 3: Engineering capacity estimates\n- Section 4: Launch timeline and milestones\n\nQuestion: Based on the full document, what are the top 3 features we should prioritize for October launch? Consider engineering capacity and market impact." },
     ],
     toolLink: "/tools/prompt-comparison",
     toolText: "Compare Context Strategies",
@@ -267,7 +267,7 @@ export const HOW_TO_GUIDES: HowToGuide[] = [
       { title: "Set Clear Boundaries of Knowledge", text: "Tell the AI what it does and doesn't know. 'You are an expert in 2024 data. For events after 2024, say you don't have information. Never predict future events unless given explicit data about them.' Clear knowledge boundaries prevent the AI from inventing information about topics it shouldn't know." },
     ],
     examplePrompts: [
-      { label: "Hallucination-Resistant Prompt", text: "You are a research analyst. Based ONLY on the provided documents, answer the following question. For each claim in your response: 1) Cite the exact section and paragraph number, 2) Rate your confidence (High/Medium/Low), 3) If a claim isn't supported by the documents, state 'This is my inference, not from the documents.'\n\nDocuments: [paste documents]\nQuestion: [question]" },
+      { label: "Hallucination-Resistant Prompt", prompt: "You are a research analyst. Based ONLY on the provided documents, answer the following question. For each claim in your response: 1) Cite the exact section and paragraph number, 2) Rate your confidence (High/Medium/Low), 3) If a claim isn't supported by the documents, state 'This is my inference, not from the documents.'\n\nDocuments: [paste documents]\nQuestion: [question]" },
     ],
     toolLink: "/tools/prompt-debugger",
     toolText: "Debug Your Prompt for Issues",
