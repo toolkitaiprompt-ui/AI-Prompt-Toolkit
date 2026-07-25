@@ -21,6 +21,7 @@ import BlogCard from './BlogCard';
 import ToolCard from './ToolCard';
 import CategoryShowcase from './CategoryShowcase';
 import SocialProof from './homepage/SocialProof';
+import NewsletterSignup from './NewsletterSignup';
 import { FAQPageSchema, BreadcrumbSchema } from './SEO/SchemaMarkup';
 
 interface ToolMeta {
@@ -540,6 +541,13 @@ export default function HomePage({ toolPages }: HomePageProps) {
               <FAQItem key={idx} question={faq.question} answer={faq.answer} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Newsletter */}
+      <section className="section-lg mt-16">
+        <div className="site-container">
+          <NewsletterSignup />
         </div>
       </section>
 

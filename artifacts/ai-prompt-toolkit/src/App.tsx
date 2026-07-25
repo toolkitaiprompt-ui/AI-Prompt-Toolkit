@@ -75,6 +75,7 @@ import HowToIndexPage from "./pages/HowToIndexPage";
 import HowToPage from "./pages/HowToPage";
 import PlaygroundPage from "./pages/PlaygroundPage";
 import ChangelogPage from "./pages/ChangelogPage";
+import NewsletterSignup from "./components/NewsletterSignup";
 import AdBanner from "./components/AdBanner";
 import PromptHistory from "./components/PromptHistory";
 import { savePrompt } from "./lib/promptHistory";
@@ -1260,6 +1261,11 @@ function BlogPostPage() {
               </Link>
             </div>
           </aside>
+        </div>
+
+        {/* Newsletter */}
+        <div className="mt-16">
+          <NewsletterSignup />
         </div>
       </div>
     </section>
