@@ -64,6 +64,8 @@ import SearchModal from "./components/SearchModal";
 import CategoriesPage from "./pages/CategoriesPage";
 import CategoryDetailPage from "./pages/CategoryDetailPage";
 import ImageGeneratorPage from "./pages/ImageGeneratorPage";
+import PromptsIndexPage from "./pages/PromptsIndexPage";
+import RolePromptsPage from "./pages/RolePromptsPage";
 import AdBanner from "./components/AdBanner";
 
 type ThemeMode = "light" | "dark";
@@ -324,6 +326,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <nav className="hidden md:flex items-center gap-1">
             <NavLink to="/" end className={navLinkClass}>Home</NavLink>
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
+            <NavLink to="/prompts" className={navLinkClass}>Prompts</NavLink>
             <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
             <NavLink to="/about" className={navLinkClass}>About</NavLink>
           </nav>
@@ -355,6 +358,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             <nav className="space-y-1">
               <NavLink to="/" end onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Home</NavLink>
               <NavLink to="/tools" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Tools</NavLink>
+              <NavLink to="/prompts" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Prompts</NavLink>
               <NavLink to="/blog" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Blog</NavLink>
               <NavLink to="/about" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>About</NavLink>
             </nav>
@@ -424,6 +428,8 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/categories/:id" element={<CategoryDetailPage />} />
           <Route path="/image-generator" element={<ImageGeneratorPage />} />
+          <Route path="/prompts" element={<PromptsIndexPage />} />
+          <Route path="/prompts/:roleSlug" element={<RolePromptsPage />} />
           <Route path="/privacy-policy" element={<PrivacyPage />} />
           <Route path="/terms-of-service" element={<TermsPage />} />
           <Route path="*" element={<NotFoundPage />} />
