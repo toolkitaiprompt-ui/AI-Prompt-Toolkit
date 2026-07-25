@@ -32,7 +32,7 @@ const routes = [
   // ═══════════════════════════════════════════════════════
 
   // ── HOMEPAGE — Targets: "Best AI Tools", "Free AI Tools", "Prompt Engineering" ──
-  { path: "/", title: "Best Free AI Tools for Everyone | AI Prompt Engineering",
+  { path: "/", title: "AI World Hub — Best Free AI Tools for Everyone",
     desc: "Best free AI tools for everyone — 9 prompt engineering tools for formatting, validating, extracting, and optimizing prompts. JSON schema, token estimator, persona builder & more. No sign-up, 100% in-browser." },
 
   // ── TOOLS DIRECTORY — Targets: "AI Tools Directory", "Free AI Tools" ──
