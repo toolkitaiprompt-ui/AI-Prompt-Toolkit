@@ -247,15 +247,11 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             </span>
           </Link>
           {/* Desktop nav inside glass */}
-          <nav className="hidden md:flex items-center gap-x-1 flex-wrap justify-center">
+          <nav className="hidden md:flex items-center gap-1">
             <NavLink to="/" end className={navLinkClass}>Home</NavLink>
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
             <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
-            <NavLink to="/templates" className={navLinkClass}>Templates</NavLink>
-            <NavLink to="/categories" className={navLinkClass}>Categories</NavLink>
-            <NavLink to="/image-generator" className={navLinkClass}>AI Image</NavLink>
             <NavLink to="/about" className={navLinkClass}>About</NavLink>
-            <NavLink to="/contact" className={navLinkClass}>Contact</NavLink>
           </nav>
           <div className="flex items-center gap-1.5 shrink-0">
             <button type="button" onClick={() => setSearchOpen(true)} className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center hover:bg-white/5 transition text-slate-400 hover:text-white" aria-label="Search">
@@ -286,12 +282,15 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
               <NavLink to="/" end onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Home</NavLink>
               <NavLink to="/tools" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Tools</NavLink>
               <NavLink to="/blog" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Blog</NavLink>
-              <NavLink to="/templates" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Templates</NavLink>
-              <NavLink to="/categories" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Categories</NavLink>
-              <NavLink to="/image-generator" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>AI Image</NavLink>
               <NavLink to="/about" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>About</NavLink>
-              <NavLink to="/contact" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Contact</NavLink>
             </nav>
+            <div className="border-t border-white/[0.06] mt-3 pt-3 space-y-2">
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 px-4">More</p>
+              <NavLink to="/templates" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm text-slate-400 hover:text-white transition rounded-lg hover:bg-white/5">Templates</NavLink>
+              <NavLink to="/categories" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm text-slate-400 hover:text-white transition rounded-lg hover:bg-white/5">Categories</NavLink>
+              <NavLink to="/image-generator" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm text-slate-400 hover:text-white transition rounded-lg hover:bg-white/5">AI Image</NavLink>
+              <NavLink to="/contact" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2 text-sm text-slate-400 hover:text-white transition rounded-lg hover:bg-white/5">Contact</NavLink>
+            </div>
             <div className="border-t border-white/[0.06] mt-2 pt-2">
               <button onClick={() => { onToggle(); setMobileMenuOpen(false); }}
                 className="w-full flex items-center justify-center gap-2 rounded-lg border border-white/[0.06] px-4 py-2.5 text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all">
