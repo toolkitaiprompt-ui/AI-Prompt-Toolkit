@@ -80,6 +80,7 @@ import NewsletterSignup from "./components/NewsletterSignup";
 import ProBadge from "./components/ProBadge";
 import ProWaitlistModal from "./components/ProWaitlistModal";
 import AdBanner from "./components/AdBanner";
+import EzoicAd from "./components/EzoicAd";
 import PromptHistory from "./components/PromptHistory";
 import { savePrompt } from "./lib/promptHistory";
 
@@ -611,12 +612,12 @@ function ToolsDirectoryPage() {
             <ToolCard tool={tool} />
             {index === 2 && (
               <div className="md:col-span-2 xl:col-span-3">
-                <AdBanner format="horizontal" className="my-2" />
+                <AdBanner format="horizontal" className="my-2" /><EzoicAd />
               </div>
             )}
             {index === 5 && (
               <div className="md:col-span-2 xl:col-span-3">
-                <AdBanner format="horizontal" className="my-2" />
+                <AdBanner format="horizontal" className="my-2" /><EzoicAd />
               </div>
             )}
           </React.Fragment>
@@ -1337,6 +1338,7 @@ function BlogPostPage() {
 
         {/* Newsletter */}
         <div className="mt-16">
+            <EzoicAd className="my-8" />
           <NewsletterSignup />
         </div>
       </div>

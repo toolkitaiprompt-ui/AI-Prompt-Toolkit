@@ -22,6 +22,7 @@ import ToolCard from './ToolCard';
 import CategoryShowcase from './CategoryShowcase';
 import SocialProof from './homepage/SocialProof';
 import NewsletterSignup from './NewsletterSignup';
+import EzoicAd from "./EzoicAd";
 import { FAQPageSchema, BreadcrumbSchema } from './SEO/SchemaMarkup';
 
 interface ToolMeta {
@@ -399,6 +400,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-rose-500 rounded-full font-semibold text-white shadow-lg shadow-amber-500/50 hover:shadow-xl hover:shadow-amber-500/60 transition-shadow"
             >
               View All Tools
+          <EzoicAd />
               <ArrowRight className="w-5 h-5" />
             </Link>
           </motion.div>
