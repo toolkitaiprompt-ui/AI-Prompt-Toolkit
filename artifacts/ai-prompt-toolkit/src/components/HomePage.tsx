@@ -108,7 +108,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
       <section className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background with real image - full screen, no overlays */}
         <div className="absolute inset-0">
-          <img src="/images/hero-ai.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
+          <img src="/images/hero-ai.jpg" alt="" className="absolute inset-0 w-full h-full object-cover blur-sm scale-105" />
           {/* Only a very subtle dark overlay at bottom for text readability */}
           <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#09090f]/60 to-transparent" />
         </div>
