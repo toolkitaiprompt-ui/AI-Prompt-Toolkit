@@ -4,3 +4,6 @@
 
 # Tool-specific redirects
 /tools/prompt-optimizer /tools/advanced-prompt-optimizer 301
+
+# Ezoic Ads.txt redirect
+/ads.txt https://srv.adstxtmanager.com/19390/aiworldhub.site 301
