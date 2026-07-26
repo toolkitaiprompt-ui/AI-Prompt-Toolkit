@@ -106,30 +106,15 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
       {/* Hero Section */}
       <section className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background with real image */}
+        {/* Background with real image - full screen, no overlays */}
         <div className="absolute inset-0">
-          <img src="/images/hero-ai.jpg" alt="" className="hidden md:block absolute inset-0 w-full h-full object-cover opacity-20" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#09090f] via-transparent to-[#09090f]" />
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              rotate: [0, 90, 0],
-            }}
-            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-            className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-amber-500/20 to-rose-500/20 blur-3xl"
-          />
-          <motion.div
-            animate={{
-              scale: [1.2, 1, 1.2],
-              rotate: [90, 0, 90],
-            }}
-            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-            className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 blur-3xl"
-          />
+          <img src="/images/hero-ai.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
+          {/* Only a very subtle dark overlay at bottom for text readability */}
+          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#09090f]/60 to-transparent" />
         </div>
 
-        {/* Grid Pattern */}
-        <div className="hidden md:block absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
+        {/* Subtle grid pattern */}
+        <div className="hidden md:block absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
         <div className="relative z-10 site-container section-lg">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
