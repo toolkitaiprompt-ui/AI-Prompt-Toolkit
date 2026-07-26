@@ -29,7 +29,7 @@ import {
   List,
   Clock,
 } from "lucide-react";
-import { BrowserRouter, Link, NavLink, Route, Routes, useParams } from "react-router-dom";
+import { BrowserRouter, Link, NavLink, Route, Routes, useParams, useLocation } from "react-router-dom";
 import {
   cleanPrompt,
   estimateTokens,
@@ -83,6 +83,11 @@ import AdBanner from "./components/AdBanner";
 import EzoicAd from "./components/EzoicAd";
 import PromptHistory from "./components/PromptHistory";
 import { savePrompt } from "./lib/promptHistory";
+
+declare const ezstandalone: {
+  cmd: { push: (fn: () => void) => void };
+  showAds: () => void;
+} | undefined;
 
 type ThemeMode = "light" | "dark";
 
@@ -307,6 +312,18 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+  const location = useLocation();
+
+  // Ezoic ads refresh on route change (SPA dynamic content support)
+  useEffect(() => {
+    try {
+      if (typeof ezstandalone !== "undefined" && ezstandalone?.cmd) {
+        ezstandalone.cmd.push(function () {
+          ezstandalone.showAds();
+        });
+      }
+    } catch {}
+  }, [location.pathname]);
 
   // First-save toast
   useEffect(() => {
