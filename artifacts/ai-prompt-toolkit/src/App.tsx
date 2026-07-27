@@ -79,7 +79,6 @@ import NotFoundPage from "./pages/NotFoundPage";
 import NewsletterSignup from "./components/NewsletterSignup";
 import ProBadge from "./components/ProBadge";
 import ProWaitlistModal from "./components/ProWaitlistModal";
-import AdBanner from "./components/AdBanner";
 import EzoicAd from "./components/EzoicAd";
 import PromptHistory from "./components/PromptHistory";
 import { savePrompt } from "./lib/promptHistory";
@@ -629,12 +628,12 @@ function ToolsDirectoryPage() {
             <ToolCard tool={tool} />
             {index === 2 && (
               <div className="md:col-span-2 xl:col-span-3">
-                <AdBanner format="horizontal" className="my-2" /><EzoicAd />
+                <EzoicAd />
               </div>
             )}
             {index === 5 && (
               <div className="md:col-span-2 xl:col-span-3">
-                <AdBanner format="horizontal" className="my-2" /><EzoicAd />
+                <EzoicAd />
               </div>
             )}
           </React.Fragment>
@@ -742,9 +741,6 @@ function ToolContainer({
       <div className="rounded-[24px] border border-white/10 bg-slate-950/80 p-6 shadow-xl">
         <div className="space-y-4">{children}</div>
       </div>
-
-      {/* AdSense slot — #9 fix, shows after tool, only if client ID present or preview */}
-      <AdBanner format="horizontal" />
 
       {relatedBlogs.length > 0 && (
         <section>
