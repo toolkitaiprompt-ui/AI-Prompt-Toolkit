@@ -43,6 +43,7 @@ import SearchModal from "./components/SearchModal";
 import CategoriesPage from "./pages/CategoriesPage";
 import ImageGeneratorPage from "./pages/ImageGeneratorPage";
 import AdBanner from "./components/AdBanner";
+import MonetagAd from "./components/MonetagAd";
 
 type ThemeMode = "light" | "dark";
 
@@ -457,6 +458,12 @@ function ToolsDirectoryPage() {
                 <AdBanner format="horizontal" className="my-2" />
               </div>
             )}
+            {/* Monetag Banner Ad - Safe alongside Ezoic/AdSense */}
+            {index === 4 && (
+              <div className="md:col-span-2 xl:col-span-3 my-4">
+                <MonetagAd format="banner" className="my-2" />
+              </div>
+            )}
           </React.Fragment>
         ))}
       </div>
@@ -516,6 +523,9 @@ function ToolContainer({
 
       {/* AdSense slot — #9 fix, shows after tool, only if client ID present or preview */}
       <AdBanner format="horizontal" />
+
+      {/* Monetag Banner Ad (Ezoic ke saath safely chalega) */}
+      <MonetagAd format="banner" className="mt-6" />
 
       {relatedBlogs.length > 0 && (
         <section>
