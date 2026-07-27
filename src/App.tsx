@@ -44,6 +44,7 @@ import CategoriesPage from "./pages/CategoriesPage";
 import ImageGeneratorPage from "./pages/ImageGeneratorPage";
 import AdBanner from "./components/AdBanner";
 import MonetagAd from "./components/MonetagAd";
+import MonetagScripts from "./components/MonetagScripts";
 
 type ThemeMode = "light" | "dark";
 

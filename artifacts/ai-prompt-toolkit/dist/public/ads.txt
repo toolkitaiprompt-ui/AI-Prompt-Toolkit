@@ -1,2 +1,0 @@
-# Ezoic Ads.txt - Auto-redirect via Cloudflare
-# This file redirects to Ezoic's ad manager
