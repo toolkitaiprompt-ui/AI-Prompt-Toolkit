@@ -203,7 +203,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               className="relative"
             >
               {/* Tool Switcher */}
-              <div className="absolute -top-5 left-1/2 -translate-x-1/2 flex gap-1.5 md:gap-2 z-20">
+              <div className="absolute -top-5 left-1/2 -translate-x-1/2 flex flex-wrap justify-center gap-1.5 md:gap-2 z-20 max-w-[280px] sm:max-w-none">
                 {demoTools.map((tool, idx) => (
                   <button
                     key={idx}

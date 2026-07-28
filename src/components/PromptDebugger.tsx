@@ -51,7 +51,7 @@ export default function PromptDebugger() {
             style={{ width: `${result.healthScore}%` }}
           />
         </div>
-        <div className="mt-4 grid grid-cols-3 gap-3 text-center">
+        <div className="mt-4 grid grid-cols-3 gap-2 sm:gap-3 text-center">
           <div className="rounded-lg border border-slate-800 bg-slate-950/50 p-3">
             <p className="text-xl font-bold text-white">{result.metrics.words}</p>
             <p className="text-xs text-slate-400">Words</p>

@@ -113,7 +113,7 @@ export default function ToolCard({ tool }: ToolCardProps) {
     >
       <Link
         to={tool.path}
-        className={`relative block h-full overflow-hidden rounded-[20px] p-8 shadow-lg transition-all duration-500 ${
+        className={`relative block h-full overflow-hidden rounded-[16px] sm:rounded-[20px] p-6 sm:p-8 shadow-lg transition-all duration-500 ${
           isPremium
             ? "card-featured-premium before:opacity-100"
             : "card-premium"
@@ -143,7 +143,7 @@ export default function ToolCard({ tool }: ToolCardProps) {
           </h3>
 
           {/* Description */}
-          <p className="text-xs leading-5 text-slate-400 mb-3">
+          <p className="text-xs leading-5 sm:leading-6 text-slate-400 mb-3">
             {tool.description}
           </p>
 

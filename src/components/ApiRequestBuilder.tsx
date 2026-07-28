@@ -87,7 +87,7 @@ export default function ApiRequestBuilder() {
             </select>
           </label>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <label className="block space-y-2">
             <span className="text-sm font-medium text-slate-300">Temperature ({temperature})</span>
             <input

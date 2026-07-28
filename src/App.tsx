@@ -1030,7 +1030,7 @@ function BlogPostPage() {
 
           </article>
 
-          <aside className="space-y-6 rounded-[20px] border border-slate-800 bg-slate-900/60 p-6 self-start sticky top-20">
+          <aside className="space-y-6 rounded-[20px] border border-slate-800 bg-slate-900/60 p-6 self-start lg:sticky lg:top-20">
             <div>
               <h2 className="text-lg font-semibold text-white">Related tools</h2>
               <ul className="mt-4 space-y-3 text-sm">

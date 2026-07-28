@@ -132,6 +132,7 @@ p { font-size: 1rem; line-height: 1.8; margin-bottom: 1rem; color: #94a3b8; }
 
 /* ===== SECTIONS — Consistent spacing ===== */
 .section-lg { padding: 5rem 0; }
+.section-md { padding: 3rem 0; }
 
 /* ===== BUTTONS ===== */
 .btn-primary {
@@ -238,6 +239,15 @@ p { font-size: 1rem; line-height: 1.8; margin-bottom: 1rem; color: #94a3b8; }
 }
 @media (min-width: 768px) {
   .glass-nav-link { padding: 7px 14px; }
+}
+
+/* ===== VERY SMALL MOBILE FIX (<= 380px) ===== */
+@media (max-width: 380px) {
+  .glass-nav { padding: 4px 4px 4px 12px; }
+  .glass-nav-link { padding: 5px 8px; font-size: 12px; }
+  .site-container { padding: 0 0.75rem; }
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.375rem; }
 }
 
 /* ===== GLOBAL LAYOUT FIX: Prevent overlap on all screens ===== */
