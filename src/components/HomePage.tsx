@@ -140,7 +140,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               </motion.div>
 
               {/* Heading */}
-              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-[1.15]">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-[1.15]">
                 Build{' '}
                 <span className="bg-gradient-to-r from-amber-400 via-rose-400 to-pink-400 bg-clip-text text-transparent">
                   Perfect
@@ -153,7 +153,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
               {/* Description */}
               <p className="text-lg sm:text-xl text-slate-300 mb-8 leading-relaxed">
-                10 professional tools to format, validate, optimize, and deploy AI prompts at scale.
+                16 professional tools to format, validate, optimize, and deploy AI prompts at scale.
                 No signup required. 100% in-browser. Enterprise-ready.
               </p>
 
@@ -181,7 +181,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                  <span className="text-sm text-slate-300">10 free tools</span>
+                  <span className="text-sm text-slate-300">16 free tools</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Shield className="w-5 h-5 text-cyan-400" />
@@ -333,7 +333,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
       {/* Stats Section */}
       <section className="section-lg bg-slate-900/50 mt-16">
         <div className="site-container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
             {stats.map((stat, idx) => (
               <motion.div
                 key={idx}
@@ -362,19 +362,19 @@ export default function HomePage({ toolPages }: HomePageProps) {
               <Sparkles className="w-4 h-4 text-amber-400" />
               <span className="text-sm text-amber-300 font-medium">Featured Tools</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-              10 Professional Tools
-              <br />
-              <span className="bg-gradient-to-r from-amber-400 to-rose-400 bg-clip-text text-transparent">
-                For Perfect Prompts
-              </span>
-            </h2>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+                16 Professional Tools
+                <br />
+                <span className="bg-gradient-to-r from-amber-400 to-rose-400 bg-clip-text text-transparent">
+                  For Perfect Prompts
+                </span>
+              </h2>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
               Everything you need to create, validate, optimize, and deploy AI prompts at scale.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {toolPages.map((tool, idx) => (
               <motion.div
                 key={tool.path}
@@ -597,7 +597,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               </span>
             </h2>
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Use 10 free, private, in-browser tools to create, optimize, and deploy prompts that deliver results.
+              Use 16 free, private, in-browser tools to create, optimize, and deploy prompts that deliver results.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
