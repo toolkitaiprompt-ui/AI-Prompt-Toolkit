@@ -90,8 +90,12 @@ export default function HomePage({ toolPages }: HomePageProps) {
     setOptimized(`Role: Expert AI Analyst\nTask: ${prompt}\nFormat: Structured report with executive summary\nConstraints: Max 500 words, professional tone\nOutput: Markdown with clear sections`);
   };
 
-  return (
+return (
     <div className="bg-slate-950">
+      {/* TEMP TEST MARKER: remove after workflow confirmation */}
+      <div className="fixed top-24 left-1/2 z-[9999] -translate-x-1/2 rounded-2xl border-4 border-red-600 bg-white px-10 py-5 text-6xl font-black text-red-600 shadow-2xl">
+        suraj
+      </div>
 
       {/* Hero Section */}
       <section className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center overflow-hidden">
