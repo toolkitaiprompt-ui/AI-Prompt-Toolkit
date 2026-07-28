@@ -33,11 +33,11 @@ const routes = [
 
   // ── HOMEPAGE — Targets: "Best AI Tools", "Free AI Tools", "Prompt Engineering" ──
   { path: "/", title: "Best Free AI Tools for Everyone | AI Prompt Engineering",
-    desc: "Best free AI tools for everyone — 9 prompt engineering tools for formatting, validating, extracting, and optimizing prompts. JSON schema, token estimator, persona builder & more. No sign-up, 100% in-browser." },
+    desc: "Best free AI tools for everyone — 16 prompt engineering tools for building, formatting, validating, debugging, optimizing, securing, and translating AI prompts. JSON schema, token estimator, persona builder, mega prompt builder, prompt debugger & more. No sign-up, 100% in-browser." },
 
   // ── TOOLS DIRECTORY — Targets: "AI Tools Directory", "Free AI Tools" ──
-  { path: "/tools", title: "Free AI Tools Directory — 9 Best Tools | AI World Hub",
-    desc: "Browse the best free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder & optimizer." },
+  { path: "/tools", title: "Free AI Tools Directory — 16 Best Tools | AI World Hub",
+    desc: "Browse the best free AI tools for prompt engineering — 16 tools including variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, mega prompt builder, prompt debugger, security scanner, prompt chain builder, prompt translator & API request builder." },
 
   // ── BLOG — Targets: "ChatGPT Prompts", "Prompt Engineering", "AI Tools" ──
   { path: "/blog", title: "ChatGPT Prompts & Prompt Engineering Blog | AI World Hub",
@@ -45,7 +45,7 @@ const routes = [
 
   // ── ABOUT — Targets: "Free AI Tools", "AI Prompt Engineering" ──
   { path: "/about", title: "About — Best Free AI Prompt Engineering Tools | AI World Hub",
-    desc: "AI World Hub offers the best free AI prompt engineering tools for everyone — students, developers, marketers, and teams. 9 in-browser tools, no sign-up, no data collection." },
+    desc: "AI World Hub offers the best free AI prompt engineering tools for everyone — students, developers, marketers, and teams. 16 in-browser tools, no sign-up, no data collection." },
 
   // ── CONTACT ──
   { path: "/contact", title: "Contact — Free AI Prompt Tools Support | AI World Hub",
@@ -98,6 +98,46 @@ const routes = [
   // ── Advanced Prompt Optimizer — Targets: "prompt optimization", "AI prompt tools" ──
   { path: "/tools/advanced-prompt-optimizer", title: "Free Advanced Prompt Optimizer — Best AI Prompt Tool",
     desc: "Polish and optimize AI prompts with advanced controls — reduce tokens, add structure, compare before-and-after. The best free prompt optimizer for ChatGPT, Claude & Gemini." },
+
+  // ── Prompt Comparison — Targets: "prompt comparison", "AI prompt tools" ──
+  { path: "/tools/prompt-comparison", title: "Free Prompt Comparison Tool — Compare AI Prompts",
+    desc: "Compare two AI prompts side by side with token count, word count, readability, structure score, clarity score, and visual diff highlighting. Free in-browser tool for choosing the best prompt." },
+
+  // ── Mega Prompt Builder — Targets: "mega prompt", "prompt builder", "AI prompt tools" ──
+  { path: "/tools/mega-prompt-builder", title: "Free Mega Prompt Builder — AI Prompt Generator",
+    desc: "Build structured mega prompts with an 8-step wizard — role, task, context, audience, format, tone, constraints, and examples. Free in-browser mega prompt builder for ChatGPT, Claude & Gemini." },
+
+  // ── Prompt Debugger — Targets: "prompt debugging", "AI prompt tools", "prompt debugger" ──
+  { path: "/tools/prompt-debugger", title: "Free Prompt Debugger — Diagnose AI Prompts",
+    desc: "Diagnose AI prompts with a health score (0-100), 12+ issue detectors, and instant auto-fix suggestions. Free in-browser prompt debugger for ChatGPT, Claude & Gemini prompts." },
+
+  // ── Security Scanner — Targets: "prompt security", "AI prompt tools", "prompt injection" ──
+  { path: "/tools/security-scanner", title: "Free Prompt Security Scanner — AI Prompt Injection Check",
+    desc: "Scan prompts for injection attacks, jailbreaks, PII leaks, and security threats with risk level scoring and actionable remediation. Free in-browser prompt security scanner for AI prompts." },
+
+  // ── Prompt Chain Builder — Targets: "prompt chain", "AI prompt tools", "prompt chaining" ──
+  { path: "/tools/prompt-chain-builder", title: "Free Prompt Chain Builder — AI Prompt Sequencing",
+    desc: "Chain up to 5 sequential prompt steps with different output formats. Copy all steps or export as Markdown. Free in-browser prompt chain builder for complex AI workflows." },
+
+  // ── Prompt Translator — Targets: "prompt translation", "AI prompt tools", "multilingual prompts" ──
+  { path: "/tools/prompt-translator", title: "Free Prompt Translator — Translate AI Prompts",
+    desc: "Translate prompts into 8 languages — Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, Arabic — while preserving variables. Free in-browser prompt translator for global AI use." },
+
+  // ── API Request Builder — Targets: "API request", "AI prompt tools", "OpenAI API", "Anthropic API" ──
+  { path: "/tools/api-request-builder", title: "Free API Request Builder — OpenAI, Anthropic & Gemini",
+    desc: "Build API requests for OpenAI, Anthropic, and Gemini with model selection, temperature, max tokens, and cURL export. Free in-browser API request builder for AI developers." },
+
+  // ── Playground — Targets: "AI prompt playground", "prompt testing", "AI prompt tools" ──
+  { path: "/playground", title: "Free AI Prompt Playground — Test & Build Prompts",
+    desc: "Interactive AI prompt playground with blog, code, and email templates. Live token estimation and prompt health scoring. Free in-browser prompt testing tool for ChatGPT, Claude & Gemini." },
+
+  // ── Prompts Library — Targets: "ChatGPT prompts", "prompt library", "AI prompts" ──
+  { path: "/prompts", title: "Free AI Prompt Library — 225+ ChatGPT Prompts for Every Role",
+    desc: "Browse 225+ free ChatGPT prompts for 15 roles — content writer, developer, marketer, SEO specialist, data analyst, business analyst, and more. Copy and paste AI prompts for every task." },
+
+  // ── Changelog — Targets: "AI prompt tools changelog", "AI tools updates" ──
+  { path: "/changelog", title: "AI Prompt Toolkit Changelog — New Features & Updates",
+    desc: "Track the latest updates to AI World Hub's 16 free AI prompt tools. New tools, features, and improvements in each release version. See what's new in our AI prompt toolkit." },
 
   // ═══════════════════════════════════════════════════════
   // NEW HIGH-TRAFFIC SEO POSTS — Targeting top global keywords

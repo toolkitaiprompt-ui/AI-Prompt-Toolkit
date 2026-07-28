@@ -53,7 +53,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
 
   const stats = [
-    { icon: Zap, value: '10', label: 'Free Tools', color: 'from-blue-500 to-cyan-500' },
+    { icon: Zap, value: '16', label: 'Free Tools', color: 'from-blue-500 to-cyan-500' },
     { icon: Shield, value: '100%', label: 'In-Browser & Private', color: 'from-yellow-500 to-orange-500' },
     { icon: Clock, value: '0', label: 'Sign-ups Required', color: 'from-amber-500 to-rose-500' },
     { icon: Award, value: 'Free', label: 'Forever', color: 'from-green-500 to-emerald-500' },
@@ -62,7 +62,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
   const faqs = [
     {
       question: 'Is AI World Hub really free?',
-      answer: 'Yes! All 10 tools are completely free with no signup required. We offer optional Pro features for power users, but the core toolkit is 100% free forever.',
+      answer: 'Yes! All 16 tools are completely free with no signup required. We offer optional Pro features for power users, but the core toolkit is 100% free forever.',
     },
     {
       question: 'How does in-browser processing work?',
@@ -362,6 +362,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
               <Sparkles className="w-4 h-4 text-amber-400" />
               <span className="text-sm text-amber-300 font-medium">Featured Tools</span>
             </div>
+<<<<<<< HEAD
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
                 16 Professional Tools
                 <br />
@@ -369,6 +370,15 @@ export default function HomePage({ toolPages }: HomePageProps) {
                   For Perfect Prompts
                 </span>
               </h2>
+=======
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+              16 Professional Tools
+              <br />
+              <span className="bg-gradient-to-r from-amber-400 to-rose-400 bg-clip-text text-transparent">
+                For Perfect Prompts
+              </span>
+            </h2>
+>>>>>>> c2969e775dbb1dfd28b6dc4c9b5924483e5663e1
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
               Everything you need to create, validate, optimize, and deploy AI prompts at scale.
             </p>

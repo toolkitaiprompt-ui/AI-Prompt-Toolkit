@@ -24,10 +24,10 @@
     <meta name="theme-color" content="#0A0A0A" />
 
     <!-- PRIMARY SEO -->
-    <title>AI World Hub — Free AI Prompt Engineering Tools</title>
-    <meta name="description" content="Free AI prompt engineering tools for teams. Format prompts, extract variables, generate JSON schema, validate output, estimate tokens — all in-browser, no sign-up. 9 free tools." />
-    <meta name="keywords" content="Free AI Prompt Tools, Prompt Engineering, Token Estimator, JSON Validator, JSON Schema Generator, Prompt Formatter, Prompt Optimizer" />
-    <meta name="robots" content="index, follow" />
+    <title>AI World Hub — Free AI Prompt Engineering Tools | 16 Tools</title>
+    <meta name="description" content="Free AI prompt engineering tools for teams. 16 tools — build mega prompts, format, extract variables, generate JSON schema, validate output, debug, optimize, secure, translate, and estimate tokens — all in-browser, no sign-up." />
+    <meta name="keywords" content="Free AI Prompt Tools, Prompt Engineering, AI Prompt Builder, ChatGPT Prompts, Prompt Optimization, AI Prompting, Token Estimator, JSON Validator, JSON Schema Generator, Prompt Formatter, Prompt Optimizer, Prompt Debugger, Prompt Security Scanner, Prompt Translator, API Request Builder, Mega Prompt Builder, Prompt Chain Builder, AI Prompting Tools" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="author" content="AI World Hub" />
     <link rel="canonical" href="https://aiworldhub.site/" />
 
@@ -42,10 +42,11 @@
     <link rel="sitemap" type="application/xml" href="https://aiworldhub.site/sitemap.xml" />
 
     <!-- OPEN GRAPH -->
-    <meta property="og:title" content="AI World Hub — Free AI Prompt Engineering Tools" />
-    <meta property="og:description" content="9 free tools — prompt formatting, variable extraction, JSON schema generation & validation, token estimation, prompt conversion, persona building, and advanced optimization. All in-browser, no sign-up." />
+    <meta property="og:title" content="AI World Hub — Free AI Prompt Engineering Tools | 16 Tools" />
+    <meta property="og:description" content="16 free tools — mega prompt builder, prompt formatting, variable extraction, JSON schema generation & validation, token estimation, prompt debugging, security scanning, prompt translation, prompt chaining, API request building, and advanced optimization. All in-browser, no sign-up." />
     <meta property="og:url" content="https://aiworldhub.site/" />
     <meta property="og:site_name" content="AI World Hub" />
+    <meta property="og:type" content="website" />
     <meta property="og:image" content="https://aiworldhub.site/opengraph.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -53,8 +54,8 @@
 
     <!-- TWITTER CARDS -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="AI World Hub — Free AI Prompt Engineering Tools" />
-    <meta name="twitter:description" content="9 free tools — prompt formatting, variable extraction, JSON schema, validation, token estimation, prompt conversion, persona building, and advanced optimization. All in-browser." />
+    <meta name="twitter:title" content="AI World Hub — Free AI Prompt Engineering Tools | 16 Tools" />
+    <meta name="twitter:description" content="16 free tools — mega prompt builder, prompt formatting, variable extraction, JSON schema, validation, token estimation, debugging, security scanning, translation, chaining, API request building, and optimization. All in-browser." />
     <meta name="twitter:image" content="https://aiworldhub.site/opengraph.jpg" />
     <meta name="twitter:image:alt" content="AI World Hub — Build reliable AI prompts." />
 
@@ -83,7 +84,6 @@
 
 
 
-  
     <!-- STRUCTURED DATA: ORGANIZATION -->
     <script type="application/ld+json">
     {
@@ -92,7 +92,7 @@
       "name": "AI World Hub",
       "url": "https://aiworldhub.site",
       "logo": "https://aiworldhub.site/opengraph.jpg",
-      "description": "Free AI prompt engineering tools including Prompt Variable Extractor, JSON Schema Generator, JSON Validator, Prompt Formatter, Prompt Cleaner, Token Estimator and Advanced Prompt Optimizer",
+      "description": "Free AI prompt engineering tools including Mega Prompt Builder, Prompt Variable Extractor, JSON Schema Generator, JSON Validator, Prompt Formatter, Prompt Cleaner, Token Estimator, Prompt Debugger, Security Scanner, Prompt Chain Builder, Prompt Translator, API Request Builder, and Advanced Prompt Optimizer",
       "email": "toolkitaiprompt@gmail.com"
     }
     </script>
@@ -104,7 +104,15 @@
       "@type": "WebSite",
       "name": "AI World Hub",
       "url": "https://aiworldhub.site/",
-      "description": "Free AI prompt engineering tools for teams — format, validate, extract, and optimize prompts in-browser."
+      "description": "Free AI prompt engineering tools for teams — build, format, validate, debug, optimize, secure, and translate prompts in-browser. 16 free tools.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://aiworldhub.site/tools?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
     }
     </script>
 
@@ -124,12 +132,24 @@
         {
           "@type": "ListItem",
           "position": 2,
+          "name": "Playground",
+          "item": "https://aiworldhub.site/playground"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
           "name": "Tools",
           "item": "https://aiworldhub.site/tools"
         },
         {
           "@type": "ListItem",
-          "position": 3,
+          "position": 4,
+          "name": "Prompts",
+          "item": "https://aiworldhub.site/prompts"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
           "name": "Blog",
           "item": "https://aiworldhub.site/blog"
         }
@@ -148,7 +168,7 @@
           "name": "Is AI World Hub really free?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes! All 10 tools are completely free with no signup required. We offer optional Pro features for power users, but the core toolkit is 100% free forever."
+            "text": "Yes! All 16 tools are completely free with no signup required. We offer optional Pro features for power users, but the core toolkit is 100% free forever."
           }
         },
         {
@@ -165,6 +185,30 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Our tools work with all major AI models including ChatGPT (GPT-4), Claude, Gemini, Llama, and more. The tools are model-agnostic."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the Mega Prompt Builder?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Mega Prompt Builder is an 8-step wizard that helps you create structured, production-ready prompts by defining the role, task, context, audience, output format, tone, constraints, and examples."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does AI World Hub have a prompt library?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Our AI Prompt Library contains 225+ ready-to-use prompts across 15 professional roles including ChatGPT, content writers, developers, marketers, SEO specialists, data analysts, and more."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I translate my AI prompts to other languages?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! The Prompt Translator tool translates your prompts into 8 languages — Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, and Arabic — while preserving variables like {name} and [tone]."
           }
         }
       ]
@@ -184,10 +228,38 @@
         "price": "0",
         "priceCurrency": "USD"
       },
-      "description": "9 free in-browser tools for AI prompt engineering: variable extraction, JSON schema generation, JSON validation, prompt formatting, prompt cleaning, token estimation, prompt conversion, persona building, and advanced prompt optimization."
+      "description": "16 free in-browser tools for AI prompt engineering: mega prompt builder, prompt variable extraction, JSON schema generation, JSON validation, prompt formatting, prompt cleaning, token estimation, prompt conversion, persona building, advanced prompt optimization, prompt comparison, prompt debugger, security scanner, prompt chain builder, prompt translator, and API request builder."
     }
     </script>
-   </head>
+
+    <!-- STRUCTURED DATA: ITEM LIST — All 16 Tools (helps AI agents discover tools) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "AI Prompt Engineering Tools — 16 Free Tools",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Prompt Variable Extractor", "url": "https://aiworldhub.site/tools/prompt-variable-extractor", "description": "Extract placeholders like {name}, {{city}}, [tone] from any prompt template." },
+        { "@type": "ListItem", "position": 2, "name": "JSON Schema Generator", "url": "https://aiworldhub.site/tools/json-schema-generator", "description": "Generate JSON Schema from sample data for reliable AI output structures." },
+        { "@type": "ListItem", "position": 3, "name": "JSON Validator", "url": "https://aiworldhub.site/tools/json-validator", "description": "Validate AI-generated JSON against your schema in real time." },
+        { "@type": "ListItem", "position": 4, "name": "Prompt Formatter", "url": "https://aiworldhub.site/tools/prompt-formatter", "description": "Format messy prompt notes into clean, numbered instruction blocks." },
+        { "@type": "ListItem", "position": 5, "name": "Prompt Cleaner", "url": "https://aiworldhub.site/tools/prompt-cleaner", "description": "Remove noise characters and fix formatting in AI prompts." },
+        { "@type": "ListItem", "position": 6, "name": "Token Estimator", "url": "https://aiworldhub.site/tools/token-estimator", "description": "Estimate token count, characters, and words for AI prompts before API calls." },
+        { "@type": "ListItem", "position": 7, "name": "Prompt Converter", "url": "https://aiworldhub.site/tools/prompt-converter", "description": "Convert ChatGPT prompts to Claude, Gemini, or Cursor format." },
+        { "@type": "ListItem", "position": 8, "name": "AI Persona Builder", "url": "https://aiworldhub.site/tools/persona-builder", "description": "Generate expert system prompts for different roles like Marketer, Developer, or Analyst." },
+        { "@type": "ListItem", "position": 9, "name": "Advanced Prompt Optimizer", "url": "https://aiworldhub.site/tools/advanced-prompt-optimizer", "description": "Polish prompts with role, format, tone, and constraint patterns applied in your browser." },
+        { "@type": "ListItem", "position": 10, "name": "Prompt Comparison Tool", "url": "https://aiworldhub.site/tools/prompt-comparison", "description": "Compare two prompts side by side with token count, readability, and diff highlighting." },
+        { "@type": "ListItem", "position": 11, "name": "Mega Prompt Builder", "url": "https://aiworldhub.site/tools/mega-prompt-builder", "description": "Build structured mega prompts with an 8-step wizard — role, task, context, audience, format, tone, constraints, and examples." },
+        { "@type": "ListItem", "position": 12, "name": "Prompt Debugger", "url": "https://aiworldhub.site/tools/prompt-debugger", "description": "Diagnose AI prompts with a health score (0-100) and 12+ issue detectors with auto-fix suggestions." },
+        { "@type": "ListItem", "position": 13, "name": "Prompt Security Scanner", "url": "https://aiworldhub.site/tools/security-scanner", "description": "Scan prompts for injection attacks, jailbreaks, PII leaks, and security threats with risk level scoring." },
+        { "@type": "ListItem", "position": 14, "name": "Prompt Chain Builder", "url": "https://aiworldhub.site/tools/prompt-chain-builder", "description": "Chain up to 5 sequential prompt steps with different output formats. Copy all steps or export as Markdown." },
+        { "@type": "ListItem", "position": 15, "name": "Prompt Translator", "url": "https://aiworldhub.site/tools/prompt-translator", "description": "Translate prompts into 8 languages — Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, Arabic — while preserving variables." },
+        { "@type": "ListItem", "position": 16, "name": "API Request Builder", "url": "https://aiworldhub.site/tools/api-request-builder", "description": "Build API requests for OpenAI, Anthropic, and Gemini with model selection and cURL export." }
+      ]
+    }
+    </script>
+   <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
    <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
@@ -204,9 +276,3 @@
     <script src="https://omg10.com/4/11431820" async></script>
   </body>
   </html>
-
-
-
-
-
-
