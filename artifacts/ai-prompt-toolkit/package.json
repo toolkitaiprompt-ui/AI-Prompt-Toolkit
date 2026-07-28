@@ -1,0 +1,11 @@
+{
+  "name": "ai-prompt-toolkit-cloudflare-wrapper",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "bash ./build-for-cloudflare.sh"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  }
+}
