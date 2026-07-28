@@ -243,7 +243,7 @@ Contributions are welcome! Here's how to help:
 - Global search modal, SEO optimization, structured data
 
 ### 2026-07-15 — Launch
-- 10 tools, templates, categories, blog
+- 16 tools, templates, categories, blog
 - Vite 7 + React 19 + Tailwind 4 setup
 - Cloudflare Pages deployment
 
