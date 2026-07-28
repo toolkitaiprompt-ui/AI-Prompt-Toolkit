@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aiworldhub.site/sitemap.xml
+# Block crawling of non-content pages
+Disallow: /cdn-cgi/
 
-# Crawl-delay: 10
-# Disallow: /cdn-cgi/
+Sitemap: https://aiworldhub.site/sitemap.xml
