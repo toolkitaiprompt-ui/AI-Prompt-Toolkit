@@ -144,10 +144,8 @@ export default function HomePage({ toolPages }: HomePageProps) {
                 Build{' '}
                 <span className="bg-gradient-to-r from-amber-400 via-rose-400 to-pink-400 bg-clip-text text-transparent">
                   Perfect
-                </span>
-                <br />
-                AI Prompts
-                <br />
+                </span>{' '}
+                AI Prompts{' '}
                 <span className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl text-slate-400">in Seconds</span>
               </h1>
 
