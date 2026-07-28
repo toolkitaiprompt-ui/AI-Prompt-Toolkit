@@ -161,7 +161,6 @@ export function estimateTokens(input: string): { characters: number; words: numb
   const characters = input.length;
   const words = input.trim() ? input.trim().split(/\s+/).length : 0;
 
-  // Approximation used by many GPT-style models: ~4 chars per token.
   const estimatedTokens = Math.ceil(characters / 4);
 
   return { characters, words, estimatedTokens };
@@ -229,7 +228,6 @@ export function debugPrompt(input: string): {
   const characters = text.length;
   const sentences = text.split(/[.!?]+/).filter((s) => s.trim().length > 0).length;
 
-  // Detector 1: Too short
   if (wordCount < 10) {
     issues.push({
       id: "too-short",
@@ -240,7 +238,6 @@ export function debugPrompt(input: string): {
     });
   }
 
-  // Detector 2: Too long (may exceed context budget)
   if (wordCount > 800) {
     issues.push({
       id: "too-long",
@@ -251,7 +248,6 @@ export function debugPrompt(input: string): {
     });
   }
 
-  // Detector 3: No role assignment
   const hasRole = /\b(you are|act as|behave as|role:|persona:)\b/i.test(text);
   if (!hasRole) {
     issues.push({
@@ -263,7 +259,6 @@ export function debugPrompt(input: string): {
     });
   }
 
-  // Detector 4: No clear task
   const hasTask = /\b(write|create|generate|analyze|summarize|review|convert|build|design|translate|explain|draft|produce)\b/i.test(text);
   if (!hasTask) {
     issues.push({
@@ -275,7 +270,6 @@ export function debugPrompt(input: string): {
     });
   }
 
-  // Detector 5: No format specification
   const hasFormat = /\b(format|output|markdown|json|bullet|list|table|paragraph|section|heading)\b/i.test(text);
   if (!hasFormat) {
     issues.push({
@@ -287,7 +281,6 @@ export function debugPrompt(input: string): {
     });
   }
 
-  // Detector 6: No constraints
   const hasConstraints = /\b(constraint|limit|max|minimum|must|should|don't|avoid|exclude|keep under|word count)\b/i.test(text);
   if (!hasConstraints) {
     issues.push({
@@ -299,7 +292,6 @@ export function debugPrompt(input: string): {
     });
   }
 
-  // Detector 7: Ambiguous language
   const ambiguousWords = (text.match(/\b(maybe|perhaps|stuff|things|something|etc\.?|various|some|a lot|good|nice|etc)\b/gi) || []).length;
   if (ambiguousWords >= 2) {
     issues.push({
@@ -311,7 +303,6 @@ export function debugPrompt(input: string): {
     });
   }
 
-  // Detector 8: Excessive punctuation / shouting
   const exclamations = (text.match(/!/g) || []).length;
   if (exclamations > 3) {
     issues.push({
@@ -323,7 +314,6 @@ export function debugPrompt(input: string): {
     });
   }
 
-  // Detector 9: ALL CAPS words (shouting)
   const capsWords = (text.match(/\b[A-Z]{4,}\b/g) || []).filter((w) => !["JSON", "API", "HTML", "CSS", "SQL", "URL", "PDF", "CSV", "XML", "AI", "GPT", "LLM"].includes(w)).length;
   if (capsWords > 2) {
     issues.push({
@@ -335,7 +325,6 @@ export function debugPrompt(input: string): {
     });
   }
 
-  // Detector 10: No examples (few-shot)
   const hasExamples = /\b(example|for instance|e\.g\.|such as|sample)\b/i.test(text);
   if (!hasExamples && wordCount > 30) {
     issues.push({
@@ -347,7 +336,6 @@ export function debugPrompt(input: string): {
     });
   }
 
-  // Detector 11: Run-on sentence
   if (sentences > 0 && wordCount / sentences > 40) {
     issues.push({
       id: "run-on",
@@ -358,7 +346,6 @@ export function debugPrompt(input: string): {
     });
   }
 
-  // Detector 12: No audience specified
   const hasAudience = /\b(audience|for|targeting|aimed at|reader|user|customer|client|beginner|expert|developer|marketer)\b/i.test(text);
   if (!hasAudience && wordCount > 20) {
     issues.push({
@@ -370,7 +357,6 @@ export function debugPrompt(input: string): {
     });
   }
 
-  // Calculate health score
   let score = 100;
   for (const issue of issues) {
     if (issue.severity === "critical") score -= 20;
@@ -402,7 +388,7 @@ const INJECTION_PATTERNS: { pattern: RegExp; type: string; severity: "high" | "m
   { pattern: /\b(you\s+are\s+now|from\s+now\s+on)\s+(free|unrestricted|unlimited|without\s+(rules|restrictions))/gi, type: "Jailbreak", severity: "high", description: "Attempts to remove restrictions mid-conversation." },
   { pattern: /\b(show|reveal|display|print|output)\s+(your\s+)?(system\s+prompt|instructions|rules|hidden|internal)/gi, type: "Data Leak", severity: "medium", description: "Attempts to extract system prompt or hidden instructions." },
   { pattern: /\b(reveal|expose|show)\s+(the\s+)?(password|api\s?key|secret|token|credential)/gi, type: "Credential Leak", severity: "high", description: "Attempts to extract credentials or secrets." },
-  { pattern: /\b(execute|run|eval|system)\s*\(.*\)/gi, type: "Code Injection", severity: "high", description: "Potential code execution attempt." },
+  { pattern: /\b(execute|run|eval|system)\s*\\(.*\\)/gi, type: "Code Injection", severity: "high", description: "Potential code execution attempt." },
   { pattern: /\b(rm\s+-rf|del\s+\/[a-z]|format\s+[a-z]:|shutdown)/gi, type: "Command Injection", severity: "high", description: "Destructive system command detected." },
   { pattern: /\b(;\s*DROP\s+TABLE|;\s*DELETE\s+FROM|;\s*INSERT\s+INTO|;\s*UPDATE\s+SET)/gi, type: "SQL Injection", severity: "high", description: "SQL injection pattern detected." },
   { pattern: /<script\b|onerror\s*=|onload\s*=|javascript:/gi, type: "XSS", severity: "medium", description: "Cross-site scripting pattern detected." },
@@ -426,7 +412,6 @@ export function scanPromptSecurity(input: string): {
   const threats: SecurityThreat[] = [];
   const piiMap = new Map<string, { type: string; description: string; count: number }>();
 
-  // Scan for injection patterns
   for (const { pattern, type, severity, description } of INJECTION_PATTERNS) {
     const matches = input.match(pattern);
     if (matches) {
@@ -440,7 +425,6 @@ export function scanPromptSecurity(input: string): {
     }
   }
 
-  // Scan for PII
   for (const { pattern, type, description } of PII_PATTERNS) {
     const matches = input.match(pattern);
     if (matches) {
@@ -711,7 +695,6 @@ export function translatePrompt(input: string, language: string): string {
   const dict = TRANSLATIONS[language];
   if (!dict) return input;
 
-  // Preserve variables like {name}, {{city}}, [tone], :variable
   const variables: string[] = [];
   let text = input.replace(/(\{\{[^}]+\}\}|\{[^}]+\}|\[[^\]]+\]|:[a-zA-Z_][a-zA-Z0-9_\-]*)/g, (match) => {
     const placeholder = `__VAR${variables.length}__`;
@@ -719,14 +702,12 @@ export function translatePrompt(input: string, language: string): string {
     return placeholder;
   });
 
-  // Translate known phrases (longer phrases first to avoid partial matches)
   const sortedKeys = Object.keys(dict).sort((a, b) => b.length - a.length);
   for (const key of sortedKeys) {
     const regex = new RegExp(`\\b${key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "gi");
     text = text.replace(regex, dict[key]);
   }
 
-  // Restore variables
   text = text.replace(/__VAR(\d+)__/g, (_, i) => variables[parseInt(i, 10)]);
 
   return text;
@@ -776,7 +757,6 @@ export function buildApiRequest(config: ApiRequestConfig): { json: string; curl:
     return { json, curl };
   }
 
-  // Gemini
   const body: Record<string, unknown> = {
     contents: [{ role: "user", parts: [{ text: prompt }] }],
     generationConfig: {
