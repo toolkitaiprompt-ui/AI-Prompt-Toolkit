@@ -92,7 +92,6 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
 return (
     <div className="bg-slate-950">
-      </div>
 
       {/* Hero Section */}
       <section className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center overflow-hidden">
