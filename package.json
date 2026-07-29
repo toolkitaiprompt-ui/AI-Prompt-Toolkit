@@ -5,9 +5,10 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node prerender.mjs",
+    "build": "npm run validate:sitemap && vite build && node prerender.mjs && node scripts/validate-sitemap.mjs dist/public/sitemap.xml",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "validate:sitemap": "node scripts/validate-sitemap.mjs public/sitemap.xml"
   },
   "dependencies": {
     "framer-motion": "^12.23.22",
@@ -24,6 +25,7 @@
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.5.2",
     "autoprefixer": "^10.4.21",
+    "fast-xml-parser": "^5.10.1",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.8.3",

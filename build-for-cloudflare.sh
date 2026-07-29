@@ -1,21 +1,24 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Cloudflare Pages build script for artifacts/ai-prompt-toolkit.
-# Runs npm install + npm run build in isolation — bypasses pnpm workspace detection.
+# Cloudflare Pages compatibility build. The app source lives at the repository
+# root, while some existing Pages projects publish artifacts/ai-prompt-toolkit.
+# Build once at the root and make the validated output available at both paths.
 
-ARTIFACT_DIR="$(cd "$(dirname "$0")/artifacts/ai-prompt-toolkit" && pwd)"
+REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
+ARTIFACT_DIR="$REPO_ROOT/artifacts/ai-prompt-toolkit"
 
-echo "==> Building from $ARTIFACT_DIR"
-cd "$ARTIFACT_DIR"
+printf '==> Installing dependencies in %s\n' "$REPO_ROOT"
+cd "$REPO_ROOT"
+npm ci --legacy-peer-deps
 
-echo "==> npm install"
-npm install --legacy-peer-deps
-
-echo "==> npm run build"
+printf '==> Building app and validating sitemap.xml\n'
 npm run build
 
-echo "==> prerender (SEO static HTML for every route)"
-node prerender.mjs
+printf '==> Copying output to compatibility directory\n'
+rm -rf "$ARTIFACT_DIR/dist/public"
+mkdir -p "$ARTIFACT_DIR/dist"
+cp -R "$REPO_ROOT/dist/public" "$ARTIFACT_DIR/dist/public"
 
-echo "==> Build complete. Output: $ARTIFACT_DIR/dist/public"
+printf '==> Root output: %s\n' "$REPO_ROOT/dist/public"
+printf '==> Compatibility output: %s\n' "$ARTIFACT_DIR/dist/public"

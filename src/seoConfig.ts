@@ -45,7 +45,7 @@ const SEO_MAP: Record<string, SeoData> = {
   "/tools": {
     title: "Free AI Tools Directory â€” 16 Best Tools | AI World Hub",
     description:
-      "Browse 16 best free AI tools for prompt engineering â€” variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, mega prompt builder, debugger, security scanner, chain builder, translator, and API request builder.",
+      "Choose from 16 best free AI tools for prompt engineering â€” variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, comparison tool, mega prompt builder, debugger, security scanner, chain builder, translator, and API request builder.",
     keywords:
       "Best AI Tools, Free AI Tools, AI Tools Directory, Prompt Engineering Tools, Free AI Prompt Tools, AI Prompt Builder, ChatGPT Prompt Tools, Prompt Optimization Tools",
   },
@@ -224,7 +224,7 @@ const SEO_MAP: Record<string, SeoData> = {
   "/image-generator": {
     title: "Free AI Image Prompt Generator â€” Midjourney & DALL-E | AI World Hub",
     description:
-      "Generate optimized AI image prompts for Midjourney, DALL-E 3, and Stable Diffusion. Choose from 10 art styles and get copy-ready prompts instantly. Free in-browser tool.",
+      "Generate optimized AI image prompts for Midjourney, DALL-E 3, and Stable Diffusion. Select an art style and get copy-ready prompts instantly. Free in-browser tool.",
     keywords: "AI Image Prompt Generator, Midjourney Prompts, DALL-E Prompts, Stable Diffusion, Free AI Tools, AI Image Prompts",
   },
 

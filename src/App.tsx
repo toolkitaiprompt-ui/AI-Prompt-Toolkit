@@ -508,7 +508,7 @@ function ToolsDirectoryPage() {
   return (
     <SectionShell
       title="Free AI Tools Directory — 16 Best Tools"
-      description="Browse the best free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, mega prompt builder, debugger, security scanner, chain builder, translator, and API request builder."
+      description="Choose from 16 free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, comparison tool, mega prompt builder, debugger, security scanner, chain builder, translator, and API request builder."
       keywords="Best AI Tools, Free AI Tools, AI Tools Directory, Prompt Engineering Tools, AI Prompt Builder, ChatGPT Prompt Tools"
     >
       <div className="space-y-3">
@@ -517,7 +517,7 @@ function ToolsDirectoryPage() {
         </p>
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">AI World Hub</h1>
         <p className="max-w-3xl text-base sm:text-lg text-slate-400">
-          Sixteen precision tools for prompt engineering teams. Build, format, validate, debug, optimize, secure, and translate — all in the browser.
+          Choose from 16 precision tools for prompt engineering teams. Build, format, validate, debug, optimize, secure, and translate — all in the browser.
         </p>
       </div>
 
