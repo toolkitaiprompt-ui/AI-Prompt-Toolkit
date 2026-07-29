@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, ImagePlus } from "lucide-react";
 
@@ -23,6 +23,7 @@ const STYLE_MODIFIERS: Record<string, string> = {
 function buildPrompt(userIdea: string, style: string) {
   const idea = userIdea.trim().replace(/[.\s]+$/, "");
   const modifiers = STYLE_MODIFIERS[style] ?? "";
+
   return {
     midjourney: `/imagine prompt: ${idea}, ${modifiers} --ar 16:9 --v 6.1 --s 750`,
     dalle: `${idea}. Style: ${modifiers}. Wide 16:9 composition, highly detailed.`,
@@ -33,17 +34,19 @@ function buildPrompt(userIdea: string, style: string) {
 export default function ImageGeneratorPage() {
   const [prompt, setPrompt] = useState("");
   const [style, setStyle] = useState("Photorealistic");
-  const [generating, setGenerating] = useState(false);
-  const [generated, setGenerated] = useState(false);
 
-  const handleGenerate = () => {
-    if (!prompt.trim()) return;
-    setGenerating(true);
-    setTimeout(() => {
-      setGenerating(false);
-      setGenerated(true);
-    }, 400);
-  };
+  const generatedPrompts = useMemo(
+    () => (prompt.trim() ? buildPrompt(prompt, style) : null),
+    [prompt, style],
+  );
+
+  const promptOutputs = generatedPrompts
+    ? ([
+        ["Midjourney", generatedPrompts.midjourney],
+        ["DALL-E 3", generatedPrompts.dalle],
+        ["Stable Diffusion", generatedPrompts.sd],
+      ] as const)
+    : [];
 
   return (
     <section className="site-container section-lg">
@@ -61,10 +64,13 @@ export default function ImageGeneratorPage() {
         {/* Left - Input */}
         <div className="space-y-6">
           <div>
-            <label className="text-sm font-medium text-slate-300 mb-2 block">Describe Your Image</label>
+            <label htmlFor="image-description" className="text-sm font-medium text-slate-300 mb-2 block">
+              Describe Your Image
+            </label>
             <textarea
+              id="image-description"
               value={prompt}
-              onChange={e => setPrompt(e.target.value)}
+              onChange={(event) => setPrompt(event.target.value)}
               placeholder="A serene mountain landscape at sunset with glowing aurora borealis..."
               rows={5}
               className="w-full rounded-2xl border border-slate-700/50 bg-slate-900/80 p-4 text-sm text-white placeholder-slate-500 outline-none focus:border-amber-400/50 transition"
@@ -72,47 +78,50 @@ export default function ImageGeneratorPage() {
           </div>
 
           <div>
-            <label className="text-sm font-medium text-slate-300 mb-3 block">Art Style</label>
-            <div className="flex flex-wrap gap-2">
-              {STYLES.map(s => (
+            <p className="text-sm font-medium text-slate-300 mb-3">Art Style</p>
+            <div className="flex flex-wrap gap-2" aria-label="Art style">
+              {STYLES.map((styleOption) => (
                 <button
-                  key={s}
-                  onClick={() => setStyle(s)}
+                  key={styleOption}
+                  type="button"
+                  onClick={() => setStyle(styleOption)}
+                  aria-pressed={style === styleOption}
                   className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                    style === s
+                    style === styleOption
                       ? "bg-violet-500/20 text-violet-300 border border-violet-400/30"
                       : "bg-slate-900/50 text-slate-400 border border-slate-700/50 hover:border-slate-600"
                   }`}
                 >
-                  {s}
+                  {styleOption}
                 </button>
               ))}
             </div>
           </div>
 
-          <button
-            onClick={handleGenerate}
-            disabled={!prompt.trim() || generating}
-            className="btn-primary w-full justify-center"
-          >
-            {generating ? (
-              <>✨ Generating...</>
-            ) : (
-              <><Sparkles className="w-5 h-5" /> Generate Prompt</>
-            )}
-          </button>
+          <div className="flex items-center gap-2 rounded-xl border border-cyan-400/20 bg-cyan-500/5 px-4 py-3 text-sm text-cyan-200">
+            <Sparkles className="h-4 w-4 shrink-0" aria-hidden="true" />
+            Prompts update instantly as you type or change the art style.
+          </div>
+        </div>
 
-          {generated && (
-            <div className="space-y-4">
-              {([
-                ["Midjourney", buildPrompt(prompt, style).midjourney],
-                ["DALL-E 3", buildPrompt(prompt, style).dalle],
-                ["Stable Diffusion", buildPrompt(prompt, style).sd],
-              ] as const).map(([model, text]) => (
+        {/* Right - Real-time output */}
+        <div
+          className="rounded-2xl border border-slate-700/50 bg-gradient-to-br from-slate-900/80 to-slate-950/80 p-6 sm:p-8 min-h-[320px]"
+          aria-live="polite"
+        >
+          {generatedPrompts ? (
+            <div className="space-y-5">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-cyan-400">Live Preview</p>
+                <h2 className="mt-1 text-xl font-semibold text-white">Optimized image prompts</h2>
+              </div>
+
+              {promptOutputs.map(([model, text]) => (
                 <div key={model} className="rounded-2xl border border-amber-400/20 bg-amber-500/5 p-5">
                   <p className="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-2">{model}</p>
-                  <pre className="text-sm text-slate-200 font-mono leading-relaxed whitespace-pre-wrap">{text}</pre>
+                  <pre className="text-sm text-slate-200 font-mono leading-relaxed whitespace-pre-wrap break-words">{text}</pre>
                   <button
+                    type="button"
                     onClick={() => navigator.clipboard.writeText(text)}
                     className="mt-3 text-xs text-amber-400 hover:text-amber-300 transition"
                   >
@@ -121,21 +130,13 @@ export default function ImageGeneratorPage() {
                 </div>
               ))}
             </div>
-          )}
-        </div>
-
-        {/* Right - Preview */}
-        <div className="rounded-2xl border border-slate-700/50 bg-gradient-to-br from-slate-900/80 to-slate-950/80 p-8 flex items-center justify-center min-h-[320px]">
-          {generating ? (
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-violet-500 animate-pulse mx-auto mb-4" />
-              <p className="text-slate-400 text-sm">Generating your prompt...</p>
-            </div>
           ) : (
-            <div className="text-center">
-              <ImagePlus className="w-16 h-16 text-slate-600 mx-auto mb-4" />
-              <p className="text-slate-500 text-sm">Your optimized image prompt will appear here</p>
-              <p className="text-slate-600 text-xs mt-2">Compatible with Midjourney, DALL-E 3 & Stable Diffusion</p>
+            <div className="min-h-[256px] flex items-center justify-center text-center">
+              <div>
+                <ImagePlus className="w-16 h-16 text-slate-600 mx-auto mb-4" />
+                <p className="text-slate-500 text-sm">Start typing to build your optimized prompts in real time</p>
+                <p className="text-slate-600 text-xs mt-2">Compatible with Midjourney, DALL-E 3 & Stable Diffusion</p>
+              </div>
             </div>
           )}
         </div>

@@ -37,7 +37,7 @@ const routes = [
 
   // ── TOOLS DIRECTORY — Targets: "AI Tools Directory", "Free AI Tools" ──
   { path: "/tools", title: "Free AI Tools Directory — 16 Best Tools | AI World Hub",
-    desc: "Browse the best free AI tools for prompt engineering — 16 tools including variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, mega prompt builder, prompt debugger, security scanner, prompt chain builder, prompt translator & API request builder." },
+    desc: "Choose from 16 free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, comparison tool, mega prompt builder, prompt debugger, security scanner, prompt chain builder, prompt translator & API request builder." },
 
   // ── BLOG — Targets: "ChatGPT Prompts", "Prompt Engineering", "AI Tools" ──
   { path: "/blog", title: "ChatGPT Prompts & Prompt Engineering Blog | AI World Hub",
