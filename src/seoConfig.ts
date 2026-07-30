@@ -15,19 +15,19 @@ export type SeoData = {
 };
 
 const DEFAULT_SEO: SeoData = {
-  title: "Best Free AI Tools for Everyone | AI World Hub",
+  title: "16 Free AI Prompt Engineering Tools | AI World Hub",
   description:
-    "Best free AI tools for everyone â€” 16 prompt engineering tools for building, formatting, validating, debugging, optimizing, securing, and translating prompts. No sign-up, 100% in-browser.",
+    "Use 16 free AI prompt engineering tools to build, format, debug, secure, translate, and optimize prompts in your browser. No sign-up required.",
   keywords:
-    "Best AI Tools, Free AI Tools, ChatGPT Prompts, Prompt Engineering, AI Tools Directory, AI Prompt Builder, How to Use ChatGPT, Prompt Optimization, AI Prompting, ChatGPT Prompt Generator, Prompt Templates, AI Writing Tools",
+    "Best AI Tools, Free AI Tools, ChatGPT Prompts, Prompt Engineering, AI Tools Directory, AI Prompt Builder, How to Use ChatGPT, Prompt Optimization, AI Prompting, ChatGPT Prompt Generator",
 };
 
 const SEO_MAP: Record<string, SeoData> = {
   // â”€â”€ Homepage â”€â”€
   "/": {
-    title: "Best Free AI Tools for Everyone | AI World Hub",
+    title: "16 Free AI Prompt Engineering Tools | AI World Hub",
     description:
-      "Best free AI tools for everyone â€” 16 prompt engineering tools for building, formatting, validating, debugging, optimizing, securing, and translating prompts. JSON schema, token estimator, mega prompt builder, debugger & more.",
+      "Use 16 free AI prompt engineering tools to build, format, debug, secure, translate, and optimize prompts in your browser. No sign-up required.",
     keywords:
       "Best AI Tools, Free AI Tools, ChatGPT Prompts, Prompt Engineering, AI Tools Directory, AI Prompt Builder, How to Use ChatGPT, Prompt Optimization, AI Prompting, ChatGPT Prompt Generator",
   },
@@ -74,7 +74,7 @@ const SEO_MAP: Record<string, SeoData> = {
     description:
       "Free ChatGPT prompts, prompt engineering guides, and AI tool reviews. Learn how to write better prompts, use AI tools effectively, and boost productivity with practical tutorials.",
     keywords:
-      "ChatGPT Prompts, Prompt Engineering, Best AI Tools, Free AI Tools, AI Tools Directory, AI Prompting, Prompt Optimization, AI Writing Tools",
+      "ChatGPT Prompts, Prompt Engineering, Best AI Tools, Free AI Tools, AI Tools Directory, AI Prompting",
   },
 
   // â”€â”€ About â”€â”€
@@ -83,7 +83,7 @@ const SEO_MAP: Record<string, SeoData> = {
     description:
       "AI World Hub offers the best free AI prompt engineering tools for everyone â€” students, developers, marketers, and teams. 16 in-browser tools, no sign-up, no data collection.",
     keywords:
-      "About AI World Hub, Best AI Tools, Free AI Tools, Prompt Engineering, AI Prompting Tools, ChatGPT Prompt Tools",
+      "About AI World Hub, Best AI Tools, Free AI Tools, Prompt Engineering",
   },
 
   // â”€â”€ Contact â”€â”€
@@ -212,7 +212,7 @@ const SEO_MAP: Record<string, SeoData> = {
   "/templates": {
     title: "Free Prompt Templates Library â€” 100+ Ready-to-Use Prompts | AI World Hub",
     description:
-      "Browse 100+ ready-to-use AI prompt templates for writing, marketing, coding, business, education, and more. Copy, paste, get results instantly. Free prompt templates library.",
+      "Browse 100+ ready-to-use AI prompt templates for writing, image generation, coding, video, and productivity. Copy, paste, get results instantly. Free prompt templates library.",
     keywords: "Prompt Templates, AI Prompts, ChatGPT Prompts, Free AI Tools, Prompt Engineering Library, AI Prompting Templates",
   },
   "/categories": {
