@@ -58,7 +58,7 @@ export default function MegaPromptBuilder() {
   const [values, setValues] = useState<Record<string, string>>({});
   const [copied, setCopied] = useState(false);
 
-  const steps: MegaPromptStep[] = STEPS.map((s) => ({
+  steps: MegaPromptStep[] = STEPS.map((s) => ({
     key: s.key,
     label: s.label,
     value: values[s.key] || '',
@@ -138,7 +138,7 @@ export default function MegaPromptBuilder() {
             <p className="mt-1 text-sm text-slate-400">{currentStepData.help}</p>
           </div>
           <textarea
-            className="h-32 w-full rounded-xl border border-slate-700 bg-slate-900 p-3 text-sm text-slate-100 outline-none transition focus:border-amber-400/60 focus:ring-2 focus:ring-amber-400/20 resize-none"
+            className="h-32 w-full rounded-xl border border-slate-700 bg-slate-900 p-3 text-sm text-slate-100 outline-none transition focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20 resize-none"
             placeholder={currentStepData.placeholder}
             value={values[currentStepData.key] || ''}
             onChange={(e) => setValues((prev) => ({ ...prev, [currentStepData.key]: e.target.value }))}

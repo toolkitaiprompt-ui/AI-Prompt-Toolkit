@@ -77,7 +77,7 @@ export default function AdBanner({
       <div className={`flex flex-col items-center justify-center rounded-[16px] border border-dashed border-slate-700/60 bg-slate-900/40 p-6 text-center ${className}`}>
         <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-500">{label} — Placeholder</p>
         <p className="mt-2 max-w-[280px] text-xs leading-5 text-slate-600">
-          AdSense ID add karte hi yahan real ads dikhenge.
+          AdSense ID add karte hi real ads dikhenge.
         </p>
       </div>
     );
@@ -91,7 +91,7 @@ export default function AdBanner({
   };
 
   return (
-    <div className={`overflow-hidden rounded-[16px] border border-white/5 bg-slate-900/20 ${className}`}>
+    <div className={`overflow-hidden rounded-xl border border-slate-800 bg-slate-900/60 p-6 ${className}`}>
       <p className="px-3 py-1 text-[10px] uppercase tracking-widest text-slate-600">{label}</p>
       <ins
         className="adsbygoogle"

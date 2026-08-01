@@ -88,8 +88,8 @@ export default function ImageGeneratorPage() {
                   aria-pressed={style === styleOption}
                   className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
                     style === styleOption
-                      ? "bg-violet-500/20 text-violet-300 border border-violet-400/30"
-                      : "bg-slate-900/50 text-slate-400 border border-slate-700/50 hover:border-slate-600"
+                      ? 'bg-violet-500/20 text-violet-300 border border-violet-400/30'
+                      : 'bg-slate-900/50 text-slate-400 border border-slate-700/50 hover:border-slate-600'
                   }`}
                 >
                   {styleOption}
@@ -106,7 +106,7 @@ export default function ImageGeneratorPage() {
 
         {/* Right - Real-time output */}
         <div
-          className="rounded-2xl border border-slate-700/50 bg-gradient-to-br from-slate-900/80 to-slate-950/80 p-6 sm:p-8 min-h-[320px]"
+          className="rounded-2xl border border-slate-700 bg-gradient-to-br from-slate-900/80 to-slate-950/80 p-6 shadow-lg transition-all duration-500 hover:border-white/[0.15] hover:bg-white/[0.04] hover:shadow-xl hover:shadow-amber-500/5"
           aria-live="polite"
         >
           {generatedPrompts ? (
