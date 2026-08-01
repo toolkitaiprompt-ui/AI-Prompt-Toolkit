@@ -1,14 +1,15 @@
 import { useEffect } from "react";
 
 export default function AdBanner({ className = "" }) {
-  const zoneId = "3076f54e152d9f15e31bb2c14575816e";
+  const zoneId = "11478668";
   
   useEffect(() => {
     const scriptId = `monetag-script-${zoneId}`;
     if (!document.getElementById(scriptId)) {
       const script = document.createElement("script");
       script.id = scriptId;
-      script.src = `https://alwingulla.com/88/tag.min.js?z=${zoneId}`;
+      script.src = `https://n6wxm.com/vignette.min.js`;
+      script.dataset.zone = zoneId;
       script.async = true;
       document.body.appendChild(script);
     }
