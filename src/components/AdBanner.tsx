@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export default function AdBanner({ className = "" }) {
+export default function AdBanner({ className = "", format }: { className?: string; format?: string }) {
   const zoneId = "11478668";
   
   useEffect(() => {

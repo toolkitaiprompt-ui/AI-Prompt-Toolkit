@@ -58,7 +58,7 @@ export default function MegaPromptBuilder() {
   const [values, setValues] = useState<Record<string, string>>({});
   const [copied, setCopied] = useState(false);
 
-  steps: MegaPromptStep[] = STEPS.map((s) => ({
+  const steps: MegaPromptStep[] = STEPS.map((s) => ({
     key: s.key,
     label: s.label,
     value: values[s.key] || '',
@@ -206,3 +206,4 @@ export default function MegaPromptBuilder() {
     return STEPS.filter((s) => (values[s.key] || '').trim().length > 0).length;
   }
 }
+
