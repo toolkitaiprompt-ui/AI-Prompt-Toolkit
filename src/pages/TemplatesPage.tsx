@@ -73,7 +73,7 @@ export default function TemplatesPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.03 }}
-            className="group relative rounded-[20px] border border-white/[0.06] bg-white/[0.02] p-6 shadow-lg transition-all duration-500 hover:border-white/[0.15] hover:bg-white/[0.04] hover:shadow-xl hover:shadow-amber-500/5"
+            className="group relative flex flex-col rounded-[20px] border border-white/[0.06] bg-white/[0.02] p-6 shadow-lg transition-all duration-500 hover:border-white/[0.15] hover:bg-white/[0.04] hover:shadow-xl hover:shadow-amber-500/5"
           >
             <div className="flex items-start justify-between mb-4">
               <span className="inline-flex rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-emerald-300">
@@ -86,7 +86,7 @@ export default function TemplatesPage() {
             </div>
 
             <h3 className="font-headline font-bold text-lg text-white mb-2">{template.title}</h3>
-            <p className="text-sm text-slate-400 mb-4">{template.description}</p>
+            <p className="flex-1 text-sm text-slate-400 mb-4">{template.description}</p>
 
             <div className="flex items-center gap-3 text-xs text-slate-500 mb-4">
               <span className="flex items-center gap-1">

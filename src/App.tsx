@@ -695,7 +695,7 @@ function JsonSchemaGeneratorPage() {
         Generate Schema
       </button>
       {error && <p className="text-sm text-red-400">{error}</p>}
-      <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300">{result || "Schema output will appear here."}</pre>
+      <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 whitespace-pre-wrap break-words">{result || "Schema output will appear here."}</pre>
     </ToolContainer>
   );
 }
@@ -782,7 +782,7 @@ function PromptFormatterPage() {
       </label>
       <div>
         <p className="mb-2 text-sm font-medium text-slate-300">Formatted Output</p>
-        <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300">{output}</pre>
+        <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 whitespace-pre-wrap break-words">{output}</pre>
       </div>
     </ToolContainer>
   );
@@ -811,7 +811,7 @@ function PromptCleanerPage() {
       </label>
       <div>
         <p className="mb-2 text-sm font-medium text-slate-300">Cleaned Output</p>
-        <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300">{output}</pre>
+        <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 whitespace-pre-wrap break-words">{output}</pre>
       </div>
     </ToolContainer>
   );

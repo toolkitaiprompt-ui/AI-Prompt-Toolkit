@@ -380,6 +380,7 @@ return (
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="h-full"
               >
                 <ToolCard tool={tool} />
               </motion.div>
@@ -451,6 +452,7 @@ return (
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.05 }}
+                className="h-full"
               >
                 <ToolCard tool={toolPages[idx]} />
               </motion.div>

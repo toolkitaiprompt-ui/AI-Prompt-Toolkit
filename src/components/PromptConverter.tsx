@@ -75,7 +75,7 @@ export default function PromptConverter() {
           <p className="text-sm font-medium text-slate-300">Converted Prompt ({target})</p>
           <button type="button" onClick={handleCopy} className="rounded-full bg-amber-500/10 border border-amber-400/30 px-4 py-1.5 text-xs font-semibold text-amber-300 transition hover:bg-amber-500/20">{copied ? "✓ Copied!" : "Copy"}</button>
         </div>
-        <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 whitespace-pre-wrap">{output}</pre>
+        <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 whitespace-pre-wrap break-words">{output}</pre>
       </div>
     </div>
   );

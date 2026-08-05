@@ -141,7 +141,7 @@ export default function PersonaBuilder() {
             {copied ? "✓ Copied!" : "Copy Prompt"}
           </button>
         </div>
-        <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 whitespace-pre-wrap">{output}</pre>
+        <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 whitespace-pre-wrap break-words">{output}</pre>
       </div>
     </div>
   );
