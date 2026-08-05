@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* ===== DESIGN 1 — DARK GLASS PREMIUM ===== */
+/* ===== DESIGN TOKENS — DARK GLASS PREMIUM ===== */
 @theme {
   --color-glass: rgba(255,255,255,0.03);
   --color-glass-border: rgba(255,255,255,0.06);
@@ -8,43 +8,76 @@
   --color-accent-gold: #FFD700;
   --color-accent-pink: #FF1493;
   --color-surface: #12121e;
+
+  /* Typography — modern pairing: Inter body, Space Grotesk display, Fira Code mono */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 /* ===== RESET ===== */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { overflow-x: hidden; }
-body {
-  font-family: "Inter", "Segoe UI", sans-serif;
-  background: #0a0a0f;
-  color: #e2e8f0;
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; min-width: 0; }
+
+html {
+  overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
+
+body {
+  font-family: var(--font-sans);
+  background: #0a0a0f;
+  color: #e2e8f0;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+}
+
 #root { width: 100%; }
 
-/* ===== GLOBAL OVERFLOW SAFEGUARDS ===== */
+/* ===== GLOBAL LAYOUT SAFEGUARDS ===== */
 img, video, svg { max-width: 100%; height: auto; }
 pre { white-space: pre-wrap; max-width: 100%; overflow-x: auto; }
 code { word-break: break-word; }
 /* Force word wrapping on text containers to prevent layout breakage */
-h1, h2, h3, h4, h5, h6, p, li, td, th, blockquote, figcaption { overflow-wrap: break-word; word-wrap: break-word; }
-/* Prevent horizontal scroll on both html and body */
-html, body { overflow-x: hidden; width: 100%; }
+h1, h2, h3, h4, h5, h6, p, li, td, th, blockquote, figcaption {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+section, main, header, footer, nav { width: 100%; }
 
 /* ===== FORCE CENTERING ===== */
 [class*="mx-auto"] { margin-left: auto !important; margin-right: auto !important; }
-section, main, header, footer, nav { width: 100%; }
 
-/* ===== CONTAINER ===== */
+/* ===== TYPOGRAPHY — clean scale; utilities own sizes, weights, and spacing ===== */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-wrap: balance;
+}
+p { line-height: 1.65; }
+
+.font-headline {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* ===== CONTAINER — fluid padding, no breakpoint overrides needed ===== */
 .site-container {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(1rem, 4vw, 2rem);
 }
+
+/* ===== SECTIONS — Consistent spacing ===== */
+.section-lg { padding: 5rem 0; }
+.section-md { padding: 3rem 0; }
 
 /* ===== NAVBAR ===== */
 .glass-nav {
@@ -64,6 +97,7 @@ section, main, header, footer, nav { width: 100%; }
   border-radius: 100px;
   font-size: 13px;
   font-weight: 500;
+  letter-spacing: 0.01em;
   transition: all 0.2s ease;
   text-decoration: none;
   color: #94a3b8;
@@ -71,13 +105,6 @@ section, main, header, footer, nav { width: 100%; }
 }
 .glass-nav-link:hover { color: #fff; background: rgba(255,255,255,0.06); }
 .glass-nav-link.active { color: #FFD700; background: rgba(255,215,0,0.08); }
-
-/* ===== TYPOGRAPHY ===== */
-h1, h2, h3, h4 { font-family: "Poppins", "Inter", sans-serif; letter-spacing: -0.02em; }
-h1 { font-size: 3rem; line-height: 1.15; font-weight: 700; margin-bottom: 1.5rem; }
-h2 { font-size: 2.25rem; line-height: 1.25; font-weight: 700; margin-bottom: 1.25rem; }
-h3 { font-size: 1.375rem; line-height: 1.4; font-weight: 600; margin-bottom: 0.75rem; }
-p { font-size: 1rem; line-height: 1.8; margin-bottom: 1rem; color: #94a3b8; }
 
 /* ===== CARD STYLES ===== */
 .card-premium {
@@ -88,7 +115,7 @@ p { font-size: 1rem; line-height: 1.8; margin-bottom: 1rem; color: #94a3b8; }
 }
 
 .card-featured-premium {
-  background: linear-gradient(135deg, rgba(255,215,0,0.03) 0%, rgba(255,20,147,0.02) 100%);
+  background: linear-gradient(135deg, rgba(255,215,0,0.03) 0%, rgba(255,215,0,0.02) 100%);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255,255,255,0.06);
@@ -100,7 +127,7 @@ p { font-size: 1rem; line-height: 1.8; margin-bottom: 1rem; color: #94a3b8; }
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, #FFD700, #FF1493, #FFD700);
+  background: linear-gradient(90deg, #FFD700, #F2B900, #FFD700);
   border-radius: 20px 20px 0 0;
   z-index: 20;
 }
@@ -125,18 +152,9 @@ p { font-size: 1rem; line-height: 1.8; margin-bottom: 1rem; color: #94a3b8; }
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
 }
 
-.font-headline {
-  font-family: "Poppins", "Inter", sans-serif;
-  letter-spacing: -0.02em;
-}
-
-/* ===== SECTIONS — Consistent spacing ===== */
-.section-lg { padding: 5rem 0; }
-.section-md { padding: 3rem 0; }
-
-/* ===== BUTTONS ===== */
+/* ===== BUTTONS — clean gold, high-contrast, consistent ===== */
 .btn-primary {
-  background: linear-gradient(135deg, #FFD700, #FF1493);
+  background: linear-gradient(135deg, #FFD700, #F2B900);
   color: #000;
   padding: 12px 28px;
   border-radius: 100px;
@@ -206,9 +224,9 @@ p { font-size: 1rem; line-height: 1.8; margin-bottom: 1rem; color: #94a3b8; }
   margin: 2rem 0;
 }
 
-/* ===== TEXT GRADIENT ===== */
+/* ===== TEXT GRADIENT — gold family only ===== */
 .text-gradient {
-  background: linear-gradient(135deg, #FFD700, #FF1493);
+  background: linear-gradient(135deg, #FFD700, #F2B900);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -230,10 +248,7 @@ p { font-size: 1rem; line-height: 1.8; margin-bottom: 1rem; color: #94a3b8; }
 
 /* ===== RESPONSIVE — MOBILE ===== */
 @media (max-width: 767px) {
-  .site-container { padding: 0 1rem; }
   .section-lg { padding: 3rem 0; }
-  h1 { font-size: 2rem; }
-  h2 { font-size: 1.5rem; }
   .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
   .hero-badge { font-size: 11px; }
 }
@@ -245,29 +260,4 @@ p { font-size: 1rem; line-height: 1.8; margin-bottom: 1rem; color: #94a3b8; }
 @media (max-width: 380px) {
   .glass-nav { padding: 4px 4px 4px 12px; }
   .glass-nav-link { padding: 5px 8px; font-size: 12px; }
-  .site-container { padding: 0 0.75rem; }
-  h1 { font-size: 1.75rem; }
-  h2 { font-size: 1.375rem; }
-}
-
-/* ===== GLOBAL LAYOUT FIX: Prevent overlap on all screens ===== */
-*, *::before, *::after { min-width: 0; }
-h1, h2, h3, h4, h5, h6, p, span, a, li, td, th {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  hyphens: auto;
-}
-
-/* ===== LAPTOP FIX: 1024px to 1280px ===== */
-@media (max-width: 1280px) {
-  .site-container {
-    padding: 0 1.5rem !important;
-  }
-  h1 {
-    font-size: 2.5rem !important;
-    line-height: 1.2 !important;
-  }
-  h2 {
-    font-size: 2rem !important;
-  }
 }

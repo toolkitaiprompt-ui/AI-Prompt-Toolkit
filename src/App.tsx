@@ -511,7 +511,7 @@ function ToolsDirectoryPage() {
       keywords="Best AI Tools, Free AI Tools, AI Tools Directory, Prompt Engineering Tools, AI Prompt Builder, ChatGPT Prompt Tools"
     >
       <div className="space-y-3">
-        <p className="text-sm font-semibold uppercase tracking-[0.28em] text-amber-400/80">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-400/80">
           Professional Toolkit
         </p>
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">AI World Hub</h1>
@@ -1248,7 +1248,7 @@ function ContactPage() {
                 className="w-full rounded-lg border border-slate-700 bg-transparent px-4 py-2.5 text-sm outline-none transition focus:border-blue-500" />
             </label>
             <button type="submit" disabled={status === "sending"}
-              className="inline-flex w-fit items-center gap-2 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500 disabled:opacity-60">
+              className="inline-flex w-fit items-center gap-2 rounded-full bg-amber-500 px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-amber-400 disabled:opacity-60">
               {status === "sending" ? "Sending..." : "Send Message"} <SendHorizontal className="h-4 w-4" />
             </button>
             {status === "success" && (
@@ -1385,7 +1385,7 @@ Key benefit: {{key_benefit}}`;
     >
       <div className="space-y-8">
         <div className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-amber-400/80">Interactive Playground</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-400/80">Interactive Playground</p>
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">Prompt Playground</h1>
           <p className="max-w-2xl text-base sm:text-lg text-slate-400">
             Generate ready-to-use prompt templates for blog posts, code reviews, and cold emails. Test token counts, debug health scores, and optimize in real time — no sign-up, runs entirely in your browser.
@@ -1423,7 +1423,7 @@ Key benefit: {{key_benefit}}`;
               placeholder="Enter blog topic (e.g., AI automation, productivity tools)..."
               className="flex-1 rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-amber-400/60 focus:ring-2 focus:ring-amber-400/20"
             />
-            <button onClick={() => generateTemplate("blog")} className="rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 px-6 py-3 text-sm font-semibold text-black transition hover:opacity-90">Generate</button>
+            <button onClick={() => generateTemplate("blog")} className="rounded-xl bg-amber-500 hover:bg-amber-400 px-6 py-3 text-sm font-semibold text-black transition hover:opacity-90">Generate</button>
           </div>
         )}
         {activeTab === "code" && (
@@ -1435,7 +1435,7 @@ Key benefit: {{key_benefit}}`;
             >
               <option>Python</option><option>JavaScript</option><option>TypeScript</option><option>Java</option><option>Go</option><option>Rust</option><option>C++</option><option>Ruby</option>
             </select>
-            <button onClick={() => generateTemplate("code")} className="rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 px-6 py-3 text-sm font-semibold text-black transition hover:opacity-90">Generate</button>
+            <button onClick={() => generateTemplate("code")} className="rounded-xl bg-amber-500 hover:bg-amber-400 px-6 py-3 text-sm font-semibold text-black transition hover:opacity-90">Generate</button>
           </div>
         )}
         {activeTab === "email" && (
@@ -1447,7 +1447,7 @@ Key benefit: {{key_benefit}}`;
             >
               <option>Cold Email</option><option>Follow-Up Email</option><option>Newsletter</option><option>Re-Engagement Email</option><option>Sales Outreach</option>
             </select>
-            <button onClick={() => generateTemplate("email")} className="rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 px-6 py-3 text-sm font-semibold text-black transition hover:opacity-90">Generate</button>
+            <button onClick={() => generateTemplate("email")} className="rounded-xl bg-amber-500 hover:bg-amber-400 px-6 py-3 text-sm font-semibold text-black transition hover:opacity-90">Generate</button>
           </div>
         )}
 
@@ -1821,7 +1821,7 @@ function PromptsDirectoryPage() {
     >
       <div className="space-y-8">
         <div className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-amber-400/80">Prompt Library</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-400/80">Prompt Library</p>
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">AI Prompt Library</h1>
           <p className="max-w-2xl text-base sm:text-lg text-slate-400">
             Browse 225+ ready-to-use AI prompts across 15 professional roles. Each prompt is crafted by prompt engineering experts and ready to copy, customize, and use with any AI model — ChatGPT, Claude, Gemini, and more.
@@ -1870,7 +1870,7 @@ function PromptsRolePage() {
         <div className="text-center py-20">
           <h1 className="text-2xl font-bold text-white">Prompts Not Found</h1>
           <p className="mt-3 text-slate-400">We couldn't find prompts for this role.</p>
-          <Link to="/prompts" className="mt-6 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 px-5 py-2.5 text-sm font-semibold text-black transition hover:opacity-90">
+          <Link to="/prompts" className="mt-6 inline-flex items-center gap-2 rounded-xl bg-amber-500 hover:bg-amber-400 px-5 py-2.5 text-sm font-semibold text-black transition hover:opacity-90">
             ← Back to Prompt Library
           </Link>
         </div>
@@ -1981,7 +1981,7 @@ function ChangelogPage() {
     >
       <div className="space-y-8">
         <div className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-amber-400/80">Version History</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-400/80">Version History</p>
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">Changelog</h1>
           <p className="max-w-2xl text-base sm:text-lg text-slate-400">
             Every update, new tool, and improvement to the AI World Hub toolkit — all in one place.

@@ -46,7 +46,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
   };
 
   const demoTools = [
-    { name: 'Prompt Optimizer', icon: Sparkles, color: 'from-amber-500 to-rose-500' },
+    { name: 'Prompt Optimizer', icon: Sparkles, color: 'from-amber-500 to-amber-600' },
     { name: 'Token Estimator', icon: Zap, color: 'from-cyan-500 to-blue-500' },
     { name: 'JSON Validator', icon: CheckCircle2, color: 'from-green-500 to-emerald-500' },
   ];
@@ -55,7 +55,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
   const stats = [
     { icon: Zap, value: '16', label: 'Free Tools', color: 'from-blue-500 to-cyan-500' },
     { icon: Shield, value: '100%', label: 'In-Browser & Private', color: 'from-yellow-500 to-orange-500' },
-    { icon: Clock, value: '0', label: 'Sign-ups Required', color: 'from-amber-500 to-rose-500' },
+    { icon: Clock, value: '0', label: 'Sign-ups Required', color: 'from-amber-500 to-amber-600' },
     { icon: Award, value: 'Free', label: 'Forever', color: 'from-green-500 to-emerald-500' },
   ];
 
@@ -105,7 +105,7 @@ return (
               rotate: [0, 90, 0],
             }}
             transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-            className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-amber-500/20 to-rose-500/20 blur-3xl"
+            className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-amber-500/20 to-amber-600/20 blur-3xl"
           />
           <motion.div
             animate={{
@@ -142,7 +142,7 @@ return (
               {/* Heading */}
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-[1.15]">
                 Build{' '}
-                <span className="bg-gradient-to-r from-amber-400 via-rose-400 to-pink-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 bg-clip-text text-transparent">
                   Perfect
                 </span>{' '}
                 AI Prompts{' '}
@@ -160,7 +160,7 @@ return (
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     to="/tools"
-                    className="group px-8 py-4 bg-gradient-to-r from-amber-500 to-rose-500 rounded-full font-semibold text-white shadow-lg shadow-amber-500/50 flex items-center gap-2"
+                    className="group px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 rounded-full font-semibold text-black shadow-lg shadow-amber-500/50 flex items-center gap-2"
                   >
                     Start Building Free
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -208,7 +208,7 @@ return (
                     onClick={() => setCurrentTool(idx)}
                     className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
                       currentTool === idx
-                        ? `bg-gradient-to-r ${tool.color} text-white shadow-lg`
+                        ? `bg-gradient-to-r ${tool.color} text-black shadow-lg`
                         : 'bg-white/5 text-slate-400 hover:bg-white/10'
                     }`}
                   >
@@ -261,7 +261,7 @@ return (
 
                   <button
                     onClick={handleOptimize}
-                    className={`w-full py-3 bg-gradient-to-r ${demoTools[currentTool].color} rounded-lg font-semibold text-white mb-4 hover:shadow-lg transition-shadow`}
+                    className={`w-full py-3 bg-gradient-to-r ${demoTools[currentTool].color} rounded-lg font-semibold text-black mb-4 hover:shadow-lg transition-shadow`}
                   >
                     Optimize Prompt
                   </button>
@@ -292,7 +292,7 @@ return (
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -top-3 -right-6 lg:-right-12 w-16 h-16 lg:w-24 lg:h-24 bg-gradient-to-br from-amber-500 to-rose-500 rounded-2xl blur-2xl opacity-20 md:opacity-40"
+                className="absolute -top-3 -right-6 lg:-right-12 w-16 h-16 lg:w-24 lg:h-24 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl blur-2xl opacity-20 md:opacity-40"
               />
               <motion.div
                 animate={{ y: [0, 10, 0] }}
@@ -363,7 +363,7 @@ return (
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
                 16 Professional Tools
                 <br />
-                <span className="bg-gradient-to-r from-amber-400 to-rose-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">
                   For Perfect Prompts
                 </span>
               </h2>
@@ -395,7 +395,7 @@ return (
           >
             <Link
               to="/tools"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-rose-500 rounded-full font-semibold text-white shadow-lg shadow-amber-500/50 hover:shadow-xl hover:shadow-amber-500/60 transition-shadow"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 rounded-full font-semibold text-black shadow-lg shadow-amber-500/50 hover:shadow-xl hover:shadow-amber-500/60 transition-shadow"
             >
               View All Tools
               <ArrowRight className="w-5 h-5" />
@@ -415,9 +415,9 @@ return (
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-500/10 border border-rose-500/20 mb-4">
-                <Zap className="w-4 h-4 text-rose-400" />
-                <span className="text-sm text-rose-300 font-medium">Trending Now</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 mb-4">
+                <Zap className="w-4 h-4 text-amber-400" />
+                <span className="text-sm text-amber-300 font-medium">Trending Now</span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
                 Most Used Tools
@@ -467,7 +467,7 @@ return (
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
               Why Use
               <br />
-              <span className="bg-gradient-to-r from-amber-400 to-rose-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">
                 AI World Hub?
               </span>
             </h2>
@@ -490,7 +490,7 @@ return (
                 transition={{ duration: 0.4, delay: idx * 0.05 }}
                 className="bg-slate-900/50 backdrop-blur-sm border border-white/10 rounded-2xl p-6"
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-rose-500 flex items-center justify-center mb-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center mb-4">
                   <item.icon className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
@@ -509,7 +509,7 @@ return (
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
                 Latest from Our Blog
                 <br />
-                <span className="bg-gradient-to-r from-amber-400 to-rose-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">
                   Expert Insights
                 </span>
               </h2>
@@ -564,7 +564,7 @@ return (
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
               Frequently Asked
               <br />
-              <span className="bg-gradient-to-r from-amber-400 to-rose-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">
                 Questions
               </span>
             </h2>
@@ -590,7 +590,7 @@ return (
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-8">
               Ready to Build
               <br />
-              <span className="bg-gradient-to-r from-amber-400 via-rose-400 to-pink-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 bg-clip-text text-transparent">
                 Perfect AI Prompts?
               </span>
             </h2>
@@ -600,7 +600,7 @@ return (
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 to="/tools"
-                className="px-8 py-4 bg-gradient-to-r from-amber-500 to-rose-500 rounded-full font-semibold text-white shadow-lg shadow-amber-500/50 hover:shadow-xl hover:shadow-amber-500/60 transition-shadow"
+                className="px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 rounded-full font-semibold text-black shadow-lg shadow-amber-500/50 hover:shadow-xl hover:shadow-amber-500/60 transition-shadow"
               >
                 Start Building Free
               </Link>

@@ -105,7 +105,7 @@ export default function MegaPromptBuilder() {
         </div>
         <div className="h-2 w-full rounded-full bg-slate-800 overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-amber-500 to-rose-500 transition-all duration-300"
+            className="h-full bg-gradient-to-r from-amber-500 to-amber-600 transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
