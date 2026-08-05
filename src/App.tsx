@@ -526,12 +526,12 @@ function ToolsDirectoryPage() {
             <ToolCard tool={tool} />
             {index === 2 && (
               <div className="md:col-span-2 xl:col-span-3">
-                <AdBanner format="horizontal" className="my-2" />
+                <AdBanner className="my-2" />
               </div>
             )}
             {index === 5 && (
               <div className="md:col-span-2 xl:col-span-3">
-                <AdBanner format="horizontal" className="my-2" />
+                <MonetagAd format="banner" className="my-2" />
               </div>
             )}
             {/* Monetag Banner Ad - Safe alongside Ezoic/AdSense */}
@@ -597,10 +597,10 @@ function ToolContainer({
         <div className="space-y-4">{children}</div>
       </div>
 
-      {/* AdSense slot — #9 fix, shows after tool, only if client ID present or preview */}
-      <AdBanner format="horizontal" />
+      {/* Monetag vignette anchor — loads the fullscreen overlay script */}
+      <AdBanner />
 
-      {/* Monetag Banner Ad (Ezoic ke saath safely chalega) */}
+      {/* Monetag Banner Ad */}
       <MonetagAd format="banner" className="mt-6" />
 
       {relatedBlogs.length > 0 && (
@@ -954,6 +954,8 @@ function BlogPage() {
           </button>
         </div>
       )}
+
+      <MonetagAd format="inline" className="mt-10" />
     </SectionShell>
   );
 }
@@ -1007,7 +1009,7 @@ function BlogPostPage() {
                 );
                 if (idx === insertAfterIndex - 1) {
                   sections.push(
-
+                    <MonetagAd key={`in-content-ad-${idx}`} format="inline" className="my-2" />,
                   );
                 }
               });
@@ -1056,6 +1058,7 @@ function BlogPostPage() {
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
             </div>
+            <MonetagAd format="rectangle" bare />
           </aside>
         </div>
       </div>
@@ -1391,6 +1394,8 @@ Key benefit: {{key_benefit}}`;
             Generate ready-to-use prompt templates for blog posts, code reviews, and cold emails. Test token counts, debug health scores, and optimize in real time — no sign-up, runs entirely in your browser.
           </p>
         </div>
+
+        <MonetagAd format="inline" className="my-1" />
 
         {/* Tab selector */}
         <div className="flex flex-wrap gap-2">
@@ -1850,6 +1855,8 @@ function PromptsDirectoryPage() {
             );
           })}
         </div>
+
+        <MonetagAd format="banner" className="my-2" />
       </div>
     </SectionShell>
   );
@@ -1901,19 +1908,26 @@ function PromptsRolePage() {
 
         <div className="grid gap-5 lg:grid-cols-2">
           {prompts.map((p, i) => (
-            <div key={i} className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
-              <div className="flex items-center justify-between gap-3">
-                <h3 className="text-base font-semibold text-white">{p.title}</h3>
-                <span className="shrink-0 rounded-full border border-slate-700 bg-slate-900 px-2.5 py-0.5 text-xs text-slate-400">{p.category}</span>
+            <React.Fragment key={i}>
+              <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-base font-semibold text-white">{p.title}</h3>
+                  <span className="shrink-0 rounded-full border border-slate-700 bg-slate-900 px-2.5 py-0.5 text-xs text-slate-400">{p.category}</span>
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-slate-300">{p.prompt}</p>
+                <button
+                  onClick={() => navigator.clipboard.writeText(p.prompt)}
+                  className="mt-4 inline-flex items-center gap-1.5 rounded-lg border border-slate-700 px-3 py-1.5 text-xs font-medium text-slate-300 transition hover:bg-white/5 hover:text-white"
+                >
+                  Copy Prompt
+                </button>
               </div>
-              <p className="mt-3 text-sm leading-relaxed text-slate-300">{p.prompt}</p>
-              <button
-                onClick={() => navigator.clipboard.writeText(p.prompt)}
-                className="mt-4 inline-flex items-center gap-1.5 rounded-lg border border-slate-700 px-3 py-1.5 text-xs font-medium text-slate-300 transition hover:bg-white/5 hover:text-white"
-              >
-                Copy Prompt
-              </button>
-            </div>
+              {i === 4 && (
+                <div className="lg:col-span-2">
+                  <MonetagAd format="inline" className="my-2" />
+                </div>
+              )}
+            </React.Fragment>
           ))}
         </div>
       </div>

@@ -20,6 +20,7 @@ import { BLOG_POSTS } from '../data/blogPosts';
 import BlogCard from './BlogCard';
 import ToolCard from './ToolCard';
 import CategoryShowcase from './CategoryShowcase';
+import MonetagAd from './MonetagAd';
 
 interface ToolMeta {
   title: string;
@@ -351,6 +352,11 @@ return (
           </div>
         </div>
       </section>
+
+      {/* Monetag banner — between trust stats and tools showcase */}
+      <div className="site-container my-4">
+        <MonetagAd format="banner" />
+      </div>
 
       {/* Tools Showcase — Featured AI Tools */}
       <section className="section-lg mt-16">

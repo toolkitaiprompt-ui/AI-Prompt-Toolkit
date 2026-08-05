@@ -214,6 +214,35 @@ p { line-height: 1.65; }
   transform: translateY(-4px);
 }
 
+/* ===== AD WRAPPERS — Monetag display slots =====
+   Responsive full-width slots. No clipping (overflow: visible) so ads of any
+   size render cleanly; min-height reserves space to avoid layout shift. */
+.ad-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px 12px;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.02);
+}
+.ad-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(148,163,184,0.6);
+  user-select: none;
+}
+.ad-slot {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
 /* ===== BADGES ===== */
 .badge {
   display: inline-flex;

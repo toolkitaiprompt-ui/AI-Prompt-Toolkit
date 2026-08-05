@@ -1,24 +1,22 @@
 import { useEffect } from "react";
 
-export default function AdBanner({ className = "", format }: { className?: string; format?: string }) {
-  const zoneId = "11478668";
-  
+const ZONE_VIGNETTE = "11478668";
+
+// Monetag vignette anchor. The vignette renders as a fullscreen overlay, so the
+// anchor needs no visual box — this keeps pages free of empty "ad boxes" while
+// the script still loads exactly once per page.
+export default function AdBanner({ className = "" }: { className?: string }) {
   useEffect(() => {
-    const scriptId = `monetag-script-${zoneId}`;
+    const scriptId = `monetag-script-${ZONE_VIGNETTE}`;
     if (!document.getElementById(scriptId)) {
       const script = document.createElement("script");
       script.id = scriptId;
       script.src = `https://n6wxm.com/vignette.min.js`;
-      script.dataset.zone = zoneId;
+      script.dataset.zone = ZONE_VIGNETTE;
       script.async = true;
       document.body.appendChild(script);
     }
   }, []);
 
-  return (
-    <div className={`w-full flex flex-col items-center justify-center my-4 overflow-hidden rounded-xl border border-white/10 bg-slate-900/40 p-2 ${className}`}>
-      <span className="text-[10px] uppercase tracking-widest text-slate-500 mb-2">Advertisement</span>
-      <div id={`container-${zoneId}`} className="monetag-zone w-full flex justify-center min-h-[90px]" />
-    </div>
-  );
+  return <div id={`container-${ZONE_VIGNETTE}`} className={`ad-slot ${className}`} aria-hidden="true" />;
 }

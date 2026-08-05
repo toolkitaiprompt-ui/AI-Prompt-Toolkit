@@ -1,20 +1,42 @@
-import React from "react";
+import { useRef } from "react";
+
+const ZONE_BANNER = "264272";
+
+// Module-level counter keeps container IDs unique when multiple ad slots
+// render on the same page (Monetag fills every `.monetag-zone` element).
+let slotCounter = 0;
 
 type MonetagAdProps = {
-  format?: string;
+  zone?: string;
+  format?: "banner" | "rectangle" | "inline";
   className?: string;
+  minHeight?: number;
+  /** Renders the slot without the bordered card (e.g. inside an existing card). */
+  bare?: boolean;
 };
 
-export default function MonetagAd({ format = "banner", className = "" }: MonetagAdProps) {
-  // Keep markup simple: Monetag's global tag (loaded in index.html) looks for elements with class "monetag-zone".
-  // Use a stable container ID so Monetag can target it if configured server-side.
-  const zoneId = format === "banner" ? "264272" : "264272";
+export default function MonetagAd({
+  zone = ZONE_BANNER,
+  format = "banner",
+  className = "",
+  minHeight,
+  bare = false,
+}: MonetagAdProps) {
+  // First instance keeps the exact `container-{zone}` id Monetag documents;
+  // later instances get a unique suffix so multiple slots fill independently.
+  const instance = useRef(++slotCounter).current;
+  const containerId = `container-${zone}${instance > 1 ? `-${instance}` : ""}`;
+  const minH = minHeight ?? (format === "rectangle" ? 250 : 90);
 
   return (
-    <div className={`w-full flex flex-col items-center justify-center my-4 overflow-hidden rounded-xl border border-white/10 bg-slate-900/40 p-2 ${className}`}>
-      <span className="text-[10px] uppercase tracking-widest text-slate-500 mb-2">Advertisement</span>
-      <div id={`container-${zoneId}`} className="monetag-zone w-full flex justify-center min-h-[90px]" />
+    <div className={`${bare ? "w-full" : "ad-wrap"} ${className}`}>
+      {!bare && <span className="ad-label">Advertisement</span>}
+      <div
+        id={containerId}
+        className="monetag-zone ad-slot"
+        style={{ minHeight: minH }}
+        aria-label="Advertisement"
+      />
     </div>
   );
 }
-
