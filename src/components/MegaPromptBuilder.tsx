@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
-import { CheckCircle2, Copy, Download, ChevronRight, ChevronLeft, RotateCcw } from 'lucide-react';
+import { ChevronRight, ChevronLeft, RotateCcw } from 'lucide-react';
 import { buildMegaPrompt, type MegaPromptStep } from '../lib/toolkit';
+import OutputToolbar, { LiveStats } from './OutputToolbar';
 
 const STEPS: { key: string; label: string; placeholder: string; help: string }[] = [
   {
@@ -56,7 +57,6 @@ const STEPS: { key: string; label: string; placeholder: string; help: string }[]
 export default function MegaPromptBuilder() {
   const [currentStep, setCurrentStep] = useState(0);
   const [values, setValues] = useState<Record<string, string>>({});
-  const [copied, setCopied] = useState(false);
 
   const steps: MegaPromptStep[] = STEPS.map((s) => ({
     key: s.key,
@@ -69,12 +69,6 @@ export default function MegaPromptBuilder() {
   const completedSteps = STEPS.filter((s) => (values[s.key] || '').trim().length > 0).length;
   const progress = Math.round((completedSteps / STEPS.length) * 100);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(output);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   const handleReset = () => {
     setValues({});
     setCurrentStep(0);
@@ -82,16 +76,6 @@ export default function MegaPromptBuilder() {
 
   const goNext = () => setCurrentStep((s) => Math.min(s + 1, STEPS.length - 1));
   const goPrev = () => setCurrentStep((s) => Math.max(s - 1, 0));
-
-  const handleDownload = () => {
-    const blob = new Blob([output], { type: 'text/markdown' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'mega-prompt.md';
-    a.click();
-    URL.revokeObjectURL(url);
-  };
 
   const currentStepData = STEPS[currentStep];
 
@@ -144,6 +128,7 @@ export default function MegaPromptBuilder() {
             onChange={(e) => setValues((prev) => ({ ...prev, [currentStepData.key]: e.target.value }))}
             aria-label={`${currentStepData.label} input`}
           />
+          <LiveStats text={values[currentStepData.key] || ''} />
           <div className="flex flex-wrap items-center justify-between gap-3">
             <button
               type="button"
@@ -176,25 +161,8 @@ export default function MegaPromptBuilder() {
 
       {/* Generated Output */}
       <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-6">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-base font-semibold text-white">Generated Mega Prompt</h3>
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={handleDownload}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-300 transition hover:bg-slate-800"
-            >
-              <Download className="h-3.5 w-3.5" /> Download
-            </button>
-            <button
-              type="button"
-              onClick={handleCopy}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-300 transition hover:bg-slate-800"
-            >
-              {copied ? <><CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Copied!</> : <><Copy className="h-3.5 w-3.5" /> Copy</>}
-            </button>
-          </div>
-        </div>
+        <h3 className="text-base font-semibold text-white mb-3">Generated Mega Prompt</h3>
+        <OutputToolbar text={output} fileName="mega-prompt.md" fileMime="text/markdown" className="mb-2" />
         <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-950/80 p-4 text-sm text-slate-300 whitespace-pre-wrap break-words min-h-[200px]">
           {output || 'Your mega prompt will appear here as you fill in each step...'}
         </pre>

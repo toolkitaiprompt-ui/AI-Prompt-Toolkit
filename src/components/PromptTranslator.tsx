@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
-import { Languages, Copy, CheckCircle2 } from 'lucide-react';
+import { Languages } from 'lucide-react';
 import { translatePrompt } from '../lib/toolkit';
+import OutputToolbar, { LiveStats } from './OutputToolbar';
 
 const LANGUAGES = [
   { code: 'Hindi', flag: '🇮🇳', sample: 'हिंदी' },
@@ -16,15 +17,8 @@ const LANGUAGES = [
 export default function PromptTranslator() {
   const [input, setInput] = useState('You are a marketing expert. Write a professional email for {product_name} targeting {audience}. Keep the tone professional. Output as markdown with bullet points.');
   const [selectedLang, setSelectedLang] = useState('Hindi');
-  const [copied, setCopied] = useState(false);
 
   const translated = useMemo(() => translatePrompt(input, selectedLang), [input, selectedLang]);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(translated);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   return (
     <div className="space-y-6">
@@ -45,6 +39,7 @@ export default function PromptTranslator() {
           placeholder="Enter your prompt in English..."
           aria-label="Prompt to translate"
         />
+        <LiveStats text={input} />
       </label>
 
       {/* Language Selector */}
@@ -71,16 +66,8 @@ export default function PromptTranslator() {
 
       {/* Translated Output */}
       <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-6">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-base font-semibold text-white">Translated Prompt ({selectedLang})</h3>
-          <button
-            type="button"
-            onClick={handleCopy}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-300 transition hover:bg-slate-800"
-          >
-            {copied ? <><CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Copied!</> : <><Copy className="h-3.5 w-3.5" /> Copy</>}
-          </button>
-        </div>
+        <h3 className="text-base font-semibold text-white mb-3">Translated Prompt ({selectedLang})</h3>
+        <OutputToolbar text={translated} fileName="translated-prompt.txt" className="mb-2" />
         <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-950/80 p-4 text-sm text-slate-300 whitespace-pre-wrap break-words min-h-[120px]">
           {translated || 'Translated prompt will appear here...'}
         </pre>

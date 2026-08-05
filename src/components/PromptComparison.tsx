@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { ArrowLeftRight, Check, X, TrendingUp } from "lucide-react";
+import { copyToClipboard } from "../lib/toolkit";
 
 /**
  * PromptComparison — Compare two prompts side by side.
@@ -200,6 +201,8 @@ export default function PromptComparison() {
     "You are an expert risk analyst.\n\nTask: Summarize quarterly business risks for an executive audience.\n\nFormat: Numbered bullet points (max 10 bullets).\nTone: Professional and concise.\nFor each risk include: description, impact level (Low/Medium/High), and one recommended action."
   );
   const [compared, setCompared] = useState(false);
+  const [copiedA, setCopiedA] = useState(false);
+  const [copiedB, setCopiedB] = useState(false);
 
   const analysis = useMemo(() => {
     if (!compared) return null;
@@ -243,7 +246,16 @@ export default function PromptComparison() {
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-sm font-semibold text-red-400">Prompt A (Original)</span>
-            <span className="text-xs text-slate-500">{countWords(promptA)} words · {estimateTokens(promptA)} tokens</span>
+            <span className="flex items-center gap-3">
+              <span className="text-xs text-slate-500">{countWords(promptA)} words · {estimateTokens(promptA)} tokens</span>
+              <button
+                type="button"
+                onClick={async () => { if (await copyToClipboard(promptA)) { setCopiedA(true); setTimeout(() => setCopiedA(false), 2000); } }}
+                className="inline-flex items-center gap-1 rounded-lg border border-slate-700 px-2.5 py-1 text-xs text-slate-300 transition hover:bg-slate-800"
+              >
+                {copiedA ? "✓ Copied!" : "Copy"}
+              </button>
+            </span>
           </div>
           <textarea
             className="h-48 w-full rounded-xl border border-slate-700 bg-slate-900 p-3 text-sm text-slate-100 outline-none transition focus:border-red-400/60 focus:ring-2 focus:ring-red-400/20"
@@ -258,7 +270,16 @@ export default function PromptComparison() {
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-sm font-semibold text-emerald-400">Prompt B (Optimized)</span>
-            <span className="text-xs text-slate-500">{countWords(promptB)} words · {estimateTokens(promptB)} tokens</span>
+            <span className="flex items-center gap-3">
+              <span className="text-xs text-slate-500">{countWords(promptB)} words · {estimateTokens(promptB)} tokens</span>
+              <button
+                type="button"
+                onClick={async () => { if (await copyToClipboard(promptB)) { setCopiedB(true); setTimeout(() => setCopiedB(false), 2000); } }}
+                className="inline-flex items-center gap-1 rounded-lg border border-slate-700 px-2.5 py-1 text-xs text-slate-300 transition hover:bg-slate-800"
+              >
+                {copiedB ? "✓ Copied!" : "Copy"}
+              </button>
+            </span>
           </div>
           <textarea
             className="h-48 w-full rounded-xl border border-slate-700 bg-slate-900 p-3 text-sm text-slate-100 outline-none transition focus:border-emerald-400/60 focus:ring-2 focus:ring-emerald-400/20"

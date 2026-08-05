@@ -166,6 +166,55 @@ export function estimateTokens(input: string): { characters: number; words: numb
   return { characters, words, estimatedTokens };
 }
 
+export function countWords(text: string): number {
+  const trimmed = text.trim();
+  return trimmed ? trimmed.split(/\s+/).length : 0;
+}
+
+export function countCharacters(text: string): number {
+  return text.length;
+}
+
+export function countSentences(text: string): number {
+  const matches = text.match(/[.!?]+/g);
+  return matches ? matches.length : text.trim() ? 1 : 0;
+}
+
+// ─── Clipboard & Export Helpers ───────────────────────────────────────
+
+export async function copyToClipboard(text: string): Promise<boolean> {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    try {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      const ok = document.execCommand("copy");
+      document.body.removeChild(textarea);
+      return ok;
+    } catch {
+      return false;
+    }
+  }
+}
+
+export function downloadTextFile(content: string, filename: string, mimeType = "text/plain"): void {
+  const blob = new Blob([content], { type: mimeType });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = filename;
+  document.body.appendChild(anchor);
+  anchor.click();
+  document.body.removeChild(anchor);
+  URL.revokeObjectURL(url);
+}
+
 // ─── Mega Prompt Builder ───────────────────────────────────────────────
 
 export type MegaPromptStep = {

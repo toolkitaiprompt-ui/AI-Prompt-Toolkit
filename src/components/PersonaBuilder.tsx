@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import OutputToolbar, { LiveStats } from "./OutputToolbar";
 
 const PERSONA_TEMPLATES: Record<string, { role: string; expertise: string; voice: string; rules: string[] }> = {
   Marketer: {
@@ -90,13 +91,8 @@ Always structure your response clearly using headings, bullet points, and profes
 export default function PersonaBuilder() {
   const [selectedRole, setSelectedRole] = useState<keyof typeof PERSONA_TEMPLATES>("Marketer");
   const [task, setTask] = useState("Help me launch a new SaaS product.");
-  const [copied, setCopied] = useState(false);
 
   const output = useMemo(() => generatePersona(selectedRole, task), [selectedRole, task]);
-
-  const handleCopy = async () => {
-    try { await navigator.clipboard.writeText(output); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch {}
-  };
 
   return (
     <div className="space-y-6">
@@ -128,19 +124,12 @@ export default function PersonaBuilder() {
           onChange={(e) => setTask(e.target.value)}
           aria-label="Persona task"
         />
+        <LiveStats text={task} />
       </label>
 
       <div className="relative">
-        <div className="mb-2 flex items-center justify-between">
-          <p className="text-sm font-medium text-slate-300">Generated System Prompt</p>
-          <button
-            type="button"
-            onClick={handleCopy}
-            className="rounded-full bg-amber-500/10 border border-amber-400/30 px-4 py-1.5 text-xs font-semibold text-amber-300 transition hover:bg-amber-500/20"
-          >
-            {copied ? "✓ Copied!" : "Copy Prompt"}
-          </button>
-        </div>
+        <p className="mb-2 text-sm font-medium text-slate-300">Generated System Prompt</p>
+        <OutputToolbar text={output} fileName="persona-prompt.txt" className="mb-2" />
         <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 whitespace-pre-wrap break-words">{output}</pre>
       </div>
     </div>

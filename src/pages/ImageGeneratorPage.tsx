@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, ImagePlus } from "lucide-react";
+import { LiveStats } from "../components/OutputToolbar";
 
 const STYLES = [
   "Photorealistic", "3D Render", "Anime", "Oil Painting", "Watercolor",
@@ -34,6 +35,7 @@ function buildPrompt(userIdea: string, style: string) {
 export default function ImageGeneratorPage() {
   const [prompt, setPrompt] = useState("");
   const [style, setStyle] = useState("Photorealistic");
+  const [copiedModel, setCopiedModel] = useState<string | null>(null);
 
   const generatedPrompts = useMemo(
     () => (prompt.trim() ? buildPrompt(prompt, style) : null),
@@ -75,6 +77,7 @@ export default function ImageGeneratorPage() {
               rows={5}
               className="w-full rounded-2xl border border-slate-700/50 bg-slate-900/80 p-4 text-sm text-white placeholder-slate-500 outline-none focus:border-amber-400/50 transition"
             />
+            <LiveStats text={prompt} />
           </div>
 
           <div>
@@ -122,10 +125,12 @@ export default function ImageGeneratorPage() {
                   <pre className="text-sm text-slate-200 font-mono leading-relaxed whitespace-pre-wrap break-words">{text}</pre>
                   <button
                     type="button"
-                    onClick={() => navigator.clipboard.writeText(text)}
+                    onClick={async () => {
+                      try { await navigator.clipboard.writeText(text); setCopiedModel(model); setTimeout(() => setCopiedModel(null), 2000); } catch {}
+                    }}
                     className="mt-3 text-xs text-amber-400 hover:text-amber-300 transition"
                   >
-                    📋 Copy to clipboard
+                    {copiedModel === model ? "✓ Copied!" : "📋 Copy to clipboard"}
                   </button>
                 </div>
               ))}

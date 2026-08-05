@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import OutputToolbar, { LiveStats } from "./OutputToolbar";
 
 function convertPromptToClaude(prompt: string): string {
   const trimmed = prompt.trim();
@@ -43,16 +44,11 @@ function convertPromptToCursor(prompt: string): string {
 export default function PromptConverter() {
   const [input, setInput] = useState("Act as a senior copywriter. Write a product launch email for our new AI productivity app. Keep the tone exciting but professional. Include a compelling subject line, 3 key benefits, and a clear CTA.");
   const [target, setTarget] = useState<"claude" | "gemini" | "cursor">("claude");
-  const [copied, setCopied] = useState(false);
   const output = useMemo(() => {
     if (target === "claude") return convertPromptToClaude(input);
     if (target === "gemini") return convertPromptToGemini(input);
     return convertPromptToCursor(input);
   }, [input, target]);
-
-  const handleCopy = async () => {
-    try { await navigator.clipboard.writeText(output); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch {}
-  };
 
   return (
     <div className="space-y-6">
@@ -64,6 +60,7 @@ export default function PromptConverter() {
           onChange={(e) => setInput(e.target.value)}
           aria-label="ChatGPT prompt input"
         />
+        <LiveStats text={input} />
       </label>
       <div className="flex flex-wrap gap-2">
         <button type="button" onClick={() => setTarget("claude")} className={`rounded-full px-4 py-2 text-sm font-semibold transition ${target === "claude" ? "bg-amber-500 text-black" : "border border-slate-700 text-slate-300 hover:bg-slate-800"}`}>→ Claude</button>
@@ -71,10 +68,8 @@ export default function PromptConverter() {
         <button type="button" onClick={() => setTarget("cursor")} className={`rounded-full px-4 py-2 text-sm font-semibold transition ${target === "cursor" ? "bg-amber-500 text-black" : "border border-slate-700 text-slate-300 hover:bg-slate-800"}`}>→ Cursor</button>
       </div>
       <div className="relative">
-        <div className="mb-2 flex items-center justify-between">
-          <p className="text-sm font-medium text-slate-300">Converted Prompt ({target})</p>
-          <button type="button" onClick={handleCopy} className="rounded-full bg-amber-500/10 border border-amber-400/30 px-4 py-1.5 text-xs font-semibold text-amber-300 transition hover:bg-amber-500/20">{copied ? "✓ Copied!" : "Copy"}</button>
-        </div>
+        <p className="mb-2 text-sm font-medium text-slate-300">Converted Prompt ({target})</p>
+        <OutputToolbar text={output} fileName="converted-prompt.txt" className="mb-2" />
         <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 whitespace-pre-wrap break-words">{output}</pre>
       </div>
     </div>

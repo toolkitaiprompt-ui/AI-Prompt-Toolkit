@@ -39,7 +39,9 @@ import {
   validateJsonWithSchema,
   debugPrompt,
   translatePrompt,
+  copyToClipboard,
 } from "./lib/toolkit";
+import OutputToolbar, { LiveStats } from "./components/OutputToolbar";
 import { BLOG_POSTS, type BlogPost, getBlogPostBySlug } from "./data/blogPosts";
 import { getSeoForPath } from "./seoConfig";
 import HomePage from "./components/HomePage";
@@ -649,9 +651,11 @@ function PromptVariableExtractorPage() {
           onChange={(e) => setInput(e.target.value)}
           aria-label="Prompt text"
         />
+        <LiveStats text={input} />
       </label>
       <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
         <h2 className="text-base font-semibold text-white">Detected Variables ({variables.length})</h2>
+        <OutputToolbar text={variables.join("\n")} copyLabel="Copy Variables" fileName="prompt-variables.txt" showStats={false} className="mt-2" />
         <p className="mt-2 break-words text-sm text-slate-300">
           {variables.length ? variables.join(", ") : "No variables found."}
         </p>
@@ -686,6 +690,7 @@ function JsonSchemaGeneratorPage() {
           onChange={(e) => setInput(e.target.value)}
           aria-label="Sample JSON"
         />
+        <LiveStats text={input} />
       </label>
       <button
         type="button"
@@ -695,6 +700,7 @@ function JsonSchemaGeneratorPage() {
         Generate Schema
       </button>
       {error && <p className="text-sm text-red-400">{error}</p>}
+      {result && <OutputToolbar text={result} fileName="schema.json" fileMime="application/json" className="mb-2" />}
       <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 whitespace-pre-wrap break-words">{result || "Schema output will appear here."}</pre>
     </ToolContainer>
   );
@@ -733,6 +739,7 @@ function JsonValidatorPage() {
             onChange={(e) => setJsonInput(e.target.value)}
             aria-label="JSON input"
           />
+          <LiveStats text={jsonInput} />
         </label>
         <label className="block space-y-2">
           <span className="text-sm font-medium text-slate-300">Schema Input</span>
@@ -742,6 +749,7 @@ function JsonValidatorPage() {
             onChange={(e) => setSchemaInput(e.target.value)}
             aria-label="Schema input"
           />
+          <LiveStats text={schemaInput} />
         </label>
       </div>
       <button
@@ -752,6 +760,7 @@ function JsonValidatorPage() {
         Validate JSON
       </button>
       {error && <p className="text-sm text-red-400">{error}</p>}
+      {messages.length > 0 && <OutputToolbar text={messages.join("\n")} copyLabel="Copy Results" showStats={false} className="mb-2" />}
       <ul className="space-y-2 rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300">
         {messages.length ? messages.map((m) => <li key={m}>{m}</li>) : <li>Validation results appear here.</li>}
       </ul>
@@ -779,9 +788,11 @@ function PromptFormatterPage() {
           onChange={(e) => setInput(e.target.value)}
           aria-label="Prompt formatter input"
         />
+        <LiveStats text={input} />
       </label>
       <div>
         <p className="mb-2 text-sm font-medium text-slate-300">Formatted Output</p>
+        <OutputToolbar text={output} fileName="formatted-prompt.txt" className="mb-2" />
         <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 whitespace-pre-wrap break-words">{output}</pre>
       </div>
     </ToolContainer>
@@ -808,9 +819,11 @@ function PromptCleanerPage() {
           onChange={(e) => setInput(e.target.value)}
           aria-label="Prompt cleaner input"
         />
+        <LiveStats text={input} />
       </label>
       <div>
         <p className="mb-2 text-sm font-medium text-slate-300">Cleaned Output</p>
+        <OutputToolbar text={output} fileName="cleaned-prompt.txt" className="mb-2" />
         <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 whitespace-pre-wrap break-words">{output}</pre>
       </div>
     </ToolContainer>
@@ -838,6 +851,7 @@ function TokenEstimatorPage() {
           aria-label="Text for token estimation"
         />
       </label>
+      <OutputToolbar text={input} fileName="prompt.txt" showStats={false} />
       <div className="grid gap-3 sm:grid-cols-3">
         {[
           { label: "Characters", value: stats.characters, color: "text-cyan-300" },
@@ -1303,6 +1317,7 @@ function PlaygroundPage() {
   const [blogTopic, setBlogTopic] = useState("");
   const [codeLanguage, setCodeLanguage] = useState("Python");
   const [emailType, setEmailType] = useState("Cold Email");
+  const [copiedPrompt, setCopiedPrompt] = useState(false);
 
   const debugResult = useMemo(() => (promptText.trim() ? debugPrompt(promptText) : null), [promptText]);
   const tokenEst = useMemo(() => (promptText.trim() ? estimateTokens(promptText) : null), [promptText]);
@@ -1467,7 +1482,7 @@ Key benefit: {{key_benefit}}`;
               className="h-80 w-full rounded-xl border border-slate-700 bg-slate-900 p-4 text-sm leading-relaxed text-slate-100 outline-none transition focus:border-amber-400/60 focus:ring-2 focus:ring-amber-400/20 resize-y"
             />
             <div className="flex flex-wrap gap-3">
-              <button onClick={() => navigator.clipboard.writeText(promptText)} className="rounded-lg border border-slate-700 px-4 py-2 text-xs font-medium text-slate-300 transition hover:bg-white/5 hover:text-white">Copy</button>
+              <button onClick={async () => { if (await copyToClipboard(promptText)) { setCopiedPrompt(true); setTimeout(() => setCopiedPrompt(false), 2000); } }} className="rounded-lg border border-slate-700 px-4 py-2 text-xs font-medium text-slate-300 transition hover:bg-white/5 hover:text-white">{copiedPrompt ? "✓ Copied!" : "Copy"}</button>
               <button onClick={() => setPromptText("")} className="rounded-lg border border-slate-700 px-4 py-2 text-xs font-medium text-slate-300 transition hover:bg-white/5 hover:text-white">Clear</button>
             </div>
           </div>
@@ -1866,6 +1881,7 @@ function PromptsRolePage() {
   const { role } = useParams<{ role: string }>();
   const roleData = PROMPT_ROLES.find((r) => r.slug === role);
   const prompts = role ? PROMPT_LIBRARY[role] : undefined;
+  const [copiedPromptId, setCopiedPromptId] = useState<number | null>(null);
 
   if (!roleData || !prompts) {
     return (
@@ -1916,10 +1932,10 @@ function PromptsRolePage() {
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-slate-300">{p.prompt}</p>
                 <button
-                  onClick={() => navigator.clipboard.writeText(p.prompt)}
+                  onClick={async () => { if (await copyToClipboard(p.prompt)) { setCopiedPromptId(i); setTimeout(() => setCopiedPromptId(null), 2000); } }}
                   className="mt-4 inline-flex items-center gap-1.5 rounded-lg border border-slate-700 px-3 py-1.5 text-xs font-medium text-slate-300 transition hover:bg-white/5 hover:text-white"
                 >
-                  Copy Prompt
+                  {copiedPromptId === i ? "✓ Copied!" : "Copy Prompt"}
                 </button>
               </div>
               {i === 4 && (

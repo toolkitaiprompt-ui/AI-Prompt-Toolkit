@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Plus, Trash2, Copy, Download, Layers, ArrowDown } from 'lucide-react';
 import { exportChainAsMarkdown, copyAllChainSteps, type ChainStep } from '../lib/toolkit';
+import { LiveStats } from './OutputToolbar';
 
 const OUTPUT_FORMATS = ['Text', 'JSON', 'Markdown', 'Code', 'Table', 'Bullet Points', 'CSV'];
 
@@ -83,7 +84,8 @@ export default function PromptChainBuilder() {
                 onChange={(e) => updateStep(step.id, 'prompt', e.target.value)}
                 aria-label={`Step ${step.id} prompt`}
               />
-              <div>
+              <LiveStats text={step.prompt} />
+              <div className="mt-3">
                 <label className="block text-xs font-medium text-slate-400 mb-2">Output Format</label>
                 <div className="flex flex-wrap gap-2">
                   {OUTPUT_FORMATS.map((fmt) => (

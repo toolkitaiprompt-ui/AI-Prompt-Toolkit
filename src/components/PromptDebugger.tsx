@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { AlertTriangle, AlertCircle, Info, CheckCircle2, Activity, Wrench } from 'lucide-react';
 import { debugPrompt, type PromptIssue } from '../lib/toolkit';
+import OutputToolbar, { LiveStats } from './OutputToolbar';
 
 const SEVERITY_CONFIG: Record<PromptIssue['severity'], { icon: typeof AlertTriangle; color: string; bg: string; label: string }> = {
   critical: { icon: AlertCircle, color: 'text-red-400', bg: 'bg-red-500/10 border-red-500/20', label: 'Critical' },
@@ -12,6 +13,26 @@ export default function PromptDebugger() {
   const [input, setInput] = useState('write a blog about AI tools');
 
   const result = useMemo(() => debugPrompt(input), [input]);
+
+  const report = useMemo(() => {
+    const lines: string[] = [
+      '# Prompt Debug Report',
+      `Health Score: ${result.healthScore}/100`,
+      `Words: ${result.metrics.words}`,
+      `Characters: ${result.metrics.characters}`,
+      `Sentences: ${result.metrics.sentences}`,
+      '',
+    ];
+    if (result.issues.length) {
+      lines.push('## Issues');
+      for (const issue of result.issues) {
+        lines.push(`- [${issue.severity.toUpperCase()}] ${issue.category}: ${issue.message} — ${issue.suggestion}`);
+      }
+      lines.push('');
+    }
+    lines.push('## Prompt', input);
+    return lines.join('\n');
+  }, [result, input]);
 
   const scoreColor =
     result.healthScore >= 80 ? 'text-emerald-400' :
@@ -34,6 +55,7 @@ export default function PromptDebugger() {
           placeholder="Paste your prompt here to analyze its health and find issues..."
           aria-label="Prompt to debug"
         />
+        <LiveStats text={input} />
       </label>
 
       {/* Health Score */}
@@ -105,6 +127,9 @@ export default function PromptDebugger() {
           </div>
         )}
       </div>
+
+      {/* Report Actions */}
+      <OutputToolbar text={report} copyLabel="Copy Report" fileName="debug-report.txt" showStats={false} />
     </div>
   );
 }

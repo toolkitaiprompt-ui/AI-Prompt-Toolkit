@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Copy, RefreshCcw, Sparkles, Wand2 } from "lucide-react";
+import { Copy, Download, RefreshCcw, Sparkles, Wand2 } from "lucide-react";
+import { copyToClipboard, downloadTextFile } from "../lib/toolkit";
+import { LiveStats } from "./OutputToolbar";
 
 interface Analysis {
   improvements: string[];
@@ -60,12 +62,12 @@ export default function PromptOptimizer() {
   };
 
   const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(analysis.optimized.replace(/\\n/g, "\n"));
-      setStatus("Optimized prompt copied to clipboard.");
-    } catch {
-      setStatus("Copy failed. Please try again in a secure browser.");
-    }
+    const ok = await copyToClipboard(analysis.optimized.replace(/\\n/g, "\n"));
+    setStatus(ok ? "Optimized prompt copied to clipboard." : "Copy failed. Please try again in a secure browser.");
+  };
+
+  const handleDownload = () => {
+    downloadTextFile(analysis.optimized.replace(/\\n/g, "\n"), "optimized-prompt.txt");
   };
 
   return (
@@ -109,6 +111,9 @@ export default function PromptOptimizer() {
             onChange={(event) => setOriginalPrompt(event.target.value)}
             aria-label="Original prompt input"
           />
+          <div className="mt-2">
+            <LiveStats text={originalPrompt} />
+          </div>
         </motion.div>
 
         <motion.div
@@ -130,6 +135,9 @@ export default function PromptOptimizer() {
           <div className="relative min-h-[320px] rounded-3xl border border-slate-800/90 bg-slate-900/90 p-5 text-sm leading-7 text-slate-200 shadow-inner shadow-slate-950/60">
             <pre className={`whitespace-pre-wrap ${compareMode ? "bg-slate-900/90" : ""}`}>{analysis.optimized.replace(/\\n/g, "\n")}</pre>
           </div>
+          <div className="mt-2">
+            <LiveStats text={analysis.optimized.replace(/\\n/g, "\n")} />
+          </div>
           <div className="mt-5 flex flex-wrap gap-3">
             <button
               type="button"
@@ -146,6 +154,14 @@ export default function PromptOptimizer() {
             >
               <Copy className="h-4 w-4" aria-hidden="true" />
               Copy optimized prompt
+            </button>
+            <button
+              type="button"
+              onClick={handleDownload}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-700/70 bg-slate-900/70 px-5 py-3 text-sm font-semibold text-slate-200 transition hover:border-slate-500/70 hover:bg-slate-800/70"
+            >
+              <Download className="h-4 w-4" aria-hidden="true" />
+              Download .txt
             </button>
             <button
               type="button"

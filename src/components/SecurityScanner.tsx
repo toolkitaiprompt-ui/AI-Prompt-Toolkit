@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { ShieldAlert, ShieldCheck, Lock, AlertOctagon, Eye, FileWarning } from 'lucide-react';
 import { scanPromptSecurity } from '../lib/toolkit';
+import OutputToolbar, { LiveStats } from './OutputToolbar';
 
 const RISK_CONFIG: Record<string, { color: string; bg: string; icon: typeof ShieldAlert }> = {
   'Safe': { color: 'text-emerald-400', bg: 'from-emerald-500 to-green-500', icon: ShieldCheck },
@@ -22,6 +23,33 @@ export default function SecurityScanner() {
   const riskConfig = RISK_CONFIG[result.riskLevel];
   const RiskIcon = riskConfig.icon;
 
+  const report = useMemo(() => {
+    const lines: string[] = [
+      '# Security Scan Report',
+      `Risk Level: ${result.riskLevel}`,
+      `Issues Detected: ${result.totalIssues}`,
+      `Threats: ${result.threats.length}`,
+      `PII Findings: ${result.piiFindings.length}`,
+      '',
+    ];
+    if (result.threats.length) {
+      lines.push('## Threats');
+      for (const threat of result.threats) {
+        lines.push(`- [${threat.severity.toUpperCase()}] ${threat.type}: ${threat.description} (matched: ${threat.pattern})`);
+      }
+      lines.push('');
+    }
+    if (result.piiFindings.length) {
+      lines.push('## PII Findings');
+      for (const finding of result.piiFindings) {
+        lines.push(`- ${finding.type} (x${finding.count}): ${finding.description}`);
+      }
+      lines.push('');
+    }
+    lines.push('## Scanned Prompt', input);
+    return lines.join('\n');
+  }, [result, input]);
+
   return (
     <div className="space-y-6">
       <div className="flex items-start gap-3 rounded-xl border border-amber-500/20 bg-amber-500/10 p-4">
@@ -41,6 +69,7 @@ export default function SecurityScanner() {
           placeholder="Paste your prompt here to scan for security threats and PII..."
           aria-label="Prompt to scan for security issues"
         />
+        <LiveStats text={input} />
       </label>
 
       {/* Risk Level */}
@@ -127,6 +156,9 @@ export default function SecurityScanner() {
           </div>
         </div>
       )}
+
+      {/* Report Actions */}
+      <OutputToolbar text={report} copyLabel="Copy Report" fileName="security-report.txt" showStats={false} />
     </div>
   );
 }

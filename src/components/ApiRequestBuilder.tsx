@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
-import { Copy, CheckCircle2, Code2, Terminal } from 'lucide-react';
+import { Code2, Terminal } from 'lucide-react';
 import { buildApiRequest, API_MODELS, type ApiProvider } from '../lib/toolkit';
+import OutputToolbar, { LiveStats } from './OutputToolbar';
 
 const PROVIDERS: { id: ApiProvider; name: string; color: string }[] = [
   { id: 'openai', name: 'OpenAI (GPT)', color: 'from-emerald-500 to-green-500' },
@@ -15,8 +16,6 @@ export default function ApiRequestBuilder() {
   const [systemPrompt, setSystemPrompt] = useState('You are a helpful business analyst assistant.');
   const [temperature, setTemperature] = useState(0.7);
   const [maxTokens, setMaxTokens] = useState(1000);
-  const [copiedJson, setCopiedJson] = useState(false);
-  const [copiedCurl, setCopiedCurl] = useState(false);
 
   const result = useMemo(
     () => buildApiRequest({ provider, model, prompt, systemPrompt, temperature, maxTokens }),
@@ -26,17 +25,6 @@ export default function ApiRequestBuilder() {
   const handleProviderChange = (newProvider: ApiProvider) => {
     setProvider(newProvider);
     setModel(API_MODELS[newProvider][0]);
-  };
-
-  const copyText = (text: string, which: 'json' | 'curl') => {
-    navigator.clipboard.writeText(text);
-    if (which === 'json') {
-      setCopiedJson(true);
-      setTimeout(() => setCopiedJson(false), 2000);
-    } else {
-      setCopiedCurl(true);
-      setTimeout(() => setCopiedCurl(false), 2000);
-    }
   };
 
   return (
@@ -128,6 +116,7 @@ export default function ApiRequestBuilder() {
             placeholder="System prompt (optional)..."
             aria-label="System prompt"
           />
+          <LiveStats text={systemPrompt} />
         </label>
         <label className="block space-y-2">
           <span className="text-sm font-medium text-slate-300">User Prompt</span>
@@ -138,24 +127,17 @@ export default function ApiRequestBuilder() {
             placeholder="User prompt..."
             aria-label="User prompt"
           />
+          <LiveStats text={prompt} />
         </label>
       </div>
 
       {/* JSON Output */}
       <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-6">
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <Code2 className="h-5 w-5 text-emerald-400" />
-            <h3 className="text-base font-semibold text-white">Request Body (JSON)</h3>
-          </div>
-          <button
-            type="button"
-            onClick={() => copyText(result.json, 'json')}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-300 transition hover:bg-slate-800"
-          >
-            {copiedJson ? <><CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Copied!</> : <><Copy className="h-3.5 w-3.5" /> Copy</>}
-          </button>
+        <div className="flex items-center gap-2 mb-3">
+          <Code2 className="h-5 w-5 text-emerald-400" />
+          <h3 className="text-base font-semibold text-white">Request Body (JSON)</h3>
         </div>
+        <OutputToolbar text={result.json} fileName="request.json" fileMime="application/json" className="mb-2" />
         <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-950/80 p-4 text-xs text-slate-300 whitespace-pre-wrap break-words min-h-[120px]">
           {result.json}
         </pre>
@@ -163,19 +145,11 @@ export default function ApiRequestBuilder() {
 
       {/* cURL Output */}
       <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-6">
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <Terminal className="h-5 w-5 text-amber-400" />
-            <h3 className="text-base font-semibold text-white">cURL Command</h3>
-          </div>
-          <button
-            type="button"
-            onClick={() => copyText(result.curl, 'curl')}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 px-3 py-1.5 text-xs text-slate-300 transition hover:bg-slate-800"
-          >
-            {copiedCurl ? <><CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Copied!</> : <><Copy className="h-3.5 w-3.5" /> Copy</>}
-          </button>
+        <div className="flex items-center gap-2 mb-3">
+          <Terminal className="h-5 w-5 text-amber-400" />
+          <h3 className="text-base font-semibold text-white">cURL Command</h3>
         </div>
+        <OutputToolbar text={result.curl} fileName="request.sh" className="mb-2" />
         <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-950/80 p-4 text-xs text-slate-300 whitespace-pre-wrap break-words min-h-[80px] font-mono">
           {result.curl}
         </pre>
