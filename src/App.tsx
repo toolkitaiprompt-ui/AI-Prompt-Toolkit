@@ -44,6 +44,29 @@ import {
 import OutputToolbar, { LiveStats } from "./components/OutputToolbar";
 import { BLOG_POSTS, type BlogPost, getBlogPostBySlug } from "./data/blogPosts";
 import { getSeoForPath } from "./seoConfig";
+import ENGINE from "./data/prompt-engine.json";
+import {
+  articleJsonLd,
+  breadcrumbJsonLd,
+  faqPageJsonLd,
+  softwareAppJsonLd,
+  toolFaq,
+  toolNameFromTitle,
+  useJsonLd,
+  webPageJsonLd,
+} from "./lib/structuredData";
+
+type EngineTask = {
+  title: string;
+  slug: string;
+  category: string;
+  prompt: string;
+  seoTitle: string;
+  seoDescription: string;
+  faq: { question: string; answer: string }[];
+};
+
+const PROMPT_TASKS_BY_ROLE = ENGINE.tasks as Record<string, EngineTask[]>;
 import HomePage from "./components/HomePage";
 import PromptOptimizer from "./components/PromptOptimizer";
 import PromptConverter from "./components/PromptConverter";
@@ -410,6 +433,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/playground" element={<PlaygroundPage />} />
           <Route path="/prompts" element={<PromptsDirectoryPage />} />
           <Route path="/prompts/:role" element={<PromptsRolePage />} />
+          <Route path="/prompts/:role/:task" element={<PromptTaskPage />} />
           <Route path="/changelog" element={<ChangelogPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
@@ -558,6 +582,22 @@ function ToolContainer({
   const relatedBlogs = toolSlug ? getBlogPostsForTool(toolSlug) : [];
 
   useSeo(title, description, keywords);
+
+  const toolName = toolNameFromTitle(title);
+  useJsonLd(
+    tool
+      ? [
+          softwareAppJsonLd(toolName, description, window.location.pathname),
+          faqPageJsonLd(toolFaq(toolName, description)),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Tools", path: "/tools" },
+            { name: toolName, path: window.location.pathname },
+          ]),
+        ]
+      : null,
+    [title, description, toolSlug],
+  );
 
   return (
     <section className="site-container section-lg space-y-16">
@@ -982,6 +1022,16 @@ function BlogPostPage() {
     post?.seoTitle ?? "Page Not Found",
     post?.metaDescription ?? "The requested page could not be found.",
     `${post?.category ?? "404"}, Prompt Engineering, AI World Hub`,
+  );
+
+  useJsonLd(
+    post
+      ? [
+          articleJsonLd(post.title, post.metaDescription, `/blog/${post.slug}`),
+          faqPageJsonLd(post.faq),
+        ]
+      : null,
+    [post?.slug],
   );
 
   if (!post) return <NotFoundPage />;
@@ -1882,6 +1932,7 @@ function PromptsRolePage() {
   const { role } = useParams<{ role: string }>();
   const roleData = PROMPT_ROLES.find((r) => r.slug === role);
   const prompts = role ? PROMPT_LIBRARY[role] : undefined;
+  const taskSlugs = role ? (PROMPT_TASKS_BY_ROLE[role] ?? []).map((t) => t.slug) : [];
   const [copiedPromptId, setCopiedPromptId] = useState<number | null>(null);
 
   if (!roleData || !prompts) {
@@ -1924,29 +1975,239 @@ function PromptsRolePage() {
         </div>
 
         <div className="grid gap-5 lg:grid-cols-2">
-          {prompts.map((p, i) => (
-            <React.Fragment key={i}>
-              <div className="flex flex-col rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
-                <div className="flex items-center justify-between gap-3">
-                  <h3 className="text-base font-semibold text-white">{p.title}</h3>
-                  <span className="shrink-0 rounded-full border border-slate-700 bg-slate-900 px-2.5 py-0.5 text-xs text-slate-400">{p.category}</span>
+          {prompts.map((p, i) => {
+            const taskSlug = taskSlugs[i];
+            return (
+              <React.Fragment key={i}>
+                <div className="flex flex-col rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
+                  <div className="flex items-center justify-between gap-3">
+                    <h3 className="text-base font-semibold text-white">
+                      {taskSlug ? (
+                        <Link to={`/prompts/${role}/${taskSlug}`} className="transition hover:text-amber-300">
+                          {p.title}
+                        </Link>
+                      ) : (
+                        p.title
+                      )}
+                    </h3>
+                    <span className="shrink-0 rounded-full border border-slate-700 bg-slate-900 px-2.5 py-0.5 text-xs text-slate-400">{p.category}</span>
+                  </div>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-300">{p.prompt}</p>
+                  <div className="mt-4 flex flex-wrap items-center gap-2">
+                    <button
+                      onClick={async () => { if (await copyToClipboard(p.prompt)) { setCopiedPromptId(i); setTimeout(() => setCopiedPromptId(null), 2000); } }}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 px-3 py-1.5 text-xs font-medium text-slate-300 transition hover:bg-white/5 hover:text-white"
+                    >
+                      {copiedPromptId === i ? "✓ Copied!" : "Copy Prompt"}
+                    </button>
+                    {taskSlug && (
+                      <Link
+                        to={`/prompts/${role}/${taskSlug}`}
+                        className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium text-amber-400 transition hover:bg-amber-500/10 hover:text-amber-300"
+                      >
+                        Open page
+                        <ArrowUpRight className="h-3.5 w-3.5" />
+                      </Link>
+                    )}
+                  </div>
                 </div>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-300">{p.prompt}</p>
-                <button
-                  onClick={async () => { if (await copyToClipboard(p.prompt)) { setCopiedPromptId(i); setTimeout(() => setCopiedPromptId(null), 2000); } }}
-                  className="mt-4 inline-flex items-center gap-1.5 rounded-lg border border-slate-700 px-3 py-1.5 text-xs font-medium text-slate-300 transition hover:bg-white/5 hover:text-white"
-                >
-                  {copiedPromptId === i ? "✓ Copied!" : "Copy Prompt"}
-                </button>
-              </div>
-              {i === 4 && (
-                <div className="lg:col-span-2">
-                  <MonetagAd format="inline" className="my-2" />
-                </div>
-              )}
-            </React.Fragment>
-          ))}
+                {i === 4 && (
+                  <div className="lg:col-span-2">
+                    <MonetagAd format="inline" className="my-2" />
+                  </div>
+                )}
+              </React.Fragment>
+            );
+          })}
         </div>
+      </div>
+    </SectionShell>
+  );
+}
+
+function PromptTaskPage() {
+  const { role, task } = useParams<{ role: string; task: string }>();
+  const roleData = ENGINE.roles.find((r) => r.slug === role);
+  const roleTasks = role ? PROMPT_TASKS_BY_ROLE[role] : undefined;
+  const taskData = roleTasks?.find((t) => t.slug === task);
+  const [copied, setCopied] = useState(false);
+
+  const variables = useMemo(() => {
+    const vars = new Set<string>();
+    const matches = taskData
+      ? (taskData.prompt.match(/\{\{\s*[\w-]+\s*\}\}/g) ?? ([] as RegExpMatchArray[]))
+      : ([] as RegExpMatchArray[]);
+    matches.forEach((m) => {
+      const clean = m[0].replace(/\{\{|\}\}/g, "").trim();
+      if (clean) vars.add(clean);
+    });
+    return Array.from(vars);
+  }, [taskData?.prompt]);
+
+  useJsonLd(
+    roleData && taskData
+      ? [
+          webPageJsonLd(taskData.seoTitle, taskData.seoDescription, `/prompts/${role}/${taskData.slug}`),
+          faqPageJsonLd(taskData.faq),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Prompts", path: "/prompts" },
+            { name: roleData.title, path: `/prompts/${roleData.slug}` },
+            { name: taskData.title, path: `/prompts/${roleData.slug}/${taskData.slug}` },
+          ]),
+        ]
+      : null,
+    [role, task, taskData?.title],
+  );
+
+  if (!roleData || !taskData) {
+    return (
+      <SectionShell
+        title="Prompt Not Found"
+        description="The requested prompt template was not found. Browse our full AI prompt library."
+        keywords="AI Prompts, Prompt Library, Prompt Templates"
+      >
+        <div className="py-20 text-center">
+          <h1 className="text-2xl font-bold text-white">Prompt Not Found</h1>
+          <p className="mt-3 text-slate-400">We couldn't find this prompt template.</p>
+          <Link to="/prompts" className="mt-6 inline-flex items-center gap-2 rounded-xl bg-amber-500 px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-amber-400">
+            ← Back to Prompt Library
+          </Link>
+        </div>
+      </SectionShell>
+    );
+  }
+
+  const RoleIcon = PROMPT_ROLES.find((r) => r.slug === roleData.slug)?.icon;
+  const roleAccent = PROMPT_ROLES.find((r) => r.slug === roleData.slug)?.accent ?? "from-amber-500/30 to-yellow-400/10";
+  const taskIndex = roleTasks?.findIndex((t) => t.slug === taskData.slug) ?? 0;
+  const related = roleTasks?.filter((t) => t.slug !== taskData.slug) ?? [];
+
+  return (
+    <SectionShell
+      title={taskData.seoTitle}
+      description={taskData.seoDescription}
+      keywords={`${taskData.title}, ${roleData.title}, AI Prompts, ChatGPT Prompts, Prompt Templates, Prompt Engineering`}
+    >
+      <div className="space-y-8">
+        <nav className="flex flex-wrap items-center gap-1.5 text-sm text-slate-500">
+          <Link to="/" className="transition hover:text-amber-400">Home</Link>
+          <span aria-hidden="true">/</span>
+          <Link to="/prompts" className="transition hover:text-amber-400">Prompts</Link>
+          <span aria-hidden="true">/</span>
+          <Link to={`/prompts/${roleData.slug}`} className="transition hover:text-amber-400">{roleData.title}</Link>
+          <span aria-hidden="true">/</span>
+          <span className="text-slate-300">{taskData.title}</span>
+        </nav>
+
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-5">
+          <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${roleAccent} border border-white/10`}>
+            {RoleIcon ? <RoleIcon className="h-7 w-7 text-white" aria-hidden="true" /> : null}
+          </div>
+          <div className="space-y-2">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-400/80">
+              {taskData.category} · {roleData.title}
+            </p>
+            <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">{taskData.title} Prompt</h1>
+            <p className="max-w-2xl text-base leading-7 text-slate-400">{taskData.seoDescription}</p>
+            <span className="inline-flex items-center rounded-full border border-amber-500/20 bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-300">
+              {roleTasks?.length ?? 0} prompts in this role
+            </span>
+          </div>
+        </div>
+
+        <div className="rounded-[20px] border border-slate-800 bg-slate-950/60 p-6 sm:p-8">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h2 className="text-lg font-semibold text-white">Ready-to-use prompt template</h2>
+            <button
+              onClick={async () => { if (await copyToClipboard(taskData.prompt)) { setCopied(true); setTimeout(() => setCopied(false), 2000); } }}
+              className="inline-flex items-center gap-1.5 rounded-lg bg-amber-500 px-4 py-2 text-sm font-semibold text-black transition hover:bg-amber-400"
+            >
+              {copied ? "✓ Copied!" : "Copy Prompt"}
+            </button>
+          </div>
+          <pre className="mt-4 max-h-[28rem] overflow-auto whitespace-pre-wrap rounded-xl border border-slate-800 bg-black/40 p-5 font-mono text-sm leading-relaxed text-slate-200">
+            {taskData.prompt}
+          </pre>
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-[20px] border border-slate-800 bg-slate-950/60 p-6">
+            <h2 className="text-lg font-semibold text-white">How to use this prompt</h2>
+            <ol className="mt-4 space-y-3 text-sm leading-7 text-slate-300">
+              <li className="flex gap-3"><span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-xs font-bold text-amber-300">1</span>Copy the template above.</li>
+              <li className="flex gap-3"><span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-xs font-bold text-amber-300">2</span>Replace the {"{{variables}}"} with your own details — topic, audience, tone, and other placeholders.</li>
+              <li className="flex gap-3"><span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-xs font-bold text-amber-300">3</span>Paste it into ChatGPT, Claude, Gemini, or any AI assistant.</li>
+              <li className="flex gap-3"><span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-xs font-bold text-amber-300">4</span>Refine the output by adding your own examples or constraints.</li>
+            </ol>
+          </div>
+          {variables.length > 0 && (
+            <div className="rounded-[20px] border border-slate-800 bg-slate-950/60 p-6">
+              <h2 className="text-lg font-semibold text-white">Customizable variables</h2>
+              <p className="mt-2 text-sm text-slate-400">Fill these placeholders before using the prompt for the best results.</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {variables.map((v) => (
+                  <code key={v} className="rounded-lg border border-slate-700 bg-slate-900 px-2.5 py-1 text-xs text-amber-300">{`{{${v}}}`}</code>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <MonetagAd format="banner" className="my-2" />
+
+        {related.length > 0 && (
+          <div className="rounded-[20px] border border-slate-800 bg-slate-950/60 p-6">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="text-lg font-semibold text-white">More {roleData.title}</h2>
+              <Link to={`/prompts/${roleData.slug}`} className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400 transition hover:text-amber-300">
+                View all
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {related.slice(0, 6).map((t) => (
+                <Link
+                  key={t.slug}
+                  to={`/prompts/${roleData.slug}/${t.slug}`}
+                  className="flex items-center justify-between gap-3 rounded-xl border border-slate-800 bg-slate-900/40 px-4 py-3 text-sm text-slate-300 transition hover:border-amber-400/30 hover:text-white"
+                >
+                  <span>{t.title}</span>
+                  <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-500" />
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div className="rounded-[20px] border border-slate-800 bg-slate-950/60 p-6">
+          <h2 className="text-lg font-semibold text-white">Frequently asked questions</h2>
+          <div className="mt-4 space-y-4">
+            {taskData.faq.map((item) => (
+              <div key={item.question} className="space-y-2">
+                <p className="font-semibold text-white">{item.question}</p>
+                <p className="text-sm leading-7 text-slate-300">{item.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-[20px] border border-slate-800 bg-slate-950/60 p-6">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 className="text-lg font-semibold text-white">Refine your output with AI tools</h2>
+              <p className="mt-1 text-sm text-slate-400">Copy, debug, optimize, and validate your AI prompts with free in-browser tools.</p>
+            </div>
+            <Link to="/tools" className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400 transition hover:text-amber-300">
+              Browse tools
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+
+        <p className="text-xs text-slate-500">
+          Prompt #{taskIndex + 1} of {roleTasks?.length ?? 0} in the {roleData.title} collection.
+        </p>
       </div>
     </SectionShell>
   );

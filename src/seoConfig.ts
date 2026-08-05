@@ -7,12 +7,37 @@
  * useSeo() function automatically current URL ke hisaab se
  * is file se data utha lega.
  */
+import ENGINE from "./data/prompt-engine.json";
 
 export type SeoData = {
   title: string;
   description: string;
   keywords: string;
 };
+
+type PromptRole = { slug: string; title: string; description: string };
+type PromptTask = {
+  slug: string;
+  title: string;
+  seoTitle: string;
+  seoDescription: string;
+};
+
+const PROMPT_ROLES = new Map<string, PromptRole>();
+const PROMPT_TASKS = new Map<string, PromptTask>();
+const ENGINE_TASKS = ENGINE.tasks as Record<string, (PromptTask & { seoDescription: string; faq: unknown })[]>;
+for (const role of ENGINE.roles) {
+  PROMPT_ROLES.set(role.slug, { slug: role.slug, title: role.title, description: role.description });
+  for (const task of ENGINE_TASKS[role.slug] ?? []) {
+    PROMPT_TASKS.set(`${role.slug}/${task.slug}`, {
+      slug: task.slug,
+      title: task.title,
+      seoTitle: task.seoTitle,
+      seoDescription: task.seoDescription,
+    });
+  }
+}
+
 
 const DEFAULT_SEO: SeoData = {
   title: "16 Free AI Prompt Engineering Tools | AI World Hub",
@@ -279,13 +304,33 @@ export function getSeoForPath(pathname: string): SeoData {
   const cleanPath = pathname.replace(/\/$/, "");
   if (SEO_MAP[cleanPath]) return SEO_MAP[cleanPath];
 
+  // Programmatic prompt pages — /prompts/:role/:task (225 long-tail landing pages)
+  const parts = pathname.split("/").filter(Boolean); // ["prompts", role, task?]
+  if (parts[0] === "prompts" && parts.length >= 3) {
+    const task = PROMPT_TASKS.get(`${parts[1]}/${parts[2]}`);
+    const roleTitle = PROMPT_ROLES.get(parts[1])?.title ?? "";
+    if (task) {
+      return {
+        title: task.seoTitle,
+        description: task.seoDescription,
+        keywords: `${task.title}, ${roleTitle}, AI Prompts, ChatGPT Prompts, Prompt Templates, Prompt Engineering`,
+      };
+    }
+  }
+
   // Prompt role pages — /prompts/:role (component provides role-specific SEO)
-  if (pathname.startsWith("/prompts/")) {
-    return {
-      title: "",
-      description: "",
-      keywords: "",
-    };
+  if (parts[0] === "prompts" && parts.length === 2) {
+    const role = PROMPT_ROLES.get(parts[1]);
+    if (role) {
+      return {
+        title: `${role.title} — 15 Ready-to-Use Templates | AI World Hub`,
+        description:
+          role.description +
+          " Copy and customize these prompts for ChatGPT, Claude, Gemini, and any AI model.",
+        keywords: `${role.title}, AI Prompts, Prompt Templates, ChatGPT Prompts, Prompt Engineering`,
+      };
+    }
+    return { title: "", description: "", keywords: "" };
   }
 
   // Blog posts — post-specific SEO passed by BlogPostPage via useSeo()
