@@ -148,9 +148,11 @@ export default function ToolCard({ tool }: ToolCardProps) {
           </p>
 
           {/* Tool Preview */}
-          <div className="rounded-[14px] border border-white/5 bg-white/5 p-4 backdrop-blur-sm break-words">
-            {getPreviewComponent()}
-          </div>
+          {(() => { const preview = getPreviewComponent(); return preview ? (
+            <div className="rounded-[14px] border border-white/5 bg-white/5 p-4 backdrop-blur-sm break-words">
+              {preview}
+            </div>
+          ) : null; })()}
 
           {/* Bottom */}
           <div className="card-divider !my-0" />

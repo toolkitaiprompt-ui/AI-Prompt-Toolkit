@@ -31,7 +31,7 @@ export default function CategoryShowcase() {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.05 }}
               whileHover={{ y: -4 }}
-              className="group relative rounded-[16px] border border-white/[0.06] bg-white/[0.02] p-5 transition-all duration-400 hover:border-white/[0.15] hover:bg-white/[0.04] hover:shadow-lg hover:shadow-amber-500/5"
+              className="group relative flex flex-col rounded-[16px] border border-white/[0.06] bg-white/[0.02] p-5 transition-all duration-400 hover:border-white/[0.15] hover:bg-white/[0.04] hover:shadow-lg hover:shadow-amber-500/5"
             >
               {/* Icon with color circle */}
               <div
@@ -50,7 +50,7 @@ export default function CategoryShowcase() {
               </h3>
 
               {/* Description */}
-              <p className="text-xs leading-relaxed text-slate-500 mb-4 line-clamp-2">
+              <p className="flex-1 text-xs leading-relaxed text-slate-500 mb-4 line-clamp-2">
                 {cat.description}
               </p>
 

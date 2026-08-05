@@ -244,7 +244,7 @@ export default function PromptComparison() {
       <div className="grid gap-4 lg:grid-cols-2">
         {/* Prompt A */}
         <div className="space-y-2">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <span className="text-sm font-semibold text-red-400">Prompt A (Original)</span>
             <span className="flex items-center gap-3">
               <span className="text-xs text-slate-500">{countWords(promptA)} words · {estimateTokens(promptA)} tokens</span>
@@ -268,7 +268,7 @@ export default function PromptComparison() {
 
         {/* Prompt B */}
         <div className="space-y-2">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <span className="text-sm font-semibold text-emerald-400">Prompt B (Optimized)</span>
             <span className="flex items-center gap-3">
               <span className="text-xs text-slate-500">{countWords(promptB)} words · {estimateTokens(promptB)} tokens</span>

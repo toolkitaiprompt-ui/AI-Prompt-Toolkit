@@ -315,7 +315,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             </span>
           </Link>
           {/* Desktop nav inside glass */}
-          <nav className="hidden md:flex items-center gap-x-1 flex-wrap justify-center">
+          <nav className="hidden md:flex items-center gap-x-0.5 xl:gap-x-1 flex-wrap justify-center">
             <NavLink to="/" end className={navLinkClass}>Home</NavLink>
             <NavLink to="/playground" className={navLinkClass}>Playground</NavLink>
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
@@ -1301,7 +1301,8 @@ function ContactPage() {
                     Copy Message
                   </button>
                 </div>
-                <p className="text-[11px] text-slate-500">Direct email: <a href="mailto:toolkitaiprompt@gmail.com" className="text-amber-400 underline">toolkitaiprompt@gmail.com</a> • Draft auto-saved in browser</p>
+                <p className="text-[11px] text-slate-500">Direct email: <a href="mailto:toolkitaiprompt@gmail.com" className="text-amber-400 underline break-all">toolkitaiprompt@gmail.com</a></p>
+                <p className="text-[11px] text-slate-500">Draft auto-saved in browser</p>
               </div>
             )}
           </div>
@@ -1855,13 +1856,13 @@ function PromptsDirectoryPage() {
               <Link
                 key={role.slug}
                 to={`/prompts/${role.slug}`}
-                className="group rounded-2xl border border-slate-800 bg-slate-950/50 p-6 transition-all hover:border-amber-400/30 hover:bg-slate-900/60"
+                className="group flex flex-col rounded-2xl border border-slate-800 bg-slate-950/50 p-6 transition-all hover:border-amber-400/30 hover:bg-slate-900/60"
               >
                 <div className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${role.accent} border border-white/10`}>
                   <Icon className="h-6 w-6 text-white" aria-hidden="true" />
                 </div>
                 <h2 className="mt-4 text-lg font-semibold text-white group-hover:text-amber-300">{role.title}</h2>
-                <p className="mt-2 text-sm leading-relaxed text-slate-400">{role.description}</p>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-400">{role.description}</p>
                 <div className="mt-4 flex items-center gap-2 text-xs">
                   <span className="inline-flex items-center rounded-full border border-amber-500/20 bg-amber-500/10 px-2.5 py-1 font-medium text-amber-300">{role.count} prompts</span>
                   <span className="text-slate-500 transition group-hover:text-amber-400">→</span>
@@ -1925,12 +1926,12 @@ function PromptsRolePage() {
         <div className="grid gap-5 lg:grid-cols-2">
           {prompts.map((p, i) => (
             <React.Fragment key={i}>
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
+              <div className="flex flex-col rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
                 <div className="flex items-center justify-between gap-3">
                   <h3 className="text-base font-semibold text-white">{p.title}</h3>
                   <span className="shrink-0 rounded-full border border-slate-700 bg-slate-900 px-2.5 py-0.5 text-xs text-slate-400">{p.category}</span>
                 </div>
-                <p className="mt-3 text-sm leading-relaxed text-slate-300">{p.prompt}</p>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-300">{p.prompt}</p>
                 <button
                   onClick={async () => { if (await copyToClipboard(p.prompt)) { setCopiedPromptId(i); setTimeout(() => setCopiedPromptId(null), 2000); } }}
                   className="mt-4 inline-flex items-center gap-1.5 rounded-lg border border-slate-700 px-3 py-1.5 text-xs font-medium text-slate-300 transition hover:bg-white/5 hover:text-white"
