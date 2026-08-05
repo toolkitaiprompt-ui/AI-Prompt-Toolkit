@@ -78,8 +78,7 @@ import TemplatesPage from "./pages/TemplatesPage";
 import SearchModal from "./components/SearchModal";
 import CategoriesPage from "./pages/CategoriesPage";
 import ImageGeneratorPage from "./pages/ImageGeneratorPage";
-import AdBanner from "./components/AdBanner";
-import MonetagAd from "./components/MonetagAd";
+
 import MegaPromptBuilder from "./components/MegaPromptBuilder";
 import PromptDebugger from "./components/PromptDebugger";
 import SecurityScanner from "./components/SecurityScanner";
@@ -547,25 +546,9 @@ function ToolsDirectoryPage() {
       </div>
 
       <div className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-        {TOOL_PAGES.map((tool, index) => (
+        {TOOL_PAGES.map((tool) => (
           <React.Fragment key={tool.path}>
             <ToolCard tool={tool} />
-            {index === 2 && (
-              <div className="md:col-span-2 xl:col-span-3">
-                <AdBanner className="my-2" />
-              </div>
-            )}
-            {index === 5 && (
-              <div className="md:col-span-2 xl:col-span-3">
-                <MonetagAd format="banner" className="my-2" />
-              </div>
-            )}
-            {/* Monetag Banner Ad - Safe alongside Ezoic/AdSense */}
-            {index === 4 && (
-              <div className="md:col-span-2 xl:col-span-3 my-4">
-                <MonetagAd format="banner" className="my-2" />
-              </div>
-            )}
           </React.Fragment>
         ))}
       </div>
@@ -638,12 +621,6 @@ function ToolContainer({
       <div className="rounded-[24px] border border-white/10 bg-slate-950/80 p-6 shadow-xl">
         <div className="space-y-4">{children}</div>
       </div>
-
-      {/* Monetag vignette anchor — loads the fullscreen overlay script */}
-      <AdBanner />
-
-      {/* Monetag Banner Ad */}
-      <MonetagAd format="banner" className="mt-6" />
 
       {relatedBlogs.length > 0 && (
         <section>
@@ -1009,7 +986,6 @@ function BlogPage() {
         </div>
       )}
 
-      <MonetagAd format="inline" className="mt-10" />
     </SectionShell>
   );
 }
@@ -1071,11 +1047,7 @@ function BlogPostPage() {
                     ))}
                   </section>,
                 );
-                if (idx === insertAfterIndex - 1) {
-                  sections.push(
-                    <MonetagAd key={`in-content-ad-${idx}`} format="inline" className="my-2" />,
-                  );
-                }
+
               });
               return sections;
             })()}
@@ -1122,7 +1094,6 @@ function BlogPostPage() {
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
             </div>
-            <MonetagAd format="rectangle" bare />
           </aside>
         </div>
       </div>
@@ -1460,8 +1431,6 @@ Key benefit: {{key_benefit}}`;
             Generate ready-to-use prompt templates for blog posts, code reviews, and cold emails. Test token counts, debug health scores, and optimize in real time — no sign-up, runs entirely in your browser.
           </p>
         </div>
-
-        <MonetagAd format="inline" className="my-1" />
 
         {/* Tab selector */}
         <div className="flex flex-wrap gap-2">
@@ -1922,7 +1891,6 @@ function PromptsDirectoryPage() {
           })}
         </div>
 
-        <MonetagAd format="banner" className="my-2" />
       </div>
     </SectionShell>
   );
@@ -2011,11 +1979,7 @@ function PromptsRolePage() {
                     )}
                   </div>
                 </div>
-                {i === 4 && (
-                  <div className="lg:col-span-2">
-                    <MonetagAd format="inline" className="my-2" />
-                  </div>
-                )}
+
               </React.Fragment>
             );
           })}
@@ -2153,8 +2117,6 @@ function PromptTaskPage() {
             </div>
           )}
         </div>
-
-        <MonetagAd format="banner" className="my-2" />
 
         {related.length > 0 && (
           <div className="rounded-[20px] border border-slate-800 bg-slate-950/60 p-6">
@@ -2333,18 +2295,17 @@ function PrivacyPage() {
           <ul className="ml-6 list-disc space-y-1">
             <li><strong>Essential cookies:</strong> Required for the website to function correctly.</li>
             <li><strong>Analytics cookies:</strong> Used by Google Analytics to understand visitor behavior.</li>
-            <li><strong>Advertising cookies:</strong> Used by Google AdSense to display relevant ads.</li>
+            <li><strong>Advertising cookies:</strong> Used by Monetag to display relevant ads.</li>
           </ul>
           <p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent through your browser settings.</p>
         </div>
 
         <div className="space-y-2">
-          <h2 className="text-xl font-semibold text-white">Google AdSense and Advertising</h2>
-          <p>We use Google AdSense to display advertisements. Google, as a third-party vendor, uses cookies to serve ads based on your prior visits to this and other websites.</p>
+          <h2 className="text-xl font-semibold text-white">Monetag Advertising</h2>
+          <p>We use Monetag to display advertisements. Monetag, as a third-party vendor, may use cookies to serve ads based on your prior visits to this and other websites.</p>
           <ul className="ml-6 list-disc space-y-1">
-            <li>Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our site and/or other sites on the Internet.</li>
-            <li>You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" className="text-cyan-400 hover:underline">Google Ads Settings</a>.</li>
-            <li>For more information about how Google uses data, visit <a href="https://policies.google.com/technologies/partner-sites" className="text-cyan-400 hover:underline">Google's Privacy & Terms</a>.</li>
+            <li>Monetag may use advertising cookies to serve ads to you based on your visit to our site and/or other sites on the Internet.</li>
+            <li>You may opt out of personalized advertising by visiting <a href="https://www.monetag.com/privacy-policy/" className="text-cyan-400 hover:underline">Monetag Privacy Policy</a>.</li>
           </ul>
         </div>
 
@@ -2429,7 +2390,7 @@ function TermsPage() {
 
         <div className="space-y-2">
           <h2 className="text-xl font-semibold text-white">6. Third-Party Services</h2>
-          <p>Our website uses third-party services such as Google AdSense and Google Analytics. We are not responsible for the practices or content of these third-party services. Please review their respective terms and policies.</p>
+          <p>Our website uses third-party services such as Google Analytics. We are not responsible for the practices or content of these third-party services. Please review their respective terms and policies.</p>
         </div>
 
         <div className="space-y-2">
