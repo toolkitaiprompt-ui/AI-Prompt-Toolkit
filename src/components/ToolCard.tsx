@@ -148,7 +148,7 @@ export default function ToolCard({ tool }: ToolCardProps) {
           </p>
 
           {/* Tool Preview */}
-          <div className="rounded-[14px] border border-white/5 bg-white/5 p-4 backdrop-blur-sm">
+          <div className="rounded-[14px] border border-white/5 bg-white/5 p-4 backdrop-blur-sm break-words">
             {getPreviewComponent()}
           </div>
 

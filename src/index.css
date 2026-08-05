@@ -52,15 +52,22 @@ section, main, header, footer, nav { width: 100%; }
 /* ===== FORCE CENTERING ===== */
 [class*="mx-auto"] { margin-left: auto !important; margin-right: auto !important; }
 
-/* ===== TYPOGRAPHY — clean scale; utilities own sizes, weights, and spacing ===== */
+/* ===== TYPOGRAPHY — clean scale; utilities own sizes, weights, and spacing =====
+   Space Grotesk has tall ascenders/descenders — a 1.4 line-height guarantees
+   the full glyph (and gradient-text background) always fits, so descenders
+   like p/g/y are never cut off. */
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 600;
   letter-spacing: -0.02em;
+  line-height: 1.4;
   color: #fff;
   text-wrap: balance;
 }
 p { line-height: 1.65; }
+/* Long mono snippets (JSON, tokens) must wrap instead of overflowing
+   clipped card containers. */
+.font-mono { overflow-wrap: anywhere; }
 
 .font-headline {
   font-family: var(--font-display);
