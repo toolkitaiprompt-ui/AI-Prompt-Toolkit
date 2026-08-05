@@ -189,6 +189,30 @@ export const STATIC_ROUTES = [
     "changefreq": "weekly"
   },
   {
+    "path": "/tools/image-prompt-generator",
+    "title": "Free AI Image Prompt Generator — DALL-E & Midjourney",
+    "desc": "Generate production-ready image prompts for DALL-E, Midjourney, and Stable Diffusion. Choose art style, mood, and camera angle. Free in-browser tool with instant copy-paste.",
+    "type": "tool",
+    "priority": 0.8,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/tools/content-summarizer",
+    "title": "Free AI Content Summarizer — TL;DR & Bullet Points",
+    "desc": "Summarize long articles, reports, and documents into TL;DR, bullet points, paragraphs, or academic abstracts. Free in-browser tool with word reduction stats.",
+    "type": "tool",
+    "priority": 0.8,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/tools/regex-generator",
+    "title": "Free AI Regex Generator — From Plain English",
+    "desc": "Generate regex patterns from plain English descriptions. Test instantly against sample strings with built-in syntax cheatsheet. Free in-browser regex tool.",
+    "type": "tool",
+    "priority": 0.8,
+    "changefreq": "weekly"
+  },
+  {
     "path": "/playground",
     "title": "Free AI Prompt Playground — Test & Build Prompts",
     "desc": "Interactive AI prompt playground with blog, code, and email templates. Live token estimation and prompt health scoring. Free in-browser prompt testing tool for ChatGPT, Claude & Gemini.",

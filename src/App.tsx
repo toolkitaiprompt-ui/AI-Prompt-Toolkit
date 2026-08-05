@@ -28,6 +28,9 @@ import {
   Github,
   History,
   Play,
+  Image,
+  FileText,
+  Terminal,
 } from "lucide-react";
 import { BrowserRouter, Link, NavLink, Route, Routes, useParams } from "react-router-dom";
 import {
@@ -85,6 +88,9 @@ import SecurityScanner from "./components/SecurityScanner";
 import PromptChainBuilder from "./components/PromptChainBuilder";
 import PromptTranslator from "./components/PromptTranslator";
 import ApiRequestBuilder from "./components/ApiRequestBuilder";
+import ImagePromptGenerator from "./components/demo/ImagePromptGenerator";
+import ContentSummarizer from "./components/demo/ContentSummarizer";
+import RegexGenerator from "./components/demo/RegexGenerator";
 
 type ThemeMode = "light" | "dark";
 
@@ -226,6 +232,30 @@ const TOOL_PAGES: ToolMeta[] = [
     icon: Code2,
     accent: "from-emerald-500/35 to-green-400/10",
     keyBenefits: ["OpenAI, Anthropic & Gemini", "Temperature & max tokens", "Copy cURL commands"],
+  },
+  {
+    title: "AI Image Prompt Generator",
+    path: "/tools/image-prompt-generator",
+    description: "Generate production-ready image prompts for DALL-E, Midjourney, and Stable Diffusion. Choose art style, mood, and camera angle.",
+    icon: Image,
+    accent: "from-pink-500/35 to-rose-400/10",
+    keyBenefits: ["8 art styles", "DALL-E & Midjourney ready", "Instant copy-paste"],
+  },
+  {
+    title: "AI Content Summarizer",
+    path: "/tools/content-summarizer",
+    description: "Summarize long articles, reports, and documents into TL;DR, bullet points, paragraphs, or academic abstracts with word reduction stats.",
+    icon: FileText,
+    accent: "from-teal-500/35 to-emerald-400/10",
+    keyBenefits: ["4 summary modes", "Word reduction %", "Copy-ready output"],
+  },
+  {
+    title: "AI Regex Generator",
+    path: "/tools/regex-generator",
+    description: "Generate regex patterns from plain English descriptions. Test instantly against sample strings with built-in cheatsheet.",
+    icon: Terminal,
+    accent: "from-violet-500/35 to-purple-400/10",
+    keyBenefits: ["6 quick presets", "Live regex tester", "Syntax cheatsheet"],
   },
 ];
 
@@ -428,6 +458,9 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/tools/prompt-chain-builder" element={<ToolContainer title="Prompt Chain Builder" toolSlug="prompt-chain-builder" description="Chain up to 5 sequential prompt steps with different output formats. Copy all steps or export as Markdown." tool={TOOL_BY_SLUG.get("prompt-chain-builder")!}><PromptChainBuilder /></ToolContainer>} />
           <Route path="/tools/prompt-translator" element={<ToolContainer title="Prompt Translator" toolSlug="prompt-translator" description="Translate prompts into 8 languages — Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, Arabic — while preserving variables." tool={TOOL_BY_SLUG.get("prompt-translator")!}><PromptTranslator /></ToolContainer>} />
           <Route path="/tools/api-request-builder" element={<ToolContainer title="API Request Builder" toolSlug="api-request-builder" description="Build API requests for OpenAI, Anthropic, and Gemini with model selection, temperature, max tokens, and cURL export." tool={TOOL_BY_SLUG.get("api-request-builder")!}><ApiRequestBuilder /></ToolContainer>} />
+          <Route path="/tools/image-prompt-generator" element={<ToolContainer title="AI Image Prompt Generator" toolSlug="image-prompt-generator" description="Generate production-ready image prompts for DALL-E, Midjourney, and Stable Diffusion with style, mood, and camera controls." tool={TOOL_BY_SLUG.get("image-prompt-generator")!}><ImagePromptGenerator /></ToolContainer>} />
+          <Route path="/tools/content-summarizer" element={<ToolContainer title="AI Content Summarizer" toolSlug="content-summarizer" description="Summarize articles, reports, and long text into TL;DR, bullets, paragraphs, or academic abstracts with reduction stats." tool={TOOL_BY_SLUG.get("content-summarizer")!}><ContentSummarizer /></ToolContainer>} />
+          <Route path="/tools/regex-generator" element={<ToolContainer title="AI Regex Generator" toolSlug="regex-generator" description="Generate regex patterns from plain English. Test against strings and learn syntax with built-in cheatsheet." tool={TOOL_BY_SLUG.get("regex-generator")!}><RegexGenerator /></ToolContainer>} />
           <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />
           <Route path="/playground" element={<PlaygroundPage />} />
           <Route path="/prompts" element={<PromptsDirectoryPage />} />
