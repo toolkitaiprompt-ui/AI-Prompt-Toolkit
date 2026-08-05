@@ -155,7 +155,7 @@ export default function ToolCard({ tool }: ToolCardProps) {
           {/* Bottom */}
           <div className="card-divider !my-0" />
 
-          <div className="flex items-center justify-between pt-2">
+          <div className="flex flex-wrap items-center justify-between gap-2 pt-2">
             <div className="flex items-center gap-2">
               <span className="inline-flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-xs font-medium text-slate-500">

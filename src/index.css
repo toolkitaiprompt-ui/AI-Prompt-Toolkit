@@ -47,6 +47,12 @@ h1, h2, h3, h4, h5, h6, p, li, td, th, blockquote, figcaption {
   word-wrap: break-word;
   hyphens: auto;
 }
+/* Interactive/label text (long emails, URLs, button copy) must wrap too —
+   break-word (not anywhere) so short labels never split mid-word. */
+button, a, label {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
 section, main, header, footer, nav { width: 100%; }
 
 /* ===== FORCE CENTERING ===== */
@@ -292,7 +298,12 @@ p { line-height: 1.65; }
   .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
   .hero-badge { font-size: 11px; }
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Tighten the 6-link nav on tablet widths so it stays on one row
+     instead of wrapping to a second line inside the glass pill. */
+  .glass-nav-link { padding: 7px 10px; font-size: 12px; }
+}
+@media (min-width: 1024px) {
   .glass-nav-link { padding: 7px 14px; }
 }
 

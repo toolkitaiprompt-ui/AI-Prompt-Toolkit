@@ -190,7 +190,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
         </p>
 
         {/* Meta + CTA */}
-        <div className="flex items-center justify-between border-t border-white/[0.06] pt-4">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-t border-white/[0.06] pt-4">
           <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-slate-500">
             <span>{post.date}</span>
             <span className="hidden sm:inline">·</span>
