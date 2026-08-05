@@ -139,6 +139,82 @@ const routes = [
   { path: "/changelog", title: "AI Prompt Toolkit Changelog — New Features & Updates",
     desc: "Track the latest updates to AI World Hub's 16 free AI prompt tools. New tools, features, and improvements in each release version. See what's new in our AI prompt toolkit." },
 
+  // ── Templates — Targets: "prompt templates", "AI prompt library" ──
+  { path: "/templates", title: "Free Prompt Templates Library — 100+ Ready-to-Use Prompts | AI World Hub",
+    desc: "Browse 100+ ready-to-use AI prompt templates for writing, image generation, coding, video, and productivity. Copy, paste, get results instantly. Free prompt templates library." },
+
+  // ── Categories — Targets: "AI prompts", "prompt categories" ──
+  { path: "/categories", title: "AI Prompt Categories — Browse by Use Case | AI World Hub",
+    desc: "Browse AI prompts by category — Writing & Content, Marketing & Sales, Development & Code, Business & Strategy, Education & Learning, and more. Find the perfect prompt." },
+
+  // ── Image Prompt Generator — Targets: "AI image prompts", "Midjourney prompts", "DALL-E prompts" ──
+  { path: "/image-generator", title: "Free AI Image Prompt Generator — Midjourney & DALL-E | AI World Hub",
+    desc: "Generate optimized AI image prompts for Midjourney, DALL-E 3, and Stable Diffusion. Select an art style and get copy-ready prompts instantly. Free in-browser tool." },
+
+  // ═══════════════════════════════════════════════════════
+  // PROMPT ROLE PAGES — Targets: "ChatGPT prompts by role", "prompt templates by role"
+  // ═══════════════════════════════════════════════════════
+
+  // ── ChatGPT Prompts ──
+  { path: "/prompts/chatgpt", title: "ChatGPT Prompts — 15 Ready-to-Use Templates | AI World Hub",
+    desc: "Best ChatGPT prompts for writing, coding, brainstorming, and productivity. Copy and customize 15 ready-to-use prompt templates for ChatGPT. Free in-browser prompt library." },
+
+  // ── Content Writer Prompts ──
+  { path: "/prompts/content-writer", title: "Content Writer Prompts — 15 Templates | AI World Hub",
+    desc: "Blog posts, SEO articles, social media, and email copywriting prompts for content writers. 15 ready-to-use ChatGPT prompt templates. Free prompt library." },
+
+  // ── Developer Prompts ──
+  { path: "/prompts/developer", title: "Developer Prompts — 15 Templates | AI World Hub",
+    desc: "Code generation, debugging, code review, refactoring, and documentation prompts for developers. 15 ready-to-use ChatGPT prompt templates. Free prompt library." },
+
+  // ── Marketer Prompts ──
+  { path: "/prompts/marketer", title: "Marketer Prompts — 15 Templates | AI World Hub",
+    desc: "Campaign strategy, ad copy, social media, and growth marketing prompts for marketers. 15 ready-to-use ChatGPT prompt templates. Free prompt library." },
+
+  // ── SEO Specialist Prompts ──
+  { path: "/prompts/seo-specialist", title: "SEO Specialist Prompts — 15 Templates | AI World Hub",
+    desc: "Keyword research, on-page SEO, technical SEO, and content optimization prompts. 15 ready-to-use ChatGPT prompt templates for SEO specialists. Free prompt library." },
+
+  // ── Data Analyst Prompts ──
+  { path: "/prompts/data-analyst", title: "Data Analyst Prompts — 15 Templates | AI World Hub",
+    desc: "Data analysis, SQL queries, data visualization, and reporting prompts for data analysts. 15 ready-to-use ChatGPT prompt templates. Free prompt library." },
+
+  // ── Business Analyst Prompts ──
+  { path: "/prompts/business-analyst", title: "Business Analyst Prompts — 15 Templates | AI World Hub",
+    desc: "Requirements gathering, process mapping, and stakeholder communication prompts for business analysts. 15 ready-to-use ChatGPT prompt templates. Free prompt library." },
+
+  // ── Graphic Designer Prompts ──
+  { path: "/prompts/graphic-designer", title: "Graphic Designer Prompts — 15 Templates | AI World Hub",
+    desc: "Logo design, brand identity, UI/UX, and creative direction prompts for graphic designers. 15 ready-to-use ChatGPT prompt templates. Free prompt library." },
+
+  // ── Sales Prompts ──
+  { path: "/prompts/sales", title: "Sales Prompts — 15 Templates | AI World Hub",
+    desc: "Cold outreach, sales scripts, objection handling, and follow-up prompts for sales teams. 15 ready-to-use ChatGPT prompt templates. Free prompt library." },
+
+  // ── Customer Support Prompts ──
+  { path: "/prompts/customer-support", title: "Customer Support Prompts — 15 Templates | AI World Hub",
+    desc: "Support responses, ticket triage, FAQ generation, and escalation prompts for support teams. 15 ready-to-use ChatGPT prompt templates. Free prompt library." },
+
+  // ── Product Manager Prompts ──
+  { path: "/prompts/product-manager", title: "Product Manager Prompts — 15 Templates | AI World Hub",
+    desc: "Product specs, user stories, roadmap planning, and feature prioritization prompts for product managers. 15 ready-to-use ChatGPT prompt templates. Free prompt library." },
+
+  // ── Researcher Prompts ──
+  { path: "/prompts/researcher", title: "Researcher Prompts — 15 Templates | AI World Hub",
+    desc: "Literature review, data collection, survey design, and analysis prompts for researchers. 15 ready-to-use ChatGPT prompt templates. Free prompt library." },
+
+  // ── Student Prompts ──
+  { path: "/prompts/student", title: "Student Prompts — 15 Templates | AI World Hub",
+    desc: "Study guides, essay writing, exam prep, and learning assistance prompts for students. 15 ready-to-use ChatGPT prompt templates. Free prompt library." },
+
+  // ── Entrepreneur Prompts ──
+  { path: "/prompts/entrepreneur", title: "Entrepreneur Prompts — 15 Templates | AI World Hub",
+    desc: "Business planning, pitch decks, investor outreach, and strategy prompts for entrepreneurs. 15 ready-to-use ChatGPT prompt templates. Free prompt library." },
+
+  // ── Consultant Prompts ──
+  { path: "/prompts/consultant", title: "Consultant Prompts — 15 Templates | AI World Hub",
+    desc: "Client analysis, strategy development, recommendations, and reporting prompts for consultants. 15 ready-to-use ChatGPT prompt templates. Free prompt library." },
+
   // ═══════════════════════════════════════════════════════
   // NEW HIGH-TRAFFIC SEO POSTS — Targeting top global keywords
   // ═══════════════════════════════════════════════════════
@@ -403,6 +479,24 @@ for (const route of routes) {
   const url = `${SITE}${route.path === "/" ? "" : route.path}`;
   const canonicalUrl = `${url}/`.replace(/\/\/$/, "/"); // ensure single trailing slash, avoid double
 
+  // Blog routes get Article structured data; other pages keep the site-level schemas
+  const isBlog = route.path.startsWith("/blog/");
+  const jsonLd = isBlog
+    ? `    <script type="application/ld+json">\n${JSON.stringify(
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: route.title,
+          description: route.desc,
+          mainEntityOfPage: canonicalUrl,
+          url: canonicalUrl,
+          publisher: { "@type": "Organization", name: "AI World Hub", url: SITE },
+        },
+        null,
+        4,
+      )}\n    </script>`
+    : "";
+
   // Hreflang tags for international SEO (#10 fix)
   const hreflangTags = [
     `<link rel="alternate" hreflang="en" href="${canonicalUrl}" />`,
@@ -422,6 +516,14 @@ for (const route of routes) {
     .replace(/<meta name="twitter:title" content="[^"]*"/, `<meta name="twitter:title" content="${route.title}"`)
     .replace(/<meta name="twitter:description" content="[^"]*"/, `<meta name="twitter:description" content="${route.desc}"`);
 
+  // Article pages advertise og:type=article for richer social sharing
+  if (isBlog) {
+    html = html.replace(
+      '<meta property="og:type" content="website"',
+      '<meta property="og:type" content="article"',
+    );
+  }
+
   // Inject hreflang if not already present, otherwise replace existing block
   if (html.includes('hreflang=')) {
     // Remove old hreflang tags to avoid duplicates (clean injection)
@@ -429,7 +531,7 @@ for (const route of routes) {
   }
   // Inject before </head> OR after canonical for safety — insert before sitemap link or before </head>
   if (html.includes("</head>")) {
-    html = html.replace("</head>", `    ${hreflangTags}\n  </head>`);
+    html = html.replace("</head>", `    ${hreflangTags}\n${jsonLd ? `${jsonLd}\n` : ""}  </head>`);
   } else {
     // fallback
     html = html.replace('<link rel="sitemap"', `${hreflangTags}\n    <link rel="sitemap"`);
