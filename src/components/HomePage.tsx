@@ -329,6 +329,14 @@ return (
         </div>
       </section>
 
+      {/* Monetag Ad */}
+      <div className="site-container pt-8">
+        <div className="ad-wrap">
+          <span className="ad-label">Advertisement</span>
+          <div className="monetag-zone ad-slot" data-zone="264272" />
+        </div>
+      </div>
+
       {/* Stats Section */}
       <section className="section-lg bg-slate-900/50 mt-16">
         <div className="site-container">
@@ -406,6 +414,14 @@ return (
         </div>
       </section>
 
+
+      {/* Monetag Ad */}
+      <div className="site-container pt-8">
+        <div className="ad-wrap">
+          <span className="ad-label">Advertisement</span>
+          <div className="monetag-zone ad-slot" data-zone="264272" />
+        </div>
+      </div>
 
       {/* Trending AI Tools */}
       <section className="section-lg bg-slate-900/30 mt-16">
@@ -552,6 +568,14 @@ return (
       )}
 
 
+      {/* Monetag Ad */}
+      <div className="site-container pt-8">
+        <div className="ad-wrap">
+          <span className="ad-label">Advertisement</span>
+          <div className="monetag-zone ad-slot" data-zone="264272" />
+        </div>
+      </div>
+
       <CategoryShowcase />
 
       {/* FAQ Section */}
@@ -580,6 +604,14 @@ return (
           </div>
         </div>
       </section>
+
+      {/* Monetag Ad */}
+      <div className="site-container pt-8">
+        <div className="ad-wrap">
+          <span className="ad-label">Advertisement</span>
+          <div className="monetag-zone ad-slot" data-zone="264272" />
+        </div>
+      </div>
 
       {/* Final CTA */}
       <section className="section-lg mt-16">

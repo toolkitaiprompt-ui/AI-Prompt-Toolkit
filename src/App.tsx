@@ -651,6 +651,12 @@ function ToolContainer({
 
 
 
+      {/* Monetag Ad */}
+      <div className="ad-wrap">
+        <span className="ad-label">Advertisement</span>
+        <div className="monetag-zone ad-slot" data-zone="264272" />
+      </div>
+
       <div className="rounded-[24px] border border-white/10 bg-slate-950/80 p-6 shadow-xl">
         <div className="space-y-4">{children}</div>
       </div>
@@ -677,6 +683,12 @@ function ToolContainer({
           </div>
         </section>
       )}
+
+      {/* Monetag Ad */}
+      <div className="ad-wrap">
+        <span className="ad-label">Advertisement</span>
+        <div className="monetag-zone ad-slot" data-zone="264272" />
+      </div>
     </section>
   );
 }
