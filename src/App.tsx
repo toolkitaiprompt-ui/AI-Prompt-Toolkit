@@ -32,7 +32,7 @@ import {
   FileText,
   Terminal,
 } from "lucide-react";
-import { BrowserRouter, Link, NavLink, Route, Routes, useParams } from "react-router-dom";
+import { BrowserRouter, Link, NavLink, Route, Routes, useParams, useLocation } from "react-router-dom";
 import {
   cleanPrompt,
   estimateTokens,
@@ -316,6 +316,40 @@ function useSeo(title?: string, description?: string, keywords?: string) {
       document.head.appendChild(link);
     });
   }, [finalTitle, finalDesc, finalKeywords]);
+}
+
+function MonetagSPA() {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Try to reinitialize Monetag MultiTag on every route change in SPA
+    // MultiTag attaches onclick handlers; on SPA navigation we force a re-check
+    try {
+      const w = window as any;
+      // Some Monetag tags expose a global reinit or push method
+      if (w.monetag && typeof w.monetag.refresh === "function") {
+        w.monetag.refresh();
+      } else if (w.propellerads && typeof w.propellerads.push === "function") {
+        w.propellerads.push({ zone: 264272 });
+      } else {
+        // Nuclear fallback: remove and re-insert the script tag to force reinit
+        const existing = document.querySelector('script[data-zone="264272"]');
+        if (existing && existing.parentNode) {
+          const newScript = document.createElement("script");
+          newScript.src = "https://quge5.com/88/tag.min.js";
+          newScript.async = true;
+          newScript.setAttribute("data-zone", "264272");
+          newScript.setAttribute("data-cfasync", "false");
+          existing.parentNode.removeChild(existing);
+          document.head.appendChild(newScript);
+        }
+      }
+    } catch {
+      // silently ignore
+    }
+  }, [location.pathname]);
+
+  return null;
 }
 
 function ThemeToggle({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
@@ -2480,6 +2514,7 @@ export default function App() {
 
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL?.replace(/\/$/, "") || ""}>
+      <MonetagSPA />
       <Layout mode={themeMode} onToggle={() => setThemeMode((c) => (c === "dark" ? "light" : "dark"))} />
     </BrowserRouter>
   );
