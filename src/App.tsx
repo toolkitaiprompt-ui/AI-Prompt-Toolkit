@@ -79,6 +79,7 @@ import ToolCard from "./components/ToolCard";
 import BlogCard from "./components/BlogCard";
 import TemplatesPage from "./pages/TemplatesPage";
 import SearchModal from "./components/SearchModal";
+import AdBanner from "./components/AdBanner";
 import CategoriesPage from "./pages/CategoriesPage";
 import ImageGeneratorPage from "./pages/ImageGeneratorPage";
 
@@ -685,11 +686,7 @@ function ToolContainer({
 
 
 
-      {/* Monetag Ad */}
-      <div className="ad-wrap">
-        <span className="ad-label">Advertisement</span>
-        <div className="monetag-zone ad-slot" data-zone="264272" />
-      </div>
+      <AdBanner />
 
       <div className="rounded-[24px] border border-white/10 bg-slate-950/80 p-6 shadow-xl">
         <div className="space-y-4">{children}</div>
@@ -718,11 +715,7 @@ function ToolContainer({
         </section>
       )}
 
-      {/* Monetag Ad */}
-      <div className="ad-wrap">
-        <span className="ad-label">Advertisement</span>
-        <div className="monetag-zone ad-slot" data-zone="264272" />
-      </div>
+      <AdBanner />
     </section>
   );
 }

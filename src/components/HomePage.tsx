@@ -20,6 +20,7 @@ import { BLOG_POSTS } from '../data/blogPosts';
 import BlogCard from './BlogCard';
 import ToolCard from './ToolCard';
 import CategoryShowcase from './CategoryShowcase';
+import AdBanner from './AdBanner';
 
 
 interface ToolMeta {
@@ -329,12 +330,9 @@ return (
         </div>
       </section>
 
-      {/* Monetag Ad */}
+      {/* Banner Ad */}
       <div className="site-container pt-8">
-        <div className="ad-wrap">
-          <span className="ad-label">Advertisement</span>
-          <div className="monetag-zone ad-slot" data-zone="264272" />
-        </div>
+        <AdBanner />
       </div>
 
       {/* Stats Section */}
@@ -415,12 +413,9 @@ return (
       </section>
 
 
-      {/* Monetag Ad */}
+      {/* Banner Ad */}
       <div className="site-container pt-8">
-        <div className="ad-wrap">
-          <span className="ad-label">Advertisement</span>
-          <div className="monetag-zone ad-slot" data-zone="264272" />
-        </div>
+        <AdBanner />
       </div>
 
       {/* Trending AI Tools */}
@@ -568,12 +563,9 @@ return (
       )}
 
 
-      {/* Monetag Ad */}
+      {/* Banner Ad */}
       <div className="site-container pt-8">
-        <div className="ad-wrap">
-          <span className="ad-label">Advertisement</span>
-          <div className="monetag-zone ad-slot" data-zone="264272" />
-        </div>
+        <AdBanner />
       </div>
 
       <CategoryShowcase />
@@ -605,12 +597,9 @@ return (
         </div>
       </section>
 
-      {/* Monetag Ad */}
+      {/* Banner Ad */}
       <div className="site-container pt-8">
-        <div className="ad-wrap">
-          <span className="ad-label">Advertisement</span>
-          <div className="monetag-zone ad-slot" data-zone="264272" />
-        </div>
+        <AdBanner />
       </div>
 
       {/* Final CTA */}
