@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 
 /*
   Universal Banner Ad Component
-  Supports: Adsterra, Monetag Direct Banner, or any network
+  Supports: Adsterra, Monetag Direct Banner, or Monetag direct-link zones
   Usage: <AdBanner network="adsterra" zoneId="YOUR_ZONE_ID" />
 
   ─── HOW TO ENABLE ADS (money mode) ─────────────────────────────
@@ -12,6 +12,10 @@ import { useEffect, useRef } from "react";
 
   While AD_CONFIG zones are empty the component renders nothing
   (no empty "Advertisement" boxes on the live site).
+
+  NOTE: Monetag "direct link" zones (omg10.com/4/xxxxx) are NOT iframe
+  banners — they are click-to-ad URLs. We render them as visible
+  sponsored boxes (label + CTA link) in every slot.
 */
 
 type Network = "adsterra" | "monetag-banner" | "custom";
@@ -26,7 +30,7 @@ interface AdBannerProps {
 export const AD_CONFIG: Record<Network, { enabled: boolean; zoneId: string }> = {
   adsterra: { enabled: false, zoneId: "" },
   "monetag-banner": { enabled: false, zoneId: "" },
-  // Monetag direct-link banner (omg10.com/4/<zone>) — renders in every ad slot
+  // Monetag direct-link zone — rendered as a visible sponsored box in every slot
   custom: { enabled: true, zoneId: "https://omg10.com/4/11565896" },
 };
 
@@ -42,6 +46,8 @@ export default function AdBanner({
   const finalZone = zoneId || (AD_CONFIG[network].enabled ? AD_CONFIG[network].zoneId : "");
 
   useEffect(() => {
+    // Custom direct-link zones render as link boxes — no script injection needed
+    if (network === "custom") return;
     if (injected.current || !containerRef.current) return;
     if (!finalZone) return; // no real zone configured yet — render nothing
 
@@ -75,20 +81,6 @@ export default function AdBanner({
       script.setAttribute("data-cfasync", "false");
       script.src = `//monetag.com/${finalZone}.min.js`;
       container.appendChild(script);
-    } else {
-      // Custom direct-link banner (Monetag/Adsterra direct link) — iframe embed
-      const iframe = document.createElement("iframe");
-      iframe.src = finalZone;
-      iframe.width = "300";
-      iframe.height = "250";
-      iframe.style.border = "0";
-      iframe.style.display = "block";
-      iframe.style.margin = "0 auto";
-      iframe.style.maxWidth = "100%";
-      iframe.loading = "lazy";
-      iframe.setAttribute("frameborder", "0");
-      iframe.setAttribute("scrolling", "no");
-      container.appendChild(iframe);
     }
 
     return () => {
@@ -99,6 +91,25 @@ export default function AdBanner({
   // No real zone configured — render nothing (no empty ad boxes on live site)
   if (!finalZone) {
     return null;
+  }
+
+  // Custom direct-link zone → visible sponsored box (click opens the ad)
+  if (network === "custom") {
+    return (
+      <div className={`ad-wrap ${className}`}>
+        <span className="ad-label">Advertisement</span>
+        <a
+          href={finalZone}
+          target="_blank"
+          rel="sponsored noopener noreferrer"
+          className="ad-direct-box"
+          aria-label="Sponsored link"
+        >
+          <span className="ad-direct-title">Sponsored</span>
+          <span className="ad-direct-cta">View Offer →</span>
+        </a>
+      </div>
+    );
   }
 
   return (
