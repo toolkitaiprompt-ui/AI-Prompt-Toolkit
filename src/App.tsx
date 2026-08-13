@@ -599,8 +599,8 @@ function SectionShell({
 function ToolsDirectoryPage() {
   return (
     <SectionShell
-      title="Free AI Tools Directory — 16 Best Tools"
-      description="Choose from 16 free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, comparison tool, mega prompt builder, debugger, security scanner, chain builder, translator, and API request builder."
+      title="Free AI Tools Directory — 19 Best Tools"
+      description="Choose from 19 free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, comparison tool, mega prompt builder, debugger, security scanner, chain builder, translator, API request builder, image prompt generator, content summarizer, and regex generator."
       keywords="Best AI Tools, Free AI Tools, AI Tools Directory, Prompt Engineering Tools, AI Prompt Builder, ChatGPT Prompt Tools"
     >
       <div className="space-y-3">
@@ -609,7 +609,7 @@ function ToolsDirectoryPage() {
         </p>
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">AI World Hub</h1>
         <p className="max-w-3xl text-base sm:text-lg text-slate-400">
-          Choose from 16 precision tools for prompt engineering teams. Build, format, validate, debug, optimize, secure, and translate — all in the browser.
+          Choose from {TOOL_PAGES.length} precision tools for prompt engineering teams. Build, format, validate, debug, optimize, secure, and translate — all in the browser.
         </p>
       </div>
 
@@ -1191,7 +1191,7 @@ function AboutPage() {
 
         <div className="grid gap-6 sm:grid-cols-3">
           <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
-            <p className="text-3xl font-bold text-white">16</p>
+            <p className="text-3xl font-bold text-white">{TOOL_PAGES.length}</p>
             <p className="mt-1 text-sm text-slate-400">Free Tools</p>
           </div>
           <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
@@ -1230,6 +1230,9 @@ function AboutPage() {
             <li><strong className="text-white">Prompt Chain Builder</strong> — Chain up to 5 sequential prompt steps with output formats.</li>
             <li><strong className="text-white">Prompt Translator</strong> — Translate prompts into 8 languages while preserving variables.</li>
             <li><strong className="text-white">API Request Builder</strong> — Build API requests for OpenAI, Anthropic, and Gemini with cURL export.</li>
+            <li><strong className="text-white">AI Image Prompt Generator</strong> — Generate production-ready image prompts for DALL-E, Midjourney, and Stable Diffusion.</li>
+            <li><strong className="text-white">AI Content Summarizer</strong> — Summarize long articles and documents into TL;DR, bullets, or abstracts.</li>
+            <li><strong className="text-white">AI Regex Generator</strong> — Generate regex patterns from plain English and test them instantly.</li>
           </ul>
         </div>
 
@@ -2249,6 +2252,18 @@ function PromptTaskPage() {
 
 function ChangelogPage() {
   const changelog: { version: string; date: string; changes: { type: string; text: string }[] }[] = [
+    {
+      version: "3.1.0",
+      date: "August 2026",
+      changes: [
+        { type: "New", text: "Added 3 new tools: AI Image Prompt Generator, AI Content Summarizer, and AI Regex Generator — bringing the total to 19 tools." },
+        { type: "Improved", text: "Fixed broken structured data (ItemList, FAQ, SoftwareApplication) so search engines can index all 19 tools correctly." },
+        { type: "Improved", text: "Updated tool counts across the site, JSON-LD, sitemap metadata, and llms.txt for consistent SEO." },
+        { type: "Fixed", text: "Removed visible ad placeholder boxes until real ad zones are configured." },
+        { type: "Fixed", text: "Homepage demo now shows honest per-tool output with real token statistics." },
+        { type: "Fixed", text: "Search now covers the prompt templates library." },
+      ],
+    },
     {
       version: "3.0.0",
       date: "January 2026",

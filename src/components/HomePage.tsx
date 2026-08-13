@@ -55,7 +55,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
 
   const stats = [
-    { icon: Zap, value: '16', label: 'Free Tools', color: 'from-blue-500 to-cyan-500' },
+    { icon: Zap, value: String(toolPages.length), label: 'Free Tools', color: 'from-blue-500 to-cyan-500' },
     { icon: Shield, value: '100%', label: 'In-Browser & Private', color: 'from-yellow-500 to-orange-500' },
     { icon: Clock, value: '0', label: 'Sign-ups Required', color: 'from-amber-500 to-amber-600' },
     { icon: Award, value: 'Free', label: 'Forever', color: 'from-green-500 to-emerald-500' },
@@ -64,7 +64,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
   const faqs = [
     {
       question: 'Is AI World Hub really free?',
-      answer: 'Yes! All 16 tools are completely free with no signup required. We offer optional Pro features for power users, but the core toolkit is 100% free forever.',
+      answer: `Yes! All ${toolPages.length} tools are completely free with no signup required. We offer optional Pro features for power users, but the core toolkit is 100% free forever.`,
     },
     {
       question: 'How does in-browser processing work?',
@@ -153,7 +153,7 @@ return (
 
               {/* Description */}
               <p className="text-lg sm:text-xl text-slate-300 mb-8 leading-relaxed">
-                16 professional tools to format, validate, optimize, and deploy AI prompts at scale.
+                {toolPages.length} professional tools to format, validate, optimize, and deploy AI prompts at scale.
                 No signup required. 100% in-browser. Enterprise-ready.
               </p>
 
@@ -181,7 +181,7 @@ return (
               <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                  <span className="text-sm text-slate-300">16 free tools</span>
+                  <span className="text-sm text-slate-300">{toolPages.length} free tools</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Shield className="w-5 h-5 text-cyan-400" />
@@ -368,7 +368,7 @@ return (
               <span className="text-sm text-amber-300 font-medium">Featured Tools</span>
             </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-                16 Professional Tools
+                {toolPages.length} Professional Tools
                 <br />
                 <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">
                   For Perfect Prompts
@@ -619,7 +619,7 @@ return (
               </span>
             </h2>
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Use 16 free, private, in-browser tools to create, optimize, and deploy prompts that deliver results.
+              Use {toolPages.length} free, private, in-browser tools to create, optimize, and deploy prompts that deliver results.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

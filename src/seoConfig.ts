@@ -40,9 +40,9 @@ for (const role of ENGINE.roles) {
 
 
 const DEFAULT_SEO: SeoData = {
-  title: "16 Free AI Prompt Engineering Tools | AI World Hub",
+  title: "19 Free AI Prompt Engineering Tools | AI World Hub",
   description:
-    "Use 16 free AI prompt engineering tools to build, format, debug, secure, translate, and optimize prompts in your browser. No sign-up required.",
+    "Use 19 free AI prompt engineering tools to build, format, debug, secure, translate, and optimize prompts in your browser. No sign-up required.",
   keywords:
     "Best AI Tools, Free AI Tools, ChatGPT Prompts, Prompt Engineering, AI Tools Directory, AI Prompt Builder, How to Use ChatGPT, Prompt Optimization, AI Prompting, ChatGPT Prompt Generator",
 };
@@ -50,9 +50,9 @@ const DEFAULT_SEO: SeoData = {
 const SEO_MAP: Record<string, SeoData> = {
   // ── Homepage ──
   "/": {
-    title: "16 Free AI Prompt Engineering Tools | AI World Hub",
+    title: "19 Free AI Prompt Engineering Tools | AI World Hub",
     description:
-      "Use 16 free AI prompt engineering tools to build, format, debug, secure, translate, and optimize prompts in your browser. No sign-up required.",
+      "Use 19 free AI prompt engineering tools to build, format, debug, secure, translate, and optimize prompts in your browser. No sign-up required.",
     keywords:
       "Best AI Tools, Free AI Tools, ChatGPT Prompts, Prompt Engineering, AI Tools Directory, AI Prompt Builder, How to Use ChatGPT, Prompt Optimization, AI Prompting, ChatGPT Prompt Generator",
   },
@@ -68,9 +68,9 @@ const SEO_MAP: Record<string, SeoData> = {
 
   // ── Tools Directory ──
   "/tools": {
-    title: "Free AI Tools Directory — 16 Best Tools | AI World Hub",
+    title: "Free AI Tools Directory — 19 Best Tools | AI World Hub",
     description:
-      "Choose from 16 best free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, comparison tool, mega prompt builder, debugger, security scanner, chain builder, translator, and API request builder.",
+      "Choose from 19 best free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, comparison tool, mega prompt builder, debugger, security scanner, chain builder, translator, API request builder, image prompt generator, content summarizer, and regex generator.",
     keywords:
       "Best AI Tools, Free AI Tools, AI Tools Directory, Prompt Engineering Tools, Free AI Prompt Tools, AI Prompt Builder, ChatGPT Prompt Tools, Prompt Optimization Tools",
   },
@@ -106,7 +106,7 @@ const SEO_MAP: Record<string, SeoData> = {
   "/about": {
     title: "About — Best Free AI Prompt Engineering Tools | AI World Hub",
     description:
-      "AI World Hub offers the best free AI prompt engineering tools for everyone — students, developers, marketers, and teams. 16 in-browser tools, no sign-up, no data collection.",
+      "AI World Hub offers the best free AI prompt engineering tools for everyone — students, developers, marketers, and teams. 19 in-browser tools, no sign-up, no data collection.",
     keywords:
       "About AI World Hub, Best AI Tools, Free AI Tools, Prompt Engineering",
   },

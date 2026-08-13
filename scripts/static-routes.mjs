@@ -7,15 +7,15 @@ export const STATIC_ROUTES = [
   {
     "path": "/",
     "title": "Best Free AI Tools for Everyone | AI Prompt Engineering",
-    "desc": "Best free AI tools for everyone — 16 prompt engineering tools for building, formatting, validating, debugging, optimizing, securing, and translating AI prompts. JSON schema, token estimator, persona builder, mega prompt builder, prompt debugger & more. No sign-up, 100% in-browser.",
+    "desc": "Best free AI tools for everyone — 19 prompt engineering tools for building, formatting, validating, debugging, optimizing, securing, and translating AI prompts. JSON schema, token estimator, persona builder, mega prompt builder, prompt debugger & more. No sign-up, 100% in-browser.",
     "type": "home",
     "priority": 1,
     "changefreq": "daily"
   },
   {
     "path": "/tools",
-    "title": "Free AI Tools Directory — 16 Best Tools | AI World Hub",
-    "desc": "Choose from 16 free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, comparison tool, mega prompt builder, prompt debugger, security scanner, prompt chain builder, prompt translator & API request builder.",
+    "title": "Free AI Tools Directory — 19 Best Tools | AI World Hub",
+    "desc": "Choose from 19 free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, comparison tool, mega prompt builder, prompt debugger, security scanner, prompt chain builder, prompt translator, API request builder, image prompt generator, content summarizer, and regex generator.",
     "type": "page",
     "priority": 0.9,
     "changefreq": "daily"
@@ -31,7 +31,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/about",
     "title": "About — Best Free AI Prompt Engineering Tools | AI World Hub",
-    "desc": "AI World Hub offers the best free AI prompt engineering tools for everyone — students, developers, marketers, and teams. 16 in-browser tools, no sign-up, no data collection.",
+    "desc": "AI World Hub offers the best free AI prompt engineering tools for everyone — students, developers, marketers, and teams. 19 in-browser tools, no sign-up, no data collection.",
     "type": "page",
     "priority": 0.6,
     "changefreq": "weekly"
@@ -231,7 +231,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/changelog",
     "title": "AI Prompt Toolkit Changelog — New Features & Updates",
-    "desc": "Track the latest updates to AI World Hub's 16 free AI prompt tools. New tools, features, and improvements in each release version. See what's new in our AI prompt toolkit.",
+    "desc": "Track the latest updates to AI World Hub's 19 free AI prompt tools. New tools, features, and improvements in each release version. See what's new in our AI prompt toolkit.",
     "type": "page",
     "priority": 0.6,
     "changefreq": "weekly"
