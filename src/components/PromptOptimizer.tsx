@@ -45,7 +45,7 @@ function analyzeAndOptimize(prompt: string): Analysis {
   if (!hasExamples) lines.push("If helpful, include one brief example to illustrate the main point.");
   lines.push("If anything is ambiguous, state your assumptions before answering.");
 
-  return { improvements, optimized: lines.join("\\n") };
+  return { improvements, optimized: lines.join("\n") };
 }
 
 export default function PromptOptimizer() {
@@ -62,12 +62,12 @@ export default function PromptOptimizer() {
   };
 
   const handleCopy = async () => {
-    const ok = await copyToClipboard(analysis.optimized.replace(/\\n/g, "\n"));
+    const ok = await copyToClipboard(analysis.optimized);
     setStatus(ok ? "Optimized prompt copied to clipboard." : "Copy failed. Please try again in a secure browser.");
   };
 
   const handleDownload = () => {
-    downloadTextFile(analysis.optimized.replace(/\\n/g, "\n"), "optimized-prompt.txt");
+    downloadTextFile(analysis.optimized, "optimized-prompt.txt");
   };
 
   return (
@@ -133,10 +133,10 @@ export default function PromptOptimizer() {
             </div>
           </div>
           <div className="relative min-h-[320px] rounded-3xl border border-slate-800/90 bg-slate-900/90 p-5 text-sm leading-7 text-slate-200 shadow-inner shadow-slate-950/60">
-            <pre className={`whitespace-pre-wrap ${compareMode ? "bg-slate-900/90" : ""}`}>{analysis.optimized.replace(/\\n/g, "\n")}</pre>
+            <pre className={`whitespace-pre-wrap ${compareMode ? "bg-slate-900/90" : ""}`}>{analysis.optimized}</pre>
           </div>
           <div className="mt-2">
-            <LiveStats text={analysis.optimized.replace(/\\n/g, "\n")} />
+            <LiveStats text={analysis.optimized} />
           </div>
           <div className="mt-5 flex flex-wrap gap-3">
             <button
