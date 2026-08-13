@@ -267,9 +267,12 @@ function getBlogPostsForTool(toolSlug: string) {
 function useSeo(title?: string, description?: string, keywords?: string) {
   const configSeo = getSeoForPath(window.location.pathname);
 
-  const finalTitle = configSeo.title || title || "AI World Hub";
-  const finalDesc = configSeo.description || description || "";
-  const finalKeywords = configSeo.keywords || keywords || "";
+  // Explicit page title (from the page component) wins over the config
+  // fallback — otherwise every page without a SEO_MAP entry would show
+  // the DEFAULT_SEO title after React hydrates.
+  const finalTitle = title || configSeo.title || "AI World Hub";
+  const finalDesc = description || configSeo.description || "";
+  const finalKeywords = keywords || configSeo.keywords || "";
 
   useEffect(() => {
     document.title = finalTitle;

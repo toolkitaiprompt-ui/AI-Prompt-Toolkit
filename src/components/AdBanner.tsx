@@ -42,19 +42,29 @@ export default function AdBanner({
   const containerRef = useRef<HTMLDivElement>(null);
   const injected = useRef(false);
 
-  // Real zone = explicit prop > AD_CONFIG > nothing (placeholder never ships)
-  const finalZone = zoneId || (AD_CONFIG[network].enabled ? AD_CONFIG[network].zoneId : "");
+  // Resolve which network actually renders:
+  // 1. explicit zoneId prop wins
+  // 2. otherwise fall back to the FIRST enabled network in AD_CONFIG
+  //    (so <AdBanner /> without props still renders when custom is enabled)
+  const resolvedNetwork: Network = (() => {
+    if (zoneId) return network;
+    if (AD_CONFIG[network]?.enabled) return network;
+    const enabled = (Object.keys(AD_CONFIG) as Network[]).find((k) => AD_CONFIG[k].enabled);
+    return enabled ?? network;
+  })();
+
+  const finalZone = zoneId || (AD_CONFIG[resolvedNetwork]?.enabled ? AD_CONFIG[resolvedNetwork].zoneId : "");
 
   useEffect(() => {
     // Custom direct-link zones render as link boxes — no script injection needed
-    if (network === "custom") return;
+    if (resolvedNetwork === "custom") return;
     if (injected.current || !containerRef.current) return;
     if (!finalZone) return; // no real zone configured yet — render nothing
 
     const container = containerRef.current;
     injected.current = true;
 
-    if (network === "adsterra") {
+    if (resolvedNetwork === "adsterra") {
       // Adsterra native banner script pattern
       const script = document.createElement("script");
       script.type = "text/javascript";
@@ -74,7 +84,7 @@ export default function AdBanner({
       invokeScript.src = `//www.highperformanceformat.com/${finalZone}/invoke.js`;
       invokeScript.async = true;
       container.appendChild(invokeScript);
-    } else if (network === "monetag-banner") {
+    } else if (resolvedNetwork === "monetag-banner") {
       // Monetag direct banner (if they provide one)
       const script = document.createElement("script");
       script.async = true;
@@ -86,7 +96,7 @@ export default function AdBanner({
     return () => {
       injected.current = false;
     };
-  }, [network, finalZone]);
+  }, [resolvedNetwork, finalZone]);
 
   // No real zone configured — render nothing (no empty ad boxes on live site)
   if (!finalZone) {
@@ -94,7 +104,7 @@ export default function AdBanner({
   }
 
   // Custom direct-link zone → visible sponsored box (click opens the ad)
-  if (network === "custom") {
+  if (resolvedNetwork === "custom") {
     return (
       <div className={`sp-wrap ${className}`}>
         <span className="sp-label">Advertisement</span>
