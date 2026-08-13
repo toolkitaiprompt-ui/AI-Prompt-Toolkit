@@ -26,7 +26,8 @@ interface AdBannerProps {
 export const AD_CONFIG: Record<Network, { enabled: boolean; zoneId: string }> = {
   adsterra: { enabled: false, zoneId: "" },
   "monetag-banner": { enabled: false, zoneId: "" },
-  custom: { enabled: false, zoneId: "" },
+  // Monetag direct-link banner (omg10.com/4/<zone>) — renders in every ad slot
+  custom: { enabled: true, zoneId: "https://omg10.com/4/11565896" },
 };
 
 export default function AdBanner({
@@ -75,11 +76,19 @@ export default function AdBanner({
       script.src = `//monetag.com/${finalZone}.min.js`;
       container.appendChild(script);
     } else {
-      // Custom iframe or script
-      const script = document.createElement("script");
-      script.src = finalZone;
-      script.async = true;
-      container.appendChild(script);
+      // Custom direct-link banner (Monetag/Adsterra direct link) — iframe embed
+      const iframe = document.createElement("iframe");
+      iframe.src = finalZone;
+      iframe.width = "300";
+      iframe.height = "250";
+      iframe.style.border = "0";
+      iframe.style.display = "block";
+      iframe.style.margin = "0 auto";
+      iframe.style.maxWidth = "100%";
+      iframe.loading = "lazy";
+      iframe.setAttribute("frameborder", "0");
+      iframe.setAttribute("scrolling", "no");
+      container.appendChild(iframe);
     }
 
     return () => {
