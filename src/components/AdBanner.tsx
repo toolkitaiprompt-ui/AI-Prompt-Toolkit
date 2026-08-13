@@ -96,17 +96,17 @@ export default function AdBanner({
   // Custom direct-link zone → visible sponsored box (click opens the ad)
   if (network === "custom") {
     return (
-      <div className={`ad-wrap ${className}`}>
-        <span className="ad-label">Advertisement</span>
+      <div className={`sp-wrap ${className}`}>
+        <span className="sp-label">Advertisement</span>
         <a
           href={finalZone}
           target="_blank"
           rel="sponsored noopener noreferrer"
-          className="ad-direct-box"
+          className="sp-box"
           aria-label="Sponsored link"
         >
-          <span className="ad-direct-title">Sponsored</span>
-          <span className="ad-direct-cta">View Offer →</span>
+          <span className="sp-box-title">Sponsored</span>
+          <span className="sp-box-cta">View Offer →</span>
         </a>
       </div>
     );
@@ -115,10 +115,10 @@ export default function AdBanner({
   return (
     <div
       ref={containerRef}
-      className={`ad-wrap ${className}`}
+      className={`sp-wrap ${className}`}
     >
-      <span className="ad-label">Advertisement</span>
-      <div className="ad-slot" style={{ minHeight: 250 }} />
+      <span className="sp-label">Advertisement</span>
+      <div className="sp-slot" style={{ minHeight: 250 }} />
     </div>
   );
 }

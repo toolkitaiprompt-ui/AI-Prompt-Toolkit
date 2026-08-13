@@ -223,7 +223,7 @@ p { line-height: 1.65; }
 /* ===== AD WRAPPERS — Monetag display slots =====
    Responsive full-width slots. No clipping (overflow: visible) so ads of any
    size render cleanly; min-height reserves space to avoid layout shift. */
-.ad-wrap {
+.sp-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -234,14 +234,14 @@ p { line-height: 1.65; }
   border-radius: 16px;
   background: rgba(255,255,255,0.02);
 }
-.ad-label {
+.sp-label {
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(148,163,184,0.6);
   user-select: none;
 }
-.ad-slot {
+.sp-slot {
   display: flex;
   width: 100%;
   align-items: center;
@@ -250,7 +250,7 @@ p { line-height: 1.65; }
 }
 
 /* Monetag direct-link sponsored box (visible ad in every slot) */
-.ad-direct-box {
+.sp-box {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -268,17 +268,17 @@ p { line-height: 1.65; }
   text-decoration: none;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
-.ad-direct-box:hover {
+.sp-box:hover {
   border-color: rgba(245,158,11,0.4);
   transform: translateY(-1px);
 }
-.ad-direct-title {
+.sp-box-title {
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(148,163,184,0.8);
 }
-.ad-direct-cta {
+.sp-box-cta {
   font-size: 15px;
   font-weight: 700;
   color: #fbbf24;
