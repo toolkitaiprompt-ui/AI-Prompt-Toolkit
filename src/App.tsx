@@ -82,6 +82,7 @@ import SearchModal from "./components/SearchModal";
 import AdBanner from "./components/AdBanner";
 import CategoriesPage from "./pages/CategoriesPage";
 import ImageGeneratorPage from "./pages/ImageGeneratorPage";
+import { TEMPLATES } from "./data/templates";
 
 import MegaPromptBuilder from "./components/MegaPromptBuilder";
 import PromptDebugger from "./components/PromptDebugger";
@@ -459,7 +460,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
         onClose={() => setSearchOpen(false)}
         tools={TOOL_PAGES}
         blogPosts={BLOG_POSTS}
-        templates={[]}
+        templates={TEMPLATES}
       />
 
       <main className="w-full">
