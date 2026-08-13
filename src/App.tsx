@@ -14,8 +14,6 @@ import {
   Zap,
   ArrowLeftRight,
   UserCircle,
-  Sun,
-  Moon,
   Search,
   Menu,
   X,
@@ -93,8 +91,6 @@ import ApiRequestBuilder from "./components/ApiRequestBuilder";
 import ImagePromptGenerator from "./components/demo/ImagePromptGenerator";
 import ContentSummarizer from "./components/demo/ContentSummarizer";
 import RegexGenerator from "./components/demo/RegexGenerator";
-
-type ThemeMode = "light" | "dark";
 
 type ToolMeta = {
   title: string;
@@ -342,20 +338,7 @@ function MonetagSPA() {
   return null;
 }
 
-function ThemeToggle({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
-  return (
-    <button
-      type="button"
-      onClick={onToggle}
-      className="rounded-full border border-slate-700 px-3 py-1 text-sm text-slate-200 transition hover:bg-slate-800"
-      aria-label="Toggle dark mode"
-    >
-      {mode === "dark" ? "Light" : "Dark"} Mode
-    </button>
-  );
-}
-
-function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
+function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
@@ -403,9 +386,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             <button type="button" onClick={() => setSearchOpen(true)} className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center hover:bg-white/5 transition text-slate-400 hover:text-white" aria-label="Search">
               <Search className="w-4 h-4" />
             </button>
-            <button type="button" onClick={onToggle} className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center hover:bg-white/5 transition text-slate-400 hover:text-amber-300" aria-label="Toggle theme">
-              {mode === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
+
           </div>
           {/* Mobile hamburger */}
           <button
@@ -432,13 +413,7 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
               <NavLink to="/blog" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Blog</NavLink>
               <NavLink to="/about" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>About</NavLink>
             </nav>
-            <div className="border-t border-white/[0.06] mt-2 pt-2">
-              <button onClick={() => { onToggle(); setMobileMenuOpen(false); }}
-                className="w-full flex items-center justify-center gap-2 rounded-lg border border-white/[0.06] px-4 py-2.5 text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all">
-                {mode === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-                {mode === "dark" ? "Light Mode" : "Dark Mode"}
-              </button>
-            </div>
+
           </div>
         )}
       </header>
@@ -2498,21 +2473,10 @@ function NotFoundPage() {
 }
 
 export default function App() {
-  const [themeMode, setThemeMode] = useState<ThemeMode>(() => {
-    const stored = localStorage.getItem("theme-mode");
-    return stored === "dark" ? "dark" : "light";
-  });
-
-  useEffect(() => {
-    const root = document.documentElement;
-    root.classList.toggle("dark", themeMode === "dark");
-    localStorage.setItem("theme-mode", themeMode);
-  }, [themeMode]);
-
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL?.replace(/\/$/, "") || ""}>
       <MonetagSPA />
-      <Layout mode={themeMode} onToggle={() => setThemeMode((c) => (c === "dark" ? "light" : "dark"))} />
+      <Layout />
     </BrowserRouter>
   );
 }
