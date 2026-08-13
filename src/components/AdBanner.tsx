@@ -4,6 +4,14 @@ import { useEffect, useRef } from "react";
   Universal Banner Ad Component
   Supports: Adsterra, Monetag Direct Banner, or any network
   Usage: <AdBanner network="adsterra" zoneId="YOUR_ZONE_ID" />
+
+  ─── HOW TO ENABLE ADS (money mode) ─────────────────────────────
+  1. Get a banner zone from your ad network (Adsterra / Monetag / AdSense)
+  2. Paste the zone ID into AD_CONFIG below (single source of truth)
+  3. Rebuild + deploy — ad slots render automatically everywhere
+
+  While AD_CONFIG zones are empty the component renders nothing
+  (no empty "Advertisement" boxes on the live site).
 */
 
 type Network = "adsterra" | "monetag-banner" | "custom";
@@ -14,10 +22,11 @@ interface AdBannerProps {
   className?: string;
 }
 
-const DEFAULT_ZONES: Record<Network, string> = {
-  adsterra: "PLACEHOLDER_ADSTERRA_ZONE",
-  "monetag-banner": "PLACEHOLDER_MONETAG_BANNER_ZONE",
-  custom: "",
+// ⭐ CONFIGURE YOUR REAL AD ZONES HERE (leave empty to hide slots)
+export const AD_CONFIG: Record<Network, { enabled: boolean; zoneId: string }> = {
+  adsterra: { enabled: false, zoneId: "" },
+  "monetag-banner": { enabled: false, zoneId: "" },
+  custom: { enabled: false, zoneId: "" },
 };
 
 export default function AdBanner({
@@ -27,11 +36,13 @@ export default function AdBanner({
 }: AdBannerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const injected = useRef(false);
-  const finalZone = zoneId || DEFAULT_ZONES[network];
+
+  // Real zone = explicit prop > AD_CONFIG > nothing (placeholder never ships)
+  const finalZone = zoneId || (AD_CONFIG[network].enabled ? AD_CONFIG[network].zoneId : "");
 
   useEffect(() => {
     if (injected.current || !containerRef.current) return;
-    if (finalZone.includes("PLACEHOLDER")) return; // wait for real zone
+    if (!finalZone) return; // no real zone configured yet — render nothing
 
     const container = containerRef.current;
     injected.current = true;
@@ -76,21 +87,9 @@ export default function AdBanner({
     };
   }, [network, finalZone]);
 
-  // If still placeholder, show a styled reserved slot so user knows where ad will appear
-  if (finalZone.includes("PLACEHOLDER")) {
-    return (
-      <div
-        ref={containerRef}
-        className={`ad-wrap ${className}`}
-      >
-        <span className="ad-label">Advertisement</span>
-        <div className="ad-slot" style={{ minHeight: 250 }}>
-          <span className="text-xs text-slate-600">
-            Ad zone ready — replace PLACEHOLDER in AdBanner.tsx
-          </span>
-        </div>
-      </div>
-    );
+  // No real zone configured — render nothing (no empty ad boxes on live site)
+  if (!finalZone) {
+    return null;
   }
 
   return (
