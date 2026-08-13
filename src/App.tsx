@@ -324,27 +324,15 @@ function MonetagSPA() {
   const location = useLocation();
 
   useEffect(() => {
-    // Try to reinitialize Monetag MultiTag on every route change in SPA
-    // MultiTag attaches onclick handlers; on SPA navigation we force a re-check
+    // Reinitialize Monetag MultiTag on route changes (SPA navigation).
+    // NOTE: only safe refresh calls — never remove/re-insert the script tag,
+    // that caused double-init and black-screen overlays on live.
     try {
       const w = window as any;
-      // Some Monetag tags expose a global reinit or push method
       if (w.monetag && typeof w.monetag.refresh === "function") {
         w.monetag.refresh();
       } else if (w.propellerads && typeof w.propellerads.push === "function") {
         w.propellerads.push({ zone: 264272 });
-      } else {
-        // Nuclear fallback: remove and re-insert the script tag to force reinit
-        const existing = document.querySelector('script[data-zone="264272"]');
-        if (existing && existing.parentNode) {
-          const newScript = document.createElement("script");
-          newScript.src = "https://quge5.com/88/tag.min.js";
-          newScript.async = true;
-          newScript.setAttribute("data-zone", "264272");
-          newScript.setAttribute("data-cfasync", "false");
-          existing.parentNode.removeChild(existing);
-          document.head.appendChild(newScript);
-        }
       }
     } catch {
       // silently ignore
