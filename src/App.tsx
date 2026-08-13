@@ -1,4 +1,4 @@
-import React, { type FormEvent, type ReactElement, type ReactNode, useEffect, useMemo, useState } from "react";
+import React, { lazy, Suspense, type FormEvent, type ReactElement, type ReactNode, useEffect, useMemo, useState } from "react";
 import {
   ArrowUpRight,
   Braces,
@@ -30,7 +30,7 @@ import {
   FileText,
   Terminal,
 } from "lucide-react";
-import { BrowserRouter, Link, NavLink, Route, Routes, useParams, useLocation } from "react-router-dom";
+import { BrowserRouter, Link, NavLink, Navigate, Route, Routes, useParams, useLocation } from "react-router-dom";
 import {
   cleanPrompt,
   estimateTokens,
@@ -68,29 +68,30 @@ type EngineTask = {
 };
 
 const PROMPT_TASKS_BY_ROLE = ENGINE.tasks as Record<string, EngineTask[]>;
-import HomePage from "./components/HomePage";
-import PromptOptimizer from "./components/PromptOptimizer";
-import PromptConverter from "./components/PromptConverter";
-import PersonaBuilder from "./components/PersonaBuilder";
-import PromptComparison from "./components/PromptComparison";
 import ToolCard from "./components/ToolCard";
 import BlogCard from "./components/BlogCard";
-import TemplatesPage from "./pages/TemplatesPage";
 import SearchModal from "./components/SearchModal";
 import AdBanner from "./components/AdBanner";
-import CategoriesPage from "./pages/CategoriesPage";
-import ImageGeneratorPage from "./pages/ImageGeneratorPage";
 import { TEMPLATES } from "./data/templates";
 
-import MegaPromptBuilder from "./components/MegaPromptBuilder";
-import PromptDebugger from "./components/PromptDebugger";
-import SecurityScanner from "./components/SecurityScanner";
-import PromptChainBuilder from "./components/PromptChainBuilder";
-import PromptTranslator from "./components/PromptTranslator";
-import ApiRequestBuilder from "./components/ApiRequestBuilder";
-import ImagePromptGenerator from "./components/demo/ImagePromptGenerator";
-import ContentSummarizer from "./components/demo/ContentSummarizer";
-import RegexGenerator from "./components/demo/RegexGenerator";
+// Lazy-loaded route components — keeps the main bundle small so the
+// first paint is fast on mobile (the site grows per tool, not per page)
+const HomePage = lazy(() => import("./components/HomePage"));
+const PromptOptimizer = lazy(() => import("./components/PromptOptimizer"));
+const PromptConverter = lazy(() => import("./components/PromptConverter"));
+const PersonaBuilder = lazy(() => import("./components/PersonaBuilder"));
+const PromptComparison = lazy(() => import("./components/PromptComparison"));
+const TemplatesPage = lazy(() => import("./pages/TemplatesPage"));
+const CategoriesPage = lazy(() => import("./pages/CategoriesPage"));
+const MegaPromptBuilder = lazy(() => import("./components/MegaPromptBuilder"));
+const PromptDebugger = lazy(() => import("./components/PromptDebugger"));
+const SecurityScanner = lazy(() => import("./components/SecurityScanner"));
+const PromptChainBuilder = lazy(() => import("./components/PromptChainBuilder"));
+const PromptTranslator = lazy(() => import("./components/PromptTranslator"));
+const ApiRequestBuilder = lazy(() => import("./components/ApiRequestBuilder"));
+const ImagePromptGenerator = lazy(() => import("./components/demo/ImagePromptGenerator"));
+const ContentSummarizer = lazy(() => import("./components/demo/ContentSummarizer"));
+const RegexGenerator = lazy(() => import("./components/demo/RegexGenerator"));
 
 type ToolMeta = {
   title: string;
@@ -427,6 +428,14 @@ function Layout() {
       />
 
       <main className="w-full">
+        <Suspense fallback={
+          <div className="flex min-h-[50vh] items-center justify-center">
+            <div className="flex flex-col items-center gap-3">
+              <div className="h-8 w-8 animate-spin rounded-full border-2 border-amber-500/30 border-t-amber-400" />
+              <p className="text-sm text-slate-500">Loading…</p>
+            </div>
+          </div>
+        }>
         <Routes>
           <Route path="/" element={<HomePage toolPages={TOOL_PAGES} />} />
           <Route path="/tools" element={<ToolsDirectoryPage />} />
@@ -472,11 +481,12 @@ function Layout() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/templates" element={<TemplatesPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
-          <Route path="/image-generator" element={<ImageGeneratorPage />} />
+          <Route path="/image-generator" element={<Navigate to="/tools/image-prompt-generator" replace />} />
           <Route path="/privacy-policy" element={<PrivacyPage />} />
           <Route path="/terms-of-service" element={<TermsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        </Suspense>
       </main>
 
       <footer className="border-t border-white/10 bg-[#070707] w-full">
