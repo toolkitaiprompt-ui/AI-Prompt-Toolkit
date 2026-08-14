@@ -31,7 +31,7 @@ export const AD_CONFIG: Record<Network, { enabled: boolean; zoneId: string }> = 
   adsterra: { enabled: false, zoneId: "" },
   "monetag-banner": { enabled: false, zoneId: "" },
   // Monetag direct-link zone — rendered as a visible sponsored box in every slot
-  custom: { enabled: true, zoneId: "https://omg10.com/4/11565896" },
+  custom: { enabled: true, zoneId: "https://omg10.com/4/11565897" },
   // ⭐ REAL BANNER CODE: Monetag dashboard → Sites → Add zone → Banner →
   //    Get tag → paste the full code below (script/ins snippet). It will
   //    render as a real banner in every ad slot.
