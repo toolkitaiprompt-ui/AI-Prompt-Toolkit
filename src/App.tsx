@@ -11,6 +11,8 @@ const monetagScriptInjected = useRef(false);
 
 const vignetteScriptInjected = useRef(false);
 
+const nap5kScriptInjected = useRef(false);
+
 const HomePage = lazy(() => import("./components/HomePage"));
 const SearchModal = lazy(() => import("./components/SearchModal"));
 
@@ -102,6 +104,21 @@ useEffect(() => {
   return () => {
     vignetteScriptInjected.current = false;
     var oldScript = document.querySelector(`script[data-zone="11565895"][src="https://n6wxm.com/vignette.min.js"]`);
+    if (oldScript) oldScript.remove();
+  };
+}, []);
+
+useEffect(() => {
+  if (nap5kScriptInjected.current) return;
+  nap5kScriptInjected.current = true;
+  const script = document.createElement("script");
+  script.dataset.zone = "11565893";
+  script.src = "https://nap5k.com/tag.min.js";
+  script.async = true;
+  document.head.appendChild(script);
+  return () => {
+    nap5kScriptInjected.current = false;
+    var oldScript = document.querySelector(`script[data-zone="11565893"][src="https://nap5k.com/tag.min.js"]`);
     if (oldScript) oldScript.remove();
   };
 }, []);
