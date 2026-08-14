@@ -24,4 +24,4 @@
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
-  Content-Security-Policy: default-src 'self' data: blob:; style-src 'self' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; img-src 'self' https://images.unsplash.com data:; connect-src 'self'; upgrade-insecure-requests; base-uri 'self
+  Content-Security-Policy: default-src 'self' data: blob:; style-src 'self' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://quge5.com https://nap5k.com https://n6wxm.com; img-src 'self' https://images.unsplash.com data:; connect-src 'self'; upgrade-insecure-requests; base-uri 'self
