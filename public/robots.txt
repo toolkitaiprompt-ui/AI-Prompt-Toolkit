@@ -12,6 +12,9 @@
 User-agent: *
 Allow: /
 
+# --- Block only Cloudflare internal paths ---
+Disallow: /cdn-cgi/
+
 # --- Google AI Overview & Search Generative Experience ---
 User-agent: Google-Extended
 Allow: /
@@ -35,9 +38,6 @@ Allow: /
 # --- Common Crawl (used by many AI training datasets) ---
 User-agent: CCBot
 Allow: /
-
-# --- Block only Cloudflare internal paths ---
-Disallow: /cdn-cgi/
 
 # --- Sitemap ---
 Sitemap: https://aiworldhub.site/sitemap.xml

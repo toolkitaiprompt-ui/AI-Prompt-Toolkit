@@ -2,8 +2,13 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { PROMPT_CATEGORIES } from "@/data/categories";
+import useSeo from "@/hooks/useSeo";
 
 export default function CategoriesPage() {
+  useSeo(
+    "AI Prompt Categories — Browse by Use Case | AI World Hub",
+    "Browse AI prompts by category — Writing & Content, Marketing & Sales, Development & Code, Business & Strategy, Education & Learning, and more. Find the perfect prompt.",
+  );
   return (
     <section className="site-container section-lg">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">

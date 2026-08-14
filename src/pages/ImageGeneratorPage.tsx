@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, ImagePlus } from "lucide-react";
 import { LiveStats } from "../components/OutputToolbar";
+import useSeo from "../hooks/useSeo";
 
 const STYLES = [
   "Photorealistic", "3D Render", "Anime", "Oil Painting", "Watercolor",
@@ -33,6 +34,10 @@ function buildPrompt(userIdea: string, style: string) {
 }
 
 export default function ImageGeneratorPage() {
+  useSeo(
+    "Free AI Image Prompt Generator — Midjourney & DALL-E | AI World Hub",
+    "Generate optimized AI image prompts for Midjourney, DALL-E 3, and Stable Diffusion. Select an art style and get copy-ready prompts instantly. Free in-browser tool.",
+  );
   const [prompt, setPrompt] = useState("");
   const [style, setStyle] = useState("Photorealistic");
   const [copiedModel, setCopiedModel] = useState<string | null>(null);

@@ -63,11 +63,11 @@ export default function RegexGenerator() {
     } else if (desc.includes("date")) {
       pattern = "^(0[1-9]|1[0-2])[/-](0[1-9]|[12][0-9]|3[01])[/-](19|20)\\d\\d$";
       explanation = "Matches MM/DD/YYYY or MM-DD-YYYY date formats from 1900-2099.";
-    } else if (desc.includes("ip") || desc.includes("address")) {
+    } else if (desc.includes("ip")) {
       pattern = "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
       explanation = "Matches IPv4 addresses with valid octet ranges (0-255).";
     } else {
-      pattern = "^" + description.replace(/\\s+/g, "\\s*").replace(/\\./g, "\\.") + "$";
+      pattern = "^" + description.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s+") + "$";
       explanation = "Basic pattern generated from your description. Refine your query for more specific patterns.";
     }
 
@@ -85,11 +85,15 @@ export default function RegexGenerator() {
     }
   };
 
-  const copy = () => {
+  const copy = async () => {
     if (!result) return;
-    navigator.clipboard.writeText(result.pattern);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+    try {
+      await navigator.clipboard.writeText(result.pattern);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // Clipboard unavailable (permissions/insecure context) — ignore
+    }
   };
 
   const loadPreset = (preset: typeof PRESETS[0]) => {

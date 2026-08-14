@@ -1,12 +1,20 @@
 import { useState, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Search, Copy, Check, Star, TrendingUp } from "lucide-react";
 import { TEMPLATES, CATEGORIES } from "@/data/templates";
+import useSeo from "@/hooks/useSeo";
 
 export default function TemplatesPage() {
-  const [search, setSearch] = useState("");
+  const [searchParams] = useSearchParams();
+  const [search, setSearch] = useState(searchParams.get("q") ?? "");
   const [activeCat, setActiveCat] = useState("All");
   const [copiedId, setCopiedId] = useState("");
+
+  useSeo(
+    "Free Prompt Templates Library — 100+ Ready-to-Use Prompts | AI World Hub",
+    "Browse 100+ ready-to-use AI prompt templates for writing, image generation, coding, video, and productivity. Copy, paste, get results instantly. Free prompt templates library.",
+  );
 
   const filtered = useMemo(() => {
     return TEMPLATES.filter(t => {
@@ -19,9 +27,13 @@ export default function TemplatesPage() {
   }, [search, activeCat]);
 
   const copyPrompt = async (id: string, prompt: string) => {
-    await navigator.clipboard.writeText(prompt);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(""), 2000);
+    try {
+      await navigator.clipboard.writeText(prompt);
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(""), 2000);
+    } catch {
+      // Clipboard unavailable (permissions/insecure context) — ignore
+    }
   };
 
   return (
@@ -44,6 +56,7 @@ export default function TemplatesPage() {
           value={search}
           onChange={e => setSearch(e.target.value)}
           placeholder="Search templates..."
+          aria-label="Search templates"
           className="w-full pl-12 pr-4 py-3.5 bg-slate-900/80 border border-slate-700/50 rounded-2xl text-white placeholder-slate-500 outline-none focus:border-amber-400/50 transition"
         />
       </div>

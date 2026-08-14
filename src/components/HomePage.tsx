@@ -21,6 +21,7 @@ import BlogCard from './BlogCard';
 import ToolCard from './ToolCard';
 import CategoryShowcase from './CategoryShowcase';
 import AdBanner from './AdBanner';
+import useSeo from '../hooks/useSeo';
 
 
 interface ToolMeta {
@@ -38,6 +39,7 @@ interface HomePageProps {
 }
 
 export default function HomePage({ toolPages }: HomePageProps) {
+  useSeo();
   const [currentTool, setCurrentTool] = useState(0);
   const [prompt, setPrompt] = useState('write a summary about AI risks in business');
   const [optimized, setOptimized] = useState('');
@@ -55,7 +57,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
 
   const stats = [
-    { icon: Zap, value: '16', label: 'Free Tools', color: 'from-blue-500 to-cyan-500' },
+    { icon: Zap, value: '19', label: 'Free Tools', color: 'from-blue-500 to-cyan-500' },
     { icon: Shield, value: '100%', label: 'In-Browser & Private', color: 'from-yellow-500 to-orange-500' },
     { icon: Clock, value: '0', label: 'Sign-ups Required', color: 'from-amber-500 to-amber-600' },
     { icon: Award, value: 'Free', label: 'Forever', color: 'from-green-500 to-emerald-500' },
@@ -64,7 +66,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
   const faqs = [
     {
       question: 'Is AI World Hub really free?',
-      answer: 'Yes! All 16 tools are completely free with no signup required. We offer optional Pro features for power users, but the core toolkit is 100% free forever.',
+      answer: 'Yes! All 19 tools are completely free with no signup required. We offer optional Pro features for power users, but the core toolkit is 100% free forever.',
     },
     {
       question: 'How does in-browser processing work?',
@@ -153,7 +155,7 @@ return (
 
               {/* Description */}
               <p className="text-lg sm:text-xl text-slate-300 mb-8 leading-relaxed">
-                16 professional tools to format, validate, optimize, and deploy AI prompts at scale.
+                19 professional tools to format, validate, optimize, and deploy AI prompts at scale.
                 No signup required. 100% in-browser. Enterprise-ready.
               </p>
 
@@ -181,7 +183,7 @@ return (
               <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                  <span className="text-sm text-slate-300">16 free tools</span>
+                  <span className="text-sm text-slate-300">19 free tools</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Shield className="w-5 h-5 text-cyan-400" />
@@ -368,7 +370,7 @@ return (
               <span className="text-sm text-amber-300 font-medium">Featured Tools</span>
             </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-                16 Professional Tools
+                19 Professional Tools
                 <br />
                 <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">
                   For Perfect Prompts
@@ -619,7 +621,7 @@ return (
               </span>
             </h2>
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Use 16 free, private, in-browser tools to create, optimize, and deploy prompts that deliver results.
+              Use 19 free, private, in-browser tools to create, optimize, and deploy prompts that deliver results.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

@@ -1,21 +1,22 @@
 /**
- * GENERATED FILE — do not hand-edit.
- * Source of truth: prerender.mjs route list + public/sitemap.xml priorities.
- * Regenerate with: node scripts/build-static-routes.mjs
+ * Static routes — hand-curated page list (titles/descriptions live here).
+ * Combined with programmatic /prompts/:role/:task routes in scripts/seo-routes.mjs.
+ * Priorities/changefreq mirrored from public/sitemap.xml.
+ * Rebuild with: node scripts/build-static-routes.mjs
  */
 export const STATIC_ROUTES = [
   {
     "path": "/",
-    "title": "Best Free AI Tools for Everyone | AI Prompt Engineering",
-    "desc": "Best free AI tools for everyone — 16 prompt engineering tools for building, formatting, validating, debugging, optimizing, securing, and translating AI prompts. JSON schema, token estimator, persona builder, mega prompt builder, prompt debugger & more. No sign-up, 100% in-browser.",
+    "title": "19 Free AI Prompt Engineering Tools | AI World Hub",
+    "desc": "Use 19 free AI prompt engineering tools to build, format, debug, secure, translate, and optimize prompts in your browser. No sign-up required.",
     "type": "home",
     "priority": 1,
     "changefreq": "daily"
   },
   {
     "path": "/tools",
-    "title": "Free AI Tools Directory — 16 Best Tools | AI World Hub",
-    "desc": "Choose from 16 free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, comparison tool, mega prompt builder, prompt debugger, security scanner, prompt chain builder, prompt translator & API request builder.",
+    "title": "Free AI Tools Directory — 19 Best Tools | AI World Hub",
+    "desc": "Choose from 19 free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, comparison tool, mega prompt builder, prompt debugger, security scanner, prompt chain builder, prompt translator, API request builder, image prompt generator, content summarizer & regex generator.",
     "type": "page",
     "priority": 0.9,
     "changefreq": "daily"
@@ -31,7 +32,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/about",
     "title": "About — Best Free AI Prompt Engineering Tools | AI World Hub",
-    "desc": "AI World Hub offers the best free AI prompt engineering tools for everyone — students, developers, marketers, and teams. 16 in-browser tools, no sign-up, no data collection.",
+    "desc": "AI World Hub offers the best free AI prompt engineering tools for everyone — students, developers, marketers, and teams. 19 in-browser tools, no sign-up, no data collection.",
     "type": "page",
     "priority": 0.6,
     "changefreq": "weekly"
@@ -231,7 +232,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/changelog",
     "title": "AI Prompt Toolkit Changelog — New Features & Updates",
-    "desc": "Track the latest updates to AI World Hub's 16 free AI prompt tools. New tools, features, and improvements in each release version. See what's new in our AI prompt toolkit.",
+    "desc": "Track the latest updates to AI World Hub's 19 free AI prompt tools. New tools, features, and improvements in each release version. See what's new in our AI prompt toolkit.",
     "type": "page",
     "priority": 0.6,
     "changefreq": "weekly"
@@ -624,246 +625,6 @@ export const STATIC_ROUTES = [
     "path": "/blog/ai-prompt-template-governance-for-growth",
     "title": "AI Prompt Template Governance for Growth — Free Guide | AI World Hub",
     "desc": "Learn how prompt template governance helps teams scale AI safely and sustainably. Free guide with governance templates and growth strategies.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/chatgpt-vs-claude-vs-gemini-comparison",
-    "title": "ChatGPT vs Claude vs Gemini — Which AI is Best? | AI World Hub",
-    "desc": "Complete comparison of ChatGPT, Claude, and Gemini in 2026. Compare features, pricing, writing quality, coding ability, and free tiers. Find the best AI for your needs.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/ai-for-beginners-complete-guide",
-    "title": "AI for Beginners — Complete Guide to Using AI Tools | AI World Hub",
-    "desc": "New to AI? This complete beginner guide covers everything — what AI is, how to use ChatGPT, best free AI tools, and how to write effective prompts. Start your AI journey here.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/free-ai-prompt-generator-guide",
-    "title": "Free AI Prompt Generator — How to Create Perfect Prompts | AI World Hub",
-    "desc": "Learn how to generate perfect AI prompts for any task. Free guide with prompt templates, formulas, and tools for ChatGPT, Claude, Gemini, and Midjourney.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/best-midjourney-prompts-2026",
-    "title": "Best Midjourney Prompts 2026 — 50+ Copy & Paste Examples | AI World Hub",
-    "desc": "50+ best Midjourney prompts for 2026 — photorealistic portraits, fantasy art, logo design, architecture, and more. Copy and paste examples with parameter settings.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/claude-vs-chatgpt-for-coding",
-    "title": "Claude vs ChatGPT for Coding — Which is Better? | AI World Hub",
-    "desc": "Claude vs ChatGPT for coding — compare accuracy, language support, debugging, and real-world performance. Find the best AI coding assistant for developers.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/best-ai-writing-tools-2026",
-    "title": "Best AI Writing Tools 2026 — Ranked & Tested | AI World Hub",
-    "desc": "Best AI writing tools in 2026 ranked by quality — ChatGPT, Claude, Jasper, Copy.ai, QuillBot, Grammarly & more. Compare free tiers, features, and writing quality.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/best-ai-image-generators-2026",
-    "title": "Best AI Image Generators 2026 — Free & Paid Ranked | AI World Hub",
-    "desc": "Best AI image generators in 2026 — Midjourney, DALL-E 3, Leonardo AI, Stable Diffusion, Canva AI & more. Compare quality, speed, pricing, and free tiers.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/ai-tools-for-students-free-guide",
-    "title": "Best Free AI Tools for Students 2026 — Complete Guide | AI World Hub",
-    "desc": "Best free AI tools for students — writing, research, studying, coding, and productivity. ChatGPT, Claude, Perplexity, Notion & more. No cost, no credit card required.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/ai-tools-for-small-business-free",
-    "title": "Best Free AI Tools for Small Business 2026 | AI World Hub",
-    "desc": "Best free AI tools for small business owners — marketing, customer support, content creation, automation, and analytics. Boost productivity without spending.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/best-chatgpt-alternatives-2026",
-    "title": "Best ChatGPT Alternatives 2026 — Free & Paid | AI World Hub",
-    "desc": "Best ChatGPT alternatives in 2026 — Claude, Gemini, Grok, Perplexity, Copilot & more. Compare features, free tiers, and find the right AI for your needs.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/best-ai-productivity-tools-2026",
-    "title": "Best AI Productivity Tools 2026 — Work Smarter | AI World Hub",
-    "desc": "Best AI productivity tools in 2026 — Notion AI, Perplexity, Gamma, Otter, Taskade & more. Automate tasks, save hours, and boost your output with free AI tools.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/best-ai-coding-tools-2026",
-    "title": "Best AI Coding Tools 2026 — Free & Paid Ranked | AI World Hub",
-    "desc": "Best AI coding tools in 2026 — GitHub Copilot, Cursor, Replit, Codeium, Tabnine & more. Compare features, pricing, and language support for developers.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/best-ai-video-tools-2026",
-    "title": "Best AI Video Tools 2026 — Create Videos with AI | AI World Hub",
-    "desc": "Best AI video tools in 2026 — Runway, Synthesia, Pika, CapCut, Descript & more. Create professional videos with AI — text-to-video, editing, avatars, and voiceovers.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/ai-art-styles-complete-guide",
-    "title": "AI Art Styles Complete Guide — Prompts for Every Style | AI World Hub",
-    "desc": "Complete guide to AI art styles — photorealistic, anime, oil painting, 3D render, cyberpunk, watercolor & more. Copy-paste prompts for Midjourney, DALL-E & Stable Diffusion.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/prompt-engineering-jobs-and-salary-guide",
-    "title": "Prompt Engineering Jobs & Salary Guide 2026 | AI World Hub",
-    "desc": "Complete guide to prompt engineering careers in 2026 — job roles, salary ranges ($126K-$270K), required skills, and how to get hired. Start your AI career here.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/chain-of-thought-prompting-guide",
-    "title": "Chain of Thought Prompting — Complete Guide | AI World Hub",
-    "desc": "Master chain of thought prompting — the technique that improves AI accuracy by 20-40%. Learn when to use it, example prompts, and advanced variations for complex reasoning.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/few-shot-prompting-guide",
-    "title": "Few-Shot Prompting Guide — Better AI Results with Examples | AI World Hub",
-    "desc": "Learn few-shot prompting — the technique of showing AI examples to get consistent, accurate results. Free guide with templates for classification, extraction, and formatting.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/rag-prompt-engineering-guide",
-    "title": "RAG Prompt Engineering Guide — Retrieval Augmented Generation | AI World Hub",
-    "desc": "Complete guide to RAG (Retrieval Augmented Generation) prompt engineering. Learn how to combine external data with AI prompts for accurate, up-to-date responses.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/ai-agent-prompts-guide",
-    "title": "AI Agent Prompts Guide — Build Autonomous AI Agents | AI World Hub",
-    "desc": "Learn how to write prompts for AI agents — autonomous systems that use tools, make decisions, and complete multi-step tasks. Free guide with agent prompt templates.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/system-prompts-complete-guide",
-    "title": "System Prompts Complete Guide — Master AI Behavior | AI World Hub",
-    "desc": "Complete guide to system prompts — the hidden instructions that define AI behavior, personality, and rules. Learn to write effective system prompts for any use case.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/ai-prompt-templates-library",
-    "title": "AI Prompt Templates Library — 50+ Free Templates | AI World Hub",
-    "desc": "50+ free AI prompt templates for writing, marketing, coding, business, education, and creative tasks. Copy-paste templates for ChatGPT, Claude, Gemini & Midjourney.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/gemini-prompts-best-practices",
-    "title": "Gemini Prompts Best Practices — Google AI Guide | AI World Hub",
-    "desc": "Learn the best practices for writing prompts for Google Gemini. Optimize prompts for Gemini's multimodal capabilities, Google Workspace integration, and search features.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/how-to-write-natural-ai-content",
-    "title": "How to Write Natural AI Content — Avoid Detection | AI World Hub",
-    "desc": "Learn how to write natural, human-sounding content with AI. Techniques for tone, structure, and editing that make AI-generated content indistinguishable from human writing.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/ai-marketing-complete-guide",
-    "title": "AI Marketing Complete Guide — Grow with AI Tools | AI World Hub",
-    "desc": "Complete guide to AI marketing — use ChatGPT, Claude, and AI tools for content, ads, email, SEO, and social media. Free strategies, prompt templates, and tool reviews.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/chatgpt-tips-and-tricks-2026",
-    "title": "50 ChatGPT Tips & Tricks 2026 — Pro Techniques | AI World Hub",
-    "desc": "50 pro ChatGPT tips and tricks for 2026 — hidden features, prompt techniques, workflow shortcuts, and power-user secrets. Get 10x better results from ChatGPT.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/ai-ethics-and-responsible-use-guide",
-    "title": "AI Ethics & Responsible Use Guide — Best Practices | AI World Hub",
-    "desc": "Complete guide to AI ethics and responsible use — bias, privacy, misinformation, copyright, and transparency. Best practices for individuals and organizations.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/ai-trends-2026-complete-guide",
-    "title": "AI Trends 2026 — What's Next in Artificial Intelligence | AI World Hub",
-    "desc": "Top AI trends for 2026 — agentic AI, local SLMs, multimodal models, AI governance, and the prompt engineering market reaching $672 million. Stay ahead of the curve.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/gpt-models-comparison-guide",
-    "title": "GPT Models Compared — GPT-4, GPT-4o, GPT-5 Guide | AI World Hub",
-    "desc": "Complete comparison of GPT models — GPT-3.5, GPT-4, GPT-4o, GPT-5 and beyond. Compare capabilities, speed, cost, and which model to use for each task.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/build-ai-chatbot-guide",
-    "title": "How to Build an AI Chatbot — Complete Guide 2026 | AI World Hub",
-    "desc": "Learn how to build an AI chatbot from scratch — choose a model, write system prompts, design conversation flows, and deploy. Free guide with code examples.",
-    "type": "blog",
-    "priority": 0.7,
-    "changefreq": "weekly"
-  },
-  {
-    "path": "/blog/cursor-ai-complete-guide",
-    "title": "Cursor AI Complete Guide — Best AI Code Editor | AI World Hub",
-    "desc": "Complete guide to Cursor AI — the AI-native code editor. Learn features, shortcuts, prompt techniques, and how Cursor compares to GitHub Copilot and VS Code.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"

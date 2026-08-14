@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { Plus, Trash2, Copy, Download, Layers, ArrowDown } from 'lucide-react';
 import { exportChainAsMarkdown, copyAllChainSteps, type ChainStep } from '../lib/toolkit';
 import { LiveStats } from './OutputToolbar';
@@ -11,12 +11,13 @@ export default function PromptChainBuilder() {
     { id: 2, prompt: '', outputFormat: 'Text' },
   ]);
   const [copied, setCopied] = useState(false);
+  const nextIdRef = useRef(3);
 
   const activeSteps = useMemo(() => steps.filter((s) => s.prompt.trim()), [steps]);
 
   const addStep = () => {
     if (steps.length >= 5) return;
-    setSteps((prev) => [...prev, { id: prev.length + 1, prompt: '', outputFormat: 'Text' }]);
+    setSteps((prev) => [...prev, { id: nextIdRef.current++, prompt: '', outputFormat: 'Text' }]);
   };
 
   const removeStep = (id: number) => {
@@ -28,11 +29,15 @@ export default function PromptChainBuilder() {
     setSteps((prev) => prev.map((s) => (s.id === id ? { ...s, [field]: value } : s)));
   };
 
-  const handleCopyAll = () => {
+  const handleCopyAll = async () => {
     const text = copyAllChainSteps(steps);
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard unavailable (permissions/insecure context) — ignore
+    }
   };
 
   const handleDownload = () => {
@@ -42,8 +47,10 @@ export default function PromptChainBuilder() {
     const a = document.createElement('a');
     a.href = url;
     a.download = 'prompt-chain.md';
+    document.body.appendChild(a);
     a.click();
-    URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   return (

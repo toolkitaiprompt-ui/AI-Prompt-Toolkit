@@ -1,4 +1,4 @@
-import React, { type FormEvent, type ReactElement, type ReactNode, useEffect, useMemo, useState } from "react";
+import React, { type FormEvent, type ReactElement, type ReactNode, lazy, Suspense, useEffect, useMemo, useState } from "react";
 import {
   ArrowUpRight,
   Braces,
@@ -14,8 +14,6 @@ import {
   Zap,
   ArrowLeftRight,
   UserCircle,
-  Sun,
-  Moon,
   Search,
   Menu,
   X,
@@ -46,7 +44,12 @@ import {
 } from "./lib/toolkit";
 import OutputToolbar, { LiveStats } from "./components/OutputToolbar";
 import { BLOG_POSTS, type BlogPost, getBlogPostBySlug } from "./data/blogPosts";
-import { getSeoForPath } from "./seoConfig";
+import { TEMPLATES } from "./data/templates";
+import useSeo from "./hooks/useSeo";
+import ToolCard from "./components/ToolCard";
+import BlogCard from "./components/BlogCard";
+import SearchModal from "./components/SearchModal";
+import AdBanner from "./components/AdBanner";
 import ENGINE from "./data/prompt-engine.json";
 import {
   articleJsonLd,
@@ -70,30 +73,11 @@ type EngineTask = {
 };
 
 const PROMPT_TASKS_BY_ROLE = ENGINE.tasks as Record<string, EngineTask[]>;
-import HomePage from "./components/HomePage";
-import PromptOptimizer from "./components/PromptOptimizer";
-import PromptConverter from "./components/PromptConverter";
-import PersonaBuilder from "./components/PersonaBuilder";
-import PromptComparison from "./components/PromptComparison";
-import ToolCard from "./components/ToolCard";
-import BlogCard from "./components/BlogCard";
-import TemplatesPage from "./pages/TemplatesPage";
-import SearchModal from "./components/SearchModal";
-import AdBanner from "./components/AdBanner";
-import CategoriesPage from "./pages/CategoriesPage";
-import ImageGeneratorPage from "./pages/ImageGeneratorPage";
+const HomePage = lazy(() => import("./components/HomePage"));
 
-import MegaPromptBuilder from "./components/MegaPromptBuilder";
-import PromptDebugger from "./components/PromptDebugger";
-import SecurityScanner from "./components/SecurityScanner";
-import PromptChainBuilder from "./components/PromptChainBuilder";
-import PromptTranslator from "./components/PromptTranslator";
-import ApiRequestBuilder from "./components/ApiRequestBuilder";
-import ImagePromptGenerator from "./components/demo/ImagePromptGenerator";
-import ContentSummarizer from "./components/demo/ContentSummarizer";
-import RegexGenerator from "./components/demo/RegexGenerator";
-
-type ThemeMode = "light" | "dark";
+const TemplatesPage = lazy(() => import("./pages/TemplatesPage"));
+const CategoriesPage = lazy(() => import("./pages/CategoriesPage"));
+const ImageGeneratorPage = lazy(() => import("./pages/ImageGeneratorPage"));
 
 type ToolMeta = {
   title: string;
@@ -266,59 +250,6 @@ function getBlogPostsForTool(toolSlug: string) {
   return BLOG_POSTS.filter((post) => post.relatedToolSlugs.includes(toolSlug));
 }
 
-function useSeo(title?: string, description?: string, keywords?: string) {
-  const configSeo = getSeoForPath(window.location.pathname);
-
-  const finalTitle = configSeo.title || title || "AI World Hub";
-  const finalDesc = configSeo.description || description || "";
-  const finalKeywords = configSeo.keywords || keywords || "";
-
-  useEffect(() => {
-    document.title = finalTitle;
-
-    const ensureMeta = (name: string) => {
-      let tag = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
-      if (!tag) { tag = document.createElement("meta"); tag.setAttribute("name", name); document.head.appendChild(tag); }
-      return tag;
-    };
-
-    const ensurePropertyMeta = (property: string) => {
-      let tag = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement | null;
-      if (!tag) { tag = document.createElement("meta"); tag.setAttribute("property", property); document.head.appendChild(tag); }
-      return tag;
-    };
-
-    const ensureLink = (rel: string) => {
-      let tag = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement | null;
-      if (!tag) { tag = document.createElement("link"); tag.setAttribute("rel", rel); document.head.appendChild(tag); }
-      return tag;
-    };
-
-    ensureMeta("description").setAttribute("content", finalDesc);
-    ensureMeta("keywords").setAttribute("content", finalKeywords);
-    ensureMeta("robots").setAttribute("content", "index, follow");
-    ensureMeta("twitter:card").setAttribute("content", "summary_large_image");
-    ensureMeta("twitter:title").setAttribute("content", finalTitle);
-    ensureMeta("twitter:description").setAttribute("content", finalDesc);
-    ensurePropertyMeta("og:title").setAttribute("content", finalTitle);
-    ensurePropertyMeta("og:description").setAttribute("content", finalDesc);
-    ensurePropertyMeta("og:type").setAttribute("content", "website");
-    ensureLink("canonical").setAttribute("href", window.location.href);
-
-    // Hreflang injection for international SEO (#10)
-    const hreflangs = ["en", "en-US", "en-GB", "en-IN", "x-default"];
-    // Remove existing hreflang to avoid duplicates
-    document.querySelectorAll('link[rel="alternate"][hreflang]').forEach((el) => el.remove());
-    hreflangs.forEach((lang) => {
-      const link = document.createElement("link");
-      link.setAttribute("rel", "alternate");
-      link.setAttribute("hreflang", lang);
-      link.setAttribute("href", window.location.href.split('?')[0]);
-      document.head.appendChild(link);
-    });
-  }, [finalTitle, finalDesc, finalKeywords]);
-}
-
 function MonetagSPA() {
   const location = useLocation();
 
@@ -353,20 +284,7 @@ function MonetagSPA() {
   return null;
 }
 
-function ThemeToggle({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
-  return (
-    <button
-      type="button"
-      onClick={onToggle}
-      className="rounded-full border border-slate-700 px-3 py-1 text-sm text-slate-200 transition hover:bg-slate-800"
-      aria-label="Toggle dark mode"
-    >
-      {mode === "dark" ? "Light" : "Dark"} Mode
-    </button>
-  );
-}
-
-function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
+function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
@@ -414,9 +332,6 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
             <button type="button" onClick={() => setSearchOpen(true)} className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center hover:bg-white/5 transition text-slate-400 hover:text-white" aria-label="Search">
               <Search className="w-4 h-4" />
             </button>
-            <button type="button" onClick={onToggle} className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center hover:bg-white/5 transition text-slate-400 hover:text-amber-300" aria-label="Toggle theme">
-              {mode === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
           </div>
           {/* Mobile hamburger */}
           <button
@@ -443,13 +358,6 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
               <NavLink to="/blog" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Blog</NavLink>
               <NavLink to="/about" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>About</NavLink>
             </nav>
-            <div className="border-t border-white/[0.06] mt-2 pt-2">
-              <button onClick={() => { onToggle(); setMobileMenuOpen(false); }}
-                className="w-full flex items-center justify-center gap-2 rounded-lg border border-white/[0.06] px-4 py-2.5 text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all">
-                {mode === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-                {mode === "dark" ? "Light Mode" : "Dark Mode"}
-              </button>
-            </div>
           </div>
         )}
       </header>
@@ -459,12 +367,12 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
         onClose={() => setSearchOpen(false)}
         tools={TOOL_PAGES}
         blogPosts={BLOG_POSTS}
-        templates={[]}
+        templates={TEMPLATES}
       />
 
       <main className="w-full">
         <Routes>
-          <Route path="/" element={<HomePage toolPages={TOOL_PAGES} />} />
+          <Route path="/" element={<Suspense fallback={<ToolSkeleton />}><HomePage toolPages={TOOL_PAGES} /></Suspense>} />
           <Route path="/tools" element={<ToolsDirectoryPage />} />
           <Route path="/tools/prompt-variable-extractor" element={<PromptVariableExtractorPage />} />
           <Route path="/tools/json-schema-generator" element={<JsonSchemaGeneratorPage />} />
@@ -473,29 +381,27 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route
             path="/tools/advanced-prompt-optimizer"
             element={
-              <ToolContainer
+              <LazyPromptOptimizer
                 title="Advanced Prompt Optimizer"
                 description="Polish prompts with advanced structuring — role, format, tone, and constraint patterns applied in your browser."
                 toolSlug="advanced-prompt-optimizer"
                 tool={TOOL_BY_SLUG.get("advanced-prompt-optimizer")!}
-              >
-                <PromptOptimizer />
-              </ToolContainer>
+              />
             }
           />
           <Route path="/tools/prompt-cleaner" element={<PromptCleanerPage />} />
-          <Route path="/tools/prompt-converter" element={<ToolContainer title="Prompt Converter" toolSlug="prompt-converter" description="Convert ChatGPT prompts to Claude, Gemini, or Cursor format." tool={TOOL_BY_SLUG.get("prompt-converter")!}><PromptConverter /></ToolContainer>} />
-          <Route path="/tools/persona-builder" element={<ToolContainer title="AI Persona Builder" toolSlug="persona-builder" description="Generate expert system prompts for different roles like Marketer, Developer, or Analyst." tool={TOOL_BY_SLUG.get("persona-builder")!}><PersonaBuilder /></ToolContainer>} />
-          <Route path="/tools/prompt-comparison" element={<ToolContainer title="Prompt Comparison Tool" toolSlug="prompt-comparison" description="Compare two prompts side by side. See token count, word count, readability, structure score, clarity score, and visual diff highlighting." tool={TOOL_BY_SLUG.get("prompt-comparison")!}><PromptComparison /></ToolContainer>} />
-          <Route path="/tools/mega-prompt-builder" element={<ToolContainer title="Mega Prompt Builder" toolSlug="mega-prompt-builder" description="Build structured mega prompts with an 8-step wizard — role, task, context, audience, format, tone, constraints, and examples." tool={TOOL_BY_SLUG.get("mega-prompt-builder")!}><MegaPromptBuilder /></ToolContainer>} />
-          <Route path="/tools/prompt-debugger" element={<ToolContainer title="Prompt Debugger" toolSlug="prompt-debugger" description="Diagnose AI prompts with a health score (0-100), 12+ issue detectors, and instant auto-fix suggestions." tool={TOOL_BY_SLUG.get("prompt-debugger")!}><PromptDebugger /></ToolContainer>} />
-          <Route path="/tools/security-scanner" element={<ToolContainer title="Prompt Security Scanner" toolSlug="security-scanner" description="Scan prompts for injection attacks, jailbreaks, PII leaks, and security threats. Risk level scoring with actionable remediation." tool={TOOL_BY_SLUG.get("security-scanner")!}><SecurityScanner /></ToolContainer>} />
-          <Route path="/tools/prompt-chain-builder" element={<ToolContainer title="Prompt Chain Builder" toolSlug="prompt-chain-builder" description="Chain up to 5 sequential prompt steps with different output formats. Copy all steps or export as Markdown." tool={TOOL_BY_SLUG.get("prompt-chain-builder")!}><PromptChainBuilder /></ToolContainer>} />
-          <Route path="/tools/prompt-translator" element={<ToolContainer title="Prompt Translator" toolSlug="prompt-translator" description="Translate prompts into 8 languages — Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, Arabic — while preserving variables." tool={TOOL_BY_SLUG.get("prompt-translator")!}><PromptTranslator /></ToolContainer>} />
-          <Route path="/tools/api-request-builder" element={<ToolContainer title="API Request Builder" toolSlug="api-request-builder" description="Build API requests for OpenAI, Anthropic, and Gemini with model selection, temperature, max tokens, and cURL export." tool={TOOL_BY_SLUG.get("api-request-builder")!}><ApiRequestBuilder /></ToolContainer>} />
-          <Route path="/tools/image-prompt-generator" element={<ToolContainer title="AI Image Prompt Generator" toolSlug="image-prompt-generator" description="Generate production-ready image prompts for DALL-E, Midjourney, and Stable Diffusion with style, mood, and camera controls." tool={TOOL_BY_SLUG.get("image-prompt-generator")!}><ImagePromptGenerator /></ToolContainer>} />
-          <Route path="/tools/content-summarizer" element={<ToolContainer title="AI Content Summarizer" toolSlug="content-summarizer" description="Summarize articles, reports, and long text into TL;DR, bullets, paragraphs, or academic abstracts with reduction stats." tool={TOOL_BY_SLUG.get("content-summarizer")!}><ContentSummarizer /></ToolContainer>} />
-          <Route path="/tools/regex-generator" element={<ToolContainer title="AI Regex Generator" toolSlug="regex-generator" description="Generate regex patterns from plain English. Test against strings and learn syntax with built-in cheatsheet." tool={TOOL_BY_SLUG.get("regex-generator")!}><RegexGenerator /></ToolContainer>} />
+          <Route path="/tools/prompt-converter" element={<LazyPromptConverter title="Prompt Converter" toolSlug="prompt-converter" description="Convert ChatGPT prompts to Claude, Gemini, or Cursor format." tool={TOOL_BY_SLUG.get("prompt-converter")!} />} />
+          <Route path="/tools/persona-builder" element={<LazyPersonaBuilder title="AI Persona Builder" toolSlug="persona-builder" description="Generate expert system prompts for different roles like Marketer, Developer, or Analyst." tool={TOOL_BY_SLUG.get("persona-builder")!} />} />
+          <Route path="/tools/prompt-comparison" element={<LazyPromptComparison title="Prompt Comparison Tool" toolSlug="prompt-comparison" description="Compare two prompts side by side. See token count, word count, readability, structure score, clarity score, and visual diff highlighting." tool={TOOL_BY_SLUG.get("prompt-comparison")!} />} />
+          <Route path="/tools/mega-prompt-builder" element={<LazyMegaPromptBuilder title="Mega Prompt Builder" toolSlug="mega-prompt-builder" description="Build structured mega prompts with an 8-step wizard — role, task, context, audience, format, tone, constraints, and examples." tool={TOOL_BY_SLUG.get("mega-prompt-builder")!} />} />
+          <Route path="/tools/prompt-debugger" element={<LazyPromptDebugger title="Prompt Debugger" toolSlug="prompt-debugger" description="Diagnose AI prompts with a health score (0-100), 12+ issue detectors, and instant auto-fix suggestions." tool={TOOL_BY_SLUG.get("prompt-debugger")!} />} />
+          <Route path="/tools/security-scanner" element={<LazySecurityScanner title="Prompt Security Scanner" toolSlug="security-scanner" description="Scan prompts for injection attacks, jailbreaks, PII leaks, and security threats. Risk level scoring with actionable remediation." tool={TOOL_BY_SLUG.get("security-scanner")!} />} />
+          <Route path="/tools/prompt-chain-builder" element={<LazyPromptChainBuilder title="Prompt Chain Builder" toolSlug="prompt-chain-builder" description="Chain up to 5 sequential prompt steps with different output formats. Copy all steps or export as Markdown." tool={TOOL_BY_SLUG.get("prompt-chain-builder")!} />} />
+          <Route path="/tools/prompt-translator" element={<LazyPromptTranslator title="Prompt Translator" toolSlug="prompt-translator" description="Translate prompts into 8 languages — Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, Arabic — while preserving variables." tool={TOOL_BY_SLUG.get("prompt-translator")!} />} />
+          <Route path="/tools/api-request-builder" element={<LazyApiRequestBuilder title="API Request Builder" toolSlug="api-request-builder" description="Build API requests for OpenAI, Anthropic, and Gemini with model selection, temperature, max tokens, and cURL export." tool={TOOL_BY_SLUG.get("api-request-builder")!} />} />
+          <Route path="/tools/image-prompt-generator" element={<LazyImagePromptGenerator title="AI Image Prompt Generator" toolSlug="image-prompt-generator" description="Generate production-ready image prompts for DALL-E, Midjourney, and Stable Diffusion with style, mood, and camera controls." tool={TOOL_BY_SLUG.get("image-prompt-generator")!} />} />
+          <Route path="/tools/content-summarizer" element={<LazyContentSummarizer title="AI Content Summarizer" toolSlug="content-summarizer" description="Summarize articles, reports, and long text into TL;DR, bullets, paragraphs, or academic abstracts with reduction stats." tool={TOOL_BY_SLUG.get("content-summarizer")!} />} />
+          <Route path="/tools/regex-generator" element={<LazyRegexGenerator title="AI Regex Generator" toolSlug="regex-generator" description="Generate regex patterns from plain English. Test against strings and learn syntax with built-in cheatsheet." tool={TOOL_BY_SLUG.get("regex-generator")!} />} />
           <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />
           <Route path="/playground" element={<PlaygroundPage />} />
           <Route path="/prompts" element={<PromptsDirectoryPage />} />
@@ -506,9 +412,9 @@ function Layout({ mode, onToggle }: { mode: ThemeMode; onToggle: () => void }) {
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/templates" element={<TemplatesPage />} />
-          <Route path="/categories" element={<CategoriesPage />} />
-          <Route path="/image-generator" element={<ImageGeneratorPage />} />
+          <Route path="/templates" element={<Suspense fallback={<ToolSkeleton />}><TemplatesPage /></Suspense>} />
+          <Route path="/categories" element={<Suspense fallback={<ToolSkeleton />}><CategoriesPage /></Suspense>} />
+          <Route path="/image-generator" element={<Suspense fallback={<ToolSkeleton />}><ImageGeneratorPage /></Suspense>} />
           <Route path="/privacy-policy" element={<PrivacyPage />} />
           <Route path="/terms-of-service" element={<TermsPage />} />
           <Route path="*" element={<NotFoundPage />} />
@@ -599,8 +505,8 @@ function SectionShell({
 function ToolsDirectoryPage() {
   return (
     <SectionShell
-      title="Free AI Tools Directory — 16 Best Tools"
-      description="Choose from 16 free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, comparison tool, mega prompt builder, debugger, security scanner, chain builder, translator, and API request builder."
+      title="Free AI Tools Directory — 19 Best Tools"
+      description="Choose from 19 free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, comparison tool, mega prompt builder, debugger, security scanner, chain builder, translator, API request builder, image prompt generator, content summarizer, and regex generator."
       keywords="Best AI Tools, Free AI Tools, AI Tools Directory, Prompt Engineering Tools, AI Prompt Builder, ChatGPT Prompt Tools"
     >
       <div className="space-y-3">
@@ -609,7 +515,7 @@ function ToolsDirectoryPage() {
         </p>
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">AI World Hub</h1>
         <p className="max-w-3xl text-base sm:text-lg text-slate-400">
-          Choose from 16 precision tools for prompt engineering teams. Build, format, validate, debug, optimize, secure, and translate — all in the browser.
+          Choose from 19 precision tools for prompt engineering teams. Build, format, validate, debug, optimize, secure, and translate — all in the browser.
         </p>
       </div>
 
@@ -623,6 +529,48 @@ function ToolsDirectoryPage() {
     </SectionShell>
   );
 }
+
+function ToolSkeleton() {
+  return (
+    <div className="space-y-4 animate-pulse">
+      <div className="h-24 rounded-xl bg-slate-800/60" />
+      <div className="h-64 rounded-xl bg-slate-800/40" />
+      <div className="h-32 rounded-xl bg-slate-800/40" />
+    </div>
+  );
+}
+
+function lazyTool(loader: () => Promise<{ default: React.ComponentType }>) {
+  const Component = lazy(loader);
+  return function LazyTool(props: {
+    title: string;
+    description: string;
+    toolSlug: string;
+    tool: ToolMeta;
+  }) {
+    return (
+      <ToolContainer {...props}>
+        <Suspense fallback={<ToolSkeleton />}>
+          <Component />
+        </Suspense>
+      </ToolContainer>
+    );
+  };
+}
+
+const LazyPromptOptimizer = lazyTool(() => import("./components/PromptOptimizer"));
+const LazyPromptConverter = lazyTool(() => import("./components/PromptConverter"));
+const LazyPersonaBuilder = lazyTool(() => import("./components/PersonaBuilder"));
+const LazyPromptComparison = lazyTool(() => import("./components/PromptComparison"));
+const LazyMegaPromptBuilder = lazyTool(() => import("./components/MegaPromptBuilder"));
+const LazyPromptDebugger = lazyTool(() => import("./components/PromptDebugger"));
+const LazySecurityScanner = lazyTool(() => import("./components/SecurityScanner"));
+const LazyPromptChainBuilder = lazyTool(() => import("./components/PromptChainBuilder"));
+const LazyPromptTranslator = lazyTool(() => import("./components/PromptTranslator"));
+const LazyApiRequestBuilder = lazyTool(() => import("./components/ApiRequestBuilder"));
+const LazyImagePromptGenerator = lazyTool(() => import("./components/demo/ImagePromptGenerator"));
+const LazyContentSummarizer = lazyTool(() => import("./components/demo/ContentSummarizer"));
+const LazyRegexGenerator = lazyTool(() => import("./components/demo/RegexGenerator"));
 
 function ToolContainer({
   title, description, toolSlug, tool, children,
@@ -1191,7 +1139,7 @@ function AboutPage() {
 
         <div className="grid gap-6 sm:grid-cols-3">
           <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
-            <p className="text-3xl font-bold text-white">16</p>
+            <p className="text-3xl font-bold text-white">19</p>
             <p className="mt-1 text-sm text-slate-400">Free Tools</p>
           </div>
           <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
@@ -2494,21 +2442,10 @@ function NotFoundPage() {
 }
 
 export default function App() {
-  const [themeMode, setThemeMode] = useState<ThemeMode>(() => {
-    const stored = localStorage.getItem("theme-mode");
-    return stored === "dark" ? "dark" : "light";
-  });
-
-  useEffect(() => {
-    const root = document.documentElement;
-    root.classList.toggle("dark", themeMode === "dark");
-    localStorage.setItem("theme-mode", themeMode);
-  }, [themeMode]);
-
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL?.replace(/\/$/, "") || ""}>
       <MonetagSPA />
-      <Layout mode={themeMode} onToggle={() => setThemeMode((c) => (c === "dark" ? "light" : "dark"))} />
+      <Layout />
     </BrowserRouter>
   );
 }

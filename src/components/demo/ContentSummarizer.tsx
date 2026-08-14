@@ -12,9 +12,10 @@ const DEMO_SUMMARIES: Record<string, (text: string) => string> = {
   "tl;dr": (text) => {
     const sentences = text.split(/[.!?]+/).filter((s) => s.trim().length > 10);
     if (sentences.length === 0) return "Please enter some content to summarize.";
-    const first = sentences[0]?.trim() || "";
-    const last = sentences[sentences.length - 1]?.trim() || "";
-    return `${first}. ${last}.`.replace(/\.{2,}/g, ".");
+    if (sentences.length === 1) return `${sentences[0].trim()}.`;
+    const first = sentences[0].trim();
+    const last = sentences[sentences.length - 1].trim();
+    return `${first}. ${last}.`;
   },
   bullet: (text) => {
     const sentences = text.split(/[.!?]+/).filter((s) => s.trim().length > 15);
@@ -58,10 +59,14 @@ export default function ContentSummarizer() {
     return { words, sentences, chars, resultWords, reduction };
   }, [input, result]);
 
-  const copy = () => {
-    navigator.clipboard.writeText(result);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(result);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // Clipboard unavailable (permissions/insecure context) — ignore
+    }
   };
 
   return (

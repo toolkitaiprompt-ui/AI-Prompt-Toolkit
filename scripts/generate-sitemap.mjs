@@ -31,5 +31,8 @@ for (const route of ALL_ROUTES) {
 lines.push("</urlset>");
 
 const out = join(ROOT, "public", "sitemap.xml");
+const distOut = join(ROOT, "dist", "public", "sitemap.xml");
 writeFileSync(out, lines.join("\n") + "\n");
+writeFileSync(distOut, lines.join("\n") + "\n");
 console.log(`✅ Regenerated ${out} — ${ALL_ROUTES.length} URLs (${Buffer.byteLength(lines.join("\n"), "utf8")} bytes)`);
+console.log(`✅ Synced ${distOut}`);

@@ -26,10 +26,14 @@ export default function ImagePromptGenerator() {
     setHistory((prev) => [chosen, ...prev].slice(0, 5));
   };
 
-  const copy = () => {
-    navigator.clipboard.writeText(result);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(result);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // Clipboard unavailable (permissions/insecure context) — ignore
+    }
   };
 
   return (
@@ -37,11 +41,12 @@ export default function ImagePromptGenerator() {
       {/* Input Section */}
       <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 space-y-5">
         <div className="space-y-2">
-          <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
+          <label htmlFor="ipg-subject" className="flex items-center gap-2 text-sm font-medium text-slate-300">
             <ImageIcon className="h-4 w-4 text-amber-400" />
             Subject / Scene Description
           </label>
           <input
+            id="ipg-subject"
             type="text"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
@@ -52,8 +57,9 @@ export default function ImagePromptGenerator() {
 
         <div className="grid gap-4 sm:grid-cols-3">
           <div className="space-y-2">
-            <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">Art Style</label>
+            <label htmlFor="ipg-style" className="text-xs font-medium text-slate-400 uppercase tracking-wider">Art Style</label>
             <select
+              id="ipg-style"
               value={style}
               onChange={(e) => setStyle(e.target.value)}
               className="w-full rounded-xl border border-slate-700 bg-slate-950 p-2.5 text-sm text-slate-100 outline-none transition focus:border-amber-400/60"
@@ -64,8 +70,9 @@ export default function ImagePromptGenerator() {
             </select>
           </div>
           <div className="space-y-2">
-            <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">Mood</label>
+            <label htmlFor="ipg-mood" className="text-xs font-medium text-slate-400 uppercase tracking-wider">Mood</label>
             <select
+              id="ipg-mood"
               value={mood}
               onChange={(e) => setMood(e.target.value)}
               className="w-full rounded-xl border border-slate-700 bg-slate-950 p-2.5 text-sm text-slate-100 outline-none transition focus:border-amber-400/60"
@@ -76,8 +83,9 @@ export default function ImagePromptGenerator() {
             </select>
           </div>
           <div className="space-y-2">
-            <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">Camera Angle</label>
+            <label htmlFor="ipg-camera" className="text-xs font-medium text-slate-400 uppercase tracking-wider">Camera Angle</label>
             <select
+              id="ipg-camera"
               value={camera}
               onChange={(e) => setCamera(e.target.value)}
               className="w-full rounded-xl border border-slate-700 bg-slate-950 p-2.5 text-sm text-slate-100 outline-none transition focus:border-amber-400/60"

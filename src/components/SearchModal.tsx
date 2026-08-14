@@ -122,10 +122,11 @@ export default function SearchModal({
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder="Search tools, templates, blog posts..."
+            aria-label="Search tools, templates, and blog posts"
             className="flex-1 bg-transparent text-white text-base outline-none placeholder-slate-500"
           />
           <kbd className="hidden sm:inline-flex px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-xs font-mono">ESC</kbd>
-          <button onClick={onClose} className="p-1 rounded-lg hover:bg-slate-700/50 transition">
+          <button onClick={onClose} aria-label="Close search" className="p-1 rounded-lg hover:bg-slate-700/50 transition">
             <X className="w-5 h-5 text-slate-400" />
           </button>
         </div>

@@ -2,7 +2,7 @@
   <br/>
   <h1 align="center" style="font-size:2.8rem;font-weight:700;background:linear-gradient(135deg,#FFD700,#FF1493);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">AI World Hub</h1>
 
-  <p align="center"><strong>16 Free In-Browser Tools to Build, Format, Debug &amp; Optimize Your AI Prompts</strong></p>
+  <p align="center"><strong>19 Free In-Browser Tools to Build, Format, Debug &amp; Optimize Your AI Prompts</strong></p>
 
   <p align="center">
     <a href="https://aiworldhub.site" target="_blank">🌐 Live Website</a> •
@@ -38,7 +38,7 @@ Anyone using AI tools — students, developers, marketers, writers, and teams. I
 
 | Feature | Description |
 |---------|-------------|
-| 🔧 **16 Free AI Tools** | Variable Extractor, JSON Schema Generator, JSON Validator, Token Estimator, Prompt Formatter, Cleaner, Converter, Persona Builder, Optimizer, Comparison Tool, Mega Prompt Builder, Prompt Debugger, Security Scanner, Prompt Chain Builder, Prompt Translator, API Request Builder |
+| 🔧 **19 Free AI Tools** | Variable Extractor, JSON Schema Generator, JSON Validator, Token Estimator, Prompt Formatter, Cleaner, Converter, Persona Builder, Optimizer, Comparison Tool, Mega Prompt Builder, Prompt Debugger, Security Scanner, Prompt Chain Builder, Prompt Translator, API Request Builder, Image Prompt Generator, Content Summarizer, Regex Generator |
 | 🎮 **AI Prompt Playground** | Interactive playground with blog, code, and email templates, live token estimation, and prompt health scoring |
 | 📝 **Prompt Library** | 225+ ready-to-use prompts across 15 roles (ChatGPT, Content Writer, Developer, Marketer, SEO Specialist, and more) |
 | 📋 **Changelog** | Version history tracking all tool updates and new features |
@@ -47,7 +47,7 @@ Anyone using AI tools — students, developers, marketers, writers, and teams. I
 | ⚡ **Fast** | Built with Vite 7 + React 19. Deployed globally on Cloudflare Pages |
 | 📱 **Responsive** | Works on desktop, tablet, and mobile |
 
-### 🔧 All 16 Tools
+### 🔧 All 19 Tools
 
 | # | Tool | What It Does |
 |---|------|-------------|
@@ -67,6 +67,9 @@ Anyone using AI tools — students, developers, marketers, writers, and teams. I
 | 14 | **Prompt Chain Builder** | Chain up to 5 sequential prompt steps with different output formats and Markdown export |
 | 15 | **Prompt Translator** | Translate prompts into 8 languages (Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, Arabic) while preserving variables |
 | 16 | **API Request Builder** | Build API requests for OpenAI, Anthropic, and Gemini with cURL export |
+| 17 | **AI Image Prompt Generator** | Generate production-ready image prompts for DALL-E, Midjourney, and Stable Diffusion |
+| 18 | **AI Content Summarizer** | Summarize long articles and reports into TL;DR, bullets, or academic abstracts |
+| 19 | **AI Regex Generator** | Generate regex patterns from plain English and test against sample strings |
 
 ---
 

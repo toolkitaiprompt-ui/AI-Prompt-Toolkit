@@ -1,4 +1,4 @@
-import { NEW_SEO_POSTS } from "./newBlogPosts";
+import { NEW_SEO_POSTS } from "./newBlogPosts.ts";
 export type BlogPost = {
   slug: string;
   title: string;
