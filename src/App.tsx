@@ -51,6 +51,7 @@ import BlogCard from "./components/BlogCard";
 import SearchModal from "./components/SearchModal";
 import AdBanner from "./components/AdBanner";
 import SectionShell from "./components/SectionShell";
+import ErrorBoundary from "./components/ErrorBoundary";
 import {
   articleJsonLd,
   breadcrumbJsonLd,
@@ -370,6 +371,7 @@ function Layout() {
       />
 
       <main className="w-full">
+        <ErrorBoundary>
         <Suspense fallback={
           <div className="flex min-h-[50vh] items-center justify-center">
             <div className="flex flex-col items-center gap-3">
@@ -427,6 +429,7 @@ function Layout() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         </Suspense>
+        </ErrorBoundary>
       </main>
 
       <footer className="border-t border-white/10 bg-[#070707] w-full">
@@ -1204,14 +1207,30 @@ function AboutPage() {
   );
 }
 
+const EMPTY_CONTACT_DRAFT = { name: "", email: "", message: "" };
+
+function parseContactDraft(raw: string | null) {
+  if (!raw) return EMPTY_CONTACT_DRAFT;
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    if (
+      typeof parsed === "object" &&
+      parsed !== null &&
+      !Array.isArray(parsed) &&
+      typeof (parsed as { name?: unknown }).name === "string" &&
+      typeof (parsed as { email?: unknown }).email === "string" &&
+      typeof (parsed as { message?: unknown }).message === "string"
+    ) {
+      return parsed as typeof EMPTY_CONTACT_DRAFT;
+    }
+  } catch {}
+  return EMPTY_CONTACT_DRAFT;
+}
+
 function ContactPage() {
-  const [formData, setFormData] = useState(() => {
-    try {
-      const saved = localStorage.getItem("contact_draft");
-      if (saved) return JSON.parse(saved);
-    } catch {}
-    return { name: "", email: "", message: "" };
-  });
+  const [formData, setFormData] = useState(() =>
+    parseContactDraft(localStorage.getItem("contact_draft")),
+  );
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "fallback">("idle");
   const [fallbackMailto, setFallbackMailto] = useState("");
   const [copiedFallback, setCopiedFallback] = useState(false);
@@ -1236,19 +1255,25 @@ function ContactPage() {
     setStatus("sending");
     setFallbackMailto("");
 
-    // Try web3forms primary
+    // Try web3forms primary (with 12s timeout so a hung request never leaves
+    // the form stuck on "sending" — it falls through to the mailto fallback)
     try {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 12000);
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           access_key: "0a57b145-da61-4b05-b7c4-31c90d681d36",
+          botcheck: "",
           name: formData.name,
           email: formData.email,
           message: formData.message,
           subject: `New contact form submission from ${formData.name}`,
         }),
+        signal: controller.signal,
       });
+      clearTimeout(timer);
       const data = await res.json();
       if (data.success) {
         setStatus("success");
@@ -1303,6 +1328,16 @@ function ContactPage() {
               <textarea value={formData.message} onChange={(e) => onChangeField("message", e.target.value)} required rows={5}
                 className="w-full rounded-lg border border-slate-700 bg-transparent px-4 py-2.5 text-sm outline-none transition focus:border-blue-500" />
             </label>
+            <input
+              type="text"
+              name="botcheck"
+              value=""
+              onChange={() => {}}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="hidden"
+            />
             <button type="submit" disabled={status === "sending"}
               className="inline-flex w-fit items-center gap-2 rounded-full bg-amber-500 px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-amber-400 disabled:opacity-60">
               {status === "sending" ? "Sending..." : "Send Message"} <SendHorizontal className="h-4 w-4" />
