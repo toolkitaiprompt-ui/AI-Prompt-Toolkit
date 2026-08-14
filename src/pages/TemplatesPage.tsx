@@ -7,11 +7,10 @@ import useSeo from "@/hooks/useSeo";
 
 export default function TemplatesPage() {
   const [searchParams] = useSearchParams();
-  const [search, setSearch] = useState(searchParams.get("q") ?? "");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    const q = searchParams.get("q");
-    if (q) setSearch(q);
+    setSearch(searchParams.get("q") ?? "");
   }, [searchParams]);
   const [activeCat, setActiveCat] = useState("All");
   const [copiedId, setCopiedId] = useState("");
@@ -71,6 +70,7 @@ export default function TemplatesPage() {
         {CATEGORIES.map(c => (
           <button
             key={c.name}
+            type="button"
             onClick={() => setActiveCat(c.name)}
             aria-pressed={activeCat === c.name}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${

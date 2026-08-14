@@ -32,17 +32,19 @@ export default function SearchModal({
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
+  const previousTriggerRef = useRef<HTMLButtonElement | HTMLLinkElement | null>(null);
 
   useEffect(() => {
     if (!isOpen) return;
     const trigger = document.activeElement as HTMLElement | null;
+    previousTriggerRef.current = trigger as HTMLButtonElement | HTMLLinkElement | null;
     setTimeout(() => inputRef.current?.focus(), 100);
     setQuery("");
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = prevOverflow;
-      trigger?.focus();
+      previousTriggerRef.current?.focus();
     };
   }, [isOpen]);
 

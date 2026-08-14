@@ -140,7 +140,11 @@ export function BlogPostPage() {
   if (!post) return <NotFoundPage />;
 
   const relatedTools = post.relatedToolSlugs
-    .map((s) => TOOL_BY_SLUG.get(s))
+    .map((s) => {
+      const tool = TOOL_BY_SLUG.get(s);
+      if (!tool) console.warn(`Related tool not found: ${s}`);
+      return tool;
+    })
     .filter(Boolean) as ToolMeta[];
 
   return (

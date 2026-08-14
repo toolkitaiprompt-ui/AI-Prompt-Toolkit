@@ -1,9 +1,15 @@
 import { useMemo, useState } from "react";
 import { Code2, Play, SendHorizontal, Sparkles, type LucideIcon } from "lucide-react";
+import useSeo from "../hooks/useSeo";
 import SectionShell from "../components/SectionShell";
 import { copyToClipboard, debugPrompt, estimateTokens } from "../lib/toolkit";
 
 function PlaygroundPage() {
+  useSeo(
+    "AI Prompt Playground — Test & Debug Prompts Live",
+    "Free AI prompt playground. Generate blog post, code review, and cold email prompt templates, estimate tokens, and debug prompt health in real time — all in your browser.",
+    "AI Prompt Playground, Prompt Testing, Prompt Debugging, Token Estimation"
+  );
   const [activeTab, setActiveTab] = useState<"blog" | "code" | "email">("blog");
   const [promptText, setPromptText] = useState("");
   const [blogTopic, setBlogTopic] = useState("");

@@ -410,11 +410,6 @@ return (
         </div>
       </section>
 
-      {/* Banner Ad */}
-      <div className="site-container pt-8">
-        <AdBanner />
-      </div>
-
       {/* Stats Section */}
       <section className="section-lg bg-slate-900/50 mt-16">
         <div className="site-container">
@@ -492,11 +487,6 @@ return (
         </div>
       </section>
 
-
-      {/* Banner Ad */}
-      <div className="site-container pt-8">
-        <AdBanner />
-      </div>
 
       {/* Trending AI Tools */}
       <section className="section-lg bg-slate-900/30 mt-16">
@@ -643,11 +633,6 @@ return (
       )}
 
 
-      {/* Banner Ad */}
-      <div className="site-container pt-8">
-        <AdBanner />
-      </div>
-
       <CategoryShowcase />
 
       {/* FAQ Section */}
@@ -674,13 +659,8 @@ return (
               <FAQItem key={idx} question={faq.question} answer={faq.answer} />
             ))}
           </div>
-        </div>
+</div>
       </section>
-
-      {/* Banner Ad */}
-      <div className="site-container pt-8">
-        <AdBanner />
-      </div>
 
       {/* Final CTA */}
       <section className="section-lg mt-16">
