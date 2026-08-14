@@ -5,6 +5,10 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ToolSkeleton } from "./components/ToolSkeleton";
 import { TOOL_BY_SLUG, TOOL_PAGES } from "./data/tools";
 
+const MONETAG_ZONE_SCRIPT = "https://quge5.com/88/tag.min.js";
+
+const monetagScriptInjected = useRef(false);
+
 const HomePage = lazy(() => import("./components/HomePage"));
 const SearchModal = lazy(() => import("./components/SearchModal"));
 
@@ -68,6 +72,22 @@ function MonetagSPA() {
 
   return null;
 }
+
+useEffect(() => {
+  if (monetagScriptInjected.current) return;
+  monetagScriptInjected.current = true;
+  const script = document.createElement("script");
+  script.src = MONETAG_ZONE_SCRIPT;
+  script.async = true;
+  script.setAttribute("data-cfasync", "false");
+  script.setAttribute("data-zone", "270208");
+  document.head.appendChild(script);
+  return () => {
+    monetagScriptInjected.current = false;
+    var oldScript = document.querySelector(`script[src="${MONETAG_ZONE_SCRIPT}"]`);
+    if (oldScript) oldScript.remove();
+  };
+}, []);
 
 function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
