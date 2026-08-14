@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Search, Copy, Check, Star, TrendingUp } from "lucide-react";
@@ -8,6 +8,11 @@ import useSeo from "@/hooks/useSeo";
 export default function TemplatesPage() {
   const [searchParams] = useSearchParams();
   const [search, setSearch] = useState(searchParams.get("q") ?? "");
+
+  useEffect(() => {
+    const q = searchParams.get("q");
+    if (q) setSearch(q);
+  }, [searchParams]);
   const [activeCat, setActiveCat] = useState("All");
   const [copiedId, setCopiedId] = useState("");
 

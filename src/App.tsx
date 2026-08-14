@@ -799,7 +799,7 @@ function JsonValidatorPage() {
       {error && <p className="text-sm text-red-400">{error}</p>}
       {messages.length > 0 && <OutputToolbar text={messages.join("\n")} copyLabel="Copy Results" showStats={false} className="mb-2" />}
       <ul className="space-y-2 rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300">
-        {messages.length ? messages.map((m) => <li key={m}>{m}</li>) : <li>Validation results appear here.</li>}
+        {messages.length ? messages.map((m, i) => <li key={i}>{m}</li>) : <li>Validation results appear here.</li>}
       </ul>
     </ToolContainer>
   );
@@ -1032,9 +1032,6 @@ function BlogPostPage() {
 
   if (!post) return <NotFoundPage />;
 
-  const postIndex = BLOG_POSTS.findIndex((p) => p.slug === post.slug);
-  const variant: "A" | "B" = postIndex % 2 === 0 ? "A" : "B";
-  const insertAfterIndex = Math.floor(post.contentSections.length / 2);
   const relatedTools = post.relatedToolSlugs
     .map((s) => TOOL_BY_SLUG.get(s))
     .filter(Boolean) as ToolMeta[];
@@ -1178,6 +1175,9 @@ function AboutPage() {
             <li><strong className="text-white">Prompt Chain Builder</strong> — Chain up to 5 sequential prompt steps with output formats.</li>
             <li><strong className="text-white">Prompt Translator</strong> — Translate prompts into 8 languages while preserving variables.</li>
             <li><strong className="text-white">API Request Builder</strong> — Build API requests for OpenAI, Anthropic, and Gemini with cURL export.</li>
+            <li><strong className="text-white">AI Image Prompt Generator</strong> — Generate image prompts for DALL-E, Midjourney, and Stable Diffusion.</li>
+            <li><strong className="text-white">AI Content Summarizer</strong> — Summarize long articles and reports into TL;DR, bullets, or abstracts.</li>
+            <li><strong className="text-white">AI Regex Generator</strong> — Turn plain English descriptions into tested regex patterns.</li>
           </ul>
         </div>
 
@@ -1215,7 +1215,7 @@ function ContactPage() {
     } catch {}
     return { name: "", email: "", message: "" };
   });
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error" | "fallback">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "fallback">("idle");
   const [fallbackMailto, setFallbackMailto] = useState("");
 
   useEffect(() => {
@@ -1313,9 +1313,6 @@ function ContactPage() {
               <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3">
                 <p className="text-sm text-emerald-400">✓ Thank you! Your message has been sent successfully. We'll get back to you soon.</p>
               </div>
-            )}
-            {status === "error" && (
-              <p className="text-sm text-red-400">✗ Something went wrong. Please try again or email us directly.</p>
             )}
             {status === "fallback" && (
               <div className="space-y-3 rounded-xl border border-amber-500/20 bg-amber-500/10 p-4">
