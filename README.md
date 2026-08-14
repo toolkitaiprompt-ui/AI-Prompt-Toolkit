@@ -217,10 +217,10 @@ Contributions are welcome! Here's how to help:
 
 ### v3.0.0 — 2026-07-28 — `production-replit`
 - **6 New Tools Added**: Mega Prompt Builder, Prompt Debugger, Security Scanner, Prompt Chain Builder, Prompt Translator, API Request Builder
-- **Tool count**: Expanded from 10 to 16 tools
+- **Tool count**: Expanded from 10 to 19 tools
 - **New Pages**: AI Prompt Playground (interactive testing), Prompt Library (225+ prompts across 15 roles), Changelog page
 - **Navigation**: Updated to Home, Playground, Tools, Prompts, Blog, About
-- **SEO**: Added JSON-LD structured data for all 16 tools (ItemList schema), high-search AI prompting keywords
+- **SEO**: Added JSON-LD structured data for all 19 tools (ItemList schema), high-search AI prompting keywords
 - **Prerendering**: Expanded to 87 prerendered pages
 - **Prompt Library**: 225+ role-based prompts for ChatGPT, developers, marketers, SEO specialists, and more
 
@@ -246,7 +246,7 @@ Contributions are welcome! Here's how to help:
 - Global search modal, SEO optimization, structured data
 
 ### 2026-07-15 — Launch
-- 16 tools, templates, categories, blog
+- 19 tools, templates, categories, blog
 - Vite 7 + React 19 + Tailwind 4 setup
 - Cloudflare Pages deployment
 

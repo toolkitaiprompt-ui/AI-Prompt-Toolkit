@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -17,6 +17,7 @@ import {
 
 // Import your actual data
 import { BLOG_POSTS } from '../data/blogPosts';
+import { estimateTokens } from '../lib/toolkit';
 import BlogCard from './BlogCard';
 import ToolCard from './ToolCard';
 import CategoryShowcase from './CategoryShowcase';
@@ -90,9 +91,48 @@ export default function HomePage({ toolPages }: HomePageProps) {
   }, []);
 
 
-  const handleOptimize = () => {
-    setOptimized(`Role: Expert AI Analyst\nTask: ${prompt}\nFormat: Structured report with executive summary\nConstraints: Max 500 words, professional tone\nOutput: Markdown with clear sections`);
+  // ─── Honest live demo: every tab computes real output in the browser ───
+  const tokenStats = useMemo(() => estimateTokens(prompt), [prompt]);
+  const [jsonResult, setJsonResult] = useState<{ valid: boolean; message: string } | null>(null);
+  const [improvement, setImprovement] = useState<{ before: number; after: number; pct: number } | null>(null);
+
+  const runDemo = () => {
+    const name = demoTools[currentTool].name;
+    setJsonResult(null);
+    if (name === 'Prompt Optimizer') {
+      const optimizedText = `Role: Expert AI Analyst\nTask: ${prompt}\nFormat: Structured report with executive summary\nConstraints: Max 500 words, professional tone\nOutput: Markdown with clear sections`;
+      setOptimized(optimizedText);
+      const before = estimateTokens(prompt).estimatedTokens;
+      const after = estimateTokens(optimizedText).estimatedTokens;
+      setImprovement({
+        before,
+        after,
+        pct: before > 0 ? Math.max(0, Math.round(((before - after) / before) * 100)) : 0,
+      });
+    } else if (name === 'JSON Validator') {
+      setOptimized('');
+      setImprovement(null);
+      try {
+        JSON.parse(prompt);
+        setJsonResult({ valid: true, message: 'Valid JSON — head to the full JSON Validator tool to check it against your schema.' });
+      } catch {
+        setJsonResult({ valid: false, message: 'Not valid JSON. Paste a JSON object (e.g. {"name": "Ava"}) and try again.' });
+      }
+    } else {
+      // Token Estimator — stats update live as you type
+      setOptimized('');
+      setImprovement(null);
+    }
   };
+
+  const demoStatus =
+    demoTools[currentTool].name === 'Token Estimator'
+      ? 'Live'
+      : jsonResult
+        ? jsonResult.valid ? 'Valid' : 'Invalid'
+        : improvement
+          ? 'Optimized'
+          : 'Ready';
 
 return (
     <div className="bg-slate-950">
@@ -247,31 +287,36 @@ return (
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                      <span className="text-xs text-slate-400">Processing</span>
+                      <div className={`w-2 h-2 rounded-full animate-pulse ${demoStatus === 'Invalid' ? 'bg-red-400' : 'bg-green-400'}`} />
+                      <span className="text-xs text-slate-400">{demoStatus}</span>
                     </div>
                   </div>
 
                   <div className="mb-4">
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Your Prompt</label>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">
+                      {demoTools[currentTool].name === 'JSON Validator' ? 'JSON Input' : 'Your Prompt'}
+                    </label>
                     <textarea
                       value={prompt}
                       onChange={(e) => setPrompt(e.target.value)}
                       className="w-full px-4 py-3 bg-slate-800/50 border border-white/10 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50 resize-none"
                       rows={3}
-                      placeholder="Enter your prompt..."
+                      placeholder={demoTools[currentTool].name === 'JSON Validator' ? 'Paste a JSON object, e.g. {"name": "Ava"}' : 'Enter your prompt...'}
                     />
                   </div>
 
-                  <button
-                    onClick={handleOptimize}
-                    className={`w-full py-3 bg-gradient-to-r ${demoTools[currentTool].color} rounded-lg font-semibold text-black mb-4 hover:shadow-lg transition-shadow`}
-                  >
-                    Optimize Prompt
-                  </button>
+                  {demoTools[currentTool].name !== 'Token Estimator' && (
+                    <button
+                      onClick={runDemo}
+                      className={`w-full py-3 bg-gradient-to-r ${demoTools[currentTool].color} rounded-lg font-semibold text-black mb-4 hover:shadow-lg transition-shadow`}
+                    >
+                      {demoTools[currentTool].name === 'JSON Validator' ? 'Validate JSON' : 'Optimize Prompt'}
+                    </button>
+                  )}
 
+                  {/* ── Optimizer result (real token improvement) ── */}
                   <AnimatePresence>
-                    {optimized && (
+                    {demoTools[currentTool].name === 'Prompt Optimizer' && optimized && (
                       <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
@@ -282,13 +327,44 @@ return (
                         <div className="px-4 py-3 bg-green-500/10 border border-green-500/20 rounded-lg">
                           <pre className="text-sm text-green-300 whitespace-pre-wrap font-mono">{optimized}</pre>
                         </div>
-                        <div className="mt-3 flex items-center justify-between text-sm">
-                          <span className="text-slate-400">Tokens: <span className="text-white font-semibold">142</span></span>
-                          <span className="text-slate-400">Improvement: <span className="text-green-400 font-semibold">+42%</span></span>
-                        </div>
+                        {improvement && (
+                          <div className="mt-3 flex items-center justify-between gap-2 text-sm flex-wrap">
+                            <span className="text-slate-400">
+                              Tokens: <span className="text-slate-300 font-semibold">{improvement.before}</span>
+                              <span className="text-slate-500"> → </span>
+                              <span className="text-white font-semibold">{improvement.after}</span>
+                            </span>
+                            <span className="text-slate-400">
+                              Reduction: <span className="text-green-400 font-semibold">{improvement.pct}%</span>
+                            </span>
+                          </div>
+                        )}
                       </motion.div>
                     )}
                   </AnimatePresence>
+
+                  {/* ── Token Estimator: real live stats ── */}
+                  {demoTools[currentTool].name === 'Token Estimator' && (
+                    <div className="grid grid-cols-3 gap-2">
+                      {[
+                        { label: 'Characters', value: tokenStats.characters.toLocaleString() },
+                        { label: 'Words', value: tokenStats.words.toLocaleString() },
+                        { label: 'Tokens', value: tokenStats.estimatedTokens.toLocaleString() },
+                      ].map((s) => (
+                        <div key={s.label} className="rounded-lg bg-slate-800/40 border border-white/10 px-3 py-2.5 text-center">
+                          <p className="text-xs text-slate-400">{s.label}</p>
+                          <p className="text-base font-bold text-white">{s.value}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* ── JSON Validator: real parse result ── */}
+                  {demoTools[currentTool].name === 'JSON Validator' && jsonResult && (
+                    <div className={`px-4 py-3 rounded-lg border text-sm ${jsonResult.valid ? 'bg-green-500/10 border-green-500/20 text-green-300' : 'bg-red-500/10 border-red-500/20 text-red-300'}`}>
+                      {jsonResult.valid ? '✓ ' : '✗ '}{jsonResult.message}
+                    </div>
+                  )}
                 </div>
               </motion.div>
 

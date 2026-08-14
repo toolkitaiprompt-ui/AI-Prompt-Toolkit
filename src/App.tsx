@@ -250,31 +250,20 @@ function getBlogPostsForTool(toolSlug: string) {
   return BLOG_POSTS.filter((post) => post.relatedToolSlugs.includes(toolSlug));
 }
 
+
 function MonetagSPA() {
   const location = useLocation();
 
   useEffect(() => {
-    // Try to reinitialize Monetag MultiTag on every route change in SPA
-    // MultiTag attaches onclick handlers; on SPA navigation we force a re-check
+    // Reinitialize Monetag MultiTag on route changes (SPA navigation).
+    // NOTE: only safe refresh calls — never remove/re-insert the script tag,
+    // that caused double-init and black-screen overlays on live.
     try {
       const w = window as any;
-      // Some Monetag tags expose a global reinit or push method
       if (w.monetag && typeof w.monetag.refresh === "function") {
         w.monetag.refresh();
       } else if (w.propellerads && typeof w.propellerads.push === "function") {
         w.propellerads.push({ zone: 264272 });
-      } else {
-        // Nuclear fallback: remove and re-insert the script tag to force reinit
-        const existing = document.querySelector('script[data-zone="264272"]');
-        if (existing && existing.parentNode) {
-          const newScript = document.createElement("script");
-          newScript.src = "https://quge5.com/88/tag.min.js";
-          newScript.async = true;
-          newScript.setAttribute("data-zone", "264272");
-          newScript.setAttribute("data-cfasync", "false");
-          existing.parentNode.removeChild(existing);
-          document.head.appendChild(newScript);
-        }
       }
     } catch {
       // silently ignore
@@ -332,6 +321,7 @@ function Layout() {
             <button type="button" onClick={() => setSearchOpen(true)} className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center hover:bg-white/5 transition text-slate-400 hover:text-white" aria-label="Search">
               <Search className="w-4 h-4" />
             </button>
+
           </div>
           {/* Mobile hamburger */}
           <button
@@ -358,6 +348,7 @@ function Layout() {
               <NavLink to="/blog" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Blog</NavLink>
               <NavLink to="/about" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>About</NavLink>
             </nav>
+
           </div>
         )}
       </header>
@@ -371,6 +362,14 @@ function Layout() {
       />
 
       <main className="w-full">
+        <Suspense fallback={
+          <div className="flex min-h-[50vh] items-center justify-center">
+            <div className="flex flex-col items-center gap-3">
+              <div className="h-8 w-8 animate-spin rounded-full border-2 border-amber-500/30 border-t-amber-400" />
+              <p className="text-sm text-slate-500">Loading…</p>
+            </div>
+          </div>
+        }>
         <Routes>
           <Route path="/" element={<Suspense fallback={<ToolSkeleton />}><HomePage toolPages={TOOL_PAGES} /></Suspense>} />
           <Route path="/tools" element={<ToolsDirectoryPage />} />
@@ -419,6 +418,7 @@ function Layout() {
           <Route path="/terms-of-service" element={<TermsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        </Suspense>
       </main>
 
       <footer className="border-t border-white/10 bg-[#070707] w-full">
@@ -2194,6 +2194,18 @@ function PromptTaskPage() {
 
 function ChangelogPage() {
   const changelog: { version: string; date: string; changes: { type: string; text: string }[] }[] = [
+    {
+      version: "3.1.0",
+      date: "August 2026",
+      changes: [
+        { type: "New", text: "Added 3 new tools: AI Image Prompt Generator, AI Content Summarizer, and AI Regex Generator — bringing the total to 19 tools." },
+        { type: "Improved", text: "Fixed broken structured data (ItemList, FAQ, SoftwareApplication) so search engines can index all 19 tools correctly." },
+        { type: "Improved", text: "Updated tool counts across the site, JSON-LD, sitemap metadata, and llms.txt for consistent SEO." },
+        { type: "Fixed", text: "Removed visible ad placeholder boxes until real ad zones are configured." },
+        { type: "Fixed", text: "Homepage demo now shows honest per-tool output with real token statistics." },
+        { type: "Fixed", text: "Search now covers the prompt templates library." },
+      ],
+    },
     {
       version: "3.0.0",
       date: "January 2026",
