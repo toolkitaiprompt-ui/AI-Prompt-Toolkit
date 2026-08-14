@@ -239,8 +239,8 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/templates",
-    "title": "Prompt Templates Library — 100+ Ready-to-Use Prompts | AI World Hub",
-    "desc": "Browse 100+ ready-to-use AI prompt templates for writing, image generation, coding, video, and productivity. Copy, paste, get results instantly. Free prompt templates library.",
+    "title": "Prompt Templates Library — 12 Ready-to-Use Prompts | AI World Hub",
+    "desc": "Browse 12 ready-to-use AI prompt templates for writing, marketing, coding, business, education, e-commerce, career, and support. Copy, paste, get results instantly. Free prompt templates library.",
     "type": "page",
     "priority": 0.9,
     "changefreq": "weekly"
@@ -271,7 +271,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/content-writer",
-    "title": "Content Writer Prompts — 15 Templates | AI World Hub",
+    "title": "Content Writer Prompts — 15 Ready-to-Use Templates | AI World Hub",
     "desc": "Blog posts, SEO articles, social media, and email copywriting prompts for content writers. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -279,7 +279,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/developer",
-    "title": "Developer Prompts — 15 Templates | AI World Hub",
+    "title": "Developer Prompts — 15 Ready-to-Use Templates | AI World Hub",
     "desc": "Code generation, debugging, code review, refactoring, and documentation prompts for developers. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -287,7 +287,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/marketer",
-    "title": "Marketer Prompts — 15 Templates | AI World Hub",
+    "title": "Marketer Prompts — 15 Ready-to-Use Templates | AI World Hub",
     "desc": "Campaign strategy, ad copy, social media, and growth marketing prompts for marketers. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -295,7 +295,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/seo-specialist",
-    "title": "SEO Specialist Prompts — 15 Templates | AI World Hub",
+    "title": "SEO Specialist Prompts — 15 Ready-to-Use Templates | AI World Hub",
     "desc": "Keyword research, on-page SEO, technical SEO, and content optimization prompts. 15 ready-to-use ChatGPT prompt templates for SEO specialists. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -303,7 +303,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/data-analyst",
-    "title": "Data Analyst Prompts — 15 Templates | AI World Hub",
+    "title": "Data Analyst Prompts — 15 Ready-to-Use Templates | AI World Hub",
     "desc": "Data analysis, SQL queries, data visualization, and reporting prompts for data analysts. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -311,7 +311,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/business-analyst",
-    "title": "Business Analyst Prompts — 15 Templates | AI World Hub",
+    "title": "Business Analyst Prompts — 15 Ready-to-Use Templates | AI World Hub",
     "desc": "Requirements gathering, process mapping, and stakeholder communication prompts for business analysts. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -319,7 +319,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/graphic-designer",
-    "title": "Graphic Designer Prompts — 15 Templates | AI World Hub",
+    "title": "Graphic Designer Prompts — 15 Ready-to-Use Templates | AI World Hub",
     "desc": "Logo design, brand identity, UI/UX, and creative direction prompts for graphic designers. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -327,7 +327,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/sales",
-    "title": "Sales Prompts — 15 Templates | AI World Hub",
+    "title": "Sales Prompts — 15 Ready-to-Use Templates | AI World Hub",
     "desc": "Cold outreach, sales scripts, objection handling, and follow-up prompts for sales teams. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -335,7 +335,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/customer-support",
-    "title": "Customer Support Prompts — 15 Templates | AI World Hub",
+    "title": "Customer Support Prompts — 15 Ready-to-Use Templates | AI World Hub",
     "desc": "Support responses, ticket triage, FAQ generation, and escalation prompts for support teams. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -343,7 +343,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/product-manager",
-    "title": "Product Manager Prompts — 15 Templates | AI World Hub",
+    "title": "Product Manager Prompts — 15 Ready-to-Use Templates | AI World Hub",
     "desc": "Product specs, user stories, roadmap planning, and feature prioritization prompts for product managers. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -351,7 +351,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/researcher",
-    "title": "Researcher Prompts — 15 Templates | AI World Hub",
+    "title": "Researcher Prompts — 15 Ready-to-Use Templates | AI World Hub",
     "desc": "Literature review, data collection, survey design, and analysis prompts for researchers. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -359,7 +359,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/student",
-    "title": "Student Prompts — 15 Templates | AI World Hub",
+    "title": "Student Prompts — 15 Ready-to-Use Templates | AI World Hub",
     "desc": "Study guides, essay writing, exam prep, and learning assistance prompts for students. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -367,7 +367,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/entrepreneur",
-    "title": "Entrepreneur Prompts — 15 Templates | AI World Hub",
+    "title": "Entrepreneur Prompts — 15 Ready-to-Use Templates | AI World Hub",
     "desc": "Business planning, pitch decks, investor outreach, and strategy prompts for entrepreneurs. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -375,7 +375,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/consultant",
-    "title": "Consultant Prompts — 15 Templates | AI World Hub",
+    "title": "Consultant Prompts — 15 Ready-to-Use Templates | AI World Hub",
     "desc": "Client analysis, strategy development, recommendations, and reporting prompts for consultants. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -384,15 +384,15 @@ export const STATIC_ROUTES = [
   {
     "path": "/blog/best-ai-tools-2026-complete-directory",
     "title": "Best AI Tools 2026 — Complete Directory of 50+ Tools | AI World Hub",
-    "desc": "Discover the 50 best AI tools in 2026 for writing, image generation, coding, video, and productivity. Ranked by popularity with free plans.",
+    "desc": "Discover the 50 best AI tools in 2026 for writing, image generation, coding, video, and productivity. Ranked by popularity with free plans and direct links.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/100-chatgpt-prompts-for-every-task",
-    "title": "100+ ChatGPT Prompts for Every Task — Copy & Paste | AI World Hub",
-    "desc": "100+ ready-to-use ChatGPT prompts for writing, marketing, coding, business, education, and more. Copy, paste, and get professional results.",
+    "title": "15 ChatGPT Prompts for Every Task — Copy & Paste | AI World Hub",
+    "desc": "15 ready-to-use ChatGPT prompts for writing, marketing, coding, education, and productivity. Copy, paste, and get professional results instantly.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
@@ -400,7 +400,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/blog/how-to-use-chatgpt-complete-guide",
     "title": "How to Use ChatGPT — Complete Beginner Guide 2026 | AI World Hub",
-    "desc": "Learn how to use ChatGPT from scratch — creating an account, writing effective prompts, using advanced features.",
+    "desc": "Learn how to use ChatGPT from scratch — creating an account, writing effective prompts, using advanced features, and avoiding common mistakes. Step-by-step guide for beginners.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
@@ -408,7 +408,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/blog/free-ai-tools-50-best-tested",
     "title": "50 Best Free AI Tools 2026 — Tested & Ranked | AI World Hub",
-    "desc": "50 genuinely free AI tools tested and ranked for 2026 — writing, images, video, coding, audio, and productivity.",
+    "desc": "50 genuinely free AI tools tested and ranked for 2026 — writing, images, video, coding, audio, and productivity. No hidden fees, no credit card required.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
@@ -416,7 +416,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/blog/prompt-engineering-complete-guide",
     "title": "Prompt Engineering Guide — Beginner to Expert 2026 | AI World Hub",
-    "desc": "Master prompt engineering in 2026. Learn proven techniques — role prompting, chain-of-thought, few-shot examples, JSON schema output.",
+    "desc": "Master prompt engineering in 2026. Learn proven techniques, frameworks, and best practices for writing AI prompts that get professional results with ChatGPT, Claude, and Gemini.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
@@ -424,7 +424,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/blog/ai-tools-directory-categorized-list",
     "title": "AI Tools Directory — 50+ Tools by Category | AI World Hub",
-    "desc": "Browse 50+ AI tools organized by category — text generation, image creation, video editing, coding, audio, and productivity.",
+    "desc": "Browse 50+ AI tools organized by category — text generation, image creation, video editing, coding, audio, and productivity. Find the perfect AI tool for any task.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"

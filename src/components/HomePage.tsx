@@ -67,7 +67,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
   const faqs = [
     {
       question: 'Is AI World Hub really free?',
-      answer: 'Yes! All 19 tools are completely free with no signup required. We offer optional Pro features for power users, but the core toolkit is 100% free forever.',
+      answer: 'Yes! All 19 tools are completely free with no signup required. Every tool runs in your browser with no data collection, and the toolkit is 100% free forever.',
     },
     {
       question: 'How does in-browser processing work?',

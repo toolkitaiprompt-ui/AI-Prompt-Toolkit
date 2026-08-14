@@ -17,8 +17,8 @@ export default function TemplatesPage() {
   const [copiedId, setCopiedId] = useState("");
 
   useSeo(
-    "Free Prompt Templates Library — 100+ Ready-to-Use Prompts | AI World Hub",
-    "Browse 100+ ready-to-use AI prompt templates for writing, image generation, coding, video, and productivity. Copy, paste, get results instantly. Free prompt templates library.",
+    `Prompt Templates Library — ${TEMPLATES.length} Ready-to-Use Prompts | AI World Hub`,
+    `Browse ${TEMPLATES.length} ready-to-use AI prompt templates for writing, marketing, coding, business, education, e-commerce, career, and support. Copy, paste, get results instantly. Free prompt templates library.`,
   );
 
   const filtered = useMemo(() => {

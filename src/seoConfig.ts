@@ -254,9 +254,9 @@ const SEO_MAP: Record<string, SeoData> = {
 
   // ══ NEW FEATURES ══
   "/templates": {
-    title: "Prompt Templates Library — 100+ Ready-to-Use Prompts | AI World Hub",
+    title: "Prompt Templates Library — 12 Ready-to-Use Prompts | AI World Hub",
     description:
-      "Browse 100+ ready-to-use AI prompt templates for writing, image generation, coding, video, and productivity. Copy, paste, get results instantly. Free prompt templates library.",
+      "Browse 12 ready-to-use AI prompt templates for writing, marketing, coding, business, education, e-commerce, career, and support. Copy, paste, get results instantly. Free prompt templates library.",
     keywords: "Prompt Templates, AI Prompts, ChatGPT Prompts, Free AI Tools, Prompt Engineering Library, AI Prompting Templates",
   },
   "/categories": {
@@ -276,37 +276,37 @@ const SEO_MAP: Record<string, SeoData> = {
   "/blog/best-ai-tools-2026-complete-directory": {
     title: "Best AI Tools 2026 — Complete Directory of 50+ Tools | AI World Hub",
     description:
-      "Discover the 50 best AI tools in 2026 for writing, image generation, coding, video, and productivity. Ranked by popularity with free plans.",
+      "Discover the 50 best AI tools in 2026 for writing, image generation, coding, video, and productivity. Ranked by popularity with free plans and direct links.",
     keywords: "Best AI Tools, Free AI Tools, AI Tools Directory 2026, AI Prompting Tools",
   },
   "/blog/100-chatgpt-prompts-for-every-task": {
-    title: "100+ ChatGPT Prompts for Every Task — Copy & Paste | AI World Hub",
+    title: "15 ChatGPT Prompts for Every Task — Copy & Paste | AI World Hub",
     description:
-      "100+ ready-to-use ChatGPT prompts for writing, marketing, coding, business, education, and more. Copy, paste, and get professional results.",
+      "15 ready-to-use ChatGPT prompts for writing, marketing, coding, education, and productivity. Copy, paste, and get professional results instantly.",
     keywords: "ChatGPT Prompts, AI Prompts, Prompt Engineering, Free AI Tools, AI Prompting",
   },
   "/blog/how-to-use-chatgpt-complete-guide": {
     title: "How to Use ChatGPT — Complete Beginner Guide 2026 | AI World Hub",
     description:
-      "Learn how to use ChatGPT from scratch — creating an account, writing effective prompts, using advanced features.",
+      "Learn how to use ChatGPT from scratch — creating an account, writing effective prompts, using advanced features, and avoiding common mistakes. Step-by-step guide for beginners.",
     keywords: "How to Use ChatGPT, ChatGPT Guide, Free AI Tools, Prompt Engineering, AI Prompting",
   },
   "/blog/free-ai-tools-50-best-tested": {
     title: "50 Best Free AI Tools 2026 — Tested & Ranked | AI World Hub",
     description:
-      "50 genuinely free AI tools tested and ranked for 2026 — writing, images, video, coding, audio, and productivity.",
+      "50 genuinely free AI tools tested and ranked for 2026 — writing, images, video, coding, audio, and productivity. No hidden fees, no credit card required.",
     keywords: "Free AI Tools, Best AI Tools, AI Tools 2026, AI Prompting Tools",
   },
   "/blog/prompt-engineering-complete-guide": {
     title: "Prompt Engineering Guide — Beginner to Expert 2026 | AI World Hub",
     description:
-      "Master prompt engineering in 2026. Learn proven techniques — role prompting, chain-of-thought, few-shot examples, JSON schema output.",
+      "Master prompt engineering in 2026. Learn proven techniques, frameworks, and best practices for writing AI prompts that get professional results with ChatGPT, Claude, and Gemini.",
     keywords: "Prompt Engineering, AI Prompts, ChatGPT Prompts, Free AI Tools, AI Prompting, Prompt Optimization",
   },
   "/blog/ai-tools-directory-categorized-list": {
     title: "AI Tools Directory — 50+ Tools by Category | AI World Hub",
     description:
-      "Browse 50+ AI tools organized by category — text generation, image creation, video editing, coding, audio, and productivity.",
+      "Browse 50+ AI tools organized by category — text generation, image creation, video editing, coding, audio, and productivity. Find the perfect AI tool for any task.",
     keywords: "AI Tools Directory, Best AI Tools, Free AI Tools, AI Prompting Tools",
   },
 };

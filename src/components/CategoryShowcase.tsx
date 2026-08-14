@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 import { PROMPT_CATEGORIES } from "@/data/categories";
 
 export default function CategoryShowcase() {
@@ -53,12 +52,6 @@ export default function CategoryShowcase() {
               <p className="flex-1 text-xs leading-relaxed text-slate-500 mb-4 line-clamp-2">
                 {cat.description}
               </p>
-
-              {/* Template count */}
-              <div className="flex items-center gap-1.5 text-xs font-medium text-amber-400/80 group-hover:text-amber-300 transition-colors">
-                <span>{cat.count} templates</span>
-                <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
-              </div>
             </motion.div>
           ))}
         </div>

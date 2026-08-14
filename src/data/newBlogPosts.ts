@@ -106,12 +106,12 @@ export const NEW_SEO_POSTS = [
 
   {
     slug: "100-chatgpt-prompts-for-every-task",
-    title: "100+ ChatGPT Prompts for Every Task: Copy, Paste, and Get Results",
-    seoTitle: "100+ ChatGPT Prompts for Every Task — Copy & Paste",
+    title: "15 ChatGPT Prompts for Every Task: Copy, Paste, and Get Results",
+    seoTitle: "15 ChatGPT Prompts for Every Task — Copy & Paste",
     metaDescription:
-      "100+ ready-to-use ChatGPT prompts for writing, marketing, coding, business, education, and more. Copy, paste, and get professional results instantly.",
+      "15 ready-to-use ChatGPT prompts for writing, marketing, coding, education, and productivity. Copy, paste, and get professional results instantly.",
     excerpt:
-      "A massive collection of 100+ ChatGPT prompts organized by category — writing, marketing, coding, business, education, and creative tasks. Copy and paste for instant results.",
+      "15 ready-to-use ChatGPT prompts organized by category — writing, marketing, coding, education, and productivity. Copy and paste for instant results.",
     category: "ChatGPT Prompts",
     date: "July 13, 2026",
     readTime: "12 min read",
@@ -120,7 +120,7 @@ export const NEW_SEO_POSTS = [
         heading: "Why most ChatGPT prompts fail — and how to fix them",
         paragraphs: [
           "Most people use ChatGPT the wrong way. They type a short, vague request like 'write a blog post' and get a generic, mediocre result. The secret to getting professional-quality output from ChatGPT is using structured prompts that define a role, specify the task, provide context, and request a specific format. A well-structured prompt can be the difference between a useless answer and a deliverable-ready piece of work.",
-          "This collection provides 100+ ready-to-use prompts across six categories. Each prompt is designed to be copy-pasted directly into ChatGPT — just replace the bracketed placeholders with your specific information. These prompts use proven prompt engineering techniques including role assignment, task specification, constraint setting, and output formatting.",
+          "This collection provides 15 ready-to-use prompts across five categories. Each prompt is designed to be copy-pasted directly into ChatGPT — just replace the bracketed placeholders with your specific information. These prompts use proven prompt engineering techniques including role assignment, task specification, constraint setting, and output formatting.",
         ],
       },
       {
@@ -183,7 +183,7 @@ export const NEW_SEO_POSTS = [
       {
         question: "Are these prompts free to use?",
         answer:
-          "Yes, all 100+ prompts in this guide are free to copy and use. They work with the free tier of ChatGPT, Claude, and Gemini. No subscription required.",
+          "Yes, all 15 prompts in this guide are free to copy and use. They work with the free tier of ChatGPT, Claude, and Gemini. No subscription required.",
       },
     ],
     relatedToolSlugs: ["prompt-formatter", "prompt-variable-extractor", "advanced-prompt-optimizer"],

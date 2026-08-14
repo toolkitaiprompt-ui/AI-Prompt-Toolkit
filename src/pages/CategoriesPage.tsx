@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 import { PROMPT_CATEGORIES } from "@/data/categories";
 import useSeo from "@/hooks/useSeo";
 
@@ -51,12 +49,6 @@ export default function CategoriesPage() {
             <p className="flex-1 text-sm text-slate-400 mb-4">
               {cat.description}
             </p>
-
-            {/* Template count */}
-            <div className="flex items-center gap-1.5 text-xs font-medium text-amber-400/80 group-hover:text-amber-300 transition-colors">
-              <span>{cat.count} templates</span>
-              <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
-            </div>
           </motion.div>
         ))}
       </div>
