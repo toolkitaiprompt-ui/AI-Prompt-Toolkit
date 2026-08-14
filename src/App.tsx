@@ -506,7 +506,7 @@ function ToolsDirectoryPage() {
   return (
     <SectionShell
       title="Free AI Tools Directory — 19 Best Tools"
-      description="Choose from 19 free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, comparison tool, mega prompt builder, debugger, security scanner, chain builder, translator, API request builder, image prompt generator, content summarizer, and regex generator."
+      description="Choose from 19 free AI prompt engineering tools — build, format, debug, optimize, secure, and translate prompts in your browser. No sign-up required."
       keywords="Best AI Tools, Free AI Tools, AI Tools Directory, Prompt Engineering Tools, AI Prompt Builder, ChatGPT Prompt Tools"
     >
       <div className="space-y-3">

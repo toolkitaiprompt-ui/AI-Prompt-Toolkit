@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { getSeoForPath } from "../seoConfig";
+import { toCanonical } from "../lib/structuredData";
 
 export default function useSeo(title?: string, description?: string, keywords?: string) {
   const configSeo = getSeoForPath(window.location.pathname);
@@ -7,6 +8,7 @@ export default function useSeo(title?: string, description?: string, keywords?: 
   const finalTitle = configSeo.title || title || "AI World Hub";
   const finalDesc = configSeo.description || description || "";
   const finalKeywords = configSeo.keywords || keywords || "";
+  const canonical = toCanonical(window.location.pathname);
 
   useEffect(() => {
     document.title = finalTitle;
@@ -38,7 +40,8 @@ export default function useSeo(title?: string, description?: string, keywords?: 
     ensurePropertyMeta("og:title").setAttribute("content", finalTitle);
     ensurePropertyMeta("og:description").setAttribute("content", finalDesc);
     ensurePropertyMeta("og:type").setAttribute("content", "website");
-    ensureLink("canonical").setAttribute("href", window.location.href);
+    ensurePropertyMeta("og:url").setAttribute("content", canonical);
+    ensureLink("canonical").setAttribute("href", canonical);
 
     // Hreflang injection for international SEO (#10)
     const hreflangs = ["en", "en-US", "en-GB", "en-IN", "x-default"];
@@ -48,7 +51,7 @@ export default function useSeo(title?: string, description?: string, keywords?: 
       const link = document.createElement("link");
       link.setAttribute("rel", "alternate");
       link.setAttribute("hreflang", lang);
-      link.setAttribute("href", window.location.href.split('?')[0]);
+      link.setAttribute("href", canonical);
       document.head.appendChild(link);
     });
   }, [finalTitle, finalDesc, finalKeywords]);

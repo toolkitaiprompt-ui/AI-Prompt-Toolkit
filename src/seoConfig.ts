@@ -70,7 +70,7 @@ const SEO_MAP: Record<string, SeoData> = {
   "/tools": {
     title: "Free AI Tools Directory — 19 Best Tools | AI World Hub",
     description:
-      "Choose from 19 best free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, comparison tool, mega prompt builder, debugger, security scanner, chain builder, translator, API request builder, image prompt generator, content summarizer, and regex generator.",
+      "Choose from 19 free AI prompt engineering tools — build, format, debug, optimize, secure, and translate prompts in your browser. No sign-up required.",
     keywords:
       "Best AI Tools, Free AI Tools, AI Tools Directory, Prompt Engineering Tools, Free AI Prompt Tools, AI Prompt Builder, ChatGPT Prompt Tools, Prompt Optimization Tools",
   },
@@ -232,10 +232,28 @@ const SEO_MAP: Record<string, SeoData> = {
       "Build API requests for OpenAI, Anthropic, and Gemini with model selection, temperature, max tokens, and cURL export. Generate JSON request bodies instantly. Free in-browser tool.",
     keywords: "API Request Builder, OpenAI API, Anthropic API, Gemini API, cURL Generator, Free AI Tools, Prompt Engineering, AI API Builder, ChatGPT API",
   },
+  "/tools/image-prompt-generator": {
+    title: "Free AI Image Prompt Generator — DALL-E & Midjourney | AI World Hub",
+    description:
+      "Generate production-ready image prompts for DALL-E, Midjourney, and Stable Diffusion. Choose art style, mood, and camera angle. Free in-browser tool with instant copy-paste.",
+    keywords: "Image Prompt Generator, AI Image Prompts, Midjourney Prompts, DALL-E Prompts, Stable Diffusion, Free AI Tools, Prompt Engineering",
+  },
+  "/tools/content-summarizer": {
+    title: "Free AI Content Summarizer — TL;DR & Bullet Points | AI World Hub",
+    description:
+      "Summarize long articles, reports, and documents into TL;DR, bullet points, paragraphs, or academic abstracts. Free in-browser tool with word reduction stats.",
+    keywords: "Content Summarizer, AI Summarizer, TL;DR Generator, Article Summarizer, Free AI Tools, Prompt Engineering",
+  },
+  "/tools/regex-generator": {
+    title: "Free AI Regex Generator — From Plain English | AI World Hub",
+    description:
+      "Generate regex patterns from plain English descriptions. Test instantly against sample strings with built-in syntax cheatsheet. Free in-browser regex tool.",
+    keywords: "Regex Generator, AI Regex, Regular Expression Generator, Regex Tester, Free AI Tools, Prompt Engineering",
+  },
 
   // ══ NEW FEATURES ══
   "/templates": {
-    title: "Free Prompt Templates Library — 100+ Ready-to-Use Prompts | AI World Hub",
+    title: "Prompt Templates Library — 100+ Ready-to-Use Prompts | AI World Hub",
     description:
       "Browse 100+ ready-to-use AI prompt templates for writing, image generation, coding, video, and productivity. Copy, paste, get results instantly. Free prompt templates library.",
     keywords: "Prompt Templates, AI Prompts, ChatGPT Prompts, Free AI Tools, Prompt Engineering Library, AI Prompting Templates",
@@ -247,7 +265,7 @@ const SEO_MAP: Record<string, SeoData> = {
     keywords: "AI Prompts, Prompt Categories, Prompt Engineering, Free AI Tools, ChatGPT Categories, AI Prompting",
   },
   "/image-generator": {
-    title: "Free AI Image Prompt Generator — Midjourney & DALL-E | AI World Hub",
+    title: "AI Image Prompt Generator — Midjourney & DALL-E | AI World Hub",
     description:
       "Generate optimized AI image prompts for Midjourney, DALL-E 3, and Stable Diffusion. Select an art style and get copy-ready prompts instantly. Free in-browser tool.",
     keywords: "AI Image Prompt Generator, Midjourney Prompts, DALL-E Prompts, Stable Diffusion, Free AI Tools, AI Image Prompts",
@@ -279,7 +297,7 @@ const SEO_MAP: Record<string, SeoData> = {
     keywords: "Free AI Tools, Best AI Tools, AI Tools 2026, AI Prompting Tools",
   },
   "/blog/prompt-engineering-complete-guide": {
-    title: "Prompt Engineering Complete Guide — Beginner to Expert 2026 | AI World Hub",
+    title: "Prompt Engineering Guide — Beginner to Expert 2026 | AI World Hub",
     description:
       "Master prompt engineering in 2026. Learn proven techniques — role prompting, chain-of-thought, few-shot examples, JSON schema output.",
     keywords: "Prompt Engineering, AI Prompts, ChatGPT Prompts, Free AI Tools, AI Prompting, Prompt Optimization",

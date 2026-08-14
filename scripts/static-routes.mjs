@@ -16,7 +16,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/tools",
     "title": "Free AI Tools Directory — 19 Best Tools | AI World Hub",
-    "desc": "Choose from 19 free AI tools for prompt engineering — variable extractor, JSON schema generator, JSON validator, prompt formatter, cleaner, token estimator, converter, persona builder, optimizer, comparison tool, mega prompt builder, prompt debugger, security scanner, prompt chain builder, prompt translator, API request builder, image prompt generator, content summarizer & regex generator.",
+    "desc": "Choose from 19 free AI prompt engineering tools — build, format, debug, optimize, secure, and translate prompts in your browser. No sign-up required.",
     "type": "page",
     "priority": 0.9,
     "changefreq": "daily"
@@ -63,135 +63,135 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/tools/prompt-variable-extractor",
-    "title": "Free Prompt Variable Extractor — AI Prompt Tools",
-    "desc": "Extract prompt variables like {name}, {{city}}, [tone] from any AI prompt. Free in-browser tool for building reusable prompt templates. Supports 4 variable syntaxes, sorted output.",
+    "title": "Free Prompt Variable Extractor — Extract {Variables} | AI World Hub",
+    "desc": "Extract prompt variables like {name}, {{city}}, [tone] from any AI prompt. Free in-browser tool for building reusable prompt templates.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/json-schema-generator",
-    "title": "Free JSON Schema Generator for AI — AI Prompt Tools",
-    "desc": "Generate JSON Schema from sample data for reliable AI output. Free in-browser tool — paste JSON, get schema instantly. Draft 2020-12 compliant with nested object support.",
+    "title": "Free JSON Schema Generator for AI Output | AI World Hub",
+    "desc": "Generate JSON Schema from sample data for reliable AI output. Free in-browser tool — paste JSON, get schema instantly. Draft 2020-12 compliant.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/json-validator",
-    "title": "Free JSON Validator for AI Output — AI Prompt Tools",
-    "desc": "Validate AI-generated JSON against your schema in real time. Catch missing fields, type mismatches, and structural errors before production. Free in-browser tool.",
+    "title": "Free JSON Validator for AI Output | AI World Hub",
+    "desc": "Validate AI-generated JSON against your schema in real time. Catch missing fields, type mismatches, and errors before production.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/prompt-formatter",
-    "title": "Free Prompt Formatter for ChatGPT — AI Prompt Tools",
-    "desc": "Format messy prompt notes into clean, numbered instruction blocks for ChatGPT, Claude, and Gemini. Free in-browser tool — get better AI results with structured prompts.",
+    "title": "Free Prompt Formatter for ChatGPT & Claude | AI World Hub",
+    "desc": "Format messy prompt notes into clean, numbered instruction blocks for ChatGPT, Claude, and Gemini. Free in-browser tool.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/prompt-cleaner",
-    "title": "Free Prompt Cleaner — Remove Noise from AI Prompts",
-    "desc": "Clean noisy text, hidden characters, and formatting issues from AI prompts. Free in-browser tool that normalizes whitespace, strips control characters, and trims line breaks.",
+    "title": "Free Prompt Cleaner — Remove Noise from AI Prompts | AI World Hub",
+    "desc": "Clean noisy text, hidden characters, and formatting issues from AI prompts. Free in-browser tool.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/token-estimator",
-    "title": "Free AI Token Estimator & Calculator — AI Prompt Tools",
-    "desc": "Estimate token count, characters, and words for AI prompts before sending to GPT, Claude, or Gemini APIs. Free in-browser token calculator for cost planning and budget optimization.",
+    "title": "Free AI Token Estimator & Counter — GPT, Claude | AI World Hub",
+    "desc": "Estimate token count, characters, and words for AI prompts before sending to GPT, Claude, or Gemini APIs. Free token calculator.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/prompt-converter",
-    "title": "Free Prompt Converter — ChatGPT to Claude & Gemini | AI Tools",
-    "desc": "Convert ChatGPT prompts to Claude, Gemini, or Cursor format instantly. Free in-browser tool that adapts tone, structure, and directives for each AI model. No sign-up required.",
+    "title": "Free Prompt Converter — ChatGPT to Claude & Gemini | AI World Hub",
+    "desc": "Convert ChatGPT prompts to Claude, Gemini, or Cursor format instantly. Free in-browser tool.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/persona-builder",
-    "title": "Free AI Persona Builder — System Prompt Generator | AI Tools",
-    "desc": "Generate expert system prompts for AI roles like Marketer, Developer, Analyst, Writer, Teacher, and Business Consultant. Free in-browser persona builder for ChatGPT, Claude & Gemini.",
+    "title": "Free AI Persona Builder — System Prompt Generator | AI World Hub",
+    "desc": "Generate expert system prompts for AI roles like Marketer, Developer, Analyst. Free in-browser persona builder for ChatGPT, Claude & Gemini.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/advanced-prompt-optimizer",
-    "title": "Free Advanced Prompt Optimizer — Best AI Prompt Tool",
-    "desc": "Polish and optimize AI prompts with advanced controls — reduce tokens, add structure, compare before-and-after. The best free prompt optimizer for ChatGPT, Claude & Gemini.",
+    "title": "Free Advanced Prompt Optimizer — Best AI Prompt Tool | AI World Hub",
+    "desc": "Polish and optimize AI prompts with advanced controls — reduce tokens, add structure, compare before-and-after. Best free prompt optimizer.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/prompt-comparison",
-    "title": "Free Prompt Comparison Tool — Compare AI Prompts",
-    "desc": "Compare two AI prompts side by side with token count, word count, readability, structure score, clarity score, and visual diff highlighting. Free in-browser tool for choosing the best prompt.",
+    "title": "Free Prompt Comparison Tool — Compare 2 AI Prompts | AI World Hub",
+    "desc": "Compare two AI prompts side by side. See token count, word count, readability, structure score, clarity score, and visual diff highlighting. Free in-browser tool.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/mega-prompt-builder",
-    "title": "Free Mega Prompt Builder — AI Prompt Generator",
-    "desc": "Build structured mega prompts with an 8-step wizard — role, task, context, audience, format, tone, constraints, and examples. Free in-browser mega prompt builder for ChatGPT, Claude & Gemini.",
+    "title": "Free Mega Prompt Builder — 8-Step Prompt Wizard | AI World Hub",
+    "desc": "Build structured mega prompts with an 8-step wizard — role, task, context, audience, format, tone, constraints, and examples. Get production-ready prompts instantly. Free in-browser tool.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/prompt-debugger",
-    "title": "Free Prompt Debugger — Diagnose AI Prompts",
-    "desc": "Diagnose AI prompts with a health score (0-100), 12+ issue detectors, and instant auto-fix suggestions. Free in-browser prompt debugger for ChatGPT, Claude & Gemini prompts.",
+    "title": "Free Prompt Debugger — Health Score & Issue Detection | AI World Hub",
+    "desc": "Diagnose AI prompts with a health score (0-100), 12+ issue detectors, and instant auto-fix suggestions. Find and fix prompt problems before using them. Free in-browser tool.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/security-scanner",
-    "title": "Free Prompt Security Scanner — AI Prompt Injection Check",
-    "desc": "Scan prompts for injection attacks, jailbreaks, PII leaks, and security threats with risk level scoring and actionable remediation. Free in-browser prompt security scanner for AI prompts.",
+    "title": "Free Prompt Security Scanner — Detect Injection & PII | AI World Hub",
+    "desc": "Scan AI prompts for injection attacks, jailbreaks, PII leaks, and security threats. Get risk level scoring and actionable remediation. Free in-browser security scanner.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/prompt-chain-builder",
-    "title": "Free Prompt Chain Builder — AI Prompt Sequencing",
-    "desc": "Chain up to 5 sequential prompt steps with different output formats. Copy all steps or export as Markdown. Free in-browser prompt chain builder for complex AI workflows.",
+    "title": "Free Prompt Chain Builder — Sequential AI Workflows | AI World Hub",
+    "desc": "Chain up to 5 sequential prompt steps with different output formats. Copy all steps or export as Markdown. Build multi-step AI workflows. Free in-browser tool.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/prompt-translator",
-    "title": "Free Prompt Translator — Translate AI Prompts",
-    "desc": "Translate prompts into 8 languages — Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, Arabic — while preserving variables. Free in-browser prompt translator for global AI use.",
+    "title": "Free Prompt Translator — 8 Languages | AI World Hub",
+    "desc": "Translate AI prompts into 8 languages — Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, Arabic — while preserving variables like {name} and [tone]. Free in-browser tool.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/api-request-builder",
-    "title": "Free API Request Builder — OpenAI, Anthropic & Gemini",
-    "desc": "Build API requests for OpenAI, Anthropic, and Gemini with model selection, temperature, max tokens, and cURL export. Free in-browser API request builder for AI developers.",
+    "title": "Free API Request Builder — OpenAI, Anthropic, Gemini | AI World Hub",
+    "desc": "Build API requests for OpenAI, Anthropic, and Gemini with model selection, temperature, max tokens, and cURL export. Generate JSON request bodies instantly. Free in-browser tool.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/image-prompt-generator",
-    "title": "Free AI Image Prompt Generator — DALL-E & Midjourney",
+    "title": "Free AI Image Prompt Generator — DALL-E & Midjourney | AI World Hub",
     "desc": "Generate production-ready image prompts for DALL-E, Midjourney, and Stable Diffusion. Choose art style, mood, and camera angle. Free in-browser tool with instant copy-paste.",
     "type": "tool",
     "priority": 0.8,
@@ -199,7 +199,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/tools/content-summarizer",
-    "title": "Free AI Content Summarizer — TL;DR & Bullet Points",
+    "title": "Free AI Content Summarizer — TL;DR & Bullet Points | AI World Hub",
     "desc": "Summarize long articles, reports, and documents into TL;DR, bullet points, paragraphs, or academic abstracts. Free in-browser tool with word reduction stats.",
     "type": "tool",
     "priority": 0.8,
@@ -207,7 +207,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/tools/regex-generator",
-    "title": "Free AI Regex Generator — From Plain English",
+    "title": "Free AI Regex Generator — From Plain English | AI World Hub",
     "desc": "Generate regex patterns from plain English descriptions. Test instantly against sample strings with built-in syntax cheatsheet. Free in-browser regex tool.",
     "type": "tool",
     "priority": 0.8,
@@ -215,31 +215,31 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/playground",
-    "title": "Free AI Prompt Playground — Test & Build Prompts",
-    "desc": "Interactive AI prompt playground with blog, code, and email templates. Live token estimation and prompt health scoring. Free in-browser prompt testing tool for ChatGPT, Claude & Gemini.",
+    "title": "AI Prompt Playground — Test & Debug Prompts Live | AI World Hub",
+    "desc": "Free AI prompt playground. Generate blog post, code review, and cold email prompt templates, estimate tokens, and debug prompt health in real time — all in your browser.",
     "type": "page",
     "priority": 0.9,
     "changefreq": "weekly"
   },
   {
     "path": "/prompts",
-    "title": "Free AI Prompt Library — 225+ ChatGPT Prompts for Every Role",
-    "desc": "Browse 225+ free ChatGPT prompts for 15 roles — content writer, developer, marketer, SEO specialist, data analyst, business analyst, and more. Copy and paste AI prompts for every task.",
+    "title": "AI Prompt Library — 225+ Prompts for 15 Roles | AI World Hub",
+    "desc": "Free AI prompt library with 225+ ready-to-use prompts for 15 professional roles — ChatGPT, content writers, developers, marketers, SEO, data analysts, designers, sales, customer support, and more. Copy and customize instantly.",
     "type": "page",
     "priority": 0.9,
     "changefreq": "daily"
   },
   {
     "path": "/changelog",
-    "title": "AI Prompt Toolkit Changelog — New Features & Updates",
-    "desc": "Track the latest updates to AI World Hub's 19 free AI prompt tools. New tools, features, and improvements in each release version. See what's new in our AI prompt toolkit.",
+    "title": "Changelog — Latest Updates & New Features | AI World Hub",
+    "desc": "Track all updates and new features added to AI World Hub's AI prompt engineering toolkit. See version history, new tools, improvements, and bug fixes.",
     "type": "page",
     "priority": 0.6,
     "changefreq": "weekly"
   },
   {
     "path": "/templates",
-    "title": "Free Prompt Templates Library — 100+ Ready-to-Use Prompts | AI World Hub",
+    "title": "Prompt Templates Library — 100+ Ready-to-Use Prompts | AI World Hub",
     "desc": "Browse 100+ ready-to-use AI prompt templates for writing, image generation, coding, video, and productivity. Copy, paste, get results instantly. Free prompt templates library.",
     "type": "page",
     "priority": 0.9,
@@ -255,7 +255,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/image-generator",
-    "title": "Free AI Image Prompt Generator — Midjourney & DALL-E | AI World Hub",
+    "title": "AI Image Prompt Generator — Midjourney & DALL-E | AI World Hub",
     "desc": "Generate optimized AI image prompts for Midjourney, DALL-E 3, and Stable Diffusion. Select an art style and get copy-ready prompts instantly. Free in-browser tool.",
     "type": "page",
     "priority": 0.9,
@@ -384,7 +384,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/blog/best-ai-tools-2026-complete-directory",
     "title": "Best AI Tools 2026 — Complete Directory of 50+ Tools | AI World Hub",
-    "desc": "Discover the 50 best AI tools in 2026 for writing, image generation, coding, video, and productivity. Ranked by popularity with free plans and direct links. ChatGPT, Midjourney, Claude & more.",
+    "desc": "Discover the 50 best AI tools in 2026 for writing, image generation, coding, video, and productivity. Ranked by popularity with free plans.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
@@ -392,7 +392,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/blog/100-chatgpt-prompts-for-every-task",
     "title": "100+ ChatGPT Prompts for Every Task — Copy & Paste | AI World Hub",
-    "desc": "100+ ready-to-use ChatGPT prompts for writing, marketing, coding, business, education, and more. Copy, paste, and get professional results instantly. Free prompt library.",
+    "desc": "100+ ready-to-use ChatGPT prompts for writing, marketing, coding, business, education, and more. Copy, paste, and get professional results.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
@@ -400,7 +400,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/blog/how-to-use-chatgpt-complete-guide",
     "title": "How to Use ChatGPT — Complete Beginner Guide 2026 | AI World Hub",
-    "desc": "Learn how to use ChatGPT from scratch — creating an account, writing effective prompts, using advanced features like image generation and file analysis. Step-by-step guide for beginners.",
+    "desc": "Learn how to use ChatGPT from scratch — creating an account, writing effective prompts, using advanced features.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
@@ -408,15 +408,15 @@ export const STATIC_ROUTES = [
   {
     "path": "/blog/free-ai-tools-50-best-tested",
     "title": "50 Best Free AI Tools 2026 — Tested & Ranked | AI World Hub",
-    "desc": "50 genuinely free AI tools tested and ranked for 2026 — writing, images, video, coding, audio, and productivity. No hidden fees, no credit card required. ChatGPT, Canva, Leonardo & more.",
+    "desc": "50 genuinely free AI tools tested and ranked for 2026 — writing, images, video, coding, audio, and productivity.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/prompt-engineering-complete-guide",
-    "title": "Prompt Engineering Complete Guide — Beginner to Expert 2026 | AI World Hub",
-    "desc": "Master prompt engineering in 2026. Learn proven techniques — role prompting, chain-of-thought, few-shot examples, JSON schema output. Get professional results from any AI model.",
+    "title": "Prompt Engineering Guide — Beginner to Expert 2026 | AI World Hub",
+    "desc": "Master prompt engineering in 2026. Learn proven techniques — role prompting, chain-of-thought, few-shot examples, JSON schema output.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
@@ -424,207 +424,207 @@ export const STATIC_ROUTES = [
   {
     "path": "/blog/ai-tools-directory-categorized-list",
     "title": "AI Tools Directory — 50+ Tools by Category | AI World Hub",
-    "desc": "Browse 50+ AI tools organized by category — text generation, image creation, video editing, coding, audio, and productivity. Compare features, pricing, and use cases. Free directory.",
+    "desc": "Browse 50+ AI tools organized by category — text generation, image creation, video editing, coding, audio, and productivity.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/master-prompt-engineering-workflow",
-    "title": "Prompt Engineering Workflow Guide — Best Practices | AI World Hub",
-    "desc": "Step-by-step prompt engineering workflow for teams — discover, draft, test, validate, review, deploy. Reduce iteration time and ship reliable AI prompts faster. Free guide.",
+    "title": "Master Prompt Engineering Workflows | AI World Hub",
+    "desc": "Discover a step-by-step prompt engineering workflow that helps teams reduce iteration time and ship reliable AI prompts faster.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/craft-high-impact-chatgpt-prompts",
-    "title": "How to Write High-Impact ChatGPT Prompts — Free Guide | AI World Hub",
-    "desc": "Learn how to design ChatGPT prompts that produce clearer, more consistent, and more useful AI responses. Free guide with copy-paste examples and prompt templates.",
+    "title": "Craft High-Impact ChatGPT Prompts | AI World Hub",
+    "desc": "Learn how to design ChatGPT prompts that produce clearer, more actionable answers while reducing ambiguity and unwanted responses.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/build-ai-prompt-templates-that-scale",
-    "title": "Build AI Prompt Templates That Scale — Free Guide | AI World Hub",
-    "desc": "Create scalable AI prompt templates that support team collaboration, reduce rework, and improve consistency. Free guide with template examples for ChatGPT, Claude & Gemini.",
+    "title": "Build AI Prompt Templates That Scale | AI World Hub",
+    "desc": "Explore how to create scalable AI prompt templates that support collaboration, versioning, and repeated use in enterprise workflows.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/claude-prompt-best-practices",
-    "title": "Claude Prompt Best Practices — Free AI Prompt Guide | AI World Hub",
-    "desc": "Learn how to write Claude prompts that deliver consistent, structured, and reliable AI responses. Best practices for context management, prompt structure, and guardrails.",
+    "title": "Claude Prompt Best Practices | AI World Hub",
+    "desc": "Learn how to write Claude prompts that deliver consistent, safe, and task-oriented responses for enterprise applications.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/midjourney-prompt-techniques",
-    "title": "Midjourney Prompt Techniques — Create Better AI Art | AI World Hub",
-    "desc": "Discover Midjourney prompt strategies that generate more compelling and consistent AI art. Free guide with prompt examples for photorealistic, artistic, and stylized images.",
+    "title": "Midjourney Prompt Techniques | AI World Hub",
+    "desc": "Discover Midjourney prompt strategies that generate more compelling visuals, improve style control, and help you iterate on creative concepts.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/design-json-schema-for-ai-output",
-    "title": "Design JSON Schema for Reliable AI Output — Free Guide | AI World Hub",
-    "desc": "Learn how to create JSON schema for AI output and ensure your model responses are structured and reliable. Free guide with examples for ChatGPT, Claude, and Gemini API.",
+    "title": "Design JSON Schema for Reliable AI Output | AI World Hub",
+    "desc": "Learn how to create JSON schema for AI output and ensure your model responses are structured, validated, and ready for production use.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/boost-ai-productivity-with-prompt-systems",
-    "title": "Boost AI Productivity with Prompt Systems — Free Guide | AI World Hub",
-    "desc": "Explore how prompt systems, reusable templates, and automation can significantly boost AI productivity. Free guide for teams using ChatGPT, Claude, and Gemini.",
+    "title": "Boost AI Productivity with Prompt Systems | AI World Hub",
+    "desc": "Explore how prompt systems, reusable templates, and automation workflows help teams do more with AI while keeping quality high.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/optimize-prompts-for-better-ai-performance",
-    "title": "Optimize AI Prompts for Better Performance — Free Guide | AI World Hub",
-    "desc": "Learn practical prompt optimization techniques to improve AI model accuracy, reduce token costs, and speed up delivery. Free guide with before-and-after examples.",
+    "title": "Optimize Prompts for Better AI Performance | AI World Hub",
+    "desc": "Learn practical prompt optimization techniques to improve model performance, reduce tokens, and get more reliable AI output.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/automate-ai-tasks-with-prompt-workflows",
-    "title": "Automate AI Tasks with Prompt Workflows — Free Guide | AI World Hub",
-    "desc": "Discover how to automate common AI tasks using prompt workflows that save time and maintain quality. Free guide for building automated AI pipelines.",
+    "title": "Automate AI Tasks with Prompt Workflows | AI World Hub",
+    "desc": "Discover how to automate common AI tasks using prompt workflows, templates, and validation tools to deliver consistent results.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/orchestrate-llm-workflows-for-productive-teams",
-    "title": "Orchestrate LLM Workflows for Teams — Free AI Guide | AI World Hub",
-    "desc": "Learn how to orchestrate LLM workflows that connect prompt design, validation, and deployment. Free guide for teams building production AI applications.",
+    "title": "Orchestrate LLM Workflows for Productive Teams | AI World Hub",
+    "desc": "Learn how to orchestrate LLM workflows that connect prompt design, validation, and operations for productive AI teams.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/prompt-audit-and-iteration-strategies",
-    "title": "Prompt Audit & Iteration Strategies — Free AI Guide | AI World Hub",
-    "desc": "Explore prompt audit practices and iteration strategies that keep AI output reliable over time. Free guide with audit checklists and testing frameworks.",
+    "title": "Prompt Audit and Iteration Strategies | AI World Hub",
+    "desc": "Explore prompt audit practices and iteration strategies that help teams improve AI results, reduce errors, and learn from model feedback.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/customer-support-prompt-templates",
-    "title": "Customer Support Prompt Templates — Free ChatGPT Guide | AI World Hub",
-    "desc": "Learn how to create prompt templates for customer support that improve AI response quality and speed. Free ChatGPT prompt templates for support teams.",
+    "title": "Design Prompt Templates for Customer Support | AI World Hub",
+    "desc": "Learn how to create prompt templates for customer support that help AI agents respond consistently, empathetically, and accurately.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/marketing-chatgpt-prompt-patterns",
-    "title": "ChatGPT Prompt Patterns for Marketing — Free Guide | AI World Hub",
-    "desc": "Discover reliable ChatGPT prompt patterns for marketing teams to create content faster and more consistently. Free prompt library for ads, emails, social media & SEO.",
+    "title": "ChatGPT Prompt Patterns for Marketing | AI World Hub",
+    "desc": "Discover reliable ChatGPT prompt patterns for marketing teams that generate compelling copy, campaign ideas, and audience messaging.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/enterprise-claude-prompt-engineering",
-    "title": "Enterprise Claude Prompt Engineering — Free AI Guide | AI World Hub",
-    "desc": "Explore Claude prompt engineering practices for enterprise use cases where reliability and compliance matter. Free guide with production-ready prompt patterns.",
+    "title": "Enterprise Claude Prompt Engineering | AI World Hub",
+    "desc": "Explore Claude prompt engineering practices for enterprise use cases that demand safety, accuracy, and predictable behavior.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/midjourney-prompts-for-creative-visuals",
-    "title": "Midjourney Prompts for Creative Visuals — Free AI Art Guide | AI World Hub",
-    "desc": "Learn how to write Midjourney prompts that accelerate creative production and improve visual quality. Free guide with prompt examples for every art style.",
+    "title": "Midjourney Prompts for Creative Visuals | AI World Hub",
+    "desc": "Learn how to write Midjourney prompts that accelerate creative iteration and produce richer visual concepts.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/validate-ai-outputs-with-json-schema",
-    "title": "Validate AI Outputs with JSON Schema — Free Guide | AI World Hub",
-    "desc": "A hands-on guide to validating AI outputs with JSON schema, reducing failures and improving reliability. Free tutorial with code examples for production AI.",
+    "title": "Validate AI Outputs with JSON Schema | AI World Hub",
+    "desc": "A hands-on guide to validating AI outputs with JSON schema, so your LLM responses are reliable and easier to integrate.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/scale-ai-productivity-with-reusable-prompts",
-    "title": "Scale AI Productivity with Reusable Prompts — Free Guide | AI World Hub",
-    "desc": "Explore reusable prompt patterns that help teams scale AI productivity without sacrificing quality. Free guide with template library examples.",
+    "title": "Scale AI Productivity with Reusable Prompts | AI World Hub",
+    "desc": "Explore reusable prompt patterns that help teams scale AI productivity while maintaining consistency and quality.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/prompt-optimization-for-cost-and-quality",
-    "title": "Prompt Optimization for Cost & Quality — Free AI Guide | AI World Hub",
-    "desc": "Learn how prompt optimization improves both AI output quality and cost efficiency for production systems. Free guide with token-saving techniques.",
+    "title": "Prompt Optimization for Cost and Quality | AI World Hub",
+    "desc": "Learn how prompt optimization improves both AI output quality and cost efficiency with practical techniques and validation steps.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/business-automation-with-ai-prompts",
-    "title": "Business Automation with AI Prompts — Free Guide | AI World Hub",
-    "desc": "Explore how AI prompts and workflow templates can automate business processes and improve efficiency. Free guide for small businesses and enterprises.",
+    "title": "Business Automation with AI Prompts | AI World Hub",
+    "desc": "Explore how AI prompts and workflow templates can automate business tasks like reporting, customer outreach, and data insights.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/deploy-llm-workflows-for-team-collaboration",
-    "title": "Deploy LLM Workflows for Team Collaboration — Free Guide | AI World Hub",
-    "desc": "Learn how to deploy LLM workflows that help teams collaborate and scale AI delivery. Free guide with workflow templates and best practices.",
+    "title": "Deploy LLM Workflows for Team Collaboration | AI World Hub",
+    "desc": "Learn how to deploy LLM workflows that help teams collaborate on prompts, validation, and AI delivery at scale.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/prompts-for-ai-reliability-and-governance",
-    "title": "Prompts for AI Reliability & Governance — Free Guide | AI World Hub",
-    "desc": "Discover how reliable prompts and governance practices help teams manage AI risk and quality. Free guide with governance frameworks and testing strategies.",
+    "title": "Prompts for AI Reliability and Governance | AI World Hub",
+    "desc": "Discover how reliable prompts and governance practices help teams mitigate risk, improve consistency, and maintain AI quality.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/trusted-prompt-templates-for-team-use",
-    "title": "Trusted Prompt Templates for Teams — Free AI Guide | AI World Hub",
-    "desc": "Learn how to build trusted prompt templates for collaborative, reliable AI use across teams. Free guide with review, testing, and reuse strategies.",
+    "title": "Trusted Prompt Templates for Teams | AI World Hub",
+    "desc": "Learn how to build trusted prompt templates for collaborative AI use, including template review, testing, and version control.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/ai-workflow-automation-for-operations",
-    "title": "AI Workflow Automation for Operations — Free Guide | AI World Hub",
-    "desc": "Discover how to automate operations and support workflows with AI prompts and templates. Free guide for operations teams using ChatGPT and Claude.",
+    "title": "AI Workflow Automation for Operations | AI World Hub",
+    "desc": "Discover how to automate operations and support workflows with AI prompts, templates, and validation best practices.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/llm-workflow-best-practices-for-innovation",
-    "title": "LLM Workflow Best Practices for Innovation — Free AI Guide | AI World Hub",
-    "desc": "Explore best practices for LLM workflows that balance innovation, reliability, and speed. Free guide for teams building with large language models.",
+    "title": "LLM Workflow Best Practices | AI World Hub",
+    "desc": "Explore best practices for LLM workflows that balance innovation with reliability, including prompt design, validation, and collaboration.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/blog/ai-prompt-template-governance-for-growth",
-    "title": "AI Prompt Template Governance for Growth — Free Guide | AI World Hub",
-    "desc": "Learn how prompt template governance helps teams scale AI safely and sustainably. Free guide with governance templates and growth strategies.",
+    "title": "AI Prompt Template Governance for Growth | AI World Hub",
+    "desc": "Learn how prompt template governance helps teams scale AI safely, maintain consistency, and manage prompt quality over time.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
