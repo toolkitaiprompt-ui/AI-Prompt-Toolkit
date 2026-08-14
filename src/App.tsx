@@ -9,6 +9,8 @@ const MONETAG_ZONE_SCRIPT = "https://quge5.com/88/tag.min.js";
 
 const monetagScriptInjected = useRef(false);
 
+const vignetteScriptInjected = useRef(false);
+
 const HomePage = lazy(() => import("./components/HomePage"));
 const SearchModal = lazy(() => import("./components/SearchModal"));
 
@@ -85,6 +87,21 @@ useEffect(() => {
   return () => {
     monetagScriptInjected.current = false;
     var oldScript = document.querySelector(`script[src="${MONETAG_ZONE_SCRIPT}"]`);
+    if (oldScript) oldScript.remove();
+  };
+}, []);
+
+useEffect(() => {
+  if (vignetteScriptInjected.current) return;
+  vignetteScriptInjected.current = true;
+  const script = document.createElement("script");
+  script.dataset.zone = "11565895";
+  script.src = "https://n6wxm.com/vignette.min.js";
+  script.async = true;
+  document.head.appendChild(script);
+  return () => {
+    vignetteScriptInjected.current = false;
+    var oldScript = document.querySelector(`script[data-zone="11565895"][src="https://n6wxm.com/vignette.min.js"]`);
     if (oldScript) oldScript.remove();
   };
 }, []);
