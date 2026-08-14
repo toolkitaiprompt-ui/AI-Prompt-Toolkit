@@ -1,6 +1,9 @@
 import { useState, useMemo, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Search, X, Braces, FileJson2, ShieldCheck, WandSparkles, Sparkles, Sigma, ArrowLeftRight, UserCircle, FileText, Layout } from "lucide-react";
+import { TOOL_PAGES } from "../data/tools";
+import { BLOG_POSTS } from "../data/blogPosts";
+import { TEMPLATES } from "../data/templates";
 
 interface SearchResult {
   title: string;
@@ -8,27 +11,6 @@ interface SearchResult {
   url: string;
   type: "tool" | "blog" | "template";
   icon: any;
-}
-
-interface ToolMeta {
-  title: string;
-  path: string;
-  description: string;
-  icon: any;
-}
-
-interface BlogPost {
-  slug: string;
-  title: string;
-  excerpt: string;
-  category: string;
-}
-
-interface Template {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
 }
 
 const iconMap: Record<string, any> = {
@@ -43,15 +25,9 @@ function getIcon(iconName: string): any {
 export default function SearchModal({
   isOpen,
   onClose,
-  tools,
-  blogPosts,
-  templates,
 }: {
   isOpen: boolean;
   onClose: () => void;
-  tools: ToolMeta[];
-  blogPosts: BlogPost[];
-  templates: Template[];
 }) {
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -110,7 +86,7 @@ export default function SearchModal({
     if (!query.trim()) return [];
     const q = query.toLowerCase().trim();
 
-    const toolResults: SearchResult[] = tools
+    const toolResults: SearchResult[] = TOOL_PAGES
       .filter(t => t.title.toLowerCase().includes(q) || t.description.toLowerCase().includes(q))
       .map(t => ({
         title: t.title,
@@ -120,7 +96,7 @@ export default function SearchModal({
         icon: t.icon,
       }));
 
-    const blogResults: SearchResult[] = blogPosts
+    const blogResults: SearchResult[] = BLOG_POSTS
       .filter(p => p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q) || p.category.toLowerCase().includes(q))
       .map(p => ({
         title: p.title,
@@ -130,7 +106,7 @@ export default function SearchModal({
         icon: FileText,
       }));
 
-    const templateResults: SearchResult[] = templates
+    const templateResults: SearchResult[] = TEMPLATES
       .filter(t => t.title.toLowerCase().includes(q) || t.description.toLowerCase().includes(q) || t.category.toLowerCase().includes(q))
       .map(t => ({
         title: t.title,
@@ -141,7 +117,7 @@ export default function SearchModal({
       }));
 
     return [...toolResults, ...blogResults, ...templateResults].slice(0, 12);
-  }, [query, tools, blogPosts, templates]);
+  }, [query]);
 
   if (!isOpen) return null;
 

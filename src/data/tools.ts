@@ -1,0 +1,188 @@
+import {
+  Braces,
+  FileJson2,
+  ShieldCheck,
+  WandSparkles,
+  Sparkles,
+  Sigma,
+  ArrowLeftRight,
+  UserCircle,
+  Hammer,
+  Bug,
+  ShieldAlert,
+  Link2,
+  Languages,
+  Code2,
+  Image,
+  FileText,
+  Terminal,
+  type LucideIcon,
+} from "lucide-react";
+
+export type ToolMeta = {
+  title: string;
+  path: string;
+  description: string;
+  icon: LucideIcon;
+  accent: string;
+  premium?: boolean;
+  keyBenefits?: string[];
+};
+
+export const TOOL_PAGES: ToolMeta[] = [
+  {
+    title: "Prompt Variable Extractor",
+    path: "/tools/prompt-variable-extractor",
+    description: "Extract variables like {name}, {{city}}, [tone], and :language from any prompt.",
+    icon: Braces,
+    accent: "from-blue-500/30 to-cyan-400/10",
+    keyBenefits: ["Supports 4 variable syntaxes", "Alphabetically sorted results", "Zero server calls"],
+  },
+  {
+    title: "JSON Schema Generator",
+    path: "/tools/json-schema-generator",
+    description: "Generate JSON Schema from a sample JSON object for consistent AI output structures.",
+    icon: FileJson2,
+    accent: "from-indigo-500/35 to-blue-500/10",
+    keyBenefits: ["Draft 2020-12 compliant", "Nested object support", "Instant generation"],
+  },
+  {
+    title: "JSON Validator",
+    path: "/tools/json-validator",
+    description: "Validate model responses against your schema using key type and required field checks.",
+    icon: ShieldCheck,
+    accent: "from-violet-500/35 to-indigo-400/10",
+    keyBenefits: ["Type checking", "Required field validation", "Path-level error reporting"],
+  },
+  {
+    title: "Prompt Formatter",
+    path: "/tools/prompt-formatter",
+    description: "Format long prompts into clean and numbered instruction blocks.",
+    icon: WandSparkles,
+    accent: "from-fuchsia-500/35 to-indigo-500/10",
+    keyBenefits: ["Numbered sections", "Removes noise", "Copy-ready output"],
+  },
+  {
+    title: "Prompt Cleaner",
+    path: "/tools/prompt-cleaner",
+    description: "Remove noise characters, extra spacing, and malformed line breaks from prompts.",
+    icon: Sparkles,
+    accent: "from-sky-500/35 to-indigo-500/10",
+    keyBenefits: ["Strips control characters", "Normalizes whitespace", "Trims line breaks"],
+  },
+  {
+    title: "Token Estimator",
+    path: "/tools/token-estimator",
+    description: "Estimate characters, words, and token usage before sending prompts to LLM APIs.",
+    icon: Sigma,
+    accent: "from-blue-600/35 to-violet-500/10",
+    keyBenefits: ["~4 chars per token model", "Real-time counting", "Cost planning"],
+  },
+  {
+    title: "Prompt Converter",
+    path: "/tools/prompt-converter",
+    description: "Convert ChatGPT prompts to Claude, Gemini, or Cursor format instantly. Adapt tone, structure, and directives.",
+    icon: ArrowLeftRight,
+    accent: "from-amber-500/30 to-yellow-400/10",
+    keyBenefits: ["ChatGPT to Claude", "ChatGPT to Gemini", "ChatGPT to Cursor"],
+  },
+  {
+    title: "AI Persona Builder",
+    path: "/tools/persona-builder",
+    description: "Generate expert system prompts for different roles like Marketer, Developer, or Analyst instantly.",
+    icon: UserCircle,
+    accent: "from-rose-500/30 to-amber-400/10",
+    keyBenefits: ["Expert role prompting", "Task-specific context", "Behavioral rules"],
+  },
+  {
+    title: "Advanced Prompt Optimizer",
+    path: "/tools/advanced-prompt-optimizer",
+    description: "Polish and amplify prompts with advanced structuring — role, format, tone, and constraint patterns applied automatically.",
+    icon: Sparkles,
+    accent: "from-indigo-500/35 to-cyan-400/10",
+    keyBenefits: ["Side-by-side compare", "Unlimited free use", "Prompt structure analysis"],
+  },
+  {
+    title: "Prompt Comparison Tool",
+    path: "/tools/prompt-comparison",
+    description: "Compare two prompts side by side. See token count, word count, readability, structure score, clarity score, and visual diff highlighting.",
+    icon: ArrowLeftRight,
+    accent: "from-cyan-500/30 to-blue-400/10",
+    keyBenefits: ["Token & word count", "Readability & structure scores", "Visual diff highlighting"],
+  },
+  {
+    title: "Mega Prompt Builder",
+    path: "/tools/mega-prompt-builder",
+    description: "Build production-grade AI prompts with an 8-step guided wizard — role, task, context, audience, format, tone, constraints, and examples.",
+    icon: Hammer,
+    accent: "from-amber-500/35 to-rose-500/10",
+    keyBenefits: ["8-step guided wizard", "Role + context + constraints", "Export as Markdown"],
+  },
+  {
+    title: "Prompt Debugger",
+    path: "/tools/prompt-debugger",
+    description: "Diagnose your AI prompts with a health score (0-100) and 12+ issue detectors. Get instant auto-fix suggestions for better results.",
+    icon: Bug,
+    accent: "from-red-500/30 to-amber-400/10",
+    keyBenefits: ["Health score 0-100", "12+ issue detectors", "Auto-fix suggestions"],
+  },
+  {
+    title: "Security Scanner",
+    path: "/tools/security-scanner",
+    description: "Scan prompts for injection attacks, jailbreak attempts, and PII leaks before sending to AI APIs. Protect your data and prevent manipulation.",
+    icon: ShieldAlert,
+    accent: "from-red-500/35 to-violet-500/10",
+    keyBenefits: ["Injection detection", "Jailbreak scanning", "PII & data leak alerts"],
+  },
+  {
+    title: "Prompt Chain Builder",
+    path: "/tools/prompt-chain-builder",
+    description: "Build multi-step prompt chains with up to 5 sequential steps. Each step supports custom output formats — Text, JSON, Markdown, Code, Table, and more.",
+    icon: Link2,
+    accent: "from-indigo-500/35 to-cyan-400/10",
+    keyBenefits: ["Up to 5 chained steps", "7 output format options", "Export as Markdown"],
+  },
+  {
+    title: "Prompt Translator",
+    path: "/tools/prompt-translator",
+    description: "Translate AI prompts into 8 languages — Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, and Arabic — while preserving variables.",
+    icon: Languages,
+    accent: "from-cyan-500/35 to-blue-500/10",
+    keyBenefits: ["8 languages supported", "Preserves {variables}", "Multi-locale prompting"],
+  },
+  {
+    title: "API Request Builder",
+    path: "/tools/api-request-builder",
+    description: "Build API request bodies and cURL commands for OpenAI, Anthropic, and Gemini. Configure model, temperature, and max tokens. Copy ready-to-use code.",
+    icon: Code2,
+    accent: "from-emerald-500/35 to-green-400/10",
+    keyBenefits: ["OpenAI, Anthropic & Gemini", "Temperature & max tokens", "Copy cURL commands"],
+  },
+  {
+    title: "AI Image Prompt Generator",
+    path: "/tools/image-prompt-generator",
+    description: "Generate production-ready image prompts for DALL-E, Midjourney, and Stable Diffusion. Choose art style, mood, and camera angle.",
+    icon: Image,
+    accent: "from-pink-500/35 to-rose-400/10",
+    keyBenefits: ["8 art styles", "DALL-E & Midjourney ready", "Instant copy-paste"],
+  },
+  {
+    title: "AI Content Summarizer",
+    path: "/tools/content-summarizer",
+    description: "Summarize long articles, reports, and documents into TL;DR, bullet points, paragraphs, or academic abstracts with word reduction stats.",
+    icon: FileText,
+    accent: "from-teal-500/35 to-emerald-400/10",
+    keyBenefits: ["4 summary modes", "Word reduction %", "Copy-ready output"],
+  },
+  {
+    title: "AI Regex Generator",
+    path: "/tools/regex-generator",
+    description: "Generate regex patterns from plain English descriptions. Test instantly against sample strings with built-in cheatsheet.",
+    icon: Terminal,
+    accent: "from-violet-500/35 to-purple-400/10",
+    keyBenefits: ["6 quick presets", "Live regex tester", "Syntax cheatsheet"],
+  },
+];
+
+export const TOOL_BY_SLUG = new Map(TOOL_PAGES.map((tool) => [tool.path.split("/").pop()!, tool]));
+
