@@ -5,8 +5,7 @@ import type { BlogPost } from "../data/blogPosts";
 
 const IMG = "https://images.unsplash.com";
 
-function getBlogPostVisual(postSlug: string): { url: string; alt: string } {
-  const visuals: Record<string, { url: string; alt: string }> = {
+const VISUALS: Record<string, { url: string; alt: string }> = {
     // ═══ BATCH 1: PREMIUM 3D IMAGES (6 SEO POSTS) ═══
     "best-ai-tools-2026-complete-directory": {
       url: `/images/blog-best-ai-tools.jpg`,
@@ -136,10 +135,11 @@ function getBlogPostVisual(postSlug: string): { url: string; alt: string } {
       url: `${IMG}/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80`,
       alt: "Business strategy planning for AI prompt template governance and growth",
     },
-  };
+};
 
+function getBlogPostVisual(postSlug: string): { url: string; alt: string } {
   return (
-    visuals[postSlug] ?? {
+    VISUALS[postSlug] ?? {
       url: `${IMG}/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80`,
       alt: "AI prompt engineering tools and interfaces",
     }

@@ -7,7 +7,7 @@
  * useSeo() function automatically current URL ke hisaab se
  * is file se data utha lega.
  */
-import ENGINE from "./data/prompt-engine.json";
+import PROMPT_SEO from "./data/prompt-seo.json";
 
 export type SeoData = {
   title: string;
@@ -25,16 +25,17 @@ type PromptTask = {
 
 const PROMPT_ROLES = new Map<string, PromptRole>();
 const PROMPT_TASKS = new Map<string, PromptTask>();
-const ENGINE_TASKS = ENGINE.tasks as Record<string, (PromptTask & { seoDescription: string; faq: unknown })[]>;
-for (const role of ENGINE.roles) {
+for (const role of PROMPT_SEO.roles) {
   PROMPT_ROLES.set(role.slug, { slug: role.slug, title: role.title, description: role.description });
-  for (const task of ENGINE_TASKS[role.slug] ?? []) {
-    PROMPT_TASKS.set(`${role.slug}/${task.slug}`, {
-      slug: task.slug,
-      title: task.title,
-      seoTitle: task.seoTitle,
-      seoDescription: task.seoDescription,
-    });
+  for (const task of PROMPT_SEO.tasks) {
+    if (task.role === role.slug) {
+      PROMPT_TASKS.set(`${role.slug}/${task.slug}`, {
+        slug: task.slug,
+        title: task.title,
+        seoTitle: task.seoTitle,
+        seoDescription: task.seoDescription,
+      });
+    }
   }
 }
 

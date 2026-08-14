@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/generate-prompt-seo.mjs",
     "build": "npm run validate:sitemap && vite build && node prerender.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-rss.mjs && node scripts/validate-sitemap.mjs dist/public/sitemap.xml",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
