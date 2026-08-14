@@ -249,39 +249,92 @@ p { line-height: 1.65; }
   overflow: visible;
 }
 
-/* Monetag direct-link sponsored box (visible ad in every slot) */
+/* Monetag direct-link sponsored ad creative (real ad look, 300x250) */
 .sp-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  min-height: 250px;
+  gap: 8px;
   width: 100%;
   max-width: 300px;
+  min-height: 250px;
   margin: 0 auto;
-  border: 1px solid rgba(255,255,255,0.08);
+  padding: 20px 16px;
   border-radius: 14px;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(245,158,11,0.15), transparent 60%),
-    linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
   text-decoration: none;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 25% 15%, rgba(245,158,11,0.28), transparent 55%),
+    radial-gradient(circle at 85% 90%, rgba(236,72,153,0.20), transparent 50%),
+    linear-gradient(150deg, #1e1b2e 0%, #17151f 60%, #14121c 100%);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .sp-box:hover {
-  border-color: rgba(245,158,11,0.4);
-  transform: translateY(-1px);
+  border-color: rgba(245,158,11,0.55);
+  box-shadow: 0 12px 32px rgba(245,158,11,0.15), inset 0 1px 0 rgba(255,255,255,0.08);
+  transform: translateY(-2px);
 }
-.sp-box-title {
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(148,163,184,0.8);
+.sp-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.07) 45%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
 }
-.sp-box-cta {
-  font-size: 15px;
+.sp-box:hover::after {
+  transform: translateX(100%);
+}
+.sp-box-badge {
+  font-size: 9px;
   font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
   color: #fbbf24;
+  background: rgba(245,158,11,0.12);
+  border: 1px solid rgba(245,158,11,0.35);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+.sp-box-icon {
+  font-size: 30px;
+  line-height: 1;
+  color: #fbbf24;
+  text-shadow: 0 0 18px rgba(245,158,11,0.6);
+}
+.sp-box-headline {
+  font-size: 16px;
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+.sp-box-sub {
+  font-size: 11px;
+  color: rgba(203,213,225,0.75);
+  text-align: center;
+}
+.sp-box-btn {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0b0a12;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  border-radius: 999px;
+  padding: 8px 22px;
+  box-shadow: 0 4px 14px rgba(245,158,11,0.35);
+  transition: transform 0.15s ease;
+}
+.sp-box:hover .sp-box-btn {
+  transform: scale(1.04);
 }
 
 /* ===== BADGES ===== */

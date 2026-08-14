@@ -145,7 +145,7 @@ export default function AdBanner({
     );
   }
 
-  // Custom direct-link zone → visible sponsored box (click opens the ad)
+  // Custom direct-link zone → professional-looking ad creative (click opens the ad)
   if (resolvedNetwork === "custom") {
     return (
       <div className={`sp-wrap ${className}`}>
@@ -155,10 +155,16 @@ export default function AdBanner({
           target="_blank"
           rel="sponsored noopener noreferrer"
           className="sp-box"
-          aria-label="Sponsored link"
+          aria-label="Sponsored ad — opens offer in new tab"
         >
-          <span className="sp-box-title">Sponsored</span>
-          <span className="sp-box-cta">View Offer →</span>
+          <span className="sp-box-badge">Sponsored</span>
+          <span className="sp-box-icon" aria-hidden="true">✦</span>
+          <span className="sp-box-headline">Exclusive Deals &amp; Offers</span>
+          <span className="sp-box-sub">Hand-picked for you — limited time</span>
+          <span className="sp-box-btn">
+            View Offer
+            <span aria-hidden="true"> →</span>
+          </span>
         </a>
       </div>
     );
