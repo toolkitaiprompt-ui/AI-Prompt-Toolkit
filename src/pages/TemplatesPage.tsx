@@ -72,6 +72,7 @@ export default function TemplatesPage() {
           <button
             key={c.name}
             onClick={() => setActiveCat(c.name)}
+            aria-pressed={activeCat === c.name}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
               activeCat === c.name
                 ? "bg-amber-500/15 text-amber-300 border border-amber-400/30"

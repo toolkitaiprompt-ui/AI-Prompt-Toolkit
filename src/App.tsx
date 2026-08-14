@@ -1,4 +1,4 @@
-import React, { type FormEvent, type ReactElement, type ReactNode, lazy, Suspense, useEffect, useMemo, useState } from "react";
+import React, { type FormEvent, type ReactElement, type ReactNode, lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowUpRight,
   Braces,
@@ -276,6 +276,19 @@ function MonetagSPA() {
 function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMobileMenuOpen(false);
+        hamburgerRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [mobileMenuOpen]);
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `glass-nav-link ${isActive ? "active" : ""}`;
   const mobileNavLinkClass = ({ isActive }: { isActive: boolean }) =>
@@ -318,16 +331,19 @@ function Layout() {
             <NavLink to="/about" className={navLinkClass}>About</NavLink>
           </nav>
           <div className="flex items-center gap-1.5 shrink-0">
-            <button type="button" onClick={() => setSearchOpen(true)} className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center hover:bg-white/5 transition text-slate-400 hover:text-white" aria-label="Search">
+            <button type="button" onClick={() => setSearchOpen(true)} className="w-10 h-10 md:w-10 md:h-10 rounded-full flex items-center justify-center hover:bg-white/5 transition text-slate-400 hover:text-white" aria-label="Search">
               <Search className="w-4 h-4" />
             </button>
 
           </div>
           {/* Mobile hamburger */}
           <button
+            ref={hamburgerRef}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden flex items-center justify-center w-9 h-9 rounded-full hover:bg-white/5 transition-colors"
-            aria-label="Menu"
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/5 transition-colors"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {mobileMenuOpen ? (
               <X className="w-5 h-5 text-slate-200" />
@@ -339,8 +355,8 @@ function Layout() {
         </div>
         {/* Mobile menu - glass dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden mx-4 mt-2 rounded-2xl border border-white/[0.08] bg-slate-900/90 backdrop-blur-xl px-3 py-3 shadow-xl">
-            <nav className="space-y-1">
+          <div id="mobile-menu" className="md:hidden mx-4 mt-2 rounded-2xl border border-white/[0.08] bg-slate-900/90 backdrop-blur-xl px-3 py-3 shadow-xl">
+            <nav className="space-y-1" aria-label="Mobile">
               <NavLink to="/" end onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Home</NavLink>
               <NavLink to="/playground" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Playground</NavLink>
               <NavLink to="/tools" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Tools</NavLink>
@@ -736,7 +752,7 @@ function JsonSchemaGeneratorPage() {
       >
         Generate Schema
       </button>
-      {error && <p className="text-sm text-red-400">{error}</p>}
+      {error && <p role="alert" className="text-sm text-red-400">{error}</p>}
       {result && <OutputToolbar text={result} fileName="schema.json" fileMime="application/json" className="mb-2" />}
       <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 whitespace-pre-wrap break-words">{result || "Schema output will appear here."}</pre>
     </ToolContainer>
@@ -796,7 +812,7 @@ function JsonValidatorPage() {
       >
         Validate JSON
       </button>
-      {error && <p className="text-sm text-red-400">{error}</p>}
+      {error && <p role="alert" className="text-sm text-red-400">{error}</p>}
       {messages.length > 0 && <OutputToolbar text={messages.join("\n")} copyLabel="Copy Results" showStats={false} className="mb-2" />}
       <ul className="space-y-2 rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300">
         {messages.length ? messages.map((m, i) => <li key={i}>{m}</li>) : <li>Validation results appear here.</li>}
@@ -952,6 +968,7 @@ function BlogPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search guides — e.g. ChatGPT, JSON, token..."
+              aria-label="Search blog guides"
               className="w-full rounded-full border border-slate-700/70 bg-slate-900/70 py-2.5 pl-10 pr-4 text-sm text-slate-200 placeholder:text-slate-500 outline-none transition focus:border-amber-400/40 focus:ring-2 focus:ring-amber-400/10"
             />
             {searchQuery && (
@@ -973,6 +990,7 @@ function BlogPage() {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
+              aria-pressed={activeCategory === cat}
               className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition ${
                 activeCategory === cat
                   ? "border-amber-400/40 bg-amber-500/10 text-amber-300"
@@ -1217,6 +1235,7 @@ function ContactPage() {
   });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "fallback">("idle");
   const [fallbackMailto, setFallbackMailto] = useState("");
+  const [copiedFallback, setCopiedFallback] = useState(false);
 
   useEffect(() => {
     try {
@@ -1310,12 +1329,12 @@ function ContactPage() {
               {status === "sending" ? "Sending..." : "Send Message"} <SendHorizontal className="h-4 w-4" />
             </button>
             {status === "success" && (
-              <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3">
+              <div role="status" className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3">
                 <p className="text-sm text-emerald-400">✓ Thank you! Your message has been sent successfully. We'll get back to you soon.</p>
               </div>
             )}
             {status === "fallback" && (
-              <div className="space-y-3 rounded-xl border border-amber-500/20 bg-amber-500/10 p-4">
+              <div role="status" className="space-y-3 rounded-xl border border-amber-500/20 bg-amber-500/10 p-4">
                 <p className="text-sm font-medium text-amber-300">⚠️ Web3Forms unreachable — fallback ready</p>
                 <p className="text-xs leading-5 text-slate-400">
                   Your message is saved locally and copied to clipboard. Click below to send via your email app — no data lost even if third-party service is down (fixes #12).
@@ -1332,11 +1351,15 @@ function ContactPage() {
                   <button
                     type="button"
                     onClick={async () => {
-                      try { await navigator.clipboard.writeText(formData.message); alert("Message copied!"); } catch {}
+                      try {
+                        await navigator.clipboard.writeText(formData.message);
+                        setCopiedFallback(true);
+                        setTimeout(() => setCopiedFallback(false), 2000);
+                      } catch {}
                     }}
                     className="rounded-full border border-slate-600 px-4 py-2 text-xs text-slate-300 hover:bg-slate-800"
                   >
-                    Copy Message
+                    {copiedFallback ? "✓ Copied!" : "Copy Message"}
                   </button>
                 </div>
                 <p className="text-[11px] text-slate-500">Direct email: <a href="mailto:toolkitaiprompt@gmail.com" className="text-amber-400 underline break-all">toolkitaiprompt@gmail.com</a></p>
@@ -1478,6 +1501,7 @@ Key benefit: {{key_benefit}}`;
               value={blogTopic}
               onChange={(e) => setBlogTopic(e.target.value)}
               placeholder="Enter blog topic (e.g., AI automation, productivity tools)..."
+              aria-label="Blog topic"
               className="flex-1 rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-amber-400/60 focus:ring-2 focus:ring-amber-400/20"
             />
             <button onClick={() => generateTemplate("blog")} className="rounded-xl bg-amber-500 hover:bg-amber-400 px-6 py-3 text-sm font-semibold text-black transition hover:opacity-90">Generate</button>
@@ -1488,6 +1512,7 @@ Key benefit: {{key_benefit}}`;
             <select
               value={codeLanguage}
               onChange={(e) => setCodeLanguage(e.target.value)}
+              aria-label="Programming language"
               className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-amber-400/60"
             >
               <option>Python</option><option>JavaScript</option><option>TypeScript</option><option>Java</option><option>Go</option><option>Rust</option><option>C++</option><option>Ruby</option>
@@ -1500,6 +1525,7 @@ Key benefit: {{key_benefit}}`;
             <select
               value={emailType}
               onChange={(e) => setEmailType(e.target.value)}
+              aria-label="Email type"
               className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-amber-400/60"
             >
               <option>Cold Email</option><option>Follow-Up Email</option><option>Newsletter</option><option>Re-Engagement Email</option><option>Sales Outreach</option>
@@ -1511,8 +1537,9 @@ Key benefit: {{key_benefit}}`;
         {/* Prompt textarea */}
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="space-y-3">
-            <label className="text-sm font-semibold text-white">Your Prompt</label>
+            <label htmlFor="playground-prompt" className="text-sm font-semibold text-white">Your Prompt</label>
             <textarea
+              id="playground-prompt"
               value={promptText}
               onChange={(e) => setPromptText(e.target.value)}
               placeholder="Click a tab above to generate a template, or paste your own prompt here..."

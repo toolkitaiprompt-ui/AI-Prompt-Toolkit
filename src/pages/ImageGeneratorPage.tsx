@@ -86,8 +86,8 @@ export default function ImageGeneratorPage() {
           </div>
 
           <div>
-            <p className="text-sm font-medium text-slate-300 mb-3">Art Style</p>
-            <div className="flex flex-wrap gap-2" aria-label="Art style">
+            <p id="art-style-label" className="text-sm font-medium text-slate-300 mb-3">Art Style</p>
+            <div className="flex flex-wrap gap-2" role="group" aria-labelledby="art-style-label">
               {STYLES.map((styleOption) => (
                 <button
                   key={styleOption}

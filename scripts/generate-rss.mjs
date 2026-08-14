@@ -29,7 +29,7 @@ const bySlug = new Map(getBlogPosts().map((p) => [p.slug, p]));
 
 const items = [];
 
-for (const route of ALL_ROUTES) {
+for (const [idx, route] of ALL_ROUTES.entries()) {
   if (route.type === "blog") {
     const post = bySlug.get(route.path.replace(/^\/blog\//, ""));
     items.push({
@@ -39,6 +39,7 @@ for (const route of ALL_ROUTES) {
       description: post?.metaDescription || route.desc,
       pubDate: toRfc2822(post?.date || new Date().toISOString().slice(0, 10)),
       sort: Date.parse(post?.date) || 0,
+      tiebreak: idx,
     });
   } else if (route.type === "programmatic") {
     items.push({
@@ -47,12 +48,13 @@ for (const route of ALL_ROUTES) {
       guid: toCanonical(route.path),
       description: route.desc,
       pubDate: new Date().toUTCString(),
-      sort: Date.now(),
+      sort: 0,
+      tiebreak: idx,
     });
   }
 }
 
-items.sort((a, b) => b.sort - a.sort);
+items.sort((a, b) => b.sort - a.sort || a.tiebreak - b.tiebreak);
 const selected = items.slice(0, MAX_ITEMS);
 
 const lines = ['<?xml version="1.0" encoding="UTF-8"?>'];

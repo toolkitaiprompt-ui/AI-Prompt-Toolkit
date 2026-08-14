@@ -124,11 +124,12 @@ export default function RegexGenerator() {
       {/* Input */}
       <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 space-y-4">
         <div className="space-y-2">
-          <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
+          <label htmlFor="rg-description" className="flex items-center gap-2 text-sm font-medium text-slate-300">
             <Regex className="h-4 w-4 text-violet-400" />
             Describe what you want to match
           </label>
           <input
+            id="rg-description"
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -172,9 +173,10 @@ export default function RegexGenerator() {
 
           {/* Test Area */}
           <div className="space-y-2 pt-2">
-            <label className="text-xs font-medium text-slate-500">Test your regex</label>
+            <label htmlFor="rg-test-string" className="text-xs font-medium text-slate-500">Test your regex</label>
             <div className="flex gap-2">
               <input
+                id="rg-test-string"
                 type="text"
                 value={testString}
                 onChange={(e) => { setTestString(e.target.value); setTestResult(null); }}
@@ -190,7 +192,7 @@ export default function RegexGenerator() {
               </button>
             </div>
             {testResult !== null && (
-              <p className={`text-sm font-medium ${testResult ? "text-emerald-400" : "text-red-400"}`}>
+              <p role="status" className={`text-sm font-medium ${testResult ? "text-emerald-400" : "text-red-400"}`}>
                 {testResult ? "✓ Match found!" : "✗ No match — pattern does not fit this string."}
               </p>
             )}

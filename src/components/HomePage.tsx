@@ -84,6 +84,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
   ];
 
   useEffect(() => {
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
     const interval = setInterval(() => {
       setCurrentTool((prev) => (prev + 1) % demoTools.length);
     }, 4000);
@@ -250,6 +251,7 @@ return (
                   <button
                     key={idx}
                     onClick={() => setCurrentTool(idx)}
+                    aria-pressed={currentTool === idx}
                     className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
                       currentTool === idx
                         ? `bg-gradient-to-r ${tool.color} text-black shadow-lg`
@@ -733,6 +735,8 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        aria-controls={`faq-answer-${question.replace(/[^a-zA-Z0-9]+/g, "-").toLowerCase()}`}
         className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-white/5 transition-colors"
       >
         <span className="font-semibold text-white">{question}</span>
@@ -743,6 +747,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id={`faq-answer-${question.replace(/[^a-zA-Z0-9]+/g, "-").toLowerCase()}`}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}

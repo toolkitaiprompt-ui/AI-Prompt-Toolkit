@@ -55,12 +55,19 @@ export default function SearchModal({
 }) {
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 100);
-      setQuery("");
-    }
+    if (!isOpen) return;
+    const trigger = document.activeElement as HTMLElement | null;
+    setTimeout(() => inputRef.current?.focus(), 100);
+    setQuery("");
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      trigger?.focus();
+    };
   }, [isOpen]);
 
   useEffect(() => {
@@ -70,6 +77,34 @@ export default function SearchModal({
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
   }, [onClose]);
+
+  // Basic focus trap: keep Tab cycling within the dialog while open
+  useEffect(() => {
+    if (!isOpen) return;
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    const handleTab = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+      const focusables = Array.from(
+        dialog.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((el) => el.offsetParent !== null);
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement;
+      if (e.shiftKey && (active === first || !dialog.contains(active))) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (active === last || !dialog.contains(active))) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", handleTab);
+    return () => document.removeEventListener("keydown", handleTab);
+  }, [isOpen]);
 
   const results = useMemo(() => {
     if (!query.trim()) return [];
@@ -113,7 +148,13 @@ export default function SearchModal({
   return (
     <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh]">
       <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative w-full max-w-2xl mx-4 bg-slate-900/95 border border-slate-700/50 rounded-2xl shadow-2xl shadow-black/50 overflow-hidden">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Search tools, templates, and blog posts"
+        className="relative w-full max-w-2xl mx-4 bg-slate-900/95 border border-slate-700/50 rounded-2xl shadow-2xl shadow-black/50 overflow-hidden"
+      >
         <div className="flex items-center gap-3 px-5 py-4 border-b border-slate-700/50">
           <Search className="w-5 h-5 text-slate-400 shrink-0" />
           <input
@@ -126,7 +167,7 @@ export default function SearchModal({
             className="flex-1 bg-transparent text-white text-base outline-none placeholder-slate-500"
           />
           <kbd className="hidden sm:inline-flex px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-xs font-mono">ESC</kbd>
-          <button onClick={onClose} aria-label="Close search" className="p-1 rounded-lg hover:bg-slate-700/50 transition">
+          <button onClick={onClose} aria-label="Close search" className="p-2 rounded-lg hover:bg-slate-700/50 transition">
             <X className="w-5 h-5 text-slate-400" />
           </button>
         </div>

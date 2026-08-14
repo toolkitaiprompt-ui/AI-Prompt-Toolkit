@@ -380,6 +380,26 @@ p { line-height: 1.65; }
   margin-bottom: 24px;
 }
 
+/* ===== FOCUS VISIBILITY — keyboard-friendly gold outline =====
+   Most inputs use Tailwind focus rings; this guarantees a visible,
+   high-contrast focus indicator on links, buttons, and any focusable
+   element for keyboard users regardless of mouse hover state. */
+:focus-visible {
+  outline: 2px solid #FFD700;
+  outline-offset: 2px;
+}
+
+/* ===== REDUCED MOTION — respect user preference =====
+   Collapse animations/transitions for users who request reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* ===== RESPONSIVE — MOBILE ===== */
 @media (max-width: 767px) {
   .section-lg { padding: 3rem 0; }

@@ -95,11 +95,12 @@ export default function ContentSummarizer() {
 
       {/* Input */}
       <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 space-y-3">
-        <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
+        <label htmlFor="cs-input" className="flex items-center gap-2 text-sm font-medium text-slate-300">
           <FileText className="h-4 w-4 text-cyan-400" />
           Content to Summarize
         </label>
         <textarea
+          id="cs-input"
           value={input}
           onChange={(e) => { setInput(e.target.value); setSummarized(false); }}
           className="h-48 w-full rounded-xl border border-slate-700 bg-slate-950 p-3 text-sm text-slate-100 outline-none transition focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20 resize-y"
