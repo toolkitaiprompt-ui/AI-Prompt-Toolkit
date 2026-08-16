@@ -5,9 +5,9 @@ import { toCanonical } from "../lib/structuredData";
 export default function useSeo(title?: string, description?: string, keywords?: string) {
   const configSeo = getSeoForPath(window.location.pathname);
 
-  const finalTitle = configSeo.title || title || "AI World Hub";
-  const finalDesc = configSeo.description || description || "";
-  const finalKeywords = configSeo.keywords || keywords || "";
+  const finalTitle = title || configSeo.title || "AI World Hub";
+  const finalDesc = description || configSeo.description || "";
+  const finalKeywords = keywords || configSeo.keywords || "";
   const canonical = toCanonical(window.location.pathname);
 
   useEffect(() => {

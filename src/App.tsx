@@ -5,14 +5,6 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ToolSkeleton } from "./components/ToolSkeleton";
 import { TOOL_BY_SLUG, TOOL_PAGES } from "./data/tools";
 
-const MONETAG_ZONE_SCRIPT = "https://quge5.com/88/tag.min.js";
-
-const monetagScriptInjected = useRef(false);
-
-const vignetteScriptInjected = useRef(false);
-
-const nap5kScriptInjected = useRef(false);
-
 const HomePage = lazy(() => import("./components/HomePage"));
 const SearchModal = lazy(() => import("./components/SearchModal"));
 
@@ -66,8 +58,6 @@ function MonetagSPA() {
       const w = window as any;
       if (w.monetag && typeof w.monetag.refresh === "function") {
         w.monetag.refresh();
-      } else if (w.propellerads && typeof w.propellerads.push === "function") {
-        w.propellerads.push({ zone: 264272 });
       }
     } catch {
       // silently ignore
@@ -77,51 +67,10 @@ function MonetagSPA() {
   return null;
 }
 
-useEffect(() => {
-  if (monetagScriptInjected.current) return;
-  monetagScriptInjected.current = true;
-  const script = document.createElement("script");
-  script.src = MONETAG_ZONE_SCRIPT;
-  script.async = true;
-  script.setAttribute("data-cfasync", "false");
-  script.setAttribute("data-zone", "270208");
-  document.head.appendChild(script);
-  return () => {
-    monetagScriptInjected.current = false;
-    var oldScript = document.querySelector(`script[src="${MONETAG_ZONE_SCRIPT}"]`);
-    if (oldScript) oldScript.remove();
-  };
-}, []);
-
-useEffect(() => {
-  if (vignetteScriptInjected.current) return;
-  vignetteScriptInjected.current = true;
-  const script = document.createElement("script");
-  script.dataset.zone = "11565895";
-  script.src = "https://n6wxm.com/vignette.min.js";
-  script.async = true;
-  document.head.appendChild(script);
-  return () => {
-    vignetteScriptInjected.current = false;
-    var oldScript = document.querySelector(`script[data-zone="11565895"][src="https://n6wxm.com/vignette.min.js"]`);
-    if (oldScript) oldScript.remove();
-  };
-}, []);
-
-useEffect(() => {
-  if (nap5kScriptInjected.current) return;
-  nap5kScriptInjected.current = true;
-  const script = document.createElement("script");
-  script.dataset.zone = "11565893";
-  script.src = "https://nap5k.com/tag.min.js";
-  script.async = true;
-  document.head.appendChild(script);
-  return () => {
-    nap5kScriptInjected.current = false;
-    var oldScript = document.querySelector(`script[data-zone="11565893"][src="https://nap5k.com/tag.min.js"]`);
-    if (oldScript) oldScript.remove();
-  };
-}, []);
+function GlobalAdScripts() {
+  useEffect(() => {}, []);
+  return null;
+}
 
 function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -357,6 +306,7 @@ export default function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL?.replace(/\/$/, "") || ""}>
       <MonetagSPA />
+      <GlobalAdScripts />
       <Layout />
     </BrowserRouter>
   );

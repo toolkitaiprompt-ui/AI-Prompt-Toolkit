@@ -621,10 +621,250 @@ export const STATIC_ROUTES = [
     "priority": 0.7,
     "changefreq": "weekly"
   },
-  {
+{
     "path": "/blog/ai-prompt-template-governance-for-growth",
     "title": "AI Prompt Template Governance for Growth | AI World Hub",
     "desc": "Learn how prompt template governance helps teams scale AI safely, maintain consistency, and manage prompt quality over time.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/ai-agent-prompts-guide",
+    "title": "AI Agent Prompts Complete Guide | AI World Hub",
+    "desc": "Master AI agent prompts with structured frameworks, context, and execution patterns for reliable multi-step AI workflows.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/ai-art-styles-complete-guide",
+    "title": "AI Art Styles Complete Guide | AI World Hub",
+    "desc": "Explore the best AI art styles and image generation techniques for 2026 — from photorealistic to artistic creative styles.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/ai-ethics-and-responsible-use-guide",
+    "title": "AI Ethics and Responsible Use Guide | AI World Hub",
+    "desc": "Guidelines for responsible AI development and usage — bias mitigation, transparency, and ethical frameworks for AI practitioners.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/ai-for-beginners-complete-guide",
+    "title": "AI for Beginners Complete Guide | AI World Hub",
+    "desc": "Step-by-step introduction to AI fundamentals, tools, and techniques for newcomers to artificial intelligence.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/ai-marketing-complete-guide",
+    "title": "AI Marketing Complete Guide | AI World Hub",
+    "desc": "Comprehensive guide to AI marketing tools, strategies, and automation for 2026 — grow your business with AI.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/ai-prompt-templates-library",
+    "title": "AI Prompt Templates Library | AI World Hub",
+    "desc": "Browse and use reusable AI prompt templates for common writing, coding, and business tasks.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/ai-tools-for-small-business-free",
+    "title": "AI Tools for Small Business Free | AI World Hub",
+    "desc": "Free AI tools that help small businesses with content, design, marketing, and productivity — no budget required.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/ai-tools-for-students-free-guide",
+    "title": "AI Tools for Students Free Guide | AI World Hub",
+    "desc": "Free AI tools for students — writing, research, study aids, and productivity without subscription required.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/ai-trends-2026-complete-guide",
+    "title": "AI Trends 2026 Complete Guide | AI World Hub",
+    "desc": "The definitive guide to AI trends shaping 2026 — what's new, what's changing, and what to watch.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/best-ai-coding-tools-2026",
+    "title": "Best AI Coding Tools 2026 | AI World Hub",
+    "desc": "The top AI code generators, assistants, and development tools ranked by effectiveness and free tier availability.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/best-ai-image-generators-2026",
+    "title": "Best AI Image Generators 2026 | AI World Hub",
+    "desc": "Ranked comparison of the best AI image generators — Midjourney, DALL-E 3, Stable Diffusion, and more.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/best-ai-productivity-tools-2026",
+    "title": "Best AI Productivity Tools 2026 | AI World Hub",
+    "desc": "AI tools that boost productivity for work and personal projects — writing, coding, design, and automation.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/best-ai-video-tools-2026",
+    "title": "Best AI Video Tools 2026 | AI World Hub",
+    "desc": "The best AI video generation and editing tools for 2026 — Runway, Pika, Synthesia, and more.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/best-ai-writing-tools-2026",
+    "title": "Best AI Writing Tools 2026 | AI World Hub",
+    "desc": "Ranked review of the best AI writing assistants and content generators for 2026.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/best-chatgpt-alternatives-2026",
+    "title": "Best ChatGPT Alternatives 2026 | AI World Hub",
+    "desc": "Compare the top ChatGPT alternatives — Claude, Gemini, Llama, and other leading AI models.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/best-midjourney-prompts-2026",
+    "title": "Best Midjourney Prompts 2026 | AI World Hub",
+    "desc": "Discover the most effective Midjourney prompt strategies for generating stunning visuals in 2026.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/build-ai-chatbot-guide",
+    "title": "Build AI Chatbot Guide | AI World Hub",
+    "desc": "Step-by-step guide to building your own AI chatbot — from setup to deployment with in-browser tools.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/chain-of-thought-prompting-guide",
+    "title": "Chain-of-Thought Prompting Guide | AI World Hub",
+    "desc": "Master chain-of-thought prompting to get the AI to reason through problems step by step for better results.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/chatgpt-tips-and-tricks-2026",
+    "title": "ChatGPT Tips and Tricks 2026 | AI World Hub",
+    "desc": "Powerful ChatGPT tips and tricks to get better results — from prompt structure to advanced features.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/chatgpt-vs-claude-vs-gemini-comparison",
+    "title": "ChatGPT vs Claude vs Gemini Comparison | AI World Hub",
+    "desc": "Side-by-side comparison of the top three AI models — strengths, weaknesses, and best use cases.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/claude-vs-chatgpt-for-coding",
+    "title": "Claude vs ChatGPT for Coding | AI World Hub",
+    "desc": "Which AI is better for coding tasks — Claude or ChatGPT? Comparison of capabilities and use cases.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/cursor-ai-complete-guide",
+    "title": "Cursor AI Complete Guide | AI World Hub",
+    "desc": "The complete guide to using Cursor AI for code generation, editing, and AI-powered development workflows.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/few-shot-prompting-guide",
+    "title": "Few-Shot Prompting Guide | AI World Hub",
+    "desc": "How to use few-shot prompting to improve AI accuracy by showing examples within your prompts.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/free-ai-prompt-generator-guide",
+    "title": "Free AI Prompt Generator Guide | AI World Hub",
+    "desc": "How to generate effective AI prompts for free using built-in tools and prompt engineering techniques.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/gemini-prompts-best-practices",
+    "title": "Gemini Prompts Best Practices | AI World Hub",
+    "desc": "Optimize your Gemini prompts with best practices for getting the best results from Google's AI model.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/gpt-models-comparison-guide",
+    "title": "GPT Models Comparison Guide | AI World Hub",
+    "desc": "Complete comparison of GPT-4, GPT-4o, GPT-4o mini, and other GPT models available in 2026.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/how-to-write-natural-ai-content",
+    "title": "How to Write Natural AI Content | AI World Hub",
+    "desc": "Techniques and best practices for writing content that reads naturally and avoids AI detection patterns.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/prompt-engineering-jobs-and-salary-guide",
+    "title": "Prompt Engineering Jobs and Salary Guide | AI World Hub",
+    "desc": "Market analysis of prompt engineering roles, salaries, and career opportunities in 2026.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/rag-prompt-engineering-guide",
+    "title": "RAG Prompt Engineering Guide | AI World Hub",
+    "desc": "How to build and optimize Retrieval-Augmented Generation prompts for accurate, grounded AI responses.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/system-prompts-complete-guide",
+    "title": "System Prompts Complete Guide | AI World Hub",
+    "desc": "Master system prompts for AI assistants — define personality, capabilities, and behavior patterns for consistent performance.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
