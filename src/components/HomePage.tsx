@@ -410,6 +410,11 @@ return (
         </div>
       </section>
 
+      {/* Banner Ad */}
+      <div className="site-container pt-8">
+        <AdBanner />
+      </div>
+
       {/* Stats Section */}
       <section className="section-lg bg-slate-900/50 mt-16">
         <div className="site-container">
@@ -433,6 +438,11 @@ return (
           </div>
         </div>
       </section>
+
+      {/* Banner Ad */}
+      <div className="site-container pt-8">
+        <AdBanner />
+      </div>
 
       {/* Tools Showcase — Featured AI Tools */}
       <section className="section-lg mt-16">
@@ -486,6 +496,11 @@ return (
           </motion.div>
         </div>
       </section>
+
+      {/* Banner Ad */}
+      <div className="site-container pt-8">
+        <AdBanner />
+      </div>
 
 
       {/* Trending AI Tools */}
@@ -543,6 +558,11 @@ return (
         </div>
       </section>
 
+      {/* Banner Ad */}
+      <div className="site-container pt-8">
+        <AdBanner />
+      </div>
+
 
       {/* Why Choose Us */}
       <section className="section-lg bg-slate-900/50 mt-16">
@@ -584,6 +604,11 @@ return (
           </div>
         </div>
       </section>
+
+      {/* Banner Ad */}
+      <div className="site-container pt-8">
+        <AdBanner />
+      </div>
 
       {/* Blog Section */}
       {BLOG_POSTS.length > 0 && (
@@ -632,6 +657,10 @@ return (
         </section>
       )}
 
+      {/* Banner Ad */}
+      <div className="site-container pt-8">
+        <AdBanner />
+      </div>
 
       <CategoryShowcase />
 
@@ -661,6 +690,11 @@ return (
           </div>
 </div>
       </section>
+
+      {/* Banner Ad */}
+      <div className="site-container pt-8">
+        <AdBanner />
+      </div>
 
       {/* Final CTA */}
       <section className="section-lg mt-16">
