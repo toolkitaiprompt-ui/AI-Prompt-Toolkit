@@ -909,4 +909,20 @@ export const STATIC_ROUTES = [
     "priority": 0.7,
     "changefreq": "weekly"
   },
+  {
+    "path": "/blog/how-to-use-chatgpt-for-freelancing",
+    "title": "How to Use ChatGPT for Freelancing — Client Guide | AI World Hub",
+    "desc": "Use ChatGPT to win and deliver freelance projects faster — proposals, communication, delivery, and upselling. Templates that impress clients.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/ai-tools-for-small-business-india",
+    "title": "Free AI Tools for Small Business in India 2026 | AI World Hub",
+    "desc": "10 free AI tools every Indian small business should use — content, customer service, pricing, and more. Zero cost, zero coding, results.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
 ];
