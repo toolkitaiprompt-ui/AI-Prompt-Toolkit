@@ -198,6 +198,25 @@ export function BlogPostPage() {
               </div>
             </section>
 
+            {/* Related posts — internal linking for SEO + session depth */}
+            {(() => {
+              const related = BLOG_POSTS.filter((bp) => bp.slug !== post.slug).slice(0, 3);
+              return (
+                <section className="rounded-[20px] border border-slate-800 bg-slate-950/50 p-6">
+                  <h2 className="text-xl font-semibold text-white">Related Reads</h2>
+                  <ul className="mt-4 space-y-3">
+                    {related.map((rp) => (
+                      <li key={rp.slug}>
+                        <Link to={`/blog/${rp.slug}`} className="group flex items-start justify-between gap-3 text-sm text-slate-300 transition hover:text-amber-300">
+                          <span>{rp.title}</span>
+                          <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-500 group-hover:text-amber-400" />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              );
+            })()}
 
           </article>
 
