@@ -3,6 +3,7 @@ import { useMemo, useState, type ReactElement } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowUpRight, Search } from "lucide-react";
 import SectionShell from "../components/SectionShell";
+import AdBanner from "../components/AdBanner";
 import BlogCard from "../components/BlogCard";
 import { BLOG_POSTS, getBlogPostBySlug } from "../data/blogPosts";
 import useSeo from "../hooks/useSeo";
@@ -179,6 +180,11 @@ export function BlogPostPage() {
               });
               return sections;
             })()}
+
+            {/* In-content ad (best CTR position) */}
+            <div className="my-4">
+              <AdBanner size="rectangle" />
+            </div>
 
             <section className="rounded-[20px] border border-slate-800 bg-slate-950/50 p-6">
               <h2 className="text-2xl font-semibold text-white">Frequently asked questions</h2>

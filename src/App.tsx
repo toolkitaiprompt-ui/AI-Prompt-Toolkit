@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Github, Menu, Search, X } from "lucide-react";
 import { BrowserRouter, Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
 import ErrorBoundary from "./components/ErrorBoundary";
+import AdBanner from "./components/AdBanner";
 import { ToolSkeleton } from "./components/ToolSkeleton";
 import { TOOL_BY_SLUG, TOOL_PAGES } from "./data/tools";
 
@@ -173,6 +174,10 @@ function Layout() {
       </Suspense>
 
       <main className="w-full">
+        {/* Above-fold slim banner — every page, near the fold */}
+        <div className="hidden md:block">
+          <AdBanner size="banner" />
+        </div>
         <ErrorBoundary>
         <Suspense fallback={
           <div className="flex min-h-[50vh] items-center justify-center">
