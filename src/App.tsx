@@ -239,6 +239,8 @@ function Layout() {
         </ErrorBoundary>
       </main>
 
+      {/* Mobile sticky bottom ad bar (mobile only, dismissible) */}
+      <MobileBottomAd />
       <footer className="border-t border-white/10 bg-[#070707] w-full">
         <div className="site-container section-lg">
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -303,6 +305,28 @@ function Layout() {
           </div>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function MobileBottomAd() {
+  const [dismissed, setDismissed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+  if (dismissed || !isMobile) return null;
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-[60] md:hidden" style={{ background: "rgba(10,10,15,0.96)", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+      <button
+        type="button"
+        onClick={() => setDismissed(true)}
+        aria-label="Close ad"
+        className="absolute -top-5 right-2 rounded-full border border-white/15 bg-[#0a0a0f] px-2 py-0.5 text-xs text-slate-400"
+      >
+        ✕
+      </button>
+      <AdBanner size="banner" />
     </div>
   );
 }
