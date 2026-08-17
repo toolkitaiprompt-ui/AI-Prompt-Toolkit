@@ -17,7 +17,7 @@ export default function SectionShell({
       {children}
       {/* Ad slot — bottom of every shell page */}
       <div className="mt-10">
-        <AdBanner size="rectangle" />
+        <AdBanner network="custom" />
       </div>
     </section>
   );

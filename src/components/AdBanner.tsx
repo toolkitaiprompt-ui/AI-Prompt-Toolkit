@@ -51,8 +51,8 @@ export const ADSTERRA_ZONES: Record<
 export const AD_CONFIG: Record<Network, { enabled: boolean; zoneId: string }> = {
   adsterra: { enabled: true, zoneId: "" },
   "monetag-banner": { enabled: false, zoneId: "" },
-  // Monetag direct-link smartlink (11565897) — kept for future/fallback use
-  custom: { enabled: false, zoneId: "https://omg10.com/4/11565897" },
+  // Monetag direct-link smartlink (11565897) — VISIBLE sponsored box
+  custom: { enabled: true, zoneId: "https://omg10.com/4/11565897" },
   "raw-html": { enabled: false, zoneId: "" },
 };
 

@@ -441,7 +441,7 @@ return (
 
       {/* Banner Ad */}
       <div className="site-container pt-8">
-        <AdBanner size="rectangle" />
+        <AdBanner network="custom" />
       </div>
 
       {/* Tools Showcase — Featured AI Tools */}
@@ -560,7 +560,7 @@ return (
 
       {/* Banner Ad */}
       <div className="site-container pt-8">
-        <AdBanner size="rectangle" />
+        <AdBanner network="custom" />
       </div>
 
 
@@ -659,7 +659,7 @@ return (
 
       {/* Banner Ad */}
       <div className="site-container pt-8">
-        <AdBanner size="rectangle" />
+        <AdBanner network="custom" />
       </div>
 
       <CategoryShowcase />

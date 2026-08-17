@@ -103,7 +103,7 @@ function ToolContainer({
         </section>
       )}
 
-      <AdBanner size="banner" />
+      <AdBanner network="custom" />
     </section>
   );
 }
