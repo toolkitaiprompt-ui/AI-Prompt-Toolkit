@@ -72,6 +72,7 @@ export default function AdBanner({
 }: AdBannerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const injected = useRef(false);
+  const [adFailed, setAdFailed] = useState(false);
   const [isMobile, setIsMobile] = useState<boolean>(
     () => typeof window !== "undefined" && window.innerWidth < 768,
   );
@@ -141,7 +142,20 @@ export default function AdBanner({
       invokeScript.async = true;
       container.appendChild(invokeScript);
 
+      // FALLBACK: if Adsterra doesn't fill within 6s, swap in the Monetag
+      // sponsored box so the slot is NEVER empty.
+      const fallbackTimer = window.setTimeout(() => {
+        const hasIframe = !!container.querySelector("iframe");
+        const hasAdContent = container.querySelector("a, ins, img") !== null;
+        if (!hasIframe && !hasAdContent) {
+          setAdFailed(true);
+          container.innerHTML = "";
+          injected.current = false;
+        }
+      }, 6000);
+
       return () => {
+        window.clearTimeout(fallbackTimer);
         container.innerHTML = "";
         injected.current = false;
       };
@@ -182,6 +196,22 @@ export default function AdBanner({
   // No zone configured — render nothing
   if (!hasZone) {
     return null;
+  }
+
+  // Adsterra failed to fill → show Monetag sponsored box as fallback
+  if (resolvedNetwork === "adsterra" && adFailed) {
+    return (
+      <div className={`sp-wrap ${className}`}>
+        <span className="sp-label">Advertisement</span>
+        <a href="https://omg10.com/4/11565897" target="_blank" rel="sponsored noopener noreferrer" className="sp-box" aria-label="Sponsored ad — opens offer in new tab">
+          <span className="sp-box-badge">Sponsored</span>
+          <span className="sp-box-icon" aria-hidden="true">✦</span>
+          <span className="sp-box-headline">Exclusive Deals &amp; Offers</span>
+          <span className="sp-box-sub">Hand-picked for you — limited time</span>
+          <span className="sp-box-btn">View Offer<span aria-hidden="true"> →</span></span>
+        </a>
+      </div>
+    );
   }
 
   // Monetag direct-link → visible sponsored box
