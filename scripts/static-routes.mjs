@@ -254,14 +254,6 @@ export const STATIC_ROUTES = [
     "changefreq": "weekly"
   },
   {
-    "path": "/image-generator",
-    "title": "AI Image Prompt Generator — Midjourney & DALL-E | AI World Hub",
-    "desc": "Generate optimized AI image prompts for Midjourney, DALL-E 3, and Stable Diffusion. Select an art style and get copy-ready prompts instantly. Free in-browser tool.",
-    "type": "page",
-    "priority": 0.9,
-    "changefreq": "weekly"
-  },
-  {
     "path": "/prompts/chatgpt",
     "title": "ChatGPT Prompts — 15 Ready-to-Use Templates | AI World Hub",
     "desc": "Best ChatGPT prompts for writing, coding, brainstorming, and productivity. Copy and customize 15 ready-to-use prompt templates for ChatGPT. Free in-browser prompt library.",
