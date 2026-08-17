@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { PROMPT_CATEGORIES } from "@/data/categories";
 import useSeo from "@/hooks/useSeo";
+import AdBanner from "../components/AdBanner";
 
 export default function CategoriesPage() {
   useSeo(
@@ -9,6 +10,7 @@ export default function CategoriesPage() {
   );
   return (
     <section className="site-container section-lg">
+      <div className="mb-10"><AdBanner /></div>
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
         <p className="text-sm font-semibold uppercase tracking-widest text-amber-400 mb-2">✦ Browse</p>
         <h1 className="font-headline font-bold text-4xl sm:text-5xl text-white mb-4">

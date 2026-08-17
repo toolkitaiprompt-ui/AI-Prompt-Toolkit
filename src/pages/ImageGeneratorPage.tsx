@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Sparkles, ImagePlus } from "lucide-react";
 import { LiveStats } from "../components/OutputToolbar";
 import useSeo from "../hooks/useSeo";
+import AdBanner from "../components/AdBanner";
 
 const STYLES = [
   "Photorealistic", "3D Render", "Anime", "Oil Painting", "Watercolor",
@@ -57,6 +58,7 @@ export default function ImageGeneratorPage() {
 
   return (
     <section className="site-container section-lg">
+      <div className="mb-10"><AdBanner /></div>
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
         <p className="text-sm font-semibold uppercase tracking-widest text-amber-400 mb-2">✦ Create</p>
         <h1 className="font-headline font-bold text-4xl sm:text-5xl text-white mb-4">

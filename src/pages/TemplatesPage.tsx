@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Search, Copy, Check, Star, TrendingUp } from "lucide-react";
 import { TEMPLATES, CATEGORIES } from "@/data/templates";
 import useSeo from "@/hooks/useSeo";
+import AdBanner from "../components/AdBanner";
 
 export default function TemplatesPage() {
   const [searchParams] = useSearchParams();
@@ -42,6 +43,7 @@ export default function TemplatesPage() {
 
   return (
     <section className="site-container section-lg">
+      <div className="mb-10"><AdBanner /></div>
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
         <p className="text-sm font-semibold uppercase tracking-widest text-amber-400 mb-2">✦ Templates</p>
         <h1 className="font-headline font-bold text-4xl sm:text-5xl text-white mb-4">
