@@ -444,3 +444,19 @@ p { line-height: 1.65; }
   justify-content: center;
   width: 100%;
 }
+
+/* CLS control: reserve space so layout doesn't jump when ads load */
+.sp-wrap {
+  min-height: 0;
+}
+.sp-slot {
+  min-height: 0;
+}
+.sp-slot[data-size="728x90"] { min-height: 90px; }
+.sp-slot[data-size="300x250"] { min-height: 250px; }
+.sp-slot[data-size="468x60"] { min-height: 60px; }
+.sp-slot[data-size="160x300"] { min-height: 300px; }
+.sp-slot[data-size="160x600"] { min-height: 600px; }
+@media (max-width: 640px) {
+  .sp-slot[data-size="728x90"] { min-height: 50px; }
+}
