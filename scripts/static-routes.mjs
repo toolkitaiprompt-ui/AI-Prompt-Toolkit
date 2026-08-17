@@ -868,5 +868,29 @@ export const STATIC_ROUTES = [
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
-  }
+  },
+  {
+    "path": "/blog/best-free-ai-prompt-tools-2026",
+    "title": "Best Free AI Prompt Tools in 2026 — Complete Guide | AI World Hub",
+    "desc": "Find the best free AI prompt tools in 2026 — prompt optimizers, JSON validators, token estimators and more. 100% free, no signup, in-browser.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/chatgpt-prompts-for-students",
+    "title": "ChatGPT Prompts for Students — Study Smarter in 2026 | AI World Hub",
+    "desc": "25+ ready-to-use ChatGPT prompts for students — study guides, essay writing, exam prep, summaries and more. Copy, paste, and study smarter.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/protect-your-data-ai-prompts",
+    "title": "How to Protect Your Data When Using AI Prompts | AI World Hub",
+    "desc": "Learn how to keep sensitive data safe when using AI — prompt injection risks, PII leaks, and free tools that scan prompts before you send them.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
 ];
