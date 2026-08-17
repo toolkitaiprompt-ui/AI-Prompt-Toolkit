@@ -3,22 +3,17 @@ import { useEffect, useRef, useState } from "react";
 /*
   Universal Banner Ad Component — Adsterra + Monetag support
   ─────────────────────────────────────────────────────────
-  Networks:
   - adsterra: real banner ads (multiple sizes). Zone keys in ADSTERRA_ZONES.
-  - custom:   Monetag direct-link zone — rendered as sponsored box (click opens ad).
+  - custom:   Monetag direct-link zone — visible sponsored box (click opens ad).
   - raw-html: paste ANY ad network snippet (script/ins) — injected into slot.
   - monetag-banner: reserved.
 
-  Usage:
-    <AdBanner />                          → default network (first enabled) rectangle
-    <AdBanner size="leaderboard" />       → 728x90 desktop / 320x50 mobile (auto)
-    <AdBanner size="rectangle" />         → 300x250
-    <AdBanner size="banner" />            → 468x60
-    <AdBanner size="skyscraper" />        → 160x600
-    <AdBanner size="halfpage" />          → 160x300
-    <AdBanner network="custom" />         → Monetag smartlink sponsored box
-
-  While no zone is configured the component renders nothing.
+  CRASH-PROOF DESIGN (important):
+  Third-party ad scripts (Adsterra invoke.js etc.) MUTATE the DOM around
+  themselves (they remove their own script tags). React must NEVER try to
+  remove/reconcile those nodes — that caused a removeChild crash before.
+  So scripts are injected imperatively into a tiny inner <div ref> that
+  React never re-renders, and fallbacks are separate React-owned nodes.
 */
 
 type Network = "adsterra" | "monetag-banner" | "custom" | "raw-html";
@@ -31,8 +26,7 @@ interface AdBannerProps {
   className?: string;
 }
 
-// ─── ADSTERRA ZONES (owner's real zone keys, 17 Aug 2026) ───
-// leaderboard = 728x90 desktop / 320x50 mobile (responsive via mobileKey)
+// ─── ADSTERRA ZONES (owner's real zone keys) ───
 export const ADSTERRA_ZONES: Record<
   AdSize,
   { key: string; width: number; height: number; mobileKey?: string; mobileWidth?: number; mobileHeight?: number }
@@ -63,6 +57,19 @@ const SIZE_DIMS: Record<AdSize, string> = {
   skyscraper: "160x600",
   halfpage: "160x300",
 };
+
+// Shared Monetag fallback box (used when Adsterra doesn't fill a slot)
+function MonetagBox() {
+  return (
+    <a href="https://omg10.com/4/11565897" target="_blank" rel="sponsored noopener noreferrer" className="sp-box" aria-label="Sponsored ad — opens offer in new tab">
+      <span className="sp-box-badge">Sponsored</span>
+      <span className="sp-box-icon" aria-hidden="true">✦</span>
+      <span className="sp-box-headline">Exclusive Deals &amp; Offers</span>
+      <span className="sp-box-sub">Hand-picked for you — limited time</span>
+      <span className="sp-box-btn">View Offer<span aria-hidden="true"> →</span></span>
+    </a>
+  );
+}
 
 export default function AdBanner({
   network = "adsterra",
@@ -114,6 +121,7 @@ export default function AdBanner({
 
   const hasZone = resolvedNetwork === "adsterra" || !!resolvedZone.key;
 
+  // ── Script injection (imperative; React never reconciles these nodes) ──
   useEffect(() => {
     if (injected.current || !containerRef.current) return;
     if (!hasZone) return;
@@ -122,10 +130,9 @@ export default function AdBanner({
     injected.current = true;
 
     if (resolvedNetwork === "adsterra") {
-      // Adsterra native iframe banner — official pattern
       const atScript = document.createElement("script");
       atScript.type = "text/javascript";
-      atScript.innerHTML = `
+      atScript.text = `
         atOptions = {
           'key' : '${resolvedZone.key}',
           'format' : 'iframe',
@@ -140,31 +147,31 @@ export default function AdBanner({
       invokeScript.type = "text/javascript";
       invokeScript.src = `//www.highperformanceformat.com/${resolvedZone.key}/invoke.js`;
       invokeScript.async = true;
+      invokeScript.setAttribute("data-adsterra", resolvedZone.key);
       container.appendChild(invokeScript);
 
-      // FALLBACK: if Adsterra doesn't fill within 6s, swap in the Monetag
-      // sponsored box so the slot is NEVER empty.
+      // FALLBACK: if Adsterra doesn't fill within 7s, show Monetag box.
+      // Only state flips — injected nodes stay untouched (crash-proof).
       const fallbackTimer = window.setTimeout(() => {
         const hasIframe = !!container.querySelector("iframe");
-        const hasAdContent = container.querySelector("a, ins, img") !== null;
-        if (!hasIframe && !hasAdContent) {
+        const hasAd = container.querySelector("a, ins, img[src]") !== null;
+        if (!hasIframe && !hasAd) {
           setAdFailed(true);
-          container.innerHTML = "";
-          injected.current = false;
         }
-      }, 6000);
+      }, 7000);
 
       return () => {
         window.clearTimeout(fallbackTimer);
-        container.innerHTML = "";
         injected.current = false;
+        try {
+          container.querySelectorAll("script[data-adsterra]").forEach((n) => {
+            if (n.parentNode === container) n.parentNode.removeChild(n);
+          });
+        } catch { /* ignore */ }
       };
     }
 
     if (resolvedNetwork === "raw-html") {
-      const slot = container.querySelector<HTMLDivElement>(".sp-slot");
-      if (!slot) return;
-      slot.innerHTML = "";
       const wrapper = document.createElement("div");
       wrapper.innerHTML = resolvedZone.key;
       Array.from(wrapper.querySelectorAll("script")).forEach((oldScript) => {
@@ -173,11 +180,7 @@ export default function AdBanner({
         newScript.text = oldScript.text || "";
         oldScript.replaceWith(newScript);
       });
-      slot.appendChild(wrapper);
-      return () => {
-        slot.innerHTML = "";
-        injected.current = false;
-      };
+      container.appendChild(wrapper);
     }
 
     if (resolvedNetwork === "monetag-banner") {
@@ -191,6 +194,7 @@ export default function AdBanner({
     return () => {
       injected.current = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resolvedNetwork, resolvedZone.key, resolvedZone.width, resolvedZone.height, hasZone, isMobile]);
 
   // No zone configured — render nothing
@@ -198,44 +202,27 @@ export default function AdBanner({
     return null;
   }
 
-  // Adsterra failed to fill → show Monetag sponsored box as fallback
-  if (resolvedNetwork === "adsterra" && adFailed) {
-    return (
-      <div className={`sp-wrap ${className}`}>
-        <span className="sp-label">Advertisement</span>
-        <a href="https://omg10.com/4/11565897" target="_blank" rel="sponsored noopener noreferrer" className="sp-box" aria-label="Sponsored ad — opens offer in new tab">
-          <span className="sp-box-badge">Sponsored</span>
-          <span className="sp-box-icon" aria-hidden="true">✦</span>
-          <span className="sp-box-headline">Exclusive Deals &amp; Offers</span>
-          <span className="sp-box-sub">Hand-picked for you — limited time</span>
-          <span className="sp-box-btn">View Offer<span aria-hidden="true"> →</span></span>
-        </a>
-      </div>
-    );
-  }
-
   // Monetag direct-link → visible sponsored box
   if (resolvedNetwork === "custom") {
     return (
       <div className={`sp-wrap ${className}`}>
         <span className="sp-label">Advertisement</span>
-        <a href={resolvedZone.key} target="_blank" rel="sponsored noopener noreferrer" className="sp-box" aria-label="Sponsored ad — opens offer in new tab">
-          <span className="sp-box-badge">Sponsored</span>
-          <span className="sp-box-icon" aria-hidden="true">✦</span>
-          <span className="sp-box-headline">Exclusive Deals &amp; Offers</span>
-          <span className="sp-box-sub">Hand-picked for you — limited time</span>
-          <span className="sp-box-btn">View Offer<span aria-hidden="true"> →</span></span>
-        </a>
+        <MonetagBox />
       </div>
     );
   }
 
   return (
-    <div ref={containerRef} className={`sp-wrap ${className}`}>
+    <div className={`sp-wrap ${className}`}>
       <span className="sp-label">Advertisement</span>
       <div className="sp-slot" style={{ minHeight: resolvedNetwork === "adsterra" ? resolvedZone.height : 250 }} data-size={resolvedNetwork === "adsterra" ? SIZE_DIMS[size] : ""}>
-        {/* ad code injected via useEffect */}
+        <div ref={containerRef} />
       </div>
+      {resolvedNetwork === "adsterra" && adFailed && (
+        <div className="sp-slot-fallback">
+          <MonetagBox />
+        </div>
+      )}
     </div>
   );
 }

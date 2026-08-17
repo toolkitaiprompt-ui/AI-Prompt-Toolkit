@@ -437,3 +437,10 @@ p { line-height: 1.65; }
     max-width: 100% !important;
   }
 }
+
+/* Fallback slot (shown when the primary ad network doesn't fill) */
+.sp-slot-fallback {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
