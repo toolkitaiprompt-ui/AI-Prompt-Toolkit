@@ -58,10 +58,22 @@ const SIZE_DIMS: Record<AdSize, string> = {
   halfpage: "160x300",
 };
 
+// Monetag direct-link zones (owner's account) — rotated so BOTH zones earn
+const MONETAG_DIRECT_ZONES = [
+  "https://omg10.com/4/11565897",
+  "https://omg10.com/4/11565896",
+];
+let monetagZoneCounter = 0;
+function nextMonetagZone() {
+  monetagZoneCounter = (monetagZoneCounter + 1) % MONETAG_DIRECT_ZONES.length;
+  return MONETAG_DIRECT_ZONES[monetagZoneCounter];
+}
+
 // Shared Monetag fallback box (used when Adsterra doesn't fill a slot)
 function MonetagBox() {
+  const zone = nextMonetagZone();
   return (
-    <a href="https://omg10.com/4/11565897" target="_blank" rel="sponsored noopener noreferrer" className="sp-box" aria-label="Sponsored ad — opens offer in new tab">
+    <a href={zone} target="_blank" rel="sponsored noopener noreferrer" className="sp-box" aria-label="Sponsored ad — opens offer in new tab">
       <span className="sp-box-badge">Sponsored</span>
       <span className="sp-box-icon" aria-hidden="true">✦</span>
       <span className="sp-box-headline">Exclusive Deals &amp; Offers</span>
