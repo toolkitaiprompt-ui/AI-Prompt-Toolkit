@@ -420,3 +420,20 @@ p { line-height: 1.65; }
   .glass-nav { padding: 4px 4px 4px 12px; }
   .glass-nav-link { padding: 5px 8px; font-size: 12px; }
 }
+
+/* Adsterra banner iframes — responsive, centered, never overflow */
+.sp-slot iframe {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  border: 0;
+  overflow: hidden;
+}
+@media (max-width: 640px) {
+  .sp-slot {
+    overflow: hidden;
+  }
+  .sp-slot iframe {
+    max-width: 100% !important;
+  }
+}

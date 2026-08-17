@@ -412,7 +412,7 @@ return (
 
       {/* Banner Ad */}
       <div className="site-container pt-8">
-        <AdBanner />
+        <AdBanner size="leaderboard" />
       </div>
 
       {/* Stats Section */}
@@ -441,7 +441,7 @@ return (
 
       {/* Banner Ad */}
       <div className="site-container pt-8">
-        <AdBanner />
+        <AdBanner size="rectangle" />
       </div>
 
       {/* Tools Showcase — Featured AI Tools */}
@@ -499,7 +499,7 @@ return (
 
       {/* Banner Ad */}
       <div className="site-container pt-8">
-        <AdBanner />
+        <AdBanner size="banner" />
       </div>
 
 
@@ -560,7 +560,7 @@ return (
 
       {/* Banner Ad */}
       <div className="site-container pt-8">
-        <AdBanner />
+        <AdBanner size="rectangle" />
       </div>
 
 
@@ -607,7 +607,7 @@ return (
 
       {/* Banner Ad */}
       <div className="site-container pt-8">
-        <AdBanner />
+        <AdBanner size="leaderboard" />
       </div>
 
       {/* Blog Section */}
@@ -659,7 +659,7 @@ return (
 
       {/* Banner Ad */}
       <div className="site-container pt-8">
-        <AdBanner />
+        <AdBanner size="rectangle" />
       </div>
 
       <CategoryShowcase />
@@ -693,7 +693,7 @@ return (
 
       {/* Banner Ad */}
       <div className="site-container pt-8">
-        <AdBanner />
+        <AdBanner size="halfpage" />
       </div>
 
       {/* Final CTA */}

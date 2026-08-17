@@ -74,7 +74,7 @@ function ToolContainer({
 
 
 
-      <AdBanner />
+      <AdBanner size="rectangle" />
 
       <div className="rounded-[24px] border border-white/10 bg-slate-950/80 p-6 shadow-xl">
         <div className="space-y-4">{children}</div>
@@ -103,7 +103,7 @@ function ToolContainer({
         </section>
       )}
 
-      <AdBanner />
+      <AdBanner size="banner" />
     </section>
   );
 }
