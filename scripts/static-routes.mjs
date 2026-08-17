@@ -893,4 +893,12 @@ export const STATIC_ROUTES = [
     "priority": 0.7,
     "changefreq": "weekly"
   },
+  {
+    "path": "/blog/how-to-make-money-with-chatgpt-in-india",
+    "title": "Make Money with ChatGPT in India — 15 Proven Ways | AI World Hub",
+    "desc": "15 proven ways to make money with ChatGPT in India — freelancing, content, coding, teaching. Real income potential, zero investment, start today.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
 ];
