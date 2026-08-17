@@ -901,4 +901,12 @@ export const STATIC_ROUTES = [
     "priority": 0.7,
     "changefreq": "weekly"
   },
+  {
+    "path": "/blog/ai-prompts-for-business-growth",
+    "title": "AI Prompts for Business Growth — 20 Templates | AI World Hub",
+    "desc": "20 ready-to-use AI prompts for business — marketing, sales, customer support, operations and strategy. Copy-paste templates that save hours weekly.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
 ];
