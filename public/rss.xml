@@ -5,7 +5,7 @@
     <link>https://aiworldhub.site/</link>
     <description>Free ChatGPT prompts, prompt engineering guides, and programmatic prompt templates for every role and task.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 18 Aug 2026 09:31:55 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 18 Aug 2026 09:34:10 GMT</lastBuildDate>
     <atom:link href="https://aiworldhub.site/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Use ChatGPT for Freelancing — Complete Client Guide</title>
@@ -34,6 +34,20 @@
       <guid isPermaLink="true">https://aiworldhub.site/blog/free-ai-tools-for-youtube-creators/</guid>
       <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
       <description>10 free AI tools for YouTube creators — video scripts, titles, descriptions, thumbnails, and channel growth. Start creating faster today.</description>
+    </item>
+    <item>
+      <title>ChatGPT Prompts for Content Writers — 30 Copy-Paste Templates</title>
+      <link>https://aiworldhub.site/blog/chatgpt-prompts-for-content-writers/</link>
+      <guid isPermaLink="true">https://aiworldhub.site/blog/chatgpt-prompts-for-content-writers/</guid>
+      <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
+      <description>30 ChatGPT prompts for content writers — blogs, SEO articles, social media, email newsletters. Copy-paste templates that cut writing time in half.</description>
+    </item>
+    <item>
+      <title>What is Prompt Engineering? Complete Beginner Guide 2026</title>
+      <link>https://aiworldhub.site/blog/what-is-prompt-engineering-guide/</link>
+      <guid isPermaLink="true">https://aiworldhub.site/blog/what-is-prompt-engineering-guide/</guid>
+      <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Learn what prompt engineering is, why it matters, and how to write better prompts — role, task, context, format, constraints. Free tools included.</description>
     </item>
     <item>
       <title>Best Free AI Prompt Tools in 2026 — Complete Guide</title>
@@ -272,20 +286,6 @@
       <guid isPermaLink="true">https://aiworldhub.site/blog/ai-workflow-automation-for-operations/</guid>
       <pubDate>Mon, 06 Apr 2026 00:00:00 GMT</pubDate>
       <description>Discover how to automate operations and support workflows with AI prompts, templates, and validation best practices.</description>
-    </item>
-    <item>
-      <title>LLM Workflow Best Practices for Innovation and Reliability</title>
-      <link>https://aiworldhub.site/blog/llm-workflow-best-practices-for-innovation/</link>
-      <guid isPermaLink="true">https://aiworldhub.site/blog/llm-workflow-best-practices-for-innovation/</guid>
-      <pubDate>Fri, 03 Apr 2026 00:00:00 GMT</pubDate>
-      <description>Explore best practices for LLM workflows that balance innovation with reliability, including prompt design, validation, and collaboration.</description>
-    </item>
-    <item>
-      <title>AI Prompt Template Governance for Sustainable Growth</title>
-      <link>https://aiworldhub.site/blog/ai-prompt-template-governance-for-growth/</link>
-      <guid isPermaLink="true">https://aiworldhub.site/blog/ai-prompt-template-governance-for-growth/</guid>
-      <pubDate>Tue, 31 Mar 2026 00:00:00 GMT</pubDate>
-      <description>Learn how prompt template governance helps teams scale AI safely, maintain consistency, and manage prompt quality over time.</description>
     </item>
   </channel>
 </rss>

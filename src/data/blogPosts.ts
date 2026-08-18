@@ -2147,6 +2147,106 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
     relatedToolSlugs: ["prompt-optimizer", "prompt-formatter", "token-estimator", "content-summarizer"],
   },
+  {
+    slug: "chatgpt-prompts-for-content-writers",
+    title: "ChatGPT Prompts for Content Writers — 30 Copy-Paste Templates",
+    seoTitle: "ChatGPT Prompts for Content Writers — 30 Templates | AI World Hub",
+    metaDescription:
+      "30 ChatGPT prompts for content writers — blogs, SEO articles, social media, email newsletters. Copy-paste templates that cut writing time in half.",
+    excerpt:
+      "Writer's block is over. These 30 ChatGPT prompts for content writers cover blogs, SEO, social, and email — copy, paste, and publish faster.",
+    category: "ChatGPT Prompts",
+    date: "August 18, 2026",
+    readTime: "8 min read",
+    contentSections: [
+      {
+        heading: "The writer's new workflow",
+        paragraphs: [
+          "Professional writers are not being replaced by AI — they are being outpaced by writers who use AI well. The difference is prompt quality. A vague prompt gives you generic filler; a structured prompt gives you a first draft that is 80% publishable.",
+          "The workflow that works: outline with AI, draft with AI, edit like a professional. Run every prompt through the Prompt Optimizer to add role, audience, and format automatically — then the output needs far less cleanup.",
+        ],
+      },
+      {
+        heading: "30 prompts organized by content type",
+        paragraphs: [
+          "Blog posts: 'Write a 1200-word SEO blog on [topic] for [audience]. H1 + meta description (155 chars) + 5 H2s with 2 paragraphs each + FAQ. Tone: [tone]. Include [keyword] 8 times naturally.' Social: 'Create 7 days of social posts for [brand] on [platform]. Each: hook, value, CTA, 3 hashtags.' Email: 'Write a 5-email nurture sequence for [product] targeting [persona]. Subject lines under 50 chars, one CTA each.'",
+          "The AI Prompt Library at AI World Hub has 225+ role-based prompts for writers, marketers, and SEO specialists — every one free to copy. Save your best-performing prompts as templates with variables like {topic} and {audience} using the Variable Extractor.",
+        ],
+      },
+      {
+        heading: "How to keep your writing voice with AI",
+        paragraphs: [
+          "The secret is feeding the model your voice. Include 2-3 of your old articles as style references in the prompt: 'Match the tone and rhythm of this sample: [paste].' Then edit the draft aggressively — AI gives you the skeleton, you bring the personality.",
+          "Track which prompts produce drafts you barely edit. Those become your core templates. Writers who build this system report cutting production time by 50-70% while keeping quality — which means more clients, more articles, more income.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Will AI-generated content hurt my SEO rankings?",
+        answer: "Google rewards helpful content regardless of how it was drafted. Always edit for accuracy, add original insights, and include personal experience — then AI-assisted content ranks fine.",
+      },
+      {
+        question: "Can clients tell I use ChatGPT?",
+        answer: "Only if you skip editing. Personalize every piece with client specifics, maintain a consistent voice, and fact-check claims. Edited AI content is indistinguishable from manual work.",
+      },
+      {
+        question: "How do I get better ChatGPT outputs for writing?",
+        answer: "Give the model a role, audience, format, length, and tone — and include a style sample. The Prompt Optimizer builds this structure for you in one click.",
+      },
+    ],
+    relatedToolSlugs: ["prompt-optimizer", "prompt-formatter", "token-estimator", "prompt-variable-extractor"],
+  },
+  {
+    slug: "what-is-prompt-engineering-guide",
+    title: "What is Prompt Engineering? Complete Beginner Guide 2026",
+    seoTitle: "What is Prompt Engineering? Complete Guide 2026 | AI World Hub",
+    metaDescription:
+      "Learn what prompt engineering is, why it matters, and how to write better prompts — role, task, context, format, constraints. Free tools included.",
+    excerpt:
+      "Prompt engineering explained simply — what it is, why it's the most valuable AI skill of 2026, and exactly how to structure prompts that get results.",
+    category: "Prompt Engineering",
+    date: "August 18, 2026",
+    readTime: "9 min read",
+    contentSections: [
+      {
+        heading: "What is prompt engineering, really?",
+        paragraphs: [
+          "Prompt engineering is the practice of designing instructions that get AI models to produce reliable, useful output. It is not magic — it is structured communication. The same model that gives you a vague paragraph with 'write about marketing' gives you a professional brief with 'act as a marketing strategist, target this audience, use this format, follow these constraints'.",
+          "In 2026, this skill is the highest-leverage technical skill for non-programmers. Companies pay for people who can extract consistent value from AI — and that is exactly what prompt engineering does.",
+        ],
+      },
+      {
+        heading: "The 5-part prompt formula",
+        paragraphs: [
+          "Every strong prompt has five parts: 1) Role — who the model should act as. 2) Task — what to produce, with an action verb. 3) Context — background, audience, constraints. 4) Format — structure of the output. 5) Examples — quality anchors. You do not need all five every time, but adding the missing ones transforms output quality.",
+          "The Prompt Debugger at AI World Hub scores your prompt 0-100 and tells you exactly which of these five is missing — with instant fix suggestions. Run every important prompt through it once, and you will internalize the formula fast.",
+        ],
+      },
+      {
+        heading: "Common mistakes and how to fix them",
+        paragraphs: [
+          "Mistake 1: Vague verbs — 'help me with X' instead of 'write/generate/analyze X'. Fix: use a specific action verb. Mistake 2: No format — the model picks its own structure. Fix: specify markdown, bullets, table, JSON. Mistake 3: Missing constraints — no length, tone, or exclusions. Fix: add 'under 300 words, professional tone, no jargon'. Mistake 4: One-shot prompts — fix with the Optimizer's structure.",
+          "Practice on free tools. The Mega Prompt Builder walks you through all 8 parts step-by-step, and the Comparison tool shows you the before/after difference so you see exactly why structure works.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Is prompt engineering a real career?",
+        answer: "Yes — companies hire prompt engineers at competitive salaries, and the skill boosts almost any AI-adjacent role. It is also the fastest way to make AI tools work for your own business.",
+      },
+      {
+        question: "Do I need coding to learn prompt engineering?",
+        answer: "No. Clear communication and structured thinking are the core skills. Free in-browser tools handle the technical parts like token counting and validation.",
+      },
+      {
+        question: "How long does it take to learn prompt engineering?",
+        answer: "Basic proficiency in a few hours of practice; professional skill in 3-6 weeks of consistent use. The Debugger's health score makes the learning curve much shorter.",
+      },
+    ],
+    relatedToolSlugs: ["prompt-debugger", "mega-prompt-builder", "prompt-comparison", "prompt-optimizer"],
+  },
 ];
 
 BLOG_POSTS.push(...NEW_SEO_POSTS);

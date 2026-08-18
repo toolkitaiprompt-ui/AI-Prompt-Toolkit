@@ -933,4 +933,20 @@ export const STATIC_ROUTES = [
     "priority": 0.7,
     "changefreq": "weekly"
   },
+  {
+    "path": "/blog/chatgpt-prompts-for-content-writers",
+    "title": "ChatGPT Prompts for Content Writers — 30 Templates | AI World Hub",
+    "desc": "30 ChatGPT prompts for content writers — blogs, SEO, social, email newsletters. Copy-paste templates that cut writing time in half.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/what-is-prompt-engineering-guide",
+    "title": "What is Prompt Engineering? Complete Guide 2026 | AI World Hub",
+    "desc": "Learn what prompt engineering is, why it matters, and how to write better prompts — role, task, context, format, constraints. Free tools.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
 ];
