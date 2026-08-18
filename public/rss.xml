@@ -5,7 +5,7 @@
     <link>https://aiworldhub.site/</link>
     <description>Free ChatGPT prompts, prompt engineering guides, and programmatic prompt templates for every role and task.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 18 Aug 2026 08:37:06 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 18 Aug 2026 08:45:00 GMT</lastBuildDate>
     <atom:link href="https://aiworldhub.site/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Use ChatGPT for Freelancing — Complete Client Guide</title>
@@ -20,6 +20,20 @@
       <guid isPermaLink="true">https://aiworldhub.site/blog/ai-tools-for-small-business-india/</guid>
       <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
       <description>10 free AI tools every Indian small business should use — content, customer service, pricing, and more. Zero cost, zero coding, measurable results.</description>
+    </item>
+    <item>
+      <title>Best AI Prompt Engineering Tools for Beginners in 2026</title>
+      <link>https://aiworldhub.site/blog/best-ai-prompt-engineering-tools/</link>
+      <guid isPermaLink="true">https://aiworldhub.site/blog/best-ai-prompt-engineering-tools/</guid>
+      <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Start with the best AI prompt engineering tools for beginners — format, optimize, validate, and debug prompts free in your browser. No signup, no code.</description>
+    </item>
+    <item>
+      <title>Free AI Tools for YouTube Creators in 2026</title>
+      <link>https://aiworldhub.site/blog/free-ai-tools-for-youtube-creators/</link>
+      <guid isPermaLink="true">https://aiworldhub.site/blog/free-ai-tools-for-youtube-creators/</guid>
+      <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
+      <description>10 free AI tools for YouTube creators — video scripts, titles, descriptions, thumbnails, and channel growth. Start creating faster today.</description>
     </item>
     <item>
       <title>Best Free AI Prompt Tools in 2026 — Complete Guide</title>
@@ -272,20 +286,6 @@
       <guid isPermaLink="true">https://aiworldhub.site/blog/ai-prompt-template-governance-for-growth/</guid>
       <pubDate>Tue, 31 Mar 2026 00:00:00 GMT</pubDate>
       <description>Learn how prompt template governance helps teams scale AI safely, maintain consistency, and manage prompt quality over time.</description>
-    </item>
-    <item>
-      <title>AI Agent Prompts Complete Guide | AI World Hub</title>
-      <link>https://aiworldhub.site/blog/ai-agent-prompts-guide/</link>
-      <guid isPermaLink="true">https://aiworldhub.site/blog/ai-agent-prompts-guide/</guid>
-      <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Master AI agent prompts with structured frameworks, context, and execution patterns for reliable multi-step AI workflows.</description>
-    </item>
-    <item>
-      <title>AI Art Styles Complete Guide | AI World Hub</title>
-      <link>https://aiworldhub.site/blog/ai-art-styles-complete-guide/</link>
-      <guid isPermaLink="true">https://aiworldhub.site/blog/ai-art-styles-complete-guide/</guid>
-      <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
-      <description>Explore the best AI art styles and image generation techniques for 2026 — from photorealistic to artistic creative styles.</description>
     </item>
   </channel>
 </rss>

@@ -1,7 +1,7 @@
 import { useJsonLd, softwareAppJsonLd, faqPageJsonLd, breadcrumbJsonLd, toolFaq, toolNameFromTitle } from "../lib/structuredData";
 import useSeo from "../hooks/useSeo";
 import { BLOG_POSTS } from "../data/blogPosts";
-import type { ToolMeta } from "../data/tools";
+import { TOOL_PAGES, type ToolMeta } from "../data/tools";
 import AdBanner from "./AdBanner";
 import BlogCard from "./BlogCard";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
@@ -102,6 +102,38 @@ function ToolContainer({
           </div>
         </section>
       )}
+
+      {/* More tools — cross-linking: more pageviews = more ad impressions */}
+      <section>
+        <div className="mb-6 flex items-center justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">Explore more</p>
+            <h2 className="mt-1 text-2xl font-bold text-white">More Free AI Tools</h2>
+          </div>
+          <Link
+            to="/tools"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400 hover:text-amber-300 transition"
+          >
+            View all tools
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {TOOL_PAGES.filter((t) => t.path !== tool?.path).slice(0, 6).map((t) => (
+            <Link
+              key={t.path}
+              to={t.path}
+              className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/40 p-4 transition hover:border-amber-400/30 hover:bg-slate-900/70"
+            >
+              <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${t.accent} border border-white/10`}>
+                <t.icon className="h-5 w-5 text-white" aria-hidden="true" />
+              </div>
+              <span className="flex-1 text-sm font-medium text-slate-200 group-hover:text-white">{t.title}</span>
+              <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-500 transition group-hover:text-amber-400" />
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <AdBanner network="custom" />
     </section>

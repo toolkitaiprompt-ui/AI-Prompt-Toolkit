@@ -917,4 +917,20 @@ export const STATIC_ROUTES = [
     "priority": 0.7,
     "changefreq": "weekly"
   },
+  {
+    "path": "/blog/best-ai-prompt-engineering-tools",
+    "title": "Best AI Prompt Engineering Tools 2026 — Beginner Guide | AI World Hub",
+    "desc": "Start with the best AI prompt engineering tools for beginners — format, optimize, validate, debug prompts free in-browser. No signup, no code.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/free-ai-tools-for-youtube-creators",
+    "title": "Free AI Tools for YouTube Creators 2026 | AI World Hub",
+    "desc": "10 free AI tools for YouTube creators — scripts, titles, descriptions, thumbnails, channel growth. Publish faster, grow without spending.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
 ];

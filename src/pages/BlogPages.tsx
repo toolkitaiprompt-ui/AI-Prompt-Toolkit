@@ -158,6 +158,29 @@ export function BlogPostPage() {
             <span>{post.date}</span>
             <span aria-hidden="true">·</span>
             <span>{post.readTime}</span>
+            <span aria-hidden="true">·</span>
+            <span className="text-amber-400/80">{post.category}</span>
+          </div>
+
+          {/* Social share — free traffic when readers share */}
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs font-medium uppercase tracking-wider text-slate-500">Share:</span>
+            {[
+              { label: "X", href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent("https://aiworldhub.site/blog/" + post.slug)}` },
+              { label: "LinkedIn", href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent("https://aiworldhub.site/blog/" + post.slug)}` },
+              { label: "WhatsApp", href: `https://wa.me/?text=${encodeURIComponent(post.title + " " + "https://aiworldhub.site/blog/" + post.slug)}` },
+              { label: "Facebook", href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent("https://aiworldhub.site/blog/" + post.slug)}` },
+            ].map((soc) => (
+              <a
+                key={soc.label}
+                href={soc.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-300 transition hover:border-amber-400/40 hover:text-amber-300"
+              >
+                {soc.label}
+              </a>
+            ))}
           </div>
         </div>
 
