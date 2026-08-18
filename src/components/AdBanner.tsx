@@ -90,7 +90,7 @@ function MonetagBox() {
       </span>
       <span className="promo-headline">Exclusive Deals &amp; Offers</span>
       <span className="promo-sub">Hand-picked for you — limited time</span>
-      <span className="promo-btn">View Offer<span aria-hidden="true"> →</span></span>
+      <span className="promo-btn">View Offer<span aria-hidden="true"> &nbsp;→</span></span>
     </a>
   );
 }
