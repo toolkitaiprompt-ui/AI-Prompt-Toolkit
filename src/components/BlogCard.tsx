@@ -8,69 +8,69 @@ const IMG = "https://images.unsplash.com";
 const VISUALS: Record<string, { url: string; alt: string }> = {
     // ═══ BATCH 1: PREMIUM 3D IMAGES (6 SEO POSTS) ═══
     "best-ai-tools-2026-complete-directory": {
-      url: `/images/blog-best-ai-tools.jpg`,
+      url: `/images/blog-best-ai-tools.webp`,
       alt: "Premium 3D collection of the best AI tools for 2026 with floating golden icons",
     },
     "100-chatgpt-prompts-for-every-task": {
-      url: `/images/blog-100-chatgpt-prompts.jpg`,
+      url: `/images/blog-100-chatgpt-prompts.webp`,
       alt: "Premium 3D golden terminal window with ChatGPT prompt templates floating in space",
     },
     "how-to-use-chatgpt-complete-guide": {
-      url: `/images/blog-how-to-use-chatgpt.jpg`,
+      url: `/images/blog-how-to-use-chatgpt.webp`,
       alt: "Premium 3D ChatGPT chat interface with glowing golden UI elements",
     },
     "free-ai-tools-50-best-tested": {
-      url: `/images/blog-free-ai-tools.jpg`,
+      url: `/images/blog-free-ai-tools.webp`,
       alt: "Premium 3D floating grid of free AI tool icons with golden borders",
     },
     "prompt-engineering-complete-guide": {
-      url: `/images/blog-prompt-engineering.jpg`,
+      url: `/images/blog-prompt-engineering.webp`,
       alt: "Premium 3D golden prompt engineering diagram with connected nodes and code blocks",
     },
     "ai-tools-directory-categorized-list": {
-      url: `/images/blog-ai-tools-directory.jpg`,
+      url: `/images/blog-ai-tools-directory.webp`,
       alt: "Premium 3D luxury directory grid of AI tools with golden glass panels",
     },
 
     // ═══ BATCH 2: PREMIUM 3D IMAGES (10 EXISTING POSTS) ═══
     "master-prompt-engineering-workflow": {
-      url: `/images/blog-prompt-workflow.jpg`,
+      url: `/images/blog-prompt-workflow.webp`,
       alt: "Premium 3D golden workflow diagram with connected nodes for AI prompt engineering",
     },
     "craft-high-impact-chatgpt-prompts": {
-      url: `/images/blog-chatgpt-prompts-craft.jpg`,
+      url: `/images/blog-chatgpt-prompts-craft.webp`,
       alt: "Premium 3D golden chat bubble with structured prompt text floating in space",
     },
     "build-ai-prompt-templates-that-scale": {
-      url: `/images/blog-prompt-templates-scale.jpg`,
+      url: `/images/blog-prompt-templates-scale.webp`,
       alt: "Premium 3D golden template system showing multiple AI prompt cards stacked",
     },
     "claude-prompt-best-practices": {
-      url: `/images/blog-claude-best-practices.jpg`,
+      url: `/images/blog-claude-best-practices.webp`,
       alt: "Premium 3D golden AI brain neural network with Claude interface elements",
     },
     "midjourney-prompt-techniques": {
-      url: `/images/blog-midjourney-techniques.jpg`,
+      url: `/images/blog-midjourney-techniques.webp`,
       alt: "Premium 3D golden creative palette with floating AI art elements",
     },
     "design-json-schema-for-ai-output": {
-      url: `/images/blog-json-schema-design.jpg`,
+      url: `/images/blog-json-schema-design.webp`,
       alt: "Premium 3D golden JSON code editor with structured schema blocks",
     },
     "boost-ai-productivity-with-prompt-systems": {
-      url: `/images/blog-ai-productivity.jpg`,
+      url: `/images/blog-ai-productivity.webp`,
       alt: "Premium 3D golden productivity dashboard with floating metrics and charts",
     },
     "optimize-prompts-for-better-ai-performance": {
-      url: `/images/blog-optimize-prompts.jpg`,
+      url: `/images/blog-optimize-prompts.webp`,
       alt: "Premium 3D golden optimization graph with upward trending arrows",
     },
     "automate-ai-tasks-with-prompt-workflows": {
-      url: `/images/blog-automate-tasks.jpg`,
+      url: `/images/blog-automate-tasks.webp`,
       alt: "Premium 3D golden automation pipeline with connected gears and data streams",
     },
     "orchestrate-llm-workflows-for-productive-teams": {
-      url: `/images/blog-llm-workflows.jpg`,
+      url: `/images/blog-llm-workflows.webp`,
       alt: "Premium 3D golden LLM architecture diagram with interconnected nodes",
     },
 
