@@ -150,6 +150,9 @@ export function BlogPostPage() {
 
   return (
     <section className="site-container section-md">
+      <div className="mb-8">
+        <AdBanner size="leaderboard" />
+      </div>
       <div className="space-y-5 sm:space-y-6">
         <div className="space-y-2 sm:space-y-3">
           <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">{post.category}</p>
@@ -272,6 +275,9 @@ export function BlogPostPage() {
             </div>
           </aside>
         </div>
+      </div>
+      <div className="mt-10">
+        <AdBanner network="custom" />
       </div>
     </section>
   );
