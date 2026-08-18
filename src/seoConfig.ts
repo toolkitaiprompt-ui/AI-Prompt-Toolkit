@@ -252,6 +252,14 @@ const SEO_MAP: Record<string, SeoData> = {
     keywords: "Regex Generator, AI Regex, Regular Expression Generator, Regex Tester, Free AI Tools, Prompt Engineering",
   },
 
+  // ══ PROMPT GENERATOR ══
+  "/prompt-generator": {
+    title: "AI Prompt Generator — Generate Structured Prompts | AI World Hub",
+    description:
+      "Generate structured AI prompts by selecting role, task, goal, tone, audience, and desired output format. Free in-browser prompt creation with copy to clipboard.",
+    keywords: "AI Prompt Generator, Prompt Engineering, ChatGPT Prompts, Free AI Tools, Prompt Builder, Role-Based Prompts, AI Prompt Generator",
+  },
+
   // ══ NEW FEATURES ══
   "/templates": {
     title: "Prompt Templates Library — 12 Ready-to-Use Prompts | AI World Hub",

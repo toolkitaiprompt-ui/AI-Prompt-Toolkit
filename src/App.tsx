@@ -228,6 +228,7 @@ function Layout() {
           <Route path="/ai-tool-comparisons" element={<AiToolComparisonsPage />} />
           <Route path="/tools/regex-generator" element={<LazyRegexGenerator title="AI Regex Generator" toolSlug="regex-generator" description="Generate regex patterns from plain English. Test against strings and learn syntax with built-in cheatsheet." tool={TOOL_BY_SLUG.get("regex-generator")!} />} />
           <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />
+          <Route path="/prompt-generator" element={<Suspense fallback={<ToolSkeleton />}><PromptGeneratorPage /></Suspense>} />
           <Route path="/playground" element={<PlaygroundPage />} />
           <Route path="/prompts" element={<PromptsDirectoryPage />} />
           <Route path="/prompts/:role" element={<PromptsRolePage />} />

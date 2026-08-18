@@ -214,6 +214,14 @@ export const STATIC_ROUTES = [
     "changefreq": "weekly"
   },
   {
+    "path": "/prompt-generator",
+    "title": "AI Prompt Generator — Generate Structured Prompts | AI World Hub",
+    "desc": "Generate structured AI prompts by selecting role, task, goal, tone, audience, and desired output format. Free in-browser prompt creation with copy to clipboard.",
+    "type": "page",
+    "priority": 0.8,
+    "changefreq": "weekly"
+  },
+  {
     "path": "/playground",
     "title": "AI Prompt Playground — Test & Debug Prompts Live | AI World Hub",
     "desc": "Free AI prompt playground. Generate blog post, code review, and cold email prompt templates, estimate tokens, and debug prompt health in real time — all in your browser.",

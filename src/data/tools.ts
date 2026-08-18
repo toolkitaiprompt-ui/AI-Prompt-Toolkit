@@ -18,6 +18,7 @@ import {
   Terminal,
   type LucideIcon,
 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 export type ToolMeta = {
   title: string;
@@ -212,7 +213,19 @@ export const TOOL_PAGES: ToolMeta[] = [
     keyBenefits: ["6 quick presets", "Live regex tester", "Syntax cheatsheet"],
     category: "coding",
   },
+  {
+    title: "AI Prompt Generator",
+    path: "/prompt-generator",
+    description: "Generate structured AI prompts by selecting role, task, goal, tone, audience, and desired output format. Free in-browser prompt creation.",
+    icon: CheckCircle2,
+    accent: "from-emerald-500/35 to-green-400/10",
+    keyBenefits: [
+      "Select role and task from 15 professional categories",
+      "Customize tone, audience, and output format",
+      "Instant copy to clipboard",
+      "Related prompts and AI tools suggestions",
+    ],
+    category: "writing",
+  },
 ];
-
 export const TOOL_BY_SLUG = new Map(TOOL_PAGES.map((tool) => [tool.path.split("/").pop()!, tool]));
-
