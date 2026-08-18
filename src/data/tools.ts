@@ -45,7 +45,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "Prompt Variable Extractor",
     path: "/tools/prompt-variable-extractor",
-    description: "Extract variables like {name}, {{city}}, [tone], and :language from any prompt.",
+    description: "Extract variables using four supported syntaxes: curly braces {name}, double brackets {{city}}, square brackets [tone], and colons :language. Alphabetically sorts results with zero server calls, making it ideal for organizing prompt parameters and ensuring consistent variable naming across projects.",
     icon: Braces,
     accent: "from-blue-500/30 to-cyan-400/10",
     keyBenefits: ["Supports 4 variable syntaxes", "Alphabetically sorted results", "Zero server calls"],
@@ -54,7 +54,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "JSON Schema Generator",
     path: "/tools/json-schema-generator",
-    description: "Generate JSON Schema from a sample JSON object for consistent AI output structures.",
+    description: "Generate JSON Schema (Draft 2020-12) from sample JSON objects, supporting nested structures for consistent AI output formatting. Essential for developers who need structured, validated responses from AI models without manual schema definition.",
     icon: FileJson2,
     accent: "from-indigo-500/35 to-blue-500/10",
     keyBenefits: ["Draft 2020-12 compliant", "Nested object support", "Instant generation"],
@@ -63,7 +63,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "JSON Validator",
     path: "/tools/json-validator",
-    description: "Validate model responses against your schema using key type and required field checks.",
+    description: "Validate AI model responses against a defined JSON schema with type checking, required field validation, and path-level error reporting. Helps catch structure issues early and ensures output conforms to expected formats before downstream processing.",
     icon: ShieldCheck,
     accent: "from-violet-500/35 to-indigo-400/10",
     keyBenefits: ["Type checking", "Required field validation", "Path-level error reporting"],
@@ -72,7 +72,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "Prompt Formatter",
     path: "/tools/prompt-formatter",
-    description: "Format long prompts into clean and numbered instruction blocks.",
+    description: "Transform unstructured or messy prompts into clean, numbered instruction blocks. Strips noise, normalizes whitespace, and removes control characters to produce copy-ready output suitable for immediate use with AI models.",
     icon: WandSparkles,
     accent: "from-fuchsia-500/35 to-indigo-500/10",
     keyBenefits: ["Numbered sections", "Removes noise", "Copy-ready output"],
@@ -81,7 +81,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "Prompt Cleaner",
     path: "/tools/prompt-cleaner",
-    description: "Remove noise characters, extra spacing, and malformed line breaks from prompts.",
+    description: "Strip control characters, normalize extra spacing, and fix malformed line breaks in prompts. Prepares raw or copy-pasted prompts for reliable AI consumption by removing formatting inconsistencies that can cause unexpected model behavior.",
     icon: Sparkles,
     accent: "from-sky-500/35 to-indigo-500/10",
     keyBenefits: ["Strips control characters", "Normalizes whitespace", "Trims line breaks"],
@@ -90,7 +90,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "Token Estimator",
     path: "/tools/token-estimator",
-    description: "Estimate characters, words, and token usage before sending prompts to LLM APIs.",
+    description: "Estimate character and token counts before sending prompts to LLM APIs. Uses approximate 4 characters per token ratios to help with cost planning and preventing truncated responses, making it essential for budget-conscious prompt development.",
     icon: Sigma,
     accent: "from-blue-600/35 to-violet-500/10",
     keyBenefits: ["~4 chars per token model", "Real-time counting", "Cost planning"],
@@ -99,7 +99,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "Prompt Converter",
     path: "/tools/prompt-converter",
-    description: "Convert ChatGPT prompts to Claude, Gemini, or Cursor format instantly. Adapt tone, structure, and directives.",
+    description: "Instantly adapt prompts between AI model formats — convert ChatGPT prompts to Claude, Gemini, or Cursor format. Automatically adjusts tone, structure, and directives for each model's expected input style, enabling cross-model prompt reuse.",
     icon: ArrowLeftRight,
     accent: "from-amber-500/30 to-yellow-400/10",
     keyBenefits: ["ChatGPT to Claude", "ChatGPT to Gemini", "ChatGPT to Cursor"],
@@ -108,7 +108,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "AI Persona Builder",
     path: "/tools/persona-builder",
-    description: "Generate expert system prompts for different roles like Marketer, Developer, or Analyst instantly.",
+    description: "Generate expert system prompts for defined roles (Marketer, Developer, Analyst, etc.) with task-specific context and behavioral rules. Provides a structured prompt template that captures expertise patterns, making it easy to create role-consistent AI interactions.",
     icon: UserCircle,
     accent: "from-rose-500/30 to-amber-400/10",
     keyBenefits: ["Expert role prompting", "Task-specific context", "Behavioral rules"],
@@ -117,7 +117,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "Advanced Prompt Optimizer",
     path: "/tools/advanced-prompt-optimizer",
-    description: "Polish and amplify prompts with advanced structuring — role, format, tone, and constraint patterns applied automatically.",
+    description: "Polish and amplify prompts with automatic structuring of role, format, tone, and constraint patterns. Includes side-by-side comparison and structure analysis to help refine prompts for better AI results, all without usage limits.",
     icon: Sparkles,
     accent: "from-indigo-500/35 to-cyan-400/10",
     keyBenefits: ["Side-by-side compare", "Unlimited free use", "Prompt structure analysis"],
@@ -126,7 +126,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "Prompt Comparison Tool",
     path: "/tools/prompt-comparison",
-    description: "Compare two prompts side by side. See token count, word count, readability, structure score, clarity score, and visual diff highlighting.",
+    description: "Compare two prompts side by side with automated analysis of token count, word count, readability, structure score, clarity score, and visual diff highlighting. Provides quantitative metrics to help you choose the optimal prompt version for your use case.",
     icon: ArrowLeftRight,
     accent: "from-cyan-500/30 to-blue-400/10",
     keyBenefits: ["Token & word count", "Readability & structure scores", "Visual diff highlighting"],
@@ -135,7 +135,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "Mega Prompt Builder",
     path: "/tools/mega-prompt-builder",
-    description: "Build production-grade AI prompts with an 8-step guided wizard — role, task, context, audience, format, tone, constraints, and examples.",
+    description: "Build production-grade AI prompts through an 8-step guided wizard covering role, task, context, audience, format, tone, constraints, and examples. Exports as Markdown for version control and team sharing, making it ideal for creating robust, reusable prompt templates.",
     icon: Hammer,
     accent: "from-amber-500/35 to-rose-500/10",
     keyBenefits: ["8-step guided wizard", "Role + context + constraints", "Export as Markdown"],
@@ -144,7 +144,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "Prompt Debugger",
     path: "/tools/prompt-debugger",
-    description: "Diagnose AI prompts with a health score (0-100) and 12+ issue detectors. Get instant auto-fix suggestions for better results.",
+    description: "Diagnose AI prompts with a health score (0-100) and 12+ issue detectors identifying common problems like missing context, ambiguous instructions, and variable syntax errors. Provides instant auto-fix suggestions to improve prompt reliability and AI output quality.",
     icon: Bug,
     accent: "from-red-500/30 to-amber-400/10",
     keyBenefits: ["Health score 0-100", "12+ issue detectors", "Auto-fix suggestions"],
@@ -153,7 +153,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "Security Scanner",
     path: "/tools/security-scanner",
-    description: "Scan prompts for injection attacks, jailbreak attempts, and PII leaks before sending to AI APIs. Protect your data and prevent manipulation.",
+    description: "Scan prompts for injection attacks, jailbreak attempts, and PII leaks before sending to AI APIs. Detects common prompt manipulation techniques and alerts you to potential data leaks, helping protect your data and prevent unauthorized model manipulation.",
     icon: ShieldAlert,
     accent: "from-red-500/35 to-violet-500/10",
     keyBenefits: ["Injection detection", "Jailbreak scanning", "PII & data leak alerts"],
@@ -162,7 +162,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "Prompt Chain Builder",
     path: "/tools/prompt-chain-builder",
-    description: "Build multi-step prompt chains with up to 5 sequential steps. Each step supports custom output formats — Text, JSON, Markdown, Code, Table, and more.",
+    description: "Build multi-step prompt chains with up to 5 sequential steps, each supporting custom output formats including Text, JSON, Markdown, Code, Table, and more. Export chains as Markdown for documentation and sharing, enabling complex multi-turn AI workflows.",
     icon: Link2,
     accent: "from-indigo-500/35 to-cyan-400/10",
     keyBenefits: ["Up to 5 chained steps", "7 output format options", "Export as Markdown"],
@@ -171,7 +171,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "Prompt Translator",
     path: "/tools/prompt-translator",
-    description: "Translate AI prompts into 8 languages — Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, and Arabic — while preserving variables.",
+    description: "Translate AI prompts into 8 languages (Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, Arabic) while preserving all variables and syntax. Enables multilingual prompt deployment without losing parameter references, essential for global audience targeting.",
     icon: Languages,
     accent: "from-cyan-500/35 to-blue-500/10",
     keyBenefits: ["8 languages supported", "Preserves {variables}", "Multi-locale prompting"],
@@ -180,7 +180,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "API Request Builder",
     path: "/tools/api-request-builder",
-    description: "Build API request bodies and cURL commands for OpenAI, Anthropic, and Gemini. Configure model, temperature, and max tokens. Copy ready-to-use code.",
+    description: "Build API request bodies and cURL commands for OpenAI, Anthropic, and Gemini APIs. Configure model, temperature, max tokens, and other parameters. Generates copy-ready code snippets for immediate use in development environments.",
     icon: Code2,
     accent: "from-emerald-500/35 to-green-400/10",
     keyBenefits: ["OpenAI, Anthropic & Gemini", "Temperature & max tokens", "Copy cURL commands"],
@@ -189,7 +189,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "AI Image Prompt Generator",
     path: "/tools/image-prompt-generator",
-    description: "Generate production-ready image prompts for DALL-E, Midjourney, and Stable Diffusion. Choose art style, mood, and camera angle.",
+    description: "Generate production-ready image prompts for DALL-E, Midjourney, and Stable Diffusion. Select from 8 art styles, moods, and camera angles to create precise visual descriptions. Includes ready-to-use prompt templates for immediate generation.",
     icon: Image,
     accent: "from-pink-500/35 to-rose-400/10",
     keyBenefits: ["8 art styles", "DALL-E & Midjourney ready", "Instant copy-paste"],
@@ -198,7 +198,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "AI Content Summarizer",
     path: "/tools/content-summarizer",
-    description: "Summarize long articles, reports, and documents into TL;DR, bullet points, paragraphs, or academic abstracts with word reduction stats.",
+    description: "Summarize long articles, reports, and documents into four modes: TL;DR, bullet points, paragraphs, or academic abstracts. Includes word reduction percentages and copy-ready output, making it easy to extract key information from lengthy content quickly.",
     icon: FileText,
     accent: "from-teal-500/35 to-emerald-400/10",
     keyBenefits: ["4 summary modes", "Word reduction %", "Copy-ready output"],
@@ -207,7 +207,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "AI Regex Generator",
     path: "/tools/regex-generator",
-    description: "Generate regex patterns from plain English descriptions. Test instantly against sample strings with built-in cheatsheet.",
+    description: "Generate regex patterns from plain English descriptions with 6 quick presets for common patterns. Includes a live regex tester against sample strings and a syntax cheatsheet for learning and reference, making regex accessible without memorizing syntax.",
     icon: Terminal,
     accent: "from-violet-500/35 to-purple-400/10",
     keyBenefits: ["6 quick presets", "Live regex tester", "Syntax cheatsheet"],
@@ -216,7 +216,7 @@ export const TOOL_PAGES: ToolMeta[] = [
   {
     title: "AI Prompt Generator",
     path: "/prompt-generator",
-    description: "Generate structured AI prompts by selecting role, task, goal, tone, audience, and desired output format. Free in-browser prompt creation.",
+    description: "Generate structured AI prompts by selecting role, task, goal, tone, audience, and desired output format from 15 professional categories. Includes instant clipboard copy, related prompt suggestions, and AI tool recommendations for the chosen role, providing a complete prompt creation workflow within the browser.",
     icon: CheckCircle2,
     accent: "from-emerald-500/35 to-green-400/10",
     keyBenefits: [
