@@ -1,15 +1,56 @@
 import { useJsonLd, softwareAppJsonLd, faqPageJsonLd, breadcrumbJsonLd, toolFaq, toolNameFromTitle } from "../lib/structuredData";
 import useSeo from "../hooks/useSeo";
 import { BLOG_POSTS } from "../data/blogPosts";
-import { TOOL_PAGES, type ToolMeta } from "../data/tools";
+import { TOOL_PAGES, TOOL_CATEGORIES, type ToolMeta } from "../data/tools";
 import AdBanner from "./AdBanner";
 import BlogCard from "./BlogCard";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useMemo } from "react";
 import type { ReactNode } from "react";
+
+function getRelatedTools(toolPath: string, limit: number = 4): ToolMeta[] {
+  const currentTool = TOOL_PAGES.find((t) => t.path === toolPath);
+  if (!currentTool) return [];
+
+  const currentCategory = currentTool.category;
+  const currentBenefits = new Set(currentTool.keyBenefits ?? []);
+
+  const scored: Array<{ tool: ToolMeta; score: number }> = [];
+
+  for (const candidate of TOOL_PAGES) {
+    if (candidate.path === toolPath) continue;
+
+    let score = 0;
+    if (candidate.category === currentCategory) score += 3;
+    const candidateBenefits = new Set(candidate.keyBenefits ?? []);
+    const benefitOverlap = [...currentBenefits].filter((b) => candidateBenefits.has(b));
+    score += benefitOverlap.length * 2;
+
+    if (score > 0) {
+      scored.push({ tool: candidate, score });
+    }
+  }
+
+  return scored
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map(({ tool }) => tool);
+}
 
 export function getBlogPostsForTool(toolSlug: string) {
   return BLOG_POSTS.filter((post) => post.relatedToolSlugs.includes(toolSlug));
+}
+
+function getCategoryName(category: string | undefined): string {
+  const mapping: Record<string, string> = {
+    writing: "Writing & Content",
+    coding: "Development & Code",
+    marketing: "Marketing & Sales",
+    business: "Business & Strategy",
+    creative: "Creative & Design",
+  };
+  return mapping[category] || "prompt engineering";
 }
 
 function ToolContainer({
@@ -38,12 +79,14 @@ function ToolContainer({
     [title, description, toolSlug],
   );
 
+  const relatedTools = useMemo(() => getRelatedTools(toolSlug ?? ""), [toolSlug]);
+
   return (
     <section className="site-container section-lg space-y-16">
       <div className="rounded-[20px] sm:rounded-[28px] border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-950/60 to-slate-950/80 p-5 sm:p-8 shadow-2xl shadow-indigo-500/10">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
           {tool && (
-            <div className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-[14px] bg-gradient-to-br ${tool.accent} border border-white/10`}>
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-[14px] bg-slate-900/80 border border-white/10">
               <tool.icon className="h-8 w-8 text-white" aria-hidden="true" />
             </div>
           )}
@@ -71,8 +114,6 @@ function ToolContainer({
           </div>
         </div>
       </div>
-
-
 
       <AdBanner size="rectangle" />
 
@@ -103,41 +144,111 @@ function ToolContainer({
         </section>
       )}
 
-      {/* More tools — cross-linking: more pageviews = more ad impressions */}
-      <section>
+      {relatedTools.length > 0 && (
+        <section>
+          <div className="mb-6 flex items-center justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">
+                Related tools
+              </p>
+              <h2 className="mt-1 text-2xl font-bold text-white">Tools with similar use cases</h2>
+            </div>
+            <Link
+              to="/tools"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400 hover:text-amber-300 transition"
+            >
+              View all tools
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {relatedTools.map((t) => (
+              <Link
+                key={t.path}
+                to={t.path}
+                className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/40 p-4 transition hover:border-amber-400/30 hover:bg-slate-900/70"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-900/80 border border-white/10">
+                  <t.icon className="h-5 w-5 text-white" aria-hidden="true" />
+                </div>
+                <span className="flex-1 text-sm font-medium text-slate-200 group-hover:text-white">
+                  {t.title}</span>
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-500 transition group-hover:text-amber-400" />
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {tool && (
+        <section>
+          <div className="mb-6 flex items-center justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">
+                Resources for {getCategoryName(tool.category)}
+              </p>
+              <h2 className="mt-1 text-xl font-bold text-white">Learn & get results faster</h2>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <a
+              href={`/prompts/${tool.category}`}
+              className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/40 p-4 transition hover:border-amber-400/30 hover:bg-slate-900/70"
+            >
+              <svg
+                className="w-5 h-5 text-amber-400"
+                viewBox="0 0 64 64"
+                fill="none"
+              >
+                <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="1" />
+                <path d="M20 30 L44 30 M30 20 L30 44" stroke="currentColor" strokeWidth="2" />
+              </svg>
+              <span>
+                <span className="font-medium text-write">Browse {getCategoryName(tool.category)} prompts</span>
+                <span className="text-sm text-slate-500">/ prompts</span>
+              </span>
+            </a>
+            <a
+              href="/blog/best-ai-tools-2026-complete-directory"
+              className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/40 p-4 transition hover:border-amber-400/30 hover:bg-slate-900/70"
+            >
+              <svg
+                className="w-5 h-5 text-amber-400"
+                viewBox="0 0 64 64"
+                fill="none"
+              >
+                <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="1" />
+                <path d="M20 30 L44 30 M30 20 L30 44" stroke="currentColor" strokeWidth="2" />
+              </svg>
+              <span>
+                <span className="font-medium text-white">Best AI Tools 2026 Directory</span>
+                <span className="text-sm text-slate-500">/ blog</span>
+              </span>
+            </a>
+          </div>
+        </section>
+      )}
+
+<AdBanner network="custom" />
+
+      <div>
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">Explore more</p>
-            <h2 className="mt-1 text-2xl font-bold text-white">More Free AI Tools</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">
+              More tools
+            </p>
+            <h2 className="mt-1 text-xl font-bold text-white">Expand your prompt engineering toolkit</h2>
           </div>
           <Link
             to="/tools"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400 hover:text-amber-300 transition"
           >
-            View all tools
+            View all 19 free AI tools
             <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {TOOL_PAGES.filter((t) => t.path !== tool?.path).slice(0, 6).map((t) => (
-            <Link
-              key={t.path}
-              to={t.path}
-              className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/40 p-4 transition hover:border-amber-400/30 hover:bg-slate-900/70"
-            >
-              <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${t.accent} border border-white/10`}>
-                <t.icon className="h-5 w-5 text-white" aria-hidden="true" />
-              </div>
-              <span className="flex-1 text-sm font-medium text-slate-200 group-hover:text-white">{t.title}</span>
-              <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-500 transition group-hover:text-amber-400" />
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <AdBanner network="custom" />
+      </div>
     </section>
   );
 }
-
 export default ToolContainer;

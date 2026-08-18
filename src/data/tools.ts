@@ -27,6 +27,17 @@ export type ToolMeta = {
   accent: string;
   premium?: boolean;
   keyBenefits?: string[];
+  category?: string;
+};
+
+export const TOOL_CATEGORIES = {
+  writing: "Writing & Content",
+  marketing: "Marketing & Sales",
+  coding: "Development & Code",
+  business: "Business & Strategy",
+  education: "Education & Learning",
+  creative: "Creative & Design",
+  support: "Customer Support",
 };
 
 export const TOOL_PAGES: ToolMeta[] = [
@@ -37,6 +48,7 @@ export const TOOL_PAGES: ToolMeta[] = [
     icon: Braces,
     accent: "from-blue-500/30 to-cyan-400/10",
     keyBenefits: ["Supports 4 variable syntaxes", "Alphabetically sorted results", "Zero server calls"],
+    category: "writing",
   },
   {
     title: "JSON Schema Generator",
@@ -45,6 +57,7 @@ export const TOOL_PAGES: ToolMeta[] = [
     icon: FileJson2,
     accent: "from-indigo-500/35 to-blue-500/10",
     keyBenefits: ["Draft 2020-12 compliant", "Nested object support", "Instant generation"],
+    category: "coding",
   },
   {
     title: "JSON Validator",
@@ -53,6 +66,7 @@ export const TOOL_PAGES: ToolMeta[] = [
     icon: ShieldCheck,
     accent: "from-violet-500/35 to-indigo-400/10",
     keyBenefits: ["Type checking", "Required field validation", "Path-level error reporting"],
+    category: "coding",
   },
   {
     title: "Prompt Formatter",
@@ -61,6 +75,7 @@ export const TOOL_PAGES: ToolMeta[] = [
     icon: WandSparkles,
     accent: "from-fuchsia-500/35 to-indigo-500/10",
     keyBenefits: ["Numbered sections", "Removes noise", "Copy-ready output"],
+    category: "marketing",
   },
   {
     title: "Prompt Cleaner",
@@ -69,6 +84,7 @@ export const TOOL_PAGES: ToolMeta[] = [
     icon: Sparkles,
     accent: "from-sky-500/35 to-indigo-500/10",
     keyBenefits: ["Strips control characters", "Normalizes whitespace", "Trims line breaks"],
+    category: "writing",
   },
   {
     title: "Token Estimator",
@@ -77,6 +93,7 @@ export const TOOL_PAGES: ToolMeta[] = [
     icon: Sigma,
     accent: "from-blue-600/35 to-violet-500/10",
     keyBenefits: ["~4 chars per token model", "Real-time counting", "Cost planning"],
+    category: "business",
   },
   {
     title: "Prompt Converter",
@@ -85,6 +102,7 @@ export const TOOL_PAGES: ToolMeta[] = [
     icon: ArrowLeftRight,
     accent: "from-amber-500/30 to-yellow-400/10",
     keyBenefits: ["ChatGPT to Claude", "ChatGPT to Gemini", "ChatGPT to Cursor"],
+    category: "coding",
   },
   {
     title: "AI Persona Builder",
@@ -93,6 +111,7 @@ export const TOOL_PAGES: ToolMeta[] = [
     icon: UserCircle,
     accent: "from-rose-500/30 to-amber-400/10",
     keyBenefits: ["Expert role prompting", "Task-specific context", "Behavioral rules"],
+    category: "marketing",
   },
   {
     title: "Advanced Prompt Optimizer",
@@ -101,6 +120,7 @@ export const TOOL_PAGES: ToolMeta[] = [
     icon: Sparkles,
     accent: "from-indigo-500/35 to-cyan-400/10",
     keyBenefits: ["Side-by-side compare", "Unlimited free use", "Prompt structure analysis"],
+    category: "coding",
   },
   {
     title: "Prompt Comparison Tool",
@@ -109,6 +129,7 @@ export const TOOL_PAGES: ToolMeta[] = [
     icon: ArrowLeftRight,
     accent: "from-cyan-500/30 to-blue-400/10",
     keyBenefits: ["Token & word count", "Readability & structure scores", "Visual diff highlighting"],
+    category: "coding",
   },
   {
     title: "Mega Prompt Builder",
@@ -117,14 +138,16 @@ export const TOOL_PAGES: ToolMeta[] = [
     icon: Hammer,
     accent: "from-amber-500/35 to-rose-500/10",
     keyBenefits: ["8-step guided wizard", "Role + context + constraints", "Export as Markdown"],
+    category: "writing",
   },
   {
     title: "Prompt Debugger",
     path: "/tools/prompt-debugger",
-    description: "Diagnose your AI prompts with a health score (0-100) and 12+ issue detectors. Get instant auto-fix suggestions for better results.",
+    description: "Diagnose AI prompts with a health score (0-100) and 12+ issue detectors. Get instant auto-fix suggestions for better results.",
     icon: Bug,
     accent: "from-red-500/30 to-amber-400/10",
     keyBenefits: ["Health score 0-100", "12+ issue detectors", "Auto-fix suggestions"],
+    category: "coding",
   },
   {
     title: "Security Scanner",
@@ -133,6 +156,7 @@ export const TOOL_PAGES: ToolMeta[] = [
     icon: ShieldAlert,
     accent: "from-red-500/35 to-violet-500/10",
     keyBenefits: ["Injection detection", "Jailbreak scanning", "PII & data leak alerts"],
+    category: "business",
   },
   {
     title: "Prompt Chain Builder",
@@ -141,6 +165,7 @@ export const TOOL_PAGES: ToolMeta[] = [
     icon: Link2,
     accent: "from-indigo-500/35 to-cyan-400/10",
     keyBenefits: ["Up to 5 chained steps", "7 output format options", "Export as Markdown"],
+    category: "business",
   },
   {
     title: "Prompt Translator",
@@ -149,6 +174,7 @@ export const TOOL_PAGES: ToolMeta[] = [
     icon: Languages,
     accent: "from-cyan-500/35 to-blue-500/10",
     keyBenefits: ["8 languages supported", "Preserves {variables}", "Multi-locale prompting"],
+    category: "creative",
   },
   {
     title: "API Request Builder",
@@ -157,6 +183,7 @@ export const TOOL_PAGES: ToolMeta[] = [
     icon: Code2,
     accent: "from-emerald-500/35 to-green-400/10",
     keyBenefits: ["OpenAI, Anthropic & Gemini", "Temperature & max tokens", "Copy cURL commands"],
+    category: "coding",
   },
   {
     title: "AI Image Prompt Generator",
@@ -165,6 +192,7 @@ export const TOOL_PAGES: ToolMeta[] = [
     icon: Image,
     accent: "from-pink-500/35 to-rose-400/10",
     keyBenefits: ["8 art styles", "DALL-E & Midjourney ready", "Instant copy-paste"],
+    category: "creative",
   },
   {
     title: "AI Content Summarizer",
@@ -173,6 +201,7 @@ export const TOOL_PAGES: ToolMeta[] = [
     icon: FileText,
     accent: "from-teal-500/35 to-emerald-400/10",
     keyBenefits: ["4 summary modes", "Word reduction %", "Copy-ready output"],
+    category: "writing",
   },
   {
     title: "AI Regex Generator",
@@ -181,6 +210,7 @@ export const TOOL_PAGES: ToolMeta[] = [
     icon: Terminal,
     accent: "from-violet-500/35 to-purple-400/10",
     keyBenefits: ["6 quick presets", "Live regex tester", "Syntax cheatsheet"],
+    category: "coding",
   },
 ];
 

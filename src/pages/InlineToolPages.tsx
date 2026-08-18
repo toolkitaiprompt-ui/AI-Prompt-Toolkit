@@ -1,13 +1,89 @@
+import SectionShell from "../components/SectionShell";
 import * as React from "react";
 import { useMemo, useState } from "react";
-import { cleanPrompt, estimateTokens, extractPromptVariables, formatPrompt, generateJsonSchema, validateJsonWithSchema } from "../lib/toolkit";
-import SectionShell from "../components/SectionShell";
 import ToolCard from "../components/ToolCard";
 import ToolContainer from "../components/ToolContainer";
 import OutputToolbar, { LiveStats } from "../components/OutputToolbar";
-import { TOOL_BY_SLUG, TOOL_PAGES } from "../data/tools";
+import { TOOL_PAGES, TOOL_CATEGORIES } from "../data/tools";
+
+function useToolFilters(tools: typeof TOOL_PAGES) {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [showFreeOnly, setShowFreeOnly] = useState(false);
+
+  const filtered = useMemo(() => {
+    return tools.filter((tool) => {
+      const matchesSearch =
+        searchQuery === "" ||
+        tool.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        tool.description.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesCategory =
+        selectedCategory === null || tool.category === selectedCategory;
+      const matchesFree = !showFreeOnly || !tool.premium;
+      return matchesSearch && matchesCategory && matchesFree;
+    });
+  }, [searchQuery, selectedCategory, showFreeOnly]);
+
+  return {
+    filtered,
+    setSearchQuery,
+    setSelectedCategory,
+    setShowFreeOnly,
+  };
+}
 
 export function ToolsDirectoryPage() {
+  const { filtered, setSearchQuery, setSelectedCategory, setShowFreeOnly } =
+    useToolFilters(TOOL_PAGES);
+
+  const categories = useMemo(
+    () => [
+      { name: "All categories", value: null },
+      { name: "Writing & Content", value: "writing" },
+      { name: "Development & Code", value: "coding" },
+      { name: "Marketing & Sales", value: "marketing" },
+      { name: "Business & Strategy", value: "business" },
+      { name: "Creative & Design", value: "creative" },
+    ],
+    []
+  );
+
+  // Related tools based on keyBenefits overlap
+  const relatedTools = useMemo(() => {
+    const result: string[] = [];
+    const toolBenefitMap = new Map<
+      string,
+      Set<string>
+    >(); // toolPath -> set of benefits
+
+    // Build benefit map
+    for (const tool of TOOL_PAGES) {
+      if (!tool.keyBenefits) continue;
+      if (!toolBenefitMap.has(tool.path)) {
+        toolBenefitMap.set(tool.path, new Set());
+      }
+      toolBenefitMap.get(tool.path)!.forEach((b) => {
+        // noop - we'll build cross-tool map below
+      });
+      toolBenefitMap.get(tool.path)!.add(...tool.keyBenefits);
+    }
+
+    // Find tools with overlapping benefits
+    for (let i = 0; i < TOOL_PAGES.length; i++) {
+      for (let j = i + 1; j < TOOL_PAGES.length; j++) {
+        const benefitsI = TOOL_PAGES[i].keyBenefits ?? [];
+        const benefitsJ = TOOL_PAGES[j].keyBenefits ?? [];
+        const overlap = benefitsI.filter((b) => benefitsJ.includes(b));
+        if (overlap.length > 0) {
+          result.push(TOOL_PAGES[i].path, TOOL_PAGES[j].path);
+        }
+      }
+    }
+
+    // Deduplicate and limit
+    return [...new Set(result)].slice(0, 8);
+  }, []);
+
   return (
     <SectionShell
       title="Free AI Tools Directory — 19 Best Tools"
@@ -24,13 +100,157 @@ export function ToolsDirectoryPage() {
         </p>
       </div>
 
+      {/* Filter Bar */}
+      <div className="mt-6 mb-8 flex flex-col sm:flex-row gap-4 sm:gap-2">
+        <div className="flex-1 sm:w-auto">
+          <div>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search tools..."
+              className="w-full pl-4 py-2 rounded-xl border border-slate-700 bg-slate-900 text-white outline-none focus:border-amber-400/50 transition"
+              aria-label="Search tools"
+            />
+          </div>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {categories.map((cat) => (
+            <button
+              key={cat.value}
+              type="button"
+              onClick={() => setSelectedCategory(cat.value)}
+              className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                selectedCategory === cat.value
+                  ? "bg-amber-500/15 text-amber-300 border border-amber-400/30"
+                  : "bg-slate-900/50 text-slate-400 border border-slate-700/50 hover:border-slate-600"
+              }`}
+            >
+              {cat.name}
+            </button>
+          ))}
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setShowFreeOnly(!showFreeOnly)}
+            className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+              showFreeOnly
+                ? "bg-amber-500/15 text-amber-300 border border-amber-400/30"
+                : "bg-slate-900/50 text-slate-400 border border-slate-700/50 hover:border-slate-600"
+            }`}
+          >
+            {showFreeOnly ? "Show all" : "Free only"}
+          </button>
+        </div>
+      </div>
+
       <div className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-        {TOOL_PAGES.map((tool) => (
+        {filtered.map((tool) => (
           <React.Fragment key={tool.path}>
             <ToolCard tool={tool} />
           </React.Fragment>
         ))}
       </div>
+
+      {/* Related Tools Section */}
+      {relatedTools.length > 0 && (
+        <section className="mt-12 pt-8 border-t border-white/10">
+          <div className="mb-6 flex items-center justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">
+                Related tools
+              </p>
+              <h2 className="mt-1 text-xl font-bold text-white">You might also like</h2>
+            </div>
+            <Link
+              to="/tools"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400 hover:text-amber-300 transition"
+            >
+              View all
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {relatedTools.map((path) => {
+              const tool = TOOL_PAGES.find((t) => t.path === path);
+              if (!tool) return null;
+              return (
+                <Link
+                  key={path}
+                  to={path}
+                  className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/40 p-4 transition hover:border-amber-400/30 hover:bg-slate-900/70"
+                >
+                  <div
+                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${tool.accent} border border-white/10`}
+                  >
+                    <tool.icon className="h-5 w-5 text-white" aria-hidden="true" />
+                  </div>
+                  <span className="flex-1 text-sm font-medium text-slate-200 group-hover:text-white">
+                    {tool.title}
+                  </span>
+                  <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-500 transition group-hover:text-amber-400" />
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      {/* Internal links to prompts and blogs */}
+      <section className="mt-12 pt-8 border-t border-white/10">
+        <div className="mb-6 flex items-center justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">
+              Resources
+            </p>
+            <h2 className="mt-1 text-xl font-bold text-white">Learn with AI prompts</h2>
+          </div>
+          <Link
+            to="/prompts"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400 hover:text-amber-300 transition"
+          >
+            Browse 225+ prompts
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          <a
+            href="/blog/best-ai-tools-2026-complete-directory"
+            className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/40 p-4 transition hover:border-amber-400/30 hover:bg-slate-900/70"
+          >
+            <svg
+              className="w-5 h-5 text-amber-400"
+              viewBox="0 0 64 64"
+              fill="none"
+            >
+              <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="1" />
+              <path d="M20 30 L44 30 M30 20 L30 44" stroke="currentColor" strokeWidth="2" />
+            </svg>
+            <span>
+              <span className="font-medium text-white">Best AI Tools 2026 Directory</span>
+              <span className="text-sm text-slate-500">/ blog</span>
+            </span>
+          </a>
+          <a
+            href="/prompts/content-writer"
+            className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/40 p-4 transition hover:border-amber-400/30 hover:bg-slate-900/70"
+          >
+            <svg
+              className="w-5 h-5 text-amber-400"
+              viewBox="0 0 64 64"
+              fill="none"
+            >
+              <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="1" />
+              <path d="M20 30 L44 30 M30 20 L30 44" stroke="currentColor" strokeWidth="2" />
+            </svg>
+            <span>
+              <span className="font-medium text-white">Content Writer Prompts</span>
+              <span className="text-sm text-slate-500">/ prompts</span>
+            </span>
+          </a>
+        </div>
+      </section>
     </SectionShell>
   );
 }
