@@ -6,5 +6,9 @@
 # Redirect www to non-www canonical domain
 www.aiworldhub.site/* https://aiworldhub.site/:splat 301
 
+# First-party ad redirects (ad-blocker-proof: links stay on own domain)
+/go/offer-1    https://omg10.com/4/11565897    302
+/go/offer-2    https://omg10.com/4/11565896    302
+
 # SPA fallback — rewrites all unmatched paths to index.html for client-side routing
 /* /index.html 200

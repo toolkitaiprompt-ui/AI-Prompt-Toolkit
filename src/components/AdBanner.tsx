@@ -58,11 +58,9 @@ const SIZE_DIMS: Record<AdSize, string> = {
   halfpage: "160x300",
 };
 
-// Monetag direct-link zones (owner's account) — rotated so BOTH zones earn
-const MONETAG_DIRECT_ZONES = [
-  "https://omg10.com/4/11565897",
-  "https://omg10.com/4/11565896",
-];
+// Monetag direct-link zones — served via FIRST-PARTY /go/ redirects so
+// ad-blockers (which block omg10.com by URL) can't hide the ads.
+const MONETAG_DIRECT_ZONES = ["/go/offer-1", "/go/offer-2"];
 let monetagZoneCounter = 0;
 function nextMonetagZone() {
   monetagZoneCounter = (monetagZoneCounter + 1) % MONETAG_DIRECT_ZONES.length;
@@ -73,12 +71,26 @@ function nextMonetagZone() {
 function MonetagBox() {
   const zone = nextMonetagZone();
   return (
-    <a href={zone} target="_blank" rel="sponsored noopener noreferrer" className="sp-box" aria-label="Sponsored ad — opens offer in new tab">
-      <span className="sp-box-badge">Sponsored</span>
-      <span className="sp-box-icon" aria-hidden="true">✦</span>
-      <span className="sp-box-headline">Exclusive Deals &amp; Offers</span>
-      <span className="sp-box-sub">Hand-picked for you — limited time</span>
-      <span className="sp-box-btn">View Offer<span aria-hidden="true"> →</span></span>
+    <a href={zone} target="_blank" rel="sponsored noopener noreferrer" className="promo-card" aria-label="Sponsored ad — opens offer in new tab">
+      <span className="promo-badge">Sponsored</span>
+      <span className="promo-art" aria-hidden="true">
+        <svg viewBox="0 0 120 70" width="120" height="70" role="presentation">
+          <defs>
+            <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor="#f59e0b" />
+              <stop offset="1" stopColor="#e11d48" />
+            </linearGradient>
+          </defs>
+          <rect width="120" height="70" rx="10" fill="url(#pg)" />
+          <circle cx="20" cy="20" r="26" fill="rgba(255,255,255,0.18)" />
+          <circle cx="102" cy="54" r="30" fill="rgba(255,255,255,0.14)" />
+          <text x="60" y="34" textAnchor="middle" fontSize="11" fontWeight="700" fill="#fff" letterSpacing="1">HOT DEALS</text>
+          <text x="60" y="50" textAnchor="middle" fontSize="8" fill="rgba(255,255,255,0.9)">Limited Time Offers</text>
+        </svg>
+      </span>
+      <span className="promo-headline">Exclusive Deals &amp; Offers</span>
+      <span className="promo-sub">Hand-picked for you — limited time</span>
+      <span className="promo-btn">View Offer<span aria-hidden="true"> →</span></span>
     </a>
   );
 }
@@ -217,21 +229,21 @@ export default function AdBanner({
   // Monetag direct-link → visible sponsored box
   if (resolvedNetwork === "custom") {
     return (
-      <div className={`sp-wrap ${className}`}>
-        <span className="sp-label">Advertisement</span>
+      <div className={`promo-wrap ${className}`}>
+        <span className="promo-label">Advertisement</span>
         <MonetagBox />
       </div>
     );
   }
 
   return (
-    <div className={`sp-wrap ${className}`}>
-      <span className="sp-label">Advertisement</span>
-      <div className="sp-slot" style={{ minHeight: resolvedNetwork === "adsterra" ? resolvedZone.height : 250 }} data-size={resolvedNetwork === "adsterra" ? SIZE_DIMS[size] : ""}>
+    <div className={`promo-wrap ${className}`}>
+      <span className="promo-label">Advertisement</span>
+      <div className="promo-slot" style={{ minHeight: resolvedNetwork === "adsterra" ? resolvedZone.height : 250 }} data-size={resolvedNetwork === "adsterra" ? SIZE_DIMS[size] : ""}>
         <div ref={containerRef} />
       </div>
       {resolvedNetwork === "adsterra" && adFailed && (
-        <div className="sp-slot-fallback">
+        <div className="promo-fallback">
           <MonetagBox />
         </div>
       )}

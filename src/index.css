@@ -223,7 +223,7 @@ p { line-height: 1.65; }
 /* ===== AD WRAPPERS — Monetag display slots =====
    Responsive full-width slots. No clipping (overflow: visible) so ads of any
    size render cleanly; min-height reserves space to avoid layout shift. */
-.sp-wrap {
+.promo-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -234,14 +234,14 @@ p { line-height: 1.65; }
   border-radius: 16px;
   background: rgba(255,255,255,0.02);
 }
-.sp-label {
+.promo-label {
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(148,163,184,0.6);
   user-select: none;
 }
-.sp-slot {
+.promo-slot {
   display: flex;
   width: 100%;
   align-items: center;
@@ -250,7 +250,7 @@ p { line-height: 1.65; }
 }
 
 /* Monetag direct-link sponsored ad creative (real ad look, 300x250) */
-.sp-box {
+.promo-card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -273,12 +273,12 @@ p { line-height: 1.65; }
   box-shadow: 0 8px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.sp-box:hover {
+.promo-card:hover {
   border-color: rgba(245,158,11,0.55);
   box-shadow: 0 12px 32px rgba(245,158,11,0.15), inset 0 1px 0 rgba(255,255,255,0.08);
   transform: translateY(-2px);
 }
-.sp-box::after {
+.promo-card::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -287,10 +287,10 @@ p { line-height: 1.65; }
   transition: transform 0.7s ease;
   pointer-events: none;
 }
-.sp-box:hover::after {
+.promo-card:hover::after {
   transform: translateX(100%);
 }
-.sp-box-badge {
+.promo-card-badge {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.22em;
@@ -301,25 +301,25 @@ p { line-height: 1.65; }
   border-radius: 999px;
   padding: 3px 10px;
 }
-.sp-box-icon {
+.promo-card-icon {
   font-size: 30px;
   line-height: 1;
   color: #fbbf24;
   text-shadow: 0 0 18px rgba(245,158,11,0.6);
 }
-.sp-box-headline {
+.promo-card-headline {
   font-size: 16px;
   font-weight: 800;
   color: #fff;
   text-align: center;
   letter-spacing: 0.01em;
 }
-.sp-box-sub {
+.promo-card-sub {
   font-size: 11px;
   color: rgba(203,213,225,0.75);
   text-align: center;
 }
-.sp-box-btn {
+.promo-card-btn {
   margin-top: 6px;
   display: inline-flex;
   align-items: center;
@@ -333,7 +333,7 @@ p { line-height: 1.65; }
   box-shadow: 0 4px 14px rgba(245,158,11,0.35);
   transition: transform 0.15s ease;
 }
-.sp-box:hover .sp-box-btn {
+.promo-card:hover .promo-card-btn {
   transform: scale(1.04);
 }
 
@@ -422,7 +422,7 @@ p { line-height: 1.65; }
 }
 
 /* Adsterra banner iframes — responsive, centered, never overflow */
-.sp-slot iframe {
+.promo-slot iframe {
   max-width: 100%;
   display: block;
   margin: 0 auto;
@@ -430,33 +430,49 @@ p { line-height: 1.65; }
   overflow: hidden;
 }
 @media (max-width: 640px) {
-  .sp-slot {
+  .promo-slot {
     overflow: hidden;
   }
-  .sp-slot iframe {
+  .promo-slot iframe {
     max-width: 100% !important;
   }
 }
 
 /* Fallback slot (shown when the primary ad network doesn't fill) */
-.sp-slot-fallback {
+.promo-slot-fallback {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
 /* CLS control: reserve space so layout doesn't jump when ads load */
-.sp-wrap {
+.promo-wrap {
   min-height: 0;
 }
-.sp-slot {
+.promo-slot {
   min-height: 0;
 }
-.sp-slot[data-size="728x90"] { min-height: 90px; }
-.sp-slot[data-size="300x250"] { min-height: 250px; }
-.sp-slot[data-size="468x60"] { min-height: 60px; }
-.sp-slot[data-size="160x300"] { min-height: 300px; }
-.sp-slot[data-size="160x600"] { min-height: 600px; }
+.promo-slot[data-size="728x90"] { min-height: 90px; }
+.promo-slot[data-size="300x250"] { min-height: 250px; }
+.promo-slot[data-size="468x60"] { min-height: 60px; }
+.promo-slot[data-size="160x300"] { min-height: 300px; }
+.promo-slot[data-size="160x600"] { min-height: 600px; }
 @media (max-width: 640px) {
-  .sp-slot[data-size="728x90"] { min-height: 50px; }
+  .promo-slot[data-size="728x90"] { min-height: 50px; }
+}
+
+/* Neutral promo card (ad-blocker resistant) */
+.promo-art {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  height: 90px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.promo-art svg {
+  max-width: 100%;
+  height: auto;
 }
