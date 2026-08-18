@@ -90,7 +90,7 @@ function MonetagBox() {
           <circle cx="250" cy="30" r="60" fill="rgba(251,191,36,0.12)" />
           <circle cx="30" cy="220" r="70" fill="rgba(225,29,72,0.10)" />
           <rect x="24" y="20" width="70" height="26" rx="13" fill="rgba(251,191,36,0.15)" stroke="rgba(251,191,36,0.5)" strokeWidth="1"/>
-          <text x="59" y="37" textAnchor="middle" fontSize="11" fontWeight="700" fill="#fbbf24" letterSpacing="1.5">SPONSORED</text>
+          <text x="59" y="37" textAnchor="middle" fontSize="11" fontWeight="700" fill="#fbbf24" letterSpacing="2">SPONSORED</text>
           <text x="150" y="85" textAnchor="middle" fontSize="22" fontWeight="800" fill="#ffffff" letterSpacing="0.5">TOP DEALS</text>
           <text x="150" y="110" textAnchor="middle" fontSize="12" fill="#94a3b8">Hand-picked offers for you</text>
           <rect x="24" y="130" width="252" height="1" fill="rgba(255,255,255,0.08)" />
