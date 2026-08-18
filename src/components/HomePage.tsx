@@ -142,7 +142,7 @@ return (
       <section className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background with real image */}
         <div className="absolute inset-0">
-          <img src="/images/hero-ai.webp" alt="" width="1600" height="900" fetchpriority="high" className="hidden md:block absolute inset-0 w-full h-full object-cover opacity-20" />
+          <img src="/images/hero-ai.webp" alt="" width="1600" height="900" fetchPriority="high" className="hidden md:block absolute inset-0 w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#09090f] via-transparent to-[#09090f]" />
           <motion.div
             animate={{

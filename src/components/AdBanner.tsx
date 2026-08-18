@@ -74,23 +74,33 @@ function MonetagBox() {
     <a href={zone} target="_blank" rel="sponsored noopener noreferrer" className="promo-card" aria-label="Sponsored ad — opens offer in new tab">
       <span className="promo-badge">Sponsored</span>
       <span className="promo-art" aria-hidden="true">
-        <svg viewBox="0 0 120 70" width="120" height="70" role="presentation">
+        <svg viewBox="0 0 300 250" width="300" height="250" role="presentation" style={{ width: "100%", height: "auto" }}>
           <defs>
-            <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stopColor="#f59e0b" />
-              <stop offset="1" stopColor="#e11d48" />
+            <linearGradient id="pg1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor="#1e293b" />
+              <stop offset="0.5" stopColor="#0f172a" />
+              <stop offset="1" stopColor="#1e1b4b" />
+            </linearGradient>
+            <linearGradient id="pg2" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stopColor="#fbbf24" />
+              <stop offset="1" stopColor="#f59e0b" />
             </linearGradient>
           </defs>
-          <rect width="120" height="70" rx="10" fill="url(#pg)" />
-          <circle cx="20" cy="20" r="26" fill="rgba(255,255,255,0.18)" />
-          <circle cx="102" cy="54" r="30" fill="rgba(255,255,255,0.14)" />
-          <text x="60" y="34" textAnchor="middle" fontSize="11" fontWeight="700" fill="#fff" letterSpacing="1">HOT DEALS</text>
-          <text x="60" y="50" textAnchor="middle" fontSize="8" fill="rgba(255,255,255,0.9)">Limited Time Offers</text>
+          <rect width="300" height="250" rx="14" fill="url(#pg1)" />
+          <circle cx="250" cy="30" r="60" fill="rgba(251,191,36,0.12)" />
+          <circle cx="30" cy="220" r="70" fill="rgba(225,29,72,0.10)" />
+          <rect x="24" y="20" width="70" height="26" rx="13" fill="rgba(251,191,36,0.15)" stroke="rgba(251,191,36,0.5)" strokeWidth="1"/>
+          <text x="59" y="37" textAnchor="middle" fontSize="11" fontWeight="700" fill="#fbbf24" letterSpacing="1.5">SPONSORED</text>
+          <text x="150" y="85" textAnchor="middle" fontSize="22" fontWeight="800" fill="#ffffff" letterSpacing="0.5">TOP DEALS</text>
+          <text x="150" y="110" textAnchor="middle" fontSize="12" fill="#94a3b8">Hand-picked offers for you</text>
+          <rect x="24" y="130" width="252" height="1" fill="rgba(255,255,255,0.08)" />
+          <text x="40" y="160" fontSize="11" fill="#cbd5e1">✓ Exclusive discounts</text>
+          <text x="40" y="182" fontSize="11" fill="#cbd5e1">✓ Limited time only</text>
+          <text x="40" y="204" fontSize="11" fill="#cbd5e1">✓ Safe &amp; verified offers</text>
+          <rect x="40" y="216" width="220" height="24" rx="12" fill="url(#pg2)" />
+          <text x="150" y="233" textAnchor="middle" fontSize="12" fontWeight="800" fill="#0f172a">VIEW OFFER →</text>
         </svg>
       </span>
-      <span className="promo-headline">Exclusive Deals &amp; Offers</span>
-      <span className="promo-sub">Hand-picked for you — limited time</span>
-      <span className="promo-btn">View Offer<span aria-hidden="true"> &nbsp;→</span></span>
     </a>
   );
 }
