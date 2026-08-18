@@ -24,6 +24,11 @@ const PromptFormatterPage = lazy(() => import("./pages/InlineToolPages").then((m
 const PromptCleanerPage = lazy(() => import("./pages/InlineToolPages").then((m) => ({ default: m.PromptCleanerPage })));
 const TokenEstimatorPage = lazy(() => import("./pages/InlineToolPages").then((m) => ({ default: m.TokenEstimatorPage })));
 
+const BestAiToolsForWritingPage = lazy(() => import("./pages/BestAiToolsForWritingPage"));
+const BestAiToolsForCodingPage = lazy(() => import("./pages/BestAiToolsForCodingPage"));
+const BestAiToolsForImageGenerationPage = lazy(() => import("./pages/BestAiToolsForImageGenerationPage"));
+const AiToolComparisonsPage = lazy(() => import("./pages/AiToolComparisonsPage"));
+
 const LazyPromptOptimizer = lazy(() => import("./pages/toolPages").then((m) => ({ default: m.PromptOptimizerPage })));
 const LazyPromptConverter = lazy(() => import("./pages/toolPages").then((m) => ({ default: m.PromptConverterPage })));
 const LazyPersonaBuilder = lazy(() => import("./pages/toolPages").then((m) => ({ default: m.PersonaBuilderPage })));
@@ -217,6 +222,10 @@ function Layout() {
           <Route path="/tools/api-request-builder" element={<LazyApiRequestBuilder title="API Request Builder" toolSlug="api-request-builder" description="Build API requests for OpenAI, Anthropic, and Gemini with model selection, temperature, max tokens, and cURL export." tool={TOOL_BY_SLUG.get("api-request-builder")!} />} />
           <Route path="/tools/image-prompt-generator" element={<LazyImagePromptGenerator title="AI Image Prompt Generator" toolSlug="image-prompt-generator" description="Generate production-ready image prompts for DALL-E, Midjourney, and Stable Diffusion with style, mood, and camera controls." tool={TOOL_BY_SLUG.get("image-prompt-generator")!} />} />
           <Route path="/tools/content-summarizer" element={<LazyContentSummarizer title="AI Content Summarizer" toolSlug="content-summarizer" description="Summarize articles, reports, and long text into TL;DR, bullets, paragraphs, or academic abstracts with reduction stats." tool={TOOL_BY_SLUG.get("content-summarizer")!} />} />
+          <Route path="/best-ai-tools-for-writing" element={<BestAiToolsForWritingPage />} />
+          <Route path="/best-ai-tools-for-coding" element={<BestAiToolsForCodingPage />} />
+          <Route path="/best-ai-tools-for-image-generation" element={<BestAiToolsForImageGenerationPage />} />
+          <Route path="/ai-tool-comparisons" element={<AiToolComparisonsPage />} />
           <Route path="/tools/regex-generator" element={<LazyRegexGenerator title="AI Regex Generator" toolSlug="regex-generator" description="Generate regex patterns from plain English. Test against strings and learn syntax with built-in cheatsheet." tool={TOOL_BY_SLUG.get("regex-generator")!} />} />
           <Route path="/tools/token-estimator" element={<TokenEstimatorPage />} />
           <Route path="/playground" element={<PlaygroundPage />} />

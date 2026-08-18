@@ -949,4 +949,156 @@ export const STATIC_ROUTES = [
     "priority": 0.7,
     "changefreq": "weekly"
   },
+  {
+    "path": "/best-ai-writing-tools",
+    "title": "Best AI Writing Tools 2026 | AI World Hub",
+    "desc": "Ranked review of the best AI writing assistants and content generators for 2026 — find the right tool for your writing projects.",
+    "type": "page",
+    "priority": 0.8,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/best-ai-coding-tools",
+    "title": "Best AI Coding Tools 2026 | AI World Hub",
+    "desc": "The top AI code generators, assistants, and development tools ranked by effectiveness and free tier availability.",
+    "type": "page",
+    "priority": 0.8,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/best-ai-image-generators",
+    "title": "Best AI Image Generators 2026 | AI World Hub",
+    "desc": "Ranked comparison of the best AI image generators — Midjourney, DALL-E 3, Stable Diffusion, and more.",
+    "type": "page",
+    "priority": 0.8,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/best-ai-video-tools",
+    "title": "Best AI Video Tools 2026 | AI World Hub",
+    "desc": "The best AI video generation and editing tools for 2026 — Runway, Pika, Synthesia, and more.",
+    "type": "page",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/ai-tools-for-students",
+    "title": "AI Tools for Students Free Guide | AI World Hub",
+    "desc": "Free AI tools for students — writing, research, study aids, and productivity without subscription required.",
+    "type": "page",
+    "priority": 0.8,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/ai-tools-for-small-business",
+    "title": "AI Tools for Small Business Free | AI World Hub",
+    "desc": "Free AI tools that help small businesses with content, design, marketing, and productivity — no budget required.",
+    "type": "page",
+    "priority": 0.8,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/ai-prompt-templates-business",
+    "title": "AI Prompt Templates for Business | AI World Hub",
+    "desc": "Browse and use reusable AI prompt templates for common business tasks — marketing, sales, customer support, operations.",
+    "type": "page",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/ai-prompt-templates-marketing",
+    "title": "AI Prompt Templates for Marketing | AI World Hub",
+    "desc": "30 ChatGPT prompts for content writers — blogs, SEO, social, email newsletters. Copy-paste templates that cut writing time in half.",
+    "type": "page",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/ai-prompt-templates-developers",
+    "title": "AI Prompt Templates for Developers | AI World Hub",
+    "desc": "Code generation, debugging, and documentation prompts for developers. Free prompt templates to accelerate development workflows.",
+    "type": "page",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/ai-models-comparison",
+    "title": "ChatGPT vs Claude vs Gemini Comparison | AI World Hub",
+    "desc": "Side-by-side comparison of the top three AI models — strengths, weaknesses, and best use cases for 2026.",
+    "type": "page",
+    "priority": 0.8,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/ai-trends-2026-guide",
+    "title": "AI Trends 2026 Complete Guide | AI World Hub",
+    "desc": "The definitive guide to AI trends shaping 2026 — what's new, what's changing, and what to watch.",
+    "type": "page",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/ai-for-productivity",
+    "title": "Boost AI Productivity 2026 | AI World Hub",
+    "desc": "AI tools that boost productivity for work and personal projects — writing, coding, design, and automation.",
+    "type": "page",
+    "priority": 0.8,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/ai-for-content-creation",
+    "title": "AI for Content Creation 2026 | AI World Hub",
+    "desc": "Free AI tools that help content creators with writing, ideas, and production — no budget required.",
+    "type": "page",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/ai-for-research",
+    "title": "AI for Research and Analysis | AI World Hub",
+    "desc": "How to use AI for research — literature review, data collection, survey design, and analysis prompts.",
+    "type": "page",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/free-ai-tools-content-creators",
+    "title": "Free AI Tools for Content Creators | AI World Hub",
+    "desc": "10 free AI tools for YouTube creators — scripts, titles, descriptions, thumbnails, channel growth. Publish faster, grow without spending.",
+    "type": "page",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/best-ai-tools-for-writing",
+    "title": "Best AI Tools for Writing & Content Creation 2026 | AI World Hub",
+    "desc": "Discover the best AI tools for writing and content creation in 2026. Compare top tools for articles, blogs, marketing copy, and more.",
+    "type": "page",
+    "priority": 0.8,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/best-ai-tools-for-coding",
+    "title": "Best AI Tools for Coding & Development 2026 | AI World Hub",
+    "desc": "Discover the best AI tools for coding and development in 2026. Compare top tools for code generation, debugging, and development workflows.",
+    "type": "page",
+    "priority": 0.8,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/best-ai-tools-for-image-generation",
+    "title": "Best AI Tools for Image Generation 2026 | AI World Hub",
+    "desc": "Discover the best AI tools for image generation in 2026. Compare top tools for AI art, illustrations, and design.",
+    "type": "page",
+    "priority": 0.8,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/ai-tool-comparisons",
+    "title": "AI Tool Comparisons 2026 | AI World Hub",
+    "desc": "Compare the top AI tools side-by-side for 2026. Writing, coding, image generation, and more.",
+    "type": "page",
+    "priority": 0.8,
+    "changefreq": "weekly"
+  }
 ];
