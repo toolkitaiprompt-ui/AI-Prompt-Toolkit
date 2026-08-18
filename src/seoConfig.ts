@@ -73,16 +73,16 @@ const SEO_MAP: Record<string, SeoData> = {
     description:
       "Choose from 19 free AI prompt engineering tools — build, format, debug, optimize, secure, and translate prompts in your browser. No sign-up required.",
     keywords:
-      "Best AI Tools, Free AI Tools, AI Tools Directory, Prompt Engineering Tools, Free AI Prompt Tools, AI Prompt Builder, ChatGPT Prompt Tools, Prompt Optimization Tools",
+      "Best AI Tools, Free AI Tools, AI Tools Directory, AI Prompt Tools, Prompt Engineering Tools, Free AI Prompt Tools, AI Prompt Builder, ChatGPT Prompt Tools, Prompt Optimization Tools",
   },
 
   // ── Prompts Library ──
   "/prompts": {
-    title: "AI Prompt Library — 225+ Prompts for 15 Roles | AI World Hub",
+    title: "AI Prompt Library — 225+ Prompts | AI World Hub",
     description:
       "Free AI prompt library with 225+ ready-to-use prompts for 15 professional roles — ChatGPT, content writers, developers, marketers, SEO, data analysts, designers, sales, customer support, and more. Copy and customize instantly.",
     keywords:
-      "AI Prompts, ChatGPT Prompts, Prompt Library, Prompt Templates, Best AI Prompts, Prompt Engineering, Role-Based Prompts, AI Prompt Collection, AI Prompting, Prompt Database",
+      "AI Prompts, ChatGPT Prompts, Prompt Library, Prompt Templates, Best AI Prompts, Prompt Collection, Prompt Engineering, Role-Based Prompts, AI Prompt Collection, AI Prompting, Prompt Database",
   },
 
   // ── Changelog ──
@@ -274,7 +274,7 @@ const SEO_MAP: Record<string, SeoData> = {
 
   // ══ HIGH-TRAFFIC BLOG POSTS ══
   "/blog/best-ai-tools-2026-complete-directory": {
-    title: "Best AI Tools 2026 — Complete Directory of 50+ Tools | AI World Hub",
+    title: "Best AI Tools 2026 — Complete Directory | AI World Hub",
     description:
       "Discover the 50 best AI tools in 2026 for writing, image generation, coding, video, and productivity. Ranked by popularity with free plans and direct links.",
     keywords: "Best AI Tools, Free AI Tools, AI Tools Directory 2026, AI Prompting Tools",
@@ -286,7 +286,7 @@ const SEO_MAP: Record<string, SeoData> = {
     keywords: "ChatGPT Prompts, AI Prompts, Prompt Engineering, Free AI Tools, AI Prompting",
   },
   "/blog/how-to-use-chatgpt-complete-guide": {
-    title: "How to Use ChatGPT — Complete Beginner Guide 2026 | AI World Hub",
+    title: "How to Use ChatGPT — Beginner Guide 2026 | AI World Hub",
     description:
       "Learn how to use ChatGPT from scratch — creating an account, writing effective prompts, using advanced features, and avoiding common mistakes. Step-by-step guide for beginners.",
     keywords: "How to Use ChatGPT, ChatGPT Guide, Free AI Tools, Prompt Engineering, AI Prompting",
@@ -298,7 +298,7 @@ const SEO_MAP: Record<string, SeoData> = {
     keywords: "Free AI Tools, Best AI Tools, AI Tools 2026, AI Prompting Tools",
   },
   "/blog/prompt-engineering-complete-guide": {
-    title: "Prompt Engineering Guide — Beginner to Expert 2026 | AI World Hub",
+    title: "Prompt Engineering Guide — Beginner to Expert | AI World Hub",
     description:
       "Master prompt engineering in 2026. Learn proven techniques, frameworks, and best practices for writing AI prompts that get professional results with ChatGPT, Claude, and Gemini.",
     keywords: "Prompt Engineering, AI Prompts, ChatGPT Prompts, Free AI Tools, AI Prompting, Prompt Optimization",

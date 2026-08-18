@@ -223,7 +223,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts",
-    "title": "AI Prompt Library — 225+ Prompts for 15 Roles | AI World Hub",
+    "title": "AI Prompt Library — 225+ Prompts | AI World Hub",
     "desc": "Free AI prompt library with 225+ ready-to-use prompts for 15 professional roles — ChatGPT, content writers, developers, marketers, SEO, data analysts, designers, sales, customer support, and more. Copy and customize instantly.",
     "type": "page",
     "priority": 0.9,
@@ -375,7 +375,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/blog/best-ai-tools-2026-complete-directory",
-    "title": "Best AI Tools 2026 — Complete Directory of 50+ Tools | AI World Hub",
+    "title": "Best AI Tools 2026 — Complete Directory | AI World Hub",
     "desc": "Discover the 50 best AI tools in 2026 for writing, image generation, coding, video, and productivity. Ranked by popularity with free plans and direct links.",
     "type": "blog",
     "priority": 0.7,
@@ -391,7 +391,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/blog/how-to-use-chatgpt-complete-guide",
-    "title": "How to Use ChatGPT — Complete Beginner Guide 2026 | AI World Hub",
+    "title": "How to Use ChatGPT — Beginner Guide 2026 | AI World Hub",
     "desc": "Learn how to use ChatGPT from scratch — creating an account, writing effective prompts, using advanced features, and avoiding common mistakes. Step-by-step guide for beginners.",
     "type": "blog",
     "priority": 0.7,
@@ -407,7 +407,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/blog/prompt-engineering-complete-guide",
-    "title": "Prompt Engineering Guide — Beginner to Expert 2026 | AI World Hub",
+    "title": "Prompt Engineering Guide — Beginner to Expert | AI World Hub",
     "desc": "Master prompt engineering in 2026. Learn proven techniques, frameworks, and best practices for writing AI prompts that get professional results with ChatGPT, Claude, and Gemini.",
     "type": "blog",
     "priority": 0.7,
