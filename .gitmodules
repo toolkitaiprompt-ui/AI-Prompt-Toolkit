@@ -1,0 +1,4 @@
+[submodule "agency-agents"]
+	path = agency-agents
+	URL = https://github.com/toolkitaiprompt-ui/agency-agents.git
+	disabled = true
