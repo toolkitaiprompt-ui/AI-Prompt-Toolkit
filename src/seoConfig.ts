@@ -310,6 +310,15 @@ const SEO_MAP: Record<string, SeoData> = {
       "AI Tool Comparisons, Compare AI Tools, AI Tools Comparison 2026, AI Tool Reviews, Best AI Tools Comparison, AI Tool Side-by-Side",
   },
 
+  // ══ COMPARISON PAGES ══
+  "/comparison": {
+    title: "AI Tool Comparison — Compare Free AI Tools by Category | AI World Hub",
+    description:
+      "Compare free AI prompt engineering tools by category — writing, coding, marketing, business, creative, and more. Real data on features, use cases, and free availability. No sign-up required.",
+    keywords:
+      "AI Tool Comparison, Compare AI Tools by Category, Free AI Tools, AI Tools Directory, Tool Features, Prompt Engineering Tools",
+  },
+
   // ══ HIGH-TRAFFIC BLOG POSTS ══
   "/blog/best-ai-tools-2026-complete-directory": {
     title: "Best AI Tools 2026 — Complete Directory | AI World Hub",

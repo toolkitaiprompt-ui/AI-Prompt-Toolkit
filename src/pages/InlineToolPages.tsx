@@ -816,3 +816,180 @@ export function PromptGeneratorPage() {
     </ToolContainer>
   );
 }
+
+export function ComparisonPage() {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [showFreeOnly, setShowFreeOnly] = useState(false);
+  const tool = TOOL_BY_SLUG.get("prompt-generator")!;
+
+  // Group tools by category for comparison
+  const categoryTools = useMemo(() => {
+    const groups: Record<string, ToolMeta[]> = {};
+    for (const t of TOOL_PAGES) {
+      if (!t.category) continue;
+      if (!groups[t.category]) groups[t.category] = [];
+      groups[t.category].push(t);
+    }
+    return groups;
+  }, []);
+
+  const categories = useMemo(() => {
+    const cats: { value: string; name: string }[] = [
+      { value: "writing", name: "Writing & Content" },
+      { value: "coding", name: "Development & Code" },
+      { value: "marketing", name: "Marketing & Sales" },
+      { value: "business", name: "Business & Strategy" },
+      { value: "creative", name: "Creative & Design" },
+    ];
+    return cats;
+  }, []);
+
+  const filteredTools = useMemo(() => {
+    if (!selectedCategory) return [];
+    const tools = categoryTools[selectedCategory] || [];
+    return tools.filter((tool) => {
+      const matchesFree = !showFreeOnly || !tool.premium;
+      return matchesFree;
+    });
+  }, [selectedCategory, showFreeOnly]);
+
+  const handleGenerateComparison = () => {
+    // No-op - comparison is displayed immediately
+  };
+
+  return (
+    <ToolContainer
+      title="AI Tool Comparison"
+      toolSlug="prompt-generator"
+      description="Compare AI tools by category, features, free availability, use cases, and strengths. Use real data from the AI World Hub tool directory."
+      tool={tool}
+    >
+      <div className="space-y-4">
+        {/* Category Selection */}
+        <div className="mb-6">
+          <p className="text-sm font-medium text-slate-300 uppercase tracking-[0.18em] text-amber-400/80 mb-3">
+            Select category to compare
+          </p>
+          <div className="grid grid-cols-2 gap-3">
+            {categories.map((cat) => (
+              <button
+                key={cat.value}
+                type="button"
+                onClick={() => setSelectedCategory(cat.value)}
+                className={`px-4 py-2 rounded-xl border border-slate-700 bg-slate-900 text-sm font-medium transition-all ${
+                  selectedCategory === cat.value
+                    ? "bg-amber-500/15 text-amber-300 border border-amber-400/30"
+                    : "bg-slate-900/50 text-slate-400 border border-slate-700/50 hover:border-slate-600"
+                }`}
+              >
+                {cat.name}
+                {filteredTools.length > 0 && (
+                  <span className="text-amber-400 font-medium">{filteredTools.length} tools</span>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Comparison display */}
+        {filteredTools.length > 0 && selectedCategory && (
+          <div className="mt-8 p-6 rounded-2xl border border-white/10 bg-slate-900/50">
+            <h2 className="text-2xl font-bold text-white mb-6">
+              {selectedCategory} Tool Comparison
+            </h2>
+            <div className="grid gap-4">
+              {filteredTools.map((tool, i) => (
+                <div
+                  key={tool.path}
+                  className="group flex flex-col sm:flex-row rounded-2xl border border-white/10 bg-slate-900/40 p-4 transition hover:border-amber-400/30 hover:bg-slate-900/70"
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-900/80 border border-white/10 flex-sms-none">
+                    <tool.icon className="h-5 w-5 text-white" aria-hidden="true" />
+                  </div>
+                  <div className="flex-1 sm:pl-6">
+                    <h3 className="font-medium text-white truncate">{tool.title}</h3>
+                    <p className="text-sm text-slate-400 truncate">{tool.description}</p>
+                  </div>
+                  <div className="flex-1 sm:flex sm:flex-col gap-2">
+                    <p className="text-xxs font-semibold text-amber-400/80">Free</p>
+                    {tool.premium ? (
+                      <p className="text-xxs font-semibold text-red-400">Premium</p>
+                    ) : (
+                      <p className="text-xxs font-semibold text-emerald-400">Free</p>
+                    )}
+                    <p className="text-xxs text-slate-500">{tool.category?.replace(/&/g, "and")}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 pt-6 border-t border-white/10">
+              <h3 className="text-font-medium text-white mb-4">Feature Comparison</h3>
+              <div className="grid grid-cols-2 gap-2">
+                {filteredTools[0]?.keyBenefits && filteredTools[0].keyBenefits.map((benefit, i) => (
+                  <div
+                    key={i}
+                    className="p-2 rounded border border-amber-500/25 bg-amber-500/10 text-xs text-amber-300"
+                  >
+                    <span className="font-medium">{benefit}</span>
+                  </div>
+                ))}
+              </div>
+              {filteredTools[1]?.keyBenefits && filteredTools[1].keyBenefits.map((benefit, i) => (
+                <div
+                  key={i + filteredTools[0].keyBenefits!.length}
+                  className="p-2 rounded border border-emerald-500/25 bg-emerald-500/10 text-xs text-emerald-300"
+                >
+                  <span className="font-medium">{benefit}</span>
+                </div>
+              ))}
+              {filteredTools[2]?.keyBenefits && filteredTools[2].keyBenefits.map((benefit, i) => (
+                <div
+                  key={i + filteredTools[0].keyBenefits!.length + filteredTools[1].keyBenefits!.length}
+                  className="p-2 rounded border border-violet-500/25 bg-violet-500/10 text-xs text-violet-300"
+                >
+                  <span className="font-medium">{benefit}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* No selection message */}
+        {!(filteredTools.length > 0 && selectedCategory) && (
+          <div className="mt-8 text-center">
+            <p className="text-slate-400">Select a category above to compare tools</p>
+          </div>
+        )}
+
+        {/* Internal links to tools directory */}
+        <div className="mt-8">
+          <p className="text-sm font-medium text-slate-300 uppercase tracking-[0.18em] text-amber-400/80 mb-3">
+            Browse all tools
+          </p>
+          <div className="grid grid-cols-2 gap-3">
+            {categories.map((cat) => (
+              <a
+                key={cat.value}
+                href={`/tools?category=${cat.value}`}
+                className="group flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-900/40 p-3 transition hover:border-amber-400/30 hover:bg-slate-900/70"
+              >
+                <svg
+                  className="w-4 h-4 text-amber-400"
+                  viewBox="0 0 64 64"
+                  fill="none"
+                >
+                  <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="1" />
+                  <path d="M20 30 L44 30 M30 20 L30 44" stroke="currentColor" strokeWidth="2" />
+                </svg>
+                <span className="flex-1 text-sm font-medium text-slate-200 group-hover:text-white">
+                  {cat.name}</span>
+                <ArrowUpRight className="h-3 w-3 shrink-0 text-slate-500 transition group-hover:text-amber-400" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </ToolContainer>
+  );
+}

@@ -829,6 +829,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://aiworldhub.site/comparison/</loc>
+    <lastmod>2026-08-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://aiworldhub.site/prompts/chatgpt/brainstorming-session/</loc>
     <lastmod>2026-08-18</lastmod>
     <changefreq>weekly</changefreq>

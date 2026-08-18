@@ -1108,5 +1108,13 @@ export const STATIC_ROUTES = [
     "type": "page",
     "priority": 0.8,
     "changefreq": "weekly"
+  },
+  {
+    "path": "/comparison",
+    "title": "AI Tool Comparison | Compare Free AI Tools by Category | AI World Hub",
+    "desc": "Compare free AI prompt engineering tools by category — writing, coding, marketing, business, creative, and more. Real data on features, use cases, and free availability.",
+    "type": "page",
+    "priority": 0.8,
+    "changefreq": "weekly"
   }
 ];
