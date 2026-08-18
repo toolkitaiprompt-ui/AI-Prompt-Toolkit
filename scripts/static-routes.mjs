@@ -1116,5 +1116,21 @@ export const STATIC_ROUTES = [
     "type": "page",
     "priority": 0.8,
     "changefreq": "weekly"
+  },
+  {
+    "path": "/ai-tools-for-social-media",
+    "title": "Free AI Tools for Social Media 2026 | AI World Hub",
+    "desc": "10 free AI tools for social media creation — caption generators, hashtag optimizers, image & video editors, and post schedulers. Run entirely in-browser, no sign-up, no hidden fees.",
+    "type": "page",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/ai-prompt-patterns",
+    "title": "AI Prompt Patterns & Structures | AI World Hub",
+    "desc": "Learn proven prompt patterns and structures that work across ChatGPT, Claude, and Gemini. Framework for choosing the right pattern by task, with ready-to-use prompt examples and model-specific variations.",
+    "type": "page",
+    "priority": 0.7,
+    "changefreq": "weekly"
   }
 ];
