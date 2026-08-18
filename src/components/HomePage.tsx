@@ -142,7 +142,7 @@ return (
       <section className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background with real image */}
         <div className="absolute inset-0">
-          <img src="/images/hero-ai.webp" alt="" className="hidden md:block absolute inset-0 w-full h-full object-cover opacity-20" />
+          <img src="/images/hero-ai.webp" alt="" width="1600" height="900" fetchpriority="high" className="hidden md:block absolute inset-0 w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#09090f] via-transparent to-[#09090f]" />
           <motion.div
             animate={{
@@ -401,7 +401,7 @@ return (
                 { name: 'Llama', icon: 'meta' },
               ].map((model) => (
                 <div key={model.name} className="flex items-center gap-2.5">
-                  <img src={`/icons/${model.icon}.svg`} alt={model.name} className="h-7 w-7 opacity-60" />
+                  <img src={`/icons/${model.icon}.svg`} alt={model.name} width="28" height="28" className="h-7 w-7 opacity-60" />
                   <span className="text-sm md:text-base font-semibold text-slate-500">{model.name}</span>
                 </div>
               ))}
