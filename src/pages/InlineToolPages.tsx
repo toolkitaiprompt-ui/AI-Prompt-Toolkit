@@ -1,10 +1,13 @@
 import SectionShell from "../components/SectionShell";
 import * as React from "react";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { ArrowUpRight, Copy as Copy2 } from "lucide-react";
+// v2-fixed
 import ToolCard from "../components/ToolCard";
 import ToolContainer from "../components/ToolContainer";
 import OutputToolbar, { LiveStats } from "../components/OutputToolbar";
-import { TOOL_PAGES, TOOL_CATEGORIES } from "../data/tools";
+import { TOOL_PAGES, TOOL_CATEGORIES, TOOL_BY_SLUG } from "../data/tools";
 
 function useToolFilters(tools: typeof TOOL_PAGES) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -279,7 +282,7 @@ export function PromptVariableExtractorPage() {
       </label>
       <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
         <h2 className="text-base font-semibold text-white">Detected Variables ({variables.length})</h2>
-        <OutputToolbar text={variables.join("\n")} copyLabel="Copy Variables" fileName="prompt-variables.txt" showStats={false} className="mt-2" />
+        <OutputToolbar text={variables.join("\n")} copyLabel="Copy Vars" fileName="prompt-variables.txt" showStats={false} className="mt-2" />
         <p className="mt-2 break-words text-sm text-slate-300">
           {variables.length ? variables.join(", ") : "No variables found."}
         </p>

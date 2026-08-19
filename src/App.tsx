@@ -40,6 +40,8 @@ const LazyPromptChainBuilder = lazy(() => import("./pages/toolPages").then((m) =
 const LazyPromptTranslator = lazy(() => import("./pages/toolPages").then((m) => ({ default: m.PromptTranslatorPage })));
 const LazyApiRequestBuilder = lazy(() => import("./pages/toolPages").then((m) => ({ default: m.ApiRequestBuilderPage })));
 const LazyImagePromptGenerator = lazy(() => import("./pages/toolPages").then((m) => ({ default: m.ImagePromptGeneratorPage })));
+const PromptGeneratorPage = lazy(() => import("./pages/InlineToolPages").then((m) => ({ default: m.PromptGeneratorPage })));
+const ComparisonPage = lazy(() => import("./pages/InlineToolPages").then((m) => ({ default: m.ComparisonPage })));
 const LazyContentSummarizer = lazy(() => import("./pages/toolPages").then((m) => ({ default: m.ContentSummarizerPage })));
 const LazyRegexGenerator = lazy(() => import("./pages/toolPages").then((m) => ({ default: m.RegexGeneratorPage })));
 
