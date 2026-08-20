@@ -1,8 +1,10 @@
 import { useMemo, useState } from "react";
-import { Code2, Play, SendHorizontal, Sparkles, type LucideIcon } from "lucide-react";
+import { ArrowUpRight, Code2, Play, SendHorizontal, Sparkles, type LucideIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 import useSeo from "../hooks/useSeo";
 import SectionShell from "../components/SectionShell";
 import { ToolGuide } from "../components/ToolGuide";
+import { TOOL_PAGES } from "../data/tools";
 import { copyToClipboard, debugPrompt, estimateTokens } from "../lib/toolkit";
 
 function PlaygroundPage() {
@@ -271,6 +273,51 @@ Key benefit: {{key_benefit}}`;
           note: "In the playground you can see both versions side by side — the first scores low on health and counts only a handful of tokens, while the structured version scores high and uses the same prompt space far more effectively.",
         }}
       />
+
+      {/* Related tools */}
+      <div>
+        <div className="mb-6 flex items-center justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">
+              Related tools
+            </p>
+            <h2 className="mt-1 text-xl font-bold text-white">Try these next</h2>
+          </div>
+          <Link
+            to="/tools"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400 hover:text-amber-300 transition"
+          >
+            View all tools
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            "/tools/advanced-prompt-optimizer",
+            "/tools/prompt-debugger",
+            "/tools/token-estimator",
+            "/tools/prompt-chain-builder",
+          ].map((path) => {
+            const tool = TOOL_PAGES.find((t) => t.path === path);
+            if (!tool) return null;
+            return (
+              <Link
+                key={path}
+                to={path}
+                className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/40 p-4 transition hover:border-amber-400/30 hover:bg-slate-900/70"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-900/80 border border-white/10">
+                  <tool.icon className="h-5 w-5 text-white" aria-hidden="true" />
+                </div>
+                <span className="flex-1 text-sm font-medium text-slate-200 group-hover:text-white">
+                  {tool.title}
+                </span>
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-500 transition group-hover:text-amber-400" />
+              </Link>
+            );
+          })}
+        </div>
+      </div>
     </SectionShell>
   );
 }
