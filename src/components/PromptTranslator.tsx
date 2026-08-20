@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { Languages } from 'lucide-react';
 import { translatePrompt } from '../lib/toolkit';
 import OutputToolbar, { LiveStats } from './OutputToolbar';
+import { ToolGuide } from './ToolGuide';
 
 const LANGUAGES = [
   { code: 'Hindi', flag: '🇮🇳', sample: 'हिंदी' },
@@ -72,6 +73,25 @@ export default function PromptTranslator() {
           {translated || 'Translated prompt will appear here...'}
         </pre>
       </div>
+
+      <ToolGuide
+        intro="The Prompt Translator converts your English prompts into 8 languages — Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, and Arabic — while keeping placeholders like {name}, {{city}}, and [tone] untouched. It is built for content teams working across markets, freelancers serving international clients, developers building multilingual apps, and students practising prompts in another language."
+        steps={[
+          "Paste your English prompt into the text area. The translation updates live as you type.",
+          "Pick a target language from the grid — Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, or Arabic.",
+          "Read the translated prompt in the output panel. Note how placeholders like {name} and {{city}} stay exactly as they were.",
+          "If you use prompts with variables, keep the same variable names in the English original so they survive the translation.",
+          "Click Copy and paste the translated prompt into your AI chatbot in that language — ChatGPT, Claude, or Gemini respond in the same language.",
+        ]}
+        example={{
+          title: "The same prompt, ready for a Hindi-speaking audience — variables intact.",
+          before:
+            "You are a marketing expert. Write a professional email for {product_name} targeting {audience}. Keep the tone professional. Output as markdown with bullet points.",
+          after:
+            "आप एक marketing expert हैं। {product_name} के लिए एक professional email लिखें जो {audience} को target करता है। Tone professional रखें और bullet points के साथ markdown में output करें।",
+          note: "The instructions are translated into Hindi, while {product_name} and {audience} stay in place — so the same workflow keeps working across all 8 languages without breaking your templates.",
+        }}
+      />
     </div>
   );
 }
