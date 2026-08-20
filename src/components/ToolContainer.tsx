@@ -80,7 +80,10 @@ function ToolContainer({
     [title, description, toolSlug],
   );
 
-  const relatedTools = useMemo(() => getRelatedTools(toolSlug ?? ""), [toolSlug]);
+  const relatedTools = useMemo(
+    () => getRelatedTools(tool?.path ?? (toolSlug ? `/tools/${toolSlug}` : ""), 3),
+    [toolSlug, tool?.path],
+  );
 
   return (
     <section className="site-container section-lg space-y-16">
