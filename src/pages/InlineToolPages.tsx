@@ -929,6 +929,25 @@ export function PromptGeneratorPage() {
           </div>
         </div>
       </div>
+
+      <ToolGuide
+        intro="The AI Prompt Generator builds a complete, structured prompt from six simple choices — role, task, goal, tone, audience, and desired output format. It is made for students writing essays, marketers drafting campaigns, developers explaining code, and anyone who wants a ready-to-use prompt for ChatGPT, Claude, or Gemini without knowing prompt-engineering theory."
+        steps={[
+          "Pick a role from the list — Writing & Content, Marketing, Development, Business, Education, and more.",
+          "Describe your task in plain words, like “write a product launch email” or “explain recursion to beginners”.",
+          "Set the goal, tone, and audience so the prompt matches exactly what you need.",
+          "Choose the desired output format — paragraph, bullet points, table, or code block.",
+          "Click Generate, review the prompt, and copy it straight into your favourite AI chatbot.",
+        ]}
+        example={{
+          title: "From a vague idea to a ready-to-use prompt in five clicks.",
+          before:
+            "Role: Marketing & Sales\nTask: write something about our new product\nGoal: get people interested\nTone: friendly\nAudience: small business owners\nFormat: bullet points",
+          after:
+            "You are a marketing expert for small businesses.\nTask: Write a friendly product announcement for our new invoicing app.\nGoal: Get small business owners interested in trying it.\nTone: friendly and practical, no jargon.\nAudience: small business owners with no technical background.\nDesired output: bullet points with a short intro and a call to action.",
+          note: "Each dropdown adds one instruction to the final prompt, so you get a complete brief the AI can follow without guessing — instead of a one-line request that produces a generic answer.",
+        }}
+      />
     </ToolContainer>
   );
 }
@@ -1106,6 +1125,25 @@ export function ComparisonPage() {
           </div>
         </div>
       </div>
+
+      <ToolGuide
+        intro="The AI Tool Comparison page puts free AI prompt tools side by side — category, features, benefits, and free availability — so you can choose the right tool in one glance. It is built for students, freelancers, and small teams who want to compare options before spending time learning a new tool, without reading ten separate pages."
+        steps={[
+          "Select a category from the grid — Writing & Content, Development & Code, Marketing, Business, or Creative.",
+          "Review the tools in that category side by side, with their key benefits listed under each one.",
+          "Compare features and use cases to find the tool that matches your task — for example a formatter for messy notes or an optimizer for weak prompts.",
+          "Click any tool to open its full page and try it directly — every tool here is free and runs in your browser.",
+          "Repeat for other categories whenever you need a different kind of tool.",
+        ]}
+        example={{
+          title: "Choosing a writing tool in under a minute.",
+          before:
+            "Category: Writing & Content\nTools shown: Prompt Cleaner, Prompt Formatter, Prompt Optimizer, Prompt Debugger\nQuestion: which one should I use first?",
+          after:
+            "Answer: it depends on the problem —\n• Prompt Cleaner: paste messy copied text, remove noise and hidden characters.\n• Prompt Formatter: turn rough notes into a clear, structured prompt.\n• Prompt Optimizer: strengthen a prompt that gives weak or generic answers.\n• Prompt Debugger: find out exactly why a prompt scores low and what to fix.",
+          note: "The side-by-side view makes the difference obvious: each tool solves a different stage of the same workflow, and you can open any of them instantly without signing up.",
+        }}
+      />
     </ToolContainer>
   );
 }

@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Code2, Play, SendHorizontal, Sparkles, type LucideIcon } from "lucide-react";
 import useSeo from "../hooks/useSeo";
 import SectionShell from "../components/SectionShell";
+import { ToolGuide } from "../components/ToolGuide";
 import { copyToClipboard, debugPrompt, estimateTokens } from "../lib/toolkit";
 
 function PlaygroundPage() {
@@ -252,6 +253,24 @@ Key benefit: {{key_benefit}}`;
           </div>
         </div>
       </div>
+
+      <ToolGuide
+        intro="The AI Prompt Playground is a free space to test prompts before you use them — generate blog, code review, and cold email templates, watch token counts update live, and see a prompt health score in real time. It is made for beginners learning how prompts work and for experienced users who want a quick sandbox without opening three separate tools."
+        steps={[
+          "Open the playground and pick a tab — Blog Post, Code Review, or Cold Email.",
+          "Fill in the topic or details the tab asks for, then generate a ready-to-use template.",
+          "Paste any prompt into the text area below to see its token estimate and health score update live as you type.",
+          "Tweak the prompt and watch the numbers change — shorter, more specific prompts usually score higher.",
+          "Copy the final version and paste it into ChatGPT, Claude, or Gemini.",
+        ]}
+        example={{
+          title: "Testing a prompt before you send it anywhere.",
+          before: "write a blog about ai for my business",
+          after:
+            "You are a marketing writer for small businesses.\nTask: Write a 400-word blog post about using AI tools to save time.\nAudience: small business owners with no technical background.\nTone: simple, practical.\nFormat: intro, 5 practical tips, conclusion.\nConstraints: under 400 words, no hype words.",
+          note: "In the playground you can see both versions side by side — the first scores low on health and counts only a handful of tokens, while the structured version scores high and uses the same prompt space far more effectively.",
+        }}
+      />
     </SectionShell>
   );
 }
