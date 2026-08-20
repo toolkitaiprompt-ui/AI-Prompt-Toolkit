@@ -639,4 +639,142 @@ export const NEW_SEO_POSTS = [
     ],
     relatedToolSlugs: ["advanced-prompt-optimizer", "token-estimator", "security-scanner", "prompt-chain-builder"],
   },
+  {
+    slug: "chatgpt-prompts-for-coding-interviews",
+    title: "ChatGPT Prompts for Coding Interviews — 20+ Developer Prompts",
+    seoTitle: "ChatGPT Prompts for Coding Interviews | AI World Hub",
+    metaDescription:
+      "20+ ChatGPT prompts for coding interview prep — DSA practice, system design, code reviews, and mock interviews. Copy for any AI.",
+    excerpt:
+      "A practical set of ChatGPT prompts for coding interview preparation — from data structures and system design to mock interviews and salary negotiation.",
+    category: "Coding",
+    date: "August 21, 2026",
+    readTime: "9 min read",
+    contentSections: [
+      {
+        heading: "How to use AI for coding interview prep the right way",
+        paragraphs: [
+          "Using ChatGPT for interview prep works — if you use it as a coach, not a cheat sheet. The difference is in how you prompt. Ask for hints and explanations instead of full solutions, and you will build the problem-solving skills interviewers actually test. Ask for ready-made answers and you will freeze when the interviewer changes one detail.",
+          "The prompts below are built on that principle. Each one turns ChatGPT into a specific interview role — a DSA tutor, a system-design interviewer, a code reviewer, a mock interviewer — so you practise the same way you will be tested. All of them work on ChatGPT, Claude, and Gemini, and you can run them through the free Advanced Prompt Optimizer to tighten the wording before you start.",
+        ],
+      },
+      {
+        heading: "Data structures and algorithms practice prompts",
+        paragraphs: [
+          "1) \"You are a senior DSA interviewer at a top tech company. Give me one medium-difficulty problem about {topic: arrays, graphs, dynamic programming}. Do not show the solution — first ask me to explain my approach, then give me hints one at a time.\" 2) \"I am practising {topic} on LeetCode. Analyse my solution below and tell me the time and space complexity, then suggest one optimisation without rewriting the code. My solution: {paste code}\" 3) \"Give me 5 variations of this problem with increasing difficulty: {paste problem}. For each, tell me what concept it tests and what changes in the approach.\"",
+          "4) \"Act as a strict interviewer. Give me a 45-minute DSA question, wait for my solution, and score my answer on correctness, efficiency, and communication — with a short feedback paragraph.\" 5) \"Explain {concept: recursion, memoization, sliding window} like I am a junior developer, with one real-world analogy and one small example.\"",
+          "Run your final practice prompts through the Prompt Debugger before a session — it scores prompt quality out of 100 and flags missing details, so your AI coach gives you exactly the kind of feedback you need.",
+        ],
+      },
+      {
+        heading: "System design interview prompts",
+        paragraphs: [
+          "System design interviews are about structure, not memorised facts. These prompts keep you in the driver's seat: 1) \"You are a staff engineer interviewing me for a senior role. Ask me to design {service: a URL shortener, a chat app, a ride-sharing backend}. Guide me through requirements, scale estimation, data model, API design, and bottlenecks — one step at a time.\" 2) \"I described my design for {service}. Here is my outline: {paste}. Act as a skeptical architect and list the 3 weakest points, with why each one matters.\"",
+          "3) \"Create a 10-question system design checklist for {service} — covering availability, latency, consistency, and cost — and score my answers from 1 to 5.\" 4) \"Compare {SQL vs NoSQL, queue vs pub-sub, cache strategies} for my design in a table: when to use each, trade-offs, and a real example.\"",
+          "Keep your design notes in a reusable chain: use the Prompt Chain Builder to build a 3-step workflow — step 1 generates the design question, step 2 reviews your outline, step 3 scores your final answer. Reuse the same chain for every practice session.",
+        ],
+      },
+      {
+        heading: "Code review and take-home assignment prompts",
+        paragraphs: [
+          "Take-home tasks and code reviews are where AI help is most useful — and most abused. Use it to understand problems, not to generate the whole submission: 1) \"Review my code for {task}. Focus on correctness bugs, edge cases, and readability. List issues by severity with a one-line fix suggestion each. Code: {paste}\" 2) \"I wrote this solution for {problem}. Before showing me your version, tell me: what edge cases did I miss, and what would a senior engineer ask about my approach?\"",
+          "3) \"Explain the test cases I should write for this function and why: {paste code}\" 4) \"My take-home asks for {requirements}. Break it into a checklist of deliverables and tell me what part interviewers care about most.\"",
+          "After you fix the issues it flags, run the improved version through the Token Estimator to keep your submission prompt-sized and professional — no interviewer wants a 3,000-token code dump attached to a question.",
+        ],
+      },
+      {
+        heading: "Mock interviews and behavioural prompts",
+        paragraphs: [
+          "The behavioural round is 30% of most interview scores, and AI is a patient practice partner: 1) \"Act as an interviewer. Ask me behavioural questions for a {role} position — one at a time. After each answer, score it on STAR structure (Situation, Task, Action, Result) and suggest one improvement.\" 2) \"Here is my answer to 'Tell me about a time you failed': {paste}. Rewrite it using the STAR format without changing the facts.\"",
+          "3) \"Give me 10 likely questions about my resume: {paste resume highlights} — and after I answer each one, tell me what follow-up the interviewer would ask next.\"",
+          "Before the real interview, practise with a time limit: ask your AI coach to \"time each answer at 90 seconds and tell me when I am rambling\". Structured practice like this is exactly why the Advanced Prompt Optimizer adds role, format, and constraints — the same pattern that makes interview prompts work.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Is using ChatGPT for interview prep cheating?",
+        answer:
+          "No — as long as you use it to practise and learn, not to generate answers during the interview. Think of it as a free mock interviewer and tutor. The skills you build — explaining approaches, spotting edge cases, structuring answers — are exactly what interviewers score.",
+      },
+      {
+        question: "Can ChatGPT solve my LeetCode problem for me?",
+        answer:
+          "It can, but that defeats the purpose. Instead, ask for hints one at a time and make it explain why your approach is right or wrong. Interviewers do not test whether you have seen a problem before — they test how you think about it live.",
+      },
+      {
+        question: "Which AI model is best for interview prep?",
+        answer:
+          "ChatGPT, Claude, and Gemini all work well for interview practice. The prompts in this guide work on all three. If a model gives a weak answer, run your prompt through the Advanced Prompt Optimizer — a structured prompt gets structured coaching from any model.",
+      },
+    ],
+    relatedToolSlugs: ["advanced-prompt-optimizer", "prompt-debugger", "prompt-chain-builder", "token-estimator"],
+  },
+  {
+    slug: "common-prompt-mistakes-and-how-to-fix-them",
+    title: "Common Prompt Mistakes and How to Fix Them (2026 Guide)",
+    seoTitle: "Common Prompt Mistakes & How to Fix Them | AI World Hub",
+    metaDescription:
+      "The 12 most common prompt mistakes that ruin AI answers — and how to fix each one, with simple before/after examples.",
+    excerpt:
+      "Most bad AI output comes from the same handful of mistakes. Here are the 12 most common ones, with simple fixes and real before/after examples.",
+    category: "Prompt Engineering",
+    date: "August 21, 2026",
+    readTime: "8 min read",
+    contentSections: [
+      {
+        heading: "Why the same prompt mistakes keep happening",
+        paragraphs: [
+          "Open any thread complaining about bad AI answers and you will see the same pattern: vague verbs, no format, no constraints, no audience. These are not model limitations — they are prompt mistakes. Models are brilliant at following clear instructions and mediocre at guessing what you meant.",
+          "The good news: every mistake below has a simple fix. You do not need prompt-engineering theory, just a checklist. Run any prompt through the free Prompt Debugger and it will flag most of these automatically with a health score out of 100.",
+        ],
+      },
+      {
+        heading: "Mistake 1–4: The basics that ruin most prompts",
+        paragraphs: [
+          "Mistake 1 — Vague verbs. \"Help me with X\" leaves the model guessing what to do. Fix: start with a specific action — write, generate, compare, summarize, translate. Mistake 2 — No format. Without instructions, the model picks its own structure (usually paragraphs). Fix: specify \"markdown with headings\", \"a table\", \"10 bullet points\", or \"JSON\". Mistake 3 — No constraints. No word limit, tone, or exclusions means no way to judge quality. Fix: add \"under 400 words, professional tone, no jargon, no clichés\". Mistake 4 — No audience. The same topic needs different depth for beginners and experts. Fix: name the reader: \"explain to a non-technical business owner\".",
+          "Example: \"write a blog about ai\" becomes \"You are a technology writer. Write a 500-word blog post about AI tools for small businesses in India. Audience: owners with no technical background. Tone: simple and practical. Format: intro, 5 tools with one use case each, conclusion.\" Same idea, completely different output.",
+        ],
+      },
+      {
+        heading: "Mistake 5–8: The ones that waste your time",
+        paragraphs: [
+          "Mistake 5 — Asking for everything at once. One giant prompt with 8 tasks makes models prioritise randomly. Fix: break it into steps or use the Prompt Chain Builder to run a sequence. Mistake 6 — No examples. For tone-sensitive tasks (emails, ad copy), give one sample: \"write in the style of this example: {paste}\". Mistake 7 — Negative instructions only. \"Don't be boring\" tells the model nothing. Fix: say what to do instead: \"use concrete numbers and a friendly tone\". Mistake 8 — Forgetting to ask for clarification. Add \"ask me before answering if anything is unclear\" for important tasks.",
+          "Mistake 9 — Reusing the same prompt everywhere. A prompt that works for a blog outline fails for a data analysis. Fix: keep a small library of prompts per task type, and run new ones through the Advanced Prompt Optimizer before first use. Mistake 10 — Not iterating. Even good prompts improve with one tweak. Change one variable at a time — format, then tone, then length — and keep what works. The Prompt Comparison tool shows two versions side by side so you can see exactly what changed.",
+        ],
+      },
+      {
+        heading: "Mistake 11–12: The ones that leak quality",
+        paragraphs: [
+          "Mistake 11 — Pasting sensitive data into prompts. Emails, phone numbers, client names in your prompt can end up stored by cloud AI services. Fix: replace real data with placeholders like {client_name} or {amount}, then fill them in after the AI answers. Run anything sensitive through the Security Scanner first — it detects PII and injection patterns in seconds.",
+          "Mistake 12 — Writing prompts that are too long. Long prompts are not better prompts; they blur the instructions. Fix: keep each instruction sentence short, and use the Token Estimator to check your prompt size. A tight 150-token prompt almost always beats a rambling 800-token one.",
+        ],
+      },
+      {
+        heading: "A 5-minute fix workflow for any prompt",
+        paragraphs: [
+          "Whenever an AI answer disappoints, run this loop instead of rewriting from scratch: Step 1 — paste the prompt into the Prompt Debugger and read what is missing (30 seconds). Step 2 — fix the top two issues it flags (1 minute). Step 3 — paste the result into the Advanced Prompt Optimizer for a structured version (30 seconds). Step 4 — compare before and after with the Prompt Comparison tool (1 minute). Step 5 — use the improved version and note what changed (1 minute).",
+          "Repeat this loop for a week and you will stop making most of these mistakes automatically — because the fixes become a habit, not a checklist.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "What is the single most common prompt mistake?",
+        answer:
+          "Vague instructions — specifically, not telling the model what format and constraints to use. Most prompts say what the topic is but not how the answer should look, which is why the model picks generic structures.",
+      },
+      {
+        question: "How do I know if my prompt is good?",
+        answer:
+          "Paste it into the free Prompt Debugger on AI World Hub. It scores your prompt out of 100, lists issues by severity, and suggests a fix for each one — you will know in seconds instead of guessing from the output.",
+      },
+      {
+        question: "Can a prompt be too detailed?",
+        answer:
+          "Yes. Extremely long prompts blur the core instruction and cost tokens. The sweet spot is 2 to 6 short sentences covering role, task, context, format, and constraints. Use the Token Estimator to keep prompts lean.",
+      },
+    ],
+    relatedToolSlugs: ["advanced-prompt-optimizer", "prompt-debugger", "prompt-chain-builder", "prompt-comparison", "token-estimator", "security-scanner"],
+  },
 ];

@@ -974,6 +974,22 @@ export const STATIC_ROUTES = [
     "changefreq": "weekly"
   },
   {
+    "path": "/blog/chatgpt-prompts-for-coding-interviews",
+    "title": "ChatGPT Prompts for Coding Interviews | AI World Hub",
+    "desc": "20+ ChatGPT prompts for coding interview prep — DSA practice, system design, code reviews, and mock interviews. Copy for any AI.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/common-prompt-mistakes-and-how-to-fix-them",
+    "title": "Common Prompt Mistakes & How to Fix Them | AI World Hub",
+    "desc": "The 12 most common prompt mistakes that ruin AI answers — and how to fix each one, with simple before/after examples.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
     "path": "/best-ai-writing-tools",
     "title": "Best AI Writing Tools & Assistants 2026 | AI World Hub",
     "desc": "Ranked review of the best AI writing assistants and content generators for 2026 — find the right tool for your writing projects.",
