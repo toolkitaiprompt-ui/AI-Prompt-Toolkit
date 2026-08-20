@@ -282,30 +282,30 @@ const SEO_MAP: Record<string, SeoData> = {
 
   // ══ HIGH-TRAFFIC LANDING PAGES ══
   "/best-ai-tools-for-writing": {
-    title: "Best AI Tools for Writing & Content Creation 2026 | AI World Hub",
+    title: "Best AI Tools for Writing & Content 2026 | AI World Hub",
     description:
-      "Discover the best AI tools for writing and content creation in 2026. Compare top tools for articles, blogs, marketing copy, and more. Find the right tool for your writing projects.",
+      "Best AI tools for writing and content creation in 2026 — articles, blogs, marketing copy, and more. Find the right tool for your writing projects.",
     keywords:
       "Best AI Tools for Writing, AI Writing Tools, Content Creation Tools, AI Tools 2026, Best AI for Writing, AI Content Generator",
   },
   "/best-ai-tools-for-coding": {
     title: "Best AI Tools for Coding & Development 2026 | AI World Hub",
     description:
-      "Discover the best AI tools for coding and development in 2026. Compare top tools for code generation, debugging, and development workflows. Find the right tool for your projects.",
+      "Best AI tools for coding and development in 2026 — code generation, debugging, and workflows. Find the right tool for your projects.",
     keywords:
       "Best AI Tools for Coding, AI Coding Tools, Development Tools 2026, AI Code Generator, Best AI for Developers, AI Programming Tools",
   },
   "/best-ai-tools-for-image-generation": {
     title: "Best AI Tools for Image Generation 2026 | AI World Hub",
     description:
-      "Discover the best AI tools for image generation in 2026. Compare top tools for AI art, illustrations, and design. Find the right tool for your creative projects.",
+      "Best AI tools for image generation in 2026 — AI art, illustrations, and design. Find the right tool for your creative projects.",
     keywords:
       "Best AI Tools for Image Generation, AI Image Generators, AI Art Tools, AI Design Tools 2026, Best AI for Images, AI Image Creation",
   },
   "/ai-tool-comparisons": {
-    title: "AI Tool Comparisons 2026 | Compare Top AI Tools Side-by-Side | AI World Hub",
+    title: "AI Tool Comparisons 2026 — Side-by-Side | AI World Hub",
     description:
-      "Compare the top AI tools side-by-side for 2026. Writing, coding, image generation, and more. Find the right tool for your needs with detailed comparisons of features, pricing, and capabilities.",
+      "Compare top AI tools side-by-side for 2026 — writing, coding, image generation, and more. Features, pricing, and capabilities.",
     keywords:
       "AI Tool Comparisons, Compare AI Tools, AI Tools Comparison 2026, AI Tool Reviews, Best AI Tools Comparison, AI Tool Side-by-Side",
   },

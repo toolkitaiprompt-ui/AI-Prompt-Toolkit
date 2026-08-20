@@ -94,7 +94,7 @@ export function ToolsDirectoryPage() {
 
   return (
     <SectionShell
-      title="Free AI Tools Directory — 19 Best Tools"
+      title="Free AI Tools Directory — 19 Best Tools | AI World Hub"
       description="Choose from 19 free AI prompt engineering tools — build, format, debug, optimize, secure, and translate prompts in your browser. No sign-up required."
       keywords="Best AI Tools, Free AI Tools, AI Tools Directory, Prompt Engineering Tools, AI Prompt Builder, ChatGPT Prompt Tools"
     >
@@ -471,7 +471,7 @@ export function TokenEstimatorPage() {
     <ToolContainer
       title="Token Estimator"
       toolSlug="token-estimator"
-      description="Free token estimator: check characters, words, and estimated tokens for any prompt. Budget ChatGPT, Claude, and Gemini context windows and API costs — instant, private, and 100% in-browser."
+      description="Free token estimator for writers and developers: check characters, words, and tokens for any prompt. Stay inside ChatGPT, Claude & Gemini limits."
       tool={tool}
     >
       <label className="block space-y-2">

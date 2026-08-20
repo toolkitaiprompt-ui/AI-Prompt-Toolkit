@@ -24,7 +24,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/blog",
     "title": "ChatGPT Prompts & Prompt Engineering Blog | AI World Hub",
-    "desc": "Free ChatGPT prompts, prompt engineering guides, and AI tool reviews. Learn how to write better prompts, use AI tools effectively, and boost productivity with practical tutorials.",
+    "desc": "Free ChatGPT prompts, prompt engineering guides, and AI tool reviews. Learn to write better prompts and boost productivity with practical tutorials.",
     "type": "page",
     "priority": 0.9,
     "changefreq": "daily"
@@ -32,7 +32,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/about",
     "title": "About — Best Free AI Prompt Engineering Tools | AI World Hub",
-    "desc": "AI World Hub offers the best free AI prompt engineering tools for everyone — students, developers, marketers, and teams. 19 in-browser tools, no sign-up, no data collection.",
+    "desc": "AI World Hub offers free AI prompt engineering tools for students, developers, marketers, and teams. 19 in-browser tools, no sign-up, no data collection.",
     "type": "page",
     "priority": 0.6,
     "changefreq": "weekly"
@@ -56,14 +56,14 @@ export const STATIC_ROUTES = [
   {
     "path": "/terms-of-service",
     "title": "Terms of Service | Free AI Prompt Tools — AI World Hub",
-    "desc": "Terms of service for AI World Hub — free AI prompt engineering tools. Use our tools for personal or commercial projects. No warranty, use at your own discretion.",
+    "desc": "Terms of service for AI World Hub — free AI prompt engineering tools. Use our tools for personal or commercial projects at your own discretion.",
     "type": "page",
     "priority": 0.6,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/prompt-variable-extractor",
-    "title": "Free Prompt Variable Extractor — Extract {Variables} | AI World Hub",
+    "title": "Prompt Variable Extractor — Find {Variables} | AI World Hub",
     "desc": "Extract prompt variables like {name}, {{city}}, [tone] from any AI prompt. Free in-browser tool for building reusable prompt templates.",
     "type": "tool",
     "priority": 0.8,
@@ -95,7 +95,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/tools/prompt-cleaner",
-    "title": "Free Prompt Cleaner — Remove Noise from AI Prompts | AI World Hub",
+    "title": "Prompt Cleaner — Remove Noise from AI Prompts | AI World Hub",
     "desc": "Clean noisy text, hidden characters, and formatting issues from AI prompts. Free in-browser tool.",
     "type": "tool",
     "priority": 0.8,
@@ -103,15 +103,15 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/tools/token-estimator",
-    "title": "Free AI Token Estimator & Counter — GPT, Claude | AI World Hub",
-    "desc": "Free token estimator for writers and developers: check characters, words, and tokens for any prompt. Stay inside ChatGPT, Claude & Gemini context limits — instant, private, in-browser.",
+    "title": "AI Token Estimator & Counter — GPT, Claude | AI World Hub",
+    "desc": "Free token estimator for writers and developers: check characters, words, and tokens for any prompt. Stay inside ChatGPT, Claude & Gemini limits.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/prompt-converter",
-    "title": "Free Prompt Converter — ChatGPT to Claude & Gemini | AI World Hub",
+    "title": "Prompt Converter — ChatGPT to Claude & Gemini | AI World Hub",
     "desc": "Convert ChatGPT prompts to Claude, Gemini, or Cursor format instantly. Free in-browser tool.",
     "type": "tool",
     "priority": 0.8,
@@ -119,7 +119,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/tools/persona-builder",
-    "title": "Free AI Persona Builder — System Prompt Generator | AI World Hub",
+    "title": "AI Persona Builder — System Prompt Generator | AI World Hub",
     "desc": "Generate expert system prompts for AI roles like Marketer, Developer, Analyst. Free in-browser persona builder for ChatGPT, Claude & Gemini.",
     "type": "tool",
     "priority": 0.8,
@@ -127,48 +127,48 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/tools/advanced-prompt-optimizer",
-    "title": "Free Advanced Prompt Optimizer — Best AI Prompt Tool | AI World Hub",
-    "desc": "Free AI prompt optimizer for ChatGPT, Claude & Gemini users: paste any prompt, get a clearer version with role, tone, format and constraints added. Quality score, compare view, 100% in-browser.",
+    "title": "Advanced Prompt Optimizer — Best Prompt Tool | AI World Hub",
+    "desc": "Free prompt optimizer for ChatGPT, Claude & Gemini: paste any prompt, get a clearer version with role, tone, format, and constraints. 100% in-browser.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/prompt-comparison",
-    "title": "Free Prompt Comparison Tool — Compare 2 AI Prompts | AI World Hub",
-    "desc": "Compare two AI prompts side by side. See token count, word count, readability, structure score, clarity score, and visual diff highlighting. Free in-browser tool.",
+    "title": "Prompt Comparison Tool — Compare 2 AI Prompts | AI World Hub",
+    "desc": "Compare two AI prompts side by side — token count, word count, readability, structure score, and visual diff highlighting. Free in-browser tool.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/mega-prompt-builder",
-    "title": "Free Mega Prompt Builder — 8-Step Prompt Wizard | AI World Hub",
-    "desc": "Build complete mega prompts with a free 8-step wizard — role, task, context, audience, format, tone, constraints, examples. Copy the finished prompt in one click. Private, in-browser, no signup.",
+    "title": "Mega Prompt Builder — 8-Step Prompt Wizard | AI World Hub",
+    "desc": "Build complete mega prompts with a free 8-step wizard — role, task, context, audience, format, tone, constraints, and examples. Copy in one click.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/prompt-debugger",
-    "title": "Free Prompt Debugger — Health Score & Issue Detection | AI World Hub",
-    "desc": "Free prompt debugger: health score 0-100, 12+ issue detectors and instant fixes for vague prompts. Get better ChatGPT, Claude & Gemini answers. Private, 100% in-browser, no signup.",
+    "title": "Prompt Debugger — Health Score & Fixes | AI World Hub",
+    "desc": "Free prompt debugger: health score 0-100, 12+ issue detectors, and instant fixes for vague prompts. Get better AI answers — private, in-browser.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/security-scanner",
-    "title": "Free Prompt Security Scanner — Detect Injection & PII | AI World Hub",
-    "desc": "Scan AI prompts for injection attacks, jailbreaks, PII leaks, and security threats. Get risk level scoring and actionable remediation. Free in-browser security scanner.",
+    "title": "Prompt Security Scanner — Injection & PII | AI World Hub",
+    "desc": "Scan AI prompts for injection attacks, jailbreaks, PII leaks, and security threats. Get risk scoring and actionable fixes. Free in-browser tool.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/prompt-chain-builder",
-    "title": "Free Prompt Chain Builder — Sequential AI Workflows | AI World Hub",
-    "desc": "Free prompt chain builder for content, marketing & dev workflows: create 2-5 sequential AI steps with titles, formats and reordering. See the full workflow, copy it in one click. In-browser, private.",
+    "title": "Prompt Chain Builder — Sequential Workflows | AI World Hub",
+    "desc": "Free prompt chain builder: create 2-5 sequential AI steps with titles, formats, and reordering. See the full workflow and copy it in one click.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
@@ -176,30 +176,30 @@ export const STATIC_ROUTES = [
   {
     "path": "/tools/prompt-translator",
     "title": "Free Prompt Translator — 8 Languages | AI World Hub",
-    "desc": "Translate AI prompts into 8 languages — Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, Arabic — while preserving variables like {name} and [tone]. Free in-browser tool.",
+    "desc": "Translate AI prompts into 8 languages — Hindi, Spanish, French, German, Japanese, Chinese, Portuguese, Arabic. Free in-browser tool.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/api-request-builder",
-    "title": "Free API Request Builder — OpenAI, Anthropic, Gemini | AI World Hub",
-    "desc": "Build API requests for OpenAI, Anthropic, and Gemini with model selection, temperature, max tokens, and cURL export. Generate JSON request bodies instantly. Free in-browser tool.",
+    "title": "API Request Builder — OpenAI, Claude, Gemini | AI World Hub",
+    "desc": "Build API requests for OpenAI, Anthropic, and Gemini — model selection, temperature, max tokens, and cURL export. Free in-browser tool.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/image-prompt-generator",
-    "title": "Free AI Image Prompt Generator — DALL-E & Midjourney | AI World Hub",
-    "desc": "Generate production-ready image prompts for DALL-E, Midjourney, and Stable Diffusion. Choose art style, mood, and camera angle. Free in-browser tool with instant copy-paste.",
+    "title": "Image Prompt Generator — DALL-E & Midjourney | AI World Hub",
+    "desc": "Generate production-ready image prompts for DALL-E, Midjourney, and Stable Diffusion with style, mood, and camera controls. Free in-browser.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
   {
     "path": "/tools/content-summarizer",
-    "title": "Free AI Content Summarizer — TL;DR & Bullet Points | AI World Hub",
+    "title": "AI Content Summarizer — TL;DR & Bullet Points | AI World Hub",
     "desc": "Summarize long articles, reports, and documents into TL;DR, bullet points, paragraphs, or academic abstracts. Free in-browser tool with word reduction stats.",
     "type": "tool",
     "priority": 0.8,
@@ -215,7 +215,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompt-generator",
-    "title": "AI Prompt Generator — Generate Structured Prompts | AI World Hub",
+    "title": "AI Prompt Generator — Structured Prompts | AI World Hub",
     "desc": "Generate structured AI prompts by selecting role, task, goal, tone, audience, and desired output format. Free in-browser prompt creation with copy to clipboard.",
     "type": "page",
     "priority": 0.8,
@@ -223,8 +223,8 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/playground",
-    "title": "AI Prompt Playground — Test & Debug Prompts Live | AI World Hub",
-    "desc": "Free AI prompt playground. Generate blog post, code review, and cold email prompt templates, estimate tokens, and debug prompt health in real time — all in your browser.",
+    "title": "AI Prompt Playground — Test & Debug Live | AI World Hub",
+    "desc": "Free AI prompt playground: generate blog, code review, and cold email templates, estimate tokens, and debug prompt health — all in your browser.",
     "type": "page",
     "priority": 0.9,
     "changefreq": "weekly"
@@ -232,7 +232,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/prompts",
     "title": "AI Prompt Library — 225+ Prompts | AI World Hub",
-    "desc": "Free AI prompt library with 225+ ready-to-use prompts for 15 professional roles — ChatGPT, content writers, developers, marketers, SEO, data analysts, designers, sales, customer support, and more. Copy and customize instantly.",
+    "desc": "Free AI prompt library with 225+ ready-to-use prompts for 15 professional roles — ChatGPT, content writers, developers, marketers, SEO, and more.",
     "type": "page",
     "priority": 0.9,
     "changefreq": "daily"
@@ -247,8 +247,8 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/templates",
-    "title": "Prompt Templates Library — 12 Ready-to-Use Prompts | AI World Hub",
-    "desc": "Browse 12 ready-to-use AI prompt templates for writing, marketing, coding, business, education, e-commerce, career, and support. Copy, paste, get results instantly. Free prompt templates library.",
+    "title": "Prompt Templates Library — 12 Templates | AI World Hub",
+    "desc": "Browse 12 ready-to-use AI prompt templates for writing, marketing, coding, business, education, and more. Copy, paste, get results instantly.",
     "type": "page",
     "priority": 0.9,
     "changefreq": "weekly"
@@ -256,7 +256,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/categories",
     "title": "AI Prompt Categories — Browse by Use Case | AI World Hub",
-    "desc": "Browse AI prompts by category — Writing & Content, Marketing & Sales, Development & Code, Business & Strategy, Education & Learning, and more. Find the perfect prompt.",
+    "desc": "Browse AI prompts by category — Writing & Content, Marketing & Sales, Development & Code, Business & Strategy, and more. Find the perfect prompt.",
     "type": "page",
     "priority": 0.9,
     "changefreq": "weekly"
@@ -264,14 +264,14 @@ export const STATIC_ROUTES = [
   {
     "path": "/prompts/chatgpt",
     "title": "ChatGPT Prompts — 15 Ready-to-Use Templates | AI World Hub",
-    "desc": "Best ChatGPT prompts for writing, coding, brainstorming, and productivity. Copy and customize 15 ready-to-use prompt templates for ChatGPT. Free in-browser prompt library.",
+    "desc": "Best ChatGPT prompts for writing, coding, brainstorming, and productivity. Copy and customize 15 ready-to-use templates. Free library.",
     "type": "role",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/prompts/content-writer",
-    "title": "Content Writer Prompts — 15 Ready-to-Use Templates | AI World Hub",
+    "title": "Content Writer Prompts — 15 Templates | AI World Hub",
     "desc": "Blog posts, SEO articles, social media, and email copywriting prompts for content writers. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -295,15 +295,15 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/seo-specialist",
-    "title": "SEO Specialist Prompts — 15 Ready-to-Use Templates | AI World Hub",
-    "desc": "Keyword research, on-page SEO, technical SEO, and content optimization prompts. 15 ready-to-use ChatGPT prompt templates for SEO specialists. Free prompt library.",
+    "title": "SEO Specialist Prompts — 15 Templates | AI World Hub",
+    "desc": "Keyword research, on-page SEO, technical SEO, and content optimization prompts. 15 ready-to-use templates for SEO specialists. Free.",
     "type": "role",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/prompts/data-analyst",
-    "title": "Data Analyst Prompts — 15 Ready-to-Use Templates | AI World Hub",
+    "title": "Data Analyst Prompts — 15 Templates | AI World Hub",
     "desc": "Data analysis, SQL queries, data visualization, and reporting prompts for data analysts. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -311,15 +311,15 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/business-analyst",
-    "title": "Business Analyst Prompts — 15 Ready-to-Use Templates | AI World Hub",
-    "desc": "Requirements gathering, process mapping, and stakeholder communication prompts for business analysts. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
+    "title": "Business Analyst Prompts — 15 Templates | AI World Hub",
+    "desc": "Requirements gathering, process mapping, and stakeholder communication prompts for business analysts. 15 ready-to-use templates. Free.",
     "type": "role",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/prompts/graphic-designer",
-    "title": "Graphic Designer Prompts — 15 Ready-to-Use Templates | AI World Hub",
+    "title": "Graphic Designer Prompts — 15 Templates | AI World Hub",
     "desc": "Logo design, brand identity, UI/UX, and creative direction prompts for graphic designers. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -335,7 +335,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/customer-support",
-    "title": "Customer Support Prompts — 15 Ready-to-Use Templates | AI World Hub",
+    "title": "Customer Support Prompts — 15 Templates | AI World Hub",
     "desc": "Support responses, ticket triage, FAQ generation, and escalation prompts for support teams. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -343,15 +343,15 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/product-manager",
-    "title": "Product Manager Prompts — 15 Ready-to-Use Templates | AI World Hub",
-    "desc": "Product specs, user stories, roadmap planning, and feature prioritization prompts for product managers. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
+    "title": "Product Manager Prompts — 15 Templates | AI World Hub",
+    "desc": "Product specs, user stories, roadmap planning, and feature prioritization prompts for product managers. 15 ready-to-use templates. Free.",
     "type": "role",
     "priority": 0.7,
     "changefreq": "weekly"
   },
   {
     "path": "/prompts/researcher",
-    "title": "Researcher Prompts — 15 Ready-to-Use Templates | AI World Hub",
+    "title": "Researcher Prompts — 15 Templates | AI World Hub",
     "desc": "Literature review, data collection, survey design, and analysis prompts for researchers. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -367,7 +367,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/entrepreneur",
-    "title": "Entrepreneur Prompts — 15 Ready-to-Use Templates | AI World Hub",
+    "title": "Entrepreneur Prompts — 15 Templates | AI World Hub",
     "desc": "Business planning, pitch decks, investor outreach, and strategy prompts for entrepreneurs. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -375,7 +375,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompts/consultant",
-    "title": "Consultant Prompts — 15 Ready-to-Use Templates | AI World Hub",
+    "title": "Consultant Prompts — 15 Templates | AI World Hub",
     "desc": "Client analysis, strategy development, recommendations, and reporting prompts for consultants. 15 ready-to-use ChatGPT prompt templates. Free prompt library.",
     "type": "role",
     "priority": 0.7,
@@ -391,7 +391,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/blog/100-chatgpt-prompts-for-every-task",
-    "title": "15 ChatGPT Prompts for Every Task — Copy & Paste | AI World Hub",
+    "title": "15 ChatGPT Prompts for Every Task | AI World Hub",
     "desc": "15 ready-to-use ChatGPT prompts for writing, marketing, coding, education, and productivity. Copy, paste, and get professional results instantly.",
     "type": "blog",
     "priority": 0.7,
@@ -400,7 +400,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/blog/how-to-use-chatgpt-complete-guide",
     "title": "How to Use ChatGPT — Beginner Guide 2026 | AI World Hub",
-    "desc": "Learn how to use ChatGPT from scratch — creating an account, writing effective prompts, using advanced features, and avoiding common mistakes. Step-by-step guide for beginners.",
+    "desc": "Learn how to use ChatGPT from scratch — creating an account, writing effective prompts, and avoiding common mistakes. Beginner's step-by-step guide.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
@@ -416,7 +416,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/blog/prompt-engineering-complete-guide",
     "title": "Prompt Engineering Guide — Beginner to Expert | AI World Hub",
-    "desc": "Master prompt engineering in 2026. Learn proven techniques, frameworks, and best practices for writing AI prompts that get professional results with ChatGPT, Claude, and Gemini.",
+    "desc": "Master prompt engineering in 2026 — proven techniques, frameworks, and best practices for prompts that get professional results with ChatGPT, Claude, Gemini.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
@@ -424,7 +424,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/blog/ai-tools-directory-categorized-list",
     "title": "AI Tools Directory — 50+ Tools by Category | AI World Hub",
-    "desc": "Browse 50+ AI tools organized by category — text generation, image creation, video editing, coding, audio, and productivity. Find the perfect AI tool for any task.",
+    "desc": "Browse 50+ AI tools by category — text generation, image creation, video editing, coding, audio, and productivity. Find the right AI tool for any task.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"
@@ -503,7 +503,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/blog/orchestrate-llm-workflows-for-productive-teams",
-    "title": "Orchestrate LLM Workflows for Productive Teams | AI World Hub",
+    "title": "Orchestrate LLM Workflows for Teams | AI World Hub",
     "desc": "Learn how to orchestrate LLM workflows that connect prompt design, validation, and operations for productive AI teams.",
     "type": "blog",
     "priority": 0.7,
@@ -871,7 +871,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/blog/best-free-ai-prompt-tools-2026",
-    "title": "Best Free AI Prompt Tools in 2026 — Complete Guide | AI World Hub",
+    "title": "Best Free AI Prompt Tools in 2026 | AI World Hub",
     "desc": "Find the best free AI prompt tools in 2026 — prompt optimizers, JSON validators, token estimators and more. 100% free, no signup, in-browser.",
     "type": "blog",
     "priority": 0.7,
@@ -879,7 +879,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/blog/chatgpt-prompts-for-students",
-    "title": "ChatGPT Prompts for Students — Study Smarter in 2026 | AI World Hub",
+    "title": "ChatGPT Prompts for Students | AI World Hub",
     "desc": "25+ ready-to-use ChatGPT prompts for students — study guides, essay writing, exam prep, summaries and more. Copy, paste, and study smarter.",
     "type": "blog",
     "priority": 0.7,
@@ -887,7 +887,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/blog/protect-your-data-ai-prompts",
-    "title": "How to Protect Your Data When Using AI Prompts | AI World Hub",
+    "title": "How to Protect Your Data When Using AI | AI World Hub",
     "desc": "Learn how to keep sensitive data safe when using AI — prompt injection risks, PII leaks, and free tools that scan prompts before you send them.",
     "type": "blog",
     "priority": 0.7,
@@ -895,7 +895,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/blog/how-to-make-money-with-chatgpt-in-india",
-    "title": "Make Money with ChatGPT in India — 15 Proven Ways | AI World Hub",
+    "title": "Make Money with ChatGPT in India | AI World Hub",
     "desc": "15 proven ways to make money with ChatGPT in India — freelancing, content, coding, teaching. Real income potential, zero investment, start today.",
     "type": "blog",
     "priority": 0.7,
@@ -911,7 +911,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/blog/how-to-use-chatgpt-for-freelancing",
-    "title": "How to Use ChatGPT for Freelancing — Client Guide | AI World Hub",
+    "title": "How to Use ChatGPT for Freelancing | AI World Hub",
     "desc": "Use ChatGPT to win and deliver freelance projects faster — proposals, communication, delivery, and upselling. Templates that impress clients.",
     "type": "blog",
     "priority": 0.7,
@@ -919,7 +919,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/blog/ai-tools-for-small-business-india",
-    "title": "Free AI Tools for Small Business in India 2026 | AI World Hub",
+    "title": "Free AI Tools for Small Business in India | AI World Hub",
     "desc": "10 free AI tools every Indian small business should use — content, customer service, pricing, and more. Zero cost, zero coding, results.",
     "type": "blog",
     "priority": 0.7,
@@ -927,7 +927,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/blog/best-ai-prompt-engineering-tools",
-    "title": "Best AI Prompt Engineering Tools 2026 — Beginner Guide | AI World Hub",
+    "title": "Best AI Prompt Engineering Tools 2026 | AI World Hub",
     "desc": "Start with the best AI prompt engineering tools for beginners — format, optimize, validate, debug prompts free in-browser. No signup, no code.",
     "type": "blog",
     "priority": 0.7,
@@ -943,7 +943,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/blog/chatgpt-prompts-for-content-writers",
-    "title": "ChatGPT Prompts for Content Writers — 30 Templates | AI World Hub",
+    "title": "ChatGPT Prompts for Content Writers | AI World Hub",
     "desc": "30 ChatGPT prompts for content writers — blogs, SEO, social, email newsletters. Copy-paste templates that cut writing time in half.",
     "type": "blog",
     "priority": 0.7,
@@ -951,7 +951,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/blog/what-is-prompt-engineering-guide",
-    "title": "What is Prompt Engineering? Complete Guide 2026 | AI World Hub",
+    "title": "What is Prompt Engineering? 2026 Guide | AI World Hub",
     "desc": "Learn what prompt engineering is, why it matters, and how to write better prompts — role, task, context, format, constraints. Free tools.",
     "type": "blog",
     "priority": 0.7,
@@ -959,7 +959,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/best-ai-writing-tools",
-    "title": "Best AI Writing Tools 2026 | AI World Hub",
+    "title": "Best AI Writing Tools & Assistants 2026 | AI World Hub",
     "desc": "Ranked review of the best AI writing assistants and content generators for 2026 — find the right tool for your writing projects.",
     "type": "page",
     "priority": 0.8,
@@ -967,7 +967,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/best-ai-coding-tools",
-    "title": "Best AI Coding Tools 2026 | AI World Hub",
+    "title": "Best AI Coding Tools & IDEs 2026 | AI World Hub",
     "desc": "The top AI code generators, assistants, and development tools ranked by effectiveness and free tier availability.",
     "type": "page",
     "priority": 0.8,
@@ -975,7 +975,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/best-ai-image-generators",
-    "title": "Best AI Image Generators 2026 | AI World Hub",
+    "title": "Best AI Image Generators & Tools 2026 | AI World Hub",
     "desc": "Ranked comparison of the best AI image generators — Midjourney, DALL-E 3, Stable Diffusion, and more.",
     "type": "page",
     "priority": 0.8,
@@ -983,7 +983,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/best-ai-video-tools",
-    "title": "Best AI Video Tools 2026 | AI World Hub",
+    "title": "Best AI Video Tools & Editors 2026 | AI World Hub",
     "desc": "The best AI video generation and editing tools for 2026 — Runway, Pika, Synthesia, and more.",
     "type": "page",
     "priority": 0.7,
@@ -991,7 +991,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/ai-tools-for-students",
-    "title": "AI Tools for Students Free Guide | AI World Hub",
+    "title": "Top Free AI Tools for Students | AI World Hub",
     "desc": "Free AI tools for students — writing, research, study aids, and productivity without subscription required.",
     "type": "page",
     "priority": 0.8,
@@ -999,7 +999,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/ai-tools-for-small-business",
-    "title": "AI Tools for Small Business Free | AI World Hub",
+    "title": "Top Free AI Tools for Small Business | AI World Hub",
     "desc": "Free AI tools that help small businesses with content, design, marketing, and productivity — no budget required.",
     "type": "page",
     "priority": 0.8,
@@ -1031,7 +1031,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/ai-models-comparison",
-    "title": "ChatGPT vs Claude vs Gemini Comparison | AI World Hub",
+    "title": "ChatGPT vs Claude vs Gemini — Full Comparison | AI World Hub",
     "desc": "Side-by-side comparison of the top three AI models — strengths, weaknesses, and best use cases for 2026.",
     "type": "page",
     "priority": 0.8,
@@ -1039,7 +1039,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/ai-trends-2026-guide",
-    "title": "AI Trends 2026 Complete Guide | AI World Hub",
+    "title": "AI Trends to Watch in 2026 | AI World Hub",
     "desc": "The definitive guide to AI trends shaping 2026 — what's new, what's changing, and what to watch.",
     "type": "page",
     "priority": 0.7,
@@ -1079,7 +1079,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/best-ai-tools-for-writing",
-    "title": "Best AI Tools for Writing & Content Creation 2026 | AI World Hub",
+    "title": "Best AI Tools for Writing & Content 2026 | AI World Hub",
     "desc": "Discover the best AI tools for writing and content creation in 2026. Compare top tools for articles, blogs, marketing copy, and more.",
     "type": "page",
     "priority": 0.8,
@@ -1111,8 +1111,8 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/comparison",
-    "title": "AI Tool Comparison | Compare Free AI Tools by Category | AI World Hub",
-    "desc": "Compare free AI prompt engineering tools by category — writing, coding, marketing, business, creative, and more. Real data on features, use cases, and free availability.",
+    "title": "AI Tool Comparison — Free Tools by Category | AI World Hub",
+    "desc": "Compare free AI prompt tools by category — writing, coding, marketing, business, creative, and more. Real data on features and use cases.",
     "type": "page",
     "priority": 0.8,
     "changefreq": "weekly"
@@ -1120,7 +1120,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/ai-tools-for-social-media",
     "title": "Free AI Tools for Social Media 2026 | AI World Hub",
-    "desc": "10 free AI tools for social media creation — caption generators, hashtag optimizers, image & video editors, and post schedulers. Run entirely in-browser, no sign-up, no hidden fees.",
+    "desc": "10 free AI tools for social media — caption generators, hashtag optimizers, image & video editors, and schedulers. In-browser, no sign-up.",
     "type": "page",
     "priority": 0.7,
     "changefreq": "weekly"
@@ -1128,7 +1128,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/ai-prompt-patterns",
     "title": "AI Prompt Patterns & Structures | AI World Hub",
-    "desc": "Learn proven prompt patterns and structures that work across ChatGPT, Claude, and Gemini. Framework for choosing the right pattern by task, with ready-to-use prompt examples and model-specific variations.",
+    "desc": "Learn proven prompt patterns that work across ChatGPT, Claude, and Gemini — with ready-to-use examples and model-specific variations.",
     "type": "page",
     "priority": 0.7,
     "changefreq": "weekly"

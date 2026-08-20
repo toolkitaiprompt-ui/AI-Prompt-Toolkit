@@ -36,8 +36,8 @@ function buildPrompt(userIdea: string, style: string) {
 
 export default function ImageGeneratorPage() {
   useSeo(
-    "Free AI Image Prompt Generator — Midjourney & DALL-E | AI World Hub",
-    "Generate optimized AI image prompts for Midjourney, DALL-E 3, and Stable Diffusion. Select an art style and get copy-ready prompts instantly. Free in-browser tool.",
+    "AI Image Prompt Generator — DALL-E & Midjourney | AI World Hub",
+    "Generate production-ready image prompts for DALL-E, Midjourney, and Stable Diffusion with style, mood, and camera controls. Free in-browser.",
   );
   const [prompt, setPrompt] = useState("");
   const [style, setStyle] = useState("Photorealistic");

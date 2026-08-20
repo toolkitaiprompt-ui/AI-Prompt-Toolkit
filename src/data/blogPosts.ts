@@ -627,7 +627,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "orchestrate-llm-workflows-for-productive-teams",
     title: "Orchestrate LLM Workflows for Productive Teams",
-    seoTitle: "Orchestrate LLM Workflows for Productive Teams | AI World Hub",
+    seoTitle: "Orchestrate LLM Workflows for Teams | AI World Hub",
     metaDescription:
       "Learn how to orchestrate LLM workflows that connect prompt design, validation, and operations for productive AI teams.",
     excerpt:
@@ -1850,7 +1850,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "how-to-make-money-with-chatgpt-in-india",
     title: "How to Make Money with ChatGPT in India (2026 Guide)",
-    seoTitle: "Make Money with ChatGPT in India — 15 Proven Ways | AI World Hub",
+    seoTitle: "Make Money with ChatGPT in India | AI World Hub",
     metaDescription:
       "15 proven ways to make money with ChatGPT in India — freelancing, content, coding, teaching and more. Real income potential, start today with zero investment.",
     excerpt:
@@ -1950,7 +1950,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "how-to-use-chatgpt-for-freelancing",
     title: "How to Use ChatGPT for Freelancing — Complete Client Guide",
-    seoTitle: "How to Use ChatGPT for Freelancing — Client Guide | AI World Hub",
+    seoTitle: "How to Use ChatGPT for Freelancing | AI World Hub",
     metaDescription:
       "Use ChatGPT to win and deliver freelance projects faster — proposals, communication, delivery, and upselling. Templates that impress clients every time.",
     excerpt:
@@ -2000,7 +2000,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "ai-tools-for-small-business-india",
     title: "10 Free AI Tools for Small Business in India (2026)",
-    seoTitle: "Free AI Tools for Small Business in India 2026 | AI World Hub",
+    seoTitle: "Free AI Tools for Small Business in India | AI World Hub",
     metaDescription:
       "10 free AI tools every Indian small business should use — content, customer service, pricing, and more. Zero cost, zero coding, measurable results.",
     excerpt:
@@ -2050,7 +2050,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "best-ai-prompt-engineering-tools",
     title: "Best AI Prompt Engineering Tools for Beginners in 2026",
-    seoTitle: "Best AI Prompt Engineering Tools 2026 — Beginner Guide | AI World Hub",
+    seoTitle: "Best AI Prompt Engineering Tools 2026 | AI World Hub",
     metaDescription:
       "Start with the best AI prompt engineering tools for beginners — format, optimize, validate, and debug prompts free in your browser. No signup, no code.",
     excerpt:
@@ -2150,7 +2150,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "chatgpt-prompts-for-content-writers",
     title: "ChatGPT Prompts for Content Writers — 30 Copy-Paste Templates",
-    seoTitle: "ChatGPT Prompts for Content Writers — 30 Templates | AI World Hub",
+    seoTitle: "ChatGPT Prompts for Content Writers | AI World Hub",
     metaDescription:
       "30 ChatGPT prompts for content writers — blogs, SEO articles, social media, email newsletters. Copy-paste templates that cut writing time in half.",
     excerpt:
@@ -2200,7 +2200,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "what-is-prompt-engineering-guide",
     title: "What is Prompt Engineering? Complete Beginner Guide 2026",
-    seoTitle: "What is Prompt Engineering? Complete Guide 2026 | AI World Hub",
+    seoTitle: "What is Prompt Engineering? 2026 Guide | AI World Hub",
     metaDescription:
       "Learn what prompt engineering is, why it matters, and how to write better prompts — role, task, context, format, constraints. Free tools included.",
     excerpt:

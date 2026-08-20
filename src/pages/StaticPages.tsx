@@ -155,7 +155,7 @@ export function ChangelogPage() {
 
   return (
     <SectionShell
-      title="Changelog — AI Prompt Toolkit Updates"
+      title="Changelog — AI Prompt Toolkit Updates | AI World Hub"
       description="Track all updates and new features added to AI World Hub's AI prompt engineering toolkit. See version history, new tools, improvements, and bug fixes."
       keywords="AI Prompt Toolkit Changelog, Updates, New Features, Version History, AI Tools Updates"
     >
@@ -194,7 +194,7 @@ export function ChangelogPage() {
 export function PrivacyPage() {
   return (
     <SectionShell
-      title="Privacy Policy"
+      title="Privacy Policy | AI World Hub"
       description="Privacy policy outlining data handling, cookie usage, advertising partners, and user rights for AI World Hub."
       keywords="Privacy Policy, Free AI Prompt Tools, Prompt Engineering"
     >
@@ -280,7 +280,7 @@ export function PrivacyPage() {
 export function TermsPage() {
   return (
     <SectionShell
-      title="Terms of Service"
+      title="Terms of Service | AI World Hub"
       description="Terms and conditions for using AI World Hub tools and services."
       keywords="Terms of Service, Free AI Prompt Tools, Prompt Engineering"
     >

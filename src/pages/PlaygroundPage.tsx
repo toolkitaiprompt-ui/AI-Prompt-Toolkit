@@ -6,8 +6,8 @@ import { copyToClipboard, debugPrompt, estimateTokens } from "../lib/toolkit";
 
 function PlaygroundPage() {
   useSeo(
-    "AI Prompt Playground — Test & Debug Prompts Live",
-    "Free AI prompt playground. Generate blog post, code review, and cold email prompt templates, estimate tokens, and debug prompt health in real time — all in your browser.",
+    "AI Prompt Playground — Test & Debug Live | AI World Hub",
+    "Free AI prompt playground: generate blog, code review, and cold email templates, estimate tokens, and debug prompt health — all in your browser.",
     "AI Prompt Playground, Prompt Testing, Prompt Debugging, Token Estimation"
   );
   const [activeTab, setActiveTab] = useState<"blog" | "code" | "email">("blog");

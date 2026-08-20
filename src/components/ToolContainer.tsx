@@ -61,7 +61,8 @@ function ToolContainer({
   const keywords = `${title}, Best AI Tools, Free AI Tools, Prompt Engineering, ChatGPT Prompts`;
   const relatedBlogs = toolSlug ? getBlogPostsForTool(toolSlug) : [];
 
-  useSeo(title, description, keywords);
+  const seoTitle = title.includes("AI World Hub") ? title : `${title} | AI World Hub`;
+  useSeo(seoTitle, description, keywords);
 
   const toolName = toolNameFromTitle(title);
   useJsonLd(

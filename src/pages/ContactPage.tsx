@@ -90,7 +90,7 @@ function ContactPage() {
 
   return (
     <SectionShell
-      title="Contact - Prompt Engineering Toolkit"
+      title="Contact | AI World Hub"
       description="Contact AI World Hub for prompt engineering support, partnerships, and feedback. Email toolkitaiprompt@gmail.com."
     >
       <h1 className="text-3xl font-bold tracking-tight text-white">Contact</h1>

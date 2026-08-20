@@ -6,7 +6,7 @@ import AdBanner from "../components/AdBanner";
 export default function CategoriesPage() {
   useSeo(
     "AI Prompt Categories — Browse by Use Case | AI World Hub",
-    "Browse AI prompts by category — Writing & Content, Marketing & Sales, Development & Code, Business & Strategy, Education & Learning, and more. Find the perfect prompt.",
+    "Browse AI prompts by category — Writing & Content, Marketing & Sales, Development & Code, Business & Strategy, and more. Find the perfect prompt.",
   );
   return (
     <section className="site-container section-lg">

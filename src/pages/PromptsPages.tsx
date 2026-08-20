@@ -314,8 +314,8 @@ const PROMPT_LIBRARY: Record<string, { title: string; prompt: string; category: 
 export function PromptsDirectoryPage() {
   return (
     <SectionShell
-      title="AI Prompt Library — 225+ Prompts for 15 Roles"
-      description="Free AI prompt library with 225+ ready-to-use prompts for 15 professional roles — ChatGPT, content writers, developers, marketers, SEO, data analysts, designers, sales, customer support, and more. Copy and customize instantly."
+      title="AI Prompt Library — 225+ Prompts | AI World Hub"
+      description="Free AI prompt library with 225+ ready-to-use prompts for 15 professional roles — ChatGPT, content writers, developers, marketers, SEO, and more."
       keywords="AI Prompts, ChatGPT Prompts, Prompt Library, Prompt Templates, Best AI Prompts, Prompt Engineering, Role-Based Prompts, AI Prompt Collection"
     >
       <div className="space-y-8">
@@ -382,8 +382,8 @@ export function PromptsRolePage() {
 
   return (
     <SectionShell
-      title={`${roleData.title} — ${roleData.count} AI Prompts`}
-      description={roleData.description + " Copy and customize these prompts for ChatGPT, Claude, Gemini, and any AI model."}
+      title={`${roleData.title} — ${roleData.count} AI Prompts | AI World Hub`}
+      description={roleData.description.length <= 78 ? roleData.description + " Copy and customize these prompts for ChatGPT, Claude, Gemini, and any AI model." : roleData.description}
       keywords={`${roleData.title}, AI Prompts, Prompt Templates, ChatGPT Prompts, Prompt Engineering, ${roleData.title.replace(" Prompts", "")} AI Prompts`}
     >
       <div className="space-y-8">

@@ -36,8 +36,8 @@ export function BlogPage() {
 
   return (
     <SectionShell
-      title="ChatGPT Prompts & Prompt Engineering Blog"
-      description="Free ChatGPT prompts, prompt engineering guides, and AI tool reviews. Learn how to write better prompts, use AI tools effectively, and boost productivity with practical tutorials."
+      title="ChatGPT Prompts & Prompt Engineering Blog | AI World Hub"
+      description="Free ChatGPT prompts, prompt engineering guides, and AI tool reviews. Learn to write better prompts and boost productivity with practical tutorials."
       keywords="ChatGPT Prompts, Prompt Engineering, Best AI Tools, Free AI Tools, AI Tools Directory"
     >
       <div className="space-y-4">
