@@ -8,6 +8,7 @@ import ToolCard from "../components/ToolCard";
 import ToolContainer from "../components/ToolContainer";
 import OutputToolbar, { LiveStats } from "../components/OutputToolbar";
 import { TOOL_PAGES, TOOL_CATEGORIES, TOOL_BY_SLUG } from "../data/tools";
+import { cleanPrompt, estimateTokens, extractPromptVariables, formatPrompt, generateJsonSchema, validateJsonWithSchema } from "../lib/toolkit";
 
 function useToolFilters(tools: typeof TOOL_PAGES) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -29,6 +30,9 @@ function useToolFilters(tools: typeof TOOL_PAGES) {
 
   return {
     filtered,
+    searchQuery,
+    selectedCategory,
+    showFreeOnly,
     setSearchQuery,
     setSelectedCategory,
     setShowFreeOnly,
@@ -36,7 +40,7 @@ function useToolFilters(tools: typeof TOOL_PAGES) {
 }
 
 export function ToolsDirectoryPage() {
-  const { filtered, setSearchQuery, setSelectedCategory, setShowFreeOnly } =
+  const { filtered, searchQuery, selectedCategory, showFreeOnly, setSearchQuery, setSelectedCategory, setShowFreeOnly } =
     useToolFilters(TOOL_PAGES);
 
   const categories = useMemo(
