@@ -500,15 +500,17 @@ export function scanPromptSecurity(input: string): {
 
 export type ChainStep = {
   id: number;
+  title: string;
   prompt: string;
   outputFormat: string;
 };
 
 export function exportChainAsMarkdown(steps: ChainStep[]): string {
   const lines: string[] = ["# Prompt Chain", ""];
-  steps.forEach((step) => {
+  steps.forEach((step, index) => {
     if (step.prompt.trim()) {
-      lines.push(`## Step ${step.id}`);
+      const title = step.title.trim() || `Step ${index + 1}`;
+      lines.push(`## Step ${index + 1}: ${title}`);
       lines.push(`**Output Format:** ${step.outputFormat}`);
       lines.push("");
       lines.push(step.prompt.trim());
@@ -523,7 +525,10 @@ export function exportChainAsMarkdown(steps: ChainStep[]): string {
 export function copyAllChainSteps(steps: ChainStep[]): string {
   return steps
     .filter((s) => s.prompt.trim())
-    .map((s) => `# Step ${s.id} (${s.outputFormat})\n${s.prompt.trim()}`)
+    .map((s, index) => {
+      const title = s.title.trim() || `Step ${index + 1}`;
+      return `# Step ${index + 1}: ${title} (${s.outputFormat})\n${s.prompt.trim()}`;
+    })
     .join("\n\n---\n\n");
 }
 

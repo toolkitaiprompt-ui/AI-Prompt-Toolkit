@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef } from 'react';
-import { Plus, Trash2, Copy, Download, Layers, ArrowDown } from 'lucide-react';
+import { Plus, Trash2, Copy, Download, Layers, ArrowDown, ArrowUp, Eye } from 'lucide-react';
 import { exportChainAsMarkdown, copyAllChainSteps, type ChainStep } from '../lib/toolkit';
 import { LiveStats } from './OutputToolbar';
 
@@ -7,8 +7,8 @@ const OUTPUT_FORMATS = ['Text', 'JSON', 'Markdown', 'Code', 'Table', 'Bullet Poi
 
 export default function PromptChainBuilder() {
   const [steps, setSteps] = useState<ChainStep[]>([
-    { id: 1, prompt: 'Analyze the customer feedback and identify the top 3 pain points mentioned.', outputFormat: 'Bullet Points' },
-    { id: 2, prompt: '', outputFormat: 'Text' },
+    { id: 1, title: 'Analyze Feedback', prompt: 'Analyze the customer feedback and identify the top 3 pain points mentioned.', outputFormat: 'Bullet Points' },
+    { id: 2, title: '', prompt: '', outputFormat: 'Text' },
   ]);
   const [copied, setCopied] = useState(false);
   const nextIdRef = useRef(3);
@@ -17,7 +17,7 @@ export default function PromptChainBuilder() {
 
   const addStep = () => {
     if (steps.length >= 5) return;
-    setSteps((prev) => [...prev, { id: nextIdRef.current++, prompt: '', outputFormat: 'Text' }]);
+    setSteps((prev) => [...prev, { id: nextIdRef.current++, title: '', prompt: '', outputFormat: 'Text' }]);
   };
 
   const removeStep = (id: number) => {
@@ -25,7 +25,18 @@ export default function PromptChainBuilder() {
     setSteps((prev) => prev.filter((s) => s.id !== id));
   };
 
-  const updateStep = (id: number, field: 'prompt' | 'outputFormat', value: string) => {
+  const moveStep = (id: number, direction: -1 | 1) => {
+    setSteps((prev) => {
+      const from = prev.findIndex((s) => s.id === id);
+      const to = from + direction;
+      if (from < 0 || to < 0 || to >= prev.length) return prev;
+      const next = [...prev];
+      [next[from], next[to]] = [next[to], next[from]];
+      return next;
+    });
+  };
+
+  const updateStep = (id: number, field: 'title' | 'prompt' | 'outputFormat', value: string) => {
     setSteps((prev) => prev.map((s) => (s.id === id ? { ...s, [field]: value } : s)));
   };
 
@@ -68,28 +79,57 @@ export default function PromptChainBuilder() {
         {steps.map((step, idx) => (
           <div key={step.id}>
             <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5">
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
                 <div className="flex items-center gap-2">
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-amber-500/20 text-xs font-bold text-amber-300 border border-amber-500/30">
-                    {step.id}
+                    {idx + 1}
                   </span>
-                  <h3 className="text-sm font-semibold text-white">Step {step.id}</h3>
+                  <h3 className="text-sm font-semibold text-white">Step {idx + 1}</h3>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => removeStep(step.id)}
-                  disabled={steps.length <= 1}
-                  className="inline-flex items-center gap-1 rounded-lg border border-slate-700 px-2.5 py-1 text-xs text-slate-400 transition hover:border-red-500/30 hover:text-red-400 disabled:opacity-30"
-                >
-                  <Trash2 className="h-3.5 w-3.5" /> Remove
-                </button>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => moveStep(step.id, -1)}
+                    disabled={idx === 0}
+                    aria-label={`Move step ${idx + 1} up`}
+                    title="Move step up"
+                    className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-slate-700 text-slate-400 transition hover:border-amber-500/40 hover:text-amber-300 disabled:opacity-30 disabled:hover:border-slate-700 disabled:hover:text-slate-400"
+                  >
+                    <ArrowUp className="h-3.5 w-3.5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => moveStep(step.id, 1)}
+                    disabled={idx === steps.length - 1}
+                    aria-label={`Move step ${idx + 1} down`}
+                    title="Move step down"
+                    className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-slate-700 text-slate-400 transition hover:border-amber-500/40 hover:text-amber-300 disabled:opacity-30 disabled:hover:border-slate-700 disabled:hover:text-slate-400"
+                  >
+                    <ArrowDown className="h-3.5 w-3.5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => removeStep(step.id)}
+                    disabled={steps.length <= 1}
+                    className="inline-flex items-center gap-1 rounded-lg border border-slate-700 px-2.5 py-1 text-xs text-slate-400 transition hover:border-red-500/30 hover:text-red-400 disabled:opacity-30"
+                  >
+                    <Trash2 className="h-3.5 w-3.5" /> Remove
+                  </button>
+                </div>
               </div>
+              <input
+                className="mb-3 w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-amber-400/60 focus:ring-2 focus:ring-amber-400/20"
+                placeholder={`Step ${idx + 1} title (e.g. Analyze Feedback)`}
+                value={step.title}
+                onChange={(e) => updateStep(step.id, 'title', e.target.value)}
+                aria-label={`Step ${idx + 1} title`}
+              />
               <textarea
                 className="h-24 w-full rounded-lg border border-slate-700 bg-slate-900 p-3 text-sm text-slate-100 outline-none transition focus:border-amber-400/60 focus:ring-2 focus:ring-amber-400/20 resize-none mb-3"
-                placeholder={`Enter the prompt for step ${step.id}...`}
+                placeholder={`Enter the prompt for step ${idx + 1}...`}
                 value={step.prompt}
                 onChange={(e) => updateStep(step.id, 'prompt', e.target.value)}
-                aria-label={`Step ${step.id} prompt`}
+                aria-label={`Step ${idx + 1} prompt`}
               />
               <LiveStats text={step.prompt} />
               <div className="mt-3">
@@ -132,6 +172,43 @@ export default function PromptChainBuilder() {
         </button>
       )}
 
+      {/* Complete Workflow Preview */}
+      <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5">
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <div className="flex items-center gap-2">
+            <Eye className="h-4 w-4 text-amber-400" />
+            <p className="text-sm font-semibold text-white">Complete Workflow</p>
+          </div>
+          <span className="text-xs text-slate-500">{activeSteps.length} active step{activeSteps.length !== 1 ? 's' : ''} · {steps.length}/5 total</span>
+        </div>
+        {activeSteps.length === 0 ? (
+          <p className="text-sm text-slate-500">Add prompts to your steps above — the full workflow will appear here.</p>
+        ) : (
+          <ol className="space-y-3">
+            {steps.map((step, idx) => {
+              if (!step.prompt.trim()) return null;
+              const title = step.title.trim() || `Step ${idx + 1}`;
+              return (
+                <li key={step.id} className="flex gap-3 rounded-lg border border-slate-800/90 bg-slate-950/60 p-3">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-500/20 text-[11px] font-bold text-amber-300 border border-amber-500/30">
+                    {idx + 1}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="text-sm font-semibold text-white">{title}</p>
+                      <span className="rounded border border-slate-700 bg-slate-900 px-1.5 py-0.5 text-[10px] uppercase tracking-wide text-slate-400">
+                        {step.outputFormat}
+                      </span>
+                    </div>
+                    <p className="mt-1 whitespace-pre-wrap text-xs leading-6 text-slate-400">{step.prompt}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        )}
+      </div>
+
       {/* Export Actions */}
       <div className="flex flex-wrap gap-3">
         <button
@@ -139,7 +216,7 @@ export default function PromptChainBuilder() {
           onClick={handleCopyAll}
           className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-amber-400"
         >
-          {copied ? '✓ Copied All!' : 'Copy All Steps'}
+          {copied ? '✓ Copied All!' : 'Copy Full Workflow'}
           <Copy className="h-4 w-4" />
         </button>
         <button
