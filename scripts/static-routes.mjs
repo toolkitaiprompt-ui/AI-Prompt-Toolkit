@@ -990,6 +990,14 @@ export const STATIC_ROUTES = [
     "changefreq": "weekly"
   },
   {
+    "path": "/blog/how-to-write-better-prompts-claude-chatgpt-2026",
+    "title": "Claude & ChatGPT Prompt Tips 2026 | AI World Hub",
+    "desc": "Write better prompts for Claude and ChatGPT in 2026 — model-specific tips, XML tags, markdown structure, and copy-ready examples.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
     "path": "/best-ai-writing-tools",
     "title": "Best AI Writing Tools & Assistants 2026 | AI World Hub",
     "desc": "Ranked review of the best AI writing assistants and content generators for 2026 — find the right tool for your writing projects.",

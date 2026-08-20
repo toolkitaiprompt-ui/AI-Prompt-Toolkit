@@ -712,7 +712,7 @@ export const NEW_SEO_POSTS = [
   },
   {
     slug: "common-prompt-mistakes-and-how-to-fix-them",
-    title: "Common Prompt Mistakes and How to Fix Them (2026 Guide)",
+    title: "Common Prompt Mistakes and How to Fix Them (With Examples)",
     seoTitle: "Common Prompt Mistakes & How to Fix Them | AI World Hub",
     metaDescription:
       "The 12 most common prompt mistakes that ruin AI answers — and how to fix each one, with simple before/after examples.",
@@ -776,5 +776,83 @@ export const NEW_SEO_POSTS = [
       },
     ],
     relatedToolSlugs: ["advanced-prompt-optimizer", "prompt-debugger", "prompt-chain-builder", "prompt-comparison", "token-estimator", "security-scanner"],
+  },
+  {
+    slug: "how-to-write-better-prompts-claude-chatgpt-2026",
+    title: "How to Write Better Prompts for Claude and ChatGPT in 2026",
+    seoTitle: "Claude & ChatGPT Prompt Tips 2026 | AI World Hub",
+    metaDescription:
+      "Write better prompts for Claude and ChatGPT in 2026 — model-specific tips, XML tags, markdown structure, and copy-ready examples.",
+    excerpt:
+      "The same idea needs different words for Claude and ChatGPT. Learn exactly how to prompt each model in 2026 — with examples you can copy today.",
+    category: "Prompt Engineering",
+    date: "August 22, 2026",
+    readTime: "9 min read",
+    contentSections: [
+      {
+        heading: "Why model-specific prompts matter in 2026",
+        paragraphs: [
+          "ChatGPT and Claude are both excellent — and both respond better to different prompt styles. ChatGPT shines with step-by-step instructions and structured formats. Claude handles long, nuanced context beautifully and answers naturally when you use XML-style tags to separate instructions. If you write the same prompt for both, you are leaving quality on the table.",
+          "The good news: you do not need to learn two different skills. You need one skill — structuring prompts — applied slightly differently for each model. This guide shows you both styles side by side, with copy-ready examples. If you ever need to move a prompt between models, the free Prompt Converter rewrites it for ChatGPT, Claude, or Gemini in one click.",
+        ],
+      },
+      {
+        heading: "The 6-part foundation that works for both models",
+        paragraphs: [
+          "Before model-specific tricks, get the foundation right. Both models answer best when a prompt includes: 1) Role — \"You are a senior content strategist.\" 2) Task — a clear action verb: write, compare, summarize. 3) Context — background in 1-2 sentences. 4) Audience — who the answer is for. 5) Tone — professional, friendly, technical. 6) Format — headings, bullets, table, JSON.",
+          "Most weak answers come from missing one of these six. Run any prompt through the free Advanced Prompt Optimizer and it adds the missing pieces automatically — role, tone, format, and constraints — in one click. It works for both models because the structure is universal.",
+        ],
+      },
+      {
+        heading: "How to prompt Claude: XML tags and natural context",
+        paragraphs: [
+          "Claude is trained to use structured prompts well, and XML-style tags are its native language. Wrap each part of your prompt in tags and Claude follows them precisely: <task>Write a 300-word product launch email</task> <context>We sell accounting software to small Indian businesses</context> <audience>Business owners with no accounting background</audience> <tone>Simple, warm, practical</tone> <format>Short intro, 3 benefits, a call to action</format>.",
+          "Claude also handles long documents and complex analysis better than most models. Give it the full source text and ask for analysis instead of summaries — it connects ideas across hundreds of pages. Two more tips: Claude is direct, so say exactly what you want without hedging, and it does not need you to repeat instructions — once is enough.",
+          "For multi-step work, Claude follows sequential instructions well, so you can ask it to \"first restate the goal, then list the options, then recommend one\" in a single prompt.",
+        ],
+      },
+      {
+        heading: "How to prompt ChatGPT: explicit steps and formats",
+        paragraphs: [
+          "ChatGPT rewards explicit, structured instructions. Where Claude likes tags, ChatGPT likes numbered steps and clear format commands: \"Step 1: write a headline. Step 2: write a 200-word intro. Step 3: list 5 benefits as bullets. Step 4: end with a question to the reader.\" It follows this kind of script very reliably.",
+          "Markdown formatting is ChatGPT's strength — ask for tables, headings, bold key phrases, and it delivers clean structure every time. It also handles role-play well: \"You are a cold email copywriter who has written for 500 SaaS companies\" produces a different voice than a bare request.",
+          "ChatGPT's custom instructions (or system prompt) let you set a permanent role and style for all conversations. Spend five minutes writing that once — via the Mega Prompt Builder — and every prompt you send afterwards inherits the style automatically.",
+        ],
+      },
+      {
+        heading: "The same task, prompted for each model",
+        paragraphs: [
+          "Here is the same task written for each model so you can feel the difference. Task: explain AI tools to a bakery owner.",
+          "For Claude: <task>Explain how AI tools can save time for a small bakery</task> <context>The owner has 3 staff, no marketing budget, and is not technical</context> <audience>A busy bakery owner</audience> <tone>Simple and encouraging</tone> <format>3 practical examples with one line each, then a suggestion for the easiest first step</format>.",
+          "For ChatGPT: \"You are a friendly tech coach for small businesses. Write a 250-word explanation of how AI tools can save time for a bakery owner with 3 staff and no marketing budget. Structure: 3 numbered examples, each with a one-line 'how to start'. End with a single recommendation of the easiest first step. Use simple words, no jargon, warm tone.\"",
+          "Both produce excellent answers — but each in the style its model handles best. If you write prompts for both models regularly, keep a template library and run new prompts through the Prompt Debugger to check the health score before you send them.",
+        ],
+      },
+      {
+        heading: "The 5 mistakes that break prompts on both models",
+        paragraphs: [
+          "Even model-specific prompts fail when they repeat the same five mistakes: 1) Asking for everything in one sentence — break it into steps or use the Prompt Chain Builder to sequence a whole workflow. 2) No format — the model picks paragraphs when you wanted bullets. 3) No constraints — no length, tone, or exclusions means no quality bar. 4) Mixed instructions — put all instructions first, content after. 5) No examples — for style-sensitive tasks, give one sample sentence so both models mirror it.",
+          "Fix these and your prompts work everywhere. The Prompt Debugger flags all five automatically and scores your prompt out of 100, so you can fix a prompt in seconds instead of guessing from the output.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Which model is better, Claude or ChatGPT?",
+        answer:
+          "Both are excellent, but they differ: Claude is strong with long context, analysis, and natural writing; ChatGPT excels at structured, step-by-step output. The best choice depends on your task — and the best prompt for each is different, as this guide shows.",
+      },
+      {
+        question: "Do I need different prompts for Claude and ChatGPT?",
+        answer:
+          "Not different in the foundation — role, task, context, format — but different in style. Claude responds well to XML tags and direct instructions; ChatGPT responds well to numbered steps and markdown formatting. The same idea, tuned per model, gives noticeably better answers.",
+      },
+      {
+        question: "Can I convert a ChatGPT prompt to Claude format?",
+        answer:
+          "Yes. The free Prompt Converter on AI World Hub rewrites prompts between ChatGPT, Claude, and Gemini automatically, adjusting structure and phrasing for the target model in one click.",
+      },
+    ],
+    relatedToolSlugs: ["advanced-prompt-optimizer", "prompt-converter", "prompt-debugger", "prompt-chain-builder"],
   },
 ];
