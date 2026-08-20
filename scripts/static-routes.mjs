@@ -958,6 +958,22 @@ export const STATIC_ROUTES = [
     "changefreq": "weekly"
   },
   {
+    "path": "/blog/how-to-write-better-ai-prompts-2026",
+    "title": "How to Write Better AI Prompts in 2026 | AI World Hub",
+    "desc": "Step-by-step guide to writing AI prompts that get real results — 6-part structure, before/after examples, and mistakes to avoid. Works with ChatGPT, Claude, Gemini.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/free-ai-prompt-tools-without-signup",
+    "title": "Free AI Prompt Tools Without Sign Up | AI World Hub",
+    "desc": "12 free AI prompt tools you can use without signing up — optimizers, token estimators, debuggers that run 100% in your browser. No email, no credit card.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
     "path": "/best-ai-writing-tools",
     "title": "Best AI Writing Tools & Assistants 2026 | AI World Hub",
     "desc": "Ranked review of the best AI writing assistants and content generators for 2026 — find the right tool for your writing projects.",
