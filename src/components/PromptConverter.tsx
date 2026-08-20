@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import OutputToolbar, { LiveStats } from "./OutputToolbar";
+import { ToolGuide } from "./ToolGuide";
 
 function convertPromptToClaude(prompt: string): string {
   const trimmed = prompt.trim();
@@ -72,6 +73,25 @@ export default function PromptConverter() {
         <OutputToolbar text={output} fileName="converted-prompt.txt" className="mb-2" />
         <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 whitespace-pre-wrap break-words">{output}</pre>
       </div>
+
+      <ToolGuide
+        intro="The Prompt Converter rewrites prompts between the three big AI assistants — ChatGPT (OpenAI), Claude (Anthropic), and Gemini (Google) — so the same idea works everywhere. It is built for freelancers and teams who switch between tools, course creators who share prompts with students, and developers who keep prompt libraries in one format."
+        steps={[
+          "Paste any prompt you already use into the text area — it can be written for ChatGPT, Claude, or Gemini.",
+          "Choose the target assistant: ChatGPT, Claude, or Gemini.",
+          "Read the converted prompt in the output panel — structure, tone, and phrasing are adjusted to the target model's style.",
+          "If the result feels off, tweak the original and convert again; small changes carry through instantly.",
+          "Copy the converted prompt and paste it into the target assistant.",
+        ]}
+        example={{
+          title: "One prompt idea, reformatted for each assistant.",
+          before:
+            "ChatGPT style:\nAct as a senior copywriter. Write 5 email subject lines for a Black Friday sale. Make them short, curiosity-driven, and under 50 characters.",
+          after:
+            "Claude style:\nYou are a senior copywriter. I need 5 email subject lines for a Black Friday sale. Requirements: short and curiosity-driven, under 50 characters each. Please number them and explain why each one works in one line.",
+          note: "Claude tends to respond better to explicit numbered requirements and brief reasoning, while ChatGPT handles compact role-plus-task phrasing well. The converter applies these conventions automatically, and the Prompt Formatter keeps any prompt tidy before converting.",
+        }}
+      />
     </div>
   );
 }

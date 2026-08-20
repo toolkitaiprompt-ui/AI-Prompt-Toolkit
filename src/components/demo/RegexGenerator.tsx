@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Regex, Copy, Check, Sparkles, BookOpen, Lightbulb } from "lucide-react";
+import { ToolGuide } from "../ToolGuide";
 
 const PRESETS = [
   { label: "Email Address", desc: "Match valid email formats", pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", example: "user@example.com" },
@@ -219,6 +220,25 @@ export default function RegexGenerator() {
           ))}
         </div>
       )}
+
+      <ToolGuide
+        intro="The Regex Generator creates ready-to-use regular expressions for emails, phone numbers, URLs, dates, and more — with plain-English explanations and live test strings. It is made for developers, data analysts, and testers who need a reliable pattern fast, without memorising regex syntax."
+        steps={[
+          "Pick a preset — Email Address, Phone Number, URL, Date, and more — or describe what you need.",
+          "Copy the generated pattern and check the example test string to see what it matches.",
+          "Read the plain-English breakdown to understand each part of the expression.",
+          "Test your own sample input in the tool to confirm the pattern behaves as expected.",
+          "Use the pattern in your code, spreadsheet, or validation library.",
+        ]}
+        example={{
+          title: "Validating an email address with one click.",
+          before:
+            "I need a regex to check that user input looks like an email address.",
+          after:
+            "Pattern: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$\n\nMatches: user@example.com\nRejects: user@example, @example.com, user@.com\n\nMeaning: Starts with letters/digits/._%+- (1+), then @, then domain letters/digits/.- (1+), then a dot and a 2+ letter TLD.",
+          note: "Each preset comes with match and reject examples, so you can see at a glance what the pattern allows. For AI-related validation work, pair it with the JSON Validator to check structured AI output against your expected schema.",
+        }}
+      />
     </div>
   );
 }

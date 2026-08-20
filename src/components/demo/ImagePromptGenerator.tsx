@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ImageIcon, Copy, Check, Wand2, RefreshCw } from "lucide-react";
+import { ToolGuide } from "../ToolGuide";
 
 const STYLES = ["Photorealistic", "Anime", "Oil Painting", "3D Render", "Pixel Art", "Cyberpunk", "Watercolor", "Sketch"];
 const MOODS = ["Dramatic", "Cheerful", "Mysterious", "Serene", "Epic", "Whimsical", "Dark", "Vibrant"];
@@ -150,6 +151,25 @@ export default function ImagePromptGenerator() {
           </div>
         </div>
       )}
+
+      <ToolGuide
+        intro="The Image Prompt Generator builds production-ready prompts for DALL-E, Midjourney, and Stable Diffusion from one simple description — with style, mood, camera angle, and quality modifiers added automatically. It is made for content creators, designers, marketers, and hobbyists who want consistent, high-quality AI images without learning each tool's prompt syntax."
+        steps={[
+          "Type what you want to see — for example \"a cozy coffee shop on a rainy street\".",
+          "Pick a style (Photorealistic, Anime, Oil Painting, 3D Render, etc.) and a mood (Dramatic, Cheerful, Mysterious…).",
+          "Choose a camera angle such as Close-up, Wide angle, or Cinematic.",
+          "The tool builds three versions instantly — one for Midjourney, one for DALL-E, one for Stable Diffusion.",
+          "Copy the version for the tool you use, paste it in, and regenerate with different styles until you love the result.",
+        ]}
+        example={{
+          title: "One idea, three model-ready prompts.",
+          before:
+            "a dog wearing sunglasses on a beach",
+          after:
+            "Midjourney: /imagine prompt: a dog wearing sunglasses on a beach, photorealistic, cheerful mood, cinematic wide angle --ar 16:9 --v 6.1 --s 750\n\nDALL-E: a dog wearing sunglasses on a beach. Style: photorealistic. Mood: cheerful. Wide 16:9 composition, highly detailed.\n\nStable Diffusion: a dog wearing sunglasses on a beach, photorealistic, cheerful, cinematic, masterpiece, best quality\nNegative prompt: blurry, low quality, distorted, watermark",
+          note: "Each model has its own syntax — Midjourney uses flags like --ar and --v, while Stable Diffusion works best with a negative prompt. The generator writes all three so you never have to remember the differences.",
+        }}
+      />
     </div>
   );
 }

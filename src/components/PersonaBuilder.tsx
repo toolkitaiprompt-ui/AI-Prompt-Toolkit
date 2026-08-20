@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import OutputToolbar, { LiveStats } from "./OutputToolbar";
+import { ToolGuide } from "./ToolGuide";
 
 const PERSONA_TEMPLATES: Record<string, { role: string; expertise: string; voice: string; rules: string[] }> = {
   Marketer: {
@@ -132,6 +133,25 @@ export default function PersonaBuilder() {
         <OutputToolbar text={output} fileName="persona-prompt.txt" className="mb-2" />
         <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 whitespace-pre-wrap break-words">{output}</pre>
       </div>
+
+      <ToolGuide
+        intro="The Persona Builder creates a complete system prompt for any role — marketer, developer, writer, support agent, and more — with expertise, voice, and working rules built in. It is made for anyone who uses ChatGPT, Claude, or Gemini repeatedly for the same kind of work and wants consistent, professional output without rewriting instructions every time."
+        steps={[
+          "Pick a persona from the templates — Marketer, Developer, Writer, Support, or your own custom role.",
+          "Fill in the name, role, and expertise fields. The more specific the expertise, the sharper the answers.",
+          "Choose a voice for the persona, such as friendly, formal, or data-driven.",
+          "Add working rules — for example \"always include a CTA\" or \"never invent statistics\" — then generate the system prompt.",
+          "Copy the generated prompt, paste it into the system prompt or custom instructions box of your AI chatbot, and save.",
+        ]}
+        example={{
+          title: "A reusable support-agent persona from four quick fields.",
+          before:
+            "You are a customer support agent.\nAnswer user questions politely.",
+          after:
+            "You are Ava, a Customer Support Specialist at a SaaS company.\nExpertise: troubleshooting, onboarding, and de-escalating frustrated users.\nVoice: warm, clear, and solution-first.\nRules: 1) Always acknowledge the user's problem first. 2) Keep answers under 150 words. 3) If you cannot solve it, escalate with a summary. 4) Never share internal notes.",
+          note: "The persona version gives the AI a consistent identity and rules, so every reply matches your brand — no need to re-explain your style in each message. Pair it with the Prompt Optimizer to refine the task instructions inside each conversation.",
+        }}
+      />
     </div>
   );
 }

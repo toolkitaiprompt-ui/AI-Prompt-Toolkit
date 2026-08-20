@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { ArrowLeftRight, Check, X, TrendingUp } from "lucide-react";
 import { copyToClipboard } from "../lib/toolkit";
+import { ToolGuide } from "./ToolGuide";
 
 /**
  * PromptComparison — Compare two prompts side by side.
@@ -408,6 +409,25 @@ export default function PromptComparison() {
 
         </div>
       )}
+
+      <ToolGuide
+        intro="The Prompt Comparison tool puts two prompts side by side and scores both — token count, word count, readability, structure, and clarity — with highlighted differences. It is made for anyone who wants to see exactly why one prompt outperforms another, whether you are A/B testing prompts for work, teaching prompt engineering, or just trying to get better AI answers."
+        steps={[
+          "Paste your first prompt in the left box and your second version in the right box.",
+          "Read the two scorecards — structure score, clarity score, token count, and readability update instantly.",
+          "Look at the diff highlighting to see exactly which words and sections you added, removed, or changed.",
+          "Check which version scores higher and why — usually role, format, and constraints make the biggest difference.",
+          "Copy the winning prompt and use it, or go back to the Advanced Prompt Optimizer to improve it further.",
+        ]}
+        example={{
+          title: "Two versions of the same task — the structured one wins.",
+          before:
+            "Prompt A:\nWrite a blog about AI for business. (27 tokens, structure 40%, clarity 55%)",
+          after:
+            "Prompt B:\nYou are a marketing consultant for small businesses in India. Write a 400-word blog about free AI tools, with 5 practical tips and a short checklist at the end. Tone: simple, no jargon. (63 tokens, structure 92%, clarity 95%)",
+          note: "Prompt B scores higher on structure and clarity because it defines the role, audience, length, format, and tone. Comparing the two side by side makes the lesson stick — and the Prompt Debugger can confirm the same findings with a health score.",
+        }}
+      />
     </div>
   );
 }

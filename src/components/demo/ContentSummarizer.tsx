@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { FileText, Copy, Check, Scissors, Type, AlignLeft, BookOpen } from "lucide-react";
+import { ToolGuide } from "../ToolGuide";
 
 const MODES = [
   { id: "tl;dr", label: "TL;DR", icon: Scissors, desc: "1-2 sentence ultra-brief" },
@@ -145,6 +146,25 @@ export default function ContentSummarizer() {
           <div className="whitespace-pre-wrap text-sm leading-7 text-slate-200">{result}</div>
         </div>
       )}
+
+      <ToolGuide
+        intro="The Content Summarizer condenses long articles, reports, and meeting notes into a TL;DR, bullet points, paragraphs, or an academic-style abstract — all in your browser. It is made for students who need to skim research fast, professionals digesting daily briefings, and content teams turning long reads into shareable summaries."
+        steps={[
+          "Paste the full text into the box — articles, transcripts, and notes all work.",
+          "Choose an output mode: TL;DR for one line, Bullet Points for key takeaways, Paragraphs for a flowing summary, or Abstract for a formal version.",
+          "Read the summary with its reduction stats — how much text you just saved.",
+          "If the summary is too long or too short, switch mode or paste a shorter section.",
+          "Copy the summary for your notes, email, or social post.",
+        ]}
+        example={{
+          title: "A 500-word article becomes a readable TL;DR.",
+          before:
+            "Full article (500 words) about remote work trends: hybrid schedules, async communication tools, employee wellbeing statistics, and predictions for 2026…",
+          after:
+            "TL;DR (1-2 sentences): Remote work is settling into hybrid schedules in 2026, driven by async tools and a stronger focus on wellbeing — with companies reporting higher retention when flexibility is built into policy rather than granted case-by-case.",
+          note: "The reduction stats show exactly how many characters and words you saved, which is handy when you need a tight summary for email. For longer documents, run the summary through the Token Estimator to keep it within your AI tool's context limit.",
+        }}
+      />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { Code2, Terminal } from 'lucide-react';
 import { buildApiRequest, API_MODELS, type ApiProvider } from '../lib/toolkit';
 import OutputToolbar, { LiveStats } from './OutputToolbar';
+import { ToolGuide } from './ToolGuide';
 
 const PROVIDERS: { id: ApiProvider; name: string; color: string }[] = [
   { id: 'openai', name: 'OpenAI (GPT)', color: 'from-emerald-500 to-green-500' },
@@ -154,6 +155,25 @@ export default function ApiRequestBuilder() {
           {result.curl}
         </pre>
       </div>
+
+      <ToolGuide
+        intro="The API Request Builder creates ready-to-run JSON and cURL requests for OpenAI, Anthropic (Claude), and Google Gemini — with model selection, temperature, max tokens, and a system prompt. It is made for developers building AI features, students learning LLM APIs, and makers prototyping chatbots without hunting through API docs."
+        steps={[
+          "Pick a provider — OpenAI, Anthropic, or Gemini — and choose a model from the list.",
+          "Write your system prompt (the instructions) and user prompt (the task).",
+          "Set the temperature and max tokens to control creativity and output length.",
+          "Copy the generated JSON body or the cURL command from the output panel.",
+          "Paste the cURL command into your terminal (or the JSON into your code) with your API key and run it.",
+        ]}
+        example={{
+          title: "From idea to cURL request in seconds.",
+          before:
+            "I want to call the OpenAI API to summarize text with GPT-4o mini. I will set temperature to 0.3 and max tokens to 200.",
+          after:
+            "curl https://api.openai.com/v1/chat/completions \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"model\":\"gpt-4o-mini\",\"messages\":[{\"role\":\"system\",\"content\":\"You are a helpful summarizer.\"},{\"role\":\"user\",\"content\":\"Summarize this article in 3 bullets.\"}],\"temperature\":0.3,\"max_tokens\":200}'",
+          note: "The tool writes the correct endpoint, headers, and body format for each provider, so you skip the documentation lookup. Use the Token Estimator first to check your prompt stays inside the model's context window.",
+        }}
+      />
     </div>
   );
 }

@@ -292,6 +292,24 @@ export function PromptVariableExtractorPage() {
           {variables.length ? variables.join(", ") : "No variables found."}
         </p>
       </div>
+      <ToolGuide
+        intro="The Prompt Variable Extractor finds every placeholder in your prompt — {name}, {{city}}, [tone] — and lists them in one click. It is made for teams that build reusable prompt templates, writers who personalise the same email for many clients, and anyone who wants consistent placeholders across a prompt library."
+        steps={[
+          "Paste a prompt that contains placeholders like {name}, {{product}}, or [topic].",
+          "The tool lists every detected variable instantly, in order of appearance.",
+          "Check the list to make sure every placeholder you use has a consistent name.",
+          "Copy the variable list to use as a fill-in checklist, or rename variables in your prompt and re-scan.",
+          "Use the same variable names across all your templates so one fill-in sheet works everywhere.",
+        ]}
+        example={{
+          title: "One template, all variables in plain sight.",
+          before:
+            "Hi {name}, we loved your interest in {{product}}. Could you share [preferred_time] for a quick call? Our team at {company} will join.",
+          after:
+            "Detected Variables (4): name, product, preferred_time, company\n\nFill-in checklist: name = ___  |  product = ___  |  preferred_time = ___  |  company = ___",
+          note: "Spotting variables before sending is the fastest way to avoid an email that says \"Hi {name}\". Pair the extracted list with the Prompt Formatter to keep your template tidy.",
+        }}
+      />
     </ToolContainer>
   );
 }
@@ -334,6 +352,24 @@ export function JsonSchemaGeneratorPage() {
       {error && <p role="alert" className="text-sm text-red-400">{error}</p>}
       {result && <OutputToolbar text={result} fileName="schema.json" fileMime="application/json" className="mb-2" />}
       <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 whitespace-pre-wrap break-words">{result || "Schema output will appear here."}</pre>
+      <ToolGuide
+        intro="The JSON Schema Generator builds a JSON Schema from a sample of your data — so AI models and APIs return output you can rely on. It is made for developers using structured AI output, data teams validating imports, and prompt engineers who want models to answer in a fixed format."
+        steps={[
+          "Paste a sample JSON object or array — the shape of the output you want the AI to return.",
+          "Click Generate Schema and the tool creates a matching JSON Schema draft.",
+          "Copy the schema into your API call, prompt, or validation library.",
+          "Use the same schema in the JSON Validator to check AI output against it.",
+          "Refine field types (string, number, boolean) in your sample and regenerate if the schema is too loose.",
+        ]}
+        example={{
+          title: "From a tiny sample to a reusable schema.",
+          before:
+            '{ "name": "Ava", "age": 32, "active": true }',
+          after:
+            '{ "type": "object", "properties": { "name": { "type": "string" }, "age": { "type": "number" }, "active": { "type": "boolean" } }, "required": ["name", "age", "active"] }',
+          note: "Once the schema exists, you can ask ChatGPT, Claude, or Gemini to return JSON matching it — then verify the output with the JSON Validator before it reaches your code.",
+        }}
+      />
     </ToolContainer>
   );
 }
@@ -396,6 +432,24 @@ export function JsonValidatorPage() {
       <ul className="space-y-2 rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300">
         {messages.length ? messages.map((m, i) => <li key={i}>{m}</li>) : <li>Validation results appear here.</li>}
       </ul>
+      <ToolGuide
+        intro="The JSON Validator checks any JSON against a schema and reports exactly which fields are missing, extra, or the wrong type. It is made for developers who receive AI-generated JSON, QA testers verifying API payloads, and anyone building pipelines where a wrong field type breaks the next step."
+        steps={[
+          "Paste the JSON you want to check into the first box.",
+          "Paste a JSON Schema into the second box (generate one first with the JSON Schema Generator if needed).",
+          "Click Validate and read the results — every issue is listed with the field path.",
+          "Fix the JSON based on the messages and re-validate until it passes.",
+          "Copy the results as a record, or reuse the same schema for every AI output you receive.",
+        ]}
+        example={{
+          title: "AI output that breaks the pipeline — caught in seconds.",
+          before:
+            'JSON: { "name": "Ava", "age": "thirty-two", "active": 1 }\nSchema: { "type": "object", "properties": { "name": { "type": "string" }, "age": { "type": "number" }, "active": { "type": "boolean" } } }',
+          after:
+            "Issues found:\n- age: expected number, got string (\"thirty-two\")\n- active: expected boolean, got number (1)\n\nFix: send age as 32 and active as true, then re-validate → all fields pass.",
+          note: "AI models often guess types when asked for JSON. A quick validation pass catches those mistakes before they reach your database. Use the JSON Schema Generator to create the schema from one good sample.",
+        }}
+      />
     </ToolContainer>
   );
 }
@@ -427,6 +481,24 @@ export function PromptFormatterPage() {
         <OutputToolbar text={output} fileName="formatted-prompt.txt" className="mb-2" />
         <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 whitespace-pre-wrap break-words">{output}</pre>
       </div>
+      <ToolGuide
+        intro="The Prompt Formatter turns messy prompt notes into a clean, structured prompt — with consistent spacing, clear sections, and tidy punctuation. It is made for writers who jot ideas in drafts, teams that share prompts over chat, and anyone who copies text from emails or documents where formatting gets lost."
+        steps={[
+          "Paste your rough prompt — extra spaces, mixed punctuation, and messy line breaks are fine.",
+          "The formatted version appears instantly with normalised spacing and structure.",
+          "Scan the output to make sure your instructions read clearly section by section.",
+          "Copy the clean prompt into your AI chatbot or save it as a template.",
+          "For an extra step up, run the formatted prompt through the Advanced Prompt Optimizer to add role, format, and constraints.",
+        ]}
+        example={{
+          title: "Ragged notes become a readable prompt.",
+          before:
+            "act as  a chef    write   a 3-course   menu   for   a   vegan   restaurant !!!   include   price   range...",
+          after:
+            "Act as a chef. Write a 3-course menu for a vegan restaurant. Include a price range.",
+          note: "Models read prompts exactly as written — stray spaces and stray punctuation can shift the result. Cleaning first makes every later step (optimizing, debugging, translating) work on a solid base.",
+        }}
+      />
     </ToolContainer>
   );
 }
@@ -458,6 +530,24 @@ export function PromptCleanerPage() {
         <OutputToolbar text={output} fileName="cleaned-prompt.txt" className="mb-2" />
         <pre className="overflow-auto rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300 whitespace-pre-wrap break-words">{output}</pre>
       </div>
+      <ToolGuide
+        intro="The Prompt Cleaner removes hidden characters, extra spaces, and invisible formatting from pasted prompts — so what the AI sees is exactly what you intended. It is made for anyone who copies prompts from documents, emails, or chat apps where invisible characters like zero-width spaces sneak in and quietly change the model's response."
+        steps={[
+          "Paste your prompt into the box — even if it looks fine, it may contain hidden characters.",
+          "The cleaned output appears instantly with invisible characters removed and spacing normalised.",
+          "Compare the word count before and after to see how much noise was stripped.",
+          "Copy the cleaned version and use it in your AI chatbot, templates, or prompt library.",
+          "Make cleaning a habit before every prompt you reuse — it keeps outputs consistent.",
+        ]}
+        example={{
+          title: "Invisible characters removed in one click.",
+          before:
+            'Act  as   expert\u200Bcopywriter\u200B! \n\nWrite  a  product  launch \n email for  {{product}} \u2014  include  3 benefits…  \n\n Keep  tone  exciting!!!',
+          after:
+            "Act as expert copywriter! Write a product launch email for {{product}} — include 3 benefits. Keep tone exciting.",
+          note: "Zero-width spaces and doubled spaces look identical to the eye but not to the model. Cleaning first stabilises results — and the Prompt Formatter can then structure the cleaned text into neat sections.",
+        }}
+      />
     </ToolContainer>
   );
 }
