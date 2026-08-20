@@ -7,6 +7,7 @@ import { ArrowUpRight, Copy as Copy2 } from "lucide-react";
 import ToolCard from "../components/ToolCard";
 import ToolContainer from "../components/ToolContainer";
 import OutputToolbar, { LiveStats } from "../components/OutputToolbar";
+import { ToolGuide } from "../components/ToolGuide";
 import { TOOL_PAGES, TOOL_CATEGORIES, TOOL_BY_SLUG } from "../data/tools";
 import { cleanPrompt, estimateTokens, extractPromptVariables, formatPrompt, generateJsonSchema, validateJsonWithSchema } from "../lib/toolkit";
 
@@ -470,7 +471,7 @@ export function TokenEstimatorPage() {
     <ToolContainer
       title="Token Estimator"
       toolSlug="token-estimator"
-      description="Token Estimator for Prompt Engineering teams to project token usage, budget impact, and context size."
+      description="Free token estimator: check characters, words, and estimated tokens for any prompt. Budget ChatGPT, Claude, and Gemini context windows and API costs — instant, private, and 100% in-browser."
       tool={tool}
     >
       <label className="block space-y-2">
@@ -495,6 +496,24 @@ export function TokenEstimatorPage() {
           </div>
         ))}
       </div>
+      <ToolGuide
+        intro="The Token Estimator counts the characters, words, and estimated tokens in any text — instantly, in your browser. It is made for writers, developers, and students who use ChatGPT, Claude, or Gemini and want to stay inside the model's context window, plan prompts that fit, or estimate API costs before sending anything."
+        steps={[
+          "Paste any text — a prompt, a document, or a whole conversation — into the box. Counts update live as you type.",
+          "Read the three numbers: Characters, Words, and Estimated Tokens.",
+          "Compare the token count with your model's context limit — for example 8k for ChatGPT free, 128k–200k for Claude or GPT-4-class models.",
+          "If you are over budget, trim the text and watch the numbers drop until the prompt fits.",
+          "Use the Copy button to keep the final text ready for your AI tool.",
+        ]}
+        example={{
+          title: "A 500-word prompt is roughly 650–700 tokens — here is the rule of thumb.",
+          before:
+            "You are a senior product marketing manager.\nTask: Write a 500-word launch announcement for AI World Hub targeting developers and indie hackers.\nInclude 3 key benefits, 1 customer quote placeholder, and a CTA to https://aiworldhub.site/tools.\nTone: confident, friendly, no jargon.\nFormat: headline, subheadline, 3 bullet benefits, quote block, CTA.\nConstraint: keep under 500 words.",
+          after:
+            "Characters: 337\nWords: 55\nEstimated Tokens: 75\n\n(For the full 500-word version, expect roughly:\nCharacters ≈ 3,200 | Words ≈ 500 | Estimated Tokens ≈ 650–700)",
+          note: "A common rule of thumb: 1 English word ≈ 1.3–1.5 tokens, and 1 token ≈ 4 characters. Knowing your prompt's token size helps you avoid truncation in long conversations and keep API bills predictable.",
+        }}
+      />
     </ToolContainer>
   );
 }

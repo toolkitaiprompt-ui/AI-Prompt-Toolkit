@@ -2,6 +2,7 @@ import { useState, useMemo, useRef } from 'react';
 import { Plus, Trash2, Copy, Download, Layers, ArrowDown, ArrowUp, Eye } from 'lucide-react';
 import { exportChainAsMarkdown, copyAllChainSteps, type ChainStep } from '../lib/toolkit';
 import { LiveStats } from './OutputToolbar';
+import { ToolGuide } from './ToolGuide';
 
 const OUTPUT_FORMATS = ['Text', 'JSON', 'Markdown', 'Code', 'Table', 'Bullet Points', 'CSV'];
 
@@ -229,6 +230,25 @@ export default function PromptChainBuilder() {
       </div>
 
       <p className="text-xs text-slate-500">{activeSteps.length} active step{activeSteps.length !== 1 ? 's' : ''} in your chain.</p>
+
+      <ToolGuide
+        intro="The Prompt Chain Builder breaks a big task into 2–5 sequential steps, where each step's output feeds the next one. It is made for content creators planning multi-part articles, marketers running research-to-post workflows, developers building step-by-step code tasks, and students preparing structured study plans — anything too big for a single prompt."
+        steps={[
+          "Give each step a short title, like “Analyze Feedback” or “Draft Response”.",
+          "Write the prompt instruction for that step. The more specific the instruction, the better the result.",
+          "Pick an output format for the step — Text, JSON, Markdown, Code, Table, Bullet Points, or CSV.",
+          "Add up to 5 steps with the “Add Step” button, and reorder them with the up/down arrows until the flow feels right.",
+          "Check the “Complete Workflow” preview, then click “Copy Full Workflow” or “Export as Markdown” to reuse the chain.",
+        ]}
+        example={{
+          title: "A customer-feedback workflow in 3 steps: analyze → respond → summarize.",
+          before:
+            "Step 1 — Analyze Feedback (Bullet Points)\nAnalyze the customer feedback and identify the top 3 pain points.\n\nStep 2 — Draft Response (Text)\nDraft a friendly reply to the customer for each pain point.\n\nStep 3 — Summarize Outcome (Markdown)\nSummarize the replies into a short internal note for the team.",
+          after:
+            "# Step 1: Analyze Feedback (Bullet Points)\nAnalyze the customer feedback and identify the top 3 pain points mentioned.\n\n---\n\n# Step 2: Draft Response (Text)\nBased on the pain points, draft a friendly reply to the customer.\n\n---\n\n# Step 3: Summarize Outcome (Text)\nSummarize the whole exchange into 3 bullet points for the team.",
+          note: "Run each step's prompt in order in your AI chatbot, passing the previous output into the next step. The Copy button gives you the whole workflow in one go, so you can reuse it for every new batch of feedback.",
+        }}
+      />
     </div>
   );
 }

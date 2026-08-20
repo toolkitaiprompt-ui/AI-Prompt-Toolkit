@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { AlertTriangle, AlertCircle, Info, CheckCircle2, Activity, Wrench } from 'lucide-react';
 import { debugPrompt, type PromptIssue } from '../lib/toolkit';
 import OutputToolbar, { LiveStats } from './OutputToolbar';
+import { ToolGuide } from './ToolGuide';
 
 const SEVERITY_CONFIG: Record<PromptIssue['severity'], { icon: typeof AlertTriangle; color: string; bg: string; label: string }> = {
   critical: { icon: AlertCircle, color: 'text-red-400', bg: 'bg-red-500/10 border-red-500/20', label: 'Critical' },
@@ -130,6 +131,24 @@ export default function PromptDebugger() {
 
       {/* Report Actions */}
       <OutputToolbar text={report} copyLabel="Copy Report" fileName="debug-report.txt" showStats={false} />
+
+      <ToolGuide
+        intro="The Prompt Debugger checks any prompt against 12+ quality rules and gives it a health score from 0 to 100. It catches vague wording, missing role or format, missing constraints, and other issues that make AI answers generic — then suggests exactly how to fix each one. It is built for anyone who gets weak or off-target answers from ChatGPT, Claude, or Gemini and wants to know why."
+        steps={[
+          "Paste your prompt into the text area. The analysis updates automatically as you type.",
+          "Look at the health score (0–100) and the word, character, and sentence counts to see how your prompt measures up.",
+          "Read the detected issues, sorted by severity — Critical, Warning, or Info — each with a concrete fix suggestion.",
+          "Apply the suggestions to your prompt and paste it back in to watch the score climb.",
+          "Click “Copy Report” to save the full diagnosis for your notes or to share with your team.",
+        ]}
+        example={{
+          title: "A one-line prompt gets flagged, then fixed.",
+          before: "write a blog about ai",
+          after:
+            "You are an experienced technology writer.\nTask: Write a 500-word blog about AI tools for small businesses in India.\nAudience: small business owners with limited technical knowledge.\nFormat: intro, 5 practical tools with one use case each, conclusion.\nTone: simple, practical, no jargon.\nConstraints: under 500 words, no hype words.",
+          note: "The debugger flags the first version for being too vague — no role, no audience, no format, no constraints — which is exactly why “write a blog about ai” gets you a generic answer. The fixed version gives the AI everything it needs.",
+        }}
+      />
     </div>
   );
 }

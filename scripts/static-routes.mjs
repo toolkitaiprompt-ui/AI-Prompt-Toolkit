@@ -104,7 +104,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/tools/token-estimator",
     "title": "Free AI Token Estimator & Counter — GPT, Claude | AI World Hub",
-    "desc": "Estimate token count, characters, and words for AI prompts before sending to GPT, Claude, or Gemini APIs. Free token calculator.",
+    "desc": "Free token estimator for writers and developers: check characters, words, and tokens for any prompt. Stay inside ChatGPT, Claude & Gemini context limits — instant, private, in-browser.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
@@ -128,7 +128,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/tools/advanced-prompt-optimizer",
     "title": "Free Advanced Prompt Optimizer — Best AI Prompt Tool | AI World Hub",
-    "desc": "Polish and optimize AI prompts with advanced controls — reduce tokens, add structure, compare before-and-after. Best free prompt optimizer.",
+    "desc": "Free AI prompt optimizer for ChatGPT, Claude & Gemini users: paste any prompt, get a clearer version with role, tone, format and constraints added. Quality score, compare view, 100% in-browser.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
@@ -144,7 +144,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/tools/mega-prompt-builder",
     "title": "Free Mega Prompt Builder — 8-Step Prompt Wizard | AI World Hub",
-    "desc": "Build structured mega prompts with an 8-step wizard — role, task, context, audience, format, tone, constraints, and examples. Get production-ready prompts instantly. Free in-browser tool.",
+    "desc": "Build complete mega prompts with a free 8-step wizard — role, task, context, audience, format, tone, constraints, examples. Copy the finished prompt in one click. Private, in-browser, no signup.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
@@ -152,7 +152,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/tools/prompt-debugger",
     "title": "Free Prompt Debugger — Health Score & Issue Detection | AI World Hub",
-    "desc": "Diagnose AI prompts with a health score (0-100), 12+ issue detectors, and instant auto-fix suggestions. Find and fix prompt problems before using them. Free in-browser tool.",
+    "desc": "Free prompt debugger: health score 0-100, 12+ issue detectors and instant fixes for vague prompts. Get better ChatGPT, Claude & Gemini answers. Private, 100% in-browser, no signup.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
@@ -168,7 +168,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/tools/prompt-chain-builder",
     "title": "Free Prompt Chain Builder — Sequential AI Workflows | AI World Hub",
-    "desc": "Chain up to 5 sequential prompt steps with different output formats. Copy all steps or export as Markdown. Build multi-step AI workflows. Free in-browser tool.",
+    "desc": "Free prompt chain builder for content, marketing & dev workflows: create 2-5 sequential AI steps with titles, formats and reordering. See the full workflow, copy it in one click. In-browser, private.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"

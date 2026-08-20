@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { ChevronRight, ChevronLeft, RotateCcw } from 'lucide-react';
 import { buildMegaPrompt, type MegaPromptStep } from '../lib/toolkit';
 import OutputToolbar, { LiveStats } from './OutputToolbar';
+import { ToolGuide } from './ToolGuide';
 
 const STEPS: { key: string; label: string; placeholder: string; help: string }[] = [
   {
@@ -167,6 +168,25 @@ export default function MegaPromptBuilder() {
           {output || 'Your mega prompt will appear here as you fill in each step...'}
         </pre>
       </div>
+
+      <ToolGuide
+        intro="The Mega Prompt Builder walks you through 8 building blocks — role, task, context, audience, format, tone, constraints, and examples — and assembles them into one complete, structured prompt. It is made for marketers writing launch campaigns, writers producing long content, developers specifying exact outputs, and students building detailed study or project prompts."
+        steps={[
+          "Fill in each of the 8 steps in order. Use the step chips at the top to jump straight to any section.",
+          "Keep going until the progress bar shows 8 of 8 steps completed.",
+          "Watch the “Generated Mega Prompt” update live as you type — it is assembled instantly in your browser.",
+          "Tweak any step and the output updates immediately. Use Reset to start over.",
+          "Copy the final mega prompt with the Copy button and paste it into your AI chatbot.",
+        ]}
+        example={{
+          title: "Building a product-launch announcement prompt step by step.",
+          before:
+            "Step 1 — Role: Senior content marketing strategist with B2B SaaS experience\nStep 2 — Task: Write a 500-word product launch announcement\nStep 3 — Context: We are launching AI World Hub, a free in-browser prompt engineering toolkit\nStep 4 — Audience: Developers and indie hackers\nStep 5 — Format: Markdown — headline, subheadline, 3 bullet benefits, CTA\nStep 6 — Tone: Confident, friendly, no jargon\nStep 7 — Constraints: Max 500 words, no hype words\nStep 8 — Examples: (paste a sample headline you like)",
+          after:
+            "You are a Senior content marketing strategist with 10+ years of B2B SaaS experience.\n\nTask: Write a 500-word product launch announcement blog post.\n\nContext: We are launching AI World Hub, a free in-browser prompt engineering toolkit.\n\nTarget Audience: Developers and indie hackers interested in AI productivity tools.\n\nOutput Format: Markdown with: H1 headline, subheadline, 3 bullet benefits, CTA.\n\nTone: Confident, friendly, professional — no corporate jargon.\n\nConstraints: Max 500 words, no hype words, include 3 specific benefits.\n\nExamples: (your sample headline goes here).",
+          note: "Each field you fill becomes a labelled section in the final prompt, so the AI gets complete instructions in a format it handles best. Save your best mega prompts for reuse on similar projects.",
+        }}
+      />
     </div>
   );
 

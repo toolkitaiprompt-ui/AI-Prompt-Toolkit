@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Check, Copy, Download, Flag, Plus, RefreshCcw, Sparkles, Trash2, Wand2 } from "lucide-react";
 import { copyToClipboard, downloadTextFile } from "../lib/toolkit";
 import { LiveStats } from "./OutputToolbar";
+import { ToolGuide } from "./ToolGuide";
 
 type ImprovementType = "added" | "kept" | "flagged";
 
@@ -443,6 +444,24 @@ export default function PromptOptimizer() {
           <p className="mt-3 text-slate-400">All analysis runs locally in your browser — your prompts are never sent to any server.</p>
         </div>
       </div>
+
+      <ToolGuide
+        intro="The Advanced Prompt Optimizer restructures any prompt using proven prompt-engineering patterns — role, task, audience, tone, format, and constraints — directly in your browser. It is built for students, freelancers, marketers, developers, and anyone who uses ChatGPT, Claude, Gemini, or any other AI chatbot and wants more consistent, higher-quality answers."
+        steps={[
+          "Paste your prompt into the large text area on the left. It can be as short as one line or as long as a full paragraph.",
+          "Click the “Optimize Prompt” button. The tool analyzes your prompt and builds an improved version with the missing pieces added.",
+          "Review the optimized version on the right, the quality score (0–100), and the “What was improved” list to see exactly what changed.",
+          "Click “Copy optimized prompt” (or Download .txt), then paste the improved version into your favourite AI chatbot.",
+          "Use the “Compare” button any time to see the original and optimized versions side by side.",
+        ]}
+        example={{
+          title: "A weak, vague prompt becomes a structured, clear one in one click.",
+          before: "write something about ai for my business",
+          after:
+            "Role: You are an expert in the relevant domain with deep practical experience.\nTask: Write something about AI for my business\nAudience: [describe exactly who this is for, e.g. beginners, executives]\nTone: professional, clear, and direct\nFormat: well-structured Markdown — short sections with headings and bullet points where helpful\nConstraints: keep it focused and concise; avoid filler and repetition",
+          note: "The optimizer added the missing role, audience, tone, format, and constraints — so the AI knows exactly what you want and how to deliver it. The quality score jumps from about 18/100 to 85/100.",
+        }}
+      />
     </div>
   );
 }
