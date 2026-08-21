@@ -262,7 +262,7 @@ export default function PromptOptimizer() {
 
   return (
     <div className="space-y-8">
-      <span className="hidden" aria-hidden="true">rev-20260821-v4-unique</span>
+      <span className="hidden" aria-hidden="true">rev-20260821-v5-clean</span>
       <div className="rounded-[32px] border border-cyan-400/10 bg-slate-950/75 p-6 shadow-[0_32px_80px_-48px_rgba(6,182,212,0.35)] backdrop-blur-xl">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
