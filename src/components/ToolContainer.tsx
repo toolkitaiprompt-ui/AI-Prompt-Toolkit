@@ -80,10 +80,28 @@ function ToolContainer({
     [title, description, toolSlug],
   );
 
-  const relatedTools = useMemo(
-    () => getRelatedTools(tool?.path ?? (toolSlug ? `/tools/${toolSlug}` : ""), 3),
-    [toolSlug, tool?.path],
-  );
+  const relatedTools = useMemo(() => {
+    const currentPath = tool?.path ?? (toolSlug ? `/tools/${toolSlug}` : "");
+    const auto = getRelatedTools(currentPath, 3);
+    // Curated high-traffic core tools — always cross-link these so users
+    // discover the most useful tools, then append the automatic matches.
+    const corePaths = [
+      "/tools/advanced-prompt-optimizer",
+      "/tools/prompt-chain-builder",
+      "/tools/prompt-debugger",
+      "/tools/token-estimator",
+      "/tools/mega-prompt-builder",
+    ].filter((p) => p !== currentPath);
+    const core = corePaths
+      .map((p) => TOOL_PAGES.find((t) => t.path === p))
+      .filter((t): t is ToolMeta => Boolean(t));
+    const seen = new Set<string>();
+    return [...core, ...auto].filter((t) => {
+      if (seen.has(t.path)) return false;
+      seen.add(t.path);
+      return true;
+    });
+  }, [toolSlug, tool?.path]);
 
   return (
     <section className="site-container section-lg space-y-16">
@@ -155,7 +173,7 @@ function ToolContainer({
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">
                 Related tools
               </p>
-              <h2 className="mt-1 text-2xl font-bold text-white">Tools with similar use cases</h2>
+              <h2 className="mt-1 text-2xl font-bold text-white">Related tools to try next</h2>
             </div>
             <Link
               to="/tools"
