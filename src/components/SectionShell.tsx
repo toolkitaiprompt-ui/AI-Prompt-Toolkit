@@ -12,7 +12,7 @@ export default function SectionShell({
     <section className="site-container section-lg">
       {/* Ad slot — top of every shell page (blog, prompts, playground, static, contact) */}
       <div className="mb-10">
-        <AdBanner size="leaderboard" />
+        <AdBanner network="raw-html-2" />
       </div>
       {children}
       {/* Ad slot — bottom of every shell page */}

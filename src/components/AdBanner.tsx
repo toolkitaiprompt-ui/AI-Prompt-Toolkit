@@ -16,7 +16,7 @@ import { useEffect, useRef, useState } from "react";
   React never re-renders, and fallbacks are separate React-owned nodes.
 */
 
-type Network = "adsterra" | "monetag-banner" | "custom" | "raw-html";
+type Network = "adsterra" | "monetag-banner" | "custom" | "raw-html" | "raw-html-2";
 export type AdSize = "leaderboard" | "rectangle" | "banner" | "skyscraper" | "halfpage";
 
 interface AdBannerProps {
@@ -47,11 +47,17 @@ export const AD_CONFIG: Record<Network, { enabled: boolean; zoneId: string }> = 
   "monetag-banner": { enabled: false, zoneId: "" },
   // Monetag direct-link smartlink (11565897) — VISIBLE sponsored box
   custom: { enabled: true, zoneId: "https://omg10.com/4/11565897" },
-  // Real Adsterra banner tag from the dashboard ("Get tag" snippet)
+  // Real Adsterra banner tags from the dashboard ("Get tag" snippets)
   "raw-html": {
     enabled: true,
     zoneId:
-      '<script async="async" data-cfasync="false" src="https://tremblingsauna.com/6fdb0391425063c2d44f3d3088543b4b/invoke.js"></script><div id="container-6fdb0391425063c2d44f3d3088543b4b"></div>',
+      '<script src="https://tremblingsauna.com/3f/57/c6/3f57c6c4a1cf92823800e36ff3e1b363.js"></script>',
+  },
+  // Second Adsterra tag — used on blog/prompts shell pages
+  "raw-html-2": {
+    enabled: true,
+    zoneId:
+      '<script src="https://tremblingsauna.com/81/ba/7d/81ba7d2609c3d121773bc39aac133595.js"></script>',
   },
 };
 
@@ -211,7 +217,7 @@ export default function AdBanner({
       };
     }
 
-    if (resolvedNetwork === "raw-html") {
+    if (resolvedNetwork === "raw-html" || resolvedNetwork === "raw-html-2") {
       const wrapper = document.createElement("div");
       wrapper.innerHTML = resolvedZone.key;
       Array.from(wrapper.querySelectorAll("script")).forEach((oldScript) => {
@@ -274,7 +280,7 @@ export default function AdBanner({
       <div className="promo-slot" style={{ minHeight: resolvedNetwork === "adsterra" ? resolvedZone.height : 250 }} data-size={resolvedNetwork === "adsterra" ? SIZE_DIMS[size] : ""}>
         <div ref={containerRef} />
       </div>
-      {(resolvedNetwork === "adsterra" || resolvedNetwork === "raw-html") && adFailed && (
+      {(resolvedNetwork === "adsterra" || resolvedNetwork === "raw-html" || resolvedNetwork === "raw-html-2") && adFailed && (
         <div className="promo-fallback">
           <MonetagBox />
         </div>
