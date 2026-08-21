@@ -271,6 +271,17 @@ function ToolContainer({
           </Link>
         </div>
       </div>
+
+      {/* Browse all — clear text link near the bottom of every tool page */}
+      <div className="pt-2">
+        <Link
+          to="/tools"
+          className="group inline-flex items-center gap-1.5 text-base font-semibold text-amber-400 transition hover:text-amber-300"
+        >
+          Browse all free tools
+          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </Link>
+      </div>
     </section>
   );
 }

@@ -249,12 +249,23 @@ export function BlogPostPage() {
             {/* CTA — internal links to core tools */}
             <section className="rounded-[20px] border border-amber-500/20 bg-slate-950/50 p-6">
               {post.cta ? (
+                <>
                 <Link
                   to={post.cta.link}
                   className="block text-base font-semibold leading-8 text-white transition hover:text-amber-300"
                 >
                   {post.cta.text}
                 </Link>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <Link
+                    to="/tools/prompt-chain-builder"
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-700 px-5 py-2.5 text-sm font-medium text-slate-200 transition hover:bg-slate-800"
+                  >
+                    Build multi-step workflows
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                </div>
+                </>
               ) : (
                 <>
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">Free tools</p>
@@ -288,7 +299,7 @@ export function BlogPostPage() {
               const related = BLOG_POSTS.filter((bp) => bp.slug !== post.slug).slice(0, 3);
               return (
                 <section className="rounded-[20px] border border-slate-800 bg-slate-950/50 p-6">
-                  <h2 className="text-xl font-semibold text-white">Related Reads</h2>
+                  <h2 className="text-xl font-semibold text-white">More Guides You Might Like</h2>
                   <ul className="mt-4 space-y-3">
                     {related.map((rp) => (
                       <li key={rp.slug}>

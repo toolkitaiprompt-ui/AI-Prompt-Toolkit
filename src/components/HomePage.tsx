@@ -17,6 +17,7 @@ import {
 
 // Import your actual data
 import { BLOG_POSTS } from '../data/blogPosts';
+import { TOOL_PAGES } from '../data/tools';
 import { estimateTokens } from '../lib/toolkit';
 import BlogCard from './BlogCard';
 import ToolCard from './ToolCard';
@@ -448,6 +449,41 @@ return (
         <AdBanner network="custom" />
       </div>
 
+      {/* Popular Tools — quick links to the most-used tools */}
+      <section className="section-lg mt-16">
+        <div className="site-container">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-8">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+              Popular Tools
+            </h2>
+            <p className="text-base text-slate-400 mt-2">Jump straight into the tools visitors use most.</p>
+          </motion.div>
+          <div className="flex flex-wrap justify-center gap-3">
+            {[
+              "/tools/advanced-prompt-optimizer",
+              "/tools/prompt-chain-builder",
+              "/tools/prompt-debugger",
+              "/tools/token-estimator",
+              "/tools/mega-prompt-builder",
+              "/tools/security-scanner",
+            ].map((path) => {
+              const tool = TOOL_PAGES.find((t) => t.path === path);
+              if (!tool) return null;
+              return (
+                <Link
+                  key={path}
+                  to={path}
+                  className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-900/60 px-4 py-2 text-sm font-medium text-slate-200 transition hover:border-amber-400/40 hover:bg-slate-900 hover:text-white"
+                >
+                  {tool.title}
+                  <ArrowRight className="w-4 h-4 text-amber-400 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Tools Showcase — Featured AI Tools */}
       <section className="section-lg mt-16">
         <div className="site-container">
@@ -620,7 +656,7 @@ return (
           <div className="site-container">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-                Latest from Our Blog
+                Latest from the Blog
                 <br />
                 <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">
                   Expert Insights
