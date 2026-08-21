@@ -47,7 +47,12 @@ export const AD_CONFIG: Record<Network, { enabled: boolean; zoneId: string }> = 
   "monetag-banner": { enabled: false, zoneId: "" },
   // Monetag direct-link smartlink (11565897) — VISIBLE sponsored box
   custom: { enabled: true, zoneId: "https://omg10.com/4/11565897" },
-  "raw-html": { enabled: false, zoneId: "" },
+  // Real Adsterra banner tag from the dashboard ("Get tag" snippet)
+  "raw-html": {
+    enabled: true,
+    zoneId:
+      '<script async="async" data-cfasync="false" src="https://tremblingsauna.com/6fdb0391425063c2d44f3d3088543b4b/invoke.js"></script><div id="container-6fdb0391425063c2d44f3d3088543b4b"></div>',
+  },
 };
 
 const SIZE_DIMS: Record<AdSize, string> = {
@@ -216,6 +221,22 @@ export default function AdBanner({
         oldScript.replaceWith(newScript);
       });
       container.appendChild(wrapper);
+
+      // FALLBACK: if the raw Adsterra tag doesn't fill within 3s (empty
+      // invoke.js / no fill), show the Monetag sponsored box so the slot is
+      // never blank. Only state flips — injected nodes stay untouched.
+      const fallbackTimer = window.setTimeout(() => {
+        const hasIframe = !!container.querySelector("iframe");
+        const hasAd = container.querySelector("a, ins, img[src]") !== null;
+        if (!hasIframe && !hasAd) {
+          setAdFailed(true);
+        }
+      }, 3000);
+
+      return () => {
+        window.clearTimeout(fallbackTimer);
+        injected.current = false;
+      };
     }
 
     if (resolvedNetwork === "monetag-banner") {
@@ -253,7 +274,7 @@ export default function AdBanner({
       <div className="promo-slot" style={{ minHeight: resolvedNetwork === "adsterra" ? resolvedZone.height : 250 }} data-size={resolvedNetwork === "adsterra" ? SIZE_DIMS[size] : ""}>
         <div ref={containerRef} />
       </div>
-      {resolvedNetwork === "adsterra" && adFailed && (
+      {(resolvedNetwork === "adsterra" || resolvedNetwork === "raw-html") && adFailed && (
         <div className="promo-fallback">
           <MonetagBox />
         </div>

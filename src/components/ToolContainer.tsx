@@ -142,7 +142,8 @@ function ToolContainer({
       </div>
 
       {/* Ad — after the tool (keeps the tool itself above the fold on mobile) */}
-      <AdBanner size="rectangle" />
+      {/* Real Adsterra banner tag (dashboard "Get tag") with Monetag fallback */}
+      <AdBanner network="raw-html" />
 
       {relatedBlogs.length > 0 && (
         <section>
