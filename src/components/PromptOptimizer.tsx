@@ -5,6 +5,9 @@ import { copyToClipboard, downloadTextFile } from "../lib/toolkit";
 import { LiveStats } from "./OutputToolbar";
 import { ToolGuide } from "./ToolGuide";
 
+// Build revision marker (harmless) — forces new bundle hash on deploy.
+// v2026-08-21-cachefix
+
 type ImprovementType = "added" | "kept" | "flagged";
 
 interface Improvement {
@@ -259,6 +262,7 @@ export default function PromptOptimizer() {
 
   return (
     <div className="space-y-8">
+      <span className="hidden" aria-hidden="true">rev-20260821-v4-unique</span>
       <div className="rounded-[32px] border border-cyan-400/10 bg-slate-950/75 p-6 shadow-[0_32px_80px_-48px_rgba(6,182,212,0.35)] backdrop-blur-xl">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
