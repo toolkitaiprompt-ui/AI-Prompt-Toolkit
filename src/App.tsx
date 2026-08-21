@@ -330,18 +330,24 @@ function Layout() {
 function MobileBottomAd() {
   const [dismissed, setDismissed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const location = useLocation();
+  // Tool pages have main action buttons (Optimize/Copy/Generate) that a
+  // sticky bottom ad would cover when they scroll into the bottom zone —
+  // keep the sticky bar on content pages (home, blog, prompts) only.
+  const isToolPage = location.pathname.startsWith("/tools/");
   useEffect(() => {
     setIsMobile(window.innerWidth < 768);
   }, []);
+  const show = !dismissed && isMobile && !isToolPage;
   useEffect(() => {
-    if (!dismissed && isMobile) {
+    if (show) {
       document.body.style.paddingBottom = "90px";
     } else {
       document.body.style.paddingBottom = "";
     }
     return () => { document.body.style.paddingBottom = ""; };
-  }, [dismissed, isMobile]);
-  if (dismissed || !isMobile) return null;
+  }, [show]);
+  if (!show) return null;
   return (
     <div className="fixed bottom-0 left-0 right-0 z-[60] md:hidden" style={{ background: "rgba(10,10,15,0.96)", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
       <button
