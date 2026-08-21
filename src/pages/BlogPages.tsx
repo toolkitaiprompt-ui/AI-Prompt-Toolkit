@@ -11,10 +11,32 @@ import { articleJsonLd, faqPageJsonLd, useJsonLd } from "../lib/structuredData";
 import { TOOL_BY_SLUG, type ToolMeta } from "../data/tools";
 import { NotFoundPage } from "./StaticPages";
 
+// Renders paragraphs with lightweight inline links: [text](url)
+function renderInlineLinks(text: string): React.ReactNode[] {
+  const parts = text.split(/\[([^\]]+)\]\(([^)]+)\)/g);
+  const nodes: React.ReactNode[] = [];
+  for (let i = 0; i < parts.length; i++) {
+    if (i % 3 === 0) {
+      if (parts[i]) nodes.push(parts[i]);
+    } else {
+      nodes.push(
+        <a
+          key={i}
+          href={parts[i + 1]}
+          className="font-medium text-amber-400 underline decoration-amber-400/40 underline-offset-2 transition hover:text-amber-300"
+        >
+          {parts[i]}
+        </a>,
+      );
+      i++; // skip the url part
+    }
+  }
+  return nodes;
+}
+
 export function BlogPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
-
   const categories = useMemo(() => {
     const cats = new Set(BLOG_POSTS.map((p) => p.category));
     return ["All", ...Array.from(cats).sort()];
@@ -198,7 +220,7 @@ export function BlogPostPage() {
                   <section key={section.heading} className="space-y-4">
                     <h2 className="text-2xl font-semibold text-white">{section.heading}</h2>
                     {section.paragraphs.map((paragraph) => (
-                      <p key={paragraph} className="text-base leading-8 text-slate-300">{paragraph}</p>
+                      <p key={paragraph} className="text-base leading-8 text-slate-300">{renderInlineLinks(paragraph)}</p>
                     ))}
                   </section>,
                 );
@@ -226,6 +248,15 @@ export function BlogPostPage() {
 
             {/* CTA — internal links to core tools */}
             <section className="rounded-[20px] border border-amber-500/20 bg-slate-950/50 p-6">
+              {post.cta ? (
+                <Link
+                  to={post.cta.link}
+                  className="block text-base font-semibold leading-8 text-white transition hover:text-amber-300"
+                >
+                  {post.cta.text}
+                </Link>
+              ) : (
+                <>
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">Free tools</p>
               <h2 className="mt-1 text-xl font-bold text-white">Put these prompts to work</h2>
               <p className="mt-2 text-sm leading-7 text-slate-400">
@@ -248,6 +279,8 @@ export function BlogPostPage() {
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
               </div>
+                </>
+              )}
             </section>
 
             {/* Related posts — internal linking for SEO + session depth */}

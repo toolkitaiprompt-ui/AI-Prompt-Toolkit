@@ -998,6 +998,22 @@ export const STATIC_ROUTES = [
     "changefreq": "weekly"
   },
   {
+    "path": "/blog/best-free-ai-prompt-tools-without-signup-2026",
+    "title": "Best Free AI Prompt Tools Without Signup | AI World Hub",
+    "desc": "Discover the best free AI prompt tools that work without signup in 2026. Optimize, chain, and improve prompts entirely in your browser.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/blog/how-to-write-better-prompts-chatgpt-claude-2026",
+    "title": "Write Better ChatGPT & Claude Prompts | AI World Hub",
+    "desc": "Learn the practical 2026 method to write better prompts for ChatGPT and Claude. Role, context, format, and constraints explained with examples.",
+    "type": "blog",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
     "path": "/best-ai-writing-tools",
     "title": "Best AI Writing Tools & Assistants 2026 | AI World Hub",
     "desc": "Ranked review of the best AI writing assistants and content generators for 2026 — find the right tool for your writing projects.",

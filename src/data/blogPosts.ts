@@ -11,6 +11,7 @@ export type BlogPost = {
   contentSections: { heading: string; paragraphs: string[] }[];
   faq: { question: string; answer: string }[];
   relatedToolSlugs: string[];
+  cta?: { text: string; link: string };
 };
 
 export const BLOG_POSTS: BlogPost[] = [
