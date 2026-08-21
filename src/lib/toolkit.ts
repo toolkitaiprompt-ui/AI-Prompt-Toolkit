@@ -523,9 +523,12 @@ export function exportChainAsMarkdown(steps: ChainStep[]): string {
 }
 
 export function copyAllChainSteps(steps: ChainStep[]): string {
+  // Use original positions so numbering matches the on-page workflow preview
+  // (empty steps are skipped but keep their original step numbers).
   return steps
-    .filter((s) => s.prompt.trim())
-    .map((s, index) => {
+    .map((s, index) => ({ s, index }))
+    .filter(({ s }) => s.prompt.trim())
+    .map(({ s, index }) => {
       const title = s.title.trim() || `Step ${index + 1}`;
       return `# Step ${index + 1}: ${title} (${s.outputFormat})\n${s.prompt.trim()}`;
     })

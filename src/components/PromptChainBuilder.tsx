@@ -163,7 +163,7 @@ export default function PromptChainBuilder() {
       </div>
 
       {/* Add Step Button */}
-      {steps.length < 5 && (
+      {steps.length < 5 ? (
         <button
           type="button"
           onClick={addStep}
@@ -171,6 +171,10 @@ export default function PromptChainBuilder() {
         >
           <Plus className="h-4 w-4" /> Add Step ({steps.length}/5)
         </button>
+      ) : (
+        <p className="rounded-xl border border-dashed border-slate-800 bg-slate-900/40 py-3 text-center text-xs text-slate-500">
+          Maximum 5 steps reached — remove a step to add a new one.
+        </p>
       )}
 
       {/* Complete Workflow Preview */}
@@ -215,7 +219,9 @@ export default function PromptChainBuilder() {
         <button
           type="button"
           onClick={handleCopyAll}
-          className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-amber-400"
+          disabled={activeSteps.length === 0}
+          title={activeSteps.length === 0 ? 'Add a prompt to at least one step first' : undefined}
+          className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-amber-400 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-amber-500"
         >
           {copied ? '✓ Copied All!' : 'Copy Full Workflow'}
           <Copy className="h-4 w-4" />
@@ -223,13 +229,19 @@ export default function PromptChainBuilder() {
         <button
           type="button"
           onClick={handleDownload}
-          className="inline-flex items-center gap-2 rounded-full border border-slate-700 px-5 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-slate-800"
+          disabled={activeSteps.length === 0}
+          title={activeSteps.length === 0 ? 'Add a prompt to at least one step first' : undefined}
+          className="inline-flex items-center gap-2 rounded-full border border-slate-700 px-5 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-slate-900"
         >
           Export as Markdown <Download className="h-4 w-4" />
         </button>
       </div>
 
-      <p className="text-xs text-slate-500">{activeSteps.length} active step{activeSteps.length !== 1 ? 's' : ''} in your chain.</p>
+      <p className="text-xs text-slate-500">
+        {activeSteps.length === 0
+          ? 'No active steps yet — write a prompt in Step 1 to start your chain.'
+          : `${activeSteps.length} active step${activeSteps.length !== 1 ? 's' : ''} in your chain.`}
+      </p>
 
       <ToolGuide
         intro="The Prompt Chain Builder breaks a big task into 2–5 sequential steps, where each step's output feeds the next one. It is made for content creators planning multi-part articles, marketers running research-to-post workflows, developers building step-by-step code tasks, and students preparing structured study plans — anything too big for a single prompt."
