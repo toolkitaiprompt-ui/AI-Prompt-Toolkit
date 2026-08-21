@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Github, Menu, Search, X } from "lucide-react";
-import { BrowserRouter, Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Link, NavLink, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import ErrorBoundary from "./components/ErrorBoundary";
 import AdBanner from "./components/AdBanner";
 import { ToolSkeleton } from "./components/ToolSkeleton";
@@ -211,6 +211,11 @@ function Layout() {
                 tool={TOOL_BY_SLUG.get("advanced-prompt-optimizer")!}
               />
             }
+          />
+          {/* Alias: /tools/prompt-optimizer → advanced-prompt-optimizer (old links keep working) */}
+          <Route
+            path="/tools/prompt-optimizer"
+            element={<Navigate to="/tools/advanced-prompt-optimizer" replace />}
           />
           <Route path="/tools/prompt-cleaner" element={<PromptCleanerPage />} />
           <Route path="/tools/prompt-converter" element={<LazyPromptConverter title="Prompt Converter" toolSlug="prompt-converter" description="Convert ChatGPT prompts to Claude, Gemini, or Cursor format." tool={TOOL_BY_SLUG.get("prompt-converter")!} />} />
