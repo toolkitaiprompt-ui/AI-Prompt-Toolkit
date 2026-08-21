@@ -137,11 +137,12 @@ function ToolContainer({
         </div>
       </div>
 
-      <AdBanner size="rectangle" />
-
       <div className="rounded-[24px] border border-white/10 bg-slate-950/80 p-6 shadow-xl">
         <div className="space-y-4">{children}</div>
       </div>
+
+      {/* Ad — after the tool (keeps the tool itself above the fold on mobile) */}
+      <AdBanner size="rectangle" />
 
       {relatedBlogs.length > 0 && (
         <section>
