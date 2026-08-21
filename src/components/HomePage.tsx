@@ -194,6 +194,11 @@ return (
                 <span className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl text-slate-400">in Seconds</span>
               </h1>
 
+              {/* Conversion line */}
+              <p className="text-lg sm:text-xl font-medium text-amber-200 mb-4 leading-relaxed">
+                Paste any weak prompt → get a stronger version in seconds. No account needed.
+              </p>
+
               {/* Description */}
               <p className="text-lg sm:text-xl text-slate-300 mb-8 leading-relaxed">
                 19 professional tools to format, validate, optimize, and deploy AI prompts at scale.
@@ -204,10 +209,10 @@ return (
               <div className="flex flex-wrap gap-4 mb-12">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
-                    to="/tools"
+                    to="/tools/advanced-prompt-optimizer"
                     className="group px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 rounded-full font-semibold text-black shadow-lg shadow-amber-500/50 flex items-center gap-2"
                   >
-                    Start Building Free
+                    Try Prompt Optimizer Free
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </motion.div>
@@ -717,10 +722,10 @@ return (
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
-                to="/tools"
+                to="/tools/advanced-prompt-optimizer"
                 className="px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 rounded-full font-semibold text-black shadow-lg shadow-amber-500/50 hover:shadow-xl hover:shadow-amber-500/60 transition-shadow"
               >
-                Start Building Free
+                Try Prompt Optimizer Free
               </Link>
               <Link
                 to="/blog"
