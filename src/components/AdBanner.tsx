@@ -184,7 +184,8 @@ export default function AdBanner({
       invokeScript.setAttribute("data-adsterra", resolvedZone.key);
       container.appendChild(invokeScript);
 
-      // FALLBACK: if Adsterra doesn't fill within 7s, show Monetag box.
+      // FALLBACK: if Adsterra doesn't fill within 3s (empty invoke.js / no fill),
+      // show the Monetag sponsored box so the slot is never blank.
       // Only state flips — injected nodes stay untouched (crash-proof).
       const fallbackTimer = window.setTimeout(() => {
         const hasIframe = !!container.querySelector("iframe");
@@ -192,7 +193,7 @@ export default function AdBanner({
         if (!hasIframe && !hasAd) {
           setAdFailed(true);
         }
-      }, 7000);
+      }, 3000);
 
       return () => {
         window.clearTimeout(fallbackTimer);
