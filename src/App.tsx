@@ -332,13 +332,16 @@ function MobileBottomAd() {
   const [isMobile, setIsMobile] = useState(false);
   const location = useLocation();
   // Tool pages have main action buttons (Optimize/Copy/Generate) that a
-  // sticky bottom ad would cover when they scroll into the bottom zone —
-  // keep the sticky bar on content pages (home, blog, prompts) only.
+  // sticky bottom ad would cover when they scroll into the bottom zone,
+  // and the homepage hero has an "Optimize Prompt" CTA in the same zone on
+  // small screens — keep the sticky bar on content pages (blog, prompts)
+  // only, where it covers nothing.
   const isToolPage = location.pathname.startsWith("/tools/");
+  const isHome = location.pathname === "/";
   useEffect(() => {
     setIsMobile(window.innerWidth < 768);
   }, []);
-  const show = !dismissed && isMobile && !isToolPage;
+  const show = !dismissed && isMobile && !isToolPage && !isHome;
   useEffect(() => {
     if (show) {
       document.body.style.paddingBottom = "90px";
