@@ -84,11 +84,10 @@ export default function HomePage({ toolPages }: HomePageProps) {
   ];
 
   useEffect(() => {
-    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
-    const interval = setInterval(() => {
-      setCurrentTool((prev) => (prev + 1) % demoTools.length);
-    }, 4000);
-    return () => clearInterval(interval);
+    // Demo intentionally stays on Prompt Optimizer (the most useful tool) —
+    // users can switch tabs manually. Auto-rotation was removed so first-time
+    // visitors always see the Optimizer as the default demo.
+    return undefined;
   }, []);
 
 
