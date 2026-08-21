@@ -548,7 +548,7 @@ export const NEW_SEO_POSTS = [
         paragraphs: [
           "The best prompt writers do not rewrite from scratch every time. They build templates. Pick your three most common tasks — writing, summarizing, planning — and create one strong prompt for each. Save them, test them, improve them monthly.",
           "For bigger tasks, break them into steps. Instead of one giant prompt, use the Prompt Chain Builder to plan a sequence: step 1 analyzes, step 2 drafts, step 3 formats. Each step gets a clear instruction, and the whole workflow is reusable. This is how professionals get consistent results — not luck, structure.",
-          "Finally, measure. The Token Estimator tells you how much of the model's context window your prompt uses, which matters when you build long multi-step workflows.",
+          "Finally, measure. The Token Estimator tells you how much of the model's context window your prompt uses, which matters when you build long multi-step workflows. For the fastest path to better prompts, let the Advanced Prompt Optimizer build the structure for you and turn reusable workflows into repeatable chains with the Prompt Chain Builder.",
         ],
       },
     ],
@@ -616,7 +616,7 @@ export const NEW_SEO_POSTS = [
         heading: "Privacy: what happens to your prompts?",
         paragraphs: [
           "With in-browser tools, your prompts never leave your device — no upload, no storage, no analytics on your text. This is different from cloud tools, which process prompts on their servers (and usually store them for a while). For sensitive or work-related content, client-side processing is a real advantage.",
-          "If you share prompts with cloud chatbots anyway, keep a habit of removing personal data first. A quick pass through the Security Scanner catches emails, phone numbers, and other details before you paste them anywhere.",
+          "If you share prompts with cloud chatbots anyway, keep a habit of removing personal data first. A quick pass through the Security Scanner catches emails, phone numbers, and other details before you paste them anywhere. And whenever a prompt feels weak, the Advanced Prompt Optimizer strengthens it in one click — no signup needed.",
         ],
       },
     ],
@@ -687,7 +687,7 @@ export const NEW_SEO_POSTS = [
         paragraphs: [
           "The behavioural round is 30% of most interview scores, and AI is a patient practice partner: 1) \"Act as an interviewer. Ask me behavioural questions for a {role} position — one at a time. After each answer, score it on STAR structure (Situation, Task, Action, Result) and suggest one improvement.\" 2) \"Here is my answer to 'Tell me about a time you failed': {paste}. Rewrite it using the STAR format without changing the facts.\"",
           "3) \"Give me 10 likely questions about my resume: {paste resume highlights} — and after I answer each one, tell me what follow-up the interviewer would ask next.\"",
-          "Before the real interview, practise with a time limit: ask your AI coach to \"time each answer at 90 seconds and tell me when I am rambling\". Structured practice like this is exactly why the Advanced Prompt Optimizer adds role, format, and constraints — the same pattern that makes interview prompts work.",
+          "Before the real interview, practise with a time limit: ask your AI coach to \"time each answer at 90 seconds and tell me when I am rambling\". Structured practice like this is exactly why the Advanced Prompt Optimizer adds role, format, and constraints — the same pattern that makes interview prompts work. On the day before your interview, run your final practice prompts through the Prompt Optimizer and organise the session with the Prompt Chain Builder.",
         ],
       },
     ],
@@ -754,7 +754,7 @@ export const NEW_SEO_POSTS = [
         heading: "A 5-minute fix workflow for any prompt",
         paragraphs: [
           "Whenever an AI answer disappoints, run this loop instead of rewriting from scratch: Step 1 — paste the prompt into the Prompt Debugger and read what is missing (30 seconds). Step 2 — fix the top two issues it flags (1 minute). Step 3 — paste the result into the Advanced Prompt Optimizer for a structured version (30 seconds). Step 4 — compare before and after with the Prompt Comparison tool (1 minute). Step 5 — use the improved version and note what changed (1 minute).",
-          "Repeat this loop for a week and you will stop making most of these mistakes automatically — because the fixes become a habit, not a checklist.",
+          "Repeat this loop for a week and you will stop making most of these mistakes automatically — because the fixes become a habit, not a checklist. For an even faster start, let the Advanced Prompt Optimizer apply the fixes for you and keep multi-step workflows tidy with the Prompt Chain Builder.",
         ],
       },
     ],
@@ -832,7 +832,7 @@ export const NEW_SEO_POSTS = [
         heading: "The 5 mistakes that break prompts on both models",
         paragraphs: [
           "Even model-specific prompts fail when they repeat the same five mistakes: 1) Asking for everything in one sentence — break it into steps or use the Prompt Chain Builder to sequence a whole workflow. 2) No format — the model picks paragraphs when you wanted bullets. 3) No constraints — no length, tone, or exclusions means no quality bar. 4) Mixed instructions — put all instructions first, content after. 5) No examples — for style-sensitive tasks, give one sample sentence so both models mirror it.",
-          "Fix these and your prompts work everywhere. The Prompt Debugger flags all five automatically and scores your prompt out of 100, so you can fix a prompt in seconds instead of guessing from the output.",
+          "Fix these and your prompts work everywhere. The Prompt Debugger flags all five automatically and scores your prompt out of 100, so you can fix a prompt in seconds instead of guessing from the output. When you are ready, run your finished prompts through the Advanced Prompt Optimizer and plan longer tasks with the Prompt Chain Builder.",
         ],
       },
     ],

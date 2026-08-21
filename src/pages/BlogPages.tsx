@@ -224,6 +224,32 @@ export function BlogPostPage() {
               </div>
             </section>
 
+            {/* CTA — internal links to core tools */}
+            <section className="rounded-[20px] border border-amber-500/20 bg-slate-950/50 p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">Free tools</p>
+              <h2 className="mt-1 text-xl font-bold text-white">Put these prompts to work</h2>
+              <p className="mt-2 text-sm leading-7 text-slate-400">
+                Run your prompts through the free Advanced Prompt Optimizer to add role, tone, and format in one
+                click — or break big tasks into steps with the Prompt Chain Builder.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <Link
+                  to="/tools/advanced-prompt-optimizer"
+                  className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-amber-400"
+                >
+                  Try the free Prompt Optimizer
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  to="/tools/prompt-chain-builder"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-700 px-5 py-2.5 text-sm font-medium text-slate-200 transition hover:bg-slate-800"
+                >
+                  Build multi-step workflows
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </section>
+
             {/* Related posts — internal linking for SEO + session depth */}
             {(() => {
               const related = BLOG_POSTS.filter((bp) => bp.slug !== post.slug).slice(0, 3);
