@@ -3,17 +3,21 @@ import useSeo from "../hooks/useSeo";
 import AdBanner from "./AdBanner";
 
 export default function SectionShell({
-  title, description, keywords, children,
+  title, description, keywords, children, hideTopAd = false,
 }: {
   title: string; description: string; keywords?: string; children: ReactNode;
+  hideTopAd?: boolean;
 }) {
   useSeo(title, description, keywords);
   return (
     <section className="site-container section-lg">
-      {/* Ad slot — top of every shell page (blog, prompts, playground, static, contact) */}
-      <div className="mb-10">
-        <AdBanner network="raw-html-2" />
-      </div>
+      {/* Ad slot — top of every shell page (blog, prompts, playground, static, contact).
+          Hidden on the tools directory so the tool list stays the main focus. */}
+      {!hideTopAd && (
+        <div className="mb-10">
+          <AdBanner network="raw-html-2" />
+        </div>
+      )}
       {children}
       {/* Ad slot — bottom of every shell page */}
       <div className="mt-10">
