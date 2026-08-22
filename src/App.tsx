@@ -3,6 +3,7 @@ import { Github, Menu, Search, X } from "lucide-react";
 import { BrowserRouter, Link, NavLink, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import ErrorBoundary from "./components/ErrorBoundary";
 import AdBanner from "./components/AdBanner";
+import { initAdDiagnostics } from "./lib/adDiagnostics";
 import { ToolSkeleton } from "./components/ToolSkeleton";
 import { TOOL_BY_SLUG, TOOL_PAGES } from "./data/tools";
 
@@ -84,6 +85,11 @@ function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
+
+  // Dev/test ad diagnostics — no-op for normal visitors (window.__AD_DIAG only)
+  useEffect(() => {
+    initAdDiagnostics();
+  }, []);
 
   useEffect(() => {
     if (!mobileMenuOpen) return;
