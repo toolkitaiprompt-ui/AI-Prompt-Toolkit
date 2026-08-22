@@ -41,9 +41,9 @@ for (const role of PROMPT_SEO.roles) {
 
 
 const DEFAULT_SEO: SeoData = {
-  title: "19 Free AI Prompt Engineering Tools | AI World Hub",
+  title: "Free AI Prompt Tools & Optimizer | AI World Hub",
   description:
-    "Use 19 free AI prompt engineering tools to build, format, debug, secure, translate, and optimize prompts in your browser. No sign-up required.",
+    "Free AI prompt tools — prompt optimizer, chain builder, debugger, and more to build, format, and optimize prompts in your browser. No sign-up.",
   keywords:
     "Best AI Tools, Free AI Tools, ChatGPT Prompts, Prompt Engineering, AI Tools Directory, AI Prompt Builder, How to Use ChatGPT, Prompt Optimization, AI Prompting, ChatGPT Prompt Generator",
 };
@@ -51,9 +51,9 @@ const DEFAULT_SEO: SeoData = {
 const SEO_MAP: Record<string, SeoData> = {
   // ── Homepage ──
   "/": {
-    title: "19 Free AI Prompt Engineering Tools | AI World Hub",
+    title: "Free AI Prompt Tools & Optimizer | AI World Hub",
     description:
-      "Use 19 free AI prompt engineering tools to build, format, debug, secure, translate, and optimize prompts in your browser. No sign-up required.",
+      "Free AI prompt tools — prompt optimizer, chain builder, debugger, and more to build, format, and optimize prompts in your browser. No sign-up.",
     keywords:
       "Best AI Tools, Free AI Tools, ChatGPT Prompts, Prompt Engineering, AI Tools Directory, AI Prompt Builder, How to Use ChatGPT, Prompt Optimization, AI Prompting, ChatGPT Prompt Generator",
   },

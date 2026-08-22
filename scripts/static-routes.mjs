@@ -7,8 +7,8 @@
 export const STATIC_ROUTES = [
   {
     "path": "/",
-    "title": "19 Free AI Prompt Engineering Tools | AI World Hub",
-    "desc": "Use 19 free AI prompt engineering tools to build, format, debug, secure, translate, and optimize prompts in your browser. No sign-up required.",
+    "title": "Free AI Prompt Tools & Optimizer | AI World Hub",
+    "desc": "Free AI prompt tools — prompt optimizer, chain builder, debugger, and more to build, format, and optimize prompts in your browser. No sign-up.",
     "type": "home",
     "priority": 1,
     "changefreq": "daily"
@@ -128,7 +128,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/tools/advanced-prompt-optimizer",
     "title": "Advanced Prompt Optimizer — Best Prompt Tool | AI World Hub",
-    "desc": "Free prompt optimizer for ChatGPT, Claude & Gemini: paste any prompt, get a clearer version with role, tone, format, and constraints. 100% in-browser.",
+    "desc": "Free prompt optimizer for ChatGPT, Claude & Gemini — paste any weak prompt, get a stronger version with role, tone, and format. No signup, 100% in-browser.",
     "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"

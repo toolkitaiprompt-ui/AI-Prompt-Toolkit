@@ -186,11 +186,10 @@ return (
 
               {/* Heading */}
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-[1.4]">
-                Build{' '}
+                Free AI Prompt Tools{' '}
                 <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 bg-clip-text text-transparent">
-                  Perfect
+                  &amp; Optimizer
                 </span>{' '}
-                AI Prompts{' '}
                 <span className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl text-slate-400">in Seconds</span>
               </h1>
 

@@ -206,7 +206,7 @@ function Layout() {
             element={
               <LazyPromptOptimizer
                 title="Advanced Prompt Optimizer"
-                description="Free prompt optimizer for ChatGPT, Claude & Gemini: paste any prompt, get a clearer version with role, tone, format, and constraints. 100% in-browser."
+                description="Free prompt optimizer for ChatGPT, Claude & Gemini — paste any weak prompt, get a stronger version with role, tone, and format. No signup, 100% in-browser."
                 toolSlug="advanced-prompt-optimizer"
                 tool={TOOL_BY_SLUG.get("advanced-prompt-optimizer")!}
               />
