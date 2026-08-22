@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-    <!-- P0 product-safety fix: automatic Monetag OnClick pop-under and vignette
-         scripts are intentionally disabled because they intercepted first-party
-         CTA and tool clicks in production. Visible sponsored cards remain opt-in. -->
-
-    <!-- In-page push and notification zones remain separate from first-party controls. -->
-    <script src="https://nap5k.com/tag.min.js" data-zone="11579225" async data-cfasync="false"></script>
-    <script src="https://nap5k.com/tag.min.js" data-zone="11579227" async data-cfasync="false"></script>
+    <!-- Product-safety and performance fix: automatic third-party advertising
+         scripts are disabled. They captured first-party interactions and the
+         remaining Monetag scripts loaded a vignette dependency in mobile tests.
+         Clearly labelled sponsored cards remain visitor-initiated only. -->
     <meta name="google-site-verification" content="CuFSreK8Oi6CUbOHg49HUv-4HoyArB2JQo2H5KY9wQA" />
 
     <!-- Monetag Verification -->
@@ -74,7 +71,7 @@
     <link rel="apple-touch-icon" href="/favicon.svg" />
 
 
-    <!-- Monetag in-page/notification scripts are loaded above; visible sponsored cards are rendered by AdBanner. -->
+    <!-- Visible sponsored cards are rendered by AdBanner and require an intentional click. -->
 
     <!-- PERFORMANCE: Preconnect to all external domains (faster loading) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -82,9 +79,7 @@
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://images.unsplash.com">
 
-    <!-- AD DELIVERY: preconnect only to active ad resources. -->
-    <link rel="preconnect" href="https://nap5k.com" crossorigin>
-    <link rel="preconnect" href="https://www.highperformanceformat.com" crossorigin>
+    <!-- AD DELIVERY: only opt-in sponsored cards remain; no automatic ad script preconnects. -->
     <link rel="dns-prefetch" href="https://omg10.com">
     <link rel="dns-prefetch" href="https://6opo.com">
     <link rel="dns-prefetch" href="https://auqot.com">
