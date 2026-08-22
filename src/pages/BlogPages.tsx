@@ -174,7 +174,7 @@ export function BlogPostPage() {
   return (
     <section className="site-container section-md">
       <div className="mb-8">
-        <AdBanner network="raw-html-2" />
+        <AdBanner network="custom" />
       </div>
       <div className="space-y-5 sm:space-y-6">
         <div className="space-y-2 sm:space-y-3">

@@ -15,7 +15,7 @@ export default function SectionShell({
           Hidden on the tools directory so the tool list stays the main focus. */}
       {!hideTopAd && (
         <div className="mb-10">
-          <AdBanner network="raw-html-2" />
+          <AdBanner network="custom" />
         </div>
       )}
       {children}

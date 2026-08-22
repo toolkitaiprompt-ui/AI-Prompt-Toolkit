@@ -47,17 +47,18 @@ export const AD_CONFIG: Record<Network, { enabled: boolean; zoneId: string }> = 
   "monetag-banner": { enabled: false, zoneId: "" },
   // Monetag direct-link smartlink (11565897) — VISIBLE sponsored box
   custom: { enabled: true, zoneId: "https://omg10.com/4/11565897" },
-  // Real Adsterra banner tags from the dashboard ("Get tag" snippets)
+  // Adsterra banner tags are now placed STATICALLY in index.html (their delivery
+  // requires the tag in the served HTML — dynamic injection returned empty).
+  // These networks stay reserved; slots below use the Monetag sponsored box.
   "raw-html": {
-    enabled: true,
+    enabled: false,
     zoneId:
-      '<script src="https://tremblingsauna.com/3f/57/c6/3f57c6c4a1cf92823800e36ff3e1b363.js"></script>',
+      '<script async="async" data-cfasync="false" src="https://tremblingsauna.com/3f/57/c6/3f57c6c4a1cf92823800e36ff3e1b363.js"></script>',
   },
-  // Second Adsterra tag — used on blog/prompts shell pages
   "raw-html-2": {
-    enabled: true,
+    enabled: false,
     zoneId:
-      '<script src="https://tremblingsauna.com/81/ba/7d/81ba7d2609c3d121773bc39aac133595.js"></script>',
+      '<script async="async" data-cfasync="false" src="https://tremblingsauna.com/81/ba/7d/81ba7d2609c3d121773bc39aac133595.js"></script>',
   },
 };
 
