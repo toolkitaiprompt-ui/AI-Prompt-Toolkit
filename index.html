@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-    <!-- MONETAG AD CODES — placed FIRST in <head> per Monetag instruction.
-         Zones belong to the site owner's Monetag account (toolkitaiprompt@gmail.com).
-         Popunder 11579224 is dead (delivery 404), so popunder uses zone 270208. -->
-    <!-- CODE 1: OnClick popunder zone 270208 (delivery endpoint verified 200) -->
-    <script src="https://quge5.com/88/tag.min.js" data-zone="270208" async data-cfasync="false"></script>
+    <!-- P0 product-safety fix: automatic Monetag OnClick pop-under and vignette
+         scripts are intentionally disabled because they intercepted first-party
+         CTA and tool clicks in production. Visible sponsored cards remain opt-in. -->
 
-    <!-- CODE 2: In-Page Push zone 11579225 (owner's zone — delivery 200) -->
+    <!-- In-page push and notification zones remain separate from first-party controls. -->
     <script src="https://nap5k.com/tag.min.js" data-zone="11579225" async data-cfasync="false"></script>
-
-    <!-- CODE 3: Vignette zone 11579226 (owner's zone — delivery 200) -->
-    <script>(function(s){s.dataset.zone='11579226',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-
-    <!-- CODE 4: Push Notifications zone 11579227 (owner's zone — delivery 200) -->
     <script src="https://nap5k.com/tag.min.js" data-zone="11579227" async data-cfasync="false"></script>
     <meta name="google-site-verification" content="CuFSreK8Oi6CUbOHg49HUv-4HoyArB2JQo2H5KY9wQA" />
 
@@ -81,7 +74,7 @@
     <link rel="apple-touch-icon" href="/favicon.svg" />
 
 
-    <!-- Ad networks: Monetag (popunder/inpage/vignette) in head above, Adsterra banners via AdBanner component -->
+    <!-- Monetag in-page/notification scripts are loaded above; visible sponsored cards are rendered by AdBanner. -->
 
     <!-- PERFORMANCE: Preconnect to all external domains (faster loading) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -89,10 +82,8 @@
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://images.unsplash.com">
 
-    <!-- AD DELIVERY: preconnect (sirf 4 sabse important — Lighthouse guideline) -->
-    <link rel="preconnect" href="https://quge5.com" crossorigin>
+    <!-- AD DELIVERY: preconnect only to active ad resources. -->
     <link rel="preconnect" href="https://nap5k.com" crossorigin>
-    <link rel="preconnect" href="https://n6wxm.com" crossorigin>
     <link rel="preconnect" href="https://www.highperformanceformat.com" crossorigin>
     <link rel="dns-prefetch" href="https://omg10.com">
     <link rel="dns-prefetch" href="https://6opo.com">
@@ -297,14 +288,9 @@
     </script>
 </head>
    <body>
-    <!-- ADSTERRA BANNER TAGS — static in HTML per Adsterra "Get tag" format.
-         Wrapped in a clip-container so a wide ad iframe can NEVER cause
-         horizontal overflow on mobile (site layout stays intact even if
-         the ad renders larger than the viewport). -->
-    <div style="overflow-x: clip; max-width: 100%;">
-      <script async="async" data-cfasync="false" src="https://tremblingsauna.com/3f/57/c6/3f57c6c4a1cf92823800e36ff3e1b363.js"></script>
-      <script async="async" data-cfasync="false" src="https://tremblingsauna.com/81/ba/7d/81ba7d2609c3d121773bc39aac133595.js"></script>
-    </div>
+    <!-- P0 product-safety fix: static third-party Adsterra scripts are disabled.
+         One matched the external redirect key observed during first-party CTA
+         and tool testing. Sponsored cards remain user-initiated only. -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

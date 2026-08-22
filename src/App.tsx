@@ -57,26 +57,6 @@ const NotFoundPage = lazy(() => import("./pages/StaticPages").then((m) => ({ def
 const PlaygroundPage = lazy(() => import("./pages/PlaygroundPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 
-function MonetagSPA() {
-  const location = useLocation();
-
-  useEffect(() => {
-    // Reinitialize Monetag MultiTag on route changes (SPA navigation).
-    // NOTE: only safe refresh calls — never remove/re-insert the script tag,
-    // that caused double-init and black-screen overlays on live.
-    try {
-      const w = window as any;
-      if (w.monetag && typeof w.monetag.refresh === "function") {
-        w.monetag.refresh();
-      }
-    } catch {
-      // silently ignore
-    }
-  }, [location.pathname]);
-
-  return null;
-}
-
 function GlobalAdScripts() {
   useEffect(() => {}, []);
   return null;
@@ -402,7 +382,6 @@ function MobileBottomAd() {
 export default function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL?.replace(/\/$/, "") || ""}>
-      <MonetagSPA />
       <GlobalAdScripts />
       <Layout />
     </BrowserRouter>
