@@ -6,6 +6,7 @@ import SectionShell from "../components/SectionShell";
 import AdBanner from "../components/AdBanner";
 import BlogCard from "../components/BlogCard";
 import { BLOG_POSTS, getBlogPostBySlug } from "../data/blogPosts";
+import { getRelatedBlogPosts, getRolesForBlogCategory } from "../lib/contentHub";
 import useSeo from "../hooks/useSeo";
 import { articleJsonLd, faqPageJsonLd, useJsonLd } from "../lib/structuredData";
 import { TOOL_BY_SLUG, type ToolMeta } from "../data/tools";
@@ -297,7 +298,7 @@ export function BlogPostPage() {
 
             {/* Related posts — internal linking for SEO + session depth */}
             {(() => {
-              const related = BLOG_POSTS.filter((bp) => bp.slug !== post.slug).slice(0, 3);
+              const related = getRelatedBlogPosts(post, 4);
               return (
                 <section className="rounded-[20px] border border-slate-800 bg-slate-950/50 p-6">
                   <h2 className="text-xl font-semibold text-white">More Guides You Might Like</h2>
@@ -329,6 +330,22 @@ export function BlogPostPage() {
                     >
                       <tool.icon className="h-4 w-4 shrink-0" aria-hidden="true" />
                       {tool.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="border-t border-slate-800 pt-4">
+              <h2 className="text-base font-semibold text-white">Related prompt collections</h2>
+              <ul className="mt-3 space-y-2.5 text-sm">
+                {getRolesForBlogCategory(post.category, 3).map((role) => (
+                  <li key={role.slug}>
+                    <Link
+                      to={role.path}
+                      className="group flex items-center justify-between gap-3 text-slate-300 transition hover:text-amber-300"
+                    >
+                      <span>{role.title}</span>
+                      <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-slate-500 group-hover:text-amber-400" />
                     </Link>
                   </li>
                 ))}

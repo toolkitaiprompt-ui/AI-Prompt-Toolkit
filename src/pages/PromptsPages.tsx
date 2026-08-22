@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import ENGINE from "../data/prompt-engine.json";
 import { copyToClipboard } from "../lib/toolkit";
+import { getToolsForRole, getBlogPostsForRole } from "../lib/contentHub";
 import SectionShell from "../components/SectionShell";
 import {
   breadcrumbJsonLd,
@@ -448,6 +449,72 @@ export function PromptsRolePage() {
             );
           })}
         </div>
+
+        {/* Related tools — natural next step: run these prompts through free tools */}
+        {(() => {
+          const roleTools = getToolsForRole(roleData.slug, 4);
+          if (roleTools.length === 0) return null;
+          return (
+            <div className="rounded-[20px] border border-slate-800 bg-slate-950/60 p-6">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <h2 className="text-lg font-semibold text-white">Related free tools</h2>
+                  <p className="mt-1 text-sm text-slate-400">Run these {roleData.title.toLowerCase()} through free in-browser tools to refine, debug, and scale them.</p>
+                </div>
+                <Link to="/tools" className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400 transition hover:text-amber-300">
+                  All tools
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </div>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                {roleTools.map((t) => (
+                  <Link
+                    key={t.path}
+                    to={t.path}
+                    className="group flex items-center gap-3 rounded-xl border border-slate-800 bg-slate-900/40 px-4 py-3 transition hover:border-amber-400/30 hover:bg-slate-900/70"
+                  >
+                    <t.icon className="h-5 w-5 shrink-0 text-amber-400" aria-hidden="true" />
+                    <span className="flex-1 text-sm font-medium text-slate-200 group-hover:text-white">{t.title}</span>
+                    <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-500 group-hover:text-amber-400" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
+
+        {/* Related guides — blog posts that fit this role */}
+        {(() => {
+          const rolePosts = getBlogPostsForRole(roleData.slug, 3);
+          if (rolePosts.length === 0) return null;
+          return (
+            <div className="rounded-[20px] border border-slate-800 bg-slate-950/60 p-6">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <h2 className="text-lg font-semibold text-white">Related guides</h2>
+                  <p className="mt-1 text-sm text-slate-400">Deep-dive articles on {roleData.title.toLowerCase()} and the workflows around them.</p>
+                </div>
+                <Link to="/blog" className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400 transition hover:text-amber-300">
+                  All guides
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </div>
+              <ul className="mt-4 space-y-3">
+                {rolePosts.map((post) => (
+                  <li key={post.slug}>
+                    <Link
+                      to={`/blog/${post.slug}`}
+                      className="group flex items-start justify-between gap-3 rounded-xl border border-slate-800 bg-slate-900/40 px-4 py-3 text-sm text-slate-300 transition hover:border-amber-400/30 hover:text-white"
+                    >
+                      <span>{post.title}</span>
+                      <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-500 group-hover:text-amber-400" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })()}
       </div>
     </SectionShell>
   );
@@ -628,6 +695,19 @@ export function PromptTaskPage() {
               Browse tools
               <ArrowUpRight className="h-4 w-4" />
             </Link>
+          </div>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            {getToolsForRole(roleData.slug, 4).map((t) => (
+              <Link
+                key={t.path}
+                to={t.path}
+                className="group flex items-center gap-3 rounded-xl border border-slate-800 bg-slate-900/40 px-4 py-3 text-sm text-slate-300 transition hover:border-amber-400/30 hover:text-white"
+              >
+                <t.icon className="h-5 w-5 shrink-0 text-amber-400" aria-hidden="true" />
+                <span className="flex-1 font-medium">{t.title}</span>
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-500 group-hover:text-amber-400" />
+              </Link>
+            ))}
           </div>
         </div>
 

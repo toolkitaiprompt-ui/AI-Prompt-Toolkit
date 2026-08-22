@@ -18,6 +18,7 @@ import {
 // Import your actual data
 import { BLOG_POSTS } from '../data/blogPosts';
 import { TOOL_PAGES } from '../data/tools';
+import { PROMPT_ROLE_META } from '../lib/contentHub';
 import { estimateTokens } from '../lib/toolkit';
 import BlogCard from './BlogCard';
 import ToolCard from './ToolCard';
@@ -479,6 +480,49 @@ return (
                 </Link>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Useful Prompts — prompt-library role pages visitors can explore next */}
+      <section className="section-lg mt-16">
+        <div className="site-container">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">Prompt Library</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mt-1">
+              Useful Prompts
+            </h2>
+            <p className="text-base text-slate-400 mt-2">Ready-to-copy prompts for 15 professional roles — pair them with the free tools above.</p>
+          </motion.div>
+          <div className="flex flex-wrap justify-center gap-3">
+            {[
+              "chatgpt",
+              "content-writer",
+              "developer",
+              "marketer",
+              "seo-specialist",
+              "student",
+            ].map((slug) => {
+              const role = PROMPT_ROLE_META[slug];
+              if (!role) return null;
+              return (
+                <Link
+                  key={slug}
+                  to={role.path}
+                  className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-900/60 px-4 py-2 text-sm font-medium text-slate-200 transition hover:border-amber-400/40 hover:bg-slate-900 hover:text-white"
+                >
+                  {role.title}
+                  <ArrowRight className="w-4 h-4 text-amber-400 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+              );
+            })}
+            <Link
+              to="/prompts"
+              className="group inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-sm font-semibold text-amber-300 transition hover:bg-amber-500/20 hover:text-amber-200"
+            >
+              Browse all 15 collections
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
           </div>
         </div>
       </section>

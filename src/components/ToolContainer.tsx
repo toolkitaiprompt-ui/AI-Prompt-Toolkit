@@ -2,6 +2,7 @@ import { useJsonLd, softwareAppJsonLd, faqPageJsonLd, breadcrumbJsonLd, toolFaq,
 import useSeo from "../hooks/useSeo";
 import { BLOG_POSTS } from "../data/blogPosts";
 import { TOOL_PAGES, TOOL_CATEGORIES, type ToolMeta } from "../data/tools";
+import { getRolesForTool } from "../lib/contentHub";
 import AdBanner from "./AdBanner";
 import BlogCard from "./BlogCard";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
@@ -209,14 +210,29 @@ function ToolContainer({
           <div className="mb-6 flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">
-                Resources for {getCategoryName(tool.category)}
+                Useful prompts for {getCategoryName(tool.category)}
               </p>
               <h2 className="mt-1 text-xl font-bold text-white">Learn & get results faster</h2>
             </div>
           </div>
+
+          {/* Prompt-library role pages that fit this tool */}
+          <div className="mb-6 flex flex-wrap gap-3">
+            {getRolesForTool(tool.path, 4).map((role) => (
+              <Link
+                key={role.slug}
+                to={role.path}
+                className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-900/40 px-4 py-2 text-sm font-medium text-slate-200 transition hover:border-amber-400/40 hover:bg-slate-900/70 hover:text-white"
+              >
+                {role.title}
+                <ArrowUpRight className="h-3.5 w-3.5 text-slate-500 transition group-hover:text-amber-400" />
+              </Link>
+            ))}
+          </div>
+
           <div className="grid grid-cols-2 gap-4">
-            <a
-              href={`/prompts/${tool.category}`}
+            <Link
+              to="/prompts"
               className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/40 p-4 transition hover:border-amber-400/30 hover:bg-slate-900/70"
             >
               <svg
@@ -228,12 +244,12 @@ function ToolContainer({
                 <path d="M20 30 L44 30 M30 20 L30 44" stroke="currentColor" strokeWidth="2" />
               </svg>
               <span>
-                <span className="font-medium text-write">Browse {getCategoryName(tool.category)} prompts</span>
-                <span className="text-sm text-slate-500">/ prompts</span>
+                <span className="font-medium text-white">Browse the prompt library</span>
+                <span className="text-sm text-slate-500">/ prompts · 15 role collections</span>
               </span>
-            </a>
-            <a
-              href="/blog/best-ai-tools-2026-complete-directory"
+            </Link>
+            <Link
+              to="/blog/best-ai-tools-2026-complete-directory"
               className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/40 p-4 transition hover:border-amber-400/30 hover:bg-slate-900/70"
             >
               <svg
@@ -248,7 +264,7 @@ function ToolContainer({
                 <span className="font-medium text-white">Best AI Tools 2026 Directory</span>
                 <span className="text-sm text-slate-500">/ blog</span>
               </span>
-            </a>
+            </Link>
           </div>
         </section>
       )}
