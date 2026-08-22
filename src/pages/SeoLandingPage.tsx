@@ -129,7 +129,9 @@ const LANDINGS: Record<string, LandingConfig> = {
 
 export default function SeoLandingPage() {
   const { pathname } = useLocation();
-  const cfg = LANDINGS[pathname];
+  // Normalize trailing slash (Cloudflare canonicalizes to /path/)
+  const path = pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+  const cfg = LANDINGS[path];
   useSeo(cfg?.title, cfg?.desc);
 
   if (!cfg) {
