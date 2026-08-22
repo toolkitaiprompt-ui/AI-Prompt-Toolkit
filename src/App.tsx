@@ -29,6 +29,7 @@ const BestAiToolsForWritingPage = lazy(() => import("./pages/BestAiToolsForWriti
 const BestAiToolsForCodingPage = lazy(() => import("./pages/BestAiToolsForCodingPage"));
 const BestAiToolsForImageGenerationPage = lazy(() => import("./pages/BestAiToolsForImageGenerationPage"));
 const AiToolComparisonsPage = lazy(() => import("./pages/AiToolComparisonsPage"));
+const SeoLandingPage = lazy(() => import("./pages/SeoLandingPage"));
 
 const LazyPromptOptimizer = lazy(() => import("./pages/toolPages").then((m) => ({ default: m.PromptOptimizerPage })));
 const LazyPromptConverter = lazy(() => import("./pages/toolPages").then((m) => ({ default: m.PromptConverterPage })));
@@ -257,6 +258,25 @@ function Layout() {
           <Route path="/image-generator" element={<Suspense fallback={<ToolSkeleton />}><ImageGeneratorPage /></Suspense>} />
           <Route path="/privacy-policy" element={<PrivacyPage />} />
           <Route path="/terms-of-service" element={<TermsPage />} />
+          {/* Orphan-page fixes: SEO landing pages (were prerendered + in sitemap but had no SPA route) */}
+          <Route path="/ai-tools-for-students" element={<SeoLandingPage />} />
+          <Route path="/ai-tools-for-small-business" element={<SeoLandingPage />} />
+          <Route path="/ai-prompt-templates-business" element={<SeoLandingPage />} />
+          <Route path="/ai-prompt-templates-marketing" element={<SeoLandingPage />} />
+          <Route path="/ai-prompt-templates-developers" element={<SeoLandingPage />} />
+          <Route path="/ai-models-comparison" element={<SeoLandingPage />} />
+          <Route path="/ai-trends-2026-guide" element={<SeoLandingPage />} />
+          <Route path="/ai-for-productivity" element={<SeoLandingPage />} />
+          <Route path="/ai-for-content-creation" element={<SeoLandingPage />} />
+          <Route path="/ai-for-research" element={<SeoLandingPage />} />
+          <Route path="/free-ai-tools-content-creators" element={<SeoLandingPage />} />
+          <Route path="/ai-tools-for-social-media" element={<SeoLandingPage />} />
+          <Route path="/ai-prompt-patterns" element={<SeoLandingPage />} />
+          {/* Duplicate twins -> redirect to canonical working pages */}
+          <Route path="/best-ai-writing-tools" element={<Navigate to="/best-ai-tools-for-writing" replace />} />
+          <Route path="/best-ai-coding-tools" element={<Navigate to="/best-ai-tools-for-coding" replace />} />
+          <Route path="/best-ai-image-generators" element={<Navigate to="/best-ai-tools-for-image-generation" replace />} />
+          <Route path="/best-ai-video-tools" element={<Navigate to="/best-ai-tools-for-writing" replace />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         </Suspense>
