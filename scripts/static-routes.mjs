@@ -960,7 +960,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/blog/how-to-write-better-ai-prompts-2026",
     "title": "How to Write Better AI Prompts in 2026 | AI World Hub",
-    "desc": "Step-by-step guide to writing AI prompts that get real results — 6-part structure, before/after examples, and mistakes to avoid. Works with ChatGPT, Claude, Gemini.",
+    "desc": "Learn how to write better AI prompts in 2026 — a 6-part structure, before/after examples, and mistakes to avoid. Works with ChatGPT, Claude, Gemini.",
     "type": "blog",
     "priority": 0.7,
     "changefreq": "weekly"

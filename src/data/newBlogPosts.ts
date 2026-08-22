@@ -506,7 +506,7 @@ export const NEW_SEO_POSTS = [
     title: "How to Write Better AI Prompts in 2026 (Step by Step Guide)",
     seoTitle: "How to Write Better AI Prompts in 2026 | AI World Hub",
     metaDescription:
-      "Learn how to write better AI prompts in 2026 — a simple 6-part structure, real before/after examples, and common mistakes to avoid. Works with ChatGPT, Claude and Gemini.",
+      "Learn how to write better AI prompts in 2026 — a 6-part structure, before/after examples, and mistakes to avoid. Works with ChatGPT, Claude, Gemini.",
     excerpt:
       "A step-by-step guide to writing AI prompts that get real results — role, task, context, audience, tone and format, with examples you can copy today.",
     category: "Prompt Engineering",
