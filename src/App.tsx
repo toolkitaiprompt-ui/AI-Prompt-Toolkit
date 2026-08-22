@@ -272,6 +272,13 @@ function Layout() {
           <Route path="/free-ai-tools-content-creators" element={<SeoLandingPage />} />
           <Route path="/ai-tools-for-social-media" element={<SeoLandingPage />} />
           <Route path="/ai-prompt-patterns" element={<SeoLandingPage />} />
+          {/* Problem-based shareable guides */}
+          <Route path="/ai-prompts-not-working" element={<SeoLandingPage />} />
+          <Route path="/cut-ai-token-costs" element={<SeoLandingPage />} />
+          <Route path="/make-ai-content-sound-human" element={<SeoLandingPage />} />
+          <Route path="/stop-ai-hallucinations" element={<SeoLandingPage />} />
+          <Route path="/learn-prompt-engineering-fast" element={<SeoLandingPage />} />
+          <Route path="/fix-ai-output-formatting" element={<SeoLandingPage />} />
           {/* Duplicate twins -> redirect to canonical working pages */}
           <Route path="/best-ai-writing-tools" element={<Navigate to="/best-ai-tools-for-writing" replace />} />
           <Route path="/best-ai-coding-tools" element={<Navigate to="/best-ai-tools-for-coding" replace />} />

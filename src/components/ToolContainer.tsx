@@ -134,6 +134,26 @@ function ToolContainer({
                 ))}
               </div>
             )}
+            {/* Share bar — make tool pages easy to share */}
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+              <span className="text-xs font-medium uppercase tracking-wider text-slate-500">Share:</span>
+              {[
+                { label: "X", href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent("https://aiworldhub.site" + window.location.pathname)}` },
+                { label: "WhatsApp", href: `https://wa.me/?text=${encodeURIComponent(title + " " + "https://aiworldhub.site" + window.location.pathname)}` },
+                { label: "LinkedIn", href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent("https://aiworldhub.site" + window.location.pathname)}` },
+                { label: "Facebook", href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent("https://aiworldhub.site" + window.location.pathname)}` },
+              ].map((soc) => (
+                <a
+                  key={soc.label}
+                  href={soc.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-300 transition hover:border-amber-400/40 hover:text-amber-300"
+                >
+                  {soc.label}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

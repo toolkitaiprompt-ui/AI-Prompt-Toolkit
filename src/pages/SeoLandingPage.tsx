@@ -198,6 +198,84 @@ const LANDINGS: Record<string, LandingConfig> = {
       { question: "Do patterns work on every AI model?", answer: "The core patterns work across ChatGPT, Claude, and Gemini. Model-specific variations are covered in the related guides." },
     ],
   },
+  "/ai-prompts-not-working": {
+    title: "AI Prompts Not Working? Fix Them in 5 Minutes | AI World Hub",
+    desc: "Generic AI answers? Fix weak prompts in 5 minutes with a free prompt debugger and optimizer — works for ChatGPT, Claude, and Gemini.",
+    intro: "If every AI answer comes back vague, off-topic, or half-baked, the problem is almost never the model — it's the prompt. Vague prompts get vague answers. This guide shows you the 4 most common prompt failures and gives you free tools that fix all of them in minutes.",
+    tools: ["/tools/advanced-prompt-optimizer", "/tools/prompt-debugger", "/tools/prompt-chain-builder", "/tools/prompt-formatter"],
+    guides: ["prompt-audit-and-iteration-strategies", "optimize-prompts-for-better-ai-performance", "how-to-write-better-ai-prompts-2026"],
+    cta: "Fix your prompt now",
+    faq: [
+      { question: "Why does my AI prompt give generic answers?", answer: "Because it lacks constraints. Without a role, audience, format, and length, the model picks its own — usually the most generic version. The Prompt Debugger scores your prompt and lists exactly what's missing." },
+      { question: "How fast can I actually fix a bad prompt?", answer: "2–5 minutes. Paste it into the free Prompt Debugger, see the issues, then run it through the Optimizer to get a structured version with role, tone, and format added." },
+      { question: "Do better prompts work on every AI model?", answer: "Yes — ChatGPT, Claude, and Gemini all respond to the same structure principles. If a prompt works poorly everywhere, it's the prompt, not the model." },
+    ],
+  },
+  "/cut-ai-token-costs": {
+    title: "Cut AI Token Costs & API Bills | AI World Hub",
+    desc: "Reduce ChatGPT and API token costs — trim bloated prompts, estimate usage, and keep quality. Free in-browser tools, no sign-up.",
+    intro: "Token costs creep up silently: long instructions, repeated context, and bloated formatting all burn money on every request. The fix is measurable — count tokens before you send, cut the fat, and keep the structure that matters. These free tools do all three.",
+    tools: ["/tools/token-estimator", "/tools/prompt-cleaner", "/tools/advanced-prompt-optimizer", "/tools/prompt-formatter"],
+    guides: ["prompt-optimization-for-cost-and-quality", "optimize-prompts-for-better-ai-performance", "best-free-ai-prompt-tools-2026"],
+    cta: "Estimate your next prompt",
+    faq: [
+      { question: "What exactly is a token and why does it cost money?", answer: "Tokens are the chunks of text an AI model reads and writes. Every API call bills input tokens + output tokens, so longer prompts and longer replies both cost more. Trimming a prompt from 400 to 200 tokens cuts that request's cost in half." },
+      { question: "How much can prompt cleaning save on API bills?", answer: "Most people can cut 30–60% of a prompt's tokens without losing quality — repeated context, filler words, and redundant instructions are the usual culprits. The Token Estimator shows the before/after count instantly." },
+      { question: "Does a shorter prompt reduce output quality?", answer: "Not if you keep the structure — role, task, format, constraints. The Optimizer compresses wording while keeping those elements, so quality stays up and tokens drop." },
+    ],
+  },
+  "/make-ai-content-sound-human": {
+    title: "Make AI Content Sound Human (Not Robotic) | AI World Hub",
+    desc: "AI text sounds robotic? Add tone, voice, and constraints with free prompt tools — make ChatGPT content read like a human wrote it.",
+    intro: "AI writing gets flagged as robotic because of one thing: a flat, unconstrained prompt. Without a voice, the model defaults to its most neutral tone. The fix is a prompt with personality — audience, tone, rhythm, banned phrases, and examples. Here's how to build one in minutes.",
+    tools: ["/tools/advanced-prompt-optimizer", "/tools/persona-builder", "/tools/prompt-debugger", "/tools/prompt-translator"],
+    guides: ["chatgpt-prompts-for-content-writers", "craft-high-impact-chatgpt-prompts", "how-to-write-better-ai-prompts-2026"],
+    cta: "Give your prompt a voice",
+    faq: [
+      { question: "Why does AI content always sound the same?", answer: "Because the default prompt asks for 'a blog post' with no voice attached. Models pick their most neutral register. Adding audience, tone, and banned words changes the output dramatically." },
+      { question: "What prompt elements make text sound human?", answer: "Four things: a defined reader, a tone (e.g. 'plain-spoken, like a friend explaining'), short sentences, and 2–3 banned words like 'delve' or 'crucial'. The Optimizer adds all of these in one click." },
+      { question: "Will adding a persona really change the writing?", answer: "Yes. The Persona Builder generates a full expert persona prompt — role, background, tone rules — and models visibly shift style when they're given a consistent character to write as." },
+    ],
+  },
+  "/stop-ai-hallucinations": {
+    title: "Stop AI Hallucinations: A Practical Guide | AI World Hub",
+    desc: "Reduce AI hallucinations with structured prompts, JSON validation, and verification chains — a practical free toolkit for reliable output.",
+    intro: "AI models invent facts confidently. You can't fully eliminate hallucinations, but you can cut them dramatically — by constraining the task, forcing structured output, and validating it before it reaches your users. This page shows the exact free tools that do each step.",
+    tools: ["/tools/prompt-chain-builder", "/tools/json-schema-generator", "/tools/json-validator", "/tools/prompt-debugger"],
+    guides: ["validate-ai-outputs-with-json-schema", "prompts-for-ai-reliability-and-governance", "design-json-schema-for-ai-output"],
+    cta: "Build a verification chain",
+    faq: [
+      { question: "Can AI hallucinations ever be fully stopped?", answer: "No — models are probabilistic. But you can reduce them by 80–90% with constraints: 'answer only from this source', 'say I don't know when unsure', and structured output you can validate programmatically." },
+      { question: "What is the fastest way to catch a hallucination?", answer: "Force structured output with a JSON schema, then validate the response automatically. If the model can't produce valid data, you fail fast instead of shipping a wrong answer. The JSON Validator does this in seconds." },
+      { question: "How do verification chains reduce hallucinations?", answer: "The Prompt Chain Builder sequences steps: generate → self-check → cross-verify against the source. Each step catches errors the previous one missed, so the final output is far more reliable." },
+    ],
+  },
+  "/learn-prompt-engineering-fast": {
+    title: "Learn Prompt Engineering Fast (Free, 1 Hour) | AI World Hub",
+    desc: "Learn prompt engineering in about an hour — the 6-part structure, common mistakes, and free tools that apply it for you automatically.",
+    intro: "Prompt engineering is the highest-leverage AI skill you can learn, and you don't need a course to start. This guide teaches the one structure that covers 90% of cases, shows the mistakes beginners make, and gives you free tools that apply the structure automatically while you learn.",
+    tools: ["/tools/mega-prompt-builder", "/tools/advanced-prompt-optimizer", "/tools/prompt-debugger", "/tools/prompt-comparison"],
+    guides: ["what-is-prompt-engineering-guide", "master-prompt-engineering-workflow", "best-ai-prompt-engineering-tools"],
+    cta: "Build your first structured prompt",
+    faq: [
+      { question: "How long does it really take to learn prompt engineering?", answer: "The core — one reliable structure plus 3–4 common mistakes — takes about an hour of practice. Mastery comes from repetition: run every prompt you write through a debugger for a week and you'll internalize it." },
+      { question: "Do I need to learn coding to write good prompts?", answer: "No. Prompt engineering is a writing and thinking skill. The free tools here apply the technical structure for you, so you can learn by comparing before/after versions." },
+      { question: "What is the single most important prompt skill?", answer: "Constraint-setting: role, audience, format, length, and tone. Every other technique builds on it, and the Prompt Optimizer demonstrates it on your own text in seconds." },
+    ],
+  },
+  "/fix-ai-output-formatting": {
+    title: "Fix AI Output Formatting (JSON, Tables, Markdown) | AI World Hub",
+    desc: "AI won't follow your format? Force clean JSON, tables, and markdown with schema generation and validation — free, in-browser tools.",
+    intro: "'Give me the answer as JSON' — and the model gives you a paragraph with a JSON-looking blob inside it. Formatting failures are one of the most common AI frustrations. The fix is to specify structure precisely and validate it automatically, not ask politely.",
+    tools: ["/tools/json-schema-generator", "/tools/json-validator", "/tools/prompt-formatter", "/tools/prompt-converter"],
+    guides: ["design-json-schema-for-ai-output", "validate-ai-outputs-with-json-schema", "llm-workflow-best-practices-for-innovation"],
+    cta: "Force valid JSON output",
+    faq: [
+      { question: "Why does my AI model ignore my format instructions?", answer: "Because 'use JSON' is ambiguous — models don't know your exact schema, field names, or nesting. Define the schema explicitly and the model follows it far more reliably." },
+      { question: "What's the fastest way to force valid JSON from ChatGPT?", answer: "Generate a JSON Schema from a sample of the output you want, include it in the prompt, then run the response through the JSON Validator. Invalid responses get caught instantly instead of breaking your code." },
+      { question: "Does this work with tables and markdown too?", answer: "Yes — the same principle applies: specify the exact columns, delimiters, or heading structure in the prompt, and use the Prompt Formatter to normalize the output into a clean structure." },
+    ],
+  },
 };
 
 export default function SeoLandingPage() {
@@ -240,6 +318,40 @@ export default function SeoLandingPage() {
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">Free AI Tools Guide</p>
         <h1 className="mt-1 text-3xl font-bold tracking-tight text-white">{cfg.title.replace(" | AI World Hub", "")}</h1>
         <p className="mt-3 max-w-2xl text-base leading-7 text-slate-400">{cfg.intro}</p>
+
+        {/* Share bar — make the page easy to share (X, WhatsApp, LinkedIn, Facebook, copy) */}
+        <div className="mt-5 flex flex-wrap items-center gap-2">
+          <span className="text-xs font-medium uppercase tracking-wider text-slate-500">Share this guide:</span>
+          {[
+            { label: "X", href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(cfg.title.replace(" | AI World Hub", ""))}&url=${encodeURIComponent("https://aiworldhub.site" + path + "/")}` },
+            { label: "WhatsApp", href: `https://wa.me/?text=${encodeURIComponent(cfg.title.replace(" | AI World Hub", "") + " " + "https://aiworldhub.site" + path + "/")}` },
+            { label: "LinkedIn", href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent("https://aiworldhub.site" + path + "/")}` },
+            { label: "Facebook", href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent("https://aiworldhub.site" + path + "/")}` },
+          ].map((soc) => (
+            <a
+              key={soc.label}
+              href={soc.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-300 transition hover:border-amber-400/40 hover:text-amber-300"
+            >
+              {soc.label}
+            </a>
+          ))}
+          <button
+            onClick={() => {
+              const url = "https://aiworldhub.site" + path + "/";
+              navigator.clipboard?.writeText(url).then(() => {
+                const btn = document.getElementById("copy-share-btn");
+                if (btn) { const old = btn.textContent; btn.textContent = "✓ Copied!"; setTimeout(() => { btn.textContent = old; }, 2000); }
+              }).catch(() => {});
+            }}
+            id="copy-share-btn"
+            className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-300 transition hover:border-amber-400/40 hover:text-amber-300"
+          >
+            Copy link
+          </button>
+        </div>
       </div>
 
       {/* Popular tools */}

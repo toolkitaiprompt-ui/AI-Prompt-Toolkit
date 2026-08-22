@@ -1054,6 +1054,54 @@ export const STATIC_ROUTES = [
     "changefreq": "weekly"
   },
   {
+    "path": "/ai-prompts-not-working",
+    "title": "AI Prompts Not Working? Fix Them in 5 Minutes | AI World Hub",
+    "desc": "Generic AI answers? Fix weak prompts in 5 minutes with a free prompt debugger and optimizer — works for ChatGPT, Claude, and Gemini.",
+    "type": "landing",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/cut-ai-token-costs",
+    "title": "Cut AI Token Costs & API Bills | AI World Hub",
+    "desc": "Reduce ChatGPT and API token costs — trim bloated prompts, estimate usage, and keep quality. Free in-browser tools, no sign-up.",
+    "type": "landing",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/make-ai-content-sound-human",
+    "title": "Make AI Content Sound Human (Not Robotic) | AI World Hub",
+    "desc": "AI text sounds robotic? Add tone, voice, and constraints with free prompt tools — make ChatGPT content read like a human wrote it.",
+    "type": "landing",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/stop-ai-hallucinations",
+    "title": "Stop AI Hallucinations: A Practical Guide | AI World Hub",
+    "desc": "Reduce AI hallucinations with structured prompts, JSON validation, and verification chains — a practical free toolkit for reliable output.",
+    "type": "landing",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/learn-prompt-engineering-fast",
+    "title": "Learn Prompt Engineering Fast (Free, 1 Hour) | AI World Hub",
+    "desc": "Learn prompt engineering in about an hour — the 6-part structure, common mistakes, and free tools that apply it for you automatically.",
+    "type": "landing",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/fix-ai-output-formatting",
+    "title": "Fix AI Output Formatting (JSON, Tables, Markdown) | AI World Hub",
+    "desc": "AI won't follow your format? Force clean JSON, tables, and markdown with schema generation and validation — free, in-browser tools.",
+    "type": "landing",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
     "path": "/ai-tools-for-small-business",
     "title": "Top Free AI Tools for Small Business | AI World Hub",
     "desc": "Free AI tools that help small businesses with content, design, marketing, and productivity — no budget required.",

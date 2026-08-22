@@ -745,6 +745,49 @@ return (
         <AdBanner network="custom" />
       </div>
 
+      {/* Popular Solutions — problem-based guides visitors can share */}
+      <section className="section-lg mt-16">
+        <div className="site-container">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400/80">Problem Solved</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mt-1">
+              Popular Solutions
+            </h2>
+            <p className="text-base text-slate-400 mt-2">Short, shareable guides for the AI problems everyone hits.</p>
+          </motion.div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { to: "/ai-prompts-not-working", label: "AI prompts not working?", sub: "Fix them in 5 minutes" },
+              { to: "/cut-ai-token-costs", label: "API bills too high?", sub: "Cut token costs" },
+              { to: "/make-ai-content-sound-human", label: "AI text sounds robotic?", sub: "Make it sound human" },
+              { to: "/stop-ai-hallucinations", label: "AI makes things up?", sub: "Stop hallucinations" },
+            ].map((s) => (
+              <Link
+                key={s.to}
+                to={s.to}
+                className="group flex flex-col rounded-2xl border border-white/10 bg-slate-900/40 p-5 transition hover:border-amber-400/30 hover:bg-slate-900/70"
+              >
+                <span className="text-sm font-semibold text-slate-200 group-hover:text-white">{s.label}</span>
+                <span className="mt-1 text-xs text-slate-500">{s.sub}</span>
+                <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-amber-400">
+                  Open guide
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link
+              to="/learn-prompt-engineering-fast"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-amber-400 hover:text-amber-300 transition"
+            >
+              New to prompt engineering? Learn the basics in 1 hour free
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <CategoryShowcase />
 
       {/* FAQ Section */}
