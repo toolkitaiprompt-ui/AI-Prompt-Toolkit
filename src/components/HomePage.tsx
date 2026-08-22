@@ -16,15 +16,16 @@ import {
 } from 'lucide-react';
 
 // Import your actual data
-import { BLOG_POSTS } from '../data/blogPosts';
 import { TOOL_PAGES } from '../data/tools';
 import { PROMPT_ROLE_META } from '../lib/contentHub';
 import { estimateTokens } from '../lib/toolkit';
-import BlogCard from './BlogCard';
 import ToolCard from './ToolCard';
 import CategoryShowcase from './CategoryShowcase';
 import AdBanner from './AdBanner';
 import useSeo from '../hooks/useSeo';
+import { lazy, Suspense } from 'react';
+// Lazy: blog data (197KB) loads after first paint — not in the critical path.
+const LatestBlogStrip = lazy(() => import('./LatestBlogStrip'));
 
 
 interface ToolMeta {
@@ -168,17 +169,16 @@ return (
 
         <div className="relative z-10 site-container section-lg">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left: Content */}
+            {/* Left: Content — LCP critical: rendered visible (no hidden initial) so the
+                H1 paints instantly from static HTML; no entrance animation on mount */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={false}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
             >
               {/* Badge */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
                 className="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 mb-6 max-w-full text-xs sm:text-sm"
               >
                 <Sparkles className="w-4 h-4 text-amber-400" />
@@ -242,12 +242,11 @@ return (
               </div>
             </motion.div>
 
-            {/* Right: Interactive Demo */}
+            {/* Right: Interactive Demo — visible from first paint (LCP-safe) */}
             <motion.div
               ref={demoRef}
-              initial={{ opacity: 0, x: 50 }}
+              initial={false}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
               {/* Tool Switcher */}
@@ -272,9 +271,8 @@ return (
               {/* Demo Card */}
               <motion.div
                 key={currentTool}
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={false}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
                 className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl p-5 md:p-8 shadow-2xl mt-0 md:mt-10"
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${demoTools[currentTool].color} opacity-10 blur-2xl rounded-2xl`} />
@@ -321,34 +319,33 @@ return (
                     </button>
                   )}
 
-                  {/* ── Optimizer result (real token improvement) ── */}
-                  <AnimatePresence>
-                    {demoTools[currentTool].name === 'Prompt Optimizer' && optimized && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="overflow-hidden"
-                      >
-                        <label className="block text-sm font-medium text-slate-300 mb-2">Optimized Result</label>
-                        <div className="px-4 py-3 bg-green-500/10 border border-green-500/20 rounded-lg">
-                          <pre className="text-sm text-green-300 whitespace-pre-wrap font-mono">{optimized}</pre>
-                        </div>
-                        {improvement && (
-                          <div className="mt-3 flex items-center justify-between gap-2 text-sm flex-wrap">
-                            <span className="text-slate-400">
-                              Tokens: <span className="text-slate-300 font-semibold">{improvement.before}</span>
-                              <span className="text-slate-500"> → </span>
-                              <span className="text-white font-semibold">{improvement.after}</span>
-                            </span>
-                            <span className="text-slate-400">
-                              Reduction: <span className="text-green-400 font-semibold">{improvement.pct}%</span>
-                            </span>
-                          </div>
-                        )}
-                      </motion.div>
+                  {/* ── Optimizer result (real token improvement) ──
+                       Always-rendered with reserved min-height: content swaps in
+                       place, so the demo can NEVER cause layout shift (CLS). */}
+                  <div className="min-h-[150px]">
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Optimized Result</label>
+                    {optimized ? (
+                      <div className="px-4 py-3 bg-green-500/10 border border-green-500/20 rounded-lg">
+                        <pre className="text-sm text-green-300 whitespace-pre-wrap font-mono">{optimized}</pre>
+                      </div>
+                    ) : (
+                      <div className="px-4 py-3 rounded-lg border border-dashed border-slate-700/60 text-sm text-slate-600">
+                        Paste a weak prompt above — the optimized version appears here…
+                      </div>
                     )}
-                  </AnimatePresence>
+                    {improvement && (
+                      <div className="mt-3 flex items-center justify-between gap-2 text-sm flex-wrap">
+                        <span className="text-slate-400">
+                          Tokens: <span className="text-slate-300 font-semibold">{improvement.before}</span>
+                          <span className="text-slate-500"> → </span>
+                          <span className="text-white font-semibold">{improvement.after}</span>
+                        </span>
+                        <span className="text-slate-400">
+                          Reduction: <span className="text-green-400 font-semibold">{improvement.pct}%</span>
+                        </span>
+                      </div>
+                    )}
+                  </div>
 
                   {/* ── Token Estimator: real live stats ── */}
                   {demoTools[currentTool].name === 'Token Estimator' && (
@@ -693,52 +690,10 @@ return (
         <AdBanner size="leaderboard" />
       </div>
 
-      {/* Blog Section */}
-      {BLOG_POSTS.length > 0 && (
-        <section className="section-lg mt-16">
-          <div className="site-container">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-                Latest from the Blog
-                <br />
-                <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">
-                  Expert Insights
-                </span>
-              </h2>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {BLOG_POSTS.slice(0, 3).map((post, idx) => (
-                <motion.div
-                  key={post.slug}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                >
-                  <BlogCard post={post} />
-                </motion.div>
-              ))}
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-center mt-12"
-            >
-              <Link
-                to="/blog"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white/5 border border-white/10 rounded-xl font-semibold text-white hover:bg-white/10 transition-colors"
-              >
-                View All Articles
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-            </motion.div>
-          </div>
-        </section>
-      )}
+      {/* Blog Section — lazy-loaded strip (blogPosts data stays out of first paint) */}
+      <Suspense fallback={null}>
+        <LatestBlogStrip />
+      </Suspense>
 
       {/* Banner Ad */}
       <div className="site-container pt-8">

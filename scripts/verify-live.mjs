@@ -8,37 +8,43 @@ const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
 const pageErrors = [];
 page.on("pageerror", (e) => pageErrors.push(String(e)));
 const ok = (n, c, x = "") => console.log((c ? "  ✅ " : "  ❌ ") + n + " " + x);
+const fails = [];
+const check = (n, c, x = "") => { ok(n, c, x); if (!c) fails.push(n); };
 
-// 1. Homepage
+// 1. Homepage: Popular Solutions
 await page.goto(BASE + "/?v=" + Date.now(), { waitUntil: "networkidle", timeout: 45000 });
-await page.waitForTimeout(1000);
-ok("home: Useful Prompts section", await page.locator("text=Useful Prompts").first().isVisible());
-const homePromptLinks = await page.$$eval('a[href^="/prompts/"]', (as) => as.map((a) => a.getAttribute("href")));
-ok("home: >=6 /prompts links", homePromptLinks.length >= 6, `(${homePromptLinks.length})`);
-ok("home: no dead /prompts/writing etc.", !homePromptLinks.some((h) => /\/prompts\/(writing|marketing|coding|business|education|creative|support)$/.test(h)));
+await page.waitForTimeout(1200);
+check("home: Popular Solutions", await page.locator("text=Popular Solutions").first().isVisible().catch(() => false));
+check("home: 4 solution cards", (await page.$$eval('a[href^="/ai-prompts-not-working"],a[href^="/cut-ai-token-costs"],a[href^="/make-ai-content-sound-human"],a[href^="/stop-ai-hallucinations"]', (as) => as.length)) >= 4);
 
-// 2. Tool page
-await page.goto(BASE + "/tools/advanced-prompt-optimizer?v=" + Date.now(), { waitUntil: "networkidle", timeout: 45000 });
+// 2. New landing page: render + share + OG
+await page.goto(BASE + "/ai-prompts-not-working/?v=" + Date.now(), { waitUntil: "networkidle", timeout: 45000 });
 await page.waitForTimeout(800);
-ok("tool: Useful prompts strip", await page.locator("text=Useful prompts for").first().isVisible().catch(() => false));
-const toolPromptLinks = await page.$$eval('a[href^="/prompts/"]', (as) => as.map((a) => a.getAttribute("href")));
-ok("tool: >=4 /prompts links", toolPromptLinks.length >= 4, `(${toolPromptLinks.length}: ${toolPromptLinks.slice(0, 4).join(",")})`);
+check("landing: h1 renders", await page.locator("h1:has-text('AI Prompts Not Working?')").count() > 0);
+check("landing: share bar", await page.locator("text=Share this guide:").first().isVisible().catch(() => false));
+check("landing: FAQ", await page.locator("text=Frequently asked questions").first().isVisible().catch(() => false));
+const ogTitle = await page.evaluate(() => document.querySelector('meta[property="og:title"]')?.getAttribute("content") || "");
+check("landing: og:title correct", ogTitle.includes("AI Prompts Not Working"), ogTitle);
+const canonical = await page.evaluate(() => document.querySelector('link[rel="canonical"]')?.getAttribute("href") || "");
+check("landing: canonical correct", canonical === "https://aiworldhub.site/ai-prompts-not-working/", canonical);
 
-// 3. Prompt role page
-await page.goto(BASE + "/prompts/developer?v=" + Date.now(), { waitUntil: "networkidle", timeout: 45000 });
-await page.waitForTimeout(800);
-ok("role: Related free tools", await page.locator("text=Related free tools").first().isVisible().catch(() => false));
-const roleToolLinks = await page.$$eval('a[href^="/tools/"]', (as) => as.map((a) => a.getAttribute("href")));
-ok("role: >=4 /tools links", roleToolLinks.length >= 4, `(${roleToolLinks.length})`);
-ok("role: Related guides", await page.locator("text=Related guides").first().isVisible().catch(() => false));
+// 3. More landing pages quick check
+for (const p of ["/stop-ai-hallucinations", "/cut-ai-token-costs", "/fix-ai-output-formatting", "/make-ai-content-sound-human", "/learn-prompt-engineering-fast"]) {
+  await page.goto(BASE + p + "/?v=" + Date.now(), { waitUntil: "networkidle", timeout: 45000 });
+  await page.waitForTimeout(500);
+  check(`${p}: h1 renders`, (await page.locator("h1").count()) > 0);
+}
 
-// 4. Blog post
-await page.goto(BASE + "/blog/how-to-write-better-ai-prompts-2026?v=" + Date.now(), { waitUntil: "networkidle", timeout: 45000 });
+// 4. Tool page share bar
+await page.goto(BASE + "/tools/prompt-debugger/?v=" + Date.now(), { waitUntil: "networkidle", timeout: 45000 });
 await page.waitForTimeout(800);
-ok("blog: Related prompt collections", await page.locator("text=Related prompt collections").first().isVisible().catch(() => false));
-const moreGuides = await page.$$eval('section:has(h2:text("More Guides You Might Like")) a[href]', (as) => as.map((a) => a.getAttribute("href")));
-ok("blog: >=3 semantic related guides", moreGuides.length >= 3, `(${moreGuides.join(",")})`);
+check("tool: share bar", await page.locator("text=Share:").first().isVisible().catch(() => false));
+
+// 5. OG image live
+const img = await (await browser.newContext()).request.get(BASE + "/og-default.jpg");
+check("live: og-default.jpg 200 + image/jpeg", img.status() === 200 && (img.headers()["content-type"] || "").includes("image/jpeg"), `(${img.status()})`);
 
 console.log("\nPAGE ERRORS:", pageErrors.length ? JSON.stringify(pageErrors.slice(0, 3)) : "none");
 await browser.close();
+console.log(fails.length === 0 ? "LIVE CHECKS PASSED 🎉" : `${fails.length} FAILURES: ${fails.join("; ")}`);
 process.exit(0);
