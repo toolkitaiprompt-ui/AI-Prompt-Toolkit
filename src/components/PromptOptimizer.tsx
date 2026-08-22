@@ -212,6 +212,7 @@ export default function PromptOptimizer() {
   const [analysis, setAnalysis] = useState<Analysis>(() => analyzeAndOptimize(originalPrompt));
   const [compareMode, setCompareMode] = useState(false);
   const [processing, setProcessing] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [status, setStatus] = useState("Ready to structure and strengthen your prompt.");
 
   const runOptimization = (text: string) => {
@@ -246,18 +247,27 @@ export default function PromptOptimizer() {
       optimized: "Start with your prompt on the left and click Optimize to see the upgraded prompt here.",
     });
     setCompareMode(false);
+    setCopied(false);
     setStatus("Paste a prompt above and click Optimize Prompt.");
   };
 
   const handleCopy = async () => {
     const ok = await copyToClipboard(analysis.optimized);
-    setStatus(ok ? "Optimized prompt copied to clipboard." : "Copy failed. Please try again in a secure browser.");
+    if (ok) {
+      setCopied(true);
+      setStatus("Optimized prompt copied to clipboard.");
+      window.setTimeout(() => setCopied(false), 2000);
+    } else {
+      setStatus("Copy failed. Please try again in a secure browser.");
+    }
   };
 
   const handleDownload = () => {
     downloadTextFile(analysis.optimized, "optimized-prompt.txt");
   };
 
+  // True when a real optimization result exists (not the empty-state hint)
+  const hasResult = analysis.scoreAfter > 0;
   const scoreDelta = analysis.scoreAfter - analysis.scoreBefore;
 
   return (
@@ -356,7 +366,17 @@ export default function PromptOptimizer() {
               </div>
             </div>
           ) : (
-            <div className="relative min-h-[320px] rounded-3xl border border-slate-800/90 bg-slate-900/90 p-5 text-sm leading-7 text-slate-200 shadow-inner shadow-slate-950/60">
+            <div
+              className={`relative min-h-[320px] rounded-3xl border bg-slate-900/90 p-5 text-sm leading-7 text-slate-200 shadow-inner shadow-slate-950/60 transition-colors ${
+                hasResult ? "border-emerald-500/30" : "border-slate-800/90"
+              }`}
+            >
+              {hasResult && (
+                <span className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-300">
+                  <Check className="h-3 w-3" aria-hidden="true" />
+                  Optimized
+                </span>
+              )}
               <pre className="whitespace-pre-wrap">{analysis.optimized}</pre>
             </div>
           )}
@@ -381,16 +401,21 @@ export default function PromptOptimizer() {
             <button
               type="button"
               onClick={handleCopy}
-              disabled={processing || !analysis.optimized}
-              className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-5 py-3 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/60 hover:bg-cyan-500/20 disabled:cursor-not-allowed disabled:opacity-50"
+              disabled={processing || !hasResult}
+              className={`inline-flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 ${
+                copied
+                  ? "border-emerald-400/60 bg-emerald-500/20 text-emerald-200"
+                  : "border-cyan-400/30 bg-cyan-500/10 text-cyan-100 hover:border-cyan-300/60 hover:bg-cyan-500/20"
+              }`}
             >
-              <Copy className="h-4 w-4" aria-hidden="true" />
-              Copy optimized prompt
+              {copied ? <Check className="h-4 w-4" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
+              {copied ? "Copied!" : "Copy optimized prompt"}
             </button>
             <button
               type="button"
               onClick={handleDownload}
-              className="inline-flex items-center gap-2 rounded-full border border-slate-700/70 bg-slate-900/70 px-5 py-3 text-sm font-semibold text-slate-200 transition hover:border-slate-500/70 hover:bg-slate-800/70"
+              disabled={!hasResult}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-700/70 bg-slate-900/70 px-5 py-3 text-sm font-semibold text-slate-200 transition hover:border-slate-500/70 hover:bg-slate-800/70 disabled:cursor-not-allowed disabled:opacity-50"
             >
               <Download className="h-4 w-4" aria-hidden="true" />
               Download .txt

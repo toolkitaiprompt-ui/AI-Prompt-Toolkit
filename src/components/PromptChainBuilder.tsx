@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef } from 'react';
-import { Plus, Trash2, Copy, Download, Layers, ArrowDown, ArrowUp, Eye } from 'lucide-react';
+import { Plus, Trash2, Copy, Download, Layers, ArrowDown, ArrowUp, Eye, Check } from 'lucide-react';
 import { exportChainAsMarkdown, copyAllChainSteps, type ChainStep } from '../lib/toolkit';
 import { LiveStats } from './OutputToolbar';
 import { ToolGuide } from './ToolGuide';
@@ -82,8 +82,14 @@ export default function PromptChainBuilder() {
             <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5">
               <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
                 <div className="flex items-center gap-2">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-amber-500/20 text-xs font-bold text-amber-300 border border-amber-500/30">
-                    {idx + 1}
+                  <span
+                    className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold border ${
+                      step.title.trim() && step.prompt.trim()
+                        ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
+                        : "bg-amber-500/20 text-amber-300 border-amber-500/30"
+                    }`}
+                  >
+                    {step.title.trim() && step.prompt.trim() ? <Check className="h-3.5 w-3.5" /> : idx + 1}
                   </span>
                   <h3 className="text-sm font-semibold text-white">Step {idx + 1}</h3>
                 </div>
