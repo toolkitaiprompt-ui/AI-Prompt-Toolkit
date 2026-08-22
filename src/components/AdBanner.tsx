@@ -43,7 +43,12 @@ export const ADSTERRA_ZONES: Record<
 
 // ─── NETWORK CONFIG (single source of truth) ───
 export const AD_CONFIG: Record<Network, { enabled: boolean; zoneId: string }> = {
-  adsterra: { enabled: true, zoneId: "" },
+  // DISABLED: atOptions-style zones use a GLOBAL `atOptions` variable that races
+  // across multiple slots on the same page (each slot overwrites it, async
+  // invoke.js reads the last one) — slots rendered wrong zones or stayed empty.
+  // The real Adsterra tags for this domain are the static tremblingsauna
+  // scripts in index.html; slots below use the Monetag sponsored box.
+  adsterra: { enabled: false, zoneId: "" },
   "monetag-banner": { enabled: false, zoneId: "" },
   // Monetag direct-link smartlink (11565897) — VISIBLE sponsored box
   custom: { enabled: true, zoneId: "https://omg10.com/4/11565897" },
