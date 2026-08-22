@@ -401,6 +401,11 @@ export function PromptsRolePage() {
           </div>
         </div>
 
+        <div>
+          <h2 className="text-xl font-bold text-white">{roleData.title} to copy &amp; use</h2>
+          <p className="mt-1 text-sm text-slate-400">Copy any prompt below, customize the placeholders, and paste it into ChatGPT, Claude, or Gemini.</p>
+        </div>
+
         <div className="grid gap-5 lg:grid-cols-2">
           {prompts.map((p, i) => {
             const taskSlug = taskSlugs[i];

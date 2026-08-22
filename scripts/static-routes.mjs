@@ -103,7 +103,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/tools/token-estimator",
-    "title": "AI Token Estimator & Counter — GPT, Claude | AI World Hub",
+    "title": "Free AI Token Estimator — GPT & Claude | AI World Hub",
     "desc": "Free token estimator for writers and developers: check characters, words, and tokens for any prompt. Stay inside ChatGPT, Claude & Gemini limits.",
     "type": "tool",
     "priority": 0.8,
@@ -127,7 +127,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/tools/advanced-prompt-optimizer",
-    "title": "Advanced Prompt Optimizer — Best Prompt Tool | AI World Hub",
+    "title": "Free Advanced Prompt Optimizer | AI World Hub",
     "desc": "Free prompt optimizer for ChatGPT, Claude & Gemini — paste any weak prompt, get a stronger version with role, tone, and format. No signup, 100% in-browser.",
     "type": "tool",
     "priority": 0.8,
@@ -151,7 +151,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/tools/prompt-debugger",
-    "title": "Prompt Debugger — Health Score & Fixes | AI World Hub",
+    "title": "Free Prompt Debugger — Health Score & Fixes | AI World Hub",
     "desc": "Free prompt debugger: health score 0-100, 12+ issue detectors, and instant fixes for vague prompts. Get better AI answers — private, in-browser.",
     "type": "tool",
     "priority": 0.8,
@@ -159,7 +159,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/tools/security-scanner",
-    "title": "Prompt Security Scanner — Injection & PII | AI World Hub",
+    "title": "Free Prompt Security Scanner | AI World Hub",
     "desc": "Scan AI prompts for injection attacks, jailbreaks, PII leaks, and security threats. Get risk scoring and actionable fixes. Free in-browser tool.",
     "type": "tool",
     "priority": 0.8,
@@ -167,7 +167,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/tools/prompt-chain-builder",
-    "title": "Prompt Chain Builder — Sequential Workflows | AI World Hub",
+    "title": "Free Prompt Chain Builder | AI World Hub",
     "desc": "Free prompt chain builder: create 2-5 sequential AI steps with titles, formats, and reordering. See the full workflow and copy it in one click.",
     "type": "tool",
     "priority": 0.8,
@@ -183,7 +183,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/tools/api-request-builder",
-    "title": "API Request Builder — OpenAI, Claude, Gemini | AI World Hub",
+    "title": "Free API Request Builder | AI World Hub",
     "desc": "Build API requests for OpenAI, Anthropic, and Gemini — model selection, temperature, max tokens, and cURL export. Free in-browser tool.",
     "type": "tool",
     "priority": 0.8,
@@ -199,7 +199,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/tools/content-summarizer",
-    "title": "AI Content Summarizer — TL;DR & Bullet Points | AI World Hub",
+    "title": "Free AI Content Summarizer | AI World Hub",
     "desc": "Summarize long articles, reports, and documents into TL;DR, bullet points, paragraphs, or academic abstracts. Free in-browser tool with word reduction stats.",
     "type": "tool",
     "priority": 0.8,
@@ -215,7 +215,7 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/prompt-generator",
-    "title": "AI Prompt Generator — Structured Prompts | AI World Hub",
+    "title": "Free AI Prompt Generator — Structured Prompts | AI World Hub",
     "desc": "Generate structured AI prompts by selecting role, task, goal, tone, audience, and desired output format. Free in-browser prompt creation with copy to clipboard.",
     "type": "page",
     "priority": 0.8,

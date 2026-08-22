@@ -560,7 +560,7 @@ export function TokenEstimatorPage() {
 
   return (
     <ToolContainer
-      title="Token Estimator"
+      title="Free Token Estimator"
       toolSlug="token-estimator"
       description="Free token estimator for writers and developers: check characters, words, and tokens for any prompt. Stay inside ChatGPT, Claude & Gemini limits."
       tool={tool}
@@ -700,7 +700,7 @@ export function PromptGeneratorPage() {
 
   return (
     <ToolContainer
-      title="AI Prompt Generator"
+      title="Free AI Prompt Generator"
       toolSlug="prompt-generator"
       description="Generate structured AI prompts by selecting role, task, goal, tone, audience, and desired output format. Free in-browser prompt creation."
       tool={tool}
