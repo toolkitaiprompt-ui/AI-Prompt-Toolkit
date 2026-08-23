@@ -88,7 +88,7 @@ function nextMonetagZone() {
 function MonetagBox() {
   const zone = nextMonetagZone();
   return (
-    <a href={zone} target="_blank" rel="sponsored noopener noreferrer" className="promo-card" aria-label="Sponsored ad — opens offer in new tab">
+    <a href={zone} target="_blank" rel="sponsored noopener noreferrer" className="promo-card" aria-label="View offer — sponsored; opens in a new tab">
       <span className="promo-badge">Sponsored</span>
       <span className="promo-art" aria-hidden="true">
         <svg viewBox="0 0 300 250" width="300" height="250" role="presentation" style={{ width: "100%", height: "auto" }}>
