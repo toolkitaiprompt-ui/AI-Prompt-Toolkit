@@ -56,6 +56,8 @@ const TermsPage = lazy(() => import("./pages/StaticPages").then((m) => ({ defaul
 const NotFoundPage = lazy(() => import("./pages/StaticPages").then((m) => ({ default: m.NotFoundPage })));
 const PlaygroundPage = lazy(() => import("./pages/PlaygroundPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
+const CreatorPromptKitPage = lazy(() => import("./pages/CreatorPromptKitPage"));
+const PdfWorkspacePage = lazy(() => import("./pages/PdfWorkspacePage"));
 
 function GlobalAdScripts() {
   useEffect(() => {}, []);
@@ -64,6 +66,8 @@ function GlobalAdScripts() {
 
 function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isCommercialProductPage = ["/creator-prompt-kit", "/pdf-workspace"].includes(location.pathname);
   const [searchOpen, setSearchOpen] = useState(false);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
 
@@ -121,6 +125,7 @@ function Layout() {
             <NavLink to="/playground" className={navLinkClass}>Playground</NavLink>
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
             <NavLink to="/prompts" className={navLinkClass}>Prompts</NavLink>
+            <NavLink to="/creator-prompt-kit" className={navLinkClass}>Prompt Kit</NavLink>
             <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
             <NavLink to="/about" className={navLinkClass}>About</NavLink>
           </nav>
@@ -155,6 +160,7 @@ function Layout() {
               <NavLink to="/playground" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Playground</NavLink>
               <NavLink to="/tools" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Tools</NavLink>
               <NavLink to="/prompts" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Prompts</NavLink>
+              <NavLink to="/creator-prompt-kit" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Prompt Kit</NavLink>
               <NavLink to="/blog" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>Blog</NavLink>
               <NavLink to="/about" onClick={() => setMobileMenuOpen(false)} className={mobileNavLinkClass}>About</NavLink>
             </nav>
@@ -168,10 +174,12 @@ function Layout() {
       </Suspense>
 
       <main className="w-full">
-        {/* Above-fold slim banner — every page, near the fold */}
-        <div className="hidden md:block">
-          <AdBanner size="banner" />
-        </div>
+        {/* Keep a purchase journey free of unrelated third-party offers. */}
+        {!isCommercialProductPage && (
+          <div className="hidden md:block">
+            <AdBanner size="banner" />
+          </div>
+        )}
         <ErrorBoundary>
         <Suspense fallback={
           <div className="flex min-h-[50vh] items-center justify-center">
@@ -226,6 +234,8 @@ function Layout() {
           <Route path="/comparison" element={<ComparisonPage />} />
           <Route path="/playground" element={<PlaygroundPage />} />
           <Route path="/prompts" element={<PromptsDirectoryPage />} />
+          <Route path="/creator-prompt-kit" element={<CreatorPromptKitPage />} />
+          <Route path="/pdf-workspace" element={<PdfWorkspacePage />} />
           <Route path="/prompts/:role" element={<PromptsRolePage />} />
           <Route path="/prompts/:role/:task" element={<PromptTaskPage />} />
           <Route path="/changelog" element={<ChangelogPage />} />
@@ -351,10 +361,11 @@ function MobileBottomAd() {
   // only, where it covers nothing.
   const isToolPage = location.pathname.startsWith("/tools/");
   const isHome = location.pathname === "/";
+  const isCommercialProductPage = ["/creator-prompt-kit", "/pdf-workspace"].includes(location.pathname);
   useEffect(() => {
     setIsMobile(window.innerWidth < 768);
   }, []);
-  const show = !dismissed && isMobile && !isToolPage && !isHome;
+  const show = !dismissed && isMobile && !isToolPage && !isHome && !isCommercialProductPage;
   useEffect(() => {
     if (show) {
       document.body.style.paddingBottom = "90px";

@@ -30,6 +30,22 @@ export const STATIC_ROUTES = [
     "changefreq": "daily"
   },
   {
+    "path": "/creator-prompt-kit",
+    "title": "Creator & Freelancer Prompt Kit | AI World Hub",
+    "desc": "Preview the planned AI Creator & Freelancer Prompt Kit: 500+ quality-checked prompts and practical workflows for content, clients, SEO, coding, and business.",
+    "type": "page",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
+    "path": "/pdf-workspace",
+    "title": "Private PDF to Text & AI Workflow Prompts | AI World Hub",
+    "desc": "Extract text from a PDF locally in your browser, then create careful AI workflow prompts for summaries, questions, notes, quizzes, tables, and translation.",
+    "type": "tool",
+    "priority": 0.7,
+    "changefreq": "weekly"
+  },
+  {
     "path": "/about",
     "title": "About — Best Free AI Prompt Engineering Tools | AI World Hub",
     "desc": "AI World Hub offers free AI prompt engineering tools for students, developers, marketers, and teams. 19 in-browser tools, no sign-up, no data collection.",
