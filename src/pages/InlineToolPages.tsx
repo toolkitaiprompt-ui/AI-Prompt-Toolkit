@@ -8,7 +8,7 @@ import ToolCard from "../components/ToolCard";
 import ToolContainer from "../components/ToolContainer";
 import OutputToolbar, { LiveStats } from "../components/OutputToolbar";
 import { ToolGuide } from "../components/ToolGuide";
-import { TOOL_PAGES, TOOL_CATEGORIES, TOOL_BY_SLUG } from "../data/tools";
+import { ACTIVE_TOOL_COUNT, TOOL_PAGES, TOOL_CATEGORIES, TOOL_BY_SLUG } from "../data/tools";
 import { cleanPrompt, estimateTokens, extractPromptVariables, formatPrompt, generateJsonSchema, validateJsonWithSchema } from "../lib/toolkit";
 
 function useToolFilters(tools: typeof TOOL_PAGES) {
@@ -94,8 +94,8 @@ export function ToolsDirectoryPage() {
 
   return (
     <SectionShell
-      title="Free AI Tools Directory — 19 Best Tools | AI World Hub"
-      description="Choose from 19 free AI prompt engineering tools — build, format, debug, optimize, secure, and translate prompts in your browser. No sign-up required."
+      title={`Free AI Tools Directory — ${ACTIVE_TOOL_COUNT} Best Tools | AI World Hub`}
+      description={`Choose from ${ACTIVE_TOOL_COUNT} free AI prompt engineering tools — build, format, debug, optimize, secure, and translate prompts in your browser. No sign-up required.`}
       keywords="Best AI Tools, Free AI Tools, AI Tools Directory, Prompt Engineering Tools, AI Prompt Builder, ChatGPT Prompt Tools"
       hideTopAd
     >
@@ -105,7 +105,7 @@ export function ToolsDirectoryPage() {
         </p>
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">AI World Hub</h1>
         <p className="max-w-3xl text-base sm:text-lg text-slate-400">
-          Choose from 19 precision tools for prompt engineering teams. Build, format, validate, debug, optimize, secure, and translate — all in the browser.
+          Choose from {ACTIVE_TOOL_COUNT} precision tools for prompt engineering teams. Build, format, validate, debug, optimize, secure, and translate — all in the browser.
         </p>
       </div>
 
@@ -956,7 +956,7 @@ export function PromptGeneratorPage() {
 export function ComparisonPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [showFreeOnly, setShowFreeOnly] = useState(false);
-  const tool = TOOL_BY_SLUG.get("prompt-generator")!;
+  const tool = TOOL_BY_SLUG.get("comparison")!;
 
   // Group tools by category for comparison
   const categoryTools = useMemo(() => {
@@ -996,7 +996,7 @@ export function ComparisonPage() {
   return (
     <ToolContainer
       title="AI Tool Comparison"
-      toolSlug="prompt-generator"
+      toolSlug="comparison"
       description="Compare AI tools by category, features, free availability, use cases, and strengths. Use real data from the AI World Hub tool directory."
       tool={tool}
     >

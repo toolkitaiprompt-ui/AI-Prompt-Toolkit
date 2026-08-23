@@ -15,8 +15,8 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/tools",
-    "title": "Free AI Tools Directory — 19 Best Tools | AI World Hub",
-    "desc": "Choose from 19 free AI prompt engineering tools — build, format, debug, optimize, secure, and translate prompts in your browser. No sign-up required.",
+    "title": "Free AI Tools Directory — 21 Best Tools | AI World Hub",
+    "desc": "Choose from 21 free AI prompt engineering tools — build, format, debug, optimize, secure, and translate prompts in your browser. No sign-up required.",
     "type": "page",
     "priority": 0.9,
     "changefreq": "daily"
@@ -48,7 +48,7 @@ export const STATIC_ROUTES = [
   {
     "path": "/about",
     "title": "About — Best Free AI Prompt Engineering Tools | AI World Hub",
-    "desc": "AI World Hub offers free AI prompt engineering tools for students, developers, marketers, and teams. 19 in-browser tools, no sign-up, no data collection.",
+    "desc": "AI World Hub offers free AI prompt engineering tools for students, developers, marketers, and teams. 21 in-browser tools, no sign-up, with prompt inputs processed locally in the browser.",
     "type": "page",
     "priority": 0.6,
     "changefreq": "weekly"
@@ -233,7 +233,7 @@ export const STATIC_ROUTES = [
     "path": "/prompt-generator",
     "title": "Free AI Prompt Generator — Structured Prompts | AI World Hub",
     "desc": "Generate structured AI prompts by selecting role, task, goal, tone, audience, and desired output format. Free in-browser prompt creation with copy to clipboard.",
-    "type": "page",
+    "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },
@@ -991,9 +991,9 @@ export const STATIC_ROUTES = [
   },
   {
     "path": "/comparison",
-    "title": "AI Tool Comparison — Free Tools by Category | AI World Hub",
-    "desc": "Compare free AI prompt tools by category — writing, coding, marketing, business, creative, and more. Real data on features and use cases.",
-    "type": "page",
+    "title": "AI Tool Comparison — Find the Right Tool | AI World Hub",
+    "desc": "Compare AI World Hub tools by category, features, free availability, and use case to choose the right workflow.",
+    "type": "tool",
     "priority": 0.8,
     "changefreq": "weekly"
   },

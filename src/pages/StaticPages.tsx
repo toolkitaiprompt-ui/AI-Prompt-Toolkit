@@ -18,7 +18,7 @@ export function AboutPage() {
 
         <div className="grid gap-6 sm:grid-cols-3">
           <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
-            <p className="text-3xl font-bold text-white">19</p>
+            <p className="text-3xl font-bold text-white">21</p>
             <p className="mt-1 text-sm text-slate-400">Free Tools</p>
           </div>
           <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6">
@@ -60,13 +60,15 @@ export function AboutPage() {
             <li><strong className="text-white">AI Image Prompt Generator</strong> — Generate image prompts for DALL-E, Midjourney, and Stable Diffusion.</li>
             <li><strong className="text-white">AI Content Summarizer</strong> — Summarize long articles and reports into TL;DR, bullets, or abstracts.</li>
             <li><strong className="text-white">AI Regex Generator</strong> — Turn plain English descriptions into tested regex patterns.</li>
+            <li><strong className="text-white">AI Prompt Generator</strong> — Build structured prompts for a selected role, task, audience, tone, and output format.</li>
+            <li><strong className="text-white">AI Tool Comparison</strong> — Compare AI World Hub tools by category, features, free availability, and use case.</li>
           </ul>
         </div>
 
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-white">Privacy First</h2>
           <p className="text-slate-300">
-            Unlike many online tools, AI World Hub processes everything locally in your browser. Your prompts, data, and text never leave your device. We do not store, collect, or share your inputs with any server.
+            AI World Hub processes prompt and tool inputs locally in your browser. We do not store or share those inputs with our service; limited website analytics and hosting logs are described in our Privacy Policy.
           </p>
         </div>
 
@@ -91,6 +93,14 @@ export function AboutPage() {
 
 export function ChangelogPage() {
   const changelog: { version: string; date: string; changes: { type: string; text: string }[] }[] = [
+    {
+      version: "3.2.0",
+      date: "August 2026",
+      changes: [
+        { type: "Improved", text: "Added AI Prompt Generator and AI Tool Comparison to the canonical tools directory, bringing the current total to 21 free tools." },
+        { type: "Improved", text: "Updated tool counts, route metadata, structured data, sitemap inputs, and AI-discovery details to reflect all 21 tools consistently." },
+      ],
+    },
     {
       version: "3.1.0",
       date: "August 2026",

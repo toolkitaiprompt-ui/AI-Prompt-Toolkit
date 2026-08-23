@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 
 // Import your actual data
-import { TOOL_PAGES } from '../data/tools';
+import { ACTIVE_TOOL_COUNT } from '../data/tools';
 import { PROMPT_ROLE_META } from '../lib/contentHub';
 import { estimateTokens } from '../lib/toolkit';
 import ToolCard from './ToolCard';
@@ -61,7 +61,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
 
 
   const stats = [
-    { icon: Zap, value: '19', label: 'Free Tools', color: 'from-blue-500 to-cyan-500' },
+    { icon: Zap, value: String(ACTIVE_TOOL_COUNT), label: 'Free Tools', color: 'from-blue-500 to-cyan-500' },
     { icon: Shield, value: '100%', label: 'In-Browser & Private', color: 'from-yellow-500 to-orange-500' },
     { icon: Clock, value: '0', label: 'Sign-ups Required', color: 'from-amber-500 to-amber-600' },
     { icon: Award, value: 'Free', label: 'Forever', color: 'from-green-500 to-emerald-500' },
@@ -70,7 +70,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
   const faqs = [
     {
       question: 'Is AI World Hub really free?',
-      answer: 'Yes! All 19 tools are completely free with no signup required. Every tool runs in your browser, so your prompts stay on your device. Limited website analytics and hosting logs are described in our Privacy Policy.',
+      answer: `Yes! All ${ACTIVE_TOOL_COUNT} tools are completely free with no signup required. Every tool runs in your browser, so your prompts stay on your device. Limited website analytics and hosting logs are described in our Privacy Policy.`,
     },
     {
       question: 'How does in-browser processing work?',
@@ -201,7 +201,7 @@ return (
 
               {/* Description */}
               <p className="text-lg sm:text-xl text-slate-300 mb-8 leading-relaxed">
-                19 professional tools to format, validate, optimize, and deploy AI prompts at scale.
+                {ACTIVE_TOOL_COUNT} professional tools to format, validate, optimize, and deploy AI prompts at scale.
                 No signup required. 100% in-browser. Enterprise-ready.
               </p>
 
@@ -229,7 +229,7 @@ return (
               <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                  <span className="text-sm text-slate-300">19 free tools</span>
+                  <span className="text-sm text-slate-300">{ACTIVE_TOOL_COUNT} free tools</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Shield className="w-5 h-5 text-cyan-400" />
@@ -533,7 +533,7 @@ return (
               <span className="text-sm text-amber-300 font-medium">Featured Tools</span>
             </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-                19 Professional Tools
+                {ACTIVE_TOOL_COUNT} Professional Tools
                 <br />
                 <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">
                   For Perfect Prompts
@@ -794,7 +794,7 @@ return (
               </span>
             </h2>
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Use 19 free, private, in-browser tools to create, optimize, and deploy prompts that deliver results.
+              Use {ACTIVE_TOOL_COUNT} free, private, in-browser tools to create, optimize, and deploy prompts that deliver results.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

@@ -227,5 +227,16 @@ export const TOOL_PAGES: ToolMeta[] = [
     ],
     category: "writing",
   },
+  {
+    title: "AI Tool Comparison",
+    path: "/comparison",
+    description: "Compare AI World Hub tools by category, features, free availability, use cases, and strengths to choose the right workflow.",
+    icon: CheckCircle2,
+    accent: "from-indigo-500/35 to-violet-400/10",
+    keyBenefits: ["Category-based comparison", "Feature overview", "Use-case guidance"],
+    category: "business",
+  },
 ];
+export const ACTIVE_TOOL_COUNT = TOOL_PAGES.length;
+
 export const TOOL_BY_SLUG = new Map(TOOL_PAGES.map((tool) => [tool.path.split("/").pop()!, tool]));

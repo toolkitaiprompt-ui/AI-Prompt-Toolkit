@@ -2,7 +2,7 @@
   <br/>
   <h1 align="center" style="font-size:2.8rem;font-weight:700;background:linear-gradient(135deg,#FFD700,#FF1493);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">AI World Hub</h1>
 
-  <p align="center"><strong>19 Free In-Browser Tools to Build, Format, Debug &amp; Optimize Your AI Prompts</strong></p>
+  <p align="center"><strong>21 Free In-Browser Tools to Build, Format, Debug, Optimize &amp; Compare Your AI Prompts</strong></p>
 
   <p align="center">
     <a href="https://aiworldhub.site" target="_blank">🌐 Live Website</a> •
@@ -27,7 +27,7 @@
 
 ## 📖 Purpose
 
-AI World Hub is a **free, privacy-first, in-browser toolkit** for anyone who works with AI prompts. Every tool runs 100% in your browser — zero data leaves your device, zero sign-up required, zero cost forever.
+AI World Hub is a **free, privacy-first, in-browser toolkit** for anyone who works with AI prompts. Prompt and tool inputs run locally in your browser — no sign-up required and no cost. Limited website analytics and hosting logs are described in the Privacy Policy.
 
 **Who is this for?**
 Anyone using AI tools — students, developers, marketers, writers, and teams. If you write prompts for ChatGPT, Claude, Gemini, or any other model, these tools help you get better results faster.
@@ -38,16 +38,16 @@ Anyone using AI tools — students, developers, marketers, writers, and teams. I
 
 | Feature | Description |
 |---------|-------------|
-| 🔧 **19 Free AI Tools** | Variable Extractor, JSON Schema Generator, JSON Validator, Token Estimator, Prompt Formatter, Cleaner, Converter, Persona Builder, Optimizer, Comparison Tool, Mega Prompt Builder, Prompt Debugger, Security Scanner, Prompt Chain Builder, Prompt Translator, API Request Builder, Image Prompt Generator, Content Summarizer, Regex Generator |
+| 🔧 **21 Free AI Tools** | Variable Extractor, JSON Schema Generator, JSON Validator, Token Estimator, Prompt Formatter, Cleaner, Converter, Persona Builder, Optimizer, Prompt Comparison, Mega Prompt Builder, Debugger, Security Scanner, Chain Builder, Translator, API Request Builder, Image Prompt Generator, Content Summarizer, Regex Generator, Prompt Generator, and Tool Comparison |
 | 🎮 **AI Prompt Playground** | Interactive playground with blog, code, and email templates, live token estimation, and prompt health scoring |
 | 📝 **Prompt Library** | 225+ ready-to-use prompts across 15 roles (ChatGPT, Content Writer, Developer, Marketer, SEO Specialist, and more) |
 | 📋 **Changelog** | Version history tracking all tool updates and new features |
 | 📚 **Blog** | 50+ SEO-optimized prompt engineering guides |
-| 🔒 **100% Private** | All processing in-browser. Prompts never leave your device |
+| 🔒 **Private by Design** | Prompt and tool inputs process in-browser; limited site analytics and hosting logs are disclosed in the Privacy Policy |
 | ⚡ **Fast** | Built with Vite 7 + React 19. Deployed globally on Cloudflare Pages |
 | 📱 **Responsive** | Works on desktop, tablet, and mobile |
 
-### 🔧 All 19 Tools
+### 🔧 All 21 Tools
 
 | # | Tool | What It Does |
 |---|------|-------------|
@@ -70,6 +70,8 @@ Anyone using AI tools — students, developers, marketers, writers, and teams. I
 | 17 | **AI Image Prompt Generator** | Generate production-ready image prompts for DALL-E, Midjourney, and Stable Diffusion |
 | 18 | **AI Content Summarizer** | Summarize long articles and reports into TL;DR, bullets, or academic abstracts |
 | 19 | **AI Regex Generator** | Generate regex patterns from plain English and test against sample strings |
+| 20 | **AI Prompt Generator** | Build structured prompts from a selected role, task, audience, tone, and output format |
+| 21 | **AI Tool Comparison** | Compare AI World Hub tools by category, features, free availability, and use case |
 
 ---
 

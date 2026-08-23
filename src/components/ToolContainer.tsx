@@ -1,7 +1,7 @@
 import { useJsonLd, softwareAppJsonLd, faqPageJsonLd, breadcrumbJsonLd, toolFaq, toolNameFromTitle } from "../lib/structuredData";
 import useSeo from "../hooks/useSeo";
 import { BLOG_POSTS } from "../data/blogPosts";
-import { TOOL_PAGES, TOOL_CATEGORIES, type ToolMeta } from "../data/tools";
+import { ACTIVE_TOOL_COUNT, TOOL_PAGES, TOOL_CATEGORIES, type ToolMeta } from "../data/tools";
 import { getRolesForTool } from "../lib/contentHub";
 import AdBanner from "./AdBanner";
 import BlogCard from "./BlogCard";
@@ -303,7 +303,7 @@ function ToolContainer({
             to="/tools"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400 hover:text-amber-300 transition"
           >
-            View all 19 free AI tools
+            View all {ACTIVE_TOOL_COUNT} free AI tools
             <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>

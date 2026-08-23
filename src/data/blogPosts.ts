@@ -1714,7 +1714,7 @@ export const BLOG_POSTS: BlogPost[] = [
         heading: "Why free in-browser prompt tools beat paid subscriptions",
         paragraphs: [
           "Most prompt tools on the market ask for a subscription, but the core of prompt engineering needs nothing more than a browser. Free in-browser tools process everything locally, which means your prompts never leave your device and you never hit usage limits. For students, freelancers, and small teams in India, this is a huge advantage — unlimited use at zero cost.",
-          "AI World Hub brings 19 free prompt tools together in one place: variable extractors, JSON schema generators, token estimators, prompt optimizers, debuggers, security scanners, and more. Every tool runs client-side, so there is no signup wall, no credit card, and no data collection.",
+          "AI World Hub brings 21 free prompt tools together in one place: variable extractors, JSON schema generators, token estimators, prompt optimizers, debuggers, security scanners, and more. Prompt and tool inputs run client-side, so there is no signup wall or credit card requirement; limited website analytics and hosting logs are described in the Privacy Policy.",
         ],
       },
       {
@@ -1735,7 +1735,7 @@ export const BLOG_POSTS: BlogPost[] = [
     faq: [
       {
         question: "Are free AI prompt tools really free?",
-        answer: "Yes. In-browser tools like AI World Hub run entirely on your device — no servers, no subscriptions, no usage limits. All 19 tools are 100% free forever.",
+        answer: "Yes. AI World Hub's prompt and tool inputs run locally in your browser, with no subscription or usage limit. All 21 tools are 100% free.",
       },
       {
         question: "Do in-browser prompt tools store my data?",
@@ -2014,7 +2014,7 @@ export const BLOG_POSTS: BlogPost[] = [
         heading: "Small business + AI = unfair advantage",
         paragraphs: [
           "Big companies have teams of writers, designers, and marketers. Small businesses in India now have the same firepower for free — with AI. The catch is knowing which tools matter and how to combine them. This guide covers 10 free tools, including one platform that replaces five of them.",
-          "AI World Hub bundles 19 free in-browser prompt tools — formatting, optimizing, translating, security scanning — so a single shopkeeper can draft ads, reply to customers, and plan posts without any subscription.",
+          "AI World Hub bundles 21 free in-browser prompt tools — formatting, optimizing, comparing, translating, and security scanning — so a single shopkeeper can draft ads, reply to customers, and plan posts without any subscription.",
         ],
       },
       {

@@ -594,7 +594,7 @@ export const NEW_SEO_POSTS = [
         heading: "What to look for in a free prompt tool",
         paragraphs: [
           "Before you click signup on any prompt tool, check for three things: 1) Does it run in the browser? Tools that process prompts client-side never send your text anywhere. 2) Is there a real free tier? Some \"free\" tools limit you after a trial. 3) Does it save time? The best tool does one job extremely well instead of ten jobs badly.",
-          "AI World Hub is built around these three rules: 19 free tools, no accounts, and everything processed locally in your browser.",
+          "AI World Hub is built around these three rules: 21 free tools, no accounts, and prompt and tool inputs processed locally in your browser.",
         ],
       },
       {
@@ -891,7 +891,7 @@ export const NEW_SEO_POSTS = [
       {
         heading: "3. Other Useful Free Tools on This Site",
         paragraphs: [
-          "AI World Hub has 19 free tools in total, and a few deserve a special mention. The Prompt Debugger scores any prompt out of 100 and tells you exactly what is missing. The Token Estimator shows how many tokens your prompt uses so it fits the model's context window. The Prompt Translator moves prompts between 8 languages while keeping variables intact.",
+          "AI World Hub has 21 free tools in total, and a few deserve a special mention. The Prompt Debugger scores any prompt out of 100 and tells you exactly what is missing. The Token Estimator shows how many tokens your prompt uses so it fits the model's context window. The Prompt Translator moves prompts between 8 languages while keeping variables intact.",
           "There is also a Mega Prompt Builder for assembling complete prompts step by step, a Security Scanner that catches leaked personal data before you paste it anywhere, and a Prompt Comparison tool for testing two versions side by side.",
         ],
       },

@@ -69,9 +69,9 @@ const SEO_MAP: Record<string, SeoData> = {
 
   // ── Tools Directory ──
   "/tools": {
-    title: "Free AI Tools Directory — 19 Best Tools | AI World Hub",
+    title: "Free AI Tools Directory — 21 Best Tools | AI World Hub",
     description:
-      "Choose from 19 free AI prompt engineering tools — build, format, debug, optimize, secure, and translate prompts in your browser. No sign-up required.",
+      "Choose from 21 free AI prompt engineering tools — build, format, debug, optimize, secure, and translate prompts in your browser. No sign-up required.",
     keywords:
       "Best AI Tools, Free AI Tools, AI Tools Directory, AI Prompt Tools, Prompt Engineering Tools, Free AI Prompt Tools, AI Prompt Builder, ChatGPT Prompt Tools, Prompt Optimization Tools",
   },
@@ -107,7 +107,7 @@ const SEO_MAP: Record<string, SeoData> = {
   "/about": {
     title: "About — Best Free AI Prompt Engineering Tools | AI World Hub",
     description:
-      "AI World Hub offers the best free AI prompt engineering tools for everyone — students, developers, marketers, and teams. 19 in-browser tools, no sign-up, with prompt inputs processed locally in your browser.",
+      "AI World Hub offers free AI prompt engineering tools for students, developers, marketers, and teams. 21 in-browser tools, no sign-up, with prompt inputs processed locally in your browser.",
     keywords:
       "About AI World Hub, Best AI Tools, Free AI Tools, Prompt Engineering",
   },
@@ -124,7 +124,7 @@ const SEO_MAP: Record<string, SeoData> = {
   "/privacy-policy": {
     title: "Privacy Policy | Free AI Prompt Tools — AI World Hub",
     description:
-      "Privacy policy for AI World Hub — free AI prompt engineering tools. All tool processing happens in-browser. No personal data collected, stored, or shared.",
+      "Privacy policy for AI World Hub — free AI prompt engineering tools. Prompt and tool inputs process in-browser; limited website analytics and hosting logs are described in the policy.",
     keywords: "Privacy Policy, Free AI Tools, Prompt Engineering",
   },
 
