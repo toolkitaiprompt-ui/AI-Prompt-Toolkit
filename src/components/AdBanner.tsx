@@ -16,7 +16,7 @@ import { useEffect, useRef, useState } from "react";
   React never re-renders, and fallbacks are separate React-owned nodes.
 */
 
-type Network = "adsterra" | "monetag-banner" | "custom" | "raw-html" | "raw-html-2";
+type Network = "adsterra" | "monetag-banner" | "custom";
 export type AdSize = "leaderboard" | "rectangle" | "banner" | "skyscraper" | "halfpage";
 
 interface AdBannerProps {
@@ -52,19 +52,6 @@ export const AD_CONFIG: Record<Network, { enabled: boolean; zoneId: string }> = 
   "monetag-banner": { enabled: false, zoneId: "" },
   // Monetag direct-link smartlink (11565897) — VISIBLE sponsored box
   custom: { enabled: true, zoneId: "https://omg10.com/4/11565897" },
-  // Adsterra banner tags are now placed STATICALLY in index.html (their delivery
-  // requires the tag in the served HTML — dynamic injection returned empty).
-  // These networks stay reserved; slots below use the Monetag sponsored box.
-  "raw-html": {
-    enabled: false,
-    zoneId:
-      '<script async="async" data-cfasync="false" src="https://tremblingsauna.com/3f/57/c6/3f57c6c4a1cf92823800e36ff3e1b363.js"></script>',
-  },
-  "raw-html-2": {
-    enabled: false,
-    zoneId:
-      '<script async="async" data-cfasync="false" src="https://tremblingsauna.com/81/ba/7d/81ba7d2609c3d121773bc39aac133595.js"></script>',
-  },
 };
 
 const SIZE_DIMS: Record<AdSize, string> = {
@@ -223,34 +210,6 @@ export default function AdBanner({
       };
     }
 
-    if (resolvedNetwork === "raw-html" || resolvedNetwork === "raw-html-2") {
-      const wrapper = document.createElement("div");
-      wrapper.innerHTML = resolvedZone.key;
-      Array.from(wrapper.querySelectorAll("script")).forEach((oldScript) => {
-        const newScript = document.createElement("script");
-        Array.from(oldScript.attributes).forEach((attr) => newScript.setAttribute(attr.name, attr.value));
-        newScript.text = oldScript.text || "";
-        oldScript.replaceWith(newScript);
-      });
-      container.appendChild(wrapper);
-
-      // FALLBACK: if the raw Adsterra tag doesn't fill within 3s (empty
-      // invoke.js / no fill), show the Monetag sponsored box so the slot is
-      // never blank. Only state flips — injected nodes stay untouched.
-      const fallbackTimer = window.setTimeout(() => {
-        const hasIframe = !!container.querySelector("iframe");
-        const hasAd = container.querySelector("a, ins, img[src]") !== null;
-        if (!hasIframe && !hasAd) {
-          setAdFailed(true);
-        }
-      }, 3000);
-
-      return () => {
-        window.clearTimeout(fallbackTimer);
-        injected.current = false;
-      };
-    }
-
     if (resolvedNetwork === "monetag-banner") {
       const script = document.createElement("script");
       script.async = true;
@@ -286,7 +245,7 @@ export default function AdBanner({
       <div className="promo-slot" style={{ minHeight: resolvedNetwork === "adsterra" ? resolvedZone.height : 250 }} data-size={resolvedNetwork === "adsterra" ? SIZE_DIMS[size] : ""}>
         <div ref={containerRef} />
       </div>
-      {(resolvedNetwork === "adsterra" || resolvedNetwork === "raw-html" || resolvedNetwork === "raw-html-2") && adFailed && (
+      {resolvedNetwork === "adsterra" && adFailed && (
         <div className="promo-fallback">
           <MonetagBox />
         </div>
