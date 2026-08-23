@@ -3,7 +3,7 @@ import useSeo from "../hooks/useSeo";
 import { BLOG_POSTS } from "../data/blogPosts";
 import { ACTIVE_TOOL_COUNT, TOOL_PAGES, TOOL_CATEGORIES, type ToolMeta } from "../data/tools";
 import { getRolesForTool } from "../lib/contentHub";
-import AdBanner from "./AdBanner";
+import AdBanner, { ADSTERRA_ZONES } from "./AdBanner";
 import BlogCard from "./BlogCard";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -162,9 +162,13 @@ function ToolContainer({
         <div className="space-y-4">{children}</div>
       </div>
 
-      {/* Ad — after the tool (keeps the tool itself above the fold on mobile) */}
-      {/* Real Adsterra banner tag (dashboard "Get tag") with Monetag fallback */}
-      <AdBanner network="custom" />
+      {/* One controlled display-ad test after the completed tool workflow.
+          It is visibly labelled by AdBanner and separated from controls/navigation. */}
+      <AdBanner
+        network="adsterra"
+        zoneId={ADSTERRA_ZONES.rectangle.key}
+        size="rectangle"
+      />
 
       {relatedBlogs.length > 0 && (
         <section>

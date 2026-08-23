@@ -43,11 +43,9 @@ export const ADSTERRA_ZONES: Record<
 
 // ─── NETWORK CONFIG (single source of truth) ───
 export const AD_CONFIG: Record<Network, { enabled: boolean; zoneId: string }> = {
-  // DISABLED: atOptions-style zones use a GLOBAL `atOptions` variable that races
-  // across multiple slots on the same page (each slot overwrites it, async
-  // invoke.js reads the last one) — slots rendered wrong zones or stayed empty.
-  // The real Adsterra tags for this domain are the static tremblingsauna
-  // scripts in index.html; slots below use the Monetag sponsored box.
+  // Disabled by default: atOptions-style zones use a GLOBAL `atOptions` variable
+  // that races across multiple slots on the same page. A single, explicit zoneId
+  // is used only for the controlled post-tool display-ad test below.
   adsterra: { enabled: false, zoneId: "" },
   "monetag-banner": { enabled: false, zoneId: "" },
   // Monetag direct-link smartlink (11565897) — VISIBLE sponsored box
@@ -72,9 +70,11 @@ function nextMonetagZone() {
 }
 
 type SponsoredCardEvent = "sponsored_card_viewable" | "sponsored_card_click";
+type DisplayTagEvent = "ad_display_tag_requested" | "ad_display_fallback";
+type MonetizationEvent = SponsoredCardEvent | DisplayTagEvent;
 type GtagEvent = (
   command: "event",
-  eventName: SponsoredCardEvent,
+  eventName: MonetizationEvent,
   parameters: Record<string, string | boolean>,
 ) => void;
 
@@ -91,6 +91,23 @@ function trackSponsoredCardEvent(eventName: SponsoredCardEvent, zone: string) {
     ad_placement: window.location.pathname,
     ad_zone: zone,
     non_interaction: eventName === "sponsored_card_viewable",
+  });
+}
+
+function trackDisplayTagEvent(eventName: DisplayTagEvent, zone: string, size: string) {
+  if (typeof window === "undefined") return;
+
+  const gtag = (window as Window & { gtag?: GtagEvent }).gtag;
+  if (!gtag) return;
+
+  gtag("event", eventName, {
+    event_category: "monetization",
+    ad_network: "adsterra",
+    ad_format: "banner",
+    ad_placement: window.location.pathname,
+    ad_zone: zone,
+    ad_size: size,
+    non_interaction: true,
   });
 }
 
@@ -251,17 +268,19 @@ export default function AdBanner({
       invokeScript.async = true;
       invokeScript.setAttribute("data-adsterra", resolvedZone.key);
       container.appendChild(invokeScript);
+      trackDisplayTagEvent("ad_display_tag_requested", resolvedZone.key, SIZE_DIMS[size]);
 
-      // FALLBACK: if Adsterra doesn't fill within 3s (empty invoke.js / no fill),
-      // show the Monetag sponsored box so the slot is never blank.
+      // FALLBACK: keep a blank reserved slot only while the tag has a genuine chance
+      // to respond. A shorter timeout caused a direct-link fallback to appear even
+      // after a valid Adsterra iframe arrived a moment later.
       // Only state flips — injected nodes stay untouched (crash-proof).
       const fallbackTimer = window.setTimeout(() => {
-        const hasIframe = !!container.querySelector("iframe");
-        const hasAd = container.querySelector("a, ins, img[src]") !== null;
-        if (!hasIframe && !hasAd) {
+        const hasAd = container.querySelector("iframe, a, ins, img[src]") !== null;
+        if (!hasAd) {
           setAdFailed(true);
+          trackDisplayTagEvent("ad_display_fallback", resolvedZone.key, SIZE_DIMS[size]);
         }
-      }, 3000);
+      }, 7000);
 
       return () => {
         window.clearTimeout(fallbackTimer);
