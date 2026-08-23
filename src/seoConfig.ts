@@ -107,7 +107,7 @@ const SEO_MAP: Record<string, SeoData> = {
   "/about": {
     title: "About — Best Free AI Prompt Engineering Tools | AI World Hub",
     description:
-      "AI World Hub offers the best free AI prompt engineering tools for everyone — students, developers, marketers, and teams. 19 in-browser tools, no sign-up, no data collection.",
+      "AI World Hub offers the best free AI prompt engineering tools for everyone — students, developers, marketers, and teams. 19 in-browser tools, no sign-up, with prompt inputs processed locally in your browser.",
     keywords:
       "About AI World Hub, Best AI Tools, Free AI Tools, Prompt Engineering",
   },

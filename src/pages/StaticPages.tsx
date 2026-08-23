@@ -34,7 +34,7 @@ export function AboutPage() {
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-white">Our Mission</h2>
           <p className="text-slate-300">
-            We believe that great AI output starts with great prompts. Our mission is to make professional prompt engineering accessible to everyone — developers, marketers, support teams, and AI enthusiasts. No sign-ups, no server round-trips, no data collection. Every tool runs entirely in your browser.
+            We believe that great AI output starts with great prompts. Our mission is to make professional prompt engineering accessible to everyone — developers, marketers, support teams, and AI enthusiasts. No sign-ups and no server round-trips for your prompts. Every tool runs entirely in your browser; limited website analytics and hosting logs are described in our Privacy Policy.
           </p>
         </div>
 

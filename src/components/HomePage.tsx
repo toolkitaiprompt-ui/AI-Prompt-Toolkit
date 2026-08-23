@@ -70,7 +70,7 @@ export default function HomePage({ toolPages }: HomePageProps) {
   const faqs = [
     {
       question: 'Is AI World Hub really free?',
-      answer: 'Yes! All 19 tools are completely free with no signup required. Every tool runs in your browser with no data collection, and the toolkit is 100% free forever.',
+      answer: 'Yes! All 19 tools are completely free with no signup required. Every tool runs in your browser, so your prompts stay on your device. Limited website analytics and hosting logs are described in our Privacy Policy.',
     },
     {
       question: 'How does in-browser processing work?',
