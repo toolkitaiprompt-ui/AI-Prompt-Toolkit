@@ -71,11 +71,75 @@ function nextMonetagZone() {
   return MONETAG_DIRECT_ZONES[monetagZoneCounter];
 }
 
+type SponsoredCardEvent = "sponsored_card_viewable" | "sponsored_card_click";
+type GtagEvent = (
+  command: "event",
+  eventName: SponsoredCardEvent,
+  parameters: Record<string, string | boolean>,
+) => void;
+
+function trackSponsoredCardEvent(eventName: SponsoredCardEvent, zone: string) {
+  if (typeof window === "undefined") return;
+
+  const gtag = (window as Window & { gtag?: GtagEvent }).gtag;
+  if (!gtag) return;
+
+  gtag("event", eventName, {
+    event_category: "monetization",
+    ad_network: "monetag",
+    ad_format: "direct_link",
+    ad_placement: window.location.pathname,
+    ad_zone: zone,
+    non_interaction: eventName === "sponsored_card_viewable",
+  });
+}
+
 // Shared Monetag fallback box (used when Adsterra doesn't fill a slot)
 function MonetagBox() {
-  const zone = nextMonetagZone();
+  const [zone] = useState(nextMonetagZone);
+  const cardRef = useRef<HTMLAnchorElement>(null);
+  const viewTracked = useRef(false);
+
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    const trackView = () => {
+      if (viewTracked.current) return;
+      viewTracked.current = true;
+      trackSponsoredCardEvent("sponsored_card_viewable", zone);
+    };
+
+    if (!("IntersectionObserver" in window)) {
+      trackView();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+          trackView();
+          observer.disconnect();
+        }
+      },
+      { threshold: [0.5] },
+    );
+
+    observer.observe(card);
+    return () => observer.disconnect();
+  }, [zone]);
+
   return (
-    <a href={zone} target="_blank" rel="sponsored noopener noreferrer" className="promo-card" aria-label="View offer — sponsored; opens in a new tab">
+    <a
+      ref={cardRef}
+      href={zone}
+      target="_blank"
+      rel="sponsored noopener noreferrer"
+      className="promo-card"
+      aria-label="View offer — sponsored; opens in a new tab"
+      data-sponsored-zone={zone}
+      onClick={() => trackSponsoredCardEvent("sponsored_card_click", zone)}
+    >
       <span className="promo-badge">Sponsored</span>
       <span className="promo-art" aria-hidden="true">
         <svg viewBox="0 0 300 250" width="300" height="250" role="presentation" style={{ width: "100%", height: "auto" }}>
