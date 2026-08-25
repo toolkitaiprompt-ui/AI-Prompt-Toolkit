@@ -441,9 +441,9 @@ return (
         </div>
       </section>
 
-      {/* Banner Ad */}
+      {/* Clearly labelled Monetag offer, separate from navigation and tool controls. */}
       <div className="site-container pt-8">
-        <AdBanner network="custom" />
+        <AdBanner network="custom" placement="home-stats-sponsored-offer" />
       </div>
 
       {/* Popular Tools — quick links to the most-used tools */}
@@ -638,9 +638,9 @@ return (
         </div>
       </section>
 
-      {/* Banner Ad */}
+      {/* Clearly labelled Monetag offer, separate from navigation and tool controls. */}
       <div className="site-container pt-8">
-        <AdBanner network="custom" />
+        <AdBanner network="custom" placement="home-trending-sponsored-offer" />
       </div>
 
 
@@ -695,9 +695,9 @@ return (
         <LatestBlogStrip />
       </Suspense>
 
-      {/* Banner Ad */}
+      {/* Clearly labelled Monetag offer, separate from navigation and tool controls. */}
       <div className="site-container pt-8">
-        <AdBanner network="custom" />
+        <AdBanner network="custom" placement="home-blog-sponsored-offer" />
       </div>
 
       {/* Popular Solutions — problem-based guides visitors can share */}

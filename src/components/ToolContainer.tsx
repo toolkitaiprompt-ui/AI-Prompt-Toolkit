@@ -168,7 +168,12 @@ function ToolContainer({
         network="adsterra"
         zoneId={ADSTERRA_ZONES.rectangle.key}
         size="rectangle"
+        placement="tool-result-display"
       />
+
+      {/* A separate, clearly labelled direct-link offer after the completed workflow.
+          It is not adjacent to any tool action, navigation, or required control. */}
+      <AdBanner network="custom" placement="tool-result-sponsored-offer" />
 
       {relatedBlogs.length > 0 && (
         <section>
@@ -292,8 +297,6 @@ function ToolContainer({
           </div>
         </section>
       )}
-
-<AdBanner network="custom" />
 
       <div>
         <div className="mb-6 flex items-center justify-between">

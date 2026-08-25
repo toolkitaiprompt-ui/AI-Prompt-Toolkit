@@ -177,7 +177,7 @@ function Layout() {
         {/* Keep a purchase journey free of unrelated third-party offers. */}
         {!isCommercialProductPage && (
           <div className="hidden md:block">
-            <AdBanner size="banner" />
+            <AdBanner size="banner" placement="site-top-sponsored-offer" />
           </div>
         )}
         <ErrorBoundary>
@@ -385,7 +385,7 @@ function MobileBottomAd() {
       >
         ✕
       </button>
-      <AdBanner size="banner" />
+      <AdBanner size="banner" placement="mobile-bottom-sponsored-offer" />
     </div>
   );
 }

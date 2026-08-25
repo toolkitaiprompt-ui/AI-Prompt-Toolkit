@@ -24,6 +24,8 @@ interface AdBannerProps {
   zoneId?: string;
   size?: AdSize;
   className?: string;
+  /** Stable analytics label for this visible, non-intrusive placement. */
+  placement?: string;
 }
 
 // ─── ADSTERRA ZONES (owner's real zone keys) ───
@@ -78,7 +80,7 @@ type GtagEvent = (
   parameters: Record<string, string | boolean>,
 ) => void;
 
-function trackSponsoredCardEvent(eventName: SponsoredCardEvent, zone: string) {
+function trackSponsoredCardEvent(eventName: SponsoredCardEvent, zone: string, placement: string) {
   if (typeof window === "undefined") return;
 
   const gtag = (window as Window & { gtag?: GtagEvent }).gtag;
@@ -88,13 +90,14 @@ function trackSponsoredCardEvent(eventName: SponsoredCardEvent, zone: string) {
     event_category: "monetization",
     ad_network: "monetag",
     ad_format: "direct_link",
-    ad_placement: window.location.pathname,
+    ad_placement: placement,
+    page_path: window.location.pathname,
     ad_zone: zone,
     non_interaction: eventName === "sponsored_card_viewable",
   });
 }
 
-function trackDisplayTagEvent(eventName: DisplayTagEvent, zone: string, size: string) {
+function trackDisplayTagEvent(eventName: DisplayTagEvent, zone: string, size: string, placement: string) {
   if (typeof window === "undefined") return;
 
   const gtag = (window as Window & { gtag?: GtagEvent }).gtag;
@@ -104,7 +107,8 @@ function trackDisplayTagEvent(eventName: DisplayTagEvent, zone: string, size: st
     event_category: "monetization",
     ad_network: "adsterra",
     ad_format: "banner",
-    ad_placement: window.location.pathname,
+    ad_placement: placement,
+    page_path: window.location.pathname,
     ad_zone: zone,
     ad_size: size,
     non_interaction: true,
@@ -112,7 +116,7 @@ function trackDisplayTagEvent(eventName: DisplayTagEvent, zone: string, size: st
 }
 
 // Shared Monetag fallback box (used when Adsterra doesn't fill a slot)
-function MonetagBox() {
+function MonetagBox({ placement = "unspecified" }: { placement?: string }) {
   const [zone] = useState(nextMonetagZone);
   const cardRef = useRef<HTMLAnchorElement>(null);
   const viewTracked = useRef(false);
@@ -124,7 +128,7 @@ function MonetagBox() {
     const trackView = () => {
       if (viewTracked.current) return;
       viewTracked.current = true;
-      trackSponsoredCardEvent("sponsored_card_viewable", zone);
+      trackSponsoredCardEvent("sponsored_card_viewable", zone, placement);
     };
 
     if (!("IntersectionObserver" in window)) {
@@ -155,7 +159,7 @@ function MonetagBox() {
       className="promo-card"
       aria-label="View offer — sponsored; opens in a new tab"
       data-sponsored-zone={zone}
-      onClick={() => trackSponsoredCardEvent("sponsored_card_click", zone)}
+      onClick={() => trackSponsoredCardEvent("sponsored_card_click", zone, placement)}
     >
       <span className="promo-badge">Sponsored</span>
       <span className="promo-art" aria-hidden="true">
@@ -195,6 +199,7 @@ export default function AdBanner({
   zoneId,
   size = "rectangle",
   className = "",
+  placement = "unspecified",
 }: AdBannerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const injected = useRef(false);
@@ -268,7 +273,7 @@ export default function AdBanner({
       invokeScript.async = true;
       invokeScript.setAttribute("data-adsterra", resolvedZone.key);
       container.appendChild(invokeScript);
-      trackDisplayTagEvent("ad_display_tag_requested", resolvedZone.key, SIZE_DIMS[size]);
+      trackDisplayTagEvent("ad_display_tag_requested", resolvedZone.key, SIZE_DIMS[size], placement);
 
       // FALLBACK: keep a blank reserved slot only while the tag has a genuine chance
       // to respond. A shorter timeout caused a direct-link fallback to appear even
@@ -278,7 +283,7 @@ export default function AdBanner({
         const hasAd = container.querySelector("iframe, a, ins, img[src]") !== null;
         if (!hasAd) {
           setAdFailed(true);
-          trackDisplayTagEvent("ad_display_fallback", resolvedZone.key, SIZE_DIMS[size]);
+          trackDisplayTagEvent("ad_display_fallback", resolvedZone.key, SIZE_DIMS[size], placement);
         }
       }, 7000);
 
@@ -317,7 +322,7 @@ export default function AdBanner({
     return (
       <div className={`promo-wrap ${className}`}>
         <span className="promo-label">Advertisement</span>
-        <MonetagBox />
+        <MonetagBox placement={placement} />
       </div>
     );
   }
@@ -330,7 +335,7 @@ export default function AdBanner({
       </div>
       {resolvedNetwork === "adsterra" && adFailed && (
         <div className="promo-fallback">
-          <MonetagBox />
+          <MonetagBox placement={`${placement}-fallback`} />
         </div>
       )}
     </div>
