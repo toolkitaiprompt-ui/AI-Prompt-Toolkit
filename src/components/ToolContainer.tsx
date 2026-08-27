@@ -171,6 +171,14 @@ function ToolContainer({
         placement="tool-result-display"
       />
 
+      {/* One dedicated Monetag In-Page Push zone after the tool workflow. This uses
+          a user-supplied impression zone, not MultiTag or any click-layer format. */}
+      <AdBanner
+        network="monetag-ipp"
+        zoneId="11565893"
+        placement="tool-result-monetag-inpage"
+      />
+
       {/* A separate, clearly labelled direct-link offer after the completed workflow.
           It is not adjacent to any tool action, navigation, or required control. */}
       <AdBanner network="custom" placement="tool-result-sponsored-offer" />

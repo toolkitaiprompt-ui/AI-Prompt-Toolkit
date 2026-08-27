@@ -16,7 +16,7 @@ import { useEffect, useRef, useState } from "react";
   React never re-renders, and fallbacks are separate React-owned nodes.
 */
 
-type Network = "adsterra" | "monetag-banner" | "custom";
+type Network = "adsterra" | "monetag-ipp" | "monetag-banner" | "custom";
 export type AdSize = "leaderboard" | "rectangle" | "banner" | "skyscraper" | "halfpage";
 
 interface AdBannerProps {
@@ -49,6 +49,9 @@ export const AD_CONFIG: Record<Network, { enabled: boolean; zoneId: string }> = 
   // that races across multiple slots on the same page. A single, explicit zoneId
   // is used only for the controlled post-tool display-ad test below.
   adsterra: { enabled: false, zoneId: "" },
+  // Dedicated Monetag In-Page Push (visible, impression-based) zone. It is
+  // only injected at the controlled post-tool position with an explicit zoneId.
+  "monetag-ipp": { enabled: false, zoneId: "" },
   "monetag-banner": { enabled: false, zoneId: "" },
   // Monetag direct-link smartlink (11565897) — VISIBLE sponsored box
   custom: { enabled: true, zoneId: "https://omg10.com/4/11565897" },
@@ -73,7 +76,8 @@ function nextMonetagZone() {
 
 type SponsoredCardEvent = "sponsored_card_viewable" | "sponsored_card_click";
 type DisplayTagEvent = "ad_display_tag_requested" | "ad_display_fallback";
-type MonetizationEvent = SponsoredCardEvent | DisplayTagEvent;
+type MonetagIppEvent = "monetag_inpage_tag_requested" | "monetag_inpage_tag_failed";
+type MonetizationEvent = SponsoredCardEvent | DisplayTagEvent | MonetagIppEvent;
 type GtagEvent = (
   command: "event",
   eventName: MonetizationEvent,
@@ -111,6 +115,23 @@ function trackDisplayTagEvent(eventName: DisplayTagEvent, zone: string, size: st
     page_path: window.location.pathname,
     ad_zone: zone,
     ad_size: size,
+    non_interaction: true,
+  });
+}
+
+function trackMonetagIppEvent(eventName: MonetagIppEvent, zone: string, placement: string) {
+  if (typeof window === "undefined") return;
+
+  const gtag = (window as Window & { gtag?: GtagEvent }).gtag;
+  if (!gtag) return;
+
+  gtag("event", eventName, {
+    event_category: "monetization",
+    ad_network: "monetag",
+    ad_format: "in_page_push",
+    ad_placement: placement,
+    page_path: window.location.pathname,
+    ad_zone: zone,
     non_interaction: true,
   });
 }
@@ -298,6 +319,22 @@ export default function AdBanner({
       };
     }
 
+    if (resolvedNetwork === "monetag-ipp") {
+      // Owner-supplied dedicated In-Page Push zone, used separately from the
+      // legacy MultiTag so the site does not deliberately re-enable that bundle.
+      const script = document.createElement("script");
+      script.async = true;
+      script.setAttribute("data-cfasync", "false");
+      script.setAttribute("data-monetag-ipp", resolvedZone.key);
+      script.dataset.zone = resolvedZone.key;
+      script.src = "https://nap5k.com/tag.min.js";
+      script.onerror = () => {
+        trackMonetagIppEvent("monetag_inpage_tag_failed", resolvedZone.key, placement);
+      };
+      container.appendChild(script);
+      trackMonetagIppEvent("monetag_inpage_tag_requested", resolvedZone.key, placement);
+    }
+
     if (resolvedNetwork === "monetag-banner") {
       const script = document.createElement("script");
       script.async = true;
@@ -330,7 +367,7 @@ export default function AdBanner({
   return (
     <div className={`promo-wrap ${className}`}>
       <span className="promo-label">Advertisement</span>
-      <div className="promo-slot" style={{ minHeight: resolvedNetwork === "adsterra" ? resolvedZone.height : 250 }} data-size={resolvedNetwork === "adsterra" ? SIZE_DIMS[size] : ""}>
+      <div className="promo-slot" style={{ minHeight: resolvedNetwork === "adsterra" ? resolvedZone.height : resolvedNetwork === "monetag-ipp" ? 0 : 250 }} data-size={resolvedNetwork === "adsterra" ? SIZE_DIMS[size] : ""}>
         <div ref={containerRef} />
       </div>
       {resolvedNetwork === "adsterra" && adFailed && (
