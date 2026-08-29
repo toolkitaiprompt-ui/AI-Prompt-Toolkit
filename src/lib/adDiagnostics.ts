@@ -30,16 +30,15 @@ export type AdDiagSnapshot = {
   redirects: { from: string; to: string }[];
 };
 
+// Keep this registry aligned with the tags actually injected by AdBanner.
+// Direct-link fallback cards are first-party redirects and intentionally do not
+// appear here because they are not paid-network impression tags.
 const MONETAG_SCRIPTS = [
-  { id: "monetag-popunder", srcPart: "quge5.com/88/tag.min.js", zone: "270208" },
-  { id: "monetag-inpage-push", srcPart: "nap5k.com/tag.min.js", zone: "11579225" },
-  { id: "monetag-vignette", srcPart: "n6wxm.com/vignette.min.js", zone: "11579226" },
-  { id: "monetag-push", srcPart: "nap5k.com/tag.min.js", zone: "11579227" },
+  { id: "monetag-inpage-push", srcPart: "nap5k.com/tag.min.js", zone: "11565893" },
 ];
 
 const ADSTERRA_SCRIPTS = [
-  { id: "adsterra-banner-1", srcPart: "tremblingsauna.com/3f/57/c6/3f57c6c4a1cf92823800e36ff3e1b363.js", zone: null },
-  { id: "adsterra-banner-2", srcPart: "tremblingsauna.com/81/ba/7d/81ba7d2609c3d121773bc39aac133595.js", zone: null },
+  { id: "adsterra-display-tag", srcPart: "highperformanceformat.com", zone: null },
 ];
 
 function detectDevice(): "mobile" | "tablet" | "desktop" {
@@ -73,14 +72,20 @@ export function snapshotAdDiagnostics(): AdDiagSnapshot {
     const present = scriptPresent(s.srcPart, s.zone);
     const entry = res.find((e) => e.name.includes(s.srcPart));
     const fetched = !!entry;
-    const loaded = fetched && (entry as PerformanceResourceTiming).transferSize > 0;
+    const timing = entry as PerformanceResourceTiming;
+    // Cached or privacy-partitioned responses can report transferSize === 0;
+    // duration still confirms that the browser completed a resource timing entry.
+    const loaded = fetched && (timing.transferSize > 0 || timing.duration > 0);
     return { id: s.id, zone: s.zone, present, fetched, loaded, cspBlocked: false };
   });
   const adsterra = ADSTERRA_SCRIPTS.map((s) => {
     const present = scriptPresent(s.srcPart, s.zone);
     const entry = res.find((e) => e.name.includes(s.srcPart));
     const fetched = !!entry;
-    const loaded = fetched && (entry as PerformanceResourceTiming).transferSize > 0;
+    const timing = entry as PerformanceResourceTiming;
+    // Cached or privacy-partitioned responses can report transferSize === 0;
+    // duration still confirms that the browser completed a resource timing entry.
+    const loaded = fetched && (timing.transferSize > 0 || timing.duration > 0);
     return { id: s.id, zone: s.zone, present, fetched, loaded, cspBlocked: false };
   });
 
