@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 
 // Import your actual data
-import { ACTIVE_TOOL_COUNT } from '../data/tools';
+import { ACTIVE_TOOL_COUNT, TOOL_PAGES } from '../data/tools';
 import { PROMPT_ROLE_META } from '../lib/contentHub';
 import { estimateTokens } from '../lib/toolkit';
 import ToolCard from './ToolCard';
