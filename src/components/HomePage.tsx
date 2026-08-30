@@ -21,7 +21,7 @@ import { PROMPT_ROLE_META } from '../lib/contentHub';
 import { estimateTokens } from '../lib/toolkit';
 import ToolCard from './ToolCard';
 import CategoryShowcase from './CategoryShowcase';
-import AdBanner from './AdBanner';
+import AdBanner, { ADSTERRA_ZONES } from './AdBanner';
 import useSeo from '../hooks/useSeo';
 import { lazy, Suspense } from 'react';
 // Lazy: blog data (197KB) loads after first paint — not in the critical path.
@@ -414,7 +414,7 @@ return (
 
       {/* Banner Ad */}
       <div className="site-container pt-8">
-        <AdBanner size="leaderboard" />
+        <AdBanner network="adsterra" zoneId={ADSTERRA_ZONES.leaderboard.key} size="leaderboard" placement="home-top-display" />
       </div>
 
       {/* Stats Section */}
@@ -579,7 +579,7 @@ return (
 
       {/* Banner Ad */}
       <div className="site-container pt-8">
-        <AdBanner size="banner" />
+        <AdBanner network="adsterra" zoneId={ADSTERRA_ZONES.banner.key} size="banner" placement="home-tools-display" />
       </div>
 
 
@@ -687,7 +687,7 @@ return (
 
       {/* Banner Ad */}
       <div className="site-container pt-8">
-        <AdBanner size="leaderboard" />
+        <AdBanner network="adsterra" zoneId={ADSTERRA_ZONES.leaderboard.key} size="leaderboard" placement="home-trending-display" />
       </div>
 
       {/* Blog Section — lazy-loaded strip (blogPosts data stays out of first paint) */}
@@ -774,7 +774,7 @@ return (
 
       {/* Banner Ad */}
       <div className="site-container pt-8">
-        <AdBanner size="halfpage" />
+        <AdBanner network="adsterra" zoneId={ADSTERRA_ZONES.halfpage.key} size="halfpage" placement="home-faq-display" />
       </div>
 
       {/* Final CTA */}
