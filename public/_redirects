@@ -1,7 +1,8 @@
 # Server-side redirects — prefer these over client-side redirect for SEO & duplicate content
 
-# Redirect Cloudflare Pages.dev subdomains to canonical domain
-*.pages.dev/* https://aiworldhub.site/:splat 301
+# Pages _redirects matches paths, not the pages.dev host alias.
+# Host consolidation is handled before SPA render in src/main.tsx.
+
 
 # Redirect www to non-www canonical domain
 www.aiworldhub.site/* https://aiworldhub.site/:splat 301
