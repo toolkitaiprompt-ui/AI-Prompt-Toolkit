@@ -8,7 +8,7 @@ import ToolCard from "../components/ToolCard";
 import ToolContainer from "../components/ToolContainer";
 import OutputToolbar, { LiveStats } from "../components/OutputToolbar";
 import { ToolGuide } from "../components/ToolGuide";
-import { ACTIVE_TOOL_COUNT, TOOL_PAGES, TOOL_CATEGORIES, TOOL_BY_SLUG } from "../data/tools";
+import { ACTIVE_TOOL_COUNT, TOOL_PAGES, TOOL_CATEGORIES, TOOL_BY_SLUG, type ToolMeta } from "../data/tools";
 import { cleanPrompt, estimateTokens, extractPromptVariables, formatPrompt, generateJsonSchema, validateJsonWithSchema } from "../lib/toolkit";
 
 function useToolFilters(tools: typeof TOOL_PAGES) {
@@ -73,7 +73,7 @@ export function ToolsDirectoryPage() {
       toolBenefitMap.get(tool.path)!.forEach((b) => {
         // noop - we'll build cross-tool map below
       });
-      toolBenefitMap.get(tool.path)!.add(...tool.keyBenefits);
+      tool.keyBenefits.forEach((benefit) => toolBenefitMap.get(tool.path)!.add(benefit));
     }
 
     // Find tools with overlapping benefits
@@ -832,7 +832,7 @@ export function PromptGeneratorPage() {
           <div className="mt-6 p-5 rounded-xl border border-amber-500/25 bg-amber-500/10">
             <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-400/80 mb-3">Generated Prompt</h3>
             <textarea
-              readonly
+              readOnly
               className="w-full h-40 rounded-xl border border-amber-500/30 bg-amber-500/5 p-3 text-sm text-amber-200 font-mono outline-none focus:ring-2 focus:ring-amber-300 transition"
               value={generatedPrompt}
               aria-label="Generated prompt"

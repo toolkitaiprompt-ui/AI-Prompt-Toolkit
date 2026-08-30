@@ -69,36 +69,26 @@ const AdvancedOptimizerPreview = () => (
   </div>
 );
 
-const ToolBadge = ({ type }: { type: "free" | "popular" | "advanced" | "category" }) => {
+type ToolBadgeProps = {
+  type: "free" | "popular" | "advanced" | "category";
+  category?: string;
+};
+
+const ToolBadge = ({ type, category }: ToolBadgeProps) => {
+  const categoryNames: Record<string, string> = {
+    writing: "Writing & Content",
+    coding: "Development & Code",
+    marketing: "Marketing & Sales",
+    business: "Business & Strategy",
+    creative: "Creative & Design",
+  };
   const badges = {
     free: { bg: "bg-emerald-500/15", border: "border-emerald-400/30", text: "text-emerald-300", label: "Free" },
     popular: { bg: "bg-violet-500/15", border: "border-violet-400/30", text: "text-violet-300", label: "Popular" },
     advanced: { bg: "bg-yellow-500/15", border: "border-yellow-400/30", text: "text-yellow-300", label: "Premium" },
-    category: (props: { category: string; categories: string[] }) => {
-      const categoryNames: Record<string, string> = {
-        writing: "Writing & Content",
-        coding: "Development & Code",
-        marketing: "Marketing & Sales",
-        business: "Business & Strategy",
-        creative: "Creative & Design",
-      };
-      const name = categoryNames[props.category] || props.category;
-      return {
-        bg: "bg-amber-500/15",
-        border: "border-amber-400/30",
-        text: "text-amber-300",
-        label: name,
-      };
-    },
+    category: { bg: "bg-amber-500/15", border: "border-amber-400/30", text: "text-amber-300", label: categoryNames[category ?? ""] || category || "Tool" },
   };
-  const badge = typeof type === "string" ? badges.category : badges[type];
-  if (typeof type === "string") {
-    return (
-      <span className={`rounded-full border ${badge.border} ${badge.bg} px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider ${badge.text}`}>
-        {badge.label}
-      </span>
-    );
-  }
+  const badge = badges[type];
   return (
     <span className={`rounded-full border ${badge.border} ${badge.bg} px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider ${badge.text}`}>
       {badge.label}
@@ -160,10 +150,7 @@ export default function ToolCard({ tool }: { tool: ToolMeta }) {
             <div className="flex h-14 w-14 items-center justify-center rounded-[14px] mb-1 bg-gradient-to-br from-slate-900 to-slate-950 border border-white/10 group-hover:border-amber-400/30 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-amber-500/20">
               <Icon className="h-7 w-7 text-white group-hover:text-amber-300 transition-colors" aria-hidden="true" />
             </div>
-            {getBadgeType() !== "free" && <ToolBadge type={getBadgeType()!} />}
-            {getBadgeType() === "category" && (
-              <ToolBadge type="category" category={category!} categories={["writing", "coding", "marketing", "business", "creative"]} />
-            )}
+            {getBadgeType() !== "free" && <ToolBadge type={getBadgeType()!} category={category} />}
           </div>
 
           {/* Title */}

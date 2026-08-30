@@ -51,7 +51,7 @@ function getCategoryName(category: string | undefined): string {
     business: "Business & Strategy",
     creative: "Creative & Design",
   };
-  return mapping[category] || "prompt engineering";
+  return mapping[category ?? ""] || "prompt engineering";
 }
 
 function ToolContainer({
