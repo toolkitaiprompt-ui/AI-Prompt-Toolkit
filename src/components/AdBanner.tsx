@@ -69,6 +69,7 @@ const SIZE_DIMS: Record<AdSize, string> = {
 // ad-blockers (which block omg10.com by URL) can't hide the ads.
 const MONETAG_DIRECT_ZONES = ["/go/offer-1", "/go/offer-2"];
 let monetagZoneCounter = 0;
+const ADSTERRA_ACTIVE_ATTR = "data-adsterra-active";
 function nextMonetagZone() {
   monetagZoneCounter = (monetagZoneCounter + 1) % MONETAG_DIRECT_ZONES.length;
   return MONETAG_DIRECT_ZONES[monetagZoneCounter];
@@ -275,8 +276,22 @@ export default function AdBanner({
     injected.current = true;
 
     if (resolvedNetwork === "adsterra") {
+      // Adsterra's atOptions/invoke.js contract uses a page-global `atOptions`.
+      // Multiple concurrent slots overwrite that global and can leave every slot
+      // blank. Allow one real Adsterra slot per page; remaining placements use
+      // the clearly labelled first-party fallback instead of racing each other.
+      const activeSlot = document.querySelector(`[${ADSTERRA_ACTIVE_ATTR}]`);
+      if (activeSlot) {
+        injected.current = true;
+        setAdFailed(true);
+        trackDisplayTagEvent("ad_display_fallback", resolvedZone.key, SIZE_DIMS[size], placement);
+        return;
+      }
+      container.setAttribute(ADSTERRA_ACTIVE_ATTR, resolvedZone.key);
+
       const atScript = document.createElement("script");
       atScript.type = "text/javascript";
+      atScript.setAttribute("data-adsterra-config", "true");
       atScript.text = `
         atOptions = {
           'key' : '${resolvedZone.key}',
@@ -312,9 +327,10 @@ export default function AdBanner({
         window.clearTimeout(fallbackTimer);
         injected.current = false;
         try {
-          container.querySelectorAll("script[data-adsterra]").forEach((n) => {
+          container.querySelectorAll("script[data-adsterra], script[data-adsterra-config]").forEach((n) => {
             if (n.parentNode === container) n.parentNode.removeChild(n);
           });
+          container.removeAttribute(ADSTERRA_ACTIVE_ATTR);
         } catch { /* ignore */ }
       };
     }
