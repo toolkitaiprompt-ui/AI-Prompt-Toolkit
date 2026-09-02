@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-    <!-- Product-safety and performance fix: automatic third-party advertising
-         scripts are disabled. They captured first-party interactions and the
-         remaining Monetag scripts loaded a vignette dependency in mobile tests.
-         Clearly labelled sponsored cards remain visitor-initiated only. -->
+    <!-- MONETAG AD CODES — Monetag requires these scripts FIRST in <head>.
+         Zones (owner account toolkitaiprompt@gmail.com):
+         270208  = OnClick popunder (AdHelpTeam — owner zone 11579224 is dead/404)
+         11579225 = In-Page Push (owner zone)
+         11579226 = Vignette (owner zone)
+         11579227 = Push Notifications (owner zone)
+         WARNING: These drive ALL Monetag revenue. Removing them = zero ad
+         impressions (site owner confirmed: "2 weeks, slots show, no ads").
+         Verified delivery: quge5/nap5k/n6wxm all HTTP 200. -->
+    <script src="https://quge5.com/88/tag.min.js" data-zone="270208" async data-cfasync="false"></script>
+    <script src="https://nap5k.com/tag.min.js" data-zone="11579225" async data-cfasync="false"></script>
+    <script>(function(s){s.dataset.zone='11579226',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+    <script src="https://nap5k.com/tag.min.js" data-zone="11579227" async data-cfasync="false"></script>
     <meta name="google-site-verification" content="CuFSreK8Oi6CUbOHg49HUv-4HoyArB2JQo2H5KY9wQA" />
 
     <!-- Monetag Verification -->
