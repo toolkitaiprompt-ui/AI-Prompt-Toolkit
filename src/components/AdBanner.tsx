@@ -313,7 +313,7 @@ export default function AdBanner({
 
       const invokeScript = document.createElement("script");
       invokeScript.type = "text/javascript";
-      invokeScript.src = `//www.highperformanceformat.com/${resolvedZone.key}/invoke.js`;
+      invokeScript.src = `https://www.highperformanceformat.com/${resolvedZone.key}/invoke.js`;
       invokeScript.async = true;
       invokeScript.setAttribute("data-adsterra", resolvedZone.key);
       container.appendChild(invokeScript);
@@ -350,7 +350,7 @@ export default function AdBanner({
       script.async = true;
       script.setAttribute("data-cfasync", "false");
       script.setAttribute("data-monetag-ipp", resolvedZone.key);
-      script.dataset.zone = resolvedZone.key;
+      script.setAttribute("data-zone", resolvedZone.key);
       script.src = "https://nap5k.com/tag.min.js";
       script.onerror = () => {
         setIppFailed(true);
@@ -374,7 +374,7 @@ export default function AdBanner({
       const script = document.createElement("script");
       script.async = true;
       script.setAttribute("data-cfasync", "false");
-      script.src = `//monetag.com/${resolvedZone.key}.min.js`;
+      script.src = `https://monetag.com/${resolvedZone.key}.min.js`;
       container.appendChild(script);
     }
 
