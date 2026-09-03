@@ -44,17 +44,17 @@ export const ADSTERRA_ZONES: Record<
 };
 
 // ─── NETWORK CONFIG (single source of truth) ───
+// PRIMARY: Adsterra (real banner fills) + Monetag IPP fallback (In-Page Push impressions)
+// SECONDARY: Monetag direct-link (visible sponsored card as fallback-of-fallback)
 export const AD_CONFIG: Record<Network, { enabled: boolean; zoneId: string }> = {
-  // Disabled by default: atOptions-style zones use a GLOBAL `atOptions` variable
-  // that races across multiple slots on the same page. A single, explicit zoneId
-  // is used only for the controlled post-tool display-ad test below.
-  adsterra: { enabled: false, zoneId: "" },
-  // Dedicated Monetag In-Page Push (visible, impression-based) zone. It is
-  // only injected at the controlled post-tool position with an explicit zoneId.
+  // PRIMARY: Adsterra real banner ads (owner account with verified HTTP 200 zones)
+  adsterra: { enabled: true, zoneId: "" },
+  // FALLBACK #1: Monetag In-Page Push (11579225 = owner zone, visible impression-based)
   "monetag-ipp": { enabled: true, zoneId: "11579225" },
+  // FALLBACK #2: Monetag banner network (reserve, not primary)
   "monetag-banner": { enabled: false, zoneId: "" },
-  // Monetag direct-link smartlink (11565897) — VISIBLE sponsored box
-  custom: { enabled: false, zoneId: "https://omg10.com/4/11565897" },
+  // FALLBACK #3: Monetag direct-link smartlink (11565897) — VISIBLE sponsored box (last resort)
+  custom: { enabled: true, zoneId: "https://omg10.com/4/11565897" },
 };
 
 const SIZE_DIMS: Record<AdSize, string> = {
@@ -217,7 +217,7 @@ function MonetagBox({ placement = "unspecified" }: { placement?: string }) {
 }
 
 export default function AdBanner({
-  network = "monetag-ipp",
+  network = "adsterra",
   zoneId,
   size = "rectangle",
   className = "",
@@ -226,6 +226,7 @@ export default function AdBanner({
   const containerRef = useRef<HTMLDivElement>(null);
   const injected = useRef(false);
   const [adFailed, setAdFailed] = useState(false);
+  const [ippFailed, setIppFailed] = useState(false);
   const [isMobile, setIsMobile] = useState<boolean>(
     () => typeof window !== "undefined" && window.innerWidth < 768,
   );
@@ -238,13 +239,20 @@ export default function AdBanner({
   }, []);
 
   // Resolve which network actually renders:
-  // 1. explicit zoneId prop wins
-  // 2. otherwise fall back to the FIRST enabled network in AD_CONFIG
+  // 1. explicit zoneId + network prop wins (caller has specified exact ad)
+  // 2. PRIMARY: try Adsterra first (enabled by default)
+  // 3. FALLBACK: try Monetag IPP next
+  // 4. FALLBACK: try direct-link custom last
   const resolvedNetwork: Network = (() => {
     if (zoneId) return network;
-    if (AD_CONFIG[network]?.enabled) return network;
-    const enabled = (Object.keys(AD_CONFIG) as Network[]).find((k) => AD_CONFIG[k].enabled);
-    return enabled ?? network;
+    
+    // Try enabled networks in order: adsterra → monetag-ipp → custom
+    const preferredOrder: Network[] = ["adsterra", "monetag-ipp", "custom"];
+    for (const net of preferredOrder) {
+      if (AD_CONFIG[net]?.enabled) return net;
+    }
+    
+    return network;
   })();
 
   // Resolve zone:
@@ -345,10 +353,21 @@ export default function AdBanner({
       script.dataset.zone = resolvedZone.key;
       script.src = "https://nap5k.com/tag.min.js";
       script.onerror = () => {
+        setIppFailed(true);
         trackMonetagIppEvent("monetag_inpage_tag_failed", resolvedZone.key, placement);
       };
       container.appendChild(script);
       trackMonetagIppEvent("monetag_inpage_tag_requested", resolvedZone.key, placement);
+
+      // Timeout fallback if IPP doesn't respond
+      const ippTimer = window.setTimeout(() => {
+        const hasAd = container.querySelector("iframe, ins, img[src], div[data-zone]") !== null;
+        if (!hasAd && !ippFailed) {
+          setIppFailed(true);
+        }
+      }, 5000);
+
+      return () => window.clearTimeout(ippTimer);
     }
 
     if (resolvedNetwork === "monetag-banner") {
@@ -386,9 +405,22 @@ export default function AdBanner({
       <div className="promo-slot" style={{ minHeight: resolvedNetwork === "adsterra" ? resolvedZone.height : resolvedNetwork === "monetag-ipp" ? 0 : 250 }} data-size={resolvedNetwork === "adsterra" ? SIZE_DIMS[size] : ""}>
         <div ref={containerRef} />
       </div>
-      {resolvedNetwork === "adsterra" && adFailed && (
+      {/* Adsterra failed → show Monetag IPP fallback */}
+      {resolvedNetwork === "adsterra" && adFailed && !ippFailed && (
         <div className="promo-fallback">
-          <MonetagBox placement={`${placement}-fallback`} />
+          <AdBanner network="monetag-ipp" placement={`${placement}-fallback-ipp`} />
+        </div>
+      )}
+      {/* Both Adsterra + IPP failed → show direct-link fallback */}
+      {resolvedNetwork === "adsterra" && adFailed && ippFailed && (
+        <div className="promo-fallback">
+          <AdBanner network="custom" placement={`${placement}-fallback-custom`} />
+        </div>
+      )}
+      {/* IPP failed in primary fallback → show direct-link */}
+      {resolvedNetwork === "monetag-ipp" && ippFailed && (
+        <div className="promo-fallback">
+          <AdBanner network="custom" placement={`${placement}-fallback-custom`} />
         </div>
       )}
     </div>
