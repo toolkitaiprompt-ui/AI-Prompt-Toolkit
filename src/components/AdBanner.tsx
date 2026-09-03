@@ -1,13 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 
 /*
-  Universal Banner Ad Component — Adsterra + Monetag support
-  ─────────────────────────────────────────────────────────
+  Universal Banner Ad Component — Adsterra only
+  ─────────────────────────────────────────────
   - adsterra: real banner ads (multiple sizes). Zone keys in ADSTERRA_ZONES.
   - custom:   Monetag direct-link zone — visible sponsored box (click opens ad).
-  - raw-html: paste ANY ad network snippet (script/ins) — injected into slot.
-  - monetag-banner: reserved.
-
+  
   CRASH-PROOF DESIGN (important):
   Third-party ad scripts (Adsterra invoke.js etc.) MUTATE the DOM around
   themselves (they remove their own script tags). React must NEVER try to
@@ -16,7 +14,7 @@ import { useEffect, useRef, useState } from "react";
   React never re-renders, and fallbacks are separate React-owned nodes.
 */
 
-type Network = "adsterra" | "monetag-ipp" | "monetag-banner" | "custom";
+type Network = "adsterra" | "custom";
 export type AdSize = "leaderboard" | "rectangle" | "banner" | "skyscraper" | "halfpage";
 
 interface AdBannerProps {
@@ -24,7 +22,6 @@ interface AdBannerProps {
   zoneId?: string;
   size?: AdSize;
   className?: string;
-  /** Stable analytics label for this visible, non-intrusive placement. */
   placement?: string;
 }
 
@@ -43,17 +40,9 @@ export const ADSTERRA_ZONES: Record<
   halfpage: { key: "d9264105487f390df9af865c43686c92", width: 160, height: 300 },
 };
 
-// ─── NETWORK CONFIG (single source of truth) ───
-// PRIMARY: Adsterra (real banner fills) + Monetag IPP fallback (In-Page Push impressions)
-// SECONDARY: Monetag direct-link (visible sponsored card as fallback-of-fallback)
+// ─── NETWORK CONFIG ───
 export const AD_CONFIG: Record<Network, { enabled: boolean; zoneId: string }> = {
-  // PRIMARY: Adsterra real banner ads (owner account with verified HTTP 200 zones)
   adsterra: { enabled: true, zoneId: "" },
-  // FALLBACK #1: Monetag In-Page Push (11579225 = owner zone, visible impression-based)
-  "monetag-ipp": { enabled: true, zoneId: "11579225" },
-  // FALLBACK #2: Monetag banner network (reserve, not primary)
-  "monetag-banner": { enabled: false, zoneId: "" },
-  // FALLBACK #3: Monetag direct-link smartlink (11565897) — VISIBLE sponsored box (last resort)
   custom: { enabled: true, zoneId: "https://omg10.com/4/11565897" },
 };
 
@@ -65,11 +54,10 @@ const SIZE_DIMS: Record<AdSize, string> = {
   halfpage: "160x300",
 };
 
-// Monetag direct-link zones — served via FIRST-PARTY /go/ redirects so
-// ad-blockers (which block omg10.com by URL) can't hide the ads.
 const MONETAG_DIRECT_ZONES = ["/go/offer-1", "/go/offer-2"];
 let monetagZoneCounter = 0;
 const ADSTERRA_ACTIVE_ATTR = "data-adsterra-active";
+
 function nextMonetagZone() {
   monetagZoneCounter = (monetagZoneCounter + 1) % MONETAG_DIRECT_ZONES.length;
   return MONETAG_DIRECT_ZONES[monetagZoneCounter];
@@ -77,20 +65,16 @@ function nextMonetagZone() {
 
 type SponsoredCardEvent = "sponsored_card_viewable" | "sponsored_card_click";
 type DisplayTagEvent = "ad_display_tag_requested" | "ad_display_fallback";
-type MonetagIppEvent = "monetag_inpage_tag_requested" | "monetag_inpage_tag_failed";
-type MonetizationEvent = SponsoredCardEvent | DisplayTagEvent | MonetagIppEvent;
 type GtagEvent = (
   command: "event",
-  eventName: MonetizationEvent,
+  eventName: SponsoredCardEvent | DisplayTagEvent,
   parameters: Record<string, string | boolean>,
 ) => void;
 
 function trackSponsoredCardEvent(eventName: SponsoredCardEvent, zone: string, placement: string) {
   if (typeof window === "undefined") return;
-
   const gtag = (window as Window & { gtag?: GtagEvent }).gtag;
   if (!gtag) return;
-
   gtag("event", eventName, {
     event_category: "monetization",
     ad_network: "monetag",
@@ -104,10 +88,8 @@ function trackSponsoredCardEvent(eventName: SponsoredCardEvent, zone: string, pl
 
 function trackDisplayTagEvent(eventName: DisplayTagEvent, zone: string, size: string, placement: string) {
   if (typeof window === "undefined") return;
-
   const gtag = (window as Window & { gtag?: GtagEvent }).gtag;
   if (!gtag) return;
-
   gtag("event", eventName, {
     event_category: "monetization",
     ad_network: "adsterra",
@@ -120,24 +102,7 @@ function trackDisplayTagEvent(eventName: DisplayTagEvent, zone: string, size: st
   });
 }
 
-function trackMonetagIppEvent(eventName: MonetagIppEvent, zone: string, placement: string) {
-  if (typeof window === "undefined") return;
-
-  const gtag = (window as Window & { gtag?: GtagEvent }).gtag;
-  if (!gtag) return;
-
-  gtag("event", eventName, {
-    event_category: "monetization",
-    ad_network: "monetag",
-    ad_format: "in_page_push",
-    ad_placement: placement,
-    page_path: window.location.pathname,
-    ad_zone: zone,
-    non_interaction: true,
-  });
-}
-
-// Shared Monetag fallback box (used when Adsterra doesn't fill a slot)
+// Direct-link sponsored box fallback
 function MonetagBox({ placement = "unspecified" }: { placement?: string }) {
   const [zone] = useState(nextMonetagZone);
   const cardRef = useRef<HTMLAnchorElement>(null);
@@ -226,38 +191,20 @@ export default function AdBanner({
   const containerRef = useRef<HTMLDivElement>(null);
   const injected = useRef(false);
   const [adFailed, setAdFailed] = useState(false);
-  const [ippFailed, setIppFailed] = useState(false);
   const [isMobile, setIsMobile] = useState<boolean>(
     () => typeof window !== "undefined" && window.innerWidth < 768,
   );
 
-  // Track viewport so leaderboard can switch 728x90 <-> 320x50
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Resolve which network actually renders:
-  // 1. explicit zoneId + network prop wins (caller has specified exact ad)
-  // 2. PRIMARY: try Adsterra first (enabled by default)
-  // 3. FALLBACK: try Monetag IPP next
-  // 4. FALLBACK: try direct-link custom last
-  const resolvedNetwork: Network = (() => {
-    if (zoneId) return network;
-    
-    // Try enabled networks in order: adsterra → monetag-ipp → custom
-    const preferredOrder: Network[] = ["adsterra", "monetag-ipp", "custom"];
-    for (const net of preferredOrder) {
-      if (AD_CONFIG[net]?.enabled) return net;
-    }
-    
-    return network;
-  })();
+  // Resolve network: if network="adsterra", use Adsterra. Otherwise use custom.
+  const resolvedNetwork: Network = network as Network;
 
-  // Resolve zone:
-  // - adsterra: from ADSTERRA_ZONES by size (responsive for leaderboard)
-  // - others:   zoneId prop > AD_CONFIG zone
+  // Resolve zone
   const resolvedZone = (() => {
     if (resolvedNetwork === "adsterra") {
       const zone = ADSTERRA_ZONES[size];
@@ -267,7 +214,7 @@ export default function AdBanner({
       return { key: zone.key, width: zone.width, height: zone.height };
     }
     return {
-      key: zoneId || (AD_CONFIG[resolvedNetwork]?.enabled ? AD_CONFIG[resolvedNetwork].zoneId : ""),
+      key: zoneId || AD_CONFIG.custom.zoneId,
       width: 0,
       height: 0,
     };
@@ -275,7 +222,7 @@ export default function AdBanner({
 
   const hasZone = resolvedNetwork === "adsterra" || !!resolvedZone.key;
 
-  // ── Script injection (imperative; React never reconciles these nodes) ──
+  // ── Script injection ──
   useEffect(() => {
     if (injected.current || !containerRef.current) return;
     if (!hasZone) return;
@@ -284,19 +231,16 @@ export default function AdBanner({
     injected.current = true;
 
     if (resolvedNetwork === "adsterra") {
-      // Adsterra's atOptions/invoke.js contract uses a page-global `atOptions`.
-      // Multiple concurrent slots overwrite that global and can leave every slot
-      // blank. Allow one real Adsterra slot per page; remaining placements use
-      // the clearly labelled first-party fallback instead of racing each other.
+      // Check if another Adsterra slot already exists
       const activeSlot = document.querySelector(`[${ADSTERRA_ACTIVE_ATTR}]`);
       if (activeSlot) {
-        injected.current = true;
         setAdFailed(true);
         trackDisplayTagEvent("ad_display_fallback", resolvedZone.key, SIZE_DIMS[size], placement);
         return;
       }
       container.setAttribute(ADSTERRA_ACTIVE_ATTR, resolvedZone.key);
 
+      // Inject Adsterra atOptions config
       const atScript = document.createElement("script");
       atScript.type = "text/javascript";
       atScript.setAttribute("data-adsterra-config", "true");
@@ -311,6 +255,7 @@ export default function AdBanner({
       `;
       container.appendChild(atScript);
 
+      // Inject Adsterra invoke.js script
       const invokeScript = document.createElement("script");
       invokeScript.type = "text/javascript";
       invokeScript.src = `https://www.highperformanceformat.com/${resolvedZone.key}/invoke.js`;
@@ -319,10 +264,7 @@ export default function AdBanner({
       container.appendChild(invokeScript);
       trackDisplayTagEvent("ad_display_tag_requested", resolvedZone.key, SIZE_DIMS[size], placement);
 
-      // FALLBACK: keep a blank reserved slot only while the tag has a genuine chance
-      // to respond. A shorter timeout caused a direct-link fallback to appear even
-      // after a valid Adsterra iframe arrived a moment later.
-      // Only state flips — injected nodes stay untouched (crash-proof).
+      // Fallback to direct-link if Adsterra doesn't fill within 7 seconds
       const fallbackTimer = window.setTimeout(() => {
         const hasAd = container.querySelector("iframe, a, ins, img[src]") !== null;
         if (!hasAd) {
@@ -343,53 +285,16 @@ export default function AdBanner({
       };
     }
 
-    if (resolvedNetwork === "monetag-ipp") {
-      // Owner-supplied dedicated In-Page Push zone, used separately from the
-      // legacy MultiTag so the site does not deliberately re-enable that bundle.
-      const script = document.createElement("script");
-      script.async = true;
-      script.setAttribute("data-cfasync", "false");
-      script.setAttribute("data-monetag-ipp", resolvedZone.key);
-      script.setAttribute("data-zone", resolvedZone.key);
-      script.src = "https://nap5k.com/tag.min.js";
-      script.onerror = () => {
-        setIppFailed(true);
-        trackMonetagIppEvent("monetag_inpage_tag_failed", resolvedZone.key, placement);
-      };
-      container.appendChild(script);
-      trackMonetagIppEvent("monetag_inpage_tag_requested", resolvedZone.key, placement);
-
-      // Timeout fallback if IPP doesn't respond
-      const ippTimer = window.setTimeout(() => {
-        const hasAd = container.querySelector("iframe, ins, img[src], div[data-zone]") !== null;
-        if (!hasAd && !ippFailed) {
-          setIppFailed(true);
-        }
-      }, 5000);
-
-      return () => window.clearTimeout(ippTimer);
-    }
-
-    if (resolvedNetwork === "monetag-banner") {
-      const script = document.createElement("script");
-      script.async = true;
-      script.setAttribute("data-cfasync", "false");
-      script.src = `https://monetag.com/${resolvedZone.key}.min.js`;
-      container.appendChild(script);
-    }
-
     return () => {
       injected.current = false;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resolvedNetwork, resolvedZone.key, resolvedZone.width, resolvedZone.height, hasZone, isMobile]);
 
-  // No zone configured — render nothing
   if (!hasZone) {
     return null;
   }
 
-  // Monetag direct-link → visible sponsored box
+  // Direct-link fallback
   if (resolvedNetwork === "custom") {
     return (
       <div className={`promo-wrap ${className}`}>
@@ -402,25 +307,13 @@ export default function AdBanner({
   return (
     <div className={`promo-wrap ${className}`}>
       <span className="promo-label">Advertisement</span>
-      <div className="promo-slot" style={{ minHeight: resolvedNetwork === "adsterra" ? resolvedZone.height : resolvedNetwork === "monetag-ipp" ? 0 : 250 }} data-size={resolvedNetwork === "adsterra" ? SIZE_DIMS[size] : ""}>
+      <div className="promo-slot" style={{ minHeight: resolvedZone.height }} data-size={SIZE_DIMS[size]}>
         <div ref={containerRef} />
       </div>
-      {/* Adsterra failed → show Monetag IPP fallback */}
-      {resolvedNetwork === "adsterra" && adFailed && !ippFailed && (
+      {/* Fallback: if Adsterra fails, show direct-link */}
+      {adFailed && (
         <div className="promo-fallback">
-          <AdBanner network="monetag-ipp" placement={`${placement}-fallback-ipp`} />
-        </div>
-      )}
-      {/* Both Adsterra + IPP failed → show direct-link fallback */}
-      {resolvedNetwork === "adsterra" && adFailed && ippFailed && (
-        <div className="promo-fallback">
-          <AdBanner network="custom" placement={`${placement}-fallback-custom`} />
-        </div>
-      )}
-      {/* IPP failed in primary fallback → show direct-link */}
-      {resolvedNetwork === "monetag-ipp" && ippFailed && (
-        <div className="promo-fallback">
-          <AdBanner network="custom" placement={`${placement}-fallback-custom`} />
+          <MonetagBox placement={`${placement}-fallback`} />
         </div>
       )}
     </div>
