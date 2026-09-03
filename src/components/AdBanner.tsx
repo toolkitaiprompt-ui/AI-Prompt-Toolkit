@@ -51,10 +51,10 @@ export const AD_CONFIG: Record<Network, { enabled: boolean; zoneId: string }> = 
   adsterra: { enabled: false, zoneId: "" },
   // Dedicated Monetag In-Page Push (visible, impression-based) zone. It is
   // only injected at the controlled post-tool position with an explicit zoneId.
-  "monetag-ipp": { enabled: false, zoneId: "" },
+  "monetag-ipp": { enabled: true, zoneId: "11579225" },
   "monetag-banner": { enabled: false, zoneId: "" },
   // Monetag direct-link smartlink (11565897) — VISIBLE sponsored box
-  custom: { enabled: true, zoneId: "https://omg10.com/4/11565897" },
+  custom: { enabled: false, zoneId: "https://omg10.com/4/11565897" },
 };
 
 const SIZE_DIMS: Record<AdSize, string> = {
@@ -217,7 +217,7 @@ function MonetagBox({ placement = "unspecified" }: { placement?: string }) {
 }
 
 export default function AdBanner({
-  network = "adsterra",
+  network = "monetag-ipp",
   zoneId,
   size = "rectangle",
   className = "",
