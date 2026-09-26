@@ -223,6 +223,8 @@ export default function AdBanner({
   className = "",
   placement = "unspecified",
 }: AdBannerProps) {
+  // All ads removed per site owner's request — renders nothing.
+  return null;
   const containerRef = useRef<HTMLDivElement>(null);
   const injected = useRef(false);
   const [adFailed, setAdFailed] = useState(false);
