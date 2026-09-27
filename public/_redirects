@@ -3,12 +3,7 @@
 # Pages _redirects matches paths, not the pages.dev host alias.
 # Host consolidation is handled before SPA render in src/main.tsx.
 
-
 # Redirect www to non-www canonical domain
 www.aiworldhub.site/* https://aiworldhub.site/:splat 301
-
-# First-party ad redirects (ad-blocker-proof: links stay on own domain)
-/go/offer-1    https://omg10.com/4/11565897    302
-/go/offer-2    https://omg10.com/4/11565896    302
 
 # Known routes are prerendered as static files. Unknown paths are served by /404.html.
