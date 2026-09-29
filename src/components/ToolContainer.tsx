@@ -3,7 +3,6 @@ import useSeo from "../hooks/useSeo";
 import { BLOG_POSTS } from "../data/blogPosts";
 import { ACTIVE_TOOL_COUNT, TOOL_PAGES, TOOL_CATEGORIES, type ToolMeta } from "../data/tools";
 import { getRolesForTool } from "../lib/contentHub";
-import AdBanner, { ADSTERRA_ZONES } from "./AdBanner";
 import BlogCard from "./BlogCard";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -161,27 +160,6 @@ function ToolContainer({
       <div className="rounded-[24px] border border-white/10 bg-slate-950/80 p-6 shadow-xl">
         <div className="space-y-4">{children}</div>
       </div>
-
-      {/* One controlled display-ad test after the completed tool workflow.
-          It is visibly labelled by AdBanner and separated from controls/navigation. */}
-      <AdBanner
-        network="adsterra"
-        zoneId={ADSTERRA_ZONES.rectangle.key}
-        size="rectangle"
-        placement="tool-result-display"
-      />
-
-      {/* One dedicated Monetag In-Page Push zone after the tool workflow. This uses
-          a user-supplied impression zone, not MultiTag or any click-layer format. */}
-      <AdBanner
-        network="monetag-ipp"
-        zoneId="11565893"
-        placement="tool-result-monetag-inpage"
-      />
-
-      {/* A separate, clearly labelled direct-link offer after the completed workflow.
-          It is not adjacent to any tool action, navigation, or required control. */}
-      <AdBanner network="custom" placement="tool-result-sponsored-offer" />
 
       {relatedBlogs.length > 0 && (
         <section>

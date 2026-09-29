@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { useSearchParams } from "react-router-dom";
 import { getSeoForPath } from "@/seoConfig";
 import { toCanonical } from "@/lib/structuredData";
-import AdBanner from "@/components/AdBanner";
 import { TOOL_PAGES } from "@/data/tools";
 
 export default function BestAiToolsForWritingPage() {
@@ -96,7 +95,6 @@ export default function BestAiToolsForWritingPage() {
 
   return (
     <section className="site-container section-lg">
-      <div className="mb-10"><AdBanner size="rectangle" /></div>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

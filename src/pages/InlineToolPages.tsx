@@ -97,7 +97,6 @@ export function ToolsDirectoryPage() {
       title={`Free AI Tools Directory — ${ACTIVE_TOOL_COUNT} Best Tools | AI World Hub`}
       description={`Choose from ${ACTIVE_TOOL_COUNT} free AI prompt engineering tools — build, format, debug, optimize, secure, and translate prompts in your browser. No sign-up required.`}
       keywords="Best AI Tools, Free AI Tools, AI Tools Directory, Prompt Engineering Tools, AI Prompt Builder, ChatGPT Prompt Tools"
-      hideTopAd
     >
       <div className="space-y-3">
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-400/80">

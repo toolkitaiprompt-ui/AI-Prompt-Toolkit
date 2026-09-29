@@ -3,7 +3,6 @@ import { useMemo, useState, type ReactElement } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowUpRight, Search } from "lucide-react";
 import SectionShell from "../components/SectionShell";
-import AdBanner from "../components/AdBanner";
 import BlogCard from "../components/BlogCard";
 import { BLOG_POSTS, getBlogPostBySlug } from "../data/blogPosts";
 import { getRelatedBlogPosts, getRolesForBlogCategory } from "../lib/contentHub";
@@ -62,7 +61,6 @@ export function BlogPage() {
       title="ChatGPT Prompts & Prompt Engineering Blog | AI World Hub"
       description="Free ChatGPT prompts, prompt engineering guides, and AI tool reviews. Learn to write better prompts and boost productivity with practical tutorials."
       keywords="ChatGPT Prompts, Prompt Engineering, Best AI Tools, Free AI Tools, AI Tools Directory"
-      hideTopAd
     >
       <div className="space-y-4">
         <div className="space-y-2">
@@ -174,9 +172,6 @@ export function BlogPostPage() {
 
   return (
     <section className="site-container section-md">
-      <div className="mb-8">
-        <AdBanner network="custom" />
-      </div>
       <div className="space-y-5 sm:space-y-6">
         <div className="space-y-2 sm:space-y-3">
           <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">{post.category}</p>
@@ -230,11 +225,6 @@ export function BlogPostPage() {
               });
               return sections;
             })()}
-
-            {/* In-content ad (best CTR position) */}
-            <div className="my-4">
-              <AdBanner size="rectangle" />
-            </div>
 
             <section className="rounded-[20px] border border-slate-800 bg-slate-950/50 p-6">
               <h2 className="text-2xl font-semibold text-white">Frequently asked questions</h2>
@@ -363,9 +353,6 @@ export function BlogPostPage() {
             </div>
           </aside>
         </div>
-      </div>
-      <div className="mt-10">
-        <AdBanner network="custom" />
       </div>
     </section>
   );

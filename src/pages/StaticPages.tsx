@@ -209,7 +209,7 @@ export function PrivacyPage() {
       keywords="Privacy Policy, Free AI Prompt Tools, Prompt Engineering"
     >
       <h1 className="text-3xl font-bold text-white">Privacy Policy</h1>
-      <p className="mt-2 text-sm text-slate-500">Last updated: June 24, 2026</p>
+      <p className="mt-2 text-sm text-slate-500">Last updated: September 29, 2026</p>
       <div className="mt-6 max-w-4xl space-y-6 text-slate-300">
         <p>At AI World Hub, accessible from https://aiworldhub.site, the privacy of our visitors is one of our main priorities. This Privacy Policy document explains the types of information we collect and how we use, store, and protect it.</p>
 
@@ -231,17 +231,19 @@ export function PrivacyPage() {
           <ul className="ml-6 list-disc space-y-1">
             <li><strong>Essential cookies:</strong> Required for the website to function correctly.</li>
             <li><strong>Analytics cookies:</strong> Used by Google Analytics to understand visitor behavior.</li>
-            <li><strong>Advertising cookies:</strong> Used by Monetag to display relevant ads.</li>
+            <li><strong>Advertising cookies:</strong> Set by Google and its advertising partners if and when ads are displayed on this website.</li>
           </ul>
           <p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent through your browser settings.</p>
         </div>
 
         <div className="space-y-2">
-          <h2 className="text-xl font-semibold text-white">Monetag Advertising</h2>
-          <p>We use Monetag to display advertisements. Monetag, as a third-party vendor, may use cookies to serve ads based on your prior visits to this and other websites.</p>
+          <h2 className="text-xl font-semibold text-white">Advertising</h2>
+          <p>AI World Hub may display advertisements served by Google (for example through Google AdSense) and other advertising partners. Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites.</p>
           <ul className="ml-6 list-disc space-y-1">
-            <li>Monetag may use advertising cookies to serve ads to you based on your visit to our site and/or other sites on the Internet.</li>
-            <li>You may opt out of personalized advertising by visiting <a href="https://www.monetag.com/privacy-policy/" className="text-cyan-400 hover:underline">Monetag Privacy Policy</a>.</li>
+            <li>Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our site and/or other sites on the Internet.</li>
+            <li>You can opt out of personalized advertising by visiting <a href="https://adssettings.google.com" className="text-cyan-400 hover:underline" target="_blank" rel="noopener noreferrer">Google Ads Settings</a>. You can also visit <a href="https://www.aboutads.info" className="text-cyan-400 hover:underline" target="_blank" rel="noopener noreferrer">www.aboutads.info</a> to opt out of some third-party vendors' use of cookies for personalized advertising.</li>
+            <li>To learn how Google uses data from sites that use its services, see <a href="https://policies.google.com/technologies/partner-sites" className="text-cyan-400 hover:underline" target="_blank" rel="noopener noreferrer">How Google uses information from sites or apps that use our services</a>.</li>
+            <li>Where required by law (for example in the European Economic Area, the United Kingdom and Switzerland), advertising and analytics cookies are only used with your consent.</li>
           </ul>
         </div>
 
