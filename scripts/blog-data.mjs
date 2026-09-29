@@ -73,8 +73,24 @@ function parsePosts(source, constName = "BLOG_POSTS") {
         }
       }
     }
+    let sections = [];
+    const secStart = block.indexOf("contentSections:");
+    if (secStart >= 0) {
+      const bracket = block.indexOf("[", secStart);
+      if (bracket >= 0) {
+        try {
+          sections = Function(`"use strict"; return (${extractBalanced(block, bracket, "[", "]")});`)();
+        } catch {
+          sections = [];
+        }
+      }
+    }
     posts.push({
       slug: s.slug,
+      excerpt: grab("excerpt"),
+      category: grab("category"),
+      readTime: grab("readTime"),
+      sections,
       title: grab("title"),
       seoTitle: grab("seoTitle"),
       metaDescription: grab("metaDescription"),

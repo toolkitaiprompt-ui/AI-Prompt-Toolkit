@@ -1017,7 +1017,7 @@ export const STATIC_ROUTES = [
     "path": "/blog/how-to-summarize-pdf-with-ai-privacy-checklist",
     "title": "How to Summarize a PDF with AI Safely | AI World Hub",
     "desc": "Learn a practical workflow for summarizing PDFs with AI, checking the output, protecting sensitive information, and turning notes into useful questions.",
-    "type": "page",
+    "type": "blog",
     "priority": 0.8,
     "changefreq": "monthly"
   },

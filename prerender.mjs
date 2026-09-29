@@ -19,6 +19,7 @@ import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
 import { ALL_ROUTES, SITE, toCanonical, jsonLdForRoute, faqJsonLd } from "./scripts/seo-routes.mjs";
 import { getBlogFaqMap } from "./scripts/blog-data.mjs";
+import { bodyForRoute } from "./scripts/prerender-body.mjs";
 
 const OUT_DIR = join(process.cwd(), "dist", "public");
 const TEMPLATE = readFileSync(join(OUT_DIR, "index.html"), "utf-8");
@@ -81,6 +82,9 @@ for (const route of ALL_ROUTES) {
   } else {
     html = html.replace('<link rel="sitemap"', `${hreflangTags}\n    <link rel="sitemap"`);
   }
+
+  // Real, crawlable content inside #root (React's createRoot replaces it on load)
+  html = html.replace('<div id="root"></div>', `<div id="root">${bodyForRoute(route)}</div>`);
 
   // Write to dist/public/{path}/index.html
   const outPath = route.path === "/" ? OUT_DIR : join(OUT_DIR, route.path);
